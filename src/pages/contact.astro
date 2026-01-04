@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../config/site";
+
+const title = `Contact | ${SITE.name}`;
+const description = "Get in touch about calculator issues, corrections, or feedback.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/contact">
+  <section class="card hero">
+    <h1>Contact</h1>
+    <p>If you spot an issue or want a calculator added, email us.</p>
+  </section>
+
+  <section class="card section">
+    <div class="pill">Email</div>
+    <p style="margin:10px 0 0; font-size:18px">
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    </p>
+  </section>
+</BaseLayout>

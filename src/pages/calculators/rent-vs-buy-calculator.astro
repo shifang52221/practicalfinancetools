@@ -1,0 +1,69 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import { RentVsBuyCalculator as RentVsBuyCalculatorComponent } from "../../components/calculators/RentVsBuy";
+
+const title = "Rent vs Buy Calculator";
+const description =
+  "Compare renting vs buying with scenario assumptions to estimate break-even and projected net worth. Educational use only.";
+---
+<CalculatorLayout
+  title={title}
+  description={description}
+  canonicalPath="/calculators/rent-vs-buy-calculator"
+  intro="Compare renting vs buying using scenario assumptions for rent growth, home appreciation, costs, and investment return."
+  how={[
+    "Homeowner costs include principal & interest plus estimated tax, insurance, HOA, and maintenance.",
+    "Home value grows based on your appreciation assumption; equity is estimated as sale proceeds minus remaining loan balance and selling costs.",
+    "Renter \"net worth\" is simplified as invested upfront cash (down payment + closing costs) plus monthly cost differences."
+  ]}
+  faqs={[
+    {
+      q: "Does this include taxes or deductions?",
+      a: "No. This model is simplified and does not include income taxes, itemized deductions, or tax credits."
+    },
+    {
+      q: "What assumptions matter most?",
+      a: "Holding period, mortgage rate, home appreciation, rent growth, selling costs, and investment return often drive results."
+    },
+    {
+      q: "Is this an investment recommendation?",
+      a: "No. It’s an educational scenario comparison, not advice."
+    },
+    {
+      q: "Does it include closing and selling costs?",
+      a: "Yes, as percentages of home price/value based on your inputs."
+    },
+    {
+      q: "Why might results differ from other calculators?",
+      a: "Different tools include different costs (taxes, maintenance, opportunity cost, and tax impacts) and use different modeling assumptions."
+    }
+  ]}
+  lastUpdated="2026-01-02"
+>
+  <RentVsBuyCalculatorComponent client:load />
+
+  <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">How to interpret results</h2>
+    <p class="muted" style="margin:0">
+      Rent vs buy results depend heavily on assumptions. Use this tool to compare scenarios, not to predict the future.
+      Small changes in appreciation, rent growth, or mortgage rate can change the break-even horizon.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Common pitfalls</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Taxes, deductions, and after-tax investment returns are not modeled here.</li>
+      <li>Maintenance is uncertain; older homes or condos can have large one-time costs.</li>
+      <li>Opportunity cost matters: tying up cash in a down payment can reduce investable funds.</li>
+      <li>Holding period is critical—selling costs can dominate short time horizons.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Related tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment impact</a>
+      <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
+    </div>
+  </div>
+</CalculatorLayout>
+

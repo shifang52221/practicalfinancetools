@@ -1,0 +1,75 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import { DebtAvalancheCalculator as DebtAvalancheCalculatorComponent } from "../../components/calculators/DebtAvalanche";
+
+const title = "Debt Avalanche Calculator";
+const description =
+  "Build a debt payoff plan using the avalanche method (highest APR first) to reduce interest cost. Educational use only.";
+---
+<CalculatorLayout
+  title={title}
+  description={description}
+  canonicalPath="/calculators/debt-avalanche-calculator"
+  intro="Create a debt payoff plan using the avalanche method: pay minimums on everything and attack the highest APR first."
+  how={[
+    "Each month, interest is estimated as balance × (APR ÷ 12).",
+    "Minimum payments are applied to all debts; extra money is applied to the target debt (highest APR).",
+    "When a debt is paid off, its payment is freed up for other debts.",
+    "Results assume APRs and minimum payments stay constant and you make on-time payments."
+  ]}
+  faqs={[
+    {
+      q: "What is the debt avalanche method?",
+      a: "A payoff strategy that prioritizes the highest interest rate first to minimize total interest over time."
+    },
+    {
+      q: "Does avalanche always save more interest?",
+      a: "Often yes, but exact results depend on balances, minimums, and rates. If rates are similar, results may be close to snowball."
+    },
+    {
+      q: "What counts as a minimum payment?",
+      a: "Whatever amount you must pay monthly to stay current. Use your statement minimum or required payment."
+    },
+    {
+      q: "Can I compare snowball vs avalanche?",
+      a: "Yes—run the same debts through both tools to compare total interest and timeline."
+    },
+    {
+      q: "Does this include fees, penalties, or new purchases?",
+      a: "No. Late fees, annual fees, and new purchases are not included, and they can slow payoff."
+    },
+    {
+      q: "What if my APR changes?",
+      a: "This assumes fixed APRs. If you have promo APRs or variable APRs, update the inputs and re-run scenarios as they change."
+    }
+  ]}
+  lastUpdated="2026-01-02"
+>
+  <DebtAvalancheCalculatorComponent client:load />
+
+  <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">How to use this page</h2>
+    <p class="muted" style="margin:0">
+      Enter each debt’s balance, APR, and minimum payment. Then add an “extra payment” amount—the additional money you
+      can put toward debt each month. The avalanche method applies that extra amount to the highest APR first to reduce
+      total interest.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Common pitfalls</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Avalanche can feel slower early on because it targets APR, not smallest balance.</li>
+      <li>Minimum payment rules vary by issuer and can change over time.</li>
+      <li>Adding new purchases or fees can extend payoff time significantly.</li>
+      <li>Promo APRs can end—re-run the plan when rates change.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Related tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/debt-snowball-calculator">Debt snowball (smallest balance first)</a>
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff</a>
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
+      <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
+    </div>
+  </div>
+</CalculatorLayout>
+

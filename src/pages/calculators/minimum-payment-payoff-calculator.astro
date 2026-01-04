@@ -1,0 +1,73 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import { MinimumPaymentPayoff } from "../../components/calculators/MinimumPaymentPayoff";
+
+const title = "Minimum Payment Payoff Calculator";
+const description =
+  "Estimate how long it could take to pay off a balance with minimum payments, and the total interest cost. Educational use only.";
+---
+<CalculatorLayout
+  title={title}
+  description={description}
+  canonicalPath="/calculators/minimum-payment-payoff-calculator"
+  intro="See how long a balance can take to pay off if you only make minimum payments, and how much interest you may pay."
+  how={[
+    "Monthly interest is estimated as balance × (APR ÷ 12).",
+    "Minimum payment is estimated as max($ minimum, % of balance) using a simplified common rule.",
+    "Estimates assume no new purchases are added and APR stays constant."
+  ]}
+  faqs={[
+    {
+      q: "Do issuers calculate minimum payments differently?",
+      a: "Yes. Many issuers use tiered rules and include fees/interest differently. This calculator uses a simplified common rule to estimate payoff."
+    },
+    {
+      q: "Why can minimum payments take so long?",
+      a: "Minimum payments can be a small fraction of your balance, so principal reduction is slow while interest keeps accruing."
+    },
+    {
+      q: "What happens if my minimum is close to interest?",
+      a: "Progress can be extremely slow. Increasing your payment even a little can shorten payoff time substantially."
+    },
+    {
+      q: "Does this include new purchases?",
+      a: "No. This assumes no new charges are added to the balance."
+    },
+    {
+      q: "Does this include fees?",
+      a: "No. Late fees, annual fees, and other fees are not included. Fees can meaningfully increase total cost."
+    },
+    {
+      q: "How can I reduce total interest?",
+      a: "Pay more than the minimum, reduce APR (e.g., refinance/transfer), and prioritize higher-APR balances first."
+    }
+  ]}
+  lastUpdated="2026-01-02"
+>
+  <MinimumPaymentPayoff client:load />
+
+  <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Example</h2>
+    <p class="muted" style="margin:0">
+      Try a $5,000 balance at 24.99% APR. Compare “minimum payments only” versus paying an extra $25–$100 per month.
+      Many people are surprised by how much time and interest minimum-only payments can add.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Common pitfalls</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Issuers often use daily interest and statement cycles; monthly estimates can differ from your statement.</li>
+      <li>Minimum payment rules vary by issuer and can change over time.</li>
+      <li>New purchases, late fees, and penalty APR can extend payoff dramatically.</li>
+      <li>If you’re carrying multiple balances, prioritization (snowball/avalanche) can matter more than minimum rules.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Related tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff</a>
+      <a class="btn" href="/calculators/debt-snowball-calculator">Debt snowball plan</a>
+      <a class="btn" href="/calculators/debt-avalanche-calculator">Debt avalanche plan</a>
+      <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
+    </div>
+  </div>
+</CalculatorLayout>
+

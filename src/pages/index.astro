@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../config/site";
+import { TOOLS } from "../lib/tools";
+import AdSlot from "../components/AdSlot.astro";
+
+const title = `${SITE.name} | Free US Finance Calculators`;
+const description =
+  "Practical, fast calculators for debt payoff, APR, DTI, mortgage payments, amortization schedules, and rent vs buy. Educational use only.";
+
+const featuredSlugs = [
+  "credit-card-payoff-calculator",
+  "debt-snowball-calculator",
+  "debt-avalanche-calculator",
+  "mortgage-payment-calculator",
+  "amortization-schedule-calculator",
+  "rent-vs-buy-calculator"
+];
+
+const featured = TOOLS.filter((t) => featuredSlugs.includes(t.slug));
+const all = TOOLS;
+const slots = SITE.adsenseSlots;
+---
+<BaseLayout title={title} description={description} canonicalPath="/">
+  <section class="card hero">
+    <span class="pill">US-focused - Free - No signup</span>
+    <h1>Practical finance calculators for debt and mortgages</h1>
+    <p>
+      Estimate payoff timelines, interest cost, and payment schedules with clear assumptions. Your inputs stay in your
+      browser and results are educational only.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators">Browse calculators</a>
+      <a class="btn" href="/about">About this site</a>
+      <a class="btn" href="/cookie-notice">Cookie preferences</a>
+    </div>
+  </section>
+
+  <section class="card section">
+    <h2 style="margin:0 0 12px">Featured calculators</h2>
+    <div class="grid">
+      {featured.map((t) => (
+        <a class="card2 tool col-6" href={`/calculators/${t.slug}`}>
+          <div class="tool-title">{t.title}</div>
+          <div class="tool-desc">{t.description}</div>
+          <div class="muted" style="font-size:12px; margin-top:4px">{t.category}</div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Choose the right tool</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>
+          Credit cards: use <a href="/calculators/credit-card-payoff-calculator">Credit Card Payoff</a> for a fixed payment.
+        </li>
+        <li>
+          Multiple debts: compare <a href="/calculators/debt-snowball-calculator">Snowball</a> vs{" "}
+          <a href="/calculators/debt-avalanche-calculator">Avalanche</a>.
+        </li>
+        <li>
+          Borrowing comparisons: use <a href="/calculators/apr-calculator">APR Calculator</a> to include fees.
+        </li>
+        <li>
+          Home shopping: use <a href="/calculators/mortgage-payment-calculator">Mortgage Payment</a> to estimate monthly cost.
+        </li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">How to use results</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Use outputs to compare scenarios (payment size, extra payments, APRs), not as exact lender quotes. Always confirm
+        final terms, escrow, and fees with your lender or card issuer.
+      </p>
+      <p class="muted" style="margin:10px 0 0">
+        Questions or feedback: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section" style="margin-top:18px">
+    <h2 style="margin:0 0 12px">All calculators</h2>
+    <div class="grid">
+      {all.map((t) => (
+        <a class="card2 tool col-6" href={`/calculators/${t.slug}`}>
+          <div class="tool-title">{t.title}</div>
+          <div class="tool-desc">{t.description}</div>
+          <div class="muted" style="font-size:12px; margin-top:4px">{t.category}</div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <AdSlot slot={slots.homeMid} minHeight={280} />
+  </section>
+</BaseLayout>

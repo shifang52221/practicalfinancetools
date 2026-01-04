@@ -1,0 +1,47 @@
+---
+import { SITE } from "../config/site";
+
+type Props = {
+  slot: string;
+  format?: string;
+  responsive?: boolean;
+  style?: string;
+  class?: string;
+  minHeight?: number;
+  label?: string;
+};
+
+const {
+  slot,
+  format = "auto",
+  responsive = true,
+  style = "display:block",
+  minHeight = 250,
+  label = "Advertisement"
+} = Astro.props;
+const client = SITE.adsenseClient?.trim();
+---
+{client && slot ? (
+  <div class={`ad-wrap ${Astro.props.class ?? ""}`} style={`min-height:${Math.max(0, minHeight)}px`}>
+    {label ? <div class="ad-label">{label}</div> : null}
+    <ins
+      class="adsbygoogle"
+      style={style}
+      data-ad-client={client}
+      data-ad-slot={slot}
+      data-ad-format={format}
+      data-full-width-responsive={responsive ? "true" : "false"}
+    ></ins>
+    <script is:inline>
+      (function () {
+        var ins = document.currentScript && document.currentScript.previousElementSibling;
+        if (!ins) return;
+        try {
+          var c = window.localStorage.getItem("consent.v1");
+          if (c === "declined") ins.setAttribute("data-npa", "1");
+        } catch {}
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      })();
+    </script>
+  </div>
+) : null}

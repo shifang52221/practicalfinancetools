@@ -1,0 +1,75 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import { DebtSnowballCalculator as DebtSnowballCalculatorComponent } from "../../components/calculators/DebtSnowball";
+
+const title = "Debt Snowball Calculator";
+const description =
+  "Build a debt payoff plan using the snowball method (smallest balance first). Estimate payoff time and interest. Educational use only.";
+---
+<CalculatorLayout
+  title={title}
+  description={description}
+  canonicalPath="/calculators/debt-snowball-calculator"
+  intro="Create a debt payoff plan using the snowball method: pay minimums on everything and attack the smallest balance first."
+  how={[
+    "Each month, interest is estimated as balance × (APR ÷ 12).",
+    "Minimum payments are applied to all debts; extra money is applied to the target debt (smallest balance).",
+    "When a debt is paid off, its payment is freed up for other debts.",
+    "Results assume APRs and minimum payments stay constant and you make on-time payments."
+  ]}
+  faqs={[
+    {
+      q: "What is the debt snowball method?",
+      a: "A payoff strategy that prioritizes the smallest balance first to build momentum while still paying minimums on everything else."
+    },
+    {
+      q: "Is snowball better than avalanche?",
+      a: "Snowball can be easier to stick with because you get quick wins. Avalanche often minimizes total interest. The best method is the one you will follow consistently."
+    },
+    {
+      q: "Does this assume fixed APRs and minimum payments?",
+      a: "Yes. If APRs change, minimum payment rules change, or you miss payments, results can change."
+    },
+    {
+      q: "Can I include 0% promo balances?",
+      a: "Yes—set APR to 0%. Be aware promo periods can end and minimum payment rules vary by issuer."
+    },
+    {
+      q: "Does this include fees or new purchases?",
+      a: "No. Late fees, annual fees, and new purchases are not included, and they can slow payoff."
+    },
+    {
+      q: "What if I miss a payment?",
+      a: "This assumes on-time payments. Missed payments and penalty APR can increase costs and payoff time."
+    }
+  ]}
+  lastUpdated="2026-01-02"
+>
+  <DebtSnowballCalculatorComponent client:load />
+
+  <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">How to use this page</h2>
+    <p class="muted" style="margin:0">
+      Enter each debt’s balance, APR, and minimum payment. Then add an “extra payment” amount—the additional money you
+      can put toward debt each month. The snowball method applies that extra amount to the smallest balance first to
+      help you get early payoffs.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Common pitfalls</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Snowball may not minimize interest; it prioritizes motivation and simplicity over cost.</li>
+      <li>APR and minimum payment rules can change (promo APR ends, penalty APR, issuer policy changes).</li>
+      <li>Adding new purchases or fees can extend payoff time significantly.</li>
+      <li>If your “extra payment” is not realistic, the plan may be hard to stick with—start conservative.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Related tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/debt-avalanche-calculator">Debt avalanche (highest APR first)</a>
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff</a>
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
+      <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
+    </div>
+  </div>
+</CalculatorLayout>
+

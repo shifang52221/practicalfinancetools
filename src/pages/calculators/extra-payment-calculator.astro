@@ -1,0 +1,69 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import { ExtraPaymentMortgageCalculator } from "../../components/calculators/ExtraPayment";
+
+const title = "Extra Payment Mortgage Calculator";
+const description =
+  "Estimate how extra mortgage payments can shorten payoff time and reduce total interest. Educational use only.";
+---
+<CalculatorLayout
+  title={title}
+  description={description}
+  canonicalPath="/calculators/extra-payment-calculator"
+  intro="See how paying extra toward principal can shorten your mortgage payoff timeline and reduce total interest."
+  how={[
+    "Baseline schedule uses standard amortization for principal & interest.",
+    "Extra payments are applied to principal (reducing future interest).",
+    "Results assume the lender applies extra payments to principal and that there is no prepayment penalty."
+  ]}
+  faqs={[
+    {
+      q: "Does an extra payment reduce my required monthly payment?",
+      a: "Usually no. It reduces your balance and payoff time; the required payment typically stays the same unless you recast the loan."
+    },
+    {
+      q: "Monthly vs one-time extra: which is better?",
+      a: "Earlier payments generally save more interest because they reduce the balance sooner. Compare scenarios to see the impact."
+    },
+    {
+      q: "What about prepayment penalties?",
+      a: "Some loans have them. This calculator assumes none—check your loan terms."
+    },
+    {
+      q: "Should I invest instead?",
+      a: "This tool doesn’t give advice. Compare your mortgage rate to expected after-tax investment returns and your risk tolerance."
+    },
+    {
+      q: "Is rounding handled exactly like my lender?",
+      a: "Not necessarily. Results are estimates and real statements can differ due to rounding and timing."
+    }
+  ]}
+  lastUpdated="2026-01-02"
+>
+  <ExtraPaymentMortgageCalculator client:load />
+
+  <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Example</h2>
+    <p class="muted" style="margin:0">
+      Compare a baseline payment to adding an extra $100–$300 per month. Even small extra payments can reduce payoff
+      time because they go directly to principal.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Common pitfalls</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Extra payments typically reduce payoff time, not the required monthly payment (unless you recast).</li>
+      <li>Some lenders have rules for how extra payments are applied—confirm “principal-only” application.</li>
+      <li>If your loan has a prepayment penalty, the savings may be reduced.</li>
+      <li>Escrow items (tax/insurance) are separate from principal and interest—extra payments don’t reduce escrow.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Related tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/calculators/rent-vs-buy-calculator">Rent vs buy</a>
+    </div>
+  </div>
+</CalculatorLayout>
+

@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../config/site";
+
+const title = `About | ${SITE.name}`;
+const description = "About this site, our goals, and how to use the calculators responsibly.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/about">
+  <section class="card hero">
+    <h1>About</h1>
+    <p>
+      This site provides finance calculators designed to be fast, easy to understand, and transparent about assumptions.
+      We focus on common US scenarios like credit card payoff planning and mortgage payment estimation.
+    </p>
+  </section>
+
+  <section class="card section">
+    <h2 style="margin:0 0 10px">Important</h2>
+    <p class="muted" style="margin:0; line-height:1.6">
+      Educational use only. Not financial advice. We don’t provide personalized recommendations, and we don’t guarantee
+      the accuracy of results. Always confirm figures with your lender or financial professional.
+    </p>
+  </section>
+</BaseLayout>

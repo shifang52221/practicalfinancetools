@@ -1,0 +1,73 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import { CreditCardPayoff } from "../../components/calculators/CreditCardPayoff";
+
+const title = "Credit Card Payoff Calculator";
+const description =
+  "Estimate your credit card payoff time, total interest, and a month-by-month payoff schedule. Educational use only.";
+---
+<CalculatorLayout
+  title={title}
+  description={description}
+  canonicalPath="/calculators/credit-card-payoff-calculator"
+  intro="Estimate how long it takes to pay off a credit card balance with a fixed APR and a fixed monthly payment."
+  how={[
+    "Monthly interest is estimated as balance × (APR ÷ 12).",
+    "Each month, payment is applied to interest first, then principal.",
+    "If a payment is too low to cover interest, payoff may never happen; this tool warns you when that occurs."
+  ]}
+  faqs={[
+    {
+      q: "How is credit card interest calculated?",
+      a: "This tool estimates interest monthly using APR/12. Your issuer may use a daily balance method, different compounding, and statement-cycle timing."
+    },
+    {
+      q: "What if my APR changes?",
+      a: "Results assume a fixed APR. If your APR changes (promo ends, penalty APR, variable APR), payoff time and interest can change significantly."
+    },
+    {
+      q: "Does this include new purchases or balance transfers?",
+      a: "No. This assumes you stop adding new charges and fees. Adding purchases can extend payoff time."
+    },
+    {
+      q: "Does this include fees?",
+      a: "No. Late fees, annual fees, and balance transfer fees are not included."
+    },
+    {
+      q: "Why does interest look higher early on?",
+      a: "Interest is proportional to your balance. Higher starting balances generate more interest, so early months often show higher interest amounts."
+    },
+    {
+      q: "What if my payment is too low?",
+      a: "If a payment is below the interest charged, the balance can grow and payoff may never happen. Increase the payment or reduce the APR to make progress."
+    }
+  ]}
+  lastUpdated="2026-01-02"
+>
+  <CreditCardPayoff client:load />
+
+  <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Example</h2>
+    <p class="muted" style="margin:0">
+      Try a realistic scenario like $5,000 balance at 24.99% APR with a $200 monthly payment. Then compare what happens
+      if you increase the payment by $25–$50, or if you reduce the APR by moving the balance to a lower-rate product.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Common pitfalls</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Issuers often use daily interest and statement cycles; monthly estimates can differ from your statement.</li>
+      <li>Adding new purchases can keep the balance from dropping even if you keep paying.</li>
+      <li>If your payment is near the interest amount, payoff can take many years.</li>
+      <li>Fees (annual, late, transfer) can change total cost; this tool does not include fees.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Related tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
+      <a class="btn" href="/calculators/debt-snowball-calculator">Debt snowball plan</a>
+      <a class="btn" href="/calculators/debt-avalanche-calculator">Debt avalanche plan</a>
+      <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
+    </div>
+  </div>
+</CalculatorLayout>
+

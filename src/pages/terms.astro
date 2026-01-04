@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../config/site";
+
+const title = `Terms of Use | ${SITE.name}`;
+const description = "Terms of use and disclaimers for this site and its calculators.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/terms">
+  <section class="card hero">
+    <h1>Terms of Use</h1>
+    <p>Last updated: 2026-01-02</p>
+  </section>
+
+  <section class="card section prose">
+    <h2 style="margin-top:0">1) Educational use only (no advice)</h2>
+    <p class="muted">
+      The calculators and content on this site are provided for informational and educational purposes only. They are
+      not financial, legal, tax, or accounting advice, and do not create any professional relationship. If you need
+      advice, consult a qualified professional.
+    </p>
+
+    <h2>2) Estimates and assumptions</h2>
+    <p class="muted">
+      Results are estimates based on the inputs you provide and the assumptions described on each page. Actual lender
+      quotes, statements, and disclosures may differ due to rounding, fees, escrow timing, underwriting, compounding,
+      policy rules, and other factors.
+    </p>
+
+    <h2>3) No warranty</h2>
+    <p class="muted">
+      We provide the site and calculators "as is" and "as available" without warranties of any kind, express or
+      implied, including accuracy, fitness for a particular purpose, and non-infringement.
+    </p>
+
+    <h2>4) Limitation of liability</h2>
+    <p class="muted">
+      To the maximum extent permitted by law, we are not liable for any direct, indirect, incidental, consequential,
+      special, exemplary, or punitive damages arising from your use of the site or reliance on any results.
+    </p>
+
+    <h2>5) Third-party services and links</h2>
+    <p class="muted">
+      The site may include links to third-party websites and may display third-party advertising. We do not control
+      third parties and are not responsible for their content, products, services, or practices.
+    </p>
+
+    <h2>6) Your responsibilities</h2>
+    <p class="muted">
+      You are responsible for verifying any results before making decisions, and for complying with any applicable
+      laws and policies when using the site.
+    </p>
+
+    <h2>7) Changes</h2>
+    <p class="muted">
+      We may update these Terms from time to time. By continuing to use the site after changes are posted, you agree to
+      the updated Terms.
+    </p>
+
+    <h2>8) Contact</h2>
+    <p class="muted">
+      Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+  </section>
+</BaseLayout>

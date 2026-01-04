@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+import { TOOLS } from "../../lib/tools";
+import AdSlot from "../../components/AdSlot.astro";
+
+const title = `Calculators | ${SITE.name}`;
+const description =
+  "Browse practical calculators for debt payoff, APR, DTI, mortgage payments, amortization schedules, and rent vs buy. Educational use only.";
+
+const grouped = TOOLS.reduce<Record<string, typeof TOOLS>>((acc, t) => {
+  (acc[t.category] ||= []).push(t);
+  return acc;
+}, {});
+const slots = SITE.adsenseSlots;
+---
+<BaseLayout title={title} description={description} canonicalPath="/calculators">
+  <section class="card hero">
+    <h1>Calculators</h1>
+    <p>Pick a tool below. Each page includes inputs, clear results, and the calculation assumptions.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Start with credit cards</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Start with a mortgage</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Quick guide</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Paying off one card with a fixed payment: Credit Card Payoff.</li>
+        <li>Paying off many debts: Snowball vs Avalanche.</li>
+        <li>Shopping for loans: compare APR (includes fees).</li>
+        <li>Home buying: estimate monthly payment, then review the amortization schedule.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What to verify</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Lenders and card issuers may use different rounding, PMI rules, escrow assumptions, and fee structures. Treat
+        results as estimates and confirm final terms before making decisions.
+      </p>
+    </div>
+  </section>
+
+  <section style="margin-top:18px">
+    {Object.entries(grouped).map(([category, tools]) => (
+      <div style="margin-bottom:16px">
+        <div class="pill" style="margin: 6px 0 10px">{category}</div>
+        <div class="grid">
+          {tools.map((t) => (
+            <a class="card2 tool col-6" href={`/calculators/${t.slug}`}>
+              <div class="tool-title">{t.title}</div>
+              <div class="tool-desc">{t.description}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <section class="section">
+    <AdSlot slot={slots.calculatorsListMid} minHeight={280} />
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <details class="card2" style="padding:12px; margin:10px 0">
+      <summary style="cursor:pointer; font-weight:800">Are these calculators free?</summary>
+      <div class="muted" style="margin-top:8px">Yes. No account or signup is required.</div>
+    </details>
+    <details class="card2" style="padding:12px; margin:10px 0">
+      <summary style="cursor:pointer; font-weight:800">Do you store my inputs?</summary>
+      <div class="muted" style="margin-top:8px">
+        Calculations run in your browser. See <a href="/privacy-policy">Privacy Policy</a> and <a href="/cookie-notice">Cookie Notice</a>.
+      </div>
+    </details>
+    <details class="card2" style="padding:12px; margin:10px 0">
+      <summary style="cursor:pointer; font-weight:800">Is this financial advice?</summary>
+      <div class="muted" style="margin-top:8px">
+        No. This site is for educational use only. Verify results with lenders, card issuers, and professionals.
+      </div>
+    </details>
+  </section>
+</BaseLayout>

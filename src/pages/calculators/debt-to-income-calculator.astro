@@ -1,0 +1,73 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import { DtiCalculator } from "../../components/calculators/Dti";
+
+const title = "Debt-to-Income (DTI) Calculator";
+const description =
+  "Estimate your front-end and back-end DTI ratios from your gross monthly income and debt payments. Educational use only.";
+---
+<CalculatorLayout
+  title={title}
+  description={description}
+  canonicalPath="/calculators/debt-to-income-calculator"
+  intro="DTI compares your monthly debt obligations to your gross monthly income. It’s commonly used in mortgage underwriting."
+  how={[
+    "Front-end DTI = housing payment ÷ gross monthly income.",
+    "Back-end DTI = (housing + other debt payments) ÷ gross monthly income.",
+    "This is an estimate; lenders may include or exclude items based on policy."
+  ]}
+  faqs={[
+    {
+      q: "What counts as monthly debt?",
+      a: "Typically required payments like mortgage/rent, auto loans, student loans, and minimum credit card payments. Some lenders also include other obligations depending on policy."
+    },
+    {
+      q: "Do I use gross or net income?",
+      a: "Most DTI calculations use gross income (before taxes). Some affordability checks use net income separately."
+    },
+    {
+      q: "What is a good DTI?",
+      a: "Many programs use thresholds around 36%–43% for back-end DTI, but it varies by lender, program, and compensating factors."
+    },
+    {
+      q: "Is rent included?",
+      a: "Rent is often treated as housing cost in affordability checks. Mortgage underwriting uses the projected housing payment for the loan."
+    },
+    {
+      q: "Does this include property taxes and insurance?",
+      a: "If you include them in the housing payment input, yes. For mortgages, lenders often use PITI (principal, interest, taxes, insurance) and may add HOA and PMI."
+    },
+    {
+      q: "Will DTI alone determine approval?",
+      a: "No. Credit score, assets, employment, reserves, and underwriting guidelines also matter."
+    }
+  ]}
+  lastUpdated="2026-01-02"
+>
+  <DtiCalculator client:load />
+
+  <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Example</h2>
+    <p class="muted" style="margin:0">
+      Suppose your gross income is $8,000/month. If your total housing payment is $2,400 and other monthly debts are
+      $600, your front-end DTI is 30% and your back-end DTI is 37.5%.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Common pitfalls</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>DTI usually uses gross income, not take-home pay.</li>
+      <li>For mortgages, lenders often use PITI (+ HOA/PMI), not just principal and interest.</li>
+      <li>Some debts may be excluded or treated differently depending on lender and program.</li>
+      <li>DTI is only one factor—credit, reserves, and underwriting guidelines still apply.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Related tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff</a>
+      <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
+    </div>
+  </div>
+</CalculatorLayout>
+

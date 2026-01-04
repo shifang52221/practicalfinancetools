@@ -1,0 +1,69 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import { AprCalculator as AprCalculatorComponent } from "../../components/calculators/Apr";
+
+const title = "APR Calculator";
+const description =
+  "Estimate APR by accounting for upfront fees and term, so you can compare loan offers more fairly. Educational use only.";
+---
+<CalculatorLayout
+  title={title}
+  description={description}
+  canonicalPath="/calculators/apr-calculator"
+  intro="APR attempts to express the true cost of borrowing by incorporating certain fees, helping you compare offers on a more apples-to-apples basis."
+  how={[
+    "Monthly payment is calculated from the nominal rate and loan amount using standard amortization.",
+    "APR is estimated by solving for the discount rate that makes the present value of payments equal to the net amount received (loan amount minus fees).",
+    "This is a simplified estimate; lender APR disclosures follow specific regulatory rules and may treat fees differently."
+  ]}
+  faqs={[
+    {
+      q: "APR vs interest rate: what’s the difference?",
+      a: "Interest rate is the nominal rate used to compute interest. APR includes certain fees and can be higher than the interest rate."
+    },
+    {
+      q: "Which fees should I include?",
+      a: "Include upfront fees that reduce what you effectively receive (e.g., origination fees). Product-specific rules vary, so use this as a comparison tool."
+    },
+    {
+      q: "Does APR predict the total amount paid?",
+      a: "It helps compare cost across offers, but total paid also depends on term, payment schedule, and whether you prepay or refinance."
+    },
+    {
+      q: "Can APR change over time?",
+      a: "For variable-rate products it can. This calculator assumes a fixed payment based on the nominal rate provided."
+    },
+    {
+      q: "Is this an official APR disclosure?",
+      a: "No. It’s an educational estimate to compare scenarios. Official APR disclosures follow specific legal rules."
+    }
+  ]}
+  lastUpdated="2026-01-02"
+>
+  <AprCalculatorComponent client:load />
+
+  <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Example</h2>
+    <p class="muted" style="margin:0">
+      If two loans have the same nominal rate but one has higher upfront fees, the loan with higher fees can have a
+      higher APR. Use this page to compare offers on a consistent term and payment schedule.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Common pitfalls</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>APR is a comparison metric; it does not always match your total interest paid.</li>
+      <li>Some fees may be paid out-of-pocket vs financed—your cash-to-close can differ even if APR is similar.</li>
+      <li>Official lender APR disclosures can treat fees and timing differently than simplified calculators.</li>
+      <li>If you expect to prepay or refinance, the “best” APR offer may not be the best for your situation.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Related tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      <a class="btn" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff</a>
+    </div>
+  </div>
+</CalculatorLayout>
+

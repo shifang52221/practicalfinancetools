@@ -1,0 +1,75 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import { MortgagePaymentCalculator as MortgagePaymentCalculatorComponent } from "../../components/calculators/MortgagePayment";
+
+const title = "Mortgage Payment Calculator";
+const description =
+  "Estimate your monthly mortgage payment including principal & interest plus taxes, insurance, HOA, and PMI. Educational use only.";
+---
+<CalculatorLayout
+  title={title}
+  description={description}
+  canonicalPath="/calculators/mortgage-payment-calculator"
+  intro="Estimate your monthly mortgage payment with a clear breakdown of principal & interest and common escrow items."
+  how={[
+    "Loan amount = home price - down payment.",
+    "Principal & interest uses standard amortization with a fixed monthly payment.",
+    "Taxes/insurance/HOA are added as monthly amounts; PMI is estimated when down payment is under 20%.",
+    "This is an estimate: escrow rules, rounding, and insurance quotes can change the final payment."
+  ]}
+  faqs={[
+    {
+      q: "What's included in \"monthly payment\"?",
+      a: "Often principal & interest plus escrow items like property taxes and homeowners insurance. HOA and PMI can also apply."
+    },
+    {
+      q: "Why does my lender quote differ?",
+      a: "Quotes can use different tax/insurance estimates, PMI rules, escrow requirements, discount points, and rounding."
+    },
+    {
+      q: "What is PMI?",
+      a: "Private mortgage insurance may be required when your down payment is below 20%. Cost varies by credit, loan program, and lender."
+    },
+    {
+      q: "Does this include closing costs?",
+      a: "No. Closing costs are typically paid upfront or rolled into the loan depending on the product."
+    },
+    {
+      q: "Does this include maintenance or utilities?",
+      a: "No. Home maintenance, repairs, and utilities are not included. Budget separately."
+    },
+    {
+      q: "Fixed vs adjustable rate?",
+      a: "This calculator assumes a fixed rate for the entire term. Adjustable-rate loans can change payment over time."
+    }
+  ]}
+  lastUpdated="2026-01-02"
+>
+  <MortgagePaymentCalculatorComponent client:load />
+
+  <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Example</h2>
+    <p class="muted" style="margin:0">
+      Example inputs: $450,000 home price, $90,000 down payment, 6.50% APR, 30-year term, $5,400/yr property taxes,
+      $1,800/yr insurance, $0 HOA, and 0.60% PMI rate. Use this to sanity-check what you can afford and compare
+      scenarios (rate, down payment, taxes, and insurance).
+    </p>
+
+    <h2 style="margin:18px 0 10px">Common pitfalls</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Taxes and insurance are annual numbers here; the calculator converts them to monthly.</li>
+      <li>PMI is a simplified estimate and can differ by loan program, credit score, and lender policy.</li>
+      <li>Escrow rules vary; lenders may require reserves that affect cash-to-close and early payments.</li>
+      <li>If you have an adjustable-rate loan (ARM), payments can change; this page assumes fixed-rate payments.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Related tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment impact</a>
+      <a class="btn" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
+    </div>
+  </div>
+</CalculatorLayout>
+

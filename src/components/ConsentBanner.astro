@@ -1,0 +1,116 @@
+<div id="consent-banner" class="consent-banner" hidden>
+  <div class="consent-banner__text">
+    We use cookies for ads and basic site functionality. Choose "Accept" for personalized ads (where allowed) or
+    "Decline" for non-personalized ads.
+    <a href="/cookie-notice" class="consent-banner__link">Learn more</a>.
+  </div>
+  <div class="consent-banner__actions">
+    <button
+      id="consent-decline"
+      type="button"
+      class="btn"
+      onclick="(function(){try{localStorage.setItem('consent.v1','declined')}catch(e){};try{document.documentElement.setAttribute('data-consent','declined')}catch(e){};try{window.dispatchEvent(new CustomEvent('consentchange',{detail:{consent:'declined'}}))}catch(e){};try{var root=document.documentElement;root.classList.remove('consent-visible');root.style.removeProperty('--consent-banner-h')}catch(e){};try{var el=document.getElementById('consent-banner'); if(el) el.hidden=true}catch(e){}})()"
+    >
+      Decline
+    </button>
+    <button
+      id="consent-accept"
+      type="button"
+      class="btn btn-primary"
+      onclick="(function(){try{localStorage.setItem('consent.v1','accepted')}catch(e){};try{document.documentElement.setAttribute('data-consent','accepted')}catch(e){};try{window.dispatchEvent(new CustomEvent('consentchange',{detail:{consent:'accepted'}}))}catch(e){};try{var root=document.documentElement;root.classList.remove('consent-visible');root.style.removeProperty('--consent-banner-h')}catch(e){};try{var el=document.getElementById('consent-banner'); if(el) el.hidden=true}catch(e){}})()"
+    >
+      Accept
+    </button>
+  </div>
+</div>
+
+<script is:inline type="text/javascript">
+  (function () {
+    var STORAGE_KEY = "consent.v1";
+
+    function readConsent() {
+      try {
+        var value = window.localStorage.getItem(STORAGE_KEY);
+        if (value === "accepted" || value === "declined") return value;
+      } catch (e) {}
+      return "unset";
+    }
+
+    function writeConsent(value) {
+      try {
+        window.localStorage.setItem(STORAGE_KEY, value);
+      } catch (e) {}
+    }
+
+    function updatePadding(visible) {
+      var root = document.documentElement;
+      if (!visible) {
+        root.classList.remove("consent-visible");
+        root.style.removeProperty("--consent-banner-h");
+        return;
+      }
+
+      root.classList.add("consent-visible");
+      var el = document.getElementById("consent-banner");
+      if (!el) return;
+      var height = Math.ceil(el.getBoundingClientRect().height);
+      root.style.setProperty("--consent-banner-h", height + "px");
+    }
+
+    function setVisible(visible) {
+      var el = document.getElementById("consent-banner");
+      if (!el) return;
+      el.hidden = !visible;
+      updatePadding(visible);
+    }
+
+    function applyFromStorage() {
+      var v = readConsent();
+      if (v === "accepted" || v === "declined") document.documentElement.setAttribute("data-consent", v);
+      else document.documentElement.removeAttribute("data-consent");
+      setVisible(v === "unset");
+    }
+
+    function setConsent(value) {
+      writeConsent(value);
+      try {
+        document.documentElement.setAttribute("data-consent", value);
+      } catch (e) {}
+      try {
+        window.dispatchEvent(new CustomEvent("consentchange", { detail: { consent: value } }));
+      } catch (e) {}
+      setVisible(false);
+    }
+
+    function bind() {
+      var accept = document.getElementById("consent-accept");
+      var decline = document.getElementById("consent-decline");
+      if (accept) accept.addEventListener("click", function () { setConsent("accepted"); });
+      if (decline) decline.addEventListener("click", function () { setConsent("declined"); });
+
+      var ro = null;
+      try {
+        if (typeof ResizeObserver !== "undefined") {
+          ro = new ResizeObserver(function () {
+            var el = document.getElementById("consent-banner");
+            if (el && !el.hidden) updatePadding(true);
+          });
+          var banner = document.getElementById("consent-banner");
+          if (banner) ro.observe(banner);
+        }
+      } catch (e) {}
+
+      window.addEventListener("storage", applyFromStorage);
+      window.addEventListener("consentchange", applyFromStorage);
+      window.addEventListener("resize", function () {
+        var el = document.getElementById("consent-banner");
+        if (el && !el.hidden) updatePadding(true);
+      });
+
+      applyFromStorage();
+    }
+
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bind);
+    else bind();
+  })();
+</script>

@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../config/site";
+
+const title = `Page Not Found | ${SITE.name}`;
+const description = "Sorry—this page doesn’t exist. Browse calculators and resources from the homepage.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/404">
+  <section class="card hero">
+    <h1>Page not found</h1>
+    <p class="muted">The page you’re looking for doesn’t exist or may have moved.</p>
+  </section>
+
+  <section class="card section">
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators">Browse calculators</a>
+      <a class="btn" href="/">Go to homepage</a>
+    </div>
+  </section>
+</BaseLayout>
+

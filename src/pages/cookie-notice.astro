@@ -1,0 +1,128 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../config/site";
+
+const title = `Cookie Notice | ${SITE.name}`;
+const description = "Cookie notice describing how we use cookies and how to change your preferences.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/cookie-notice">
+  <section class="card hero">
+    <h1>Cookie Notice</h1>
+    <p>Last updated: 2026-01-02</p>
+  </section>
+
+  <section class="card section prose">
+    <h2 style="margin-top:0">What cookies do</h2>
+    <p class="muted">
+      Cookies are small files stored by your browser. They can support essential site functionality and, if enabled,
+      help measure site usage and deliver advertising. Some cookies may personalize ads based on your activity and
+      preferences, depending on your consent and region.
+    </p>
+
+    <h2>Manage preferences</h2>
+    <p class="muted">
+      You can update your preference at any time using the buttons below (stored locally in your browser).
+    </p>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+      <button
+        id="decline"
+        type="button"
+        class="card2"
+        style="padding:10px 12px; cursor:pointer; border-radius:12px; color:var(--text); background:rgba(255,255,255,.05)"
+      >
+        Decline personalization
+      </button>
+      <button
+        id="accept"
+        type="button"
+        class="card2"
+        style="padding:10px 12px; cursor:pointer; border-radius:12px; color:var(--text); background:rgba(122,162,255,.18); border-color:rgba(122,162,255,.35)"
+      >
+        Accept
+      </button>
+    </div>
+
+    <div id="consent-status" class="muted" style="margin-top:10px; font-size:13px"></div>
+
+    <script is:inline type="text/javascript">
+      (function () {
+        var STORAGE_KEY = "consent.v1";
+
+        function readConsent() {
+          try {
+            var value = window.localStorage.getItem(STORAGE_KEY);
+            if (value === "accepted" || value === "declined") return value;
+          } catch (e) {}
+          return "unset";
+        }
+
+        function writeConsent(value) {
+          try {
+            window.localStorage.setItem(STORAGE_KEY, value);
+          } catch (e) {}
+        }
+
+        function render() {
+          var el = document.getElementById("consent-status");
+          if (!el) return;
+          el.textContent = "Current preference: " + readConsent();
+        }
+
+        function setConsent(value) {
+          writeConsent(value);
+          try {
+            window.dispatchEvent(new CustomEvent("consentchange", { detail: { consent: value } }));
+          } catch (e) {}
+          render();
+        }
+
+        function bind() {
+          var accept = document.getElementById("accept");
+          var decline = document.getElementById("decline");
+          if (accept) accept.addEventListener("click", function () { setConsent("accepted"); }, { passive: true });
+          if (decline) decline.addEventListener("click", function () { setConsent("declined"); }, { passive: true });
+          render();
+        }
+
+        if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bind);
+        else bind();
+      })();
+    </script>
+
+    <h2>How this site stores your preference</h2>
+    <p class="muted">
+      Your choice is stored locally in your browser as <code>localStorage</code> key <code>consent.v1</code> with value
+      <code>accepted</code> or <code>declined</code>. Clearing site data in your browser will reset this preference.
+    </p>
+
+    <h2>Advertising cookies</h2>
+    <p class="muted">
+      If advertising is enabled, third parties (such as Google) may use cookies to measure ad performance and, where
+      permitted, personalize ads. If you choose "Decline personalization", we aim to request non-personalized ads.
+    </p>
+
+    <h2>Ad personalization controls</h2>
+    <p class="muted">
+      Google provides tools to control ad personalization:
+      <a href="https://adssettings.google.com/" rel="noopener noreferrer">https://adssettings.google.com/</a>.
+    </p>
+
+    <h2>EU/UK notice</h2>
+    <p class="muted">
+      If you are in the EEA/UK/Switzerland, Google may require a certified Consent Management Platform (CMP) for certain
+      ads. Our simple banner is not a certified CMP; ads may be limited in those regions.
+    </p>
+
+    <h2>Analytics</h2>
+    <p class="muted">
+      If analytics is enabled, we may use cookies or similar technologies to understand how visitors use the site (for
+      example, which pages are most popular). We aim to load analytics only after you accept optional cookies.
+    </p>
+
+    <h2>Contact</h2>
+    <p class="muted">
+      For questions, contact <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+  </section>
+</BaseLayout>

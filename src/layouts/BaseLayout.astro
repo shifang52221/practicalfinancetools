@@ -1,0 +1,95 @@
+---
+import "../styles/global.css";
+import { SITE } from "../config/site";
+import AdSenseScript from "../components/AdSenseScript.astro";
+import Ga4Script from "../components/Ga4Script.astro";
+import ConsentBanner from "../components/ConsentBanner.astro";
+
+type Props = {
+  title: string;
+  description?: string;
+  canonicalPath?: string;
+};
+
+const { title, description, canonicalPath } = Astro.props;
+const siteUrl = Astro.site ? Astro.site.toString() : SITE.url;
+const canonical = canonicalPath ? new URL(canonicalPath, siteUrl).toString() : undefined;
+const ogImage = new URL("/og.svg", siteUrl).toString();
+const showConsentBanner = canonicalPath !== "/cookie-notice";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/favicon.ico" sizes="any" />
+    {description ? <meta name="description" content={description} /> : null}
+    {canonical ? <link rel="canonical" href={canonical} /> : null}
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    {description ? <meta property="og:description" content={description} /> : null}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={SITE.locale} />
+    {canonical ? <meta property="og:url" content={canonical} /> : null}
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description ? <meta name="twitter:description" content={description} /> : null}
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0b1220" />
+    <script is:inline type="text/javascript">
+      {String.raw`
+        (function () {
+          try {
+            var v = window.localStorage.getItem("consent.v1");
+            if (v === "accepted" || v === "declined") {
+              document.documentElement.setAttribute("data-consent", v);
+            }
+          } catch (e) {}
+        })();
+      `}
+    </script>
+    <AdSenseScript />
+    <Ga4Script />
+  </head>
+  <body>
+    <div class="page">
+      <header class="container">
+        <div class="chrome topbar">
+          <a class="brand" href="/">
+            <span class="brand-badge" aria-hidden="true"></span>
+            <span>{SITE.name}</span>
+          </a>
+          <nav class="nav" aria-label="Primary">
+            <a href="/calculators">Calculators</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/privacy-policy">Privacy</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="container">
+        <slot />
+      </main>
+
+      <footer class="container footer">
+        <div class="footer-inner">
+          <div class="footer-meta">Educational use only. Not financial advice.</div>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="/terms">Terms</a>
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/cookie-notice">Cookie Notice</a>
+            <a href="/contact">Contact</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    {showConsentBanner ? <ConsentBanner /> : null}
+  </body>
+</html>

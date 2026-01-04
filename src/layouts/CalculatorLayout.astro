@@ -1,0 +1,66 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import AdSlot from "../components/AdSlot.astro";
+import { SITE } from "../config/site";
+
+type FAQ = { q: string; a: string };
+
+type Props = {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  intro: string;
+  how: string[];
+  faqs: FAQ[];
+  lastUpdated: string;
+};
+
+const { title, description, canonicalPath, intro, how, faqs, lastUpdated } = Astro.props;
+const slots = SITE.adsenseSlots;
+---
+<BaseLayout title={title} description={description} canonicalPath={canonicalPath}>
+  <section class="card hero">
+    <h1>{title}</h1>
+    <p>{intro}</p>
+  </section>
+
+  <section class="card section">
+    <slot />
+  </section>
+
+  <section class="section">
+    <AdSlot slot={slots.calculatorMid} minHeight={280} />
+  </section>
+
+  <section class="card section prose">
+    <h2 style="margin-top:0">How we calculate</h2>
+    <ul class="muted" style="margin:8px 0 0; padding-left:18px">
+      {how.map((line) => (
+        <li>{line}</li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="card section prose">
+    <h2 style="margin-top:0">FAQ</h2>
+    {faqs.map((f) => (
+      <details class="card2" style="padding:12px; margin:10px 0">
+        <summary style="cursor:pointer; font-weight:800">{f.q}</summary>
+        <div class="muted" style="margin-top:8px">{f.a}</div>
+      </details>
+    ))}
+  </section>
+
+  <section class="section">
+    <AdSlot slot={slots.calculatorBottom} minHeight={280} />
+  </section>
+
+  <section class="card section prose">
+    <h2 style="margin-top:0">Disclaimer</h2>
+    <p class="muted" style="margin:0">
+      Educational use only. Not financial advice. Results are estimates based on the inputs and assumptions shown on
+      this page. Verify details with lenders, card issuers, and professionals.
+    </p>
+    <p class="muted" style="margin:10px 0 0">Last updated: {lastUpdated}</p>
+  </section>
+</BaseLayout>

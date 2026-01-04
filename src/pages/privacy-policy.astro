@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../config/site";
+
+const title = `Privacy Policy | ${SITE.name}`;
+const description = "Privacy policy describing how this site handles data, cookies, and advertising.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/privacy-policy">
+  <section class="card hero">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: 2026-01-02</p>
+  </section>
+
+  <section class="card section prose">
+    <h2 style="margin-top:0">Summary</h2>
+    <p class="muted">
+      This site provides finance calculators and related educational content. We do not require account creation. Most
+      calculator inputs are processed in your browser to display results. We may use cookies for essential site
+      functionality and, if enabled, for advertising and analytics.
+    </p>
+
+    <h2>Information we collect</h2>
+    <p class="muted">
+      We may collect the following categories of information:
+    </p>
+    <ul class="muted" style="margin:8px 0 0; padding-left:18px">
+      <li>Basic technical data (e.g., IP address, user agent, approximate location, and timestamps) in server logs.</li>
+      <li>Cookie and device identifiers used for site functionality, measurement, and advertising (if enabled).</li>
+      <li>Contact information you provide if you email us (your email address and message).</li>
+    </ul>
+
+    <h2>Calculator inputs</h2>
+    <p class="muted">
+      Calculator inputs are intended to be processed locally in your browser to compute and display results. Do not
+      enter sensitive personal information you do not want stored on your device or shared with others who use your
+      browser.
+    </p>
+
+    <h2>Cookies, advertising, and analytics</h2>
+    <p class="muted">
+      We may display ads served by third parties (e.g., Google) and may use analytics tools (e.g., Google Analytics).
+      These services can use cookies and similar technologies to measure performance and, depending on your settings and
+      region, to personalize ads or analytics. You can review and change your preferences in our Cookie Notice.
+    </p>
+
+    <h2>Your choices</h2>
+    <p class="muted">
+      You can accept or decline ad personalization in the cookie consent banner or in our Cookie Notice. You can also
+      clear your browser storage and cookies to reset your preference.
+    </p>
+
+    <h2>CCPA/CPRA (California): "sale" or "sharing"</h2>
+    <p class="muted">
+      We do not sell personal information for money in the traditional sense. However, some advertising technology may
+      be considered a "sale" or "sharing" under certain privacy laws. Where applicable, you can opt out by declining
+      optional cookies in our Cookie Notice.
+    </p>
+
+    <h2>Data retention</h2>
+    <p class="muted">
+      We retain server logs for a limited period as needed for security, debugging, and operational purposes. Emails
+      are retained as long as needed to respond and maintain records.
+    </p>
+
+    <h2>Changes to this policy</h2>
+    <p class="muted">
+      We may update this policy from time to time. The "Last updated" date reflects the latest changes.
+    </p>
+
+    <h2>Google ad controls</h2>
+    <p class="muted">
+      You can manage ad personalization at <a href="https://adssettings.google.com/" rel="noopener noreferrer">Google Ad Settings</a>.
+    </p>
+
+    <h2>Contact</h2>
+    <p class="muted">
+      If you have questions about this policy, contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+  </section>
+</BaseLayout>
