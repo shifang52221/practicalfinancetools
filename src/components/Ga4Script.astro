@@ -5,44 +5,43 @@ const measurementId = (import.meta.env.SITE_GA4_MEASUREMENT_ID ||
   import.meta.env.PUBLIC_GA4_MEASUREMENT_ID ||
   SITE.ga4MeasurementId ||
   "").trim();
+
+const inline = measurementId
+  ? `(function () {
+  var MID = ${JSON.stringify(measurementId)};
+  var KEY = "consent.v1";
+  var SCRIPT_ID = "ga4-gtag-js";
+
+  function getConsent() {
+    try { return window.localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+
+  function shouldLoad() {
+    return getConsent() === "accepted";
+  }
+
+  function load() {
+    if (document.getElementById(SCRIPT_ID)) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    window.gtag = window.gtag || gtag;
+    gtag("js", new Date());
+    gtag("config", MID, { anonymize_ip: true });
+
+    var s = document.createElement("script");
+    s.id = SCRIPT_ID;
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(MID);
+    document.head.appendChild(s);
+  }
+
+  if (shouldLoad()) load();
+  window.addEventListener("consentchange", function () {
+    if (shouldLoad()) load();
+  });
+})();`
+  : "";
 ---
 {measurementId ? (
-  <script is:inline type="text/javascript">
-    {String.raw`
-      (function () {
-        var MID = ${JSON.stringify(measurementId)};
-        var KEY = "consent.v1";
-        var SCRIPT_ID = "ga4-gtag-js";
-
-        function getConsent() {
-          try { return window.localStorage.getItem(KEY); } catch (e) { return null; }
-        }
-
-        function shouldLoad() {
-          return getConsent() === "accepted";
-        }
-
-        function load() {
-          if (document.getElementById(SCRIPT_ID)) return;
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          window.gtag = window.gtag || gtag;
-          gtag("js", new Date());
-          gtag("config", MID, { anonymize_ip: true });
-
-          var s = document.createElement("script");
-          s.id = SCRIPT_ID;
-          s.async = true;
-          s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(MID);
-          document.head.appendChild(s);
-        }
-
-        if (shouldLoad()) load();
-        window.addEventListener("consentchange", function () {
-          if (shouldLoad()) load();
-        });
-      })();
-    `}
-  </script>
+  <script is:inline type="text/javascript" set:html={inline}></script>
 ) : null}
-

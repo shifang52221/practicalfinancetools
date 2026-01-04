@@ -42,16 +42,14 @@ const showConsentBanner = canonicalPath !== "/cookie-notice";
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#0b1220" />
     <script is:inline type="text/javascript">
-      {String.raw`
-        (function () {
-          try {
-            var v = window.localStorage.getItem("consent.v1");
-            if (v === "accepted" || v === "declined") {
-              document.documentElement.setAttribute("data-consent", v);
-            }
-          } catch (e) {}
-        })();
-      `}
+      (function () {
+        try {
+          var v = window.localStorage.getItem("consent.v1");
+          if (v === "accepted" || v === "declined") {
+            document.documentElement.setAttribute("data-consent", v);
+          }
+        } catch (e) {}
+      })();
     </script>
     <AdSenseScript />
     <Ga4Script />
