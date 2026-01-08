@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://practicalfinancetools.com/sitemap-index.xml
+Sitemap: https://www.practicalfinancetools.com/sitemap-index.xml

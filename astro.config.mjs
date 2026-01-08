@@ -5,6 +5,7 @@ import { SITE } from "./src/config/site";
 
 export default defineConfig({
   site: process.env.SITE_URL ?? process.env.PUBLIC_SITE_URL ?? SITE.url,
+  trailingSlash: "never",
   integrations: [react(), sitemap()],
   prefetch: true
 });

@@ -1,6 +1,6 @@
 export const SITE = {
   name: "Practical Finance Tools",
-  url: "https://practicalfinancetools.com",
+  url: "https://www.practicalfinancetools.com",
   locale: "en-US",
   adsenseClient: "", // e.g. "ca-pub-1234567890123456"
   ga4MeasurementId: "G-JVLTPDJCHC", // e.g. "G-XXXXXXXXXX"

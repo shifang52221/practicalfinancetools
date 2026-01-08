@@ -1,0 +1,17 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "practicalfinancetools.com" }],
+      "destination": "https://www.practicalfinancetools.com/:path*",
+      "permanent": true
+    },
+    { "source": "/about/", "destination": "/about", "permanent": true },
+    { "source": "/calculators/", "destination": "/calculators", "permanent": true },
+    { "source": "/calculators/:slug/", "destination": "/calculators/:slug", "permanent": true },
+    { "source": "/contact/", "destination": "/contact", "permanent": true },
+    { "source": "/cookie-notice/", "destination": "/cookie-notice", "permanent": true },
+    { "source": "/privacy-policy/", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/terms/", "destination": "/terms", "permanent": true }
+  ]
+}
