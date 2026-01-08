@@ -22,6 +22,10 @@ const description =
       a: "This tool estimates interest monthly using APR/12. Your issuer may use a daily balance method, different compounding, and statement-cycle timing."
     },
     {
+      q: "How does the minimum payment affect payoff time?",
+      a: "A lower payment means more of each payment goes to interest early on, so payoff can take many years. Increasing your payment usually reduces total interest significantly."
+    },
+    {
       q: "What if my APR changes?",
       a: "Results assume a fixed APR. If your APR changes (promo ends, penalty APR, variable APR), payoff time and interest can change significantly."
     },
@@ -47,6 +51,13 @@ const description =
   <CreditCardPayoff client:load />
 
   <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Quick takeaways</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Small payment increases can meaningfully reduce total interest.</li>
+      <li>Adding new purchases can keep the balance from dropping even if you pay every month.</li>
+      <li>Real statements often use daily interest; this page is a monthly estimate for planning.</li>
+    </ul>
+
     <h2 style="margin:0 0 10px">Example</h2>
     <p class="muted" style="margin:0">
       Try a realistic scenario like $5,000 balance at 24.99% APR with a $200 monthly payment. Then compare what happens
@@ -68,6 +79,19 @@ const description =
       <a class="btn" href="/calculators/debt-avalanche-calculator">Debt avalanche plan</a>
       <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
     </div>
+
+    <h2 style="margin:18px 0 10px">References</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>
+        <a href="https://www.consumerfinance.gov/ask-cfpb/how-is-interest-calculated-on-a-credit-card-en-71/" rel="noopener noreferrer">
+          CFPB: How is interest calculated on a credit card?
+        </a>
+      </li>
+      <li>
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-minimum-payment-en-23/" rel="noopener noreferrer">
+          CFPB: What is a minimum payment?
+        </a>
+      </li>
+    </ul>
   </div>
 </CalculatorLayout>
-

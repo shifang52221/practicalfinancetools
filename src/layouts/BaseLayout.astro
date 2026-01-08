@@ -16,6 +16,21 @@ const siteUrl = Astro.site ? Astro.site.toString() : SITE.url;
 const canonical = canonicalPath ? new URL(canonicalPath, siteUrl).toString() : undefined;
 const ogImage = new URL("/og.svg", siteUrl).toString();
 const showConsentBanner = canonicalPath !== "/cookie-notice";
+
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.name,
+  url: siteUrl,
+  email: SITE.email
+};
+
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE.name,
+  url: siteUrl
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -41,6 +56,9 @@ const showConsentBanner = canonicalPath !== "/cookie-notice";
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#0b1220" />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />
+    <slot name="head" />
     <script is:inline type="text/javascript">
       (function () {
         try {

@@ -10,7 +10,7 @@ const description =
   title={title}
   description={description}
   canonicalPath="/calculators/apr-calculator"
-  intro="APR attempts to express the true cost of borrowing by incorporating certain fees, helping you compare offers on a more apples-to-apples basis."
+  intro="Estimate APR by combining the interest rate with upfront fees, so you can compare loan offers on a more apples-to-apples basis."
   how={[
     "Monthly payment is calculated from the nominal rate and loan amount using standard amortization.",
     "APR is estimated by solving for the discount rate that makes the present value of payments equal to the net amount received (loan amount minus fees).",
@@ -20,6 +20,10 @@ const description =
     {
       q: "APR vs interest rate: what’s the difference?",
       a: "Interest rate is the nominal rate used to compute interest. APR includes certain fees and can be higher than the interest rate."
+    },
+    {
+      q: "How do I calculate APR with an origination fee?",
+      a: "Treat the origination fee as reducing the amount you effectively receive. APR is the rate that makes the present value of your payments equal to (loan amount − fees)."
     },
     {
       q: "Which fees should I include?",
@@ -43,18 +47,32 @@ const description =
   <AprCalculatorComponent client:load />
 
   <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Quick takeaways</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>APR can be higher than the interest rate when there are upfront fees.</li>
+      <li>Compare offers using the same term and assumptions.</li>
+      <li>If you refinance or prepay early, the “best APR” offer may not be the cheapest for you.</li>
+    </ul>
+
     <h2 style="margin:0 0 10px">Example</h2>
     <p class="muted" style="margin:0">
       If two loans have the same nominal rate but one has higher upfront fees, the loan with higher fees can have a
       higher APR. Use this page to compare offers on a consistent term and payment schedule.
     </p>
 
+    <h2 style="margin:18px 0 10px">Step-by-step example</h2>
+    <p class="muted" style="margin:0">
+      Example: $10,000 loan, 12% interest rate, 24-month term, $300 origination fee. You receive about $9,700 after fees
+      but still repay based on the $10,000 balance. The APR is the rate that matches your payment stream to that
+      $9,700 net amount.
+    </p>
+
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>APR is a comparison metric; it does not always match your total interest paid.</li>
-      <li>Some fees may be paid out-of-pocket vs financed—your cash-to-close can differ even if APR is similar.</li>
+      <li>Some fees may be paid out-of-pocket vs financed — your cash-to-close can differ even if APR is similar.</li>
       <li>Official lender APR disclosures can treat fees and timing differently than simplified calculators.</li>
-      <li>If you expect to prepay or refinance, the “best” APR offer may not be the best for your situation.</li>
+      <li>If you expect to prepay or refinance, the “best APR” offer may not be the best for your situation.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Related tools</h2>
@@ -64,6 +82,15 @@ const description =
       <a class="btn" href="/calculators/debt-to-income-calculator">DTI calculator</a>
       <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff</a>
     </div>
+
+    <h2 style="margin:18px 0 10px">References</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li><a href="https://www.consumerfinance.gov/ask-cfpb/what-is-apr-en-17/" rel="noopener noreferrer">CFPB: What is APR?</a></li>
+      <li>
+        <a href="https://www.ecfr.gov/current/title-12/chapter-I/part-1026" rel="noopener noreferrer">
+          Regulation Z (Truth in Lending)
+        </a>
+      </li>
+    </ul>
   </div>
 </CalculatorLayout>
-
