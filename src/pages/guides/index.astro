@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = `Guides | ${SITE.name}`;
+const description =
+  "Short, practical guides on APR, credit card payoff strategies, and extra mortgage payments, with links to free calculators. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides">
+  <section class="card hero">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Guides</span>
+    </nav>
+    <h1>Guides</h1>
+    <p>
+      Explanations that match how the calculators work. Use these to understand trade-offs, then run your numbers in the tools.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <a class="card section prose col-6" href="/guides/apr-vs-interest-rate">
+      <h2 style="margin-top:0">APR vs interest rate</h2>
+      <p class="muted" style="margin:10px 0 0">
+        What APR includes, how fees change comparisons, and when APR can mislead.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/guides/credit-card-payoff-strategy">
+      <h2 style="margin-top:0">Credit card payoff strategy</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Fixed payments vs minimum payments, what drives interest cost, and how to prioritize multiple debts.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/guides/extra-mortgage-payments">
+      <h2 style="margin-top:0">Extra mortgage payments</h2>
+      <p class="muted" style="margin:10px 0 0">
+        How principal prepayments change amortization, what to ask your lender, and how to compare scenarios.
+      </p>
+    </a>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Want a guide?</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the topic you want next (DTI, rent vs buy, refinancing, and more).
+      </p>
+    </div>
+  </section>
+</BaseLayout>

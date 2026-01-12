@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Credit Card Payoff Strategy (pay faster, pay less interest)";
+const description =
+  "Learn what actually drives credit card interest cost, how minimum payments work, and how to pick a payoff strategy. Use the free payoff calculators. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-payoff-strategy">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Credit card payoff strategy</span>
+    </nav>
+    <h1>Credit card payoff strategy</h1>
+    <p>
+      A payoff plan usually comes down to two levers: your payment size and your APR. This guide helps you pick the right calculator and
+      understand which changes move the needle most.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">The two biggest drivers</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Higher payment: reduces principal faster, so future interest shrinks.</li>
+        <li>Lower APR: reduces the interest charged each month.</li>
+        <li>Stopping new purchases: prevents the balance from staying flat.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Which calculator should I use?</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>One card, fixed payment: <a href="/calculators/credit-card-payoff-calculator">Credit Card Payoff</a>.</li>
+        <li>Minimum payments: <a href="/calculators/minimum-payment-payoff-calculator">Minimum Payment Payoff</a>.</li>
+        <li>Multiple debts: <a href="/calculators/debt-snowball-calculator">Snowball</a> vs <a href="/calculators/debt-avalanche-calculator">Avalanche</a>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Snowball vs avalanche (quick comparison)</h2>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Pay extra toward...</th>
+            <th>Why people choose it</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Snowball</td>
+            <td>Smallest balance</td>
+            <td>Faster "wins" and fewer accounts sooner.</td>
+          </tr>
+          <tr>
+            <td>Avalanche</td>
+            <td>Highest APR</td>
+            <td>Usually saves the most interest.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Compare both with your actual balances and APRs: <a href="/calculators/debt-snowball-calculator">Snowball</a> and{" "}
+      <a href="/calculators/debt-avalanche-calculator">Avalanche</a>.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes that slow payoff</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Making a payment that's close to the interest amount (principal barely moves).</li>
+      <li>Adding new purchases while trying to pay down the balance.</li>
+      <li>Ignoring fees or promo expiration dates that change APR.</li>
+      <li>Focusing only on the monthly payment, not total interest and time.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Payoff schedule</a>
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment timeline</a>
+      <a class="btn" href="/calculators/apr-calculator">Compare APR (fees)</a>
+    </div>
+  </section>
+</BaseLayout>

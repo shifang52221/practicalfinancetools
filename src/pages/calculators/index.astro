@@ -6,7 +6,7 @@ import AdSlot from "../../components/AdSlot.astro";
 
 const title = `Calculators | ${SITE.name}`;
 const description =
-  "Browse practical calculators for debt payoff, APR, DTI, mortgage payments, amortization schedules, and rent vs buy. Educational use only.";
+  "Free calculators for credit card payoff, minimum payments, debt snowball vs avalanche, APR (including fees), DTI, mortgage payments, amortization schedules, extra payments, and rent vs buy. Educational use only.";
 
 const grouped = TOOLS.reduce<Record<string, typeof TOOLS>>((acc, t) => {
   (acc[t.category] ||= []).push(t);
@@ -26,12 +26,45 @@ const slots = SITE.adsenseSlots;
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
+      <h2 style="margin-top:0">Start here</h2>
+      <p class="muted" style="margin:10px 0 0">
+        If you're comparing offers or planning payoff strategies, these short guides explain the concepts behind the calculators and link
+        to the right tool for your situation.
+      </p>
+      <div class="btn-row" style="margin-top:12px">
+        <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+        <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
+        <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
+      </div>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">How to get better answers</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Use the same assumptions when comparing offers (term, fees, payment schedule).</li>
+        <li>Prefer real statement numbers for balances and APRs (not marketing rates).</li>
+        <li>Run a baseline, then change one input at a time (payment, rate, fee, or extra amount).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
       <h2 style="margin-top:0">Quick guide</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>Paying off one card with a fixed payment: Credit Card Payoff.</li>
-        <li>Paying off many debts: Snowball vs Avalanche.</li>
-        <li>Shopping for loans: compare APR (includes fees).</li>
-        <li>Home buying: estimate monthly payment, then review the amortization schedule.</li>
+        <li>
+          Paying off one card with a fixed payment: <a href="/calculators/credit-card-payoff-calculator">Credit Card Payoff</a>.
+        </li>
+        <li>
+          Paying off many debts: <a href="/calculators/debt-snowball-calculator">Snowball</a> vs{" "}
+          <a href="/calculators/debt-avalanche-calculator">Avalanche</a>.
+        </li>
+        <li>
+          Shopping for loans: compare <a href="/calculators/apr-calculator">APR (includes fees)</a>.
+        </li>
+        <li>
+          Home buying: estimate <a href="/calculators/mortgage-payment-calculator">monthly payment</a>, then review the{" "}
+          <a href="/calculators/amortization-schedule-calculator">amortization schedule</a>.
+        </li>
       </ul>
     </div>
     <div class="card section prose col-6">

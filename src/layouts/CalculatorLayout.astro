@@ -18,7 +18,8 @@ type Props = {
 const { title, description, canonicalPath, intro, how, faqs, lastUpdated } = Astro.props;
 const slots = SITE.adsenseSlots;
 
-const siteUrl = Astro.site ? Astro.site.toString() : SITE.url;
+const siteUrlRaw = Astro.site ? Astro.site.toString() : SITE.url;
+const siteUrl = siteUrlRaw.endsWith("/") ? siteUrlRaw.slice(0, -1) : siteUrlRaw;
 const pageUrl = new URL(canonicalPath, siteUrl).toString();
 const calculatorsUrl = new URL("/calculators", siteUrl).toString();
 

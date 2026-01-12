@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Extra Mortgage Payments (save interest, shorten payoff)";
+const description =
+  "Learn how extra principal payments change amortization, what to confirm with your lender, and how to compare scenarios. Use the free extra payment calculator. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-mortgage-payments">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Extra mortgage payments</span>
+    </nav>
+    <h1>Extra mortgage payments</h1>
+    <p>
+      Extra payments usually go to principal. That reduces the balance, which reduces future interest, which can shorten the payoff
+      timeline. This guide shows what to check and how to model realistic scenarios.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment mortgage calculator</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What extra payments change</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Payoff date: often earlier (fewer total payments).</li>
+        <li>Total interest: usually lower because the balance shrinks sooner.</li>
+        <li>Required payment: usually the same unless you recast.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What to confirm with your lender</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Extra payments are applied as principal-only.</li>
+        <li>Whether prepayment penalties exist (many loans have none, some do).</li>
+        <li>If a recast is available (and any fees to do it).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Monthly vs one-time extra payments</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Earlier extra payments tend to save more interest because they reduce the balance sooner. A smaller monthly extra can beat a bigger
+      one-time payment later.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      Model both: start with your baseline in the{" "}
+      <a href="/calculators/mortgage-payment-calculator">Mortgage Payment Calculator</a>, then compare scenarios in the{" "}
+      <a href="/calculators/extra-payment-calculator">Extra Payment Mortgage Calculator</a>.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Compare extra payment scenarios</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Baseline monthly payment</a>
+      <a class="btn" href="/calculators/rent-vs-buy-calculator">Rent vs buy</a>
+    </div>
+  </section>
+</BaseLayout>

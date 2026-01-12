@@ -2,9 +2,9 @@
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { CreditCardPayoff } from "../../components/calculators/CreditCardPayoff";
 
-const title = "Credit Card Payoff Calculator";
+const title = "Credit Card Payoff Calculator (Payoff Date & Interest)";
 const description =
-  "Estimate your credit card payoff time, total interest, and a month-by-month payoff schedule. Educational use only.";
+  "Estimate your credit card payoff time, total interest, and a month-by-month payoff schedule for a fixed APR and payment. Educational use only.";
 ---
 <CalculatorLayout
   title={title}
@@ -71,6 +71,11 @@ const description =
       <li>If your payment is near the interest amount, payoff can take many years.</li>
       <li>Fees (annual, late, transfer) can change total cost; this tool does not include fees.</li>
     </ul>
+
+    <h2 style="margin:18px 0 10px">Related guide</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
+    </div>
 
     <h2 style="margin:18px 0 10px">Related tools</h2>
     <div class="btn-row" style="margin-top:0">

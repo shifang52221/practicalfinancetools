@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "APR vs Interest Rate (with examples)";
+const description =
+  "APR includes certain fees, so it can be higher than the interest rate. Learn what APR means, compare loans fairly, and use the free APR calculator. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-vs-interest-rate">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR vs interest rate</span>
+    </nav>
+    <h1>APR vs interest rate</h1>
+    <p>
+      Interest rate is the rate used to compute interest. APR (annual percentage rate) is a broader cost measure that can include certain
+      fees. If you're comparing loans, APR can be useful, but it's not the only thing that matters.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Use the APR calculator</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What APR includes (in plain English)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Interest rate: the percentage used to calculate interest charges.</li>
+      <li>APR: a cost comparison metric that can incorporate certain upfront fees.</li>
+      <li>Why APR can be higher: fees reduce the amount you effectively receive, but you still repay the full loan balance.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Example: same rate, different fees</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Two offers can have the same interest rate but different fees. The one with higher fees usually has a higher APR because the fee
+      makes the loan more expensive relative to the money you actually receive.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Offer</th>
+            <th class="num">Interest rate</th>
+            <th class="num">Upfront fees</th>
+            <th>What changes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A</td>
+            <td class="num">6.50%</td>
+            <td class="num">$0</td>
+            <td>Lower APR because you receive the full amount.</td>
+          </tr>
+          <tr>
+            <td>B</td>
+            <td class="num">6.50%</td>
+            <td class="num">$2,000</td>
+            <td>Higher APR because fees reduce net proceeds.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Use the <a href="/calculators/apr-calculator">APR Calculator</a> to estimate the APR impact for your term and fees.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When APR is helpful (and when it isn't)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Helpful: comparing offers with the same term where fees differ (points, origination, lender fees).</li>
+      <li>Less helpful: if you plan to refinance or sell early; your effective cost depends on how long you keep the loan.</li>
+      <li>Also compare: cash-to-close, monthly payment, prepayment penalties, and whether fees are financed or paid out of pocket.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Estimate APR with fees</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Estimate monthly payment</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">View amortization</a>
+    </div>
+  </section>
+</BaseLayout>
