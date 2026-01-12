@@ -6,7 +6,7 @@ import AdSlot from "../../components/AdSlot.astro";
 
 const title = `Calculators | ${SITE.name}`;
 const description =
-  "Free calculators for credit card payoff, minimum payments, debt snowball vs avalanche, APR (including fees), DTI, mortgage payments, amortization schedules, extra payments, and rent vs buy. Educational use only.";
+  "Free calculators for credit card payoff, minimum payments, debt snowball vs avalanche, APR (including fees), DTI, mortgage payments, amortization schedules, and more. Educational use only.";
 
 const grouped = TOOLS.reduce<Record<string, typeof TOOLS>>((acc, t) => {
   (acc[t.category] ||= []).push(t);

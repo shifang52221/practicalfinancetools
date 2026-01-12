@@ -9,6 +9,8 @@
     { "source": "/about/", "destination": "/about", "permanent": true },
     { "source": "/calculators/", "destination": "/calculators", "permanent": true },
     { "source": "/calculators/:slug/", "destination": "/calculators/:slug", "permanent": true },
+    { "source": "/guides/", "destination": "/guides", "permanent": true },
+    { "source": "/guides/:slug/", "destination": "/guides/:slug", "permanent": true },
     { "source": "/contact/", "destination": "/contact", "permanent": true },
     { "source": "/cookie-notice/", "destination": "/cookie-notice", "permanent": true },
     { "source": "/privacy-policy/", "destination": "/privacy-policy", "permanent": true },
