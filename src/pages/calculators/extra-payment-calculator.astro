@@ -2,21 +2,33 @@
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { ExtraPaymentMortgageCalculator } from "../../components/calculators/ExtraPayment";
 
-const title = "Extra Payment Mortgage Calculator (Save Interest)";
+const title = "Extra Mortgage Payment Calculator (Extra Principal)";
 const description =
-  "Estimate how extra mortgage payments can shorten payoff time and reduce total interest by paying down principal faster. Educational use only.";
+  "Estimate how extra mortgage payments (additional principal, lump sum, or one extra payment per year) can shorten payoff time and reduce total interest by paying down principal faster. Educational use only.";
 ---
 <CalculatorLayout
   title={title}
   description={description}
   canonicalPath="/calculators/extra-payment-calculator"
-  intro="See how paying extra toward principal can shorten your mortgage payoff timeline and reduce total interest."
+  intro="See how paying extra toward principal (monthly extra, one-time lump sum, or additional principal payments) can shorten your mortgage payoff timeline and reduce total interest. Educational estimate only."
   how={[
     "Baseline schedule uses standard amortization for principal & interest.",
     "Extra payments are applied to principal (reducing future interest).",
     "Results assume the lender applies extra payments to principal and that there is no prepayment penalty."
   ]}
   faqs={[
+    {
+      q: "If I pay $300 extra on my mortgage, what happens?",
+      a: "An extra $300 typically goes to principal (if applied as principal-only), which reduces the balance sooner and can shorten payoff time and total interest. Compare a $300 monthly extra vs a one-time payment to see the difference."
+    },
+    {
+      q: "One extra mortgage payment per year: how do I model that?",
+      a: "A common approximation is to add 1/12 of a payment each month, or make one larger principal-only payment once per year. Earlier payments usually save more interest."
+    },
+    {
+      q: "Mortgage calculator with extra payments and lump sum: does this support lump sums?",
+      a: "Use the extra payment amount to model a one-time additional principal payment (lump sum) and compare it to ongoing monthly extras. Exact lender posting dates can change results."
+    },
     {
       q: "Does an extra payment reduce my required monthly payment?",
       a: "Usually no. It reduces your balance and payoff time; the required payment typically stays the same unless you recast the loan."
@@ -38,7 +50,7 @@ const description =
       a: "Not necessarily. Results are estimates and real statements can differ due to rounding and timing."
     }
   ]}
-  lastUpdated="2026-01-02"
+  lastUpdated="2026-01-15"
 >
   <ExtraPaymentMortgageCalculator client:load />
 

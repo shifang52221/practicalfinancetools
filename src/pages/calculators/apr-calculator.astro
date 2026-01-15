@@ -2,15 +2,15 @@
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { AprCalculator as AprCalculatorComponent } from "../../components/calculators/Apr";
 
-const title = "APR Calculator (Includes Fees)";
+const title = "APR Calculator (Interest Rate + Fees)";
 const description =
-  "Estimate APR by accounting for upfront fees and term, so you can compare loan offers more fairly (personal loans, auto loans, and mortgages). Educational use only.";
+  "Estimate APR by accounting for the interest rate, upfront fees, and term, so you can compare loan offers more fairly (personal loans, auto loans, and mortgages). Educational use only.";
 ---
 <CalculatorLayout
   title={title}
   description={description}
   canonicalPath="/calculators/apr-calculator"
-  intro="Estimate APR by combining the interest rate with upfront fees, so you can compare loan offers on a more apples-to-apples basis."
+  intro="Estimate APR by combining the interest rate with upfront fees, so you can compare loan offers on a more apples-to-apples basis. This is an educational estimate, not an official lender disclosure."
   how={[
     "Monthly payment is calculated from the nominal rate and loan amount using standard amortization.",
     "APR is estimated by solving for the discount rate that makes the present value of payments equal to the net amount received (loan amount minus fees).",
@@ -26,12 +26,20 @@ const description =
       a: "Treat the origination fee as reducing the amount you effectively receive. APR is the rate that makes the present value of your payments equal to (loan amount - fees)."
     },
     {
+      q: "Can I calculate APR from a monthly payment?",
+      a: "Sometimes. If you know the loan amount, term, and fees, the payment can imply an APR. This calculator estimates APR under a simplified schedule; real disclosures can differ."
+    },
+    {
       q: "Which fees should I include?",
       a: "Include upfront fees that reduce what you effectively receive (e.g., origination fees). Product-specific rules vary, so use this as a comparison tool."
     },
     {
       q: "Does APR predict the total amount paid?",
       a: "It helps compare cost across offers, but total paid also depends on term, payment schedule, and whether you prepay or refinance."
+    },
+    {
+      q: "What if my APR is extremely high?",
+      a: "Very high APRs can make the payment mostly interest early on. Use APR to compare offers, but also review total interest paid and whether fees are avoidable."
     },
     {
       q: "Can APR change over time?",
@@ -42,7 +50,7 @@ const description =
       a: "No. It’s an educational estimate to compare scenarios. Official APR disclosures follow specific legal rules."
     }
   ]}
-  lastUpdated="2026-01-02"
+  lastUpdated="2026-01-15"
 >
   <AprCalculatorComponent client:load />
 
@@ -51,7 +59,7 @@ const description =
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>APR can be higher than the interest rate when there are upfront fees.</li>
       <li>Compare offers using the same term and assumptions.</li>
-      <li>If you refinance or prepay early, the “best APR” offer may not be the cheapest for you.</li>
+      <li>If you refinance or prepay early, the lowest-APR offer may not be the cheapest for you.</li>
     </ul>
 
     <h2 style="margin:0 0 10px">Example</h2>
@@ -100,9 +108,9 @@ const description =
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>APR is a comparison metric; it does not always match your total interest paid.</li>
-      <li>Some fees may be paid out-of-pocket vs financed — your cash-to-close can differ even if APR is similar.</li>
+      <li>Some fees may be paid out-of-pocket vs financed; your cash-to-close can differ even if APR is similar.</li>
       <li>Official lender APR disclosures can treat fees and timing differently than simplified calculators.</li>
-      <li>If you expect to prepay or refinance, the “best APR” offer may not be the best for your situation.</li>
+      <li>If you expect to prepay or refinance, APR may not capture the full picture for your situation.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Related guide</h2>

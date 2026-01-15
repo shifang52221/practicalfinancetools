@@ -10,7 +10,7 @@ const description =
   title={title}
   description={description}
   canonicalPath="/calculators/credit-card-payoff-calculator"
-  intro="Estimate how long it takes to pay off a credit card balance with a fixed APR and a fixed monthly payment."
+  intro="Calculate how long it takes to pay off a credit card balance with a fixed APR and a fixed monthly payment, plus the total interest over time. Educational estimate only."
   how={[
     "Monthly interest is estimated as balance × (APR ÷ 12).",
     "Each month, payment is applied to interest first, then principal.",
@@ -18,8 +18,16 @@ const description =
   ]}
   faqs={[
     {
+      q: "How do I calculate credit card payoff?",
+      a: "You need your starting balance, APR, and payment amount. This calculator estimates a month-by-month schedule and shows the payoff date and total interest under a fixed APR."
+    },
+    {
       q: "How is credit card interest calculated?",
       a: "This tool estimates interest monthly using APR/12. Your issuer may use a daily balance method, different compounding, and statement-cycle timing."
+    },
+    {
+      q: "Is this a credit card interest payoff calculator?",
+      a: "Yes—it's designed to estimate interest paid and payoff time from your balance, APR, and payment. For statement-accurate results, check your issuer’s daily interest method and cycle dates."
     },
     {
       q: "How does the minimum payment affect payoff time?",
@@ -46,7 +54,7 @@ const description =
       a: "If a payment is below the interest charged, the balance can grow and payoff may never happen. Increase the payment or reduce the APR to make progress."
     }
   ]}
-  lastUpdated="2026-01-02"
+  lastUpdated="2026-01-15"
 >
   <CreditCardPayoff client:load />
 
