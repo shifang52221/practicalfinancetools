@@ -1,37 +1,8 @@
 ---
 import { SITE } from "../config/site";
 const client = SITE.adsenseClient?.trim();
-if (!client) {
-  // Intentionally render nothing until configured.
-}
-
-const inline = client
-  ? `(function () {
-  var CLIENT = ${JSON.stringify(client)};
-  var SCRIPT_ID = "adsense-js";
-  function getConsent() {
-    try { return window.localStorage.getItem("consent.v1"); } catch (e) { return null; }
-  }
-  function shouldLoad() {
-    var c = getConsent();
-    return c === "accepted" || c === "declined";
-  }
-  function load() {
-    if (document.getElementById(SCRIPT_ID)) return;
-    var s = document.createElement("script");
-    s.id = SCRIPT_ID;
-    s.async = true;
-    s.crossOrigin = "anonymous";
-    s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(CLIENT);
-    document.head.appendChild(s);
-  }
-  if (shouldLoad()) load();
-  window.addEventListener("consentchange", function () {
-    if (shouldLoad()) load();
-  });
-})();`
-  : "";
+const src = client
+  ? `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(client)}`
+  : null;
 ---
-{client ? (
-  <script is:inline type="text/javascript" set:html={inline}></script>
-) : null}
+{src ? <script async src={src} crossorigin="anonymous"></script> : null}
