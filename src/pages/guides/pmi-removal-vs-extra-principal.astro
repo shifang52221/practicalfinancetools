@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "PMI Removal vs Extra Principal (what to prioritize)";
+const description =
+  "PMI can be a large monthly cost. This guide explains how PMI interacts with down payment and extra principal payments and what to confirm with your lender. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/pmi-removal-vs-extra-principal">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">PMI vs extra principal</span>
+    </nav>
+    <h1>PMI removal vs extra principal</h1>
+    <p>
+      PMI (private mortgage insurance) is often required when your down payment is under 20%. If you can remove PMI, the
+      monthly savings can be meaningful. Extra principal payments can speed up reaching the LTV threshold, but rules vary
+      by loan type and lender.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Estimate PMI and payment</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Model extra principal</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Why PMI changes the decision</h2>
+      <p class="muted" style="margin:10px 0 0">
+        If PMI is expensive, reaching a point where it can be removed can create a strong “return” on extra principal:
+        you save interest and potentially remove PMI.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What to confirm</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>What LTV is required for PMI removal (and whether it’s automatic).</li>
+        <li>Whether an appraisal is required and who pays for it.</li>
+        <li>Whether extra payments accelerate PMI removal under your loan type.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A practical way to compare</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Estimate your baseline monthly payment including PMI.</li>
+      <li>Model a monthly extra principal amount and see how payoff time changes.</li>
+      <li>Estimate when you might hit an LTV threshold and compare the monthly savings from PMI removal.</li>
+    </ol>
+    <div class="btn-row" style="margin-top:12px">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment (PITI + PMI)</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment scenarios</a>
+      <a class="btn" href="/guides/principal-only-extra-payments">Principal-only tips</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Notes</h2>
+    <p class="muted" style="margin:10px 0 0">
+      PMI rules differ by loan program and lender. This site provides estimates and educational guidance only. Always
+      confirm PMI removal requirements with your servicer.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+  </section>
+</BaseLayout>
+

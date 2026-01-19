@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Extra Mortgage Payments: Principal-only Tips (avoid common pitfalls)";
+const description =
+  "How to make sure extra payments go to principal, what “paid ahead” means, and what to check on your mortgage statement. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/principal-only-extra-payments">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Principal-only tips</span>
+    </nav>
+    <h1>Principal-only extra payment tips</h1>
+    <p>
+      Extra mortgage payments only help if they’re applied the way you expect. The most common pitfall is an extra
+      payment being treated as “paid ahead” (covering a future due date) instead of reducing principal today.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments guide</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Principal-only vs paid ahead</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Principal-only means the extra reduces your balance immediately. “Paid ahead” can advance your next due date
+        without reducing principal as much as you intended, depending on the servicer.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What to do</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Use the servicer option that explicitly says “principal-only”.</li>
+        <li>Write clear instructions if you mail a check (and keep a copy).</li>
+        <li>Review your next statement to confirm the principal balance dropped as expected.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to check on your statement</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Principal balance after the payment posted.</li>
+      <li>Transaction description (does it indicate principal-only?).</li>
+      <li>Next due date and whether the loan shows “paid ahead”.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Some lenders allow you to disable “paid ahead” or choose how extra payments are applied. Ask support if it’s not
+      clear in the portal.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Run scenarios</a>
+      <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
+      <a class="btn" href="/guides/mortgage-recast-vs-extra-payments">Recast vs extra payments</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+  </section>
+</BaseLayout>
+

@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Mortgage Recast vs Extra Payments (what’s the difference?)";
+const description =
+  "A mortgage recast can lower your required payment, while extra principal payments usually shorten payoff time. Learn when each option makes sense. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-recast-vs-extra-payments">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Recast vs extra payments</span>
+    </nav>
+    <h1>Mortgage recast vs extra payments</h1>
+    <p>
+      Extra principal payments usually shorten your payoff timeline and reduce interest. A recast (also called a
+      re-amortization) typically keeps the same interest rate but can lower your required monthly payment after you make
+      a large principal reduction.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Baseline monthly payment</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Extra payments</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Goal: pay off sooner and reduce total interest.</li>
+        <li>Required payment: usually unchanged.</li>
+        <li>Best for: certainty, faster payoff, interest savings.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Recast</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Goal: lower the required monthly payment.</li>
+        <li>Rate: usually unchanged (not a refinance).</li>
+        <li>Best for: cash flow relief after a large principal payment.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When a recast can make sense</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>You made a large lump-sum principal payment (bonus, sale proceeds, gift).</li>
+      <li>You want to keep your current rate but lower your required payment.</li>
+      <li>You prefer not to refinance (or can’t qualify right now).</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Recasts often have fees and lender rules. Confirm eligibility, the fee, and the minimum lump sum required.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare scenarios</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Estimate your baseline monthly payment and amortization.</li>
+      <li>Model monthly extra vs lump sum extra payments and compare payoff time and total interest.</li>
+      <li>If you want a lower payment, ask the lender what a recast would change and compare the cash flow impact.</li>
+    </ol>
+    <div class="btn-row" style="margin-top:12px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment scenarios</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Contact</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+  </section>
+</BaseLayout>
+

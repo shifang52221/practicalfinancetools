@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Refinance Break-even (how to estimate it)";
+const description =
+  "A refinance break-even estimate compares monthly savings to closing costs and how long you plan to keep the loan. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-break-even">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Refinance break-even</span>
+    </nav>
+    <h1>Refinance break-even</h1>
+    <p>
+      Break-even is the point where your monthly savings from a refinance have “paid back” the closing costs. It’s a
+      useful sanity check, but it depends on your rate, term, costs, taxes, and how long you’ll keep the mortgage.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Compare monthly payments</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Compare schedules</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A simple break-even formula</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A common first-pass estimate is:
+    </p>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Monthly savings = old monthly payment − new monthly payment (keep assumptions consistent).</li>
+      <li>Break-even months = closing costs ÷ monthly savings.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      If you plan to move or refinance again before break-even, refinancing may not make sense. If you’ll keep the loan
+      longer, a refinance can be beneficial even if break-even takes a while.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What can change results</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Loan term resets (30-year refi vs remaining term).</li>
+        <li>Points vs rate trade-off (upfront cost vs lower rate).</li>
+        <li>Rolling costs into the loan (affects balance and interest).</li>
+        <li>Taxes and deductions (if applicable).</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Refi vs extra principal</h2>
+      <p class="muted" style="margin:10px 0 0">
+        If your rate is already low, extra principal payments can be a simpler path: no closing costs, and you can stop
+        any time. If rates dropped materially, refinancing may outperform extra payments over the same horizon.
+      </p>
+      <div class="btn-row" style="margin-top:12px">
+        <a class="btn" href="/calculators/extra-payment-calculator">Extra principal scenarios</a>
+        <a class="btn" href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare with these tools</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Compute your current monthly payment and baseline amortization.</li>
+      <li>Compute the refinance monthly payment using the new rate/term/fees assumptions.</li>
+      <li>Compare total interest and the time horizon you actually expect to hold the loan.</li>
+    </ol>
+    <div class="btn-row" style="margin-top:12px">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      <a class="btn" href="/guides/mortgage-recast-vs-extra-payments">Recast vs extra payments</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+  </section>
+</BaseLayout>
+
