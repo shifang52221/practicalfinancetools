@@ -3,11 +3,13 @@ import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { AmortizationScheduleCalculator as AmortizationScheduleCalculatorComponent } from "../../components/calculators/Amortization";
 
 const title = "Amortization Schedule Calculator";
+const metaTitle = "Amortization Schedule Calculator (Payment Table)";
 const description =
   "Generate an amortization schedule showing monthly payment, interest, principal, and remaining balance. Educational use only.";
 ---
 <CalculatorLayout
   title={title}
+  metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/amortization-schedule-calculator"
   intro="Generate a payment schedule for an amortized loan so you can see how interest and principal change over time."
@@ -57,6 +59,13 @@ const description =
       <li>Adjustable-rate loans require a rate-change model; this assumes a fixed rate.</li>
     </ul>
 
+    <h2 style="margin:18px 0 10px">Related topics</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
+      <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
+    </div>
+
     <h2 style="margin:18px 0 10px">Related tools</h2>
     <div class="btn-row" style="margin-top:0">
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
@@ -66,4 +75,3 @@ const description =
     </div>
   </div>
 </CalculatorLayout>
-

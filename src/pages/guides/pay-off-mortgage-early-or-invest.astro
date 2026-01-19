@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Pay Off Mortgage Early or Invest? (how to compare)";
+const description =
+  "A practical checklist to compare extra mortgage payments vs investing, including risk, taxes, and liquidity. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/pay-off-mortgage-early-or-invest">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Pay off early or invest</span>
+    </nav>
+    <h1>Pay off mortgage early or invest?</h1>
+    <p>
+      Extra principal payments provide a “guaranteed” return equal to your effective mortgage rate saved. Investing may
+      have higher expected returns but comes with risk and volatility. This guide is a framework, not advice.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">See extra payment savings</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Baseline monthly payment</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Extra payments tend to win when</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Your rate is high (or you’re close to payoff and want certainty).</li>
+        <li>You value lower debt and payment flexibility.</li>
+        <li>You’re maximizing emergency savings first.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Investing tends to win when</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Your mortgage rate is low and you can tolerate market volatility.</li>
+        <li>You’re prioritizing tax-advantaged accounts (where applicable).</li>
+        <li>You want liquidity (investments are usually easier to access than home equity).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A simple comparison checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Compare your mortgage rate to an expected after-tax return (and don’t ignore risk).</li>
+      <li>Consider liquidity: extra principal is not easily accessible without borrowing or selling.</li>
+      <li>Account for peace of mind: some people value debt freedom more than expected returns.</li>
+      <li>Watch opportunity cost: if extra payments prevent retirement contributions, rethink the plan.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Run scenarios: baseline in <a href="/calculators/mortgage-payment-calculator">Mortgage Payment</a>, extra payments in{" "}
+      <a href="/calculators/extra-payment-calculator">Extra Payment</a>, and (if relevant) housing decisions in{" "}
+      <a href="/calculators/rent-vs-buy-calculator">Rent vs Buy</a>.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Compare extra payment options</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
+      <a class="btn" href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+  </section>
+</BaseLayout>
+

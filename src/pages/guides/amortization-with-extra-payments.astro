@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Amortization With Extra Payments (how to model it)";
+const description =
+  "How extra principal payments change an amortization schedule, why timing matters, and which calculator to use. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/amortization-with-extra-payments">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Amortization with extra payments</span>
+    </nav>
+    <h1>Amortization with extra payments</h1>
+    <p>
+      An amortization schedule shows how each payment splits into interest and principal. When you pay extra toward
+      principal, the balance drops sooner, so future interest is lower and the payoff date can move earlier.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment mortgage calculator</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule calculator</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What changes in the table</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Principal is higher the month you add extra.</li>
+        <li>Next month’s interest is lower because the balance is smaller.</li>
+        <li>The final payment happens earlier (often fewer total payments).</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What doesn’t change (usually)</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Your required monthly payment stays the same unless you recast.</li>
+        <li>Escrow (tax/insurance) is separate; extra principal doesn’t reduce escrow.</li>
+        <li>Your statement may round differently than a calculator.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Timing matters</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The earlier you reduce principal, the more interest you can avoid. A smaller monthly extra can beat a larger
+      lump sum that happens much later.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      To model timing, compare scenarios in the <a href="/calculators/extra-payment-calculator">Extra Payment Mortgage Calculator</a>.
+      If you only need the baseline principal-and-interest table, use the{" "}
+      <a href="/calculators/amortization-schedule-calculator">Amortization Schedule Calculator</a>.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming an extra payment lowers your required payment (it usually shortens the term instead).</li>
+      <li>Not confirming the lender applies extra payments as principal-only.</li>
+      <li>Comparing scenarios without keeping the baseline consistent (rate, term, escrow assumptions).</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Run extra payment scenarios</a>
+      <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Baseline monthly payment</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+  </section>
+</BaseLayout>
+

@@ -3,11 +3,13 @@ import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { MinimumPaymentPayoff } from "../../components/calculators/MinimumPaymentPayoff";
 
 const title = "Minimum Payment Payoff Calculator";
+const metaTitle = "Minimum Payment Payoff Calculator (Time & Interest)";
 const description =
   "Estimate how long it could take to pay off a balance with minimum payments, and the total interest cost. Educational use only.";
 ---
 <CalculatorLayout
   title={title}
+  metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/minimum-payment-payoff-calculator"
   intro="See how long a balance can take to pay off if you only make minimum payments, and how much interest you may pay."
@@ -70,4 +72,3 @@ const description =
     </div>
   </div>
 </CalculatorLayout>
-

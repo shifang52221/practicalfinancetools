@@ -3,11 +3,13 @@ import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { DebtSnowballCalculator as DebtSnowballCalculatorComponent } from "../../components/calculators/DebtSnowball";
 
 const title = "Debt Snowball Calculator";
+const metaTitle = "Debt Snowball Calculator (Smallest Balance First)";
 const description =
   "Build a debt payoff plan using the snowball method (smallest balance first). Estimate payoff time and interest. Educational use only.";
 ---
 <CalculatorLayout
   title={title}
+  metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/debt-snowball-calculator"
   intro="Create a debt payoff plan using the snowball method: pay minimums on everything and attack the smallest balance first."
@@ -72,4 +74,3 @@ const description =
     </div>
   </div>
 </CalculatorLayout>
-

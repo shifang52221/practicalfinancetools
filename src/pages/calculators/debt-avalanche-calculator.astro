@@ -3,11 +3,13 @@ import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { DebtAvalancheCalculator as DebtAvalancheCalculatorComponent } from "../../components/calculators/DebtAvalanche";
 
 const title = "Debt Avalanche Calculator";
+const metaTitle = "Debt Avalanche Calculator (Highest APR First)";
 const description =
   "Build a debt payoff plan using the avalanche method (highest APR first) to reduce interest cost. Educational use only.";
 ---
 <CalculatorLayout
   title={title}
+  metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/debt-avalanche-calculator"
   intro="Create a debt payoff plan using the avalanche method: pay minimums on everything and attack the highest APR first."
@@ -72,4 +74,3 @@ const description =
     </div>
   </div>
 </CalculatorLayout>
-

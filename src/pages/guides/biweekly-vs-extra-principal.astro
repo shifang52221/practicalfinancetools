@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Biweekly Payments vs Extra Principal (which saves more?)";
+const description =
+  "Biweekly mortgage payments can act like an extra payment per year, but results depend on how your lender applies them. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/biweekly-vs-extra-principal">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Biweekly vs extra principal</span>
+    </nav>
+    <h1>Biweekly vs extra principal</h1>
+    <p>
+      True biweekly payments (every two weeks) create 26 half-payments per year, which equals 13 full payments. That can
+      reduce interest and shorten payoff time. But some lender “biweekly programs” just hold funds and pay monthly, which
+      can reduce the benefit.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Compare scenarios</a>
+      <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">When biweekly helps</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Payments are applied as principal-and-interest every two weeks.</li>
+        <li>You avoid a “fee-based” third-party program.</li>
+        <li>You prefer automatic consistency over choosing a monthly extra.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">When it may not</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>The lender holds payments and posts them monthly (less interest savings).</li>
+        <li>There are service fees that eat into savings.</li>
+        <li>Your cash flow is uneven and biweekly causes overdrafts.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A simple comparison method</h2>
+    <p class="muted" style="margin:10px 0 0">
+      In practice, many people compare biweekly to an equivalent monthly extra. If a full payment is $P, then one extra
+      payment per year is about $P/12 per month. Model that monthly extra and compare it to your baseline.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      Use the <a href="/calculators/extra-payment-calculator">Extra Payment Mortgage Calculator</a> to test an extra amount and
+      sanity-check with the <a href="/calculators/amortization-schedule-calculator">Amortization Schedule Calculator</a>.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to ask your lender</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Are biweekly payments posted immediately or held and posted monthly?</li>
+      <li>Is the “extra” applied as principal-only?</li>
+      <li>Are there fees, and can you cancel easily?</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      For questions, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+  </section>
+</BaseLayout>
+

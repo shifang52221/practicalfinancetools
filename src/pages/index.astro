@@ -76,8 +76,47 @@ const slots = SITE.adsenseSlots;
         final terms, escrow, and fees with your lender or card issuer.
       </p>
       <p class="muted" style="margin:10px 0 0">
+        Working on a mortgage payoff plan? Start with your <a href="/calculators/mortgage-payment-calculator">monthly payment</a>, then
+        compare <a href="/calculators/extra-payment-calculator">extra principal payments</a> and review the{" "}
+        <a href="/calculators/amortization-schedule-calculator">amortization schedule</a>.
+      </p>
+      <p class="muted" style="margin:10px 0 0">
         Questions or feedback: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
       </p>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Mortgage extra payment scenarios</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Popular questions include: "If I pay $300 extra on my mortgage, how much interest do I save?", "One extra payment per year",
+        and "Biweekly payments vs extra principal". Use the tools below to compare the payoff date and total interest under consistent
+        assumptions.
+      </p>
+      <div class="btn-row" style="margin-top:12px">
+        <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+        <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+        <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      </div>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Mortgage guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>
+          <a href="/guides/extra-mortgage-payments">Extra mortgage payments</a>: how principal prepayments change amortization and
+          interest.
+        </li>
+        <li>
+          <a href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>: what changes in the payment table.
+        </li>
+        <li>
+          <a href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>: monthly vs annual approaches.
+        </li>
+        <li>
+          <a href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a>: what to ask your lender and how to compare.
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -97,6 +136,10 @@ const slots = SITE.adsenseSlots;
   <section class="card section" style="margin-top:18px">
     <h2 style="margin:0 0 12px">Guides</h2>
     <div class="grid">
+      <a class="card2 tool col-6" href="/guides/amortization-with-extra-payments">
+        <div class="tool-title">Amortization with extra payments</div>
+        <div class="tool-desc">What changes in the payment table when you pay extra principal, and why timing matters.</div>
+      </a>
       <a class="card2 tool col-6" href="/guides/apr-vs-interest-rate">
         <div class="tool-title">APR vs interest rate</div>
         <div class="tool-desc">What APR includes, how fees change comparisons, and when APR can mislead.</div>

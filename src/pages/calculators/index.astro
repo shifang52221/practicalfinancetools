@@ -17,7 +17,11 @@ const slots = SITE.adsenseSlots;
 <BaseLayout title={title} description={description} canonicalPath="/calculators">
   <section class="card hero">
     <h1>Calculators</h1>
-    <p>Pick a tool below. Each page includes inputs, clear results, and the calculation assumptions.</p>
+    <p>
+      Pick a tool below. Each page includes inputs, clear results, and the calculation assumptions. For mortgage questions like
+      "amortization with extra payments", "one extra payment per year", and "biweekly vs extra principal", start with the mortgage tools
+      and compare scenarios.
+    </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Start with credit cards</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Start with a mortgage</a>
@@ -35,6 +39,9 @@ const slots = SITE.adsenseSlots;
         <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
         <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
         <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
+        <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
+        <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
+        <a class="btn" href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a>
       </div>
     </div>
     <div class="card section prose col-6">
@@ -45,6 +52,27 @@ const slots = SITE.adsenseSlots;
         <li>Run a baseline, then change one input at a time (payment, rate, fee, or extra amount).</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Mortgage payoff workflow</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        Estimate your baseline monthly cost (PITI + PMI) in the{" "}
+        <a href="/calculators/mortgage-payment-calculator">Mortgage Payment Calculator</a>.
+      </li>
+      <li>
+        See the principal-and-interest table in the{" "}
+        <a href="/calculators/amortization-schedule-calculator">Amortization Schedule Calculator</a>.
+      </li>
+      <li>
+        Compare extra principal scenarios (monthly extra, lump sum, or one extra payment per year) in the{" "}
+        <a href="/calculators/extra-payment-calculator">Extra Payment Mortgage Calculator</a>.
+      </li>
+    </ol>
+    <p class="muted" style="margin:12px 0 0">
+      If your lender offers biweekly programs, confirm whether payments are posted immediately or held and posted monthly.
+    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -101,6 +129,13 @@ const slots = SITE.adsenseSlots;
     <details class="card2" style="padding:12px; margin:10px 0">
       <summary style="cursor:pointer; font-weight:800">Are these calculators free?</summary>
       <div class="muted" style="margin-top:8px">Yes. No account or signup is required.</div>
+    </details>
+    <details class="card2" style="padding:12px; margin:10px 0">
+      <summary style="cursor:pointer; font-weight:800">Do extra payments lower my monthly mortgage payment?</summary>
+      <div class="muted" style="margin-top:8px">
+        Usually no. Extra principal tends to shorten payoff time and reduce total interest. Your required payment usually stays the same
+        unless you recast the loan.
+      </div>
     </details>
     <details class="card2" style="padding:12px; margin:10px 0">
       <summary style="cursor:pointer; font-weight:800">Do you store my inputs?</summary>

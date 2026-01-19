@@ -5,7 +5,7 @@ import { SITE } from "../config/site";
 const title = `Page Not Found | ${SITE.name}`;
 const description = "Sorry—this page doesn’t exist. Browse calculators and resources from the homepage.";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/404">
+<BaseLayout title={title} description={description} canonicalPath="/404" robots="noindex, follow">
   <section class="card hero">
     <h1>Page not found</h1>
     <p class="muted">The page you’re looking for doesn’t exist or may have moved.</p>
@@ -18,4 +18,3 @@ const description = "Sorry—this page doesn’t exist. Browse calculators and r
     </div>
   </section>
 </BaseLayout>
-

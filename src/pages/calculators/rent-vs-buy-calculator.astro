@@ -3,11 +3,13 @@ import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { RentVsBuyCalculator as RentVsBuyCalculatorComponent } from "../../components/calculators/RentVsBuy";
 
 const title = "Rent vs Buy Calculator";
+const metaTitle = "Rent vs Buy Calculator (Break-even)";
 const description =
   "Compare renting vs buying with scenario assumptions to estimate break-even and projected net worth. Educational use only.";
 ---
 <CalculatorLayout
   title={title}
+  metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/rent-vs-buy-calculator"
   intro="Compare renting vs buying using scenario assumptions for rent growth, home appreciation, costs, and investment return."
@@ -66,4 +68,3 @@ const description =
     </div>
   </div>
 </CalculatorLayout>
-

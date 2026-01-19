@@ -3,11 +3,13 @@ import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { MortgagePaymentCalculator as MortgagePaymentCalculatorComponent } from "../../components/calculators/MortgagePayment";
 
 const title = "Mortgage Payment Calculator";
+const metaTitle = "Mortgage Payment Calculator (PITI + PMI)";
 const description =
   "Estimate your monthly mortgage payment including principal & interest plus taxes, insurance, HOA, and PMI. Educational use only.";
 ---
 <CalculatorLayout
   title={title}
+  metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/mortgage-payment-calculator"
   intro="Estimate your monthly mortgage payment with a clear breakdown of principal & interest and common escrow items."
@@ -63,6 +65,13 @@ const description =
       <li>If you have an adjustable-rate loan (ARM), payments can change; this page assumes fixed-rate payments.</li>
     </ul>
 
+    <h2 style="margin:18px 0 10px">Related topics</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
+      <a class="btn" href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a>
+      <a class="btn" href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a>
+    </div>
+
     <h2 style="margin:18px 0 10px">Related tools</h2>
     <div class="btn-row" style="margin-top:0">
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
@@ -72,4 +81,3 @@ const description =
     </div>
   </div>
 </CalculatorLayout>
-

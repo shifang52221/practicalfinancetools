@@ -9,9 +9,10 @@ type Props = {
   title: string;
   description?: string;
   canonicalPath?: string;
+  robots?: string;
 };
 
-const { title, description, canonicalPath } = Astro.props;
+const { title, description, canonicalPath, robots } = Astro.props;
 const siteUrlRaw = Astro.site ? Astro.site.toString() : SITE.url;
 const siteUrl = siteUrlRaw.endsWith("/") ? siteUrlRaw.slice(0, -1) : siteUrlRaw;
 const canonical = canonicalPath
@@ -25,6 +26,7 @@ const showConsentBanner = canonicalPath !== "/cookie-notice";
 const organizationLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
   name: SITE.name,
   url: siteUrl,
   email: SITE.email
@@ -33,8 +35,10 @@ const organizationLd = {
 const websiteLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
   name: SITE.name,
-  url: siteUrl
+  url: siteUrl,
+  publisher: { "@id": `${siteUrl}/#organization` }
 };
 ---
 <!doctype html>
@@ -46,6 +50,7 @@ const websiteLd = {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate icon" href="/favicon.ico" sizes="any" />
     {description ? <meta name="description" content={description} /> : null}
+    {robots ? <meta name="robots" content={robots} /> : null}
     {canonical ? <link rel="canonical" href={canonical} /> : null}
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />

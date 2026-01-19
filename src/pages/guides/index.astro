@@ -4,7 +4,7 @@ import { SITE } from "../../config/site";
 
 const title = `Guides | ${SITE.name}`;
 const description =
-  "Short, practical guides on APR, credit card payoff strategies, and extra mortgage payments, with links to free calculators. Educational use only.";
+  "Short, practical guides on mortgage payments, amortization, extra principal, APR, and payoff strategies, with links to free calculators. Educational use only.";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides">
   <section class="card hero">
@@ -20,6 +20,36 @@ const description =
   </section>
 
   <section class="grid" style="margin-top:18px">
+    <a class="card section prose col-6" href="/guides/extra-mortgage-payments">
+      <h2 style="margin-top:0">Extra mortgage payments</h2>
+      <p class="muted" style="margin:10px 0 0">
+        How principal prepayments change amortization, what to ask your lender, and how to compare scenarios.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/guides/amortization-with-extra-payments">
+      <h2 style="margin-top:0">Amortization with extra payments</h2>
+      <p class="muted" style="margin:10px 0 0">
+        What changes in the payment table when you pay extra principal, and why timing matters.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/guides/one-extra-mortgage-payment-per-year">
+      <h2 style="margin-top:0">One extra payment per year</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Two common ways to model it (monthly vs annual) and what to confirm with your lender.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/guides/biweekly-vs-extra-principal">
+      <h2 style="margin-top:0">Biweekly vs extra principal</h2>
+      <p class="muted" style="margin:10px 0 0">
+        When biweekly payments help, when they don’t, and a simple way to compare scenarios.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/guides/pay-off-mortgage-early-or-invest">
+      <h2 style="margin-top:0">Pay off early or invest?</h2>
+      <p class="muted" style="margin:10px 0 0">
+        A practical checklist to compare mortgage prepayments vs investing, including risk and liquidity.
+      </p>
+    </a>
     <a class="card section prose col-6" href="/guides/apr-vs-interest-rate">
       <h2 style="margin-top:0">APR vs interest rate</h2>
       <p class="muted" style="margin:10px 0 0">
@@ -30,12 +60,6 @@ const description =
       <h2 style="margin-top:0">Credit card payoff strategy</h2>
       <p class="muted" style="margin:10px 0 0">
         Fixed payments vs minimum payments, what drives interest cost, and how to prioritize multiple debts.
-      </p>
-    </a>
-    <a class="card section prose col-6" href="/guides/extra-mortgage-payments">
-      <h2 style="margin-top:0">Extra mortgage payments</h2>
-      <p class="muted" style="margin:10px 0 0">
-        How principal prepayments change amortization, what to ask your lender, and how to compare scenarios.
       </p>
     </a>
     <div class="card section prose col-6">

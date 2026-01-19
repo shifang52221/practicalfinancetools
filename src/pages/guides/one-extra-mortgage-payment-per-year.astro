@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "One Extra Mortgage Payment Per Year (what it does)";
+const description =
+  "How to think about making one extra mortgage payment per year, common ways to model it, and what can change results. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/one-extra-mortgage-payment-per-year">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">One extra payment per year</span>
+    </nav>
+    <h1>One extra mortgage payment per year</h1>
+    <p>
+      “One extra payment per year” is a simple rule of thumb for paying down principal faster. It can shorten the payoff
+      timeline and reduce total interest, especially when the extra money is applied early.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model one extra payment</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Baseline monthly payment</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Two common ways to do it</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Make a single extra principal payment once per year (e.g., tax refund).</li>
+        <li>Add 1/12 of a payment each month (smoother cash flow).</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Why earlier usually wins</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Interest is based on your outstanding balance. Reducing the balance sooner reduces future interest, so spreading
+        the extra through the year can beat a single late-year payment.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to model it</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Start with your baseline in the <a href="/calculators/mortgage-payment-calculator">Mortgage Payment Calculator</a>.
+      Then use the <a href="/calculators/extra-payment-calculator">Extra Payment Mortgage Calculator</a> and compare:
+    </p>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>A monthly extra equal to roughly 1/12 of your payment.</li>
+      <li>A one-time principal-only extra once per year.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Real results can differ based on the exact day the lender applies the extra payment and how interest is calculated.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to confirm with your lender</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>The extra is applied to principal-only (not “paid ahead” toward the next due date).</li>
+      <li>There is no prepayment penalty.</li>
+      <li>Whether recasting is available if you want a lower required payment later.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+  </section>
+</BaseLayout>
+
