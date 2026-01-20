@@ -1,8 +1,40 @@
 ---
 import { SITE } from "../config/site";
 const client = SITE.adsenseClient?.trim();
-const src = client
-  ? `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(client)}`
-  : null;
+const inline = client
+  ? `(function () {
+  var CLIENT = ${JSON.stringify(client)};
+  var KEY = "consent.v1";
+  var SCRIPT_ID = "adsense-js";
+
+  function hasGpc() {
+    try { return window.navigator && window.navigator.globalPrivacyControl === true; } catch (e) { return false; }
+  }
+
+  function getConsent() {
+    try { return window.localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+
+  function shouldLoad() {
+    var c = getConsent();
+    return c === "accepted" || c === "declined" || hasGpc();
+  }
+
+  function load() {
+    if (document.getElementById(SCRIPT_ID)) return;
+    var s = document.createElement("script");
+    s.id = SCRIPT_ID;
+    s.async = true;
+    s.crossOrigin = "anonymous";
+    s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(CLIENT);
+    document.head.appendChild(s);
+  }
+
+  if (shouldLoad()) load();
+  window.addEventListener("consentchange", function () {
+    if (shouldLoad()) load();
+  });
+})();`
+  : "";
 ---
-{src ? <script async src={src} crossorigin="anonymous"></script> : null}
+{client ? <script is:inline type="text/javascript" set:html={inline}></script> : null}
