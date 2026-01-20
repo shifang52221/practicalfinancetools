@@ -1,0 +1,4 @@
+Contact: mailto:admin@practicalfinancetools.com
+Expires: 2027-01-20T00:00:00Z
+Preferred-Languages: en
+Canonical: https://www.practicalfinancetools.com/.well-known/security.txt
