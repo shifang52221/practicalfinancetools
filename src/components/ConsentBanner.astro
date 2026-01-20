@@ -1,7 +1,7 @@
 <div id="consent-banner" class="consent-banner" hidden>
   <div class="consent-banner__text">
-    We use cookies for ads and basic site functionality. Choose "Accept" for personalized ads (where allowed) or
-    "Decline" for non-personalized ads.
+    We use cookies for ads, analytics, and basic site functionality. Choose "Accept" to allow optional cookies (where
+    allowed), or "Decline" to use non-personalized ads and skip analytics cookies.
     <a href="/cookie-notice" class="consent-banner__link">Learn more</a>.
   </div>
   <div class="consent-banner__actions">
@@ -19,7 +19,7 @@
       class="btn btn-primary"
       onclick="(function(){try{localStorage.setItem('consent.v1','accepted')}catch(e){};try{document.documentElement.setAttribute('data-consent','accepted')}catch(e){};try{window.dispatchEvent(new CustomEvent('consentchange',{detail:{consent:'accepted'}}))}catch(e){};try{var root=document.documentElement;root.classList.remove('consent-visible');root.style.removeProperty('--consent-banner-h')}catch(e){};try{var el=document.getElementById('consent-banner'); if(el) el.hidden=true}catch(e){}})()"
     >
-      Accept
+      Accept optional cookies
     </button>
   </div>
 </div>
