@@ -36,10 +36,33 @@ const client = SITE.adsenseClient?.trim();
       (function () {
         var ins = document.currentScript && document.currentScript.previousElementSibling;
         if (!ins) return;
-        try {
-          var c = window.localStorage.getItem("consent.v1");
-          if (c === "declined") ins.setAttribute("data-npa", "1");
-        } catch {}
+
+        function hasGpc() {
+          try {
+            return window.navigator && window.navigator.globalPrivacyControl === true;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        function getConsent() {
+          try {
+            return window.localStorage.getItem("consent.v1");
+          } catch (e) {
+            return null;
+          }
+        }
+
+        var c = getConsent();
+
+        // Avoid requesting ads until a preference is set. If Global Privacy Control (GPC) is enabled,
+        // treat it as a non-personalized/opt-out signal.
+        if (c !== "accepted" && c !== "declined") {
+          if (hasGpc()) c = "declined";
+          else return;
+        }
+
+        if (c === "declined") ins.setAttribute("data-npa", "1");
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       })();
     </script>

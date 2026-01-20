@@ -28,6 +28,13 @@
   (function () {
     var STORAGE_KEY = "consent.v1";
 
+    function hasGpc() {
+      try {
+        return window.navigator && window.navigator.globalPrivacyControl === true;
+      } catch (e) {}
+      return false;
+    }
+
     function readConsent() {
       try {
         var value = window.localStorage.getItem(STORAGE_KEY);
@@ -66,6 +73,10 @@
 
     function applyFromStorage() {
       var v = readConsent();
+      if (v === "unset" && hasGpc()) {
+        v = "declined";
+        writeConsent(v);
+      }
       if (v === "accepted" || v === "declined") document.documentElement.setAttribute("data-consent", v);
       else document.documentElement.removeAttribute("data-consent");
       setVisible(v === "unset");
