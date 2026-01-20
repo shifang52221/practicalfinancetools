@@ -5,10 +5,10 @@ export const SITE = {
   adsenseClient: "ca-pub-8677561632094995",
   ga4MeasurementId: "G-JVLTPDJCHC", // e.g. "G-XXXXXXXXXX"
   adsenseSlots: {
-    homeMid: "5806982486",
-    calculatorsListMid: "5806982486",
-    calculatorMid: "5806982486",
-    calculatorBottom: "5806982486"
+    homeMid: "6492559957",
+    calculatorsListMid: "3594933876",
+    calculatorMid: "2824777686",
+    calculatorBottom: "4716443856"
   },
   email: "admin@practicalfinancetools.com"
 } as const;
