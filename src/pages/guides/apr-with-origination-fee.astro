@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "APR with an Origination Fee (how to compare loans)";
+const description =
+  "Learn how an origination fee changes the true borrowing cost, why APR can rise even when the interest rate stays the same, and how to model scenarios with the free APR calculator. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-with-origination-fee">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR with origination fee</span>
+    </nav>
+    <h1>APR with an origination fee</h1>
+    <p>
+      An origination fee can make a loan meaningfully more expensive even if the interest rate looks low. APR is designed to reflect that
+      by incorporating certain upfront fees. This page explains the mechanics and what to compare in practice.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator (with fees)</a>
+      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">The simple idea</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you borrow $10,000 with a 3% origination fee, you might receive about $9,700 after fees (depending on how the fee is charged),
+      but your interest is typically calculated on the full balance. You’re paying loan payments based on $10,000 while receiving less cash.
+      That’s why the effective cost is higher than the interest rate alone suggests.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Origination fee: paid upfront vs financed</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Paid upfront:</strong> you write a check (or it’s withheld from proceeds). You receive less cash at funding.</li>
+      <li><strong>Financed:</strong> the fee is added to the balance. You receive the full amount, but repay more principal.</li>
+      <li><strong>Either way:</strong> compare total cost over your expected time horizon, not just APR.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      The same fee can change the loan differently depending on the product and lender disclosures. Use APR as a comparison metric, and
+      also compare cash-to-close and total dollars paid.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare two offers (practical steps)</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the same term for both offers (e.g., 36 months vs 36 months).</li>
+      <li>Enter the loan amount, interest rate, term, and upfront fees in the <a href="/calculators/apr-calculator">APR calculator</a>.</li>
+      <li>Check the monthly payment and the estimated APR.</li>
+      <li>Decide how long you expect to keep the loan. If you may refinance early, APR can be less representative.</li>
+      <li>Compare cash-to-close (how much cash you need) and the total dollars paid over your expected horizon.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common pitfalls</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing APR across different terms (APR is not “better” if the term is longer).</li>
+      <li>Ignoring whether fees are financed vs paid out-of-pocket (cash-to-close can differ a lot).</li>
+      <li>Assuming the lowest APR is always cheapest if you plan to refinance, sell, or prepay early.</li>
+      <li>Forgetting discount points and other upfront fees that can change the economics.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Estimate APR with fees</a>
+      <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Educational use only. Not financial advice.
+    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">
+      Last updated: 2026-01-23
+    </p>
+  </section>
+</BaseLayout>
+

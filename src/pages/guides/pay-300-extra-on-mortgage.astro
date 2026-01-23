@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "If I Pay $300 Extra on My Mortgage (what changes?)";
+const description =
+  "Paying an extra $300 toward principal can shorten payoff time and reduce total interest. Learn what actually changes, what to confirm with your lender, and model scenarios with the free extra payment mortgage calculator. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/pay-300-extra-on-mortgage">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Pay $300 extra</span>
+    </nav>
+    <h1>If I pay $300 extra on my mortgage, what happens?</h1>
+    <p>
+      If the extra amount is applied as principal-only, you reduce the loan balance sooner. That usually reduces total interest and can
+      shorten your payoff timeline. This guide explains the mechanics and what to check so the payment is applied the way you expect.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment mortgage calculator</a>
+      <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What changes (and what usually doesn’t)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Usually changes:</strong> payoff date (earlier), total interest (lower), and the amortization schedule.</li>
+      <li><strong>Usually doesn’t change:</strong> your required monthly payment (unless you recast the loan).</li>
+      <li><strong>Doesn’t change:</strong> escrow amounts (tax/insurance) unless those costs change separately.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Monthly $300 vs a one-time lump sum</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Earlier payments tend to save more interest because they reduce the balance sooner. That’s why a recurring monthly extra can have a
+      large impact over time. A one-time lump sum can also help, especially if it happens early in the loan.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      Use the <a href="/calculators/extra-payment-calculator">Extra Payment Mortgage Calculator</a> to compare:
+    </p>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>$300 extra every month</li>
+      <li>$3,600 once per year</li>
+      <li>A one-time lump sum (for example, from a bonus)</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to confirm with your lender (important)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>The extra payment is applied as <strong>principal-only</strong> (not “paid ahead”).</li>
+      <li>How to designate principal-only in online payments (some systems require a checkbox or separate field).</li>
+      <li>Whether a prepayment penalty exists (many loans have none; some do).</li>
+      <li>Whether a recast is available if you want a lower required payment after a large principal payment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model a $300 extra payment</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Baseline mortgage payment</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Extra payments guide</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Educational use only. Not financial advice.
+    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">
+      Last updated: 2026-01-23
+    </p>
+  </section>
+</BaseLayout>
+
