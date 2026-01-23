@@ -63,10 +63,21 @@ export const TOOLS: Tool[] = [
     category: "Mortgage"
   },
   {
+    slug: "additional-principal-payment-calculator",
+    title: "Additional Principal Payment Calculator",
+    description: "Pay extra principal monthly or as a lump sum and see payoff savings.",
+    category: "Mortgage"
+  },
+  {
+    slug: "biweekly-mortgage-payment-calculator",
+    title: "Biweekly Mortgage Payment Calculator",
+    description: "Estimate the impact of biweekly payments and compare to monthly extra.",
+    category: "Mortgage"
+  },
+  {
     slug: "rent-vs-buy-calculator",
     title: "Rent vs Buy Calculator",
     description: "Scenario-based comparison to estimate a break-even time horizon.",
     category: "Mortgage"
   }
 ];
-

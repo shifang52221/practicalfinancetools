@@ -1,0 +1,70 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import { BiweeklyMortgageCalculator } from "../../components/calculators/BiweeklyMortgage";
+
+const title = "Biweekly Mortgage Payment Calculator";
+const metaTitle = "Biweekly Mortgage Payment Calculator (Estimate Savings)";
+const description =
+  "Estimate how biweekly mortgage payments can shorten payoff time and reduce total interest, and compare to an equivalent monthly extra payment. Educational use only.";
+---
+<CalculatorLayout
+  title={title}
+  metaTitle={metaTitle}
+  description={description}
+  canonicalPath="/calculators/biweekly-mortgage-payment-calculator"
+  intro="Estimate the impact of biweekly mortgage payments using a common approximation (13 payments per year). Compare payoff time and interest savings under consistent assumptions. Educational use only. Not financial advice."
+  how={[
+    "First we compute the baseline monthly principal-and-interest (P&I) payment using standard amortization.",
+    "Biweekly payments are approximated as an additional principal amount equal to (monthly P&I ÷ 12) each month (the common 13-payments-per-year rule).",
+    "This is an estimate; real results vary based on posting dates, rounding, and whether the lender truly applies payments every two weeks."
+  ]}
+  faqs={[
+    {
+      q: "Is this a biweekly mortgage payment calculator?",
+      a: "Yes. It estimates the payoff impact using the common 13-payments-per-year approximation, which is often close for planning."
+    },
+    {
+      q: "Does biweekly always save more than paying extra principal monthly?",
+      a: "Not always. If your lender holds biweekly payments and posts them monthly, savings can be similar to making a small monthly extra. Earlier posting tends to save more interest."
+    },
+    {
+      q: "How much is a biweekly mortgage payment?",
+      a: "A common approach is to take the monthly principal-and-interest (P&I) payment and divide by 2. Note: escrow items (tax/insurance) are separate."
+    },
+    {
+      q: "What if my lender charges a fee for a biweekly program?",
+      a: "Fees can reduce or eliminate the benefit. Compare interest saved to fees, and consider doing a no-fee monthly extra instead."
+    },
+    {
+      q: "Can I model one extra payment per year instead?",
+      a: "Yes. The 13-payments-per-year effect is often similar to adding about (monthly payment ÷ 12) as a monthly extra, or making one extra principal payment per year."
+    }
+  ]}
+  lastUpdated="2026-01-23"
+>
+  <BiweeklyMortgageCalculator client:load />
+
+  <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Quick takeaways</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>True biweekly payments create 13 full payments per year (26 half payments).</li>
+      <li>If payments are held and posted monthly, savings can be smaller than expected.</li>
+      <li>Compare biweekly to a simple monthly extra to avoid fee-based programs.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Related guides</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a>
+      <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
+      <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
+    </div>
+
+    <h2 style="margin:18px 0 10px">Related tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+    </div>
+  </div>
+</CalculatorLayout>
+

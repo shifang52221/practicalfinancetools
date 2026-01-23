@@ -1,0 +1,71 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import { ExtraPaymentMortgageCalculator } from "../../components/calculators/ExtraPayment";
+
+const title = "Additional Principal Payment Calculator (Mortgage)";
+const metaTitle = "Additional Principal Payment Mortgage Calculator";
+const description =
+  "Estimate how additional principal payments (monthly extra or lump sum) can shorten payoff time and reduce total mortgage interest. Educational use only.";
+---
+<CalculatorLayout
+  title={title}
+  metaTitle={metaTitle}
+  description={description}
+  canonicalPath="/calculators/additional-principal-payment-calculator"
+  intro="Estimate how additional principal payments change payoff time and total interest. Use this to compare a monthly extra vs a one-time principal payment under consistent assumptions. Educational use only. Not financial advice."
+  how={[
+    "Baseline schedule uses standard amortization for principal and interest.",
+    "Additional principal reduces the balance, which reduces future interest.",
+    "This assumes extra amounts are applied as principal-only and that there is no prepayment penalty."
+  ]}
+  faqs={[
+    {
+      q: "Additional principal payment mortgage calculator: what does it do?",
+      a: "It estimates how paying extra principal (monthly or one-time) can shorten payoff time and reduce total interest compared to a baseline schedule."
+    },
+    {
+      q: "Does additional principal lower my required monthly payment?",
+      a: "Usually no. Extra principal tends to shorten the term. Your required payment typically changes only if you recast the loan."
+    },
+    {
+      q: "Monthly extra vs lump sum: which saves more?",
+      a: "Earlier principal reduction often saves more interest. A smaller monthly extra can beat a larger lump sum that happens later."
+    },
+    {
+      q: "What is \"paid ahead\" and why does it matter?",
+      a: "Some servicers treat extra payments as covering future due dates instead of reducing principal as much as you expect. Confirm your extra is applied as principal-only."
+    },
+    {
+      q: "Does this include taxes and insurance (escrow)?",
+      a: "No. This focuses on principal and interest. Escrow items are separate and typically do not change when you pay extra principal."
+    }
+  ]}
+  lastUpdated="2026-01-23"
+>
+  <ExtraPaymentMortgageCalculator client:load />
+
+  <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Example</h2>
+    <p class="muted" style="margin:0">
+      Try $360,000 at 6.50% for 30 years, then compare: (1) $100-$300 extra per month, and (2) a one-time principal payment (e.g., from a
+      bonus) early in the loan. Keep the baseline constant when you compare scenarios.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Related guides</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/guides/calculate-mortgage-payoff-with-additional-principal-payments">
+        Calculate payoff with additional principal
+      </a>
+      <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
+      <a class="btn" href="/guides/pay-300-extra-on-mortgage">If I pay $300 extra</a>
+    </div>
+
+    <h2 style="margin:18px 0 10px">Related tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly mortgage payments</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+    </div>
+  </div>
+</CalculatorLayout>
+
