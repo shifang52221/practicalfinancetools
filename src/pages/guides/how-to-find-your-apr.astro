@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "How to Find Out Your APR (credit cards and loans)";
+const description =
+  "Where to find your APR on a credit card statement or loan disclosure, what it means, and how to use APR calculators to compare costs. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/how-to-find-your-apr">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">How to find your APR</span>
+    </nav>
+    <h1>How to find out your APR</h1>
+    <p>
+      APR is a standardized way to express borrowing cost. For credit cards it usually appears on your statement and account terms. For
+      loans it appears in lender disclosures. This guide shows where to look and how to use APR in comparisons.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator (include fees)</a>
+      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Credit cards: where to find APR</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><strong>Monthly statement:</strong> look for "APR" and the purchase APR (and cash advance / balance transfer APR if relevant).</li>
+        <li><strong>Cardmember agreement:</strong> the pricing/interest section lists APR rules and when APR changes.</li>
+        <li><strong>Online account:</strong> many issuers show APR in account details.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Loans: where to find APR</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><strong>Loan Estimate / Closing Disclosure (mortgages):</strong> APR is shown prominently in the disclosures.</li>
+        <li><strong>Truth-in-Lending disclosure (many loans):</strong> APR and finance charges are disclosed under Regulation Z.</li>
+        <li><strong>Offer sheet:</strong> many lenders show both rate and APR, especially when fees or points apply.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What APR means (in plain language)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The interest rate is the nominal rate used to compute interest. APR can include certain upfront fees and timing assumptions, so it
+      can be higher than the interest rate even when the monthly payment looks similar.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      APR is useful for comparisons when you hold assumptions constant (term, payment schedule, and which fees are included).
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to use APR to compare offers</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Compare offers with the same term (e.g., 36 months vs 36 months).</li>
+      <li>Note upfront fees (origination fees, points) and whether they are paid upfront or financed.</li>
+      <li>Use the <a href="/calculators/apr-calculator">APR calculator</a> to estimate APR under consistent assumptions.</li>
+      <li>Also compare total dollars paid over your likely time horizon (APR can mislead if you refinance or repay early).</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Related topics</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Educational use only. Not financial advice.
+    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">
+      Last updated: 2026-01-23
+    </p>
+  </section>
+</BaseLayout>
+

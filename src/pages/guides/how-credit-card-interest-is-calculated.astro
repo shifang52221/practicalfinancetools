@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "How Credit Card Interest Is Calculated (APR, daily interest, and payoff)";
+const description =
+  "Understand how credit card interest works (APR vs daily periodic rate), why statements can differ from simple calculators, and how to model payoff with fixed payments. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/how-credit-card-interest-is-calculated">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">How credit card interest is calculated</span>
+    </nav>
+    <h1>How credit card interest is calculated</h1>
+    <p>
+      Credit card interest is often based on a daily rate applied to your daily balance, then shown on your monthly statement. This guide
+      explains the mechanics and how to get useful payoff estimates with a calculator.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">APR vs daily periodic rate</h2>
+      <p class="muted" style="margin:10px 0 0">
+        APR is an annualized rate. Many issuers convert it to a daily periodic rate (DPR) and apply it to your daily balance. The
+        statement interest charge depends on your daily balances and statement cycle length.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Why your statement can differ</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Interest accrues daily, not just monthly.</li>
+        <li>Statement cycle dates vary month to month.</li>
+        <li>New purchases, fees, and balance transfers change the balance.</li>
+        <li>Grace periods and promotional APRs can change interest behavior.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How payoff calculators estimate interest</h2>
+    <p class="muted" style="margin:10px 0 0">
+      For planning, many calculators estimate interest monthly as balance × (APR ÷ 12). That makes it easy to compare "what if" scenarios
+      consistently, even though it may not match your statement to the penny.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If your goal is to reduce total interest, the big levers are payment size, stopping new purchases, and lowering APR (when possible).
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to check on your statement</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Purchase APR (and any cash advance / balance transfer APR).</li>
+      <li>Interest calculation method (average daily balance is common).</li>
+      <li>Minimum payment rule (it varies by issuer).</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      If you want statement-accurate projections, use statement cycle dates and issuer rules. For most payoff decisions, consistent
+      comparisons are more important than exact pennies.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Model a fixed payment payoff</a>
+      <a class="btn" href="/guides/credit-card-payoff-strategy">Payoff strategy</a>
+      <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Educational use only. Not financial advice.
+    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">
+      Last updated: 2026-01-23
+    </p>
+  </section>
+</BaseLayout>
+

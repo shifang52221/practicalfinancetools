@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Calculate Mortgage Payoff with Additional Principal Payments";
+const description =
+  "A practical way to estimate how additional principal payments change payoff time and total interest, plus what to confirm with your lender. Educational use only.";
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/calculate-mortgage-payoff-with-additional-principal-payments"
+>
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Calculate payoff with additional principal</span>
+    </nav>
+    <h1>Calculate mortgage payoff with additional principal payments</h1>
+    <p>
+      Additional principal payments reduce the loan balance sooner. That usually reduces total interest and can move your payoff date
+      earlier. This guide shows a simple workflow to estimate the impact and avoid common lender posting pitfalls.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra principal calculator</a>
+      <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">The workflow (simple and reliable)</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Compute your baseline principal-and-interest payment in the <a href="/calculators/mortgage-payment-calculator">Mortgage Payment Calculator</a>.</li>
+      <li>Check the baseline amortization table in the <a href="/calculators/amortization-schedule-calculator">Amortization Schedule Calculator</a>.</li>
+      <li>Model additional principal payments in the <a href="/calculators/extra-payment-calculator">Extra Payment Mortgage Calculator</a>.</li>
+      <li>Compare payoff date and total interest between baseline vs extra payment scenarios.</li>
+    </ol>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Monthly extra vs lump sum</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Earlier principal reduction tends to save more interest because it reduces the balance sooner. A smaller monthly extra can beat a
+        larger lump sum that happens later.
+      </p>
+      <p class="muted" style="margin:12px 0 0">
+        Common comparisons: $100-$300 extra each month vs one extra payment per year vs a one-time lump sum.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What usually does not change</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Your required monthly payment usually stays the same (unless you recast).</li>
+        <li>Escrow (tax/insurance) is separate from principal and interest.</li>
+        <li>Exact payoff month can vary due to posting dates and rounding.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to confirm with your lender</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>The additional amount is applied as <strong>principal-only</strong> (not "paid ahead" toward the next due date).</li>
+      <li>There is no prepayment penalty (many loans have none; some do).</li>
+      <li>If you want a lower required payment later, whether a recast is available and what it costs.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Run additional principal scenarios</a>
+      <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
+      <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">
+      Last updated: 2026-01-23
+    </p>
+  </section>
+</BaseLayout>
+
