@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "If I Pay $150 Extra on My Mortgage (how much does it help?)";
+const description =
+  "Paying an extra $150 toward principal can shorten payoff time and reduce total interest. Learn what changes, what to confirm with your lender, and model it with the extra payment calculator. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/pay-150-extra-on-mortgage">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Pay $150 extra</span>
+    </nav>
+    <h1>If I pay $150 extra on my mortgage, what happens?</h1>
+    <p>
+      If $150 is applied as principal-only, it reduces the balance sooner and usually lowers total interest. Because interest is front
+      loaded early in the loan, starting earlier tends to save more.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model $150 extra</a>
+      <a class="btn" href="/guides/pay-300-extra-on-mortgage">Pay $300 extra</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Monthly $150 vs one extra payment per year</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A common way to model "one extra payment per year" is to add about (monthly payment ÷ 12) each month. Depending on your mortgage
+      payment, $150/month may be close to that rule-of-thumb.
+    </p>
+    <div class="btn-row" style="margin-top:12px">
+      <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly comparison</a>
+      <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What usually changes</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Payoff date moves earlier.</li>
+        <li>Total interest decreases.</li>
+        <li>Amortization schedule shifts toward principal earlier.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What to confirm</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Extra is principal-only (not "paid ahead").</li>
+        <li>No prepayment penalty.</li>
+        <li>If you want a lower required payment, whether recasting is available.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Compare monthly vs lump sum</a>
+      <a class="btn" href="/guides/principal-only-extra-payments">Principal-only tips</a>
+      <a class="btn" href="/guides/extra-mortgage-payment-calculator">How to use the calculator</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-24</p>
+  </section>
+</BaseLayout>
+

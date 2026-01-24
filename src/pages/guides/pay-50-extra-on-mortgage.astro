@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "If I Pay $50 Extra on My Mortgage (is it worth it?)";
+const description =
+  "Paying an extra $50 toward principal can still shorten payoff time and reduce total interest over a long term. Learn what changes, what to confirm with your lender, and model it with the extra payment calculator. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/pay-50-extra-on-mortgage">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Pay $50 extra</span>
+    </nav>
+    <h1>If I pay $50 extra on my mortgage, what happens?</h1>
+    <p>
+      A $50 monthly extra principal payment is small, but mortgages are long. If it is applied as principal-only, it reduces the balance
+      earlier and can shave off time and interest. The effect depends on your rate and where you are in the amortization schedule.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model $50 extra</a>
+      <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What changes</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Payoff date can move earlier (sometimes by months).</li>
+        <li>Total interest usually decreases.</li>
+        <li>Your required payment usually stays the same unless you recast.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Why a small extra can still help</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Interest is based on the remaining balance. Reducing the balance earlier lowers future interest. Over hundreds of payments, a
+        small recurring extra can add up.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to estimate the impact</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Enter your loan amount, interest rate, and term.</li>
+      <li>Set monthly extra to $50 in the <a href="/calculators/extra-payment-calculator">Extra Payment Calculator</a>.</li>
+      <li>Compare payoff time and total interest to the baseline.</li>
+      <li>Try $100 and $200 to see whether a slightly larger extra fits your budget better.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to confirm with your lender</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>The extra is applied as <strong>principal-only</strong> (not "paid ahead").</li>
+      <li>There is no prepayment penalty.</li>
+      <li>How extra payments are posted (timing can change interest slightly).</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Educational use only. Not financial advice.
+    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-24</p>
+  </section>
+</BaseLayout>
+

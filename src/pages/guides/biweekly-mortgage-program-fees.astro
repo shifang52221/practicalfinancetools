@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Biweekly Mortgage Program Fees (is it worth it?)";
+const description =
+  "Some biweekly programs charge fees or hold payments before posting them. Learn what to ask, how to compare to a simple monthly extra, and how to model scenarios. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/biweekly-mortgage-program-fees">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Biweekly program fees</span>
+    </nav>
+    <h1>Biweekly mortgage program fees: is it worth it?</h1>
+    <p>
+      Many "biweekly programs" are offered by third parties and may charge setup or ongoing fees. Some programs hold payments and post
+      them monthly, which can reduce the benefit. This guide shows how to evaluate a program and compare it to a no-fee monthly extra.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly calculator</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Monthly extra calculator</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Fees can cancel savings</h2>
+      <p class="muted" style="margin:10px 0 0">
+        The benefit of biweekly payments is usually interest saved from earlier principal reduction. If a program charges fees, compare
+        total fees to interest saved. If fees are similar to savings, it may not be worth it.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Held vs posted payments</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Ask whether payments are posted to your loan every two weeks or held and posted monthly. Holding payments can reduce interest
+        savings compared to true biweekly posting.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A simple comparison method</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Model the biweekly approximation in the <a href="/calculators/biweekly-mortgage-payment-calculator">Biweekly Calculator</a>.</li>
+      <li>Model an equivalent monthly extra (monthly P&amp;I ÷ 12) in the <a href="/calculators/extra-payment-calculator">Extra Payment Calculator</a>.</li>
+      <li>Subtract program fees from interest saved to estimate net benefit.</li>
+    </ol>
+    <p class="muted" style="margin:12px 0 0">
+      If you can do a monthly principal-only extra without fees, that is often simpler and easier to control.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Questions to ask before enrolling</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Are payments posted biweekly or held and posted monthly?</li>
+      <li>What are the setup and ongoing fees?</li>
+      <li>Can you cancel easily, and what happens to payments in transit?</li>
+      <li>Are extra amounts applied as principal-only?</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a>
+      <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
+      <a class="btn" href="/guides/principal-only-extra-payments">Principal-only tips</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-24</p>
+  </section>
+</BaseLayout>
+

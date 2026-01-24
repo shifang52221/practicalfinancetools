@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "If I Pay $400 Extra on My Mortgage (how to compare scenarios)";
+const description =
+  "Paying an extra $400 toward principal can shorten payoff time and reduce total interest. Learn how to model it vs biweekly and lump sums. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/pay-400-extra-on-mortgage">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Pay $400 extra</span>
+    </nav>
+    <h1>If I pay $400 extra on my mortgage, what happens?</h1>
+    <p>
+      A $400 monthly extra principal payment can accelerate payoff and reduce interest substantially over time. This page focuses on how to
+      compare $400/month to nearby options like biweekly and lump sums.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model $400 extra</a>
+      <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Compare biweekly</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Monthly $400 vs biweekly</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Some biweekly setups act like an extra payment per year. A straightforward way to compare is to model a monthly extra and see if it
+      produces similar time/interest savings to the biweekly approximation.
+    </p>
+    <div class="btn-row" style="margin-top:12px">
+      <a class="btn" href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a>
+      <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Monthly $400 vs a lump sum</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you have a one-time amount (bonus, tax refund), compare a lump sum early in the loan to a recurring monthly extra. Earlier
+      principal reduction often saves more interest.
+    </p>
+    <div class="btn-row" style="margin-top:12px">
+      <a class="btn" href="/guides/mortgage-lump-sum-5000">Pay a $5,000 lump sum</a>
+      <a class="btn" href="/guides/mortgage-lump-sum-10000">Pay a $10,000 lump sum</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Model lump sums</a>
+      <a class="btn" href="/guides/principal-only-extra-payments">Principal-only tips</a>
+      <a class="btn" href="/guides/pay-500-extra-on-mortgage">Pay $500 extra</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-24</p>
+  </section>
+</BaseLayout>
+

@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "If I Pay $250 Extra on My Mortgage (what changes?)";
+const description =
+  "Paying an extra $250 toward principal can shorten payoff time and reduce total interest. Learn how to model it and what to confirm with your lender. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/pay-250-extra-on-mortgage">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Pay $250 extra</span>
+    </nav>
+    <h1>If I pay $250 extra on my mortgage, what happens?</h1>
+    <p>
+      A $250 monthly extra principal payment can meaningfully reduce total interest over time, especially when made consistently and
+      applied as principal-only. This guide shows the workflow to estimate the impact and avoid common posting pitfalls.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model $250 extra</a>
+      <a class="btn" href="/guides/calculate-mortgage-payoff-with-additional-principal-payments">Payoff workflow</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">How to model it</h2>
+      <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Enter principal, rate, and term.</li>
+        <li>Set monthly extra to $250.</li>
+        <li>Compare baseline vs extra (payoff time and total interest).</li>
+      </ol>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Try nearby amounts</h2>
+      <p class="muted" style="margin:10px 0 0">
+        If $250 is close to your budget limit, test $200 and $300 to see how sensitive your payoff time is to the extra amount.
+      </p>
+      <div class="btn-row" style="margin-top:12px">
+        <a class="btn" href="/guides/pay-200-extra-on-mortgage">Pay $200 extra</a>
+        <a class="btn" href="/guides/pay-300-extra-on-mortgage">Pay $300 extra</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to confirm with your lender</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Extra is applied as <strong>principal-only</strong> (not "paid ahead").</li>
+      <li>No prepayment penalty applies.</li>
+      <li>How extra payments are posted (timing affects interest slightly).</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Monthly vs lump sum</a>
+      <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
+      <a class="btn" href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-24</p>
+  </section>
+</BaseLayout>
+
