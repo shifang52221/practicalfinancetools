@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "If I Pay $200 Extra on My Mortgage (what changes?)";
+const description =
+  "Paying an extra $200 toward principal can shorten payoff time and reduce total interest. Learn what changes, what to confirm with your lender, and model it with the extra payment calculator. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/pay-200-extra-on-mortgage">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Pay $200 extra</span>
+    </nav>
+    <h1>If I pay $200 extra on my mortgage, what happens?</h1>
+    <p>
+      If the extra amount is applied as principal-only, it reduces your balance sooner. That usually lowers total interest and can move
+      your payoff date earlier. The impact depends on your rate, remaining balance, and how early you start.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model $200 extra</a>
+      <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Monthly $200 vs a one-time lump sum</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Earlier principal reduction tends to save more interest because it reduces the balance sooner. A consistent monthly extra can have
+      a large impact over time. A one-time lump sum can also help, especially if it happens early in the loan.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      Use the <a href="/calculators/additional-principal-payment-calculator">Additional Principal Payment Calculator</a> to compare a $200
+      monthly extra to a one-time principal payment.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What changes</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Payoff date can move earlier.</li>
+        <li>Total interest usually decreases.</li>
+        <li>The amortization schedule shifts (more principal earlier).</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What to confirm</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Extra is applied as <strong>principal-only</strong> (not "paid ahead").</li>
+        <li>No prepayment penalty applies.</li>
+        <li>Your servicer posts extra payments when you expect (timing affects interest).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Run a $200 scenario</a>
+      <a class="btn" href="/guides/pay-500-extra-on-mortgage">Pay $500 extra</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Extra payments overview</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+  </section>
+</BaseLayout>
+

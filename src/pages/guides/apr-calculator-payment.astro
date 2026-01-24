@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "APR Calculator Payment (rate, fees, and monthly payment)";
+const description =
+  "How APR and fees relate to your monthly payment, what an APR calculator is estimating, and how to compare offers safely. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-calculator-payment">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR calculator payment</span>
+    </nav>
+    <h1>APR calculator payment</h1>
+    <p>
+      Your monthly payment is primarily driven by the interest rate and term. APR is an annualized cost metric that can incorporate
+      certain fees, and it can be higher than the interest rate even if the payment doesn't look dramatically different.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Why payment and APR can diverge</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Two offers can have similar payments but different upfront fees. Fees can raise APR because they reduce the net amount you
+        effectively receive while you still repay the full balance.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">How to compare offers</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Keep term constant when comparing.</li>
+        <li>Compare APR and also total dollars paid over your time horizon.</li>
+        <li>Consider whether you'll refinance or repay early.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Estimate APR with fees</a>
+      <a class="btn" href="/guides/interest-rate-apr-calculator">Interest rate vs APR</a>
+      <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+  </section>
+</BaseLayout>
+

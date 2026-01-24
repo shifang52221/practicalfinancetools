@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "APR Tool (estimate APR with fees and compare offers)";
+const description =
+  "A practical APR tool to compare loans by including upfront fees, plus guidance on what APR means and how to use it safely. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-tool">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR tool</span>
+    </nav>
+    <h1>APR tool</h1>
+    <p>
+      Use this APR tool to estimate the cost of a loan when fees are involved, and compare offers under consistent assumptions. This is an
+      educational estimate, not an official lender disclosure.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Open the APR calculator</a>
+      <a class="btn" href="/guides/how-to-find-your-apr">How to find your APR</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to enter</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan amount</li>
+      <li>Interest rate</li>
+      <li>Term</li>
+      <li>Upfront fees (origination, points)</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to use results</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>APR helps compare offers with different fees.</li>
+      <li>Also compare cash-to-close and total dollars paid over your likely time horizon.</li>
+      <li>If you refinance early, APR may not be the best single metric.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Run comparisons</a>
+      <a class="btn" href="/guides/interest-rate-apr-calculator">Interest rate vs APR</a>
+      <a class="btn" href="/guides/apr-calculator-payment">APR and payment</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+  </section>
+</BaseLayout>
+

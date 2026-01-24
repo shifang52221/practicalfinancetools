@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Extra Mortgage Payment Calculator (how to use it)";
+const description =
+  "How to use an extra mortgage payment calculator to compare monthly extra payments, one extra payment per year, and lump sums, plus common pitfalls to avoid. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-mortgage-payment-calculator">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Extra mortgage payment calculator</span>
+    </nav>
+    <h1>Extra mortgage payment calculator: how to use it</h1>
+    <p>
+      Extra mortgage payments typically reduce payoff time and total interest by paying down principal faster. This page shows a simple
+      workflow to model extra payments and understand the results.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/calculators/additional-principal-payment-calculator">Additional principal calculator</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Step-by-step</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Enter loan amount (principal), interest rate, and term.</li>
+      <li>Run the baseline (no extra).</li>
+      <li>Add a monthly extra amount (e.g., $100-$300) and re-run.</li>
+      <li>If you have a lump sum, add it as a one-time extra and choose the month.</li>
+      <li>Compare payoff time and total interest across scenarios.</li>
+    </ol>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Common comparisons</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>$100 extra each month</li>
+        <li>$300 extra each month</li>
+        <li>One extra payment per year (approx. payment ÷ 12 monthly)</li>
+        <li>A one-time lump sum early vs later</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Common pitfalls</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Extra applied as "paid ahead" instead of principal-only.</li>
+        <li>Comparing scenarios with different baselines (term/rate).</li>
+        <li>Assuming your required payment will drop (it usually won't unless you recast).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Run scenarios</a>
+      <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
+      <a class="btn" href="/guides/pay-300-extra-on-mortgage">Pay $300 extra</a>
+      <a class="btn" href="/guides/mortgage-extra-principal-calculator">Extra principal calculator</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+  </section>
+</BaseLayout>
+

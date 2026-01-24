@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Mortgage Extra Principal Calculator (what to enter and how to compare)";
+const description =
+  "How to use a mortgage extra principal calculator to compare monthly extra payments vs lump sums, what assumptions matter, and what to confirm with your lender. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-extra-principal-calculator">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Mortgage extra principal calculator</span>
+    </nav>
+    <h1>Mortgage extra principal calculator</h1>
+    <p>
+      "Extra principal" means money applied directly to your mortgage balance. This guide shows which calculator to use, what inputs to
+      enter, and how to interpret the payoff date and interest savings.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Extra principal calculator</a>
+      <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Which tool should you use?</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        Monthly extra + lump sum modeling: <a href="/calculators/additional-principal-payment-calculator">Additional Principal Payment Calculator</a>.
+      </li>
+      <li>
+        Extra payment impact + preview schedule: <a href="/calculators/extra-payment-calculator">Extra Payment Mortgage Calculator</a>.
+      </li>
+      <li>Biweekly comparison: <a href="/calculators/biweekly-mortgage-payment-calculator">Biweekly Mortgage Payment Calculator</a>.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Inputs that matter most</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Current principal balance (or original amount if you're early in the loan).</li>
+        <li>Interest rate (APR).</li>
+        <li>Term (years).</li>
+        <li>Extra principal (monthly) and any one-time lump sum.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">How to compare scenarios</h2>
+      <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Run the baseline.</li>
+        <li>Run one scenario change (extra monthly or lump sum).</li>
+        <li>Compare payoff time and total interest.</li>
+        <li>Repeat with different amounts (e.g., $100 vs $300 vs $500).</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to confirm with your lender</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Extra is applied as <strong>principal-only</strong> (not "paid ahead").</li>
+      <li>There is no prepayment penalty.</li>
+      <li>If your goal is a lower required payment, ask about recasting.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Want a quick example? Start with <a href="/guides/pay-300-extra-on-mortgage">pay $300 extra</a> and adjust up or down.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Run scenarios</a>
+      <a class="btn" href="/guides/calculate-mortgage-payoff-with-additional-principal-payments">Payoff workflow</a>
+      <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+  </section>
+</BaseLayout>
+

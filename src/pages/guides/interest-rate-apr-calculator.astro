@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Interest Rate vs APR Calculator (what to compare)";
+const description =
+  "How to compare interest rate vs APR, when APR is more informative, and how to estimate APR with fees using a calculator. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/interest-rate-apr-calculator">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Interest rate vs APR calculator</span>
+    </nav>
+    <h1>Interest rate vs APR calculator</h1>
+    <p>
+      The interest rate drives the payment and interest. APR can include certain upfront fees, which can make two "same-rate" offers have
+      different true costs. This page explains what to compare and how to model it.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator (include fees)</a>
+      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When APR is the better comparison</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>When one offer has higher origination fees or points.</li>
+      <li>When you want an apples-to-apples cost metric across offers with the same term.</li>
+      <li>When you plan to keep the loan long enough that upfront fees matter.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">How to model it</h2>
+      <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Use the same term across offers.</li>
+        <li>Enter loan amount, interest rate, term, and fees.</li>
+        <li>Compare estimated APR and payment.</li>
+      </ol>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Common pitfalls</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Comparing APR across different terms.</li>
+        <li>Ignoring whether fees are paid upfront vs financed.</li>
+        <li>If you refinance early, APR may be less representative.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Estimate APR with fees</a>
+      <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
+      <a class="btn" href="/guides/how-to-find-your-apr">How to find your APR</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+  </section>
+</BaseLayout>
+

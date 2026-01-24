@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Credit Card Payment Payoff Calculator (how to use it)";
+const description =
+  "How to use a credit card payment payoff calculator to estimate payoff date and interest from your balance, APR, and monthly payment. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-payment-payoff-calculator">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Payment payoff calculator</span>
+    </nav>
+    <h1>Credit card payment payoff calculator</h1>
+    <p>
+      A "payment payoff" calculator estimates how long it takes to pay off a balance when you make a fixed monthly payment. This is
+      useful for answering "what if I pay $200/month instead of the minimum?"
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Payoff calculator</a>
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payments</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to enter</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Current balance</li>
+      <li>Purchase APR</li>
+      <li>Your planned monthly payment</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Estimates assume no new purchases and a fixed APR. If you keep using the card, payoff time can be much longer.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">How to use results</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Compare multiple payment amounts ($200 vs $250 vs $300).</li>
+        <li>Look at total interest, not just payoff date.</li>
+        <li>If your payment is close to monthly interest, payoff can take a long time.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Common pitfalls</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Forgetting fees and new purchases.</li>
+        <li>Assuming APR/12 matches statement interest exactly (many issuers use daily interest).</li>
+        <li>Not accounting for APR changes (promo ends, penalty APR).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Model a fixed payment</a>
+      <a class="btn" href="/guides/calculate-credit-card-payoff">How to calculate payoff</a>
+      <a class="btn" href="/guides/credit-card-payoff-strategy">Payoff strategy</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+  </section>
+</BaseLayout>
+

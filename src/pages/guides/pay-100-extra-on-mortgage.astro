@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "If I Pay $100 Extra on My Mortgage (what changes?)";
+const description =
+  "Paying an extra $100 toward principal can shorten payoff time and reduce total interest. Learn what changes, what to confirm with your lender, and model it with the extra payment calculator. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/pay-100-extra-on-mortgage">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Pay $100 extra</span>
+    </nav>
+    <h1>If I pay $100 extra on my mortgage, what happens?</h1>
+    <p>
+      If the extra amount is applied as principal-only, it reduces your balance sooner. That usually lowers total interest and can move
+      your payoff date earlier. The impact depends on your rate, remaining balance, and how early you start.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model $100 extra</a>
+      <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What changes (and what usually doesn't)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Usually changes:</strong> payoff date (earlier), total interest (lower), and the amortization schedule.</li>
+      <li><strong>Usually doesn't change:</strong> your required monthly payment (unless you recast).</li>
+      <li><strong>Doesn't change:</strong> escrow amounts (tax/insurance) unless those costs change separately.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Why a small extra can matter</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Interest is charged on the remaining balance. When you reduce the balance earlier, future interest is lower. Over long terms, a
+        small consistent extra can compound into meaningful savings.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">How to estimate your savings</h2>
+      <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Enter your loan amount, rate, and term in the <a href="/calculators/extra-payment-calculator">Extra Payment Calculator</a>.</li>
+        <li>Set monthly extra to $100.</li>
+        <li>Compare payoff time and total interest to the baseline.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to confirm with your lender</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>The extra is applied as <strong>principal-only</strong> (not "paid ahead").</li>
+      <li>There is no prepayment penalty.</li>
+      <li>If you want a lower required payment later, whether a recast is available and what it costs.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Additional principal calculator</a>
+      <a class="btn" href="/guides/pay-300-extra-on-mortgage">Pay $300 extra</a>
+      <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+  </section>
+</BaseLayout>
+

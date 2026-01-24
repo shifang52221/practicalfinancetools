@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "Credit Card Interest Calculator Payoff (why your interest is high)";
+const description =
+  "Why credit card interest can dominate early payments, how to estimate interest for planning, and which payoff calculators to use. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-interest-calculator-payoff">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Interest payoff calculator</span>
+    </nav>
+    <h1>Credit card interest calculator payoff</h1>
+    <p>
+      Many people search for an "interest payoff calculator" because interest feels like it cancels out payments. This happens when the
+      balance is high and the payment is near the interest amount. This guide explains the mechanics and what to model.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Payoff calculator</a>
+      <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How interest is calculated</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">The core mechanism</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Interest is proportional to your balance. When the balance is high, interest is high. If your payment is only slightly above the
+      interest charge, principal reduction is tiny, so payoff can take years.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What to model</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Fixed payment payoff time and total interest.</li>
+        <li>Minimum payment scenario (to see why it takes so long).</li>
+        <li>Payment increases (+$25 to +$100) and APR reductions.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Why results differ from statements</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Daily interest methods and statement cycle timing.</li>
+        <li>Fees, new purchases, and promo APR changes.</li>
+        <li>Different compounding conventions.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Run payoff scenarios</a>
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payments</a>
+      <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimums take so long</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+  </section>
+</BaseLayout>
+

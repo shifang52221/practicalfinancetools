@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = "If I Pay $1,000 Extra on My Mortgage (what changes?)";
+const description =
+  "Paying an extra $1,000 toward principal can shorten payoff time and reduce total interest, but cash flow and liquidity matter. Learn how to model it and what to confirm with your lender. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/pay-1000-extra-on-mortgage">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Pay $1,000 extra</span>
+    </nav>
+    <h1>If I pay $1,000 extra on my mortgage, what happens?</h1>
+    <p>
+      A $1,000 monthly extra can accelerate payoff and reduce total interest. Before committing, compare the savings to your liquidity
+      needs and other priorities. This guide focuses on modeling and lender mechanics, not advice.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model $1,000 extra</a>
+      <a class="btn" href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">How to model it</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Run a baseline schedule, then set monthly extra to $1,000. Compare payoff time and interest saved. If you may stop the extra
+        later, also test a smaller amount to avoid over-committing.
+      </p>
+      <div class="btn-row" style="margin-top:12px">
+        <a class="btn" href="/calculators/additional-principal-payment-calculator">Additional principal calculator</a>
+        <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      </div>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What to confirm</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Extra is applied as <strong>principal-only</strong> (not "paid ahead").</li>
+        <li>No prepayment penalty applies.</li>
+        <li>If you want a lower required payment, whether a recast is available (and any fee).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common pitfalls</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Confusing principal-only extra with paying escrow or paying ahead.</li>
+      <li>Ignoring liquidity: once you pay principal, access to that cash is limited unless you refinance or borrow.</li>
+      <li>Comparing scenarios without keeping the baseline constant (rate, term, balance).</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Run the scenario</a>
+      <a class="btn" href="/guides/calculate-mortgage-payoff-with-additional-principal-payments">Calculate payoff workflow</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Extra payments overview</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+  </section>
+</BaseLayout>
+
