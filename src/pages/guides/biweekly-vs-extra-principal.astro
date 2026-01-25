@@ -60,6 +60,33 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Biweekly vs monthly extra (quick comparison)</h2>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>What happens</th>
+            <th>Risk / gotchas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>True biweekly</td>
+            <td>13 payments per year (26 half payments), often slightly earlier principal reduction.</td>
+            <td>Confirm posting cadence; avoid fee-based programs.</td>
+          </tr>
+          <tr>
+            <td>Monthly extra</td>
+            <td>Add a fixed principal-only amount each month.</td>
+            <td>Must be applied as principal-only (not “paid ahead”).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What to ask your lender</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Are biweekly payments posted immediately or held and posted monthly?</li>
@@ -69,6 +96,6 @@ const description =
     <p class="muted" style="margin:12px 0 0">
       For questions, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
   </section>
 </BaseLayout>
-

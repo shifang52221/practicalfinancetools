@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SITE } from "../../config/site";
 
 const title = "Extra Mortgage Payment Calculator (how to use it)";
 const description =
@@ -38,6 +37,19 @@ const description =
     </ol>
   </section>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What extra payments change (and what they don’t)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Usually changes:</strong> payoff date and total interest (often meaningfully).</li>
+      <li><strong>Usually does not change:</strong> your required monthly payment, unless you do a loan recast.</li>
+      <li><strong>May change:</strong> escrow (taxes/insurance) over time, even if principal-and-interest is fixed.</li>
+    </ul>
+    <div class="btn-row" style="margin-top:12px">
+      <a class="btn" href="/guides/mortgage-recast-vs-extra-payments">Recast vs extra payments</a>
+      <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
+    </div>
+  </section>
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Common comparisons</h2>
@@ -59,15 +71,23 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A few details that can change real results</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Posting date:</strong> some servicers post extra payments immediately; others may post on a schedule.</li>
+      <li><strong>Escrow:</strong> taxes/insurance can change over time and are separate from principal-and-interest payoff math.</li>
+      <li><strong>Fees/penalties:</strong> confirm there are no prepayment penalties and avoid fee-based payment programs.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Run scenarios</a>
       <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
-      <a class="btn" href="/guides/pay-300-extra-on-mortgage">Pay $300 extra</a>
-      <a class="btn" href="/guides/mortgage-extra-principal-calculator">Extra principal calculator</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
+      <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
   </section>
 </BaseLayout>
-

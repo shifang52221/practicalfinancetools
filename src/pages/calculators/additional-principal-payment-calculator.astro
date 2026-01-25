@@ -38,6 +38,14 @@ const description =
     {
       q: "Does this include taxes and insurance (escrow)?",
       a: "No. This focuses on principal and interest. Escrow items are separate and typically do not change when you pay extra principal."
+    },
+    {
+      q: "What is a mortgage recast?",
+      a: "A recast is when the servicer re-amortizes your remaining balance (often after a lump-sum principal payment) to reduce the required monthly payment while keeping the same interest rate and maturity date. Not all loans allow it and fees may apply."
+    },
+    {
+      q: "Should I worry about prepayment penalties?",
+      a: "Some loans have prepayment penalties or restrictions. This calculator assumes no prepayment penalty. Check your note or ask your servicer before making extra principal payments."
     }
   ]}
   lastUpdated="2026-01-23"
@@ -61,6 +69,21 @@ const description =
       <a class="btn" href="/guides/mortgage-lump-sum-5000">Pay a $5,000 lump sum</a>
       <a class="btn" href="/guides/mortgage-lump-sum-10000">Pay a $10,000 lump sum</a>
     </div>
+
+    <h2 style="margin:18px 0 10px">Quick checklist (principal-only)</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Confirm the payment is applied to principal, not future due dates (“paid ahead”).</li>
+      <li>Check for prepayment penalties and whether your loan allows principal-only payments.</li>
+      <li>Keep your regular payment unchanged when comparing scenarios.</li>
+      <li>If you want a lower required payment, look into a recast (if available) instead of expecting extra payments to reduce the bill.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Common pitfalls</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Escrow (taxes/insurance) typically doesn’t change when you pay extra principal.</li>
+      <li>Servicer posting rules can affect results; verify how extra payments are applied.</li>
+      <li>Paying extra principal can reduce liquidity; keep an emergency fund in mind.</li>
+    </ul>
 
     <h2 style="margin:18px 0 10px">Related tools</h2>
     <div class="btn-row" style="margin-top:0">

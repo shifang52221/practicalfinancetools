@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SITE } from "../../config/site";
 
 const title = "Credit Card Interest Calculator Payoff (why your interest is high)";
 const description =
@@ -35,6 +34,28 @@ const description =
     </p>
   </section>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A quick example</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Imagine a $5,000 balance at 24% APR. A simplified monthly interest estimate is roughly balance × (APR ÷ 12), which is about $100 in
+      the first month. If your payment is $120, only about $20 reduces principal. That’s why the balance can feel “stuck” unless the
+      payment is meaningfully above interest.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why your statement interest can look different</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Many issuers use daily interest (a daily periodic rate) and compute interest over the statement cycle. Timing matters: purchases,
+      payments, and statement dates can change the average balance used for interest. Fees and promo APR changes can also change what you
+      see on the statement.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      For planning, the most important thing is consistency: compare scenarios using the same assumptions so you can see which changes
+      move the outcome most.
+    </p>
+  </section>
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">What to model</h2>
@@ -62,7 +83,6 @@ const description =
       <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimums take so long</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
   </section>
 </BaseLayout>
-

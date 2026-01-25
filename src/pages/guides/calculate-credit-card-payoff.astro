@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SITE } from "../../config/site";
 
 const title = "Calculate Credit Card Payoff (steps + common pitfalls)";
 const description =
@@ -38,6 +37,29 @@ const description =
     </ol>
   </section>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Example (simple planning estimate)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Suppose your balance is $4,000 at 19.99% APR and you plan to pay $200/month. Early interest might be roughly balance × (APR ÷ 12),
+      which is about $67 in the first month. That means roughly $133 goes to principal early on (before rounding and daily-interest timing).
+      As the balance drops, interest drops, and more of your payment goes to principal.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">If you have multiple cards</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>List each balance, APR, and minimum payment.</li>
+      <li>Pay minimums on everything to stay current.</li>
+      <li>Put your extra amount toward one target (snowball or avalanche) and roll payments as debts close.</li>
+    </ul>
+    <div class="btn-row" style="margin-top:12px">
+      <a class="btn" href="/calculators/debt-snowball-calculator">Debt snowball</a>
+      <a class="btn" href="/calculators/debt-avalanche-calculator">Debt avalanche</a>
+      <a class="btn" href="/guides/credit-card-payoff-strategy">Payoff strategy</a>
+    </div>
+  </section>
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Why statements can differ</h2>
@@ -68,7 +90,6 @@ const description =
       <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimums take so long</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
   </section>
 </BaseLayout>
-

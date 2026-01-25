@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SITE } from "../../config/site";
 
 const title = "APR Calculator Payment (rate, fees, and monthly payment)";
 const description =
@@ -46,6 +45,49 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Payment: what actually drives it</h2>
+    <p class="muted" style="margin:10px 0 0">
+      For a standard fixed-rate loan, the monthly principal-and-interest payment is driven by (1) the interest rate, (2) the term, and
+      (3) the amount financed. Upfront fees often don’t change the advertised interest rate, but they do change your effective borrowing
+      cost.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      This is why two offers can have similar payments but different APR: the payment is about the loan math, while APR is trying to
+      express the “rate-equivalent” cost of fees over time.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Example: same payment, different APR</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Imagine two offers with the same rate and term, but one includes an origination fee. The monthly payment might look identical
+      because it is based on the financed amount and rate, yet the fee reduces the net amount you receive (or increases the cash you must
+      bring). APR increases to reflect that extra cost.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>If you pay the fee out-of-pocket, you receive less net value for the same payment stream.</li>
+      <li>If you roll the fee into the loan, the payment may rise slightly because the financed balance is higher.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to do when you might repay early</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you expect to refinance, sell, or repay early, compare offers using a time-horizon view: total dollars paid (payments + fees)
+      over the number of months you realistically expect to keep the loan. A higher-fee “lower rate” offer may need time to break even.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      For mortgages, you can pair the APR calculator with payment and amortization comparisons to see both monthly cash flow and total
+      interest.
+    </p>
+    <div class="btn-row" style="margin-top:12px">
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/apr-calculator">Estimate APR with fees</a>
@@ -53,7 +95,6 @@ const description =
       <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
   </section>
 </BaseLayout>
-

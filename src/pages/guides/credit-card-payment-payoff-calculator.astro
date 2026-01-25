@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SITE } from "../../config/site";
 
 const title = "Credit Card Payment Payoff Calculator (how to use it)";
 const description =
@@ -39,6 +38,24 @@ const description =
     </p>
   </section>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Example: why payment size matters</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you have a $3,000 balance at 22% APR, monthly interest can be roughly balance × (APR ÷ 12), or about $55 early on. A $100 payment
+      reduces principal by roughly $45 in the first month, but a $70 payment reduces principal by only about $15. That difference compounds
+      over time and can add months (or years) to payoff.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to choose a realistic monthly payment</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Start with what you can sustain every month, then increase it after you’ve proven consistency.</li>
+      <li>If you have irregular cash flow, test a conservative base payment plus occasional lump-sum payments.</li>
+      <li>If your APR may change (promo ends), rerun the scenario with the future APR.</li>
+    </ul>
+  </section>
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">How to use results</h2>
@@ -66,7 +83,6 @@ const description =
       <a class="btn" href="/guides/credit-card-payoff-strategy">Payoff strategy</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
   </section>
 </BaseLayout>
-

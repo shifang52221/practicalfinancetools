@@ -11,6 +11,12 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.practicalfinancetools.com" }],
+      "destination": "https://practicalfinancetools.com/$1",
+      "permanent": true
+    },
     { "source": "/about/", "destination": "/about", "permanent": true },
     { "source": "/calculators/", "destination": "/calculators", "permanent": true },
     { "source": "/calculators/:slug/", "destination": "/calculators/:slug", "permanent": true },

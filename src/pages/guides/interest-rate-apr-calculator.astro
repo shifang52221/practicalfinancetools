@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SITE } from "../../config/site";
 
 const title = "Interest Rate vs APR Calculator (what to compare)";
 const description =
@@ -36,6 +35,19 @@ const description =
     </ul>
   </section>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Example: same rate, different fees</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Two lenders can quote the same interest rate but different upfront fees (origination fee, points). The monthly payment can look
+      similar, but the fee changes your total cost and can raise APR. Use the APR calculator to estimate how much the fee changes the
+      effective borrowing cost under the same term.
+    </p>
+    <div class="btn-row" style="margin-top:12px">
+      <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
+      <a class="btn" href="/guides/apr-calculator-payment">APR and monthly payment</a>
+    </div>
+  </section>
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">How to model it</h2>
@@ -56,14 +68,29 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Break-even (time horizon) matters</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you might refinance or repay early, the cheapest APR over the full term isn’t always the cheapest option for your time horizon.
+      A simple way to sanity-check fee trade-offs is break-even months:
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Monthly savings = old payment − new payment (keep assumptions consistent).</li>
+      <li>Break-even months = upfront fees ÷ monthly savings.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Use this as a cross-check alongside APR so you’re not paying large fees for savings you won’t keep long enough to realize.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/apr-calculator">Estimate APR with fees</a>
       <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
       <a class="btn" href="/guides/how-to-find-your-apr">How to find your APR</a>
+      <a class="btn" href="/guides/refinance-break-even">Break-even (time horizon)</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-23</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
   </section>
 </BaseLayout>
-

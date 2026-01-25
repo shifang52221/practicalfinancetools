@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../config/site";
+
+const title = `Editorial Policy | ${SITE.name}`;
+const description =
+  "How we create and update calculator explanations, what we consider before publishing, and how to request corrections. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/editorial-policy">
+  <section class="card hero">
+    <h1>Editorial policy</h1>
+    <p>
+      Practical Finance Tools publishes educational calculators and short guides for common US personal finance scenarios. We aim to be
+      transparent about assumptions, avoid hype, and keep the site easy to use.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What we publish</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Calculators (debt payoff, APR, mortgage payment, amortization, rent vs buy, DTI).</li>
+      <li>Guides that explain what the calculators mean and how to compare scenarios.</li>
+      <li>Examples and checklists that help you avoid common mistakes.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How we keep content useful</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>We focus on the decision a user is trying to make (compare offers, plan payoff, estimate a payment).</li>
+      <li>We explain assumptions and limitations (for example, rounding, posting dates, fees, or lender policies).</li>
+      <li>We avoid copying lender disclosures or publishing scraped/auto-generated text.</li>
+      <li>We prefer scenario-based guidance rather than “one-size-fits-all” recommendations.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Corrections</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you spot an error or a misleading explanation, email us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Please include the
+      page URL and what you think is wrong. We’ll review and update when appropriate.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Advertising and independence</h2>
+    <p class="muted" style="margin:10px 0 0">
+      We may display advertising to support the site. Advertising does not change calculator results and does not determine what we
+      publish. We do not sell personalized financial advice.
+    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+  </section>
+</BaseLayout>
+

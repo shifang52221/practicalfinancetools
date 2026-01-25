@@ -43,9 +43,17 @@ const description =
     {
       q: "What if my APR changes?",
       a: "This assumes fixed APRs. If you have promo APRs or variable APRs, update the inputs and re-run scenarios as they change."
+    },
+    {
+      q: "Should I pay off the highest APR even if the balance is huge?",
+      a: "Avalanche targets APR to reduce interest cost, but it can feel slower if the highest-APR balance is large. If motivation is a concern, compare the timeline to snowball and choose the plan you’ll stick with."
+    },
+    {
+      q: "What if two debts have the same APR?",
+      a: "If APRs are equal, many people break ties by paying the smaller balance first (for a quicker payoff) or by paying the higher minimum first. The difference is usually small if APRs are identical."
     }
   ]}
-  lastUpdated="2026-01-20"
+  lastUpdated="2026-01-24"
 >
   <DebtAvalancheCalculatorComponent client:load />
 
@@ -57,6 +65,20 @@ const description =
       total interest.
     </p>
 
+    <h2 style="margin:18px 0 10px">Example scenario</h2>
+    <p class="muted" style="margin:0">
+      Suppose you have three debts: (1) $600 at 24% APR with a $25 minimum, (2) $2,500 at 18% with a $70 minimum, and
+      (3) $8,000 at 8% with a $160 minimum. If you can pay $150 extra each month, avalanche targets the 24% APR debt
+      first to reduce interest cost. After it’s paid off, you roll its payment into the next highest APR and repeat.
+    </p>
+
+    <h2 style="margin:18px 0 10px">How to make the plan realistic</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Use the statement minimum payment (or required payment) so the schedule stays realistic.</li>
+      <li>Start with an extra payment you can sustain, then increase it after a few consistent months.</li>
+      <li>If promo APRs will end, rerun the plan with the future APR as a scenario.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Avalanche can feel slower early on because it targets APR, not smallest balance.</li>
@@ -64,6 +86,14 @@ const description =
       <li>Adding new purchases or fees can extend payoff time significantly.</li>
       <li>Promo APRs can end—re-run the plan when rates change.</li>
     </ul>
+
+    <h2 style="margin:18px 0 10px">Related guides</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
+      <a class="btn" href="/guides/calculate-credit-card-payoff">Calculate credit card payoff</a>
+      <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How credit card interest is calculated</a>
+      <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a>
+    </div>
 
     <h2 style="margin:18px 0 10px">Related tools</h2>
     <div class="btn-row" style="margin-top:0">

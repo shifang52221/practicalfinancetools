@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SITE } from "../../config/site";
 
 const title = "Extra Mortgage Payments (save interest, shorten payoff)";
 const description =
@@ -47,6 +46,15 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A simple mental model</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Interest is calculated on the remaining balance. When you pay extra principal, you reduce the balance earlier than scheduled. That
+      reduces future interest charges, which accelerates payoff. You usually keep the same required monthly payment, but more of that
+      payment goes to principal sooner.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Monthly vs one-time extra payments</h2>
     <p class="muted" style="margin:10px 0 0">
       Earlier extra payments tend to save more interest because they reduce the balance sooner. A smaller monthly extra can beat a bigger
@@ -60,11 +68,37 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Example scenarios to run</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Small monthly extra ($50–$200): useful if you want a plan you can sustain.</li>
+      <li>One-time lump sum (bonus/refund): compare paying it today vs spreading it monthly.</li>
+      <li>Biweekly vs monthly extra: some “biweekly programs” don’t post payments early, so compare both.</li>
+      <li>Liquidity check: compare extra payments vs keeping more cash on hand.</li>
+    </ul>
+    <div class="btn-row" style="margin-top:12px">
+      <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly comparison</a>
+      <a class="btn" href="/calculators/additional-principal-payment-calculator">Monthly vs lump sum</a>
+      <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common pitfalls</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>“Paid ahead” behavior: confirm your servicer applies the extra as principal-only.</li>
+      <li>Escrow changes: taxes/insurance can rise even if your principal-and-interest payment is fixed.</li>
+      <li>Fees: avoid fee-based payment programs unless the interest savings clearly exceed the fees.</li>
+      <li>Prepayment penalties: uncommon on many consumer mortgages, but verify your note.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Compare extra payment scenarios</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Baseline monthly payment</a>
       <a class="btn" href="/calculators/rent-vs-buy-calculator">Rent vs buy</a>
     </div>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
   </section>
 </BaseLayout>

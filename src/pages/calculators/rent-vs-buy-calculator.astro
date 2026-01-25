@@ -28,8 +28,20 @@ const description =
       a: "Holding period, mortgage rate, home appreciation, rent growth, selling costs, and investment return often drive results."
     },
     {
+      q: "What does break-even mean here?",
+      a: "Break-even is the time horizon where your modeled net worth (or total cost) is similar between renting and buying under the assumptions you entered. It is not a prediction, just a scenario result."
+    },
+    {
+      q: "How long do I need to stay for buying to make sense?",
+      a: "There is no universal number. Short time horizons can be dominated by closing and selling costs, while longer horizons may benefit from amortization and appreciation. Use the holding period input to test scenarios."
+    },
+    {
       q: "Is this an investment recommendation?",
       a: "No. It’s an educational scenario comparison, not advice."
+    },
+    {
+      q: "Does this include PMI?",
+      a: "Not explicitly. If you pay PMI, you can approximate it by increasing the monthly homeowner costs (or maintenance/other costs) to reflect it."
     },
     {
       q: "Does it include closing and selling costs?",
@@ -40,7 +52,7 @@ const description =
       a: "Different tools include different costs (taxes, maintenance, opportunity cost, and tax impacts) and use different modeling assumptions."
     }
   ]}
-  lastUpdated="2026-01-20"
+  lastUpdated="2026-01-24"
 >
   <RentVsBuyCalculatorComponent client:load />
 
@@ -51,6 +63,22 @@ const description =
       Small changes in appreciation, rent growth, or mortgage rate can change the break-even horizon.
     </p>
 
+    <h2 style="margin:18px 0 10px">Example scenarios to try</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Short horizon (2–4 years): test higher selling costs and modest appreciation.</li>
+      <li>Long horizon (7–10+ years): test a conservative appreciation rate and higher maintenance.</li>
+      <li>Rate sensitivity: run the same home price with a higher mortgage rate to see how quickly results change.</li>
+      <li>Opportunity cost: increase investment return to see the effect of tying up cash in a down payment.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">How to set assumptions</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Appreciation and rent growth: use conservative scenarios, then add an optimistic scenario for comparison.</li>
+      <li>Maintenance: plan for ongoing costs and occasional large repairs.</li>
+      <li>Selling costs: include agent fees and other costs; these often dominate short holding periods.</li>
+      <li>Investment return: use a range; after-tax results may be different.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Taxes, deductions, and after-tax investment returns are not modeled here.</li>
@@ -58,6 +86,14 @@ const description =
       <li>Opportunity cost matters: tying up cash in a down payment can reduce investable funds.</li>
       <li>Holding period is critical—selling costs can dominate short time horizons.</li>
     </ul>
+
+    <h2 style="margin:18px 0 10px">Related guides</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
+      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+      <a class="btn" href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a>
+      <a class="btn" href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a>
+    </div>
 
     <h2 style="margin:18px 0 10px">Related tools</h2>
     <div class="btn-row" style="margin-top:0">

@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SITE } from "../../config/site";
 
 const title = "Credit Card Payoff Strategy (pay faster, pay less interest)";
 const description =
@@ -88,11 +87,36 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A practical payoff workflow</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>List each balance, APR, and minimum payment (use your statement minimums).</li>
+      <li>Pick a fixed monthly “extra” amount you can sustain.</li>
+      <li>Run your plan in both snowball and avalanche to compare timeline and interest.</li>
+      <li>Choose the plan you will actually follow for months, not the one that looks best on paper.</li>
+      <li>Re-run the plan when rates change (promo APR ends, penalty APR, or a balance transfer).</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Ways people lower APR (with trade-offs)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Balance transfer promos:</strong> can reduce interest, but watch transfer fees and promo end dates.</li>
+      <li><strong>Issuer hardship programs:</strong> may reduce APR or payments temporarily (rules vary).</li>
+      <li><strong>Debt consolidation loans:</strong> can lower APR, but extend term or add fees if not careful.</li>
+      <li><strong>Negotiating APR:</strong> sometimes works, especially with good payment history.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      The safest approach is often “boring but consistent”: stop new purchases, pay more than the minimum, and automate payments.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Payoff schedule</a>
       <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment timeline</a>
       <a class="btn" href="/calculators/apr-calculator">Compare APR (fees)</a>
     </div>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
   </section>
 </BaseLayout>

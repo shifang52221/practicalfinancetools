@@ -26,6 +26,10 @@ const description =
       a: "Most DTI calculations use gross income (before taxes). Some affordability checks use net income separately."
     },
     {
+      q: "What's the difference between front-end and back-end DTI?",
+      a: "Front-end DTI is usually housing-only (often PITI + HOA + PMI). Back-end DTI includes housing plus other required monthly debts."
+    },
+    {
       q: "What is a good DTI?",
       a: "Many programs use thresholds around 36%–43% for back-end DTI, but it varies by lender, program, and compensating factors."
     },
@@ -38,11 +42,23 @@ const description =
       a: "If you include them in the housing payment input, yes. For mortgages, lenders often use PITI (principal, interest, taxes, insurance) and may add HOA and PMI."
     },
     {
+      q: "Do credit card balances affect DTI?",
+      a: "DTI typically uses the required monthly payment (the minimum shown on your statement or credit report), not the balance itself. But higher balances can raise the minimum payment, which can increase DTI."
+    },
+    {
+      q: "How are student loans treated in DTI?",
+      a: "Many lenders use the payment shown on your credit report. If the loan is deferred or the payment is $0, some programs use an assumed payment amount. Rules vary by lender and loan program."
+    },
+    {
       q: "Will DTI alone determine approval?",
       a: "No. Credit score, assets, employment, reserves, and underwriting guidelines also matter."
+    },
+    {
+      q: "How can I lower my DTI?",
+      a: "Common approaches include reducing required monthly payments (paying down revolving debt, refinancing to lower required payments, paying off installment loans) and increasing verifiable income. Avoid taking on new monthly obligations before applying."
     }
   ]}
-  lastUpdated="2026-01-20"
+  lastUpdated="2026-01-24"
 >
   <DtiCalculator client:load />
 
@@ -53,6 +69,21 @@ const description =
       $600, your front-end DTI is 30% and your back-end DTI is 37.5%.
     </p>
 
+    <h2 style="margin:18px 0 10px">Example (mortgage-style housing payment)</h2>
+    <p class="muted" style="margin:0">
+      Many lenders use a housing payment closer to PITI (+ HOA/PMI). For example, if your mortgage principal & interest
+      is $2,150, taxes/insurance are $550, HOA is $150, and you pay $200 in other monthly debts, then housing is $2,850.
+      With $7,000/month gross income, front-end DTI is about 40.7% and back-end DTI is about 43.6%.
+    </p>
+
+    <h2 style="margin:18px 0 10px">What to include</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Housing payment: rent or PITI (principal, interest, taxes, insurance) plus HOA and PMI if applicable.</li>
+      <li>Installment debts: auto loans, student loans, personal loans.</li>
+      <li>Revolving debts: credit card minimum payments (as reported).</li>
+      <li>Other obligations may be included depending on the lender and program.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>DTI usually uses gross income, not take-home pay.</li>
@@ -60,6 +91,21 @@ const description =
       <li>Some debts may be excluded or treated differently depending on lender and program.</li>
       <li>DTI is only one factor—credit, reserves, and underwriting guidelines still apply.</li>
     </ul>
+
+    <h2 style="margin:18px 0 10px">How to use this number</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Use front-end DTI to sanity-check housing affordability under your assumptions.</li>
+      <li>Use back-end DTI to see how non-housing debts change affordability and risk.</li>
+      <li>If results are borderline, try scenarios: higher rate, higher taxes/insurance, and a higher minimum payment.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Related guides</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
+      <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a>
+      <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
+      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+    </div>
 
     <h2 style="margin:18px 0 10px">Related tools</h2>
     <div class="btn-row" style="margin-top:0">
