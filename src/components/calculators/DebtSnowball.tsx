@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { buildDebtPlan, type DebtInput } from "../../lib/calc/debtPlan";
+import { buildDebtPlan, extraMonthlyToDebtFreeInMonths, type DebtInput } from "../../lib/calc/debtPlan";
 import { formatCurrency2, formatMonths } from "../../lib/format";
 import { clamp } from "../../lib/math";
 
@@ -19,6 +19,7 @@ function sanitizeDebt(d: DebtInput): DebtInput {
 
 export function DebtSnowballCalculator() {
   const [extraMonthly, setExtraMonthly] = useState(150);
+  const [targetMonths, setTargetMonths] = useState(36);
   const [debts, setDebts] = useState<DebtInput[]>([
     { id: uid(), name: "Card A", balance: 3200, aprPercent: 24.99, minPayment: 95 },
     { id: uid(), name: "Card B", balance: 7800, aprPercent: 18.99, minPayment: 160 },
@@ -33,8 +34,40 @@ export function DebtSnowballCalculator() {
     });
   }, [debts, extraMonthly]);
 
+  const requiredExtra = useMemo(() => {
+    return extraMonthlyToDebtFreeInMonths({
+      debts: debts.map(sanitizeDebt),
+      strategy: "snowball",
+      targetMonths: clamp(targetMonths, 1, 600)
+    });
+  }, [debts, targetMonths]);
+
   const payoffPreview = plan.payoffs.slice(0, 8);
   const timelinePreview = plan.rows.slice(0, 24);
+
+  function toCsvTimeline(rows: typeof plan.rows) {
+    const header = ["month", "total_balance", "payment", "interest"];
+    const lines = rows.map((r) => [r.month, r.totalBalance.toFixed(2), r.payment.toFixed(2), r.interest.toFixed(2)].join(","));
+    return [header.join(","), ...lines].join("\n");
+  }
+
+  function toCsvPayoffs(payoffs: typeof plan.payoffs) {
+    const header = ["debt", "payoff_month", "total_interest"];
+    const lines = payoffs.map((p) => [p.name, p.payoffMonth, p.totalInterest.toFixed(2)].join(","));
+    return [header.join(","), ...lines].join("\n");
+  }
+
+  function downloadCsv(filename: string, csv: string) {
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
 
   return (
     <div className="calc-grid">
@@ -45,6 +78,11 @@ export function DebtSnowballCalculator() {
             <div className="label">Extra payment (monthly)</div>
             <input type="number" inputMode="decimal" value={extraMonthly} min={0} onChange={(e) => setExtraMonthly(+e.target.value)} />
             <div className="hint">Extra amount added on top of all minimum payments.</div>
+          </div>
+          <div className="field field-6">
+            <div className="label">Target debt-free time (months)</div>
+            <input type="number" inputMode="numeric" value={targetMonths} min={1} step={1} onChange={(e) => setTargetMonths(+e.target.value)} />
+            <div className="hint">Used to estimate the extra payment needed to hit your target.</div>
           </div>
 
           <div className="field field-6" style={{ marginTop: 4 }}>
@@ -122,6 +160,7 @@ export function DebtSnowballCalculator() {
                 type="button"
                 onClick={() => {
                   setExtraMonthly(150);
+                  setTargetMonths(36);
                   setDebts([
                     { id: uid(), name: "Card A", balance: 3200, aprPercent: 24.99, minPayment: 95 },
                     { id: uid(), name: "Card B", balance: 7800, aprPercent: 18.99, minPayment: 160 },
@@ -147,7 +186,27 @@ export function DebtSnowballCalculator() {
             <div className="k">Total interest (est.)</div>
             <div className="v">{formatCurrency2(plan.totalInterest)}</div>
           </div>
+          <div className="kpi">
+            <div className="k">Extra needed for {Math.max(1, Math.floor(clamp(targetMonths, 1, 600)))} months</div>
+            <div className="v">{requiredExtra === null ? "—" : formatCurrency2(requiredExtra)}</div>
+            <div className="hint">Estimate; assumes fixed APRs and minimums</div>
+          </div>
         </div>
+
+        <div className="btn-row" style={{ marginTop: 12 }}>
+          <button className="btn" type="button" onClick={() => downloadCsv("debt-snowball-timeline.csv", toCsvTimeline(plan.rows))}>
+            Download timeline (CSV)
+          </button>
+          <button className="btn" type="button" onClick={() => downloadCsv("debt-snowball-payoffs.csv", toCsvPayoffs(plan.payoffs))}>
+            Download payoff order (CSV)
+          </button>
+        </div>
+
+        {!plan.paidOff ? (
+          <div className="hint" style={{ marginTop: 12, lineHeight: 1.5 }}>
+            This plan did not reach a zero balance within the simulated timeframe. Increase the extra payment or review minimum-payment inputs.
+          </div>
+        ) : null}
 
         <details style={{ marginTop: 12 }}>
           <summary style={{ cursor: "pointer", fontWeight: 800 }}>Payoff order</summary>
@@ -202,4 +261,3 @@ export function DebtSnowballCalculator() {
     </div>
   );
 }
-

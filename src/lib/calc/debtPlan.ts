@@ -17,7 +17,9 @@ export type DebtPayoff = {
 
 export type DebtPlanResult = {
   months: number;
+  paidOff: boolean;
   totalInterest: number;
+  endingBalance: number;
   payoffs: DebtPayoff[];
   rows: Array<{
     month: number;
@@ -112,6 +114,8 @@ export function buildDebtPlan(opts: {
     });
   }
 
+  const endingBalance = debts.reduce((s, d) => s + d.balance, 0);
+  const paidOff = endingBalance <= 0.005;
   const months = rows.length;
   const payoffs: DebtPayoff[] = debts
     .map((d) => ({
@@ -122,6 +126,58 @@ export function buildDebtPlan(opts: {
     }))
     .sort((a, b) => a.payoffMonth - b.payoffMonth);
 
-  return { months, totalInterest, payoffs, rows };
+  return { months, paidOff, totalInterest, endingBalance, payoffs, rows };
 }
 
+export function extraMonthlyToDebtFreeInMonths(opts: {
+  debts: DebtInput[];
+  strategy: Strategy;
+  targetMonths: number;
+  maxMonths?: number;
+}): number | null {
+  const targetMonths = Math.max(1, Math.floor(opts.targetMonths));
+  const maxMonths = opts.maxMonths ?? Math.max(600, targetMonths);
+
+  const sanitizedDebts = opts.debts
+    .map((d) => ({
+      ...d,
+      name: d.name || "Debt",
+      balance: clamp(d.balance, 0, Number.MAX_SAFE_INTEGER),
+      aprPercent: clamp(d.aprPercent, 0, 200),
+      minPayment: clamp(d.minPayment, 0, Number.MAX_SAFE_INTEGER)
+    }))
+    .filter((d) => d.balance > 0.005);
+
+  if (sanitizedDebts.length === 0) return 0;
+
+  const run = (extraMonthly: number) =>
+    buildDebtPlan({
+      debts: sanitizedDebts,
+      extraMonthly,
+      strategy: opts.strategy,
+      maxMonths
+    });
+
+  const base = run(0);
+  if (base.paidOff && base.months <= targetMonths) return 0;
+
+  let lo = 0;
+  let hi = 50;
+  let attempts = 0;
+  while (attempts < 60) {
+    const r = run(hi);
+    if (r.paidOff && r.months <= targetMonths) break;
+    hi *= 2;
+    attempts++;
+    if (hi > 1e9) return null;
+  }
+
+  for (let i = 0; i < 70; i++) {
+    const mid = (lo + hi) / 2;
+    const r = run(mid);
+    if (r.paidOff && r.months <= targetMonths) hi = mid;
+    else lo = mid;
+  }
+
+  return hi;
+}

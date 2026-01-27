@@ -5,6 +5,7 @@ import { paymentForAmortizedLoan } from "../src/lib/math.ts";
 import { estimateApr } from "../src/lib/calc/apr.ts";
 import { amortizationSchedule } from "../src/lib/calc/loan.ts";
 import { creditCardPayoffSchedule, paymentToPayoffInMonths } from "../src/lib/calc/creditCard.ts";
+import { buildDebtPlan, extraMonthlyToDebtFreeInMonths } from "../src/lib/calc/debtPlan.ts";
 
 function approxEqual(actual: number, expected: number, tol = 1e-6) {
   assert.ok(Number.isFinite(actual), `expected finite actual, got ${actual}`);
@@ -73,4 +74,18 @@ test("paymentToPayoffInMonths: returns a payment that pays off", () => {
   assert.ok(pay !== null);
   const r = creditCardPayoffSchedule({ balance: 1000, aprPercent: 24, monthlyPayment: pay!, maxMonths: 12 });
   assert.ok(r.months !== null);
+});
+
+test("extraMonthlyToDebtFreeInMonths: returns extra that hits target", () => {
+  const debts = [
+    { id: "a", name: "A", balance: 3200, aprPercent: 24.99, minPayment: 95 },
+    { id: "b", name: "B", balance: 7800, aprPercent: 18.99, minPayment: 160 },
+    { id: "c", name: "C", balance: 12000, aprPercent: 9.5, minPayment: 260 }
+  ];
+  const target = 48;
+  const extra = extraMonthlyToDebtFreeInMonths({ debts, strategy: "avalanche", targetMonths: target });
+  assert.ok(extra !== null);
+  const plan = buildDebtPlan({ debts, strategy: "avalanche", extraMonthly: extra!, maxMonths: target });
+  assert.ok(plan.paidOff);
+  assert.ok(plan.months <= target);
 });
