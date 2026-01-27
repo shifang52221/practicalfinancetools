@@ -1,10 +1,26 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../config/site";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Pay Off Mortgage Early or Invest? (how to compare)";
 const description =
   "A practical checklist to compare extra mortgage payments vs investing, including risk, taxes, and liquidity. Educational use only.";
+
+const examplePrincipal = 300000;
+const exampleApr = 6.5;
+const exampleTerm = 360;
+const extraMonthly = 300;
+const exampleTaxRate = 0.22;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTerm });
+const withExtra = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTerm,
+  extraMonthly
+});
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/pay-off-mortgage-early-or-invest">
   <section class="card hero">
@@ -18,7 +34,7 @@ const description =
     </nav>
     <h1>Pay off mortgage early or invest?</h1>
     <p>
-      Extra principal payments provide a “guaranteed” return equal to your effective mortgage rate saved. Investing may
+      Extra principal payments provide a "guaranteed" return equal to your effective mortgage rate saved. Investing may
       have higher expected returns but comes with risk and volatility. This guide is a framework, not advice.
     </p>
     <div class="btn-row">
@@ -31,25 +47,68 @@ const description =
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Extra payments tend to win when</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>Your rate is high (or you’re close to payoff and want certainty).</li>
+        <li>Your rate is high (or you're close to payoff and want certainty).</li>
         <li>You value lower debt and payment flexibility.</li>
-        <li>You’re maximizing emergency savings first.</li>
+        <li>You're maximizing emergency savings first.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Investing tends to win when</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li>Your mortgage rate is low and you can tolerate market volatility.</li>
-        <li>You’re prioritizing tax-advantaged accounts (where applicable).</li>
+        <li>You're prioritizing tax-advantaged accounts (where applicable).</li>
         <li>You want liquidity (investments are usually easier to access than home equity).</li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example: compare the trade-offs</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% for {exampleTerm / 12} years. Compare baseline vs an extra
+      {money0.format(extraMonthly)}/month payment.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline (no extra)</td>
+            <td class="num">{base.months} months</td>
+            <td class="num">{money0.format(base.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Extra {money0.format(extraMonthly)} per month</td>
+            <td class="num">{withExtra.months} months</td>
+            <td class="num">{money0.format(withExtra.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      The extra payment saves about {money0.format(Math.max(0, base.totalInterest - withExtra.totalInterest))} in interest in this example.
+      That is the guaranteed return you are giving up if you invest instead.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Break-even investment return (simple view)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A rough comparison is your effective mortgage rate after taxes. If you itemize and can deduct interest, the effective rate is
+      about {pct2.format(exampleApr)}% x (1 - {pct2.format(exampleTaxRate * 100)}%) =
+      {pct2.format(exampleApr * (1 - exampleTaxRate))}%. Your required investment return after taxes would need to exceed that to win.
+    </p>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">A simple comparison checklist</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Compare your mortgage rate to an expected after-tax return (and don’t ignore risk).</li>
+      <li>Compare your mortgage rate to an expected after-tax return (and don't ignore risk).</li>
       <li>Consider liquidity: extra principal is not easily accessible without borrowing or selling.</li>
       <li>Account for peace of mind: some people value debt freedom more than expected returns.</li>
       <li>Watch opportunity cost: if extra payments prevent retirement contributions, rethink the plan.</li>
@@ -64,26 +123,64 @@ const description =
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Risk, taxes, and liquidity (why the answer differs by person)</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li><strong>Risk:</strong> extra payments are a “sure thing” (rate saved), while investments can fluctuate.</li>
+      <li><strong>Risk:</strong> extra payments are a "sure thing" (rate saved), while investments can fluctuate.</li>
       <li><strong>Taxes:</strong> after-tax investment returns and mortgage interest deductions (if applicable) change comparisons.</li>
       <li><strong>Liquidity:</strong> extra principal is not easily accessible without borrowing against the home or selling.</li>
     </ul>
     <p class="muted" style="margin:12px 0 0">
-      If you’re uncertain, run conservative investing assumptions and compare them to the effective mortgage rate you’d “earn” by paying
+      If you're uncertain, run conservative investing assumptions and compare them to the effective mortgage rate you'd "earn" by paying
       extra principal.
     </p>
   </section>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: compare fairly</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use after-tax returns for both mortgage interest and investments.</li>
+      <li>Consider liquidity needs before tying cash up in home equity.</li>
+      <li>Keep emergency savings intact before making large extra payments.</li>
+      <li>Model both options over the same time horizon.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is paying extra risk-free?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      The interest savings are guaranteed, but the trade-off is less liquidity. Make sure you can cover emergencies.
+    </p>
+    <h3 style="margin:12px 0 0">What if I plan to move?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      A shorter time horizon reduces the benefit of extra payments. Compare total interest saved over the months you expect to keep the home.
+    </p>
+    <h3 style="margin:12px 0 0">Does refinancing change the decision?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Yes. A lower rate can reduce the benefit of extra payments. Re-run the comparison when rates change.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources
+        </a>
+      </li>
+    </ul>
+  </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Compare extra payment options</a>
       <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
       <a class="btn" href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

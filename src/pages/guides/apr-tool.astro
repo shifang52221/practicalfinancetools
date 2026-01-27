@@ -1,9 +1,21 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { estimateApr } from "../../lib/calc/apr";
 
 const title = "APR Tool (estimate APR with fees and compare offers)";
 const description =
   "A practical APR tool to compare loans by including upfront fees, plus guidance on what APR means and how to use it safely. Educational use only.";
+
+const exampleLoan = 20000;
+const exampleTerm = 60;
+const rateA = 7.99;
+const feeA = 0;
+const rateB = 7.49;
+const feeB = 800;
+const offerA = estimateApr({ loanAmount: exampleLoan, nominalRatePercent: rateA, termMonths: exampleTerm, fees: feeA });
+const offerB = estimateApr({ loanAmount: exampleLoan, nominalRatePercent: rateB, termMonths: exampleTerm, fees: feeB });
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/apr-tool">
   <section class="card hero">
@@ -35,8 +47,8 @@ const description =
       <li>Upfront fees (origination, points)</li>
     </ul>
     <p class="muted" style="margin:12px 0 0">
-      Tip: keep assumptions consistent across offers. If one lender quotes a different term or includes taxes/insurance in a “payment”
-      figure, normalize inputs so you’re comparing like with like.
+      Tip: keep assumptions consistent across offers. If one lender quotes a different term or includes taxes/insurance in a "payment"
+      figure, normalize inputs so you're comparing like with like.
     </p>
   </section>
 
@@ -47,20 +59,50 @@ const description =
       accounting for money you pay upfront (fees/points) relative to the cash you actually receive.
     </p>
     <p class="muted" style="margin:12px 0 0">
-      Because fees are often “front-loaded,” APR is most useful when you expect to keep the loan for a meaningful portion of the term.
+      Because fees are often "front-loaded," APR is most useful when you expect to keep the loan for a meaningful portion of the term.
       If you will refinance or move quickly, a break-even approach can be more informative than a single APR number.
     </p>
   </section>
 
-  <section class="card section prose" style="margin-top:18px">
+    <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Example: compare two offers</h2>
     <p class="muted" style="margin:10px 0 0">
-      Offer A: $20,000, 7.99% for 5 years, $0 fees. Offer B: $20,000, 7.49% for 5 years, $800 origination fee. Payments may look close,
-      but Offer B could be more or less expensive depending on the fee size and the rate difference. Use the APR calculator to estimate
-      which offer is cheaper under the same term and compare total dollars paid over your likely time horizon.
+      Example: {money0.format(exampleLoan)} for {exampleTerm} months. Offer A is {pct2.format(rateA)}% with no fees. Offer B is
+      {pct2.format(rateB)}% with a {money0.format(feeB)} fee. The APR tool estimates the APR after fees and shows how close the payments are.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Offer</th>
+            <th class="num">Rate</th>
+            <th class="num">Fees</th>
+            <th class="num">Payment</th>
+            <th class="num">APR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A</td>
+            <td class="num">{pct2.format(rateA)}%</td>
+            <td class="num">{money0.format(feeA)}</td>
+            <td class="num">{money0.format(offerA.payment)}</td>
+            <td class="num">{offerA.aprPercent == null ? "N/A" : `${pct2.format(offerA.aprPercent)}%`}</td>
+          </tr>
+          <tr>
+            <td>B</td>
+            <td class="num">{pct2.format(rateB)}%</td>
+            <td class="num">{money0.format(feeB)}</td>
+            <td class="num">{money0.format(offerB.payment)}</td>
+            <td class="num">{offerB.aprPercent == null ? "N/A" : `${pct2.format(offerB.aprPercent)}%`}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Even a lower rate can have a higher APR if fees are large relative to the loan amount.
     </p>
   </section>
-
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How to use results</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -72,18 +114,55 @@ const description =
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Comparing different terms (a 3-year vs 5-year loan) without realizing the trade-off.</li>
       <li>Ignoring fees that are paid out-of-pocket versus rolled into the balance.</li>
-      <li>Comparing APR but not comparing the dollar cost over the time you’ll actually keep the loan.</li>
+      <li>Comparing APR but not comparing the dollar cost over the time you'll actually keep the loan.</li>
     </ul>
   </section>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: apples-to-apples comparisons</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Keep term, loan amount, and rate type consistent.</li>
+      <li>Include all upfront fees and points.</li>
+      <li>Compare total dollars paid over your expected time horizon.</li>
+      <li>Note whether fees are paid out-of-pocket or rolled in.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Why is APR higher than the rate?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      APR includes certain fees, so it can be higher than the nominal rate even if the payment looks similar.
+    </p>
+    <h3 style="margin:12px 0 0">Is APR always the best metric?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      APR is a good summary for long-term comparisons, but short-term borrowers should also compare total cost over their horizon.
+    </p>
+    <h3 style="margin:12px 0 0">What fees are included?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      The tool includes the fees you input. Always confirm the lender's official disclosure for the final APR.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-an-apr-en-67/" rel="noopener noreferrer" target="_blank">
+          What is APR?</a>
+      </li>
+    </ul>
+  </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/apr-calculator">Run comparisons</a>
       <a class="btn" href="/guides/interest-rate-apr-calculator">Interest rate vs APR</a>
       <a class="btn" href="/guides/apr-calculator-payment">APR and payment</a>
+      <a class="btn" href="/topics/apr">APR hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

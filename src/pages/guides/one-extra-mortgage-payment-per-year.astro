@@ -1,10 +1,32 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../config/site";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "One Extra Mortgage Payment Per Year (what it does)";
 const description =
   "How to think about making one extra mortgage payment per year, common ways to model it, and what can change results. Educational use only.";
+
+const examplePrincipal = 350000;
+const exampleApr = 6.5;
+const exampleTerm = 360;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTerm });
+const monthlyExtra = Math.round(base.paymentPI / 12);
+const withMonthlyExtra = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTerm,
+  extraMonthly: monthlyExtra
+});
+const withOneTimeExtra = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTerm,
+  extraOneTime: base.paymentPI,
+  extraOneTimeMonth: 12
+});
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/one-extra-mortgage-payment-per-year">
   <section class="card hero">
@@ -18,7 +40,7 @@ const description =
     </nav>
     <h1>One extra mortgage payment per year</h1>
     <p>
-      “One extra payment per year” is a simple rule of thumb for paying down principal faster. It can shorten the payoff
+      "One extra payment per year" is a simple rule of thumb for paying down principal faster. It can shorten the payoff
       timeline and reduce total interest, especially when the extra money is applied early.
     </p>
     <div class="btn-row">
@@ -60,24 +82,96 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Example: monthly vs annual extra</h2>
+    <h2 style="margin-top:0">Worked example: monthly extra vs one-time payment</h2>
     <p class="muted" style="margin:10px 0 0">
-      If your principal-and-interest payment is $2,400/month, “one extra payment per year” is roughly $200/month as a monthly extra
-      ($2,400 ÷ 12). Compare that to making a single $2,400 principal-only payment once per year. Earlier extra payments usually save more
-      interest than a late-year lump sum.
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% for {exampleTerm / 12} years. The base payment is about
+      {money0.format(base.paymentPI)}. One extra payment per year is roughly {money0.format(monthlyExtra)}/month or a
+      {money0.format(base.paymentPI)} one-time principal payment.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline (no extra)</td>
+            <td class="num">{base.months} months</td>
+            <td class="num">{money0.format(base.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Monthly extra {money0.format(monthlyExtra)}</td>
+            <td class="num">{withMonthlyExtra.months} months</td>
+            <td class="num">{money0.format(withMonthlyExtra.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>One-time {money0.format(base.paymentPI)} in month 12</td>
+            <td class="num">{withOneTimeExtra.months} months</td>
+            <td class="num">{money0.format(withOneTimeExtra.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      The earlier monthly extra usually saves more interest than a late-year lump sum, even if the totals are similar.
+    </p>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: make the extra count</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Ask the servicer to apply the extra to principal-only.</li>
+      <li>Confirm there is no prepayment penalty.</li>
+      <li>Track the payment posting date each month.</li>
+      <li>Re-evaluate if your rate or term changes.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is one extra payment per year a rule or requirement?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It is just a rule of thumb. Any extra amount, at any frequency, can shorten payoff.
+    </p>
+    <h3 style="margin:12px 0 0">Does a biweekly program do the same thing?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Many biweekly programs effectively add one extra payment per year. Compare fees before enrolling.
     </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
+      <a class="btn" href="/guides/extra-mortgage-payment-calculator">How to use the extra payment calculator</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff hub</a>
+    </div>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What to confirm with your lender</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>The extra is applied to principal-only (not “paid ahead” toward the next due date).</li>
+      <li>The extra is applied to principal-only (not "paid ahead" toward the next due date).</li>
       <li>There is no prepayment penalty.</li>
       <li>Whether recasting is available if you want a lower required payment later.</li>
     </ul>
     <p class="muted" style="margin:12px 0 0">
       Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

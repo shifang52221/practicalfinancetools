@@ -1,9 +1,33 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Mortgage Payment Calculator (how to use it)";
 const description =
-  "How to use an extra mortgage payment calculator to compare monthly extra principal, one extra payment per year, and lump sums—plus pitfalls to avoid.";
+  "How to use an extra mortgage payment calculator to compare monthly extra principal, one extra payment per year, and lump sums, plus pitfalls to avoid.";
+
+const examplePrincipal = 320000;
+const exampleApr = 6.5;
+const exampleTerm = 360;
+const extraMonthly = 200;
+const extraOneTime = 2400;
+const extraOneTimeMonth = 12;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTerm });
+const withMonthlyExtra = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTerm,
+  extraMonthly
+});
+const withOneTimeExtra = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTerm,
+  extraOneTime,
+  extraOneTimeMonth
+});
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/extra-mortgage-payment-calculator">
   <section class="card hero">
@@ -38,7 +62,46 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What extra payments change (and what they don’t)</h2>
+    <h2 style="margin-top:0">Worked example: monthly extra vs one-time extra</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% for {exampleTerm / 12} years. The base payment is
+      about {money0.format(base.paymentPI)}. Compare a {money0.format(extraMonthly)}/month extra versus a one-time
+      {money0.format(extraOneTime)} payment in month {extraOneTimeMonth}.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline (no extra)</td>
+            <td class="num">{base.months} months</td>
+            <td class="num">{money0.format(base.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Monthly extra {money0.format(extraMonthly)}</td>
+            <td class="num">{withMonthlyExtra.months} months</td>
+            <td class="num">{money0.format(withMonthlyExtra.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>One-time {money0.format(extraOneTime)} in month {extraOneTimeMonth}</td>
+            <td class="num">{withOneTimeExtra.months} months</td>
+            <td class="num">{money0.format(withOneTimeExtra.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Earlier extra payments usually save more interest than a later lump sum of the same total amount.
+    </p>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What extra payments change (and what they don't)</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li><strong>Usually changes:</strong> payoff date and total interest (often meaningfully).</li>
       <li><strong>Usually does not change:</strong> your required monthly payment, unless you do a loan recast.</li>
@@ -56,7 +119,7 @@ const description =
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li>$100 extra each month</li>
         <li>$300 extra each month</li>
-        <li>One extra payment per year (approx. payment ÷ 12 monthly)</li>
+        <li>One extra payment per year (approx. payment / 12 monthly)</li>
         <li>A one-time lump sum early vs later</li>
       </ul>
     </div>
@@ -80,14 +143,52 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: extra payment hygiene</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Confirm extra dollars are applied to principal-only (not paid-ahead).</li>
+      <li>Verify there is no prepayment penalty or fee-based payment program.</li>
+      <li>Keep emergency savings intact before committing to larger extras.</li>
+      <li>Re-run the model if your rate or term changes.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Does an extra payment reduce my required monthly payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Usually no. Extra payments shorten the payoff timeline but your required payment stays the same unless you recast.
+    </p>
+    <h3 style="margin:12px 0 0">Is one extra payment per year the same as monthly extras?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      They add up to a similar total, but earlier monthly extras tend to save more interest than a late-year lump sum.
+    </p>
+    <h3 style="margin:12px 0 0">Should I pick monthly extra or a lump sum?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Monthly extra usually wins if cash flow allows. Lump sums are helpful when you have irregular income.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources
+        </a>
+      </li>
+    </ul>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Run scenarios</a>
       <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
       <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
       <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

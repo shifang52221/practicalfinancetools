@@ -1,9 +1,20 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Why Credit Card Interest Looks High in Payoff Calculators";
 const description =
   "Why credit card interest can dominate early payments, how to estimate interest for planning, and which payoff calculators to use. Educational use only.";
+
+const exampleBalance = 5000;
+const exampleApr = 24;
+const paymentLow = 120;
+const paymentHigh = 250;
+const payoffLow = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: paymentLow });
+const payoffHigh = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: paymentHigh });
+const firstLow = payoffLow.rows[0];
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-interest-calculator-payoff">
   <section class="card hero">
@@ -35,14 +46,41 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">A quick example</h2>
+    <h2 style="margin-top:0">Worked example: when interest dominates</h2>
     <p class="muted" style="margin:10px 0 0">
-      Imagine a $5,000 balance at 24% APR. A simplified monthly interest estimate is roughly balance × (APR ÷ 12), which is about $100 in
-      the first month. If your payment is $120, only about $20 reduces principal. That’s why the balance can feel “stuck” unless the
-      payment is meaningfully above interest.
+      Example: {money0.format(exampleBalance)} at {pct2.format(exampleApr)}% APR. A low payment that is close to the monthly interest can
+      make the balance feel stuck. A higher payment moves principal faster.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="num">Payment</th>
+            <th class="num">First-month interest</th>
+            <th class="num">First-month principal</th>
+            <th class="num">Payoff time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">{money0.format(paymentLow)}</td>
+            <td class="num">{money0.format(firstLow?.interest ?? 0)}</td>
+            <td class="num">{money0.format(firstLow?.principal ?? 0)}</td>
+            <td class="num">{payoffLow.months == null ? "N/A" : `${payoffLow.months} months`}</td>
+          </tr>
+          <tr>
+            <td class="num">{money0.format(paymentHigh)}</td>
+            <td class="num">{money0.format(payoffHigh.rows[0]?.interest ?? 0)}</td>
+            <td class="num">{money0.format(payoffHigh.rows[0]?.principal ?? 0)}</td>
+            <td class="num">{payoffHigh.months == null ? "N/A" : `${payoffHigh.months} months`}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      A payment below {money0.format(payoffLow.minPaymentToAvoidGrowth)} would not reduce the balance at all.
     </p>
   </section>
-
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Why your statement interest can look different</h2>
     <p class="muted" style="margin:10px 0 0">
@@ -76,13 +114,53 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: move beyond interest-only payments</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Confirm your payment is well above monthly interest.</li>
+      <li>Stop new purchases while you pay down the balance.</li>
+      <li>Test +$25, +$50, and +  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+00 scenarios to see payoff sensitivity.</li>
+      <li>Check whether a promo APR ends soon and model the new rate.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Why does my balance barely move?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      When your payment is close to interest, principal barely changes. That is why the payoff timeline stretches out.
+    </p>
+    <h3 style="margin:12px 0 0">Is the interest estimate exact?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      No. Issuers use daily interest and statement-cycle timing. Use the calculator for consistent comparisons, not exact pennies.
+    </p>
+    <h3 style="margin:12px 0 0">What is the minimum payment to avoid growth?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It is roughly the current balance times the monthly interest rate, plus a small buffer. Pay more than that to reduce principal.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/credit-cards/" rel="noopener noreferrer" target="_blank">
+          Credit card resources
+        </a>
+      </li>
+    </ul>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Run payoff scenarios</a>
       <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payments</a>
       <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimums take so long</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

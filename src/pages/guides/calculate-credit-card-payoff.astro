@@ -1,9 +1,18 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Calculate Credit Card Payoff (steps + common pitfalls)";
 const description =
   "How to calculate credit card payoff time from balance, APR, and payment, plus why statements can differ and what to model next. Educational use only.";
+
+const exampleBalance = 4000;
+const exampleApr = 19.99;
+const examplePayment = 200;
+const payoff = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: examplePayment });
+const firstRow = payoff.rows[0];
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/calculate-credit-card-payoff">
   <section class="card hero">
@@ -38,14 +47,33 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Example (simple planning estimate)</h2>
+    <h2 style="margin-top:0">Worked example (calculator-based)</h2>
     <p class="muted" style="margin:10px 0 0">
-      Suppose your balance is $4,000 at 19.99% APR and you plan to pay $200/month. Early interest might be roughly balance × (APR ÷ 12),
-      which is about $67 in the first month. That means roughly $133 goes to principal early on (before rounding and daily-interest timing).
-      As the balance drops, interest drops, and more of your payment goes to principal.
+      Example: {money0.format(exampleBalance)} at {pct2.format(exampleApr)}% APR with a {money0.format(examplePayment)}/month payment.
+      The first month interest is about {money0.format(firstRow?.interest ?? 0)} and the principal reduction is about
+      {money0.format(firstRow?.principal ?? 0)}. Your exact statement can differ due to daily interest timing and fees.
     </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="num">Monthly payment</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+            <th class="num">First-month interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">{money0.format(examplePayment)}</td>
+            <td class="num">{payoff.months == null ? "N/A" : `${payoff.months} months`}</td>
+            <td class="num">{money0.format(payoff.totalInterest)}</td>
+            <td class="num">{money0.format(firstRow?.interest ?? 0)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
-
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">If you have multiple cards</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -83,13 +111,51 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: keep inputs realistic</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use your current statement balance (not the available credit).</li>
+      <li>Confirm the purchase APR and whether a promo APR ends soon.</li>
+      <li>Assume no new purchases on the payoff card.</li>
+      <li>Re-run the model if your payment changes or you add a balance transfer.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Why does payoff change when I tweak the payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Because interest is charged on the remaining balance, higher payments reduce future interest and accelerate payoff.
+    </p>
+    <h3 style="margin:12px 0 0">Why is my statement payoff time different?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Issuers use daily interest and statement-cycle timing. Fees, new purchases, and APR changes all shift results.
+    </p>
+    <h3 style="margin:12px 0 0">Should I use the minimum payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Minimum payments keep the account current but usually result in very long payoff timelines. A fixed payment is more predictable.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/credit-cards/" rel="noopener noreferrer" target="_blank">
+          Credit card resources
+        </a>
+      </li>
+    </ul>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Run payoff scenarios</a>
       <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How interest is calculated</a>
       <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimums take so long</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

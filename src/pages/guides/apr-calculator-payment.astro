@@ -1,9 +1,20 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { estimateApr } from "../../lib/calc/apr";
 
 const title = "APR Calculator Payment (rate, fees, and monthly payment)";
 const description =
   "How APR and fees relate to your monthly payment, what an APR calculator is estimating, and how to compare offers safely. Educational use only.";
+
+const exampleLoan = 25000;
+const exampleTerm = 60;
+const exampleRate = 8.25;
+const feeLow = 0;
+const feeHigh = 750;
+const offerLow = estimateApr({ loanAmount: exampleLoan, nominalRatePercent: exampleRate, termMonths: exampleTerm, fees: feeLow });
+const offerHigh = estimateApr({ loanAmount: exampleLoan, nominalRatePercent: exampleRate, termMonths: exampleTerm, fees: feeHigh });
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/apr-calculator-payment">
   <section class="card hero">
@@ -48,33 +59,56 @@ const description =
     <h2 style="margin-top:0">Payment: what actually drives it</h2>
     <p class="muted" style="margin:10px 0 0">
       For a standard fixed-rate loan, the monthly principal-and-interest payment is driven by (1) the interest rate, (2) the term, and
-      (3) the amount financed. Upfront fees often don’t change the advertised interest rate, but they do change your effective borrowing
+      (3) the amount financed. Upfront fees often don't change the advertised interest rate, but they do change your effective borrowing
       cost.
     </p>
     <p class="muted" style="margin:12px 0 0">
       This is why two offers can have similar payments but different APR: the payment is about the loan math, while APR is trying to
-      express the “rate-equivalent” cost of fees over time.
+      express the "rate-equivalent" cost of fees over time.
     </p>
   </section>
 
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Example: same payment, different APR</h2>
+    <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Example: same rate, different APR</h2>
     <p class="muted" style="margin:10px 0 0">
-      Imagine two offers with the same rate and term, but one includes an origination fee. The monthly payment might look identical
-      because it is based on the financed amount and rate, yet the fee reduces the net amount you receive (or increases the cash you must
-      bring). APR increases to reflect that extra cost.
+      Example: {money0.format(exampleLoan)} for {exampleTerm} months at {pct2.format(exampleRate)}%. Both offers have the same nominal rate,
+      but one includes a fee. The payment is similar, while APR increases to account for the fee.
     </p>
-    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
-      <li>If you pay the fee out-of-pocket, you receive less net value for the same payment stream.</li>
-      <li>If you roll the fee into the loan, the payment may rise slightly because the financed balance is higher.</li>
-    </ul>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Offer</th>
+            <th class="num">Fees</th>
+            <th class="num">Payment</th>
+            <th class="num">APR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Low-fee</td>
+            <td class="num">{money0.format(feeLow)}</td>
+            <td class="num">{money0.format(offerLow.payment)}</td>
+            <td class="num">{offerLow.aprPercent == null ? "N/A" : `${pct2.format(offerLow.aprPercent)}%`}</td>
+          </tr>
+          <tr>
+            <td>Higher-fee</td>
+            <td class="num">{money0.format(feeHigh)}</td>
+            <td class="num">{money0.format(offerHigh.payment)}</td>
+            <td class="num">{offerHigh.aprPercent == null ? "N/A" : `${pct2.format(offerHigh.aprPercent)}%`}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      If the fee is rolled into the loan instead of paid upfront, the payment can rise as well.
+    </p>
   </section>
-
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What to do when you might repay early</h2>
     <p class="muted" style="margin:10px 0 0">
       If you expect to refinance, sell, or repay early, compare offers using a time-horizon view: total dollars paid (payments + fees)
-      over the number of months you realistically expect to keep the loan. A higher-fee “lower rate” offer may need time to break even.
+      over the number of months you realistically expect to keep the loan. A higher-fee "lower rate" offer may need time to break even.
     </p>
     <p class="muted" style="margin:12px 0 0">
       For mortgages, you can pair the APR calculator with payment and amortization comparisons to see both monthly cash flow and total
@@ -88,13 +122,50 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: evaluate payment vs APR</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Keep loan amount and term identical when comparing APR.</li>
+      <li>Confirm which fees are included in APR calculations.</li>
+      <li>Compare total cost over your expected payoff horizon.</li>
+      <li>Note whether fees are paid in cash or financed.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Why is my payment similar but APR different?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Payments are driven by rate, term, and amount financed. APR reflects fees, so it can rise without a large payment change.
+    </p>
+    <h3 style="margin:12px 0 0">Should I focus on APR or payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Both. Payment affects monthly cash flow, while APR helps compare total cost when fees differ.
+    </p>
+    <h3 style="margin:12px 0 0">Does APR include every fee?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not always. Use the lender disclosure to verify which fees are included and model any others separately.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-an-apr-en-67/" rel="noopener noreferrer" target="_blank">
+          What is APR?</a>
+      </li>
+    </ul>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/apr-calculator">Estimate APR with fees</a>
       <a class="btn" href="/guides/interest-rate-apr-calculator">Interest rate vs APR</a>
       <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
+      <a class="btn" href="/topics/apr">APR hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

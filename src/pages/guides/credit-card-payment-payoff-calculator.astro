@@ -1,9 +1,19 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Payment Payoff Calculator (how to use it)";
 const description =
   "How to use a credit card payment payoff calculator to estimate payoff date and interest from your balance, APR, and monthly payment. Educational use only.";
+
+const exampleBalance = 3500;
+const exampleApr = 22.5;
+const examplePaymentA = 100;
+const examplePaymentB = 175;
+const payoffA = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: examplePaymentA });
+const payoffB = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: examplePaymentB });
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-payment-payoff-calculator">
   <section class="card hero">
@@ -41,7 +51,7 @@ const description =
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Example: why payment size matters</h2>
     <p class="muted" style="margin:10px 0 0">
-      If you have a $3,000 balance at 22% APR, monthly interest can be roughly balance × (APR ÷ 12), or about $55 early on. A $100 payment
+      If you have a $3,000 balance at 22% APR, monthly interest can be roughly balance x (APR / 12), or about $55 early on. A $100 payment
       reduces principal by roughly $45 in the first month, but a $70 payment reduces principal by only about $15. That difference compounds
       over time and can add months (or years) to payoff.
     </p>
@@ -50,12 +60,47 @@ const description =
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How to choose a realistic monthly payment</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Start with what you can sustain every month, then increase it after you’ve proven consistency.</li>
+      <li>Start with what you can sustain every month, then increase it after you've proven consistency.</li>
       <li>If you have irregular cash flow, test a conservative base payment plus occasional lump-sum payments.</li>
       <li>If your APR may change (promo ends), rerun the scenario with the future APR.</li>
     </ul>
   </section>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example: fixed payment vs higher payment</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(exampleBalance)} at {pct2.format(exampleApr)}% APR. Compare two fixed payments to see how payoff time and total
+      interest change.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="num">Monthly payment</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">{money0.format(examplePaymentA)}</td>
+            <td class="num">{payoffA.months == null ? "N/A" : `${payoffA.months} months`}</td>
+            <td class="num">{money0.format(payoffA.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td class="num">{money0.format(examplePaymentB)}</td>
+            <td class="num">{payoffB.months == null ? "N/A" : `${payoffB.months} months`}</td>
+            <td class="num">{money0.format(payoffB.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      In this example, increasing the payment by {money0.format(examplePaymentB - examplePaymentA)} saves about{' '}
+      {money0.format(Math.max(0, payoffA.totalInterest - payoffB.totalInterest))} in interest and shortens the timeline. A payment under{' '}
+      {money0.format(payoffA.minPaymentToAvoidGrowth)} would not reduce the balance.
+    </p>
+  </section>
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">How to use results</h2>
@@ -76,13 +121,52 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: set a payment you can keep</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Confirm the payment is above the monthly interest so the balance actually falls.</li>
+      <li>Set autopay for the minimum plus a fixed extra amount you can sustain.</li>
+      <li>Rerun the scenario if your APR changes or you plan a balance transfer.</li>
+      <li>Stop new purchases on the payoff card to keep the plan on track.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Why does payoff look so slow at first?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Early payments are mostly interest because the balance is highest. As the balance drops, more of each payment goes to principal and
+      the payoff pace accelerates.
+    </p>
+    <h3 style="margin:12px 0 0">What if I keep making new purchases?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      The payoff estimate assumes no new charges. New purchases keep the balance higher and can extend the payoff timeline substantially.
+    </p>
+    <h3 style="margin:12px 0 0">Should I use minimum payment or fixed payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      A fixed payment is usually better for planning because you control the timeline. Minimum payments can stretch payoff for years.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/credit-cards/" rel="noopener noreferrer" target="_blank">
+          Credit card resources
+        </a>
+      </li>
+    </ul>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Model a fixed payment</a>
       <a class="btn" href="/guides/calculate-credit-card-payoff">How to calculate payoff</a>
       <a class="btn" href="/guides/credit-card-payoff-strategy">Payoff strategy</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>
