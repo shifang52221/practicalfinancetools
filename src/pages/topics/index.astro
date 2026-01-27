@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../config/site";
+
+const title = `Topics | ${SITE.name}`;
+const description =
+  "Browse finance topics and workflows that connect calculators with practical guides: APR, credit cards, and mortgage payoff planning. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/topics">
+  <section class="card hero">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Topics</span>
+    </nav>
+    <h1>Topics</h1>
+    <p>
+      These hub pages connect calculators and guides into simple workflows, so users can understand assumptions and compare scenarios
+      consistently.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to use topic pages</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Start with the core calculator to model your baseline.</li>
+      <li>Read the linked guide to understand assumptions and common pitfalls.</li>
+      <li>Change one input at a time to compare scenarios fairly (fees, rate, payment, or extra amount).</li>
+      <li>Use the FAQ sections on calculator pages for edge cases and limitations.</li>
+    </ol>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <a class="card section prose col-6" href="/topics/apr">
+      <h2 style="margin-top:0">APR & borrowing costs</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Compare offers by including fees, understand APR vs interest rate, and learn when APR can mislead.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/topics/credit-cards">
+      <h2 style="margin-top:0">Credit cards & payoff</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Model payoff timelines, understand interest mechanics, and build a plan across multiple debts.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/topics/mortgage-payoff">
+      <h2 style="margin-top:0">Mortgage payment & payoff planning</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Estimate monthly cost, view amortization, and compare extra principal, lump sums, and biweekly strategies.
+      </p>
+    </a>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Request a topic</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Want a workflow page for a specific question? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

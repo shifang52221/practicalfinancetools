@@ -1,10 +1,18 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { CreditCardPayoff } from "../../components/calculators/CreditCardPayoff";
+import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Payoff Calculator (Payoff Date & Interest)";
 const description =
   "Estimate your credit card payoff time, total interest, and a month-by-month payoff schedule for a fixed APR and payment. Educational use only.";
+
+const exampleInput = { balance: 5000, aprPercent: 24.99, monthlyPayment: 200 };
+const example = creditCardPayoffSchedule({ ...exampleInput, maxMonths: 1200 });
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const exampleMonths = example.months;
+const exampleYears = exampleMonths == null ? null : Math.floor(exampleMonths / 12);
+const exampleMonthsRemainder = exampleMonths == null ? null : exampleMonths % 12;
 ---
 <CalculatorLayout
   title={title}
@@ -12,7 +20,7 @@ const description =
   canonicalPath="/calculators/credit-card-payoff-calculator"
   intro="Calculate how long it takes to pay off a credit card balance with a fixed APR and a fixed monthly payment, plus the total interest over time. Educational use only. Not financial advice."
   how={[
-    "Monthly interest is estimated as balance × (APR ÷ 12).",
+    "Monthly interest is estimated as balance * (APR / 12).",
     "Each month, payment is applied to interest first, then principal.",
     "If a payment is too low to cover interest, payoff may never happen; this tool warns you when that occurs."
   ]}
@@ -27,7 +35,7 @@ const description =
     },
     {
       q: "Is this a credit card interest payoff calculator?",
-      a: "Yes—it's designed to estimate interest paid and payoff time from your balance, APR, and payment. For statement-accurate results, check your issuer’s daily interest method and cycle dates."
+      a: "Yes - it's designed to estimate interest paid and payoff time from your balance, APR, and payment. For statement-accurate results, check your issuer's daily interest method and cycle dates."
     },
     {
       q: "Credit card interest calculator payoff: why can my statement differ?",
@@ -58,7 +66,7 @@ const description =
       a: "If a payment is below the interest charged, the balance can grow and payoff may never happen. Increase the payment or reduce the APR to make progress."
     }
   ]}
-  lastUpdated="2026-01-15"
+  lastUpdated="2026-01-27"
 >
   <CreditCardPayoff client:load />
 
@@ -70,11 +78,49 @@ const description =
       <li>Real statements often use daily interest; this page is a monthly estimate for planning.</li>
     </ul>
 
-    <h2 style="margin:0 0 10px">Example</h2>
+    <h2 style="margin:18px 0 10px">Worked example</h2>
     <p class="muted" style="margin:0">
-      Try a realistic scenario like $5,000 balance at 24.99% APR with a $200 monthly payment. Then compare what happens
-      if you increase the payment by $25–$50, or if you reduce the APR by moving the balance to a lower-rate product.
+      Example inputs: ${money.format(exampleInput.balance)} balance, {exampleInput.aprPercent}% APR, {money.format(exampleInput.monthlyPayment)} payment.
     </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Output (estimate)</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Payoff time</td>
+            <td>
+              {exampleMonths == null
+                ? "Not paid off within cap"
+                : `${exampleMonths} months (${exampleYears} years ${exampleMonthsRemainder} months)`}
+            </td>
+          </tr>
+          <tr>
+            <td>Total interest paid</td>
+            <td>{money.format(example.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Total paid</td>
+            <td>{money.format(example.totalPaid)}</td>
+          </tr>
+          <tr>
+            <td>Minimum payment to avoid balance growth (approx.)</td>
+            <td>{money.format(example.minPaymentToAvoidGrowth)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="margin:18px 0 10px">Assumptions & limitations</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>This page estimates interest monthly using APR/12; many issuers use daily interest and statement cycles.</li>
+      <li>Assumes you stop adding new purchases and fees; adding purchases can extend payoff time.</li>
+      <li>If APR changes mid-stream (promo ends, penalty APR), re-run the numbers with the new rate.</li>
+    </ul>
 
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
@@ -86,6 +132,7 @@ const description =
 
     <h2 style="margin:18px 0 10px">Related guide</h2>
     <div class="btn-row" style="margin-top:0">
+      <a class="btn btn-primary" href="/topics/credit-cards">Credit card topic hub</a>
       <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
       <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a>
       <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How credit card interest works</a>

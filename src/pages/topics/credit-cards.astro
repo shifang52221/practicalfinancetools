@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Credit Card Payoff Topic Guide (interest, minimums, plans)";
+const description =
+  "A practical workflow for credit card payoff: model interest, understand minimum payment rules, and build a plan across multiple debts. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/topics/credit-cards">
+  <section class="card hero">
+    <span class="pill">Topic</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/topics">Topics</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Credit cards</span>
+    </nav>
+    <h1>Credit card payoff: model interest and build a plan</h1>
+    <p>
+      Search queries like "credit card payoff calculator", "credit card interest calculator payoff", and "minimum payment payoff
+      calculator" point to the same question: how fast will a balance go down under realistic interest rules?
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff</a>
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
+      <a class="btn" href="/calculators/debt-avalanche-calculator">Debt avalanche</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Payoff workflow (fast and accurate)</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Use your statement APR:</strong> not a promotional headline rate.</li>
+      <li><strong>Start with one balance:</strong> run a fixed-payment payoff to understand the payoff curve.</li>
+      <li><strong>Check the failure case:</strong> if payment is below monthly interest, the balance can grow.</li>
+      <li><strong>If you have many debts:</strong> use avalanche/snowball and add a target payoff time if needed.</li>
+      <li><strong>Re-check after changes:</strong> rates, balances, and minimum rules change.</li>
+    </ol>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a> (fixed payment)</li>
+        <li><a href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a> (why it takes so long)</li>
+        <li><a href="/calculators/debt-snowball-calculator">Debt snowball</a> and <a href="/calculators/debt-avalanche-calculator">avalanche</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Guides to read first</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/how-credit-card-interest-is-calculated">How credit card interest is calculated</a></li>
+        <li><a href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a></li>
+        <li><a href="/guides/credit-card-payoff-strategy">Payoff strategy: snowball vs avalanche</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to be careful about</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>New purchases:</strong> if you keep using the card, payoff math changes.</li>
+      <li><strong>Daily interest:</strong> statements can differ from simple APR/12 approximations.</li>
+      <li><strong>Fees:</strong> annual fees, penalty APR, and late fees can change total cost.</li>
+      <li><strong>Hardship programs:</strong> if APR changes mid-stream, re-run the plan with the new rate.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Educational use only. Not financial advice. Verify statement rules with your issuer.
+    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-27</p>
+  </section>
+</BaseLayout>
+

@@ -61,6 +61,20 @@ function normalizeUrl(url, base) {
   return u.toString();
 }
 
+function swapOrigin(url, fromBase, toBase) {
+  try {
+    const from = new URL(fromBase).origin;
+    const to = new URL(toBase);
+    const u = new URL(url);
+    if (u.origin !== from) return url;
+    u.protocol = to.protocol;
+    u.host = to.host;
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
 function pathFromUrl(url) {
   const u = new URL(url);
   return u.pathname.length > 1 ? u.pathname.replace(/\/+$/, "") : "/";
@@ -92,27 +106,40 @@ async function fetchText(url) {
   return t;
 }
 
-async function fetchSitemapUrls(base) {
+async function fetchSitemapUrls(base, expectedOrigin = base) {
+  const expected = normalizeBase(expectedOrigin);
+  const baseOrigin = new URL(base).origin;
+  const expectedOnly = new URL(expected).origin;
+
   const indexUrl = `${base}/sitemap-index.xml`;
-  let xml;
+  let xml = "";
+  let sitemapIndex = indexUrl;
   try {
     xml = await fetchText(indexUrl);
   } catch {
-    xml = await fetchText(`${base}/sitemap.xml`);
+    const fallback = `${base}/sitemap.xml`;
+    try {
+      sitemapIndex = fallback;
+      xml = await fetchText(fallback);
+    } catch {
+      return { sitemapUrls: new Set(), sitemapIndex, sitemapFiles: [] };
+    }
   }
 
   const sitemapLocs = extractAll(xml, "loc");
   const urls = new Set();
   if (xml.includes("<sitemapindex")) {
     for (const loc of sitemapLocs) {
-      const sm = await fetchText(loc);
-      for (const u of extractAll(sm, "loc")) urls.add(normalizeUrl(u, base));
+      const sm = await fetchText(swapOrigin(loc, expectedOnly, baseOrigin));
+      for (const u of extractAll(sm, "loc")) {
+        urls.add(normalizeUrl(swapOrigin(u, expectedOnly, baseOrigin), base));
+      }
     }
-    return { sitemapUrls: urls, sitemapIndex: indexUrl, sitemapFiles: sitemapLocs };
+    return { sitemapUrls: urls, sitemapIndex, sitemapFiles: sitemapLocs };
   }
 
-  for (const loc of sitemapLocs) urls.add(normalizeUrl(loc, base));
-  return { sitemapUrls: urls, sitemapIndex: `${base}/sitemap.xml`, sitemapFiles: [`${base}/sitemap.xml`] };
+  for (const loc of sitemapLocs) urls.add(normalizeUrl(swapOrigin(loc, expectedOnly, baseOrigin), base));
+  return { sitemapUrls: urls, sitemapIndex, sitemapFiles: [sitemapIndex] };
 }
 
 function extractLinks(html, base) {
@@ -264,7 +291,7 @@ async function main() {
   };
   await fs.writeFile(path.join(outDir, "run.json"), JSON.stringify(runInfo, null, 2));
 
-  const { sitemapUrls, sitemapIndex, sitemapFiles } = await fetchSitemapUrls(base);
+  const { sitemapUrls, sitemapIndex, sitemapFiles } = await fetchSitemapUrls(base, expectedOrigin);
 
   // Deep crawl from key entrypoints (kept small; sitemap provides full coverage).
   const seedPaths = ["/", "/calculators", "/guides", "/about", "/privacy-policy", "/terms", "/contact"];
@@ -430,7 +457,7 @@ async function main() {
           priority: "P2",
           type: "title_length",
           evidence: `len=${r.title.length}`,
-          fix: "Keep title ~20–65 chars and match page intent."
+          fix: "Keep title ~20-65 chars and match page intent."
         });
       }
     }
@@ -441,7 +468,7 @@ async function main() {
         priority: "P2",
         type: "missing_description",
         evidence: "description empty",
-        fix: "Add a unique meta description (~70–160 chars)."
+        fix: "Add a unique meta description (~70-160 chars)."
       });
     } else {
       const k = r.description.trim().toLowerCase();
@@ -452,7 +479,7 @@ async function main() {
           priority: "P3",
           type: "description_length",
           evidence: `len=${r.description.length}`,
-          fix: "Keep description ~70–170 chars and unique."
+          fix: "Keep description ~70-170 chars and unique."
         });
       }
     }

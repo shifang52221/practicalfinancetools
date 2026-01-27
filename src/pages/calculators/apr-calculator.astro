@@ -1,10 +1,18 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { AprCalculator as AprCalculatorComponent } from "../../components/calculators/Apr";
+import { estimateApr } from "../../lib/calc/apr";
 
 const title = "APR Calculator (Interest Rate + Fees)";
 const description =
   "Estimate APR from the interest rate, upfront fees, and term so you can compare loan offers more fairly. Educational use only.";
+
+const exampleInput = { loanAmount: 10000, nominalRatePercent: 12, termMonths: 24, fees: 300 };
+const example = estimateApr(exampleInput);
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const pct = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const examplePayment = money.format(example.payment);
+const exampleApr = example.aprPercent == null ? "N/A" : `${pct.format(example.aprPercent)}%`;
 ---
 <CalculatorLayout
   title={title}
@@ -18,7 +26,7 @@ const description =
   ]}
   faqs={[
     {
-      q: "APR vs interest rate: what’s the difference?",
+      q: "APR vs interest rate: what's the difference?",
       a: "Interest rate is the nominal rate used to compute interest. APR includes certain fees and can be higher than the interest rate."
     },
     {
@@ -51,10 +59,10 @@ const description =
     },
     {
       q: "Is this an official APR disclosure?",
-      a: "No. It’s an educational estimate to compare scenarios. Official APR disclosures follow specific legal rules."
+      a: "No. It's an educational estimate to compare scenarios. Official APR disclosures follow specific legal rules."
     }
   ]}
-  lastUpdated="2026-01-15"
+  lastUpdated="2026-01-27"
 >
   <AprCalculatorComponent client:load />
 
@@ -104,10 +112,63 @@ const description =
 
     <h2 style="margin:18px 0 10px">Step-by-step example</h2>
     <p class="muted" style="margin:0">
-      Example: $10,000 loan, 12% interest rate, 24-month term, $300 origination fee. You receive about $9,700 after fees
-      but still repay based on the $10,000 balance. The APR is the rate that matches your payment stream to that
-      $9,700 net amount.
+      Example: $10,000 loan, 12% interest rate, 24-month term, $300 origination fee.
     </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Input</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Loan amount</td>
+            <td>${money.format(exampleInput.loanAmount)}</td>
+          </tr>
+          <tr>
+            <td>Nominal rate</td>
+            <td>{exampleInput.nominalRatePercent}%</td>
+          </tr>
+          <tr>
+            <td>Term</td>
+            <td>{exampleInput.termMonths} months</td>
+          </tr>
+          <tr>
+            <td>Upfront fees</td>
+            <td>${money.format(exampleInput.fees)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Output (estimate)</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monthly payment (principal &amp; interest)</td>
+            <td>{examplePayment}</td>
+          </tr>
+          <tr>
+            <td>Estimated APR</td>
+            <td>{exampleApr}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="margin:18px 0 10px">Assumptions & limitations</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>This is a simplified fixed-rate estimate using a standard monthly payment schedule.</li>
+      <li>We treat fees as reducing the net amount received; lender disclosures can categorize fees differently.</li>
+      <li>If you plan to refinance or repay early, compare total cost over your expected time horizon.</li>
+    </ul>
 
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
@@ -119,6 +180,7 @@ const description =
 
     <h2 style="margin:18px 0 10px">Related guide</h2>
     <div class="btn-row" style="margin-top:0">
+      <a class="btn btn-primary" href="/topics/apr">APR topic hub</a>
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
       <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
       <a class="btn" href="/guides/how-to-find-your-apr">How to find your APR</a>

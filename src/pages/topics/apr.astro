@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR Calculator Topic Guide (fees, comparisons, and pitfalls)";
+const description =
+  "A practical workflow for using an APR calculator to compare loans with fees, understand APR vs interest rate, and avoid common mistakes. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/topics/apr">
+  <section class="card hero">
+    <span class="pill">Topic</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/topics">Topics</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR</span>
+    </nav>
+    <h1>APR: compare borrowing costs (with fees)</h1>
+    <p>
+      Search queries like "apr calculator", "interest rate apr calculator", and "how do I find out my APR" usually come from the same
+      need: compare offers fairly. Use this workflow to keep assumptions consistent and avoid misleading comparisons.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+      <a class="btn" href="/guides/apr-with-origination-fee">Origination fees</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Best-practice workflow</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Start with the same term:</strong> compare 36 months vs 36 months (not 36 vs 60).</li>
+      <li><strong>Enter fees consistently:</strong> origination fees, points, and mandatory upfront charges.</li>
+      <li><strong>Match the cash flow:</strong> confirm whether fees are paid upfront or financed.</li>
+      <li><strong>Use your time horizon:</strong> if you may refinance or sell early, compare total dollars over that horizon.</li>
+      <li><strong>Sanity check:</strong> if a low rate has high fees, APR should rise—if it doesn't, re-check inputs.</li>
+    </ol>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a> (includes fees)</li>
+        <li><a href="/guides/interest-rate-apr-calculator">Interest rate vs APR</a> (what to compare)</li>
+        <li><a href="/guides/apr-calculator-payment">APR and payment</a> (how they relate)</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Common pitfalls</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Comparing APR across different terms (it can penalize longer terms).</li>
+        <li>Ignoring the difference between paid-upfront vs financed fees.</li>
+        <li>Using APR as the only decision factor when you might refinance early.</li>
+        <li>Assuming your statement interest equals APR/12 for every product (rules vary).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next guides</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/guides/how-to-find-your-apr">How to find your APR</a>
+      <a class="btn" href="/guides/apr-tool">APR tool overview</a>
+      <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Educational use only. Not financial advice. Verify fees, posting rules, and disclosures with lenders.
+    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-27</p>
+  </section>
+</BaseLayout>
+

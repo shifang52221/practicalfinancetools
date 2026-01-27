@@ -3,7 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Why Minimum Payments Take So Long (credit cards)";
 const description =
-  "Minimum payments can keep balances around for years because interest absorbs most of the payment early on. Learn the mechanics, common rules issuers use, and how to model scenarios with free payoff calculators. Educational use only.";
+  "Minimum payments can take years because interest absorbs most of the payment early. Learn common issuer rules and model payoff scenarios with calculators.";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/why-minimum-payments-take-so-long">
   <section class="card hero">
@@ -38,7 +38,7 @@ const description =
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">A simplified example</h2>
     <p class="muted" style="margin:10px 0 0">
-      Suppose you have a $5,000 balance at 24.99% APR. A simplified monthly interest estimate is roughly balance × (APR ÷ 12). Early on,
+      Suppose you have a $5,000 balance at 24.99% APR. A simplified monthly interest estimate is roughly balance * (APR / 12). Early on,
       interest alone can be around $100/month (your statement may differ due to daily interest and cycle timing). If your minimum payment
       is only a bit higher than that, principal reduction is tiny.
     </p>
@@ -50,19 +50,19 @@ const description =
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Common minimum payment rules (varies by issuer)</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>A percent of balance (for example, 1%–3%)</li>
-      <li>Plus interest (some issuers structure it as “% of balance + interest + fees”)</li>
+      <li>A percent of balance (for example, 1% to 3%)</li>
+      <li>Plus interest (some issuers structure it as \"% of balance + interest + fees\")</li>
       <li>A minimum dollar floor (for example, $25 or $35)</li>
     </ul>
     <p class="muted" style="margin:12px 0 0">
-      Your card’s exact rule is on your statement or cardmember agreement. That’s why payoff estimates can differ between calculators.
+      Your card's exact rule is on your statement or cardmember agreement. That's why payoff estimates can differ between calculators.
     </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How to get out faster (levers you can model)</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li><strong>Pay more than the minimum:</strong> even +$25–$100/month can cut years off.</li>
+      <li><strong>Pay more than the minimum:</strong> even +$25 to $100/month can cut years off.</li>
       <li><strong>Stop new purchases:</strong> otherwise the balance can stay flat even when you pay every month.</li>
       <li><strong>Lower APR (if possible):</strong> a lower rate reduces interest so more of your payment hits principal.</li>
       <li><strong>Prioritize high APR balances:</strong> use avalanche/snowball when you have multiple debts.</li>

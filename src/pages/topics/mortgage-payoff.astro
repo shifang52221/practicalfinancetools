@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Mortgage Payoff Topic Guide (payment, amortization, extras)";
+const description =
+  "A practical workflow for mortgage payoff planning: estimate monthly cost, view amortization, and compare extra principal strategies. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/topics/mortgage-payoff">
+  <section class="card hero">
+    <span class="pill">Topic</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/topics">Topics</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Mortgage payoff</span>
+    </nav>
+    <h1>Mortgage payment and payoff planning</h1>
+    <p>
+      The most common mortgage queries are variations of the same scenario: estimate the baseline payment, then test extra principal
+      strategies (monthly extra, one-time lump sum, or biweekly) under consistent assumptions.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Payoff workflow</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Estimate monthly cost:</strong> include taxes, insurance, HOA, and PMI (not just principal & interest).</li>
+      <li><strong>Check the amortization table:</strong> understand early interest-heavy months.</li>
+      <li><strong>Model extra principal:</strong> monthly extra, one extra payment per year, or a lump sum at a chosen month.</li>
+      <li><strong>Confirm posting rules:</strong> extra payments should be applied as principal-only (not "paid ahead").</li>
+      <li><strong>Compare alternatives:</strong> recast vs prepay, PMI removal thresholds, refinance break-even.</li>
+    </ol>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a> (PITI + PMI)</li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a> (full table)</li>
+        <li><a href="/calculators/extra-payment-calculator">Extra payment mortgage calculator</a> (monthly, lump sum, annual)</li>
+        <li><a href="/calculators/biweekly-mortgage-payment-calculator">Biweekly mortgage payment</a> (compare to monthly extra)</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
+        <li><a href="/guides/principal-only-extra-payments">Principal-only checklist</a></li>
+        <li><a href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a></li>
+        <li><a href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a></li>
+        <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
+        <li><a href="/guides/mortgage-recast-vs-extra-payments">Recast vs extra payments</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Decision checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Do you have any prepayment penalty or program fees?</li>
+      <li>Does your servicer apply extras as principal-only by default?</li>
+      <li>Is PMI removable and what are the exact requirements?</li>
+      <li>If you might refinance or move, compare costs over your expected time horizon.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Educational use only. Not financial advice. Verify loan terms and servicing rules before making decisions.
+    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-27</p>
+  </section>
+</BaseLayout>

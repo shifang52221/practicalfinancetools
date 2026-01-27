@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "preview:lan": "astro preview --host 0.0.0.0 --port 4321",
     "check": "astro check",
-    "test": "node --test --experimental-strip-types --experimental-loader ./scripts/node/resolve-ts-loader.mjs"
+    "test": "node --test --experimental-strip-types --experimental-loader ./scripts/node/resolve-ts-loader.mjs",
+    "seo:audit:local": "powershell -ExecutionPolicy Bypass -File scripts/seo/run-local-preview-audit.ps1"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",

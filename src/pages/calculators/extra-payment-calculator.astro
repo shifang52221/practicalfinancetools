@@ -1,10 +1,22 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { ExtraPaymentMortgageCalculator } from "../../components/calculators/ExtraPayment";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Mortgage Payment Calculator (Extra Principal)";
 const description =
-  "Estimate how extra mortgage payments (additional principal, lump sum, or one extra payment per year) can shorten payoff time and reduce total interest by paying down principal faster. Educational use only.";
+  "Estimate how extra principal (monthly, lump sum, or one extra payment per year) can shorten mortgage payoff time and reduce total interest. Educational use only.";
+
+const exampleInput = { principal: 300000, aprPercent: 6.5, termMonths: 360, extraMonthly: 300 };
+const base = amortizationSchedule({ principal: exampleInput.principal, aprPercent: exampleInput.aprPercent, termMonths: exampleInput.termMonths });
+const extra = amortizationSchedule({ principal: exampleInput.principal, aprPercent: exampleInput.aprPercent, termMonths: exampleInput.termMonths, extraMonthly: exampleInput.extraMonthly });
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const yearsMonths = (months: number) => ({ years: Math.floor(months / 12), months: months % 12 });
+const baseYm = yearsMonths(base.months);
+const extraYm = yearsMonths(extra.months);
+const savedMonths = Math.max(0, base.months - extra.months);
+const savedYm = yearsMonths(savedMonths);
+const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
 ---
 <CalculatorLayout
   title={title}
@@ -54,16 +66,50 @@ const description =
       a: "Not necessarily. Results are estimates and real statements can differ due to rounding and timing."
     }
   ]}
-  lastUpdated="2026-01-15"
+  lastUpdated="2026-01-27"
 >
   <ExtraPaymentMortgageCalculator client:load />
 
   <div class="prose" style="margin-top:16px">
-    <h2 style="margin:0 0 10px">Example</h2>
+    <h2 style="margin:0 0 10px">Worked example</h2>
     <p class="muted" style="margin:0">
-      Compare a baseline payment to adding an extra $100-$300 per month. Even small extra payments can reduce payoff
-      time because they go directly to principal.
+      Example inputs: ${money.format(exampleInput.principal)} principal, {exampleInput.aprPercent}% APR, 30-year term, ${money.format(exampleInput.extraMonthly)} extra monthly.
     </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Payoff time</th>
+            <th>Total interest (estimate)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline (no extra)</td>
+            <td>{base.months} months ({baseYm.years}y {baseYm.months}m)</td>
+            <td>{money.format(base.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>With extra monthly</td>
+            <td>{extra.months} months ({extraYm.years}y {extraYm.months}m)</td>
+            <td>{money.format(extra.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Savings</td>
+            <td>{savedMonths} months ({savedYm.years}y {savedYm.months}m)</td>
+            <td>{money.format(interestSaved)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="margin:18px 0 10px">Assumptions & limitations</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Estimates assume extra payments are applied as principal-only (not "paid ahead").</li>
+      <li>Escrow items (taxes/insurance/HOA) are separate from principal and interest payoff math.</li>
+      <li>Timing and lender rounding/posting rules can change real statements; use results for comparisons.</li>
+    </ul>
 
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
@@ -75,6 +121,7 @@ const description =
 
     <h2 style="margin:18px 0 10px">Related guide</h2>
     <div class="btn-row" style="margin-top:0">
+      <a class="btn btn-primary" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
       <a class="btn" href="/guides/pay-300-extra-on-mortgage">If I pay $300 extra</a>
       <a class="btn" href="/guides/calculate-mortgage-payoff-with-additional-principal-payments">Calculate payoff with additional principal</a>
