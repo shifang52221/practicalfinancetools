@@ -1,6 +1,7 @@
 import { clamp, paymentForAmortizedLoan } from "../math";
 
 export type RentBuyResult = {
+  breakEvenMonth: number | null;
   breakEvenYear: number | null;
   atHorizon: {
     years: number;
@@ -11,6 +12,10 @@ export type RentBuyResult = {
     year: number;
     netWorthRent: number;
     netWorthBuy: number;
+    rentMonthly: number;
+    ownerMonthlyCashCost: number;
+    homeValue: number;
+    loanBalance: number;
   }>;
 };
 
@@ -53,12 +58,16 @@ export function rentVsBuy(opts: {
 
   const investR = clamp(opts.investmentReturnPercent, 0, 30) / 100 / 12;
 
-  // Renter invests the upfront cash (down payment + closing costs) and monthly differences.
+  // Renter invests the upfront cash (down payment + closing costs) and any monthly savings vs owning.
+  // Buyer "invests" any monthly savings vs renting.
   let renterInvest = downPayment + homePrice0 * closePct;
+  let ownerInvest = 0;
+  const buyerSunkCosts = homePrice0 * closePct;
   let homeValue = homePrice0;
   let loanBalance = loanAmount0;
 
   const series: RentBuyResult["series"] = [];
+  let breakEvenMonth: number | null = null;
 
   function stepMonth(month: number) {
     // Yearly growth applied monthly (approx)
@@ -68,8 +77,9 @@ export function rentVsBuy(opts: {
     homeValue *= 1 + homeGrowthMonthly;
     rent *= 1 + rentGrowthMonthly;
 
-    // Homeowner monthly costs (excluding principal which becomes equity)
-    const interest = loanBalance * (clamp(opts.aprPercent, 0, 30) / 100 / 12);
+    // Mortgage amortization (principal becomes equity).
+    const monthlyRate = clamp(opts.aprPercent, 0, 30) / 100 / 12;
+    const interest = loanBalance * monthlyRate;
     const principal = Math.min(Math.max(0, paymentPI - interest), loanBalance);
     loanBalance = Math.max(0, loanBalance - principal);
 
@@ -81,18 +91,24 @@ export function rentVsBuy(opts: {
     const rentCashCost = rent;
     const diff = ownerCashCost - rentCashCost;
 
-    // If owning costs more, renter invests the saved amount (diff > 0 means owning is more expensive).
     renterInvest = renterInvest * (1 + investR) + Math.max(0, diff);
-    // If renting costs more, renter withdraws (simplified: reduces invest balance).
-    renterInvest = Math.max(0, renterInvest - Math.max(0, -diff));
+    ownerInvest = ownerInvest * (1 + investR) + Math.max(0, -diff);
 
     if (month % 12 === 0) {
       const year = month / 12;
       const proceeds = homeValue * (1 - sellPct);
       const equity = Math.max(0, proceeds - loanBalance);
-      const netWorthBuy = equity; // ignores homeowner investing monthly differences (kept simple)
+      const netWorthBuy = equity + ownerInvest - buyerSunkCosts;
       const netWorthRent = renterInvest;
-      series.push({ year, netWorthRent, netWorthBuy });
+      series.push({ year, netWorthRent, netWorthBuy, rentMonthly: rentCashCost, ownerMonthlyCashCost: ownerCashCost, homeValue, loanBalance });
+    }
+
+    if (breakEvenMonth === null) {
+      const proceeds = homeValue * (1 - sellPct);
+      const equity = Math.max(0, proceeds - loanBalance);
+      const netWorthBuy = equity + ownerInvest - buyerSunkCosts;
+      const netWorthRent = renterInvest;
+      if (netWorthBuy >= netWorthRent) breakEvenMonth = month;
     }
   }
 
@@ -102,9 +118,9 @@ export function rentVsBuy(opts: {
   const breakEven = series.find((p) => p.netWorthBuy >= p.netWorthRent)?.year ?? null;
 
   return {
+    breakEvenMonth,
     breakEvenYear: breakEven,
     atHorizon: { years: atHorizon.year, netWorthRent: atHorizon.netWorthRent, netWorthBuy: atHorizon.netWorthBuy },
     series
   };
 }
-

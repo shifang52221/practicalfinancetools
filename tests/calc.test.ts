@@ -6,18 +6,20 @@ import { estimateApr } from "../src/lib/calc/apr.ts";
 import { amortizationSchedule } from "../src/lib/calc/loan.ts";
 import { creditCardPayoffSchedule, paymentToPayoffInMonths } from "../src/lib/calc/creditCard.ts";
 import { buildDebtPlan, extraMonthlyToDebtFreeInMonths } from "../src/lib/calc/debtPlan.ts";
+import { calculateDti, maxHousingForBackEndDti, maxHousingForFrontEndDti } from "../src/lib/calc/dti.ts";
+import { rentVsBuy } from "../src/lib/calc/rentBuy.ts";
 
 function approxEqual(actual: number, expected: number, tol = 1e-6) {
   assert.ok(Number.isFinite(actual), `expected finite actual, got ${actual}`);
   assert.ok(Number.isFinite(expected), `expected finite expected, got ${expected}`);
-  assert.ok(Math.abs(actual - expected) <= tol, `expected ${actual} ≈ ${expected} (tol=${tol})`);
+  assert.ok(Math.abs(actual - expected) <= tol, `expected ${actual} close to ${expected} (tol=${tol})`);
 }
 
 test("paymentForAmortizedLoan: zero APR is principal/months", () => {
   approxEqual(paymentForAmortizedLoan(1000, 0, 10), 100, 1e-12);
 });
 
-test("estimateApr: zero fees ≈ nominal APR", () => {
+test("estimateApr: zero fees close to nominal APR", () => {
   const r = estimateApr({ loanAmount: 15000, nominalRatePercent: 9.99, termMonths: 60, fees: 0 });
   assert.ok(r.aprPercent !== null);
   approxEqual(r.aprPercent, 9.99, 1e-6);
@@ -89,3 +91,41 @@ test("extraMonthlyToDebtFreeInMonths: returns extra that hits target", () => {
   assert.ok(plan.paidOff);
   assert.ok(plan.months <= target);
 });
+
+test("DTI: compute and reverse targets", () => {
+  const r = calculateDti({ incomeMonthly: 6500, housingMonthly: 2200, otherDebtMonthly: 450 });
+  assert.ok(r.frontEndDti !== null && r.backEndDti !== null);
+  approxEqual(r.frontEndDti, 2200 / 6500, 1e-12);
+  approxEqual(r.backEndDti, (2200 + 450) / 6500, 1e-12);
+
+  const maxFront = maxHousingForFrontEndDti({ incomeMonthly: 6500, targetFrontEndDti: 0.28 });
+  const maxBack = maxHousingForBackEndDti({ incomeMonthly: 6500, otherDebtMonthly: 450, targetBackEndDti: 0.36 });
+  assert.ok(maxFront !== null && maxBack !== null);
+  assert.ok(maxFront > 0 && maxBack > 0);
+});
+
+test("rentVsBuy: returns series and break-even fields", () => {
+  const r = rentVsBuy({
+    years: 5,
+    monthlyRent: 2000,
+    rentGrowthPercent: 3,
+    homePrice: 400000,
+    downPayment: 80000,
+    aprPercent: 6,
+    termYears: 30,
+    homeAppreciationPercent: 3,
+    closingCostsPercent: 3,
+    sellingCostsPercent: 6,
+    propertyTaxPercent: 1.2,
+    insuranceAnnual: 1600,
+    hoaMonthly: 0,
+    maintenancePercent: 1,
+    investmentReturnPercent: 5
+  });
+  assert.equal(r.series.length, 5);
+  assert.equal(r.atHorizon.years, 5);
+  assert.ok(typeof r.breakEvenYear === "number" || r.breakEvenYear === null);
+  assert.ok(typeof r.breakEvenMonth === "number" || r.breakEvenMonth === null);
+  assert.ok(r.series.every((p) => Number.isFinite(p.netWorthRent) && Number.isFinite(p.netWorthBuy)));
+});
+

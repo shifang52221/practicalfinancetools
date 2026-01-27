@@ -57,6 +57,46 @@ export function RentVsBuyCalculator() {
   ]);
 
   const last = result.series[result.series.length - 1];
+  const diffAtHorizon = (last?.netWorthBuy ?? 0) - (last?.netWorthRent ?? 0);
+
+  const breakEvenYearText = result.breakEvenYear === null ? "—" : `${result.breakEvenYear} yr`;
+  const breakEvenMonthText = result.breakEvenMonth === null ? "—" : `${result.breakEvenMonth} mo`;
+
+  function toCsv(rows: typeof result.series) {
+    const header = [
+      "year",
+      "net_worth_rent",
+      "net_worth_buy",
+      "rent_monthly",
+      "owner_monthly_cash_cost",
+      "home_value",
+      "loan_balance"
+    ];
+    const lines = rows.map((r) =>
+      [
+        r.year,
+        r.netWorthRent.toFixed(2),
+        r.netWorthBuy.toFixed(2),
+        r.rentMonthly.toFixed(2),
+        r.ownerMonthlyCashCost.toFixed(2),
+        r.homeValue.toFixed(2),
+        r.loanBalance.toFixed(2)
+      ].join(",")
+    );
+    return [header.join(","), ...lines].join("\n");
+  }
+
+  function downloadCsv(filename: string, csv: string) {
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
 
   return (
     <div className="calc-grid">
@@ -154,8 +194,8 @@ export function RentVsBuyCalculator() {
               </button>
             </div>
             <div className="hint" style={{ marginTop: 8 }}>
-              This is a simplified scenario model and does not include income taxes, itemized deductions, or opportunity
-              costs beyond the assumptions shown.
+              This is a simplified scenario model and does not include income taxes or itemized deductions. It assumes leftover monthly cash is invested at the
+              rate shown.
             </div>
           </div>
         </div>
@@ -165,9 +205,14 @@ export function RentVsBuyCalculator() {
         <h3>Results</h3>
         <div className="kpis">
           <div className="kpi">
-            <div className="k">Break-even</div>
-            <div className="v">{result.breakEvenYear === null ? "—" : `${result.breakEvenYear} yr`}</div>
+            <div className="k">Break-even (year)</div>
+            <div className="v">{breakEvenYearText}</div>
             <div className="hint">First year buying ≥ renting (net worth)</div>
+          </div>
+          <div className="kpi">
+            <div className="k">Break-even (month)</div>
+            <div className="v">{breakEvenMonthText}</div>
+            <div className="hint">First month buying ≥ renting</div>
           </div>
           <div className="kpi">
             <div className="k">Net worth (rent) at {last?.year} yr</div>
@@ -178,11 +223,20 @@ export function RentVsBuyCalculator() {
             <div className="v">{formatCurrency2(last?.netWorthBuy ?? 0)}</div>
           </div>
           <div className="kpi">
-            <div className="k">Winner at horizon</div>
-            <div className="v">
-              {(last?.netWorthBuy ?? 0) >= (last?.netWorthRent ?? 0) ? "Buy" : "Rent"}
-            </div>
+            <div className="k">Difference at horizon</div>
+            <div className="v">{formatCurrency2(diffAtHorizon)}</div>
+            <div className="hint">Buy − rent</div>
           </div>
+          <div className="kpi">
+            <div className="k">Winner at horizon</div>
+            <div className="v">{diffAtHorizon >= 0 ? "Buy" : "Rent"}</div>
+          </div>
+        </div>
+
+        <div className="btn-row" style={{ marginTop: 12 }}>
+          <button className="btn" type="button" onClick={() => downloadCsv("rent-vs-buy.csv", toCsv(result.series))}>
+            Download (CSV)
+          </button>
         </div>
 
         <details style={{ marginTop: 12 }}>
@@ -194,6 +248,8 @@ export function RentVsBuyCalculator() {
                   <th>Year</th>
                   <th className="num">Rent net worth</th>
                   <th className="num">Buy net worth</th>
+                  <th className="num">Rent/mo</th>
+                  <th className="num">Own/mo</th>
                 </tr>
               </thead>
               <tbody>
@@ -202,6 +258,8 @@ export function RentVsBuyCalculator() {
                     <td>{p.year}</td>
                     <td className="num">{formatCurrency2(p.netWorthRent)}</td>
                     <td className="num">{formatCurrency2(p.netWorthBuy)}</td>
+                    <td className="num">{formatCurrency2(p.rentMonthly)}</td>
+                    <td className="num">{formatCurrency2(p.ownerMonthlyCashCost)}</td>
                   </tr>
                 ))}
               </tbody>
