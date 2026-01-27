@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { mortgageMonthlyBreakdown } from "../../lib/calc/loan";
+import { amortizationSchedule, mortgageMonthlyBreakdown } from "../../lib/calc/loan";
 import { formatCurrency2, formatPercent } from "../../lib/format";
 import { clamp } from "../../lib/math";
 
@@ -8,25 +8,59 @@ export function MortgagePaymentCalculator() {
   const [downPayment, setDownPayment] = useState(90000);
   const [rate, setRate] = useState(6.5);
   const [termYears, setTermYears] = useState(30);
+  const [propertyTaxMode, setPropertyTaxMode] = useState<"annual" | "rate">("annual");
   const [propertyTaxAnnual, setPropertyTaxAnnual] = useState(5400);
+  const [propertyTaxRate, setPropertyTaxRate] = useState(1.2);
   const [insuranceAnnual, setInsuranceAnnual] = useState(1800);
   const [hoaMonthly, setHoaMonthly] = useState(0);
   const [pmiRateAnnual, setPmiRateAnnual] = useState(0.6);
 
+  const homePriceSafe = clamp(homePrice, 0, 1e9);
+  const downPaymentSafe = clamp(downPayment, 0, 1e9);
+  const termYearsSafe = clamp(termYears, 1, 60);
+  const rateSafe = clamp(rate, 0, 30);
+  const propertyTaxAnnualComputed =
+    propertyTaxMode === "rate" ? (homePriceSafe * clamp(propertyTaxRate, 0, 20)) / 100 : clamp(propertyTaxAnnual, 0, 1e8);
+
   const result = useMemo(() => {
     return mortgageMonthlyBreakdown({
-      homePrice: clamp(homePrice, 0, 1e9),
-      downPayment: clamp(downPayment, 0, 1e9),
-      aprPercent: clamp(rate, 0, 30),
-      termYears: clamp(termYears, 1, 60),
-      propertyTaxAnnual: clamp(propertyTaxAnnual, 0, 1e8),
+      homePrice: homePriceSafe,
+      downPayment: downPaymentSafe,
+      aprPercent: rateSafe,
+      termYears: termYearsSafe,
+      propertyTaxAnnual: propertyTaxAnnualComputed,
       insuranceAnnual: clamp(insuranceAnnual, 0, 1e8),
       hoaMonthly: clamp(hoaMonthly, 0, 1e6),
       pmiRateAnnual: clamp(pmiRateAnnual, 0, 5)
     });
-  }, [homePrice, downPayment, rate, termYears, propertyTaxAnnual, insuranceAnnual, hoaMonthly, pmiRateAnnual]);
+  }, [homePriceSafe, downPaymentSafe, rateSafe, termYearsSafe, propertyTaxAnnualComputed, insuranceAnnual, hoaMonthly, pmiRateAnnual]);
 
-  const dpPct = useMemo(() => (homePrice > 0 ? clamp(downPayment, 0, homePrice) / homePrice : 0), [homePrice, downPayment]);
+  const dpPct = useMemo(() => (homePriceSafe > 0 ? clamp(downPaymentSafe, 0, homePriceSafe) / homePriceSafe : 0), [homePriceSafe, downPaymentSafe]);
+  const ltv = useMemo(() => (homePriceSafe > 0 ? result.loanAmount / homePriceSafe : 0), [homePriceSafe, result.loanAmount]);
+  const termMonths = Math.round(termYearsSafe * 12);
+
+  const pmiStopMonth = useMemo(() => {
+    if (homePriceSafe <= 0) return null;
+    if (dpPct >= 0.2) return 0;
+    if (result.loanAmount <= 0) return 0;
+
+    const thresholdBalance = 0.8 * homePriceSafe;
+    const sched = amortizationSchedule({
+      principal: result.loanAmount,
+      aprPercent: rateSafe,
+      termMonths
+    });
+    const found = sched.rows.find((r) => r.endingBalance <= thresholdBalance);
+    return found ? found.month : null;
+  }, [homePriceSafe, dpPct, result.loanAmount, rateSafe, termMonths]);
+
+  const pmiMonths = useMemo(() => {
+    if (result.pmiMonthly <= 0) return 0;
+    if (pmiStopMonth === null) return termMonths;
+    return Math.max(0, Math.min(termMonths, pmiStopMonth));
+  }, [result.pmiMonthly, pmiStopMonth, termMonths]);
+
+  const totalPmiEstimate = result.pmiMonthly * pmiMonths;
 
   return (
     <div className="calc-grid">
@@ -51,8 +85,46 @@ export function MortgagePaymentCalculator() {
             <input type="number" inputMode="numeric" value={termYears} min={1} step={1} onChange={(e) => setTermYears(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Property tax (annual)</div>
-            <input type="number" inputMode="decimal" value={propertyTaxAnnual} min={0} onChange={(e) => setPropertyTaxAnnual(+e.target.value)} />
+            <div className="label">Property tax</div>
+            <div className="btn-row" style={{ marginTop: 6 }}>
+              <button
+                className={`btn ${propertyTaxMode === "annual" ? "btn-primary" : ""}`}
+                type="button"
+                onClick={() => setPropertyTaxMode("annual")}
+              >
+                Annual ($)
+              </button>
+              <button
+                className={`btn ${propertyTaxMode === "rate" ? "btn-primary" : ""}`}
+                type="button"
+                onClick={() => setPropertyTaxMode("rate")}
+              >
+                Rate (%)
+              </button>
+            </div>
+            {propertyTaxMode === "annual" ? (
+              <input
+                style={{ marginTop: 10 }}
+                type="number"
+                inputMode="decimal"
+                value={propertyTaxAnnual}
+                min={0}
+                onChange={(e) => setPropertyTaxAnnual(+e.target.value)}
+              />
+            ) : (
+              <input
+                style={{ marginTop: 10 }}
+                type="number"
+                inputMode="decimal"
+                value={propertyTaxRate}
+                min={0}
+                step={0.01}
+                onChange={(e) => setPropertyTaxRate(+e.target.value)}
+              />
+            )}
+            <div className="hint">
+              {formatCurrency2(propertyTaxAnnualComputed)} / year ({formatCurrency2(propertyTaxAnnualComputed / 12)} / month)
+            </div>
           </div>
           <div className="field field-3">
             <div className="label">Home insurance (annual)</div>
@@ -77,7 +149,9 @@ export function MortgagePaymentCalculator() {
                   setDownPayment(90000);
                   setRate(6.5);
                   setTermYears(30);
+                  setPropertyTaxMode("annual");
                   setPropertyTaxAnnual(5400);
+                  setPropertyTaxRate(1.2);
                   setInsuranceAnnual(1800);
                   setHoaMonthly(0);
                   setPmiRateAnnual(0.6);
@@ -100,6 +174,7 @@ export function MortgagePaymentCalculator() {
           <div className="kpi">
             <div className="k">Loan amount</div>
             <div className="v">{formatCurrency2(result.loanAmount)}</div>
+            <div className="hint">LTV: {formatPercent(ltv, 1)}</div>
           </div>
           <div className="kpi">
             <div className="k">Principal + interest</div>
@@ -108,6 +183,21 @@ export function MortgagePaymentCalculator() {
           <div className="kpi">
             <div className="k">Taxes + insurance + HOA + PMI</div>
             <div className="v">{formatCurrency2(result.taxMonthly + result.insuranceMonthly + result.hoaMonthly + result.pmiMonthly)}</div>
+          </div>
+          <div className="kpi">
+            <div className="k">PMI (est.)</div>
+            <div className="v">{result.pmiMonthly > 0 ? formatCurrency2(result.pmiMonthly) : "—"}</div>
+            <div className="hint">
+              {result.pmiMonthly > 0
+                ? pmiStopMonth === null
+                  ? `Assumes PMI for up to ${termMonths} months`
+                  : `Estimated PMI ends around month ${pmiStopMonth} (80% LTV)`
+                : "No PMI at 20%+ down"}
+            </div>
+          </div>
+          <div className="kpi">
+            <div className="k">Total PMI (est.)</div>
+            <div className="v">{result.pmiMonthly > 0 ? formatCurrency2(totalPmiEstimate) : "—"}</div>
           </div>
         </div>
 
@@ -135,4 +225,3 @@ export function MortgagePaymentCalculator() {
     </div>
   );
 }
-

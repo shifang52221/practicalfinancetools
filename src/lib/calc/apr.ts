@@ -9,9 +9,11 @@ export function estimateApr(opts: {
   const loanAmount = clamp(opts.loanAmount, 0, Number.MAX_SAFE_INTEGER);
   const termMonths = Math.max(1, Math.floor(opts.termMonths));
   const fees = clamp(opts.fees, 0, Number.MAX_SAFE_INTEGER);
-  const net = Math.max(0.01, loanAmount - fees);
+  const netRaw = loanAmount - fees;
+  const net = Math.max(0, netRaw);
 
   const payment = paymentForAmortizedLoan(loanAmount, clamp(opts.nominalRatePercent, 0, 200), termMonths);
+  if (net <= 0 || payment <= 0) return { payment, aprPercent: null };
 
   const root = solveBisection({
     lo: 0,
@@ -26,4 +28,3 @@ export function estimateApr(opts: {
   const aprPercent = root === null ? null : root * 12 * 100;
   return { payment, aprPercent };
 }
-

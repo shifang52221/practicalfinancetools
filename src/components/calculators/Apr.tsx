@@ -21,6 +21,15 @@ export function AprCalculator() {
   const aprText =
     result.aprPercent === null ? "—" : new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(result.aprPercent) + "%";
 
+  const loanAmountSafe = clamp(loanAmount, 0, 1e9);
+  const feesSafe = clamp(fees, 0, 1e8);
+  const termMonthsSafe = Math.max(1, Math.floor(clamp(termMonths, 1, 600)));
+  const netReceived = Math.max(0, loanAmountSafe - feesSafe);
+  const totalPaid = result.payment * termMonthsSafe;
+  const totalInterest = Math.max(0, totalPaid - loanAmountSafe);
+  const feePct = loanAmountSafe > 0 ? (feesSafe / loanAmountSafe) * 100 : 0;
+  const hasInvalidFee = loanAmountSafe > 0 && feesSafe >= loanAmountSafe;
+
   return (
     <div className="calc-grid">
       <div className="panel">
@@ -66,13 +75,32 @@ export function AprCalculator() {
             <div className="v">{aprText}</div>
             <div className="hint">Includes fees</div>
           </div>
+          <div className="kpi">
+            <div className="k">Net received</div>
+            <div className="v">{formatCurrency2(netReceived)}</div>
+            <div className="hint">Loan amount minus fees</div>
+          </div>
+          <div className="kpi">
+            <div className="k">Total paid (est.)</div>
+            <div className="v">{formatCurrency2(totalPaid)}</div>
+            <div className="hint">{termMonthsSafe} payments</div>
+          </div>
+          <div className="kpi">
+            <div className="k">Total interest (est.)</div>
+            <div className="v">{formatCurrency2(totalInterest)}</div>
+            <div className="hint">Excludes fees</div>
+          </div>
+          <div className="kpi">
+            <div className="k">Fees (% of amount)</div>
+            <div className="v">{new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(feePct)}%</div>
+          </div>
         </div>
         <div className="hint" style={{ marginTop: 12, lineHeight: 1.5 }}>
-          APR calculations can vary by lender and product type. This estimate treats fees as reducing the amount you
-          effectively receive upfront.
+          {hasInvalidFee
+            ? "If fees are greater than or equal to the loan amount, APR can’t be estimated meaningfully. Reduce the fee amount."
+            : "APR calculations can vary by lender and product type. This estimate treats fees as reducing the amount you effectively receive upfront."}
         </div>
       </div>
     </div>
   );
 }
-

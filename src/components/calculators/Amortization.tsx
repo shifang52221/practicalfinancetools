@@ -18,6 +18,28 @@ export function AmortizationScheduleCalculator() {
 
   const preview = result.rows.slice(0, 24);
 
+  function toCsv(rows: typeof result.rows) {
+    const header = ["month", "payment", "interest", "principal", "starting_balance", "ending_balance"];
+    const lines = rows.map((r) =>
+      [r.month, r.payment.toFixed(2), r.interest.toFixed(2), r.principal.toFixed(2), r.startingBalance.toFixed(2), r.endingBalance.toFixed(2)].join(
+        ","
+      )
+    );
+    return [header.join(","), ...lines].join("\n");
+  }
+
+  function downloadCsv(filename: string, csv: string) {
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
   return (
     <div className="calc-grid">
       <div className="panel">
@@ -66,6 +88,12 @@ export function AmortizationScheduleCalculator() {
           </div>
         </div>
 
+        <div className="btn-row" style={{ marginTop: 12 }}>
+          <button className="btn" type="button" onClick={() => downloadCsv("amortization-schedule.csv", toCsv(result.rows))}>
+            Download schedule (CSV)
+          </button>
+        </div>
+
         <details style={{ marginTop: 12 }}>
           <summary style={{ cursor: "pointer", fontWeight: 800 }}>Schedule (first {preview.length} months)</summary>
           <div style={{ overflowX: "auto", marginTop: 10 }}>
@@ -97,4 +125,3 @@ export function AmortizationScheduleCalculator() {
     </div>
   );
 }
-

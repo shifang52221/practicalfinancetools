@@ -23,6 +23,8 @@ export function amortizationSchedule(opts: {
   aprPercent: number;
   termMonths: number;
   extraMonthly?: number;
+  extraMonthlyStartMonth?: number;
+  extraMonthlyEndMonth?: number;
   extraOneTime?: number;
   extraOneTimeMonth?: number;
   maxMonths?: number;
@@ -33,6 +35,11 @@ export function amortizationSchedule(opts: {
   const paymentPI = paymentForAmortizedLoan(balance, opts.aprPercent, months);
   const r = monthlyRateFromApr(opts.aprPercent);
   const extraMonthly = clamp(opts.extraMonthly ?? 0, 0, Number.MAX_SAFE_INTEGER);
+  const extraMonthlyStartMonth = Math.max(1, Math.floor(opts.extraMonthlyStartMonth ?? 1));
+  const extraMonthlyEndMonthRaw = opts.extraMonthlyEndMonth ?? Number.POSITIVE_INFINITY;
+  const extraMonthlyEndMonth = Number.isFinite(extraMonthlyEndMonthRaw)
+    ? Math.max(extraMonthlyStartMonth, Math.floor(extraMonthlyEndMonthRaw))
+    : Number.POSITIVE_INFINITY;
   const extraOneTime = clamp(opts.extraOneTime ?? 0, 0, Number.MAX_SAFE_INTEGER);
   const extraOneTimeMonth = Math.floor(opts.extraOneTimeMonth ?? -1);
 
@@ -45,7 +52,7 @@ export function amortizationSchedule(opts: {
     const interest = startingBalance * r;
     const payment = Math.min(paymentPI, startingBalance + interest);
     const principal = Math.max(0, payment - interest);
-    let extraPrincipal = extraMonthly;
+    let extraPrincipal = month >= extraMonthlyStartMonth && month <= extraMonthlyEndMonth ? extraMonthly : 0;
     if (month === extraOneTimeMonth) extraPrincipal += extraOneTime;
     extraPrincipal = Math.min(extraPrincipal, Math.max(0, startingBalance - principal));
     const endingBalance = Math.max(0, startingBalance - principal - extraPrincipal);
@@ -102,4 +109,3 @@ export function mortgageMonthlyBreakdown(opts: {
   const totalMonthly = paymentPI + taxMonthly + insuranceMonthly + hoaMonthly + pmiMonthly;
   return { loanAmount, paymentPI, taxMonthly, insuranceMonthly, hoaMonthly, pmiMonthly, totalMonthly };
 }
-

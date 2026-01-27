@@ -8,6 +8,8 @@ export function ExtraPaymentMortgageCalculator() {
   const [rate, setRate] = useState(6.5);
   const [termYears, setTermYears] = useState(30);
   const [extraMonthly, setExtraMonthly] = useState(150);
+  const [extraMonthlyStartMonth, setExtraMonthlyStartMonth] = useState(1);
+  const [extraMonthlyEndMonth, setExtraMonthlyEndMonth] = useState(0);
   const [extraOneTime, setExtraOneTime] = useState(0);
   const [extraOneTimeMonth, setExtraOneTimeMonth] = useState(1);
 
@@ -25,14 +27,46 @@ export function ExtraPaymentMortgageCalculator() {
       aprPercent: clamp(rate, 0, 30),
       termMonths: Math.round(clamp(termYears, 1, 60) * 12),
       extraMonthly: clamp(extraMonthly, 0, 1e8),
+      extraMonthlyStartMonth: clamp(extraMonthlyStartMonth, 1, 1200),
+      extraMonthlyEndMonth: extraMonthlyEndMonth > 0 ? clamp(extraMonthlyEndMonth, 1, 1200) : undefined,
       extraOneTime: clamp(extraOneTime, 0, 1e9),
       extraOneTimeMonth: clamp(extraOneTimeMonth, 1, 1200)
     });
-  }, [principal, rate, termYears, extraMonthly, extraOneTime, extraOneTimeMonth]);
+  }, [principal, rate, termYears, extraMonthly, extraMonthlyStartMonth, extraMonthlyEndMonth, extraOneTime, extraOneTimeMonth]);
 
   const interestSaved = base.totalInterest - withExtra.totalInterest;
   const monthsSaved = base.months - withExtra.months;
   const preview = withExtra.rows.slice(0, 24);
+  const extraMonthlyApplies =
+    extraMonthly > 0 && (extraMonthlyEndMonth <= 0 || extraMonthlyEndMonth >= extraMonthlyStartMonth);
+
+  function toCsv(rows: typeof withExtra.rows) {
+    const header = ["month", "payment", "extra_principal", "interest", "principal", "starting_balance", "ending_balance"];
+    const lines = rows.map((r) =>
+      [
+        r.month,
+        r.payment.toFixed(2),
+        r.extraPrincipal.toFixed(2),
+        r.interest.toFixed(2),
+        r.principal.toFixed(2),
+        r.startingBalance.toFixed(2),
+        r.endingBalance.toFixed(2)
+      ].join(",")
+    );
+    return [header.join(","), ...lines].join("\n");
+  }
+
+  function downloadCsv(filename: string, csv: string) {
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
 
   return (
     <div className="calc-grid">
@@ -56,6 +90,30 @@ export function ExtraPaymentMortgageCalculator() {
             <input type="number" inputMode="decimal" value={extraMonthly} min={0} onChange={(e) => setExtraMonthly(+e.target.value)} />
           </div>
           <div className="field field-3">
+            <div className="label">Extra starts (month)</div>
+            <input
+              type="number"
+              inputMode="numeric"
+              value={extraMonthlyStartMonth}
+              min={1}
+              step={1}
+              onChange={(e) => setExtraMonthlyStartMonth(+e.target.value)}
+            />
+            <div className="hint">Month 1 = first payment</div>
+          </div>
+          <div className="field field-3">
+            <div className="label">Extra ends (month)</div>
+            <input
+              type="number"
+              inputMode="numeric"
+              value={extraMonthlyEndMonth}
+              min={0}
+              step={1}
+              onChange={(e) => setExtraMonthlyEndMonth(+e.target.value)}
+            />
+            <div className="hint">0 = no end date</div>
+          </div>
+          <div className="field field-3">
             <div className="label">One-time extra</div>
             <input type="number" inputMode="decimal" value={extraOneTime} min={0} onChange={(e) => setExtraOneTime(+e.target.value)} />
           </div>
@@ -74,6 +132,8 @@ export function ExtraPaymentMortgageCalculator() {
                   setRate(6.5);
                   setTermYears(30);
                   setExtraMonthly(150);
+                  setExtraMonthlyStartMonth(1);
+                  setExtraMonthlyEndMonth(0);
                   setExtraOneTime(0);
                   setExtraOneTimeMonth(1);
                 }}
@@ -102,9 +162,19 @@ export function ExtraPaymentMortgageCalculator() {
           </div>
           <div className="kpi">
             <div className="k">New monthly P&amp;I</div>
-            <div className="v">{formatCurrency2(withExtra.paymentPI + extraMonthly)}</div>
-            <div className="hint">Required P&amp;I stays the same; extra is added</div>
+            <div className="v">{formatCurrency2(withExtra.paymentPI + (extraMonthlyApplies ? extraMonthly : 0))}</div>
+            <div className="hint">Required P&amp;I stays the same; extra is added when active</div>
           </div>
+        </div>
+
+        <div className="btn-row" style={{ marginTop: 12 }}>
+          <button
+            className="btn"
+            type="button"
+            onClick={() => downloadCsv("mortgage-extra-payment-schedule.csv", toCsv(withExtra.rows))}
+          >
+            Download schedule (CSV)
+          </button>
         </div>
 
         <details style={{ marginTop: 12 }}>
@@ -138,4 +208,3 @@ export function ExtraPaymentMortgageCalculator() {
     </div>
   );
 }
-

@@ -70,7 +70,7 @@ export function MinimumPaymentPayoff() {
         <div className="kpis">
           <div className="kpi">
             <div className="k">Time to payoff</div>
-            <div className="v">{result.months ? formatMonths(result.months) : "—"}</div>
+            <div className="v">{result.months === null ? "Not paid off" : formatMonths(result.months)}</div>
           </div>
           <div className="kpi">
             <div className="k">Total interest</div>
@@ -117,4 +117,3 @@ export function MinimumPaymentPayoff() {
     </div>
   );
 }
-
