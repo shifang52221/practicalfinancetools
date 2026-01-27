@@ -1,9 +1,27 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Mortgage Extra Principal Calculator (inputs and comparisons)";
 const description =
   "How to use a mortgage extra principal calculator to compare monthly extra payments vs lump sums, and what to confirm with your lender. Educational use only.";
+
+const examplePrincipal = 360000;
+const exampleApr = 6.5;
+const exampleTermMonths = 360;
+const exampleExtraMonthly = 150;
+const exampleLumpSum = 5000;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTermMonths });
+const withExtra = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTermMonths,
+  extraMonthly: exampleExtraMonthly,
+  extraOneTime: exampleLumpSum,
+  extraOneTimeMonth: 1
+});
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-extra-principal-calculator">
   <section class="card hero">
@@ -21,6 +39,7 @@ const description =
       enter, and how to interpret the payoff date and interest savings.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Extra principal calculator</a>
       <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
     </div>
@@ -61,6 +80,37 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to interpret the results</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The two most useful outputs are the <strong>payoff time</strong> and <strong>total interest</strong>. A shorter payoff time means
+      fewer payments; lower total interest shows how much the extra payment reduces the cost of borrowing.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If you only care about monthly cash flow, a recast or refinance may matter more than extra principal. But if your goal is to reduce
+      interest and finish sooner, extra principal is typically the most direct lever.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Monthly extra vs lump sum</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A lump sum paid today often saves more than the same lump sum paid later because it reduces the balance sooner. A smaller recurring
+      monthly extra can also beat a larger lump sum that happens years later.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      The calculator helps you test both options side by side. Keep the baseline constant and change only the extra amount or timing.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">If you may refinance</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Extra principal savings depend on how long you keep the loan. If you expect to refinance or move within a few years, compare scenarios
+      over that shorter horizon rather than the full term. A smaller extra payment might be more sensible if your timeline is short.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What to confirm with your lender</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Extra is applied as <strong>principal-only</strong> (not "paid ahead").</li>
@@ -68,7 +118,7 @@ const description =
       <li>If your goal is a lower required payment, ask about recasting.</li>
     </ul>
     <p class="muted" style="margin:12px 0 0">
-      If you’re comparing options, keep the baseline constant (same rate, term, and payment assumptions), then change only one thing at a
+      If you're comparing options, keep the baseline constant (same rate, term, and payment assumptions), then change only one thing at a
       time (monthly extra vs lump sum vs timing).
     </p>
   </section>
@@ -86,6 +136,75 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (computed)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Compare baseline to adding
+      {money0.format(exampleExtraMonthly)}/month plus a one-time {money0.format(exampleLumpSum)} in month 1.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline</td>
+            <td class="num">{base.months} months</td>
+            <td class="num">{money0.format(base.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Extra + lump sum</td>
+            <td class="num">{withExtra.months} months</td>
+            <td class="num">{money0.format(withExtra.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Interest savings in this example are about {money0.format(Math.max(0, base.totalInterest - withExtra.totalInterest))} with a payoff
+      acceleration of {Math.max(0, base.months - withExtra.months)} months.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: clean comparisons</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Same baseline:</strong> rate, term, and starting balance must match.</li>
+      <li><strong>One change at a time:</strong> monthly extra, lump sum, or timing.</li>
+      <li><strong>Principal-only posting:</strong> confirm extra payments reduce balance.</li>
+      <li><strong>Include time horizon:</strong> if you might refinance, compare shorter windows.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Why do two calculators give different answers?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Differences usually come from rounding, payment timing assumptions, or how extra payments are applied. Keep inputs consistent.
+    </p>
+    <h3 style="margin:12px 0 0">Do extra payments reduce taxes or insurance?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      No. Escrow items are separate from principal and interest.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgages resources
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Run scenarios</a>
@@ -93,6 +212,6 @@ const description =
       <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

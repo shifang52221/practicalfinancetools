@@ -1,10 +1,35 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../config/site";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Refinance Break-even (how to estimate it)";
 const description =
   "A refinance break-even estimate compares monthly savings to closing costs and how long you plan to keep the loan. Educational use only.";
+
+const examplePrincipal = 300000;
+const exampleCurrentApr = 6.5;
+const exampleCurrentTerm = 360;
+const exampleRefiApr = 5.75;
+const exampleRefiTerm = 360;
+const exampleClosingCosts = 6000;
+const current = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleCurrentApr,
+  termMonths: exampleCurrentTerm
+});
+const refi = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleRefiApr,
+  termMonths: exampleRefiTerm
+});
+const monthlySavings = Math.max(0, current.paymentPI - refi.paymentPI);
+const breakevenMonths = monthlySavings > 0 ? exampleClosingCosts / monthlySavings : null;
+const breakevenYears = breakevenMonths == null ? null : breakevenMonths / 12;
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const num1 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 1 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/refinance-break-even">
   <section class="card hero">
@@ -18,10 +43,11 @@ const description =
     </nav>
     <h1>Refinance break-even</h1>
     <p>
-      Break-even is the point where your monthly savings from a refinance have “paid back” the closing costs. It’s a
-      useful sanity check, but it depends on your rate, term, costs, taxes, and how long you’ll keep the mortgage.
+      Break-even is the point where your monthly savings from a refinance have "paid back" the closing costs. It's a
+      useful sanity check, but it depends on your rate, term, costs, taxes, and how long you'll keep the mortgage.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Compare monthly payments</a>
       <a class="btn" href="/calculators/amortization-schedule-calculator">Compare schedules</a>
     </div>
@@ -33,12 +59,54 @@ const description =
       A common first-pass estimate is:
     </p>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Monthly savings = old monthly payment − new monthly payment (keep assumptions consistent).</li>
-      <li>Break-even months = closing costs ÷ monthly savings.</li>
+      <li>Monthly savings = old monthly payment - new monthly payment (keep assumptions consistent).</li>
+      <li>Break-even months = closing costs / monthly savings.</li>
     </ul>
     <p class="muted" style="margin:12px 0 0">
-      If you plan to move or refinance again before break-even, refinancing may not make sense. If you’ll keep the loan
+      If you plan to move or refinance again before break-even, refinancing may not make sense. If you'll keep the loan
       longer, a refinance can be beneficial even if break-even takes a while.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (computed)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(examplePrincipal)} mortgage at {pct2.format(exampleCurrentApr)}% vs refinance at {pct2.format(exampleRefiApr)}%
+      with {money0.format(exampleClosingCosts)} in closing costs, both 30-year terms.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Rate</th>
+            <th class="num">Term</th>
+            <th class="num">Monthly P&amp;I</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Current</td>
+            <td class="num">{pct2.format(exampleCurrentApr)}%</td>
+            <td class="num">{exampleCurrentTerm} mo</td>
+            <td class="num">{money2.format(current.paymentPI)}</td>
+            <td class="num">{money0.format(current.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Refi</td>
+            <td class="num">{pct2.format(exampleRefiApr)}%</td>
+            <td class="num">{exampleRefiTerm} mo</td>
+            <td class="num">{money2.format(refi.paymentPI)}</td>
+            <td class="num">{money0.format(refi.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Monthly savings are about {money2.format(monthlySavings)}. Break-even is roughly{" "}
+      <strong>{breakevenMonths == null ? "N/A" : `${num1.format(breakevenMonths)} months`}</strong>
+      {breakevenYears == null ? "" : ` (${num1.format(breakevenYears)} years)`}.
     </p>
   </section>
 
@@ -66,6 +134,32 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Costs to include in break-even</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Lender fees:</strong> origination, underwriting, and processing.</li>
+      <li><strong>Points:</strong> paid to buy down the rate (optional).</li>
+      <li><strong>Third-party costs:</strong> appraisal, title, recording, and escrow fees.</li>
+      <li><strong>Prepaid items:</strong> interest, taxes, and insurance that affect cash-to-close.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Some of these costs are unavoidable, while others are optional. A lower rate can be attractive, but if you pay high points you need a
+      long enough horizon to recoup them.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Break-even vs total cost</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Break-even focuses on how long it takes to recoup closing costs through monthly savings. But total cost can tell a different story if
+      you reset to a new 30-year term or pay large points upfront.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      A refinance with a lower payment might still cost more in total interest if it extends the term significantly. Always compare the
+      total interest over your expected time horizon, not just the monthly payment.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How to compare with these tools</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Compute your current monthly payment and baseline amortization.</li>
@@ -81,5 +175,47 @@ const description =
       Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
   </section>
-</BaseLayout>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: before you decide</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Confirm remaining term:</strong> compare against the term you actually have left.</li>
+      <li><strong>Itemize closing costs:</strong> lender fees, points, and third-party costs.</li>
+      <li><strong>Decide cash vs roll-in:</strong> rolling costs raises the balance and interest.</li>
+      <li><strong>Estimate time horizon:</strong> if you plan to move within a few years, break-even matters more.</li>
+      <li><strong>Compare total interest:</strong> not just the monthly payment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is break-even the only thing that matters?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      No. Break-even is a useful checkpoint, but your total interest, cash-to-close, and expected time horizon often matter more.
+    </p>
+    <h3 style="margin:12px 0 0">Should I reset to 30 years to lower the payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It can lower the payment, but it may increase total interest. Consider a shorter term or make extra principal payments if you want to
+      avoid extending the payoff timeline.
+    </p>
+    <h3 style="margin:12px 0 0">Are points worth it?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Points can reduce the rate but increase upfront cost. Use break-even math to see if the monthly savings justify the cost given how
+      long you plan to keep the loan.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgages resources
+        </a>
+      </li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+  </section>
+</BaseLayout>

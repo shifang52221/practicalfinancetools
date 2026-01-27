@@ -1,10 +1,25 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../config/site";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Calculate Mortgage Payoff with Additional Principal Payments";
 const description =
   "A practical way to estimate how additional principal payments change payoff time and total interest, plus what to confirm with your lender. Educational use only.";
+
+const examplePrincipal = 300000;
+const exampleApr = 6.5;
+const exampleTermMonths = 360;
+const exampleExtraMonthly = 250;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTermMonths });
+const withExtra = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTermMonths,
+  extraMonthly: exampleExtraMonthly
+});
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout
   title={title}
@@ -26,6 +41,7 @@ const description =
       earlier. This guide shows a simple workflow to estimate the impact and avoid common lender posting pitfalls.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra principal calculator</a>
       <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
     </div>
@@ -39,6 +55,20 @@ const description =
       <li>Model additional principal payments in the <a href="/calculators/extra-payment-calculator">Extra Payment Mortgage Calculator</a>.</li>
       <li>Compare payoff date and total interest between baseline vs extra payment scenarios.</li>
     </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Inputs to gather first</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Current balance:</strong> use the statement balance, not just the original loan amount.</li>
+      <li><strong>Interest rate:</strong> the current APR on your note.</li>
+      <li><strong>Remaining term:</strong> years/months left on the loan.</li>
+      <li><strong>Extra payment plan:</strong> monthly extra, lump sum, or both.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Using the correct remaining balance and term makes a big difference. If you are mid-loan, do not use the original balance unless you
+      adjust the term accordingly.
+    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -63,11 +93,101 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes to avoid</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using the original loan balance when you are years into the loan.</li>
+      <li>Comparing scenarios with different terms or rates.</li>
+      <li>Assuming your extra payment reduces escrow.</li>
+      <li>Not verifying how the servicer applies the extra payment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A simple starter plan</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you are unsure where to start, try three scenarios: $100 extra, $200 extra, and $300 extra per month. Compare the payoff dates and
+      total interest for each option. Choose the largest amount you can consistently maintain without stressing your monthly cash flow.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (computed)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Compare baseline to adding
+      {money0.format(exampleExtraMonthly)}/month in extra principal.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Extra principal</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline</td>
+            <td class="num">{money0.format(0)}</td>
+            <td class="num">{base.months} months</td>
+            <td class="num">{money0.format(base.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>With extra</td>
+            <td class="num">{money0.format(exampleExtraMonthly)}</td>
+            <td class="num">{withExtra.months} months</td>
+            <td class="num">{money0.format(withExtra.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      In this example, extra payments save about {money0.format(Math.max(0, base.totalInterest - withExtra.totalInterest))} in interest and
+      shorten payoff by {Math.max(0, base.months - withExtra.months)} months.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What to confirm with your lender</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>The additional amount is applied as <strong>principal-only</strong> (not "paid ahead" toward the next due date).</li>
       <li>There is no prepayment penalty (many loans have none; some do).</li>
       <li>If you want a lower required payment later, whether a recast is available and what it costs.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: a reliable payoff comparison</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Keep the baseline constant:</strong> same rate, term, and starting balance.</li>
+      <li><strong>Change one variable at a time:</strong> monthly extra, lump sum, or timing.</li>
+      <li><strong>Verify posting:</strong> check statements to confirm principal-only application.</li>
+      <li><strong>Include liquidity:</strong> don't sacrifice emergency reserves for small gains.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Will extra principal lower my payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Usually no. It shortens the term unless you recast or refinance.
+    </p>
+    <h3 style="margin:12px 0 0">Is a lump sum better than a monthly extra?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Earlier is usually better for interest savings, but the best plan is the one you can sustain.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgages resources
+        </a>
+      </li>
     </ul>
   </section>
 
@@ -82,8 +202,7 @@ const description =
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-01-23
+      Last updated: 2026-01-28
     </p>
   </section>
 </BaseLayout>
-

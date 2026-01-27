@@ -1,9 +1,25 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "If I Pay a $10,000 Lump Sum on My Mortgage (what changes?)";
 const description =
   "Learn what a $10,000 principal-only lump sum can change: payoff time, total interest, and timing effects. Compare with monthly extra payments.";
+
+const examplePrincipal = 300000;
+const exampleApr = 6.5;
+const exampleTermMonths = 360;
+const exampleLumpSum = 10000;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTermMonths });
+const withLump = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTermMonths,
+  extraOneTime: exampleLumpSum,
+  extraOneTimeMonth: 1
+});
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-lump-sum-10000" robots="noindex, follow">
   <section class="card hero">
@@ -21,6 +37,7 @@ const description =
       Use a calculator to compare paying $10,000 now vs spreading extra payments over time.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Model a $10,000 lump sum</a>
       <a class="btn" href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a>
     </div>
@@ -39,11 +56,128 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When a lump sum can make sense</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Windfall cash:</strong> bonus, inheritance, or sale proceeds you do not need for short-term expenses.</li>
+      <li><strong>High interest rate:</strong> the higher the rate, the more valuable a principal reduction can be.</li>
+      <li><strong>Long time horizon:</strong> the longer you plan to keep the loan, the more the savings can compound.</li>
+      <li><strong>Stable emergency fund:</strong> you can absorb unexpected expenses without relying on credit.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Opportunity cost and liquidity</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Paying down principal is a low-risk return equal to your mortgage rate. Investing can produce higher expected returns, but it also
+      introduces market risk and volatility. If you might need the cash soon, keeping liquidity can be more important than interest savings.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      A common compromise is to split the difference: apply part of the lump sum to principal and keep part as cash reserves or invest it
+      based on your risk tolerance.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">If you might move or refinance soon</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The shorter your time horizon, the smaller the benefit from a lump sum. If you plan to sell or refinance in a few years, compare the
+      interest saved over that shorter window rather than over the full term. In some cases, keeping cash available for closing costs can be
+      more valuable than a modest interest reduction.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Tax and deduction considerations</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Mortgage interest may be deductible for some borrowers, which can reduce the effective cost of interest. If you itemize deductions,
+      the benefit of paying down principal may be slightly smaller after taxes. Always use your own tax situation when comparing options.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What to confirm with your lender</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>The lump sum is applied as <strong>principal-only</strong> (not "paid ahead").</li>
       <li>No prepayment penalty applies.</li>
       <li>If you want a lower required payment, whether you can recast after a lump sum.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (computed)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Compare baseline to a
+      one-time {money0.format(exampleLumpSum)} principal-only lump sum in month 1.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Lump sum</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline</td>
+            <td class="num">{money0.format(0)}</td>
+            <td class="num">{base.months} months</td>
+            <td class="num">{money0.format(base.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>With lump sum</td>
+            <td class="num">{money0.format(exampleLumpSum)}</td>
+            <td class="num">{withLump.months} months</td>
+            <td class="num">{money0.format(withLump.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      In this example, the lump sum saves about {money0.format(Math.max(0, base.totalInterest - withLump.totalInterest))} in interest and
+      shortens payoff by {Math.max(0, base.months - withLump.months)} months (calculator estimate).
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: before you send a lump sum</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Principal-only:</strong> confirm how to designate the payment as principal-only.</li>
+      <li><strong>Liquidity:</strong> keep an emergency fund; lump sums are hard to reverse.</li>
+      <li><strong>Prepayment penalties:</strong> verify your note (many loans have none).</li>
+      <li><strong>Timing:</strong> earlier lumps usually save more interest.</li>
+      <li><strong>Recast option:</strong> if you want a lower required payment, ask about recast fees and rules.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is a lump sum better than monthly extra?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Earlier money usually saves more interest, but only if you can afford it. A monthly extra you can sustain may be more effective than
+      a lump sum that arrives later.
+    </p>
+    <h3 style="margin:12px 0 0">Does a lump sum reduce my required payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Typically no. It shortens the payoff timeline unless you recast or refinance.
+    </p>
+    <h3 style="margin:12px 0 0">Is it better to pay $10,000 now or invest?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Paying principal gives a guaranteed return equal to your mortgage rate. Investing can have higher expected returns but with risk.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgages resources
+        </a>
+      </li>
     </ul>
   </section>
 
@@ -55,6 +189,6 @@ const description =
       <a class="btn" href="/guides/principal-only-extra-payments">Principal-only tips</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-24</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

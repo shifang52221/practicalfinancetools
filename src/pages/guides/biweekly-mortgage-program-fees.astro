@@ -1,9 +1,30 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Biweekly Mortgage Program Fees (is it worth it?)";
 const description =
   "Some biweekly programs charge fees or delay posting payments. Learn what to ask, how to compare to a simple monthly extra, and how to model scenarios.";
+
+const examplePrincipal = 300000;
+const exampleApr = 6.5;
+const exampleTermMonths = 360;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTermMonths });
+const exampleMonthlyExtra = base.paymentPI / 12;
+const withExtra = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTermMonths,
+  extraMonthly: exampleMonthlyExtra
+});
+const exampleSetupFee = 399;
+const exampleMonthlyFee = 4;
+const totalFees = exampleSetupFee + exampleMonthlyFee * withExtra.months;
+const interestSaved = Math.max(0, base.totalInterest - withExtra.totalInterest);
+const netSavings = interestSaved - totalFees;
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/biweekly-mortgage-program-fees">
   <section class="card hero">
@@ -21,6 +42,7 @@ const description =
       them monthly, which can reduce the benefit. This guide shows how to evaluate a program and compare it to a no-fee monthly extra.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly calculator</a>
       <a class="btn" href="/calculators/extra-payment-calculator">Monthly extra calculator</a>
     </div>
@@ -44,14 +66,79 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common fee structures to watch</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Setup fee:</strong> a one-time enrollment charge.</li>
+      <li><strong>Monthly service fee:</strong> recurring fee for drafting and processing.</li>
+      <li><strong>Per-transaction fee:</strong> a fee each time a payment is posted.</li>
+      <li><strong>Cancellation fee:</strong> a charge to leave the program early.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Even small monthly fees add up over years. Always compare total fees across the time you expect to keep the loan.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">A simple comparison method</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Model the biweekly approximation in the <a href="/calculators/biweekly-mortgage-payment-calculator">Biweekly Calculator</a>.</li>
-      <li>Model an equivalent monthly extra (monthly P&amp;I ÷ 12) in the <a href="/calculators/extra-payment-calculator">Extra Payment Calculator</a>.</li>
+      <li>Model an equivalent monthly extra (monthly P&amp;I / 12) in the <a href="/calculators/extra-payment-calculator">Extra Payment Calculator</a>.</li>
       <li>Subtract program fees from interest saved to estimate net benefit.</li>
     </ol>
     <p class="muted" style="margin:12px 0 0">
       If you can do a monthly principal-only extra without fees, that is often simpler and easier to control.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (fees vs savings)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. A "true biweekly" pattern
+      is roughly the same as adding {money2.format(exampleMonthlyExtra)}/month in extra principal.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th class="num">Estimate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Interest saved (monthly extra)</td>
+            <td class="num">{money0.format(interestSaved)}</td>
+          </tr>
+          <tr>
+            <td>Program fees (setup + monthly)</td>
+            <td class="num">{money0.format(totalFees)}</td>
+          </tr>
+          <tr>
+            <td>Net savings after fees</td>
+            <td class="num">{money0.format(netSavings)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      This example assumes a {money0.format(exampleSetupFee)} setup fee and {money2.format(exampleMonthlyFee)}/month for the life of the
+      program. If the program holds funds and posts monthly, the savings can be even smaller.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick net benefit check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A simple way to sanity-check a program is to compare <strong>interest saved</strong> to <strong>total fees</strong>. The savings only
+      matter if they exceed the fees by a comfortable margin.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Estimate interest saved with a monthly extra (P&amp;I / 12).</li>
+      <li>Total fees = setup fee + monthly fee * number of months you will stay enrolled.</li>
+      <li>Net benefit = interest saved - total fees.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      If net benefit is small or negative, a no-fee monthly extra is usually the better choice.
     </p>
   </section>
 
@@ -66,6 +153,53 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: spot a bad deal</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>High setup fee:</strong> can erase multiple years of interest savings.</li>
+      <li><strong>Monthly service fees:</strong> compare fees to estimated savings.</li>
+      <li><strong>Delayed posting:</strong> if payments are held monthly, benefit shrinks.</li>
+      <li><strong>Hard to cancel:</strong> avoid contracts with penalties or long commitments.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A no-fee alternative</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you want the "one extra payment per year" effect without a program, you can set up an automatic monthly extra equal to your P&amp;I
+      payment divided by 12. This delivers most of the benefit with zero fees and full control.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      Use the Extra Payment Calculator to find the monthly extra amount, then set it as a separate principal-only payment in your
+      servicer's portal.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is a fee-based program ever worth it?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Sometimes, but only if the net savings after fees are clearly positive and the program posts payments biweekly. Always compare to a
+      no-fee monthly extra.
+    </p>
+    <h3 style="margin:12px 0 0">Does biweekly always beat monthly extra?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not necessarily. A monthly principal-only extra can match or beat biweekly if the program delays posting or charges fees.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgages resources
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a>
@@ -73,6 +207,6 @@ const description =
       <a class="btn" href="/guides/principal-only-extra-payments">Principal-only tips</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-24</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

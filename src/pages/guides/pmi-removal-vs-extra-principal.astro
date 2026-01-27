@@ -1,10 +1,33 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../config/site";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "PMI Removal vs Extra Principal (what to prioritize)";
 const description =
   "PMI can be expensive. Learn how extra principal can help you reach an LTV threshold sooner, what rules to confirm, and how to compare options.";
+
+const exampleHomeValue = 400000;
+const exampleDownPayment = 20000;
+const exampleLoan = exampleHomeValue - exampleDownPayment;
+const exampleApr = 6.5;
+const exampleTermMonths = 360;
+const exampleExtraMonthly = 200;
+const examplePmiMonthly = 180;
+const targetBalance = exampleHomeValue * 0.8;
+const base = amortizationSchedule({ principal: exampleLoan, aprPercent: exampleApr, termMonths: exampleTermMonths });
+const withExtra = amortizationSchedule({
+  principal: exampleLoan,
+  aprPercent: exampleApr,
+  termMonths: exampleTermMonths,
+  extraMonthly: exampleExtraMonthly
+});
+const baselineMonth = base.rows.find((row) => row.endingBalance <= targetBalance)?.month ?? null;
+const extraMonth = withExtra.rows.find((row) => row.endingBalance <= targetBalance)?.month ?? null;
+const monthsSaved = baselineMonth != null && extraMonth != null ? Math.max(0, baselineMonth - extraMonth) : null;
+const pmiSaved = monthsSaved == null ? null : monthsSaved * examplePmiMonthly;
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/pmi-removal-vs-extra-principal">
   <section class="card hero">
@@ -23,6 +46,7 @@ const description =
       by loan type and lender.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Estimate PMI and payment</a>
       <a class="btn" href="/calculators/extra-payment-calculator">Model extra principal</a>
     </div>
@@ -61,12 +85,125 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Typical PMI removal rules (verify with servicer)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      For many conventional loans, PMI can be requested around 80% LTV and may be automatically removed around 78% LTV, assuming you are
+      current on payments and meet the servicer's rules. Other loan types can have different policies and time requirements.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li><strong>Conventional loans:</strong> often allow removal at 80% LTV with a request.</li>
+      <li><strong>FHA loans:</strong> rules can be stricter and may require refinancing for removal.</li>
+      <li><strong>Appraisal:</strong> some servicers require one to verify home value.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Always confirm the exact requirements for your loan. The rules differ by program, lender, and vintage.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to estimate your current LTV</h2>
+    <p class="muted" style="margin:10px 0 0">
+      LTV (loan-to-value) is your loan balance divided by the home's value. To estimate it:
+    </p>
+    <ol class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Find your current loan balance on the statement.</li>
+      <li>Estimate your home's value (recent appraisal or comparable sales).</li>
+      <li>Compute LTV = balance / value.</li>
+    </ol>
+    <p class="muted" style="margin:12px 0 0">
+      If home values rise, you may reach an LTV threshold earlier. Some servicers require a formal appraisal to confirm the value.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">PMI vs extra principal: a simple priority rule</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If PMI is high, extra principal that removes PMI quickly can have an outsized impact on your monthly housing cost. If PMI is low or
+      you are close to the removal threshold, it may still make sense, but the benefit is smaller. Use the calculator to quantify the
+      monthly PMI savings and compare it to the interest savings.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Example: how PMI can change the math</h2>
     <p class="muted" style="margin:10px 0 0">
       If PMI is $180/month, removing it is like reducing your monthly housing cost by $2,160 per year. In some scenarios, paying extra
       principal to reach an eligible LTV threshold sooner can create a meaningful benefit: interest savings plus PMI savings. The exact
       timing depends on your loan type, the lender's removal policy, and whether an appraisal is required.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (LTV threshold)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(exampleHomeValue)} home, {money0.format(exampleDownPayment)} down, loan {money0.format(exampleLoan)} at{" "}
+      {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Target balance for 80% LTV is {money0.format(targetBalance)}.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Extra principal</th>
+            <th class="num">Month to 80% LTV</th>
+            <th class="num">PMI months saved</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline</td>
+            <td class="num">{money0.format(0)}</td>
+            <td class="num">{baselineMonth == null ? "N/A" : `${baselineMonth} months`}</td>
+            <td class="num">-</td>
+          </tr>
+          <tr>
+            <td>With extra</td>
+            <td class="num">{money0.format(exampleExtraMonthly)}</td>
+            <td class="num">{extraMonth == null ? "N/A" : `${extraMonth} months`}</td>
+            <td class="num">{monthsSaved == null ? "N/A" : `${monthsSaved} months`}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      If PMI is {money0.format(examplePmiMonthly)}/month, the earlier removal could save about{" "}
+      {pmiSaved == null ? "N/A" : money0.format(pmiSaved)} in PMI alone (estimate). Actual PMI rules vary by loan type and servicer.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: what to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Loan type:</strong> conventional vs FHA/VA/USDA have different PMI rules.</li>
+      <li><strong>Automatic vs requested removal:</strong> some loans require a request at 80% LTV.</li>
+      <li><strong>Appraisal required:</strong> confirm cost and timing.</li>
+      <li><strong>Extra payment posting:</strong> ensure principal-only application.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Does extra principal always remove PMI sooner?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Often yes, but it depends on the loan program and servicer rules. Some loans require a formal request or appraisal.
+    </p>
+    <h3 style="margin:12px 0 0">Is it better to remove PMI or reduce interest?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Removing PMI can be a high-return goal if PMI is expensive. Compare monthly PMI savings plus interest savings to see what moves the
+      needle most.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgages resources
+        </a>
+      </li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -78,6 +215,6 @@ const description =
     <p class="muted" style="margin:12px 0 0">
       Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

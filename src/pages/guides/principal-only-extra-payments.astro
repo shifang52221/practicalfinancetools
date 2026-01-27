@@ -1,10 +1,25 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../config/site";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Principal-Only Extra Payments (avoid common pitfalls)";
 const description =
   'How to make sure extra payments go to principal, what "paid ahead" means, and what to check on your mortgage statement. Educational use only.';
+
+const examplePrincipal = 300000;
+const exampleApr = 6.5;
+const exampleTermMonths = 360;
+const exampleExtraMonthly = 200;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTermMonths });
+const withExtra = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTermMonths,
+  extraMonthly: exampleExtraMonthly
+});
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/principal-only-extra-payments">
   <section class="card hero">
@@ -22,6 +37,7 @@ const description =
       "paid ahead" (covering a future due date) instead of reducing principal today.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
       <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments guide</a>
     </div>
@@ -46,6 +62,68 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why "paid ahead" happens</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Many servicers treat extra payments as advancing the next due date by default. That approach reduces delinquency risk for the
+      servicer, but it can reduce your interest savings if the extra is not applied to principal as intended.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If your portal does not offer a principal-only checkbox, call and ask for the exact process. Some lenders require a separate payment
+      type or a written instruction.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Online payment tips</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Look for "additional principal":</strong> many portals have a separate field for extra principal.</li>
+      <li><strong>Schedule two payments:</strong> one for regular P&amp;I and one for principal-only.</li>
+      <li><strong>Save confirmations:</strong> keep screenshots or confirmation numbers.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      If you cannot find a principal-only option, call your servicer and ask for the exact steps. Procedures vary widely by lender.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example: why principal-only matters</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Compare baseline vs adding
+      {money0.format(exampleExtraMonthly)}/month in principal-only payments.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Extra principal</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline</td>
+            <td class="num">{money0.format(0)}</td>
+            <td class="num">{base.months} months</td>
+            <td class="num">{money0.format(base.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Principal-only extra</td>
+            <td class="num">{money0.format(exampleExtraMonthly)}</td>
+            <td class="num">{withExtra.months} months</td>
+            <td class="num">{money0.format(withExtra.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      The interest savings here are about {money0.format(Math.max(0, base.totalInterest - withExtra.totalInterest))}. That only happens if
+      the extra is applied as principal-only. If it is posted as "paid ahead" without reducing principal, the savings can be much smaller.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What to check on your statement</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Principal balance after the payment posted.</li>
@@ -54,6 +132,9 @@ const description =
     </ul>
     <p class="muted" style="margin:12px 0 0">
       Some lenders allow you to disable "paid ahead" or choose how extra payments are applied. Ask support if it's not clear in the portal.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If you use autopay, ask whether extra principal can be set as a separate transaction to avoid accidentally advancing the due date.
     </p>
   </section>
 
@@ -69,6 +150,47 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: make sure extra hits principal</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Use principal-only option:</strong> select it explicitly in the payment portal.</li>
+      <li><strong>Separate the extra:</strong> if possible, send the extra as a separate principal-only payment.</li>
+      <li><strong>Check the statement:</strong> confirm ending balance dropped by the extra amount.</li>
+      <li><strong>Watch due dates:</strong> "paid ahead" can mask missed payments if you are not careful.</li>
+      <li><strong>Document instructions:</strong> keep a screenshot or confirmation message.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is "paid ahead" always bad?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not always. It can give you flexibility in case you miss a payment. But if your goal is interest savings, principal-only is usually
+      better.
+    </p>
+    <h3 style="margin:12px 0 0">Can I make principal-only payments online?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Many servicers offer a principal-only checkbox or an "additional principal" field. If yours does not, call support and ask for the
+      correct procedure.
+    </p>
+    <h3 style="margin:12px 0 0">Will extra principal change my payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Usually no. It typically shortens the payoff timeline unless you request a recast or refinance.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgages resources
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Run scenarios</a>
@@ -78,7 +200,6 @@ const description =
     <p class="muted" style="margin:12px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>
-

@@ -1,10 +1,32 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../config/site";
+import { amortizationSchedule } from "../../lib/calc/loan";
+import { paymentForAmortizedLoan } from "../../lib/math";
 
-const title = "Mortgage Recast vs Extra Payments (what’s the difference?)";
+const title = "Mortgage Recast vs Extra Payments (what's the difference?)";
 const description =
   "A mortgage recast can lower your required payment, while extra principal payments usually shorten payoff time. Learn when each option makes sense. Educational use only.";
+
+const examplePrincipal = 300000;
+const exampleApr = 6.5;
+const exampleTermMonths = 360;
+const exampleLumpSum = 40000;
+const exampleLumpMonth = 24;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTermMonths });
+const withLump = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTermMonths,
+  extraOneTime: exampleLumpSum,
+  extraOneTimeMonth: exampleLumpMonth
+});
+const balanceAfterLump = withLump.rows[exampleLumpMonth - 1]?.endingBalance ?? null;
+const remainingMonths = Math.max(1, exampleTermMonths - exampleLumpMonth);
+const recastPayment = balanceAfterLump == null ? null : paymentForAmortizedLoan(balanceAfterLump, exampleApr, remainingMonths);
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-recast-vs-extra-payments">
   <section class="card hero">
@@ -23,6 +45,7 @@ const description =
       a large principal reduction.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Baseline monthly payment</a>
     </div>
@@ -48,14 +71,67 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick comparison</h2>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Extra payments</th>
+            <th>Recast</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Payment amount</td>
+            <td>Usually unchanged</td>
+            <td>Lower required payment</td>
+          </tr>
+          <tr>
+            <td>Payoff time</td>
+            <td>Shorter</td>
+            <td>Similar to original term</td>
+          </tr>
+          <tr>
+            <td>Fees</td>
+            <td>Typically none</td>
+            <td>Often a recast fee</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">When a recast can make sense</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>You made a large lump-sum principal payment (bonus, sale proceeds, gift).</li>
       <li>You want to keep your current rate but lower your required payment.</li>
-      <li>You prefer not to refinance (or can’t qualify right now).</li>
+      <li>You prefer not to refinance (or can't qualify right now).</li>
     </ul>
     <p class="muted" style="margin:12px 0 0">
       Recasts often have fees and lender rules. Confirm eligibility, the fee, and the minimum lump sum required.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When a recast may not be available</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Loan type restrictions:</strong> some programs or investors do not offer recasts.</li>
+      <li><strong>Small lump sums:</strong> lenders often require a minimum amount.</li>
+      <li><strong>Delinquency:</strong> recasts usually require the loan to be current.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      If recast is not available, the alternatives are extra principal (to shorten payoff) or refinancing (to change rate or term).
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Choosing based on cash flow</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If your priority is monthly affordability, a recast can provide relief without changing the rate. If your priority is reducing total
+      interest and paying off sooner, extra principal usually wins. Many borrowers use both: make a lump sum, recast for lower payments, and
+      still pay extra when budget allows.
     </p>
   </section>
 
@@ -76,10 +152,80 @@ const description =
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Example: lump sum, then decide</h2>
     <p class="muted" style="margin:10px 0 0">
-      If you make a large principal payment (for example, $10,000–$50,000), you can compare two paths: keep your required payment the same
-      (extra payments) to shorten payoff time, or request a recast to lower the required payment. The “best” option depends on whether you
+      If you make a large principal payment (for example, $10,000-$50,000), you can compare two paths: keep your required payment the same
+      (extra payments) to shorten payoff time, or request a recast to lower the required payment. The "best" option depends on whether you
       want faster payoff or lower monthly cash flow.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (estimated)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR, 30-year term. After 24 months, you pay a{" "}
+      {money0.format(exampleLumpSum)} principal-only lump sum.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Required P&amp;I</th>
+            <th class="num">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Before lump sum</td>
+            <td class="num">{money2.format(base.paymentPI)}</td>
+            <td>Original payment</td>
+          </tr>
+          <tr>
+            <td>After lump sum + recast</td>
+            <td class="num">{recastPayment == null ? "N/A" : money2.format(recastPayment)}</td>
+            <td>Same rate, new balance, remaining term</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      A recast can reduce the required payment, but it does not typically change the interest rate. Extra payments usually keep the payment
+      the same and shorten the payoff timeline instead.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: choose the right path</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Goal:</strong> lower payment (recast) vs faster payoff (extra principal).</li>
+      <li><strong>Fees:</strong> recasts often have a fee; compare it to interest savings.</li>
+      <li><strong>Eligibility:</strong> confirm your loan allows recast and the minimum lump sum.</li>
+      <li><strong>Liquidity:</strong> keep cash reserves after a large payment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Does a recast reduce total interest?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It can, but the bigger effect is usually the lower required payment. Extra principal typically saves more interest by shortening the
+      payoff timeline.
+    </p>
+    <h3 style="margin:12px 0 0">Is a recast the same as a refinance?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      No. A recast keeps the same loan and interest rate, while a refinance replaces the loan with new terms and closing costs.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgages resources
+        </a>
+      </li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -87,6 +233,6 @@ const description =
     <p class="muted" style="margin:10px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

@@ -1,9 +1,25 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "If I Pay a $5,000 Lump Sum on My Mortgage (what changes?)";
 const description =
   "See how a $5,000 principal-only lump sum can affect payoff time and interest, and why paying earlier usually saves more. Compare with monthly extras.";
+
+const examplePrincipal = 300000;
+const exampleApr = 6.5;
+const exampleTermMonths = 360;
+const exampleLumpSum = 5000;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTermMonths });
+const withLump = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTermMonths,
+  extraOneTime: exampleLumpSum,
+  extraOneTimeMonth: 1
+});
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-lump-sum-5000" robots="noindex, follow">
   <section class="card hero">
@@ -21,6 +37,7 @@ const description =
       payoff time. Timing matters: a lump sum early often saves more than the same lump sum later.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Model a lump sum</a>
       <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
     </div>
@@ -34,6 +51,18 @@ const description =
       <li>Change the one-time month (early vs later) and compare results.</li>
       <li>Compare the lump sum to a monthly extra amount that fits your budget.</li>
     </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why timing matters</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Interest is calculated on the remaining balance. A lump sum today reduces that balance immediately, which lowers interest every
+      month after it. The same lump sum later still helps, but it affects fewer months of interest.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If you are deciding between "save more first" and "pay a smaller amount now," model both. Often the earlier payment wins unless the
+      later lump sum is much larger.
+    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -55,6 +84,102 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">If $5,000 is your budget</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If $5,000 is what you can afford comfortably, it's often better to apply it now than to wait for a larger amount that might not come
+      for a year or two. The trade-off is liquidity, so keep enough cash for emergencies.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Compare to other options</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you want a bigger impact, compare the $5,000 lump sum to either a monthly extra (for example $150 to $250) or a larger lump sum
+      like $10,000. The calculator can show which option shortens payoff more over your expected time horizon.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Split strategy (lump sum + monthly)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A common approach is to pay a smaller lump sum now and add a modest monthly extra afterward. This captures early interest savings
+      while keeping enough cash on hand for emergencies. The calculator can help you test a split strategy like $2,500 now plus $100/month.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (computed)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Compare baseline to a
+      one-time {money0.format(exampleLumpSum)} principal-only lump sum in month 1.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Lump sum</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline</td>
+            <td class="num">{money0.format(0)}</td>
+            <td class="num">{base.months} months</td>
+            <td class="num">{money0.format(base.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>With lump sum</td>
+            <td class="num">{money0.format(exampleLumpSum)}</td>
+            <td class="num">{withLump.months} months</td>
+            <td class="num">{money0.format(withLump.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      In this example, the lump sum saves about {money0.format(Math.max(0, base.totalInterest - withLump.totalInterest))} in interest and
+      shortens payoff by {Math.max(0, base.months - withLump.months)} months (calculator estimate).
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: timing and cash flow</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Earlier is better:</strong> a lump sum early typically saves more interest.</li>
+      <li><strong>Principal-only:</strong> confirm the payment is applied directly to principal.</li>
+      <li><strong>Emergency fund:</strong> keep enough liquidity for unexpected expenses.</li>
+      <li><strong>Compare alternatives:</strong> a small monthly extra can beat a late lump sum.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is $5,000 enough to matter?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It can, especially early in the loan. The impact depends on your rate and remaining term.
+    </p>
+    <h3 style="margin:12px 0 0">Should I wait and save a bigger lump sum?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Waiting can reduce interest savings. If the money is available now, compare a smaller lump sum today to a larger one later.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgages resources
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Compare to monthly extra</a>
@@ -62,6 +187,6 @@ const description =
       <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-24</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

@@ -1,9 +1,24 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "If I Pay $300 Extra on My Mortgage (what changes?)";
 const description =
   "Paying $300 extra toward principal can shorten payoff time and reduce interest. Learn what changes, what to confirm with your lender, and model scenarios.";
+
+const examplePrincipal = 300000;
+const exampleApr = 6.5;
+const exampleTermMonths = 360;
+const exampleExtraMonthly = 300;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTermMonths });
+const withExtra = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTermMonths,
+  extraMonthly: exampleExtraMonthly
+});
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/pay-300-extra-on-mortgage" robots="noindex, follow">
   <section class="card hero">
@@ -21,24 +36,25 @@ const description =
       shorten your payoff timeline. This guide explains the mechanics and what to check so the payment is applied the way you expect.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment mortgage calculator</a>
       <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What changes (and what usually doesn’t)</h2>
+    <h2 style="margin-top:0">What changes (and what usually doesn't)</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li><strong>Usually changes:</strong> payoff date (earlier), total interest (lower), and the amortization schedule.</li>
-      <li><strong>Usually doesn’t change:</strong> your required monthly payment (unless you recast the loan).</li>
-      <li><strong>Doesn’t change:</strong> escrow amounts (tax/insurance) unless those costs change separately.</li>
+      <li><strong>Usually doesn't change:</strong> your required monthly payment (unless you recast the loan).</li>
+      <li><strong>Doesn't change:</strong> escrow amounts (tax/insurance) unless those costs change separately.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Monthly $300 vs a one-time lump sum</h2>
     <p class="muted" style="margin:10px 0 0">
-      Earlier payments tend to save more interest because they reduce the balance sooner. That’s why a recurring monthly extra can have a
+      Earlier payments tend to save more interest because they reduce the balance sooner. That's why a recurring monthly extra can have a
       large impact over time. A one-time lump sum can also help, especially if it happens early in the loan.
     </p>
     <p class="muted" style="margin:12px 0 0">
@@ -52,12 +68,111 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">If your income is variable</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If your income changes month to month, consider a smaller fixed extra (like $100) plus occasional lump sums when cash is strong. This
+      avoids overcommitting to a payment you cannot sustain while still capturing the benefit of earlier principal reduction.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How $300 compares to one extra payment per year</h2>
+    <p class="muted" style="margin:10px 0 0">
+      One extra payment per year is roughly your monthly P&amp;I divided by 12. On a typical mortgage, that might be around $150 to $250 per
+      month. Paying $300 monthly is often a bit more aggressive than the "one extra payment per year" rule of thumb.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If you want a more moderate plan, try $150 or $200 and compare the payoff timeline in the calculator.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Payoff vs investing (quick view)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Paying extra principal is a guaranteed return equal to your mortgage rate. Investing may offer higher expected returns but with risk
+      and volatility. If you are unsure, consider splitting the $300 across extra principal and savings or retirement contributions.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (computed)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Compare baseline to adding
+      {money0.format(exampleExtraMonthly)}/month in extra principal.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Extra principal</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline</td>
+            <td class="num">{money0.format(0)}</td>
+            <td class="num">{base.months} months</td>
+            <td class="num">{money0.format(base.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>With extra</td>
+            <td class="num">{money0.format(exampleExtraMonthly)}</td>
+            <td class="num">{withExtra.months} months</td>
+            <td class="num">{money0.format(withExtra.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      In this example, the $300 extra saves about {money0.format(Math.max(0, base.totalInterest - withExtra.totalInterest))} in interest and
+      shortens payoff by {Math.max(0, base.months - withExtra.months)} months.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What to confirm with your lender (important)</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>The extra payment is applied as <strong>principal-only</strong> (not “paid ahead”).</li>
+      <li>The extra payment is applied as <strong>principal-only</strong> (not "paid ahead").</li>
       <li>How to designate principal-only in online payments (some systems require a checkbox or separate field).</li>
       <li>Whether a prepayment penalty exists (many loans have none; some do).</li>
       <li>Whether a recast is available if you want a lower required payment after a large principal payment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: keep it principal-only</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Use the principal-only option:</strong> confirm the payment is not marked "paid ahead."</li>
+      <li><strong>Verify the statement:</strong> check the ending balance after payment posts.</li>
+      <li><strong>Keep cash reserves:</strong> don't reduce emergency savings too far.</li>
+      <li><strong>Recast if needed:</strong> consider recasting if your goal is a lower required payment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is $300/month a good target?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It depends on your budget and rate. The best amount is one you can sustain without missing payments or dipping into emergency funds.
+    </p>
+    <h3 style="margin:12px 0 0">Does this reduce my escrow?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      No. Escrow is separate from principal and interest, so extra payments do not change it.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgages resources
+        </a>
+      </li>
     </ul>
   </section>
 
@@ -72,7 +187,7 @@ const description =
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-01-23
+      Last updated: 2026-01-28
     </p>
   </section>
 </BaseLayout>
