@@ -1,10 +1,26 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../config/site";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Biweekly Payments vs Extra Principal (which saves more?)";
 const description =
   "Biweekly mortgage payments can act like an extra payment per year, but results depend on how your lender applies them. Educational use only.";
+
+const examplePrincipal = 300000;
+const exampleApr = 6.5;
+const exampleTermMonths = 360;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTermMonths });
+const equivalentMonthlyExtra = base.paymentPI / 12;
+const withExtra = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTermMonths,
+  extraMonthly: equivalentMonthlyExtra
+});
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/biweekly-vs-extra-principal">
   <section class="card hero">
@@ -23,6 +39,7 @@ const description =
       can reduce the benefit.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Compare scenarios</a>
       <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
     </div>
@@ -60,6 +77,78 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (equivalent monthly extra)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Baseline P&amp;I payment is{" "}
+      {money0.format(base.paymentPI)}/month. One extra payment per year is roughly the same as adding about {money2.format(equivalentMonthlyExtra)}
+      per month.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Extra principal</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline</td>
+            <td class="num">{money0.format(0)}</td>
+            <td class="num">{base.months} months</td>
+            <td class="num">{money0.format(base.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Monthly extra (P/12)</td>
+            <td class="num">{money2.format(equivalentMonthlyExtra)}</td>
+            <td class="num">{withExtra.months} months</td>
+            <td class="num">{money0.format(withExtra.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      True biweekly payments can reduce interest slightly more than a monthly extra if payments are posted earlier throughout the year. But
+      if a program holds funds and posts monthly, the benefit often looks closer to (or worse than) a simple monthly extra.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">True biweekly vs "biweekly programs" vs semi-monthly</h2>
+    <p class="muted" style="margin:10px 0 0">
+      It's easy to mix up three different setups:
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li><strong>True biweekly:</strong> you pay every 14 days. That creates 26 half-payments per year (13 full payments).</li>
+      <li>
+        <strong>Semi-monthly:</strong> you pay twice per month (24 half-payments, or 12 full payments). It may help budgeting but is not the
+        same as true biweekly.
+      </li>
+      <li>
+        <strong>Third-party "biweekly program":</strong> you may be drafted every two weeks, but the program might hold funds and remit
+        payments monthly. If funds are held, the "earlier interest savings" benefit shrinks.
+      </li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      If you're considering a fee-based program, estimate savings first, then compare to fees. A small monthly fee can erase much of the
+      benefit, especially on lower-rate mortgages or when the remaining balance is smaller. Use the{" "}
+      <a href="/calculators/biweekly-mortgage-payment-calculator">Biweekly Mortgage Payment Calculator</a> and the guide{" "}
+      <a href="/guides/biweekly-mortgage-program-fees">Biweekly mortgage program fees</a> to sanity-check.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      Also remember that biweekly is not magic: the biggest driver is usually that you pay the equivalent of one extra payment per year. If
+      your budget is tight, a smaller monthly extra you can sustain is often better than committing to a schedule that causes overdrafts or
+      missed payments.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      Finally, the benefit depends on context: higher rates and longer remaining terms typically make extra principal more valuable.
+      Conversely, if you're likely to move or refinance soon, compare scenarios over your expected time horizon.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Biweekly vs monthly extra (quick comparison)</h2>
     <div style="overflow:auto; margin-top:12px">
       <table class="table">
@@ -87,6 +176,36 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is biweekly always better than monthly extra principal?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not always. True biweekly posting can help a bit due to earlier principal reduction, but fees and delayed posting can remove the
+      advantage. A monthly principal-only extra is often simpler and more controllable.
+    </p>
+    <h3 style="margin:12px 0 0">Do biweekly programs have fees?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Some do, especially third-party programs. Always compare the program fees to your expected interest savings.
+    </p>
+    <h3 style="margin:12px 0 0">What is the simplest alternative to biweekly?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Set up a monthly principal-only extra amount (for example, about P/12 for "one extra payment per year") and automate it through your
+      servicer if possible.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgages resources
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What to ask your lender</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Are biweekly payments posted immediately or held and posted monthly?</li>
@@ -96,6 +215,6 @@ const description =
     <p class="muted" style="margin:12px 0 0">
       For questions, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-27</p>
   </section>
 </BaseLayout>

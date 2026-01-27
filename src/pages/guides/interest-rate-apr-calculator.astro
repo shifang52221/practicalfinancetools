@@ -1,9 +1,29 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { estimateApr } from "../../lib/calc/apr";
 
 const title = "Interest Rate vs APR Calculator (what to compare)";
 const description =
   "How to compare interest rate vs APR, when APR is more informative, and how to estimate APR with fees using a calculator. Educational use only.";
+
+const exampleLoanAmount = 300000;
+const exampleRate = 6.5;
+const exampleTermMonths = 360;
+const exampleFees = 6000;
+const base = estimateApr({ loanAmount: exampleLoanAmount, nominalRatePercent: exampleRate, termMonths: exampleTermMonths, fees: 0 });
+const withFees = estimateApr({
+  loanAmount: exampleLoanAmount,
+  nominalRatePercent: exampleRate,
+  termMonths: exampleTermMonths,
+  fees: exampleFees
+});
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const pct = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const num1 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 1 });
+const breakevenFees = 3000;
+const breakevenMonthlySavings = 80;
+const breakevenMonths = breakevenMonthlySavings > 0 ? breakevenFees / breakevenMonthlySavings : null;
+const breakevenYears = breakevenMonths == null ? null : breakevenMonths / 12;
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/interest-rate-apr-calculator">
   <section class="card hero">
@@ -21,9 +41,28 @@ const description =
       different true costs. This page explains what to compare and how to model it.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/apr">APR topic hub</a>
       <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator (include fees)</a>
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What APR does (and doesn't) capture</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Think of <strong>interest rate</strong> as the input that drives your interest charges and principal-and-interest payment. In
+      contrast, <strong>APR</strong> is designed as a broader comparison metric that can reflect certain upfront finance charges (like
+      origination fees or discount points) by converting them into an annualized rate over the stated term.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li><strong>APR is best</strong> when two offers have different lender fees but the same term.</li>
+      <li><strong>APR is less representative</strong> if you refinance, sell, or prepay well before the term ends.</li>
+      <li><strong>APR is not total cost</strong>: taxes, insurance, and many third-party closing costs may not be included.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Use APR as a filter for fee-heavy offers, then sanity-check with the monthly payment and a break-even calculation for your expected
+      time horizon.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -68,18 +107,114 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (estimate)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example inputs: {money.format(exampleLoanAmount)} loan, {exampleRate}% rate, {exampleTermMonths} months.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Fees</th>
+            <th class="num">Monthly payment (P&amp;I)</th>
+            <th class="num">Estimated APR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>No fees</td>
+            <td class="num">{money.format(0)}</td>
+            <td class="num">{money.format(base.payment)}</td>
+            <td class="num">{base.aprPercent == null ? "N/A" : `${pct.format(base.aprPercent)}%`}</td>
+          </tr>
+          <tr>
+            <td>With fees</td>
+            <td class="num">{money.format(exampleFees)}</td>
+            <td class="num">{money.format(withFees.payment)}</td>
+            <td class="num">{withFees.aprPercent == null ? "N/A" : `${pct.format(withFees.aprPercent)}%`}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      In this example the payment is identical, but APR rises because the fee reduces the net amount received.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Break-even (time horizon) matters</h2>
     <p class="muted" style="margin:10px 0 0">
       If you might refinance or repay early, the cheapest APR over the full term isn’t always the cheapest option for your time horizon.
       A simple way to sanity-check fee trade-offs is break-even months:
     </p>
     <ul class="muted" style="margin:12px 0 0; padding-left:18px">
-      <li>Monthly savings = old payment − new payment (keep assumptions consistent).</li>
+      <li>Monthly savings = old payment - new payment (keep assumptions consistent).</li>
       <li>Break-even months = upfront fees ÷ monthly savings.</li>
     </ul>
     <p class="muted" style="margin:12px 0 0">
+      Example: if fees are {money.format(breakevenFees)} and the lower-rate offer saves {money.format(breakevenMonthlySavings)}/month, the
+      break-even point is about{" "}
+      <strong>{breakevenMonths == null ? "N/A" : `${num1.format(breakevenMonths)} months`}</strong>
+      {breakevenYears == null ? "" : ` (${num1.format(breakevenYears)} years)`}.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
       Use this as a cross-check alongside APR so you’re not paying large fees for savings you won’t keep long enough to realize.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: what to compare (US loan offers)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Same term:</strong> compare 30-year vs 30-year (APR across different terms is not apples-to-apples).</li>
+      <li><strong>Same loan type:</strong> fixed vs fixed, ARM vs ARM; note if rates are introductory.</li>
+      <li><strong>Fees and credits:</strong> list origination fee, discount points, and any lender credits.</li>
+      <li><strong>Cash needed at closing:</strong> ensure you can afford it without draining emergency savings.</li>
+      <li><strong>Prepayment rules:</strong> confirm whether there is a prepayment penalty (or any restrictions).</li>
+      <li><strong>Time horizon:</strong> estimate how long you'll keep the loan and compare to break-even months.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is a lower APR always better?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not always. APR is a useful comparison metric, but you still need to consider your time horizon, the cash needed at closing, and
+      whether the quoted offers are truly comparable (same loan type, term, and assumptions).
+    </p>
+    <h3 style="margin:12px 0 0">Why can two offers have the same rate but different APR?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      APR can reflect certain finance charges. If one lender charges higher upfront fees or points, your effective borrowing cost increases
+      even if the note rate is the same.
+    </p>
+    <h3 style="margin:12px 0 0">Can APR be lower than the interest rate?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It's uncommon, but lender credits (or certain fee structures) can sometimes make the effective cost lower than the note rate under a
+      specific set of assumptions. Use a calculator to sanity-check the scenario.
+    </p>
+    <h3 style="margin:12px 0 0">Should I compare APR on adjustable-rate mortgages (ARMs)?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      You can, but be careful: APR depends on assumptions about future rates and may not reflect your actual path. Focus on the initial
+      period, caps, and worst-case payment scenarios, then use APR as a secondary check.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-apr-en-63/" rel="noopener noreferrer" target="_blank">
+          What is APR?
+        </a>
+      </li>
+      <li>
+        Federal Reserve:{" "}
+        <a href="https://www.federalreserve.gov/boarddocs/supmanual/cch/200806/1020a.htm" rel="noopener noreferrer" target="_blank">
+          Regulation Z (Truth in Lending) overview
+        </a>
+      </li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -91,6 +226,6 @@ const description =
       <a class="btn" href="/guides/refinance-break-even">Break-even (time horizon)</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-27</p>
   </section>
 </BaseLayout>

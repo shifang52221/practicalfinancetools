@@ -1,9 +1,30 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { estimateApr } from "../../lib/calc/apr";
 
 const title = "APR with an Origination Fee (how to compare loans)";
 const description =
   "Learn how origination fees change the real borrowing cost, why APR can rise even when the rate stays the same, and how to compare offers.";
+
+const exampleLoanAmount = 10000;
+const exampleNominalRate = 12;
+const exampleTermMonths = 24;
+const exampleOriginationFee = 300; // 3% of 10,000
+const noFee = estimateApr({
+  loanAmount: exampleLoanAmount,
+  nominalRatePercent: exampleNominalRate,
+  termMonths: exampleTermMonths,
+  fees: 0
+});
+const withFee = estimateApr({
+  loanAmount: exampleLoanAmount,
+  nominalRatePercent: exampleNominalRate,
+  termMonths: exampleTermMonths,
+  fees: exampleOriginationFee
+});
+const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/apr-with-origination-fee">
   <section class="card hero">
@@ -21,6 +42,7 @@ const description =
       by incorporating certain upfront fees. This page explains the mechanics and what to compare in practice.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/apr">APR topic hub</a>
       <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator (with fees)</a>
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
     </div>
@@ -36,6 +58,44 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (computed)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: borrow {money0.format(exampleLoanAmount)} for {exampleTermMonths} months at {pct2.format(exampleNominalRate)}% nominal rate.
+      Compare no origination fee to a {money0.format(exampleOriginationFee)} fee taken from proceeds (you receive less cash, but repay the
+      full {money0.format(exampleLoanAmount)}).
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Fee</th>
+            <th class="num">Payment</th>
+            <th class="num">Estimated APR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>No origination fee</td>
+            <td class="num">{money0.format(0)}</td>
+            <td class="num">{money2.format(noFee.payment)}</td>
+            <td class="num">{noFee.aprPercent == null ? "N/A" : `${pct2.format(noFee.aprPercent)}%`}</td>
+          </tr>
+          <tr>
+            <td>With origination fee</td>
+            <td class="num">{money0.format(exampleOriginationFee)}</td>
+            <td class="num">{money2.format(withFee.payment)}</td>
+            <td class="num">{withFee.aprPercent == null ? "N/A" : `${pct2.format(withFee.aprPercent)}%`}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      The payment is the same here because the note rate and loan amount are the same. APR rises because the fee reduces your net proceeds.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Origination fee: paid upfront vs financed</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li><strong>Paid upfront:</strong> you write a check (or it's withheld from proceeds). You receive less cash at funding.</li>
@@ -45,6 +105,25 @@ const description =
     <p class="muted" style="margin:12px 0 0">
       The same fee can change the loan differently depending on the product and lender disclosures. Use APR as a comparison metric, and
       also compare cash-to-close and total dollars paid.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Break-even: when a fee is worth it</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Sometimes a loan with an origination fee also comes with a lower rate. In that case, the key question is: will the lower payment
+      save you enough over time to justify the upfront fee?
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li><strong>Monthly savings</strong> = old payment - new payment (keep the same term).</li>
+      <li><strong>Break-even months</strong> = upfront fee / monthly savings.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Example: if a {money0.format(1500)} fee saves {money0.format(40)}/month, break-even is about 37.5 months (just over 3 years).
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If you might refinance, sell, or prepay before break-even, a fee-heavy offer can be more expensive in practice even if the APR looks
+      attractive.
     </p>
   </section>
 
@@ -70,6 +149,54 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: comparing loans with origination fees</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Same term:</strong> compare offers with the same repayment term.</li>
+      <li><strong>Fee treatment:</strong> is the fee paid upfront, taken from proceeds, or financed into the balance?</li>
+      <li><strong>Cash-to-close:</strong> confirm how much cash you need at closing.</li>
+      <li><strong>Time horizon:</strong> if you refinance/sell early, break-even can matter more than APR.</li>
+      <li><strong>Credits and points:</strong> lender credits can offset fees; discount points can trade cash for a lower rate.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Does an origination fee always mean a worse deal?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not necessarily. Sometimes a fee comes with a lower rate. Compare both offers with the same term, and sanity-check using break-even
+      months for your expected time horizon.
+    </p>
+    <h3 style="margin:12px 0 0">Is APR a perfect measure of cost?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      No. APR is a standard comparison metric, but it may not reflect your actual cost if you prepay or refinance early. It also may not
+      include every third-party closing cost.
+    </p>
+    <h3 style="margin:12px 0 0">What if the origination fee is financed?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Financing reduces cash-to-close but increases the amount repaid. When comparing, look at both APR and the total dollars paid over the
+      time you expect to keep the loan.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-apr-en-63/" rel="noopener noreferrer" target="_blank">
+          What is APR?
+        </a>
+      </li>
+      <li>
+        Federal Reserve:{" "}
+        <a href="https://www.federalreserve.gov/boarddocs/supmanual/cch/200806/1020a.htm" rel="noopener noreferrer" target="_blank">
+          Regulation Z (Truth in Lending) overview
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/apr-calculator">Estimate APR with fees</a>
@@ -80,7 +207,7 @@ const description =
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-01-23
+      Last updated: 2026-01-27
     </p>
   </section>
 </BaseLayout>

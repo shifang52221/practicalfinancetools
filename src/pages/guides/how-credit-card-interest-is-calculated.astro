@@ -1,9 +1,20 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "How Credit Card Interest Works (APR, daily interest, payoff)";
 const description =
   "How credit card interest works (APR vs daily rate), why statements differ from simple calculators, and how to model payoff with fixed payments. Educational use only.";
+
+const exampleBalance = 5000;
+const exampleApr = 24.99;
+const examplePaymentA = 200;
+const examplePaymentB = 250;
+const payoffA = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: examplePaymentA });
+const payoffB = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: examplePaymentB });
+
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/how-credit-card-interest-is-calculated">
   <section class="card hero">
@@ -21,6 +32,7 @@ const description =
       explains the mechanics and how to get useful payoff estimates with a calculator.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/credit-cards">Credit cards topic hub</a>
       <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
       <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
     </div>
@@ -46,9 +58,40 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How issuers usually compute interest (typical)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Many US credit cards use some version of an <strong>average daily balance</strong> method: the issuer looks at your balance each day
+      of the billing cycle, applies a daily rate, and totals the interest for the statement period. The exact method can vary by issuer
+      and product, so your statement and cardmember agreement are the source of truth.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li><strong>Daily periodic rate (DPR):</strong> often approximated as APR / 365 (or / 360 in some cases).</li>
+      <li><strong>Daily interest:</strong> daily balance * DPR.</li>
+      <li><strong>Statement interest:</strong> sum of daily interest across the cycle (plus any fees/interest rules).</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      This daily approach is one reason a simple monthly estimate won't match your statement to the penny, especially when you make
+      payments mid-cycle or add purchases throughout the month.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Grace period: why you might pay $0 interest</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Many credit cards offer a grace period on purchases: if you pay the statement balance in full by the due date, purchases may not
+      accrue interest. But carrying a balance can remove the grace period, and certain transactions (cash advances are a common example)
+      may accrue interest immediately.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If you recently carried a balance and then paid in full, you may see a small "trailing" interest charge on the next statement. That's
+      interest accrued between the statement close date and the date your payment posted.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How payoff calculators estimate interest</h2>
     <p class="muted" style="margin:10px 0 0">
-      For planning, many calculators estimate interest monthly as balance × (APR ÷ 12). That makes it easy to compare "what if" scenarios
+      For planning, many calculators estimate interest monthly as balance * (APR / 12). That makes it easy to compare "what if" scenarios
       consistently, even though it may not match your statement to the penny.
     </p>
     <p class="muted" style="margin:12px 0 0">
@@ -57,16 +100,100 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example: fixed payment payoff</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: a {money0.format(exampleBalance)} balance at {pct2.format(exampleApr)}% APR. Below are two "what if" plans with fixed monthly
+      payments.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="num">Monthly payment</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+            <th class="num">Total paid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">{money0.format(examplePaymentA)}</td>
+            <td class="num">{payoffA.months == null ? "N/A" : `${payoffA.months} months`}</td>
+            <td class="num">{money0.format(payoffA.totalInterest)}</td>
+            <td class="num">{money0.format(payoffA.totalPaid)}</td>
+          </tr>
+          <tr>
+            <td class="num">{money0.format(examplePaymentB)}</td>
+            <td class="num">{payoffB.months == null ? "N/A" : `${payoffB.months} months`}</td>
+            <td class="num">{money0.format(payoffB.totalInterest)}</td>
+            <td class="num">{money0.format(payoffB.totalPaid)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Your statement interest will differ because of daily interest and cycle timing, but the direction is reliable: larger payments reduce
+      total interest by shrinking the balance faster.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What to check on your statement</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Purchase APR (and any cash advance / balance transfer APR).</li>
+      <li>Billing cycle start/end dates (interest depends on daily balances in that window).</li>
       <li>Interest calculation method (average daily balance is common).</li>
       <li>Minimum payment rule (it varies by issuer).</li>
+      <li>Whether a grace period applies (often only if you pay the statement balance in full).</li>
+      <li>Penalty APR triggers and how long they apply.</li>
+      <li>Fees and transactions that may accrue interest immediately (cash advances often do).</li>
     </ul>
     <p class="muted" style="margin:12px 0 0">
       If you want statement-accurate projections, use statement cycle dates and issuer rules. For most payoff decisions, consistent
       comparisons are more important than exact pennies.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Do I pay interest if I pay the statement balance in full?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Often no, because many cards offer a grace period on purchases when you pay your statement balance by the due date. But cash advances
+      and some fees can accrue interest immediately, and promotional terms vary.
+    </p>
+    <h3 style="margin:12px 0 0">What is "trailing interest"?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Trailing interest (also called residual interest) is interest that accrues between the statement close date and the date your payment
+      is received. Even if you pay in full after carrying a balance, you might see a small interest charge on the next statement.
+    </p>
+    <h3 style="margin:12px 0 0">Why doesn't my statement match a payoff calculator?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Statements often use daily balances and the exact cycle length, while many payoff calculators use consistent monthly estimates to
+      compare scenarios. A calculator is best for planning and comparing options.
+    </p>
+    <h3 style="margin:12px 0 0">Is my APR fixed?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Many cards have variable APRs that move with an index rate (often the Prime Rate) plus a margin. Your terms and statements describe
+      when and how APR can change.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/how-is-interest-on-a-credit-card-calculated-en-44/" rel="noopener noreferrer" target="_blank">
+          How is interest on a credit card calculated?
+        </a>
+      </li>
+      <li>
+        Federal Reserve:{" "}
+        <a href="https://www.federalreserve.gov/boarddocs/supmanual/cch/200806/1020a.htm" rel="noopener noreferrer" target="_blank">
+          Regulation Z (Truth in Lending) overview
+        </a>
+      </li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -80,7 +207,7 @@ const description =
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-01-23
+      Last updated: 2026-01-27
     </p>
   </section>
 </BaseLayout>

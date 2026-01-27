@@ -1,10 +1,30 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../config/site";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Amortization With Extra Payments (how to model it)";
 const description =
   "How extra principal payments change an amortization schedule, why timing matters, and which calculator to use. Educational use only.";
+
+const examplePrincipal = 300000;
+const exampleApr = 6.5;
+const exampleTermMonths = 360;
+const exampleExtraMonthly = 300;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTermMonths });
+const withExtra = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTermMonths,
+  extraMonthly: exampleExtraMonthly
+});
+const b1 = base.rows[0];
+const b2 = base.rows.length >= 2 ? base.rows[1] : null;
+const e1 = withExtra.rows[0];
+const e2 = withExtra.rows.length >= 2 ? withExtra.rows[1] : null;
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/amortization-with-extra-payments">
   <section class="card hero">
@@ -22,6 +42,7 @@ const description =
       principal, the balance drops sooner, so future interest is lower and the payoff date can move earlier.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment mortgage calculator</a>
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule calculator</a>
     </div>
@@ -47,6 +68,34 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to read the columns</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A standard amortization row answers one question: "After this payment, what is the new balance?" Once you understand that, the rest
+      of the table is much easier to interpret.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li><strong>Starting balance:</strong> what you owe at the beginning of the month.</li>
+      <li><strong>Interest:</strong> starting balance * monthly rate.</li>
+      <li><strong>Principal:</strong> your scheduled P&amp;I payment minus interest.</li>
+      <li><strong>Extra principal:</strong> any additional amount you send that month (principal-only).</li>
+      <li><strong>Ending balance:</strong> starting balance - principal - extra principal.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      The next month's interest is computed from the ending balance. That's why extra principal has a compounding effect on interest saved
+      over time.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      One important nuance: your mortgage servicer may show "total payment" including escrow, but an amortization schedule is usually about
+      <strong>principal and interest</strong>. Escrow payments can change over time due to tax/insurance changes, while extra principal
+      targets the loan balance itself.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If you're making extra payments, look for a line item or notation that confirms the extra was applied as principal-only. If a payment
+      is recorded as "paid ahead" without reducing principal, you won't get the interest savings you expect.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Timing matters</h2>
     <p class="muted" style="margin:10px 0 0">
       The earlier you reduce principal, the more interest you can avoid. A smaller monthly extra can beat a larger
@@ -60,11 +109,50 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Example: what changes month to month</h2>
+    <h2 style="margin-top:0">Worked example: what changes month to month</h2>
     <p class="muted" style="margin:10px 0 0">
-      If you add a principal-only extra payment, the balance after that payment is lower. The next month’s interest is calculated on that
-      lower balance, so more of your regular payment goes to principal. Over time this can shorten the schedule by months or years,
-      depending on rate and extra amount.
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Compare baseline to adding
+      {money0.format(exampleExtraMonthly)}/month extra principal.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Month 1 interest</th>
+            <th class="num">Month 1 principal</th>
+            <th class="num">Month 1 extra</th>
+            <th class="num">Month 1 ending balance</th>
+            <th class="num">Month 2 interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline</td>
+            <td class="num">{money2.format(b1.interest)}</td>
+            <td class="num">{money2.format(b1.principal)}</td>
+            <td class="num">{money2.format(b1.extraPrincipal)}</td>
+            <td class="num">{money2.format(b1.endingBalance)}</td>
+            <td class="num">{b2 ? money2.format(b2.interest) : "N/A"}</td>
+          </tr>
+          <tr>
+            <td>With extra</td>
+            <td class="num">{money2.format(e1.interest)}</td>
+            <td class="num">{money2.format(e1.principal)}</td>
+            <td class="num">{money2.format(e1.extraPrincipal)}</td>
+            <td class="num">{money2.format(e1.endingBalance)}</td>
+            <td class="num">{e2 ? money2.format(e2.interest) : "N/A"}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Because the ending balance is lower after extra principal, the next month's interest is lower. Over time, that can save substantial
+      interest and shorten the payoff timeline.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      In this example, the baseline finishes in {base.months} months with about {money0.format(base.totalInterest)} of interest. With extra
+      principal it finishes in {withExtra.months} months with about {money0.format(withExtra.totalInterest)} of interest.
     </p>
   </section>
 
@@ -78,6 +166,45 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: to read an amortization table correctly</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Look at ending balance:</strong> that's what drives next month's interest.</li>
+      <li><strong>Separate P&amp;I vs escrow:</strong> extra principal affects loan balance, not taxes/insurance.</li>
+      <li><strong>Confirm principal-only:</strong> make sure extra is not just advancing the due date.</li>
+      <li><strong>Keep assumptions consistent:</strong> rate, term, start month, and extra timing must match.</li>
+      <li><strong>Check rounding:</strong> lenders may round slightly differently than a calculator.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Do extra payments reduce total interest?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Usually yes, because you reduce principal sooner, which reduces the balance used to compute interest in future months.
+    </p>
+    <h3 style="margin:12px 0 0">Does extra principal change the monthly payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Typically no. Most mortgages keep the required payment the same and shorten the term, unless you recast or refinance.
+    </p>
+    <h3 style="margin:12px 0 0">Is it better to pay extra early or later?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Earlier tends to save more interest because it reduces the balance sooner. But cash flow and emergency savings matter too.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgages resources
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Run extra payment scenarios</a>
@@ -87,6 +214,6 @@ const description =
     <p class="muted" style="margin:12px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-27</p>
   </section>
 </BaseLayout>

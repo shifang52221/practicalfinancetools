@@ -1,9 +1,33 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { minimumPaymentPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Why Minimum Payments Take So Long (credit cards)";
 const description =
   "Minimum payments can take years because interest absorbs most of the payment early. Learn common issuer rules and model payoff scenarios with calculators.";
+
+const exampleBalance = 5000;
+const exampleApr = 24.99;
+const exampleMinPercent = 2;
+const exampleMinDollars = 35;
+const exampleMaxMonths = 600;
+const example = minimumPaymentPayoffSchedule({
+  balance: exampleBalance,
+  aprPercent: exampleApr,
+  minPercent: exampleMinPercent,
+  minDollars: exampleMinDollars,
+  maxMonths: exampleMaxMonths
+});
+const month1 = example.rows[0];
+const month12 = example.rows.length >= 12 ? example.rows[11] : null;
+const month60 = example.rows.length >= 60 ? example.rows[59] : null;
+const first60 = example.rows.slice(0, 60);
+const totalPaid60 = first60.reduce((sum, r) => sum + r.payment, 0);
+const totalInterest60 = first60.reduce((sum, r) => sum + r.interest, 0);
+
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/why-minimum-payments-take-so-long">
   <section class="card hero">
@@ -21,6 +45,7 @@ const description =
       balance, and minimum payment rules often reduce principal very slowly.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/credit-cards">Credit cards topic hub</a>
       <a class="btn btn-primary" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff calculator</a>
       <a class="btn" href="/calculators/credit-card-payoff-calculator">Fixed payment payoff</a>
     </div>
@@ -48,6 +73,63 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (computed)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Using the calculator model: {money0.format(exampleBalance)} at {pct2.format(exampleApr)}% APR with a minimum payment rule of{" "}
+      {exampleMinPercent}% of balance (floor {money0.format(exampleMinDollars)}). Minimum payment rules differ by issuer, but the dynamic is
+      similar: early payments can be dominated by interest.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Checkpoint</th>
+            <th class="num">Payment</th>
+            <th class="num">Interest</th>
+            <th class="num">Principal</th>
+            <th class="num">Ending balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Month 1</td>
+            <td class="num">{money2.format(month1.payment)}</td>
+            <td class="num">{money2.format(month1.interest)}</td>
+            <td class="num">{money2.format(month1.principal)}</td>
+            <td class="num">{money2.format(month1.endingBalance)}</td>
+          </tr>
+          {month12 && (
+            <tr>
+              <td>Month 12</td>
+              <td class="num">{money2.format(month12.payment)}</td>
+              <td class="num">{money2.format(month12.interest)}</td>
+              <td class="num">{money2.format(month12.principal)}</td>
+              <td class="num">{money2.format(month12.endingBalance)}</td>
+            </tr>
+          )}
+          {month60 && (
+            <tr>
+              <td>Month 60</td>
+              <td class="num">{money2.format(month60.payment)}</td>
+              <td class="num">{money2.format(month60.interest)}</td>
+              <td class="num">{money2.format(month60.principal)}</td>
+              <td class="num">{money2.format(month60.endingBalance)}</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      After 60 months in this model, you paid {money0.format(totalPaid60)} total, about {money0.format(totalInterest60)} of which was
+      interest. Remaining balance is {money0.format(month60 ? month60.endingBalance : example.endingBalance)}.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      The initial payment needed just to keep the balance from growing is about {money2.format(example.minPaymentToAvoidGrowth)} (interest
+      plus a small amount). That explains why minimum payments can feel like "treading water" early on.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Common minimum payment rules (varies by issuer)</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>A percent of balance (for example, 1% to 3%)</li>
@@ -56,6 +138,10 @@ const description =
     </ul>
     <p class="muted" style="margin:12px 0 0">
       Your card's exact rule is on your statement or cardmember agreement. That's why payoff estimates can differ between calculators.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      Many statements also include a minimum payment warning that shows how long payoff could take if you only pay the minimum. Use that as
+      a reality check, then model a fixed payment you can sustain to see how much time and interest you can save.
     </p>
   </section>
 
@@ -75,6 +161,60 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: if you're stuck on minimum payments</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Stop new purchases:</strong> otherwise payoff can stall even if you pay every month.</li>
+      <li><strong>Find your purchase APR:</strong> confirm the APR you're actually paying (promo, purchase, penalty APR can differ).</li>
+      <li><strong>Read the minimum payment rule:</strong> it's on your statement/card agreement and can change after promos.</li>
+      <li><strong>Check fees:</strong> late fees and annual fees can keep balances higher than expected.</li>
+      <li><strong>Pick a realistic extra amount:</strong> even +{money0.format(25)} to {money0.format(100)}/month can cut years off.</li>
+      <li><strong>Consider APR reductions:</strong> hardship programs, refinancing/consolidation, or 0% balance transfer (if you can repay in time).</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Why does the minimum payment go down over time?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Many issuers compute the minimum as a percentage of the current balance (with a floor). As the balance drops, the minimum can drop,
+      which slows payoff unless you keep paying a fixed amount above the minimum.
+    </p>
+    <h3 style="margin:12px 0 0">Is paying the minimum "bad"?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It's not inherently bad, but it's usually expensive. The minimum is designed to keep the account current, not to minimize interest or
+      pay off quickly.
+    </p>
+    <h3 style="margin:12px 0 0">Will paying the statement balance avoid interest?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Often yes for purchases, due to a grace period, but only if you pay the statement balance by the due date and meet the issuer's
+      conditions. Cash advances often accrue interest immediately.
+    </p>
+    <h3 style="margin:12px 0 0">What payment should I target instead?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      A good practical target is a fixed monthly payment that fits your budget and reliably pays down principal. Use the payoff calculators
+      to test a few options (for example, +{money0.format(50)} and +{money0.format(100)}) and choose a sustainable plan.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/credit-cards/" rel="noopener noreferrer" target="_blank">
+          Credit card resources
+        </a>
+      </li>
+      <li>
+        Federal Reserve:{" "}
+        <a href="https://www.federalreserve.gov/boarddocs/supmanual/cch/200806/1020a.htm" rel="noopener noreferrer" target="_blank">
+          Regulation Z (Truth in Lending) overview
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What to avoid</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Paying near the interest amount (progress can be extremely slow).</li>
@@ -85,7 +225,7 @@ const description =
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-01-23
+      Last updated: 2026-01-27
     </p>
   </section>
 </BaseLayout>

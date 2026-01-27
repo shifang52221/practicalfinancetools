@@ -21,6 +21,8 @@ const description =
       loans it appears in lender disclosures. This guide shows where to look and how to use APR in comparisons.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/apr">APR topic hub</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic hub</a>
       <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator (include fees)</a>
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
     </div>
@@ -46,6 +48,47 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Credit card APR types to look for</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Many people search for "my APR" and find multiple APRs. On a US credit card, the APR depends on the balance type and sometimes your
+      account status.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li><strong>Purchase APR:</strong> the main APR for purchases that accrue interest.</li>
+      <li><strong>Balance transfer APR:</strong> may differ from purchase APR and may have a promo period.</li>
+      <li><strong>Cash advance APR:</strong> often higher; interest can start immediately.</li>
+      <li><strong>Penalty APR:</strong> may apply after late payments or other triggers (rules vary).</li>
+      <li><strong>Intro / promotional APR:</strong> temporary rate; note the end date and conditions.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Variable APR: why it can change</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Many credit cards list APR as "Prime + margin" (or another index + margin). When the index changes, your APR can change too. Your
+      statement and cardmember agreement explain when changes take effect.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick walkthrough: finding APR on a statement</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you're looking at a monthly credit card statement, start by finding the section that lists rates and fees. It typically shows the
+      purchase APR and may also list cash advance and balance transfer APRs.
+    </p>
+    <ol class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Locate the "Interest Charges" or "Rates and Fees" section.</li>
+      <li>Identify the APR that matches your balance type (purchase vs transfer vs cash advance).</li>
+      <li>Check whether the APR is variable and what index it tracks.</li>
+      <li>Confirm the billing cycle dates (APR is annual; interest may be computed using daily balances).</li>
+    </ol>
+    <p class="muted" style="margin:12px 0 0">
+      If you want to model payoff, use the purchase APR that applies to your revolving balance and run a few fixed-payment scenarios in the{" "}
+      <a href="/calculators/credit-card-payoff-calculator">Credit Card Payoff Calculator</a>.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What APR means (in plain language)</h2>
     <p class="muted" style="margin:10px 0 0">
       The interest rate is the nominal rate used to compute interest. APR can include certain upfront fees and timing assumptions, so it
@@ -67,6 +110,60 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: finding the right APR</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Identify the product:</strong> credit card vs installment loan vs mortgage.</li>
+      <li><strong>Find the balance type:</strong> purchase vs balance transfer vs cash advance APR.</li>
+      <li><strong>Confirm promo terms:</strong> intro APR end date and post-promo APR.</li>
+      <li><strong>Note fees:</strong> origination fees/points (loans) and transfer fees (credit cards) can change effective cost.</li>
+      <li><strong>Use consistent assumptions:</strong> same term and same fee treatment when comparing offers.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Where is APR on a mortgage?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      In the US, APR is shown prominently on mortgage disclosures like the Loan Estimate and Closing Disclosure. Your lender or broker can
+      point you to the exact line if you ask.
+    </p>
+    <h3 style="margin:12px 0 0">Why do I see multiple APRs on my credit card?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Different APRs can apply to purchases, cash advances, balance transfers, and penalty situations. Your statement typically lists each
+      APR separately.
+    </p>
+    <h3 style="margin:12px 0 0">Should I compare APR or interest rate?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      For loans with fees, APR is often the better apples-to-apples metric, but you should still compare the payment, cash needed at
+      closing, and your time horizon.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-apr-en-63/" rel="noopener noreferrer" target="_blank">
+          What is APR?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/credit-cards/" rel="noopener noreferrer" target="_blank">
+          Credit card resources
+        </a>
+      </li>
+      <li>
+        Federal Reserve:{" "}
+        <a href="https://www.federalreserve.gov/boarddocs/supmanual/cch/200806/1020a.htm" rel="noopener noreferrer" target="_blank">
+          Regulation Z (Truth in Lending) overview
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Related topics</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
@@ -77,7 +174,7 @@ const description =
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-01-23
+      Last updated: 2026-01-27
     </p>
   </section>
 </BaseLayout>

@@ -1,9 +1,25 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Mortgage Payments (save interest, shorten payoff)";
 const description =
   "Learn how extra principal payments change amortization, what to confirm with your lender, and how to compare scenarios. Educational use only.";
+
+const examplePrincipal = 300000;
+const exampleApr = 6.5;
+const exampleTermMonths = 360;
+const exampleExtraMonthly = 300;
+const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTermMonths });
+const withExtra = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTermMonths,
+  extraMonthly: exampleExtraMonthly
+});
+
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/extra-mortgage-payments">
   <section class="card hero">
@@ -21,6 +37,7 @@ const description =
       timeline. This guide shows what to check and how to model realistic scenarios.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment mortgage calculator</a>
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
     </div>
@@ -68,11 +85,69 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Extra payments vs recast vs refinance</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Extra principal payments are a payoff tactic: they usually keep your required payment the same and shorten the schedule. If your goal
+      is to <strong>lower the required monthly payment</strong>, two related concepts are recasting and refinancing.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li><strong>Recast:</strong> you pay a large principal amount, then the lender recalculates the payment based on the new balance (fees and rules vary).</li>
+      <li><strong>Refinance:</strong> you replace the loan, which can change the rate and term, but comes with closing costs.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      If you're deciding between these, see <a href="/guides/mortgage-recast-vs-extra-payments">Mortgage recast vs extra payments</a> and{" "}
+      <a href="/guides/refinance-break-even">Refinance break-even</a>.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (computed)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(examplePrincipal)} mortgage at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months (30 years).
+      Baseline P&amp;I payment is {money0.format(base.paymentPI)}/month. Now compare adding {money0.format(exampleExtraMonthly)}/month in extra
+      principal.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Monthly P&amp;I</th>
+            <th class="num">Extra principal</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline</td>
+            <td class="num">{money0.format(base.paymentPI)}</td>
+            <td class="num">{money0.format(0)}</td>
+            <td class="num">{base.months} months</td>
+            <td class="num">{money0.format(base.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>With extra</td>
+            <td class="num">{money0.format(base.paymentPI)}</td>
+            <td class="num">{money0.format(exampleExtraMonthly)}</td>
+            <td class="num">{withExtra.months} months</td>
+            <td class="num">{money0.format(withExtra.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      In this example, extra payments save about {money0.format(Math.max(0, base.totalInterest - withExtra.totalInterest))} in interest and
+      shorten payoff by {Math.max(0, base.months - withExtra.months)} months (calculator estimate).
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Example scenarios to run</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Small monthly extra ($50–$200): useful if you want a plan you can sustain.</li>
+      <li>Small monthly extra ($50-$200): useful if you want a plan you can sustain.</li>
       <li>One-time lump sum (bonus/refund): compare paying it today vs spreading it monthly.</li>
-      <li>Biweekly vs monthly extra: some “biweekly programs” don’t post payments early, so compare both.</li>
+      <li>Biweekly vs monthly extra: some "biweekly programs" don't post payments early, so compare both.</li>
       <li>Liquidity check: compare extra payments vs keeping more cash on hand.</li>
     </ul>
     <div class="btn-row" style="margin-top:12px">
@@ -85,10 +160,58 @@ const description =
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Common pitfalls</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>“Paid ahead” behavior: confirm your servicer applies the extra as principal-only.</li>
+      <li>"Paid ahead" behavior: confirm your servicer applies the extra as principal-only.</li>
       <li>Escrow changes: taxes/insurance can rise even if your principal-and-interest payment is fixed.</li>
       <li>Fees: avoid fee-based payment programs unless the interest savings clearly exceed the fees.</li>
       <li>Prepayment penalties: uncommon on many consumer mortgages, but verify your note.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: make sure extra payments apply correctly</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Principal-only:</strong> confirm the extra is applied to principal (not just "paid ahead").</li>
+      <li><strong>Posting timing:</strong> ask when the servicer posts extra principal and how it shows on statements.</li>
+      <li><strong>Prepayment penalties:</strong> uncommon on many consumer mortgages, but verify your note.</li>
+      <li><strong>Escrow is separate:</strong> extra principal usually does not change taxes/insurance escrow.</li>
+      <li><strong>Recast option:</strong> if you want a lower required payment, ask about recasting and fees.</li>
+      <li><strong>Liquidity:</strong> keep an emergency fund; prepaying principal can be hard to reverse.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Do extra payments lower my required monthly payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Usually no. They typically shorten the payoff timeline and reduce interest, but the required payment stays the same unless you recast
+      (if available) or refinance.
+    </p>
+    <h3 style="margin:12px 0 0">Is it better to prepay the mortgage or invest?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It depends on your risk tolerance and goals. Mortgage prepayment is a guaranteed return equal to your mortgage rate (after-tax
+      considerations vary). Investing can have higher expected returns but with volatility.
+    </p>
+    <h3 style="margin:12px 0 0">Is one lump sum better than monthly extra?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Earlier is generally better because it reduces principal sooner. But the best plan is the one you can sustain while keeping enough
+      cash for emergencies.
+    </p>
+    <h3 style="margin:12px 0 0">What does "paid ahead" mean?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Some servicers treat extra as advancing your next due date (prepaying future scheduled payments) instead of reducing principal. If
+      your goal is interest savings, ensure extra is applied as principal-only.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgages resources
+        </a>
+      </li>
     </ul>
   </section>
 
@@ -99,6 +222,6 @@ const description =
       <a class="btn" href="/calculators/mortgage-payment-calculator">Baseline monthly payment</a>
       <a class="btn" href="/calculators/rent-vs-buy-calculator">Rent vs buy</a>
     </div>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-27</p>
   </section>
 </BaseLayout>

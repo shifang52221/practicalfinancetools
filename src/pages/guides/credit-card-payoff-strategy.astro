@@ -1,9 +1,19 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Payoff Strategy (pay faster, pay less interest)";
 const description =
   "Learn what actually drives credit card interest cost, how minimum payments work, and how to pick a payoff strategy. Use the free payoff calculators. Educational use only.";
+
+const exampleBalance = 5000;
+const exampleApr = 24.99;
+const examplePaymentA = 200;
+const examplePaymentB = 250;
+const payoffA = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: examplePaymentA });
+const payoffB = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: examplePaymentB });
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-payoff-strategy">
   <section class="card hero">
@@ -21,6 +31,7 @@ const description =
       understand which changes move the needle most.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/credit-cards">Credit cards topic hub</a>
       <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
       <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
     </div>
@@ -43,6 +54,41 @@ const description =
         <li>Multiple debts: <a href="/calculators/debt-snowball-calculator">Snowball</a> vs <a href="/calculators/debt-avalanche-calculator">Avalanche</a>.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example: payment size dominates</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(exampleBalance)} at {pct2.format(exampleApr)}% APR. A bigger fixed payment reduces interest because the
+      balance shrinks faster. Even +{money0.format(examplePaymentB - examplePaymentA)}/month can matter.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="num">Monthly payment</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">{money0.format(examplePaymentA)}</td>
+            <td class="num">{payoffA.months == null ? "N/A" : `${payoffA.months} months`}</td>
+            <td class="num">{money0.format(payoffA.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td class="num">{money0.format(examplePaymentB)}</td>
+            <td class="num">{payoffB.months == null ? "N/A" : `${payoffB.months} months`}</td>
+            <td class="num">{money0.format(payoffB.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      In this example, the higher payment saves about {money0.format(Math.max(0, payoffA.totalInterest - payoffB.totalInterest))} in
+      interest (calculator estimate) and reaches payoff sooner.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -98,6 +144,20 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Before you optimize: protect the plan</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The fastest payoff strategy fails if it breaks your cash flow. If you have no buffer, one unexpected expense can force you back onto
+      the card, undoing months of progress.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li><strong>Build a small emergency buffer:</strong> even {money0.format(500)}-{money0.format(1000)} can prevent backsliding.</li>
+      <li><strong>Automate the minimum:</strong> avoid late fees and penalty APR while you pay extra.</li>
+      <li><strong>Keep the extra realistic:</strong> it's better to pay +{money0.format(50)} reliably than +{money0.format(300)} for two
+        months and then miss a payment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Ways people lower APR (with trade-offs)</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li><strong>Balance transfer promos:</strong> can reduce interest, but watch transfer fees and promo end dates.</li>
@@ -106,8 +166,61 @@ const description =
       <li><strong>Negotiating APR:</strong> sometimes works, especially with good payment history.</li>
     </ul>
     <p class="muted" style="margin:12px 0 0">
+      Be cautious with offers that require you to stop paying creditors or promise "guaranteed" results. Missing payments can trigger fees
+      and penalty APR, and some approaches can create more problems than they solve. If you need help, start by contacting your issuer
+      directly to ask about hardship options.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
       The safest approach is often “boring but consistent”: stop new purchases, pay more than the minimum, and automate payments.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: a payoff plan you can stick to</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Stop new purchases:</strong> use a debit card/cash while paying down revolving debt.</li>
+      <li><strong>Pay on time:</strong> late fees and penalty APR can wipe out progress.</li>
+      <li><strong>Set a fixed payment:</strong> a stable amount beats chasing a moving minimum.</li>
+      <li><strong>Automate:</strong> schedule autopay for the minimum + your extra.</li>
+      <li><strong>Track promo dates:</strong> balance transfer and 0% promos end; set reminders.</li>
+      <li><strong>Choose an approach:</strong> avalanche (usually lower interest) vs snowball (often easier to sustain).</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Avalanche or snowball: which is better?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Avalanche usually saves the most interest. Snowball can be easier psychologically because you close accounts sooner. The best plan is
+      the one you'll follow consistently for months.
+    </p>
+    <h3 style="margin:12px 0 0">Should I do a 0% balance transfer?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It can help if you can pay the balance before the promo ends and you understand the transfer fee. If you keep spending or miss
+      payments, the benefit can disappear quickly.
+    </p>
+    <h3 style="margin:12px 0 0">How do I know what payment to choose?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Start with a number you can sustain. Then test +{money0.format(25)}, +{money0.format(50)}, +{money0.format(100)} in the payoff
+      calculator to see the timeline and interest impact.
+    </p>
+    <h3 style="margin:12px 0 0">Can I lower my APR without a new loan?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Sometimes. Some issuers offer hardship programs or may reduce APR for customers with strong payment history. Ask before you assume
+      consolidation is the only option.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/credit-cards/" rel="noopener noreferrer" target="_blank">
+          Credit card resources
+        </a>
+      </li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -117,6 +230,6 @@ const description =
       <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment timeline</a>
       <a class="btn" href="/calculators/apr-calculator">Compare APR (fees)</a>
     </div>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-27</p>
   </section>
 </BaseLayout>
