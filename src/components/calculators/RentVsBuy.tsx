@@ -59,8 +59,8 @@ export function RentVsBuyCalculator() {
   const last = result.series[result.series.length - 1];
   const diffAtHorizon = (last?.netWorthBuy ?? 0) - (last?.netWorthRent ?? 0);
 
-  const breakEvenYearText = result.breakEvenYear === null ? "—" : `${result.breakEvenYear} yr`;
-  const breakEvenMonthText = result.breakEvenMonth === null ? "—" : `${result.breakEvenMonth} mo`;
+  const breakEvenYearText = result.breakEvenYear === null ? "N/A" : `${result.breakEvenYear} yr`;
+  const breakEvenMonthText = result.breakEvenMonth === null ? "N/A" : `${result.breakEvenMonth} mo`;
 
   function toCsv(rows: typeof result.series) {
     const header = [
@@ -207,12 +207,12 @@ export function RentVsBuyCalculator() {
           <div className="kpi">
             <div className="k">Break-even (year)</div>
             <div className="v">{breakEvenYearText}</div>
-            <div className="hint">First year buying ≥ renting (net worth)</div>
+            <div className="hint">First year buying &gt;= renting (net worth)</div>
           </div>
           <div className="kpi">
             <div className="k">Break-even (month)</div>
             <div className="v">{breakEvenMonthText}</div>
-            <div className="hint">First month buying ≥ renting</div>
+            <div className="hint">First month buying &gt;= renting</div>
           </div>
           <div className="kpi">
             <div className="k">Net worth (rent) at {last?.year} yr</div>
@@ -225,7 +225,7 @@ export function RentVsBuyCalculator() {
           <div className="kpi">
             <div className="k">Difference at horizon</div>
             <div className="v">{formatCurrency2(diffAtHorizon)}</div>
-            <div className="hint">Buy − rent</div>
+            <div className="hint">Buy - rent</div>
           </div>
           <div className="kpi">
             <div className="k">Winner at horizon</div>
@@ -270,4 +270,3 @@ export function RentVsBuyCalculator() {
     </div>
   );
 }
-

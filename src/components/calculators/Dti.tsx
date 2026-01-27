@@ -4,7 +4,7 @@ import { formatCurrency2, formatPercent } from "../../lib/format";
 import { clamp } from "../../lib/math";
 
 function labelForDti(dti: number): string {
-  if (!Number.isFinite(dti)) return "—";
+  if (!Number.isFinite(dti)) return "N/A";
   if (dti < 0.2) return "Low";
   if (dti < 0.36) return "Moderate";
   if (dti < 0.43) return "Higher";
@@ -43,9 +43,9 @@ export function DtiCalculator() {
     return { targetFrontEnd, targetBackEnd, maxHousing };
   }, [result.incomeMonthly, result.otherDebtMonthly, targetFrontEndPct, targetBackEndPct]);
 
-  const backEndText = result.backEndDti === null ? "—" : formatPercent(result.backEndDti);
-  const frontEndText = result.frontEndDti === null ? "—" : formatPercent(result.frontEndDti);
-  const maxHousingText = targets.maxHousing === null ? "—" : formatCurrency2(targets.maxHousing);
+  const backEndText = result.backEndDti === null ? "N/A" : formatPercent(result.backEndDti);
+  const frontEndText = result.frontEndDti === null ? "N/A" : formatPercent(result.frontEndDti);
+  const maxHousingText = targets.maxHousing === null ? "N/A" : formatCurrency2(targets.maxHousing);
 
   return (
     <div className="calc-grid">
@@ -162,4 +162,3 @@ export function DtiCalculator() {
     </div>
   );
 }
-
