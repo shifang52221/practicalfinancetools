@@ -68,7 +68,7 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     </p>
   </section>
 
-    <section class="card section prose" style="margin-top:18px">
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Example: same rate, different APR</h2>
     <p class="muted" style="margin:10px 0 0">
       Example: {money0.format(exampleLoan)} for {exampleTerm} months at {pct2.format(exampleRate)}%. Both offers have the same nominal rate,
@@ -103,6 +103,24 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     <p class="muted" style="margin:12px 0 0">
       If the fee is rolled into the loan instead of paid upfront, the payment can rise as well.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Payment impact in the example</h2>
+    <p class="muted" style="margin:10px 0 0">
+      In this example, the payment difference between the low-fee and higher-fee offer is about{" "}
+      {money0.format(Math.max(0, offerHigh.payment - offerLow.payment))} per month. The APR gap is larger because fees raise the overall
+      cost even when the payment stays close.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When fees matter most</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Shorter time horizons make upfront fees more expensive per month.</li>
+      <li>Smaller loan amounts make fixed fees a larger percentage of the loan.</li>
+      <li>Rolling fees into the balance increases interest cost over time.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What to do when you might repay early</h2>

@@ -120,6 +120,28 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       The earlier monthly extra usually saves more interest than a late-year lump sum, even if the totals are similar.
     </p>
   </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How much can it save?</h2>
+    <p class="muted" style="margin:10px 0 0">
+      In the example above, the monthly-extra option saves about{" "}
+      {money0.format(Math.max(0, base.totalInterest - withMonthlyExtra.totalInterest))} in interest compared with making no extra
+      payments. Your savings depend on rate, term, and when the extra is applied.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If your loan is already near payoff or the rate is very low, the incremental savings can be smaller.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When it might not be the best move</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>You have high-interest debt or no emergency savings.</li>
+      <li>Your loan has a prepayment penalty or fee-based payment program.</li>
+      <li>You plan to refinance or move soon, shortening the time to benefit.</li>
+      <li>You need liquidity more than principal reduction.</li>
+    </ul>
+  </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Checklist: make the extra count</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">

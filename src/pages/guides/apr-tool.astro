@@ -64,7 +64,7 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     </p>
   </section>
 
-    <section class="card section prose" style="margin-top:18px">
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Example: compare two offers</h2>
     <p class="muted" style="margin:10px 0 0">
       Example: {money0.format(exampleLoan)} for {exampleTerm} months. Offer A is {pct2.format(rateA)}% with no fees. Offer B is
@@ -103,6 +103,24 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       Even a lower rate can have a higher APR if fees are large relative to the loan amount.
     </p>
   </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Break-even intuition</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If a lower rate comes with fees, the break-even point is when the monthly savings offset the upfront cost. Use the calculator to
+      compare total dollars paid over the number of months you expect to keep the loan, not just over the full term.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Cash-to-close vs financed fees</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Paid upfront:</strong> you bring more cash to closing but keep the loan balance lower.</li>
+      <li><strong>Financed:</strong> you roll fees into the balance, increasing total cost and sometimes the payment.</li>
+      <li>APR can rise in either case; confirm how fees are handled before comparing offers.</li>
+    </ul>
+  </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How to use results</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">

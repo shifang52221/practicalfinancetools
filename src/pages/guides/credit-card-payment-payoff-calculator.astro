@@ -101,6 +101,17 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       {money0.format(payoffA.minPaymentToAvoidGrowth)} would not reduce the balance.
     </p>
   </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How the calculator works</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Monthly interest is estimated from the current balance and APR.</li>
+      <li>Your payment is applied to interest first, then principal.</li>
+      <li>The schedule repeats until the balance reaches zero.</li>
+      <li>Changing the payment or APR re-shapes the timeline immediately.</li>
+    </ul>
+  </section>
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">How to use results</h2>

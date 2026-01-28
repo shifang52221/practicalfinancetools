@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
+import { creditCardPayoffSchedule, paymentToPayoffInMonths } from "../../lib/calc/creditCard";
 
 const title = "Calculate Credit Card Payoff (steps + common pitfalls)";
 const description =
@@ -11,6 +11,12 @@ const exampleApr = 19.99;
 const examplePayment = 200;
 const payoff = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: examplePayment });
 const firstRow = payoff.rows[0];
+const targetMonths = 24;
+const paymentForTarget = paymentToPayoffInMonths({
+  balance: exampleBalance,
+  aprPercent: exampleApr,
+  targetMonths
+});
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
@@ -74,6 +80,19 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       </table>
     </div>
   </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Set a target payoff date</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you want to be debt-free by a specific month, reverse the calculation to estimate the required payment. For example, paying off
+      {money0.format(exampleBalance)} at {pct2.format(exampleApr)}% APR in {targetMonths} months requires roughly{" "}
+      {paymentForTarget == null ? "N/A" : money0.format(paymentForTarget)} per month.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      Use this as a planning anchor, then test slightly higher or lower payments to understand how sensitive the payoff date is.
+    </p>
+  </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">If you have multiple cards</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -108,6 +127,15 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
         <li>Multiple debts: snowball vs avalanche plans.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When payments do not move the balance</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If your monthly payment is near or below the interest charge, the balance may not decline at all. In the example above, the
+      payment needs to be above {money0.format(payoff.minPaymentToAvoidGrowth)} just to prevent growth. Use that number as a floor when
+      choosing a fixed payment.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">

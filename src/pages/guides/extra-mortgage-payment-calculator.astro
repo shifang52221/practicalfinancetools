@@ -100,6 +100,15 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       Earlier extra payments usually save more interest than a later lump sum of the same total amount.
     </p>
   </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Savings snapshot</h2>
+    <p class="muted" style="margin:10px 0 0">
+      In this example, the monthly extra saves about{" "}
+      {money0.format(Math.max(0, base.totalInterest - withMonthlyExtra.totalInterest))} in interest and shortens payoff by{" "}
+      {Math.max(0, base.months - withMonthlyExtra.months)} months versus the baseline. Use the table to compare your own scenarios.
+    </p>
+  </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What extra payments change (and what they don't)</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
