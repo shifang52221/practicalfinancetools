@@ -5,7 +5,7 @@ import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Mortgage Payment Calculator (Extra Principal)";
 const description =
-  "Estimate how extra principal (monthly, lump sum, or one extra payment per year) can shorten mortgage payoff time and reduce total interest. Educational use only.";
+  "Extra mortgage payment calculator to estimate how extra principal (monthly, lump sum, or one extra payment per year) can shorten mortgage payoff time and reduce total interest. Educational use only.";
 
 const exampleInput = { principal: 300000, aprPercent: 6.5, termMonths: 360, extraMonthly: 300 };
 const base = amortizationSchedule({ principal: exampleInput.principal, aprPercent: exampleInput.aprPercent, termMonths: exampleInput.termMonths });
@@ -34,7 +34,7 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       a: "An extra $300 typically goes to principal (if applied as principal-only), which reduces the balance sooner and can shorten payoff time and total interest. Compare a $300 monthly extra vs a one-time payment to see the difference."
     },
     {
-      q: "Additional principal payment mortgage calculator: what inputs do I need?",
+      q: "Mortgage extra principal calculator: what inputs do I need?",
       a: "Start with loan amount, interest rate, and term, then add an extra principal amount (monthly or lump sum). This calculator compares the baseline vs extra-payment payoff date and total interest under the same assumptions."
     },
     {

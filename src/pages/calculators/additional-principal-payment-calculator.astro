@@ -2,17 +2,17 @@
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { ExtraPaymentMortgageCalculator } from "../../components/calculators/ExtraPayment";
 
-const title = "Additional Principal Payment Calculator (Mortgage)";
-const metaTitle = "Additional Principal Payment Mortgage Calculator";
+const title = "Extra Principal Payment Calculator (Mortgage)";
+const metaTitle = "Extra Principal Payment Mortgage Calculator";
 const description =
-  "Estimate how additional principal payments (monthly extra or lump sum) can shorten payoff time and reduce total mortgage interest. Educational use only.";
+  "Extra principal payment calculator to estimate how additional principal (monthly extra or lump sum) can shorten payoff time and reduce total mortgage interest. Educational use only.";
 ---
 <CalculatorLayout
   title={title}
   metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/additional-principal-payment-calculator"
-  intro="Estimate how additional principal payments change payoff time and total interest. Use this to compare a monthly extra vs a one-time principal payment under consistent assumptions. Educational use only. Not financial advice."
+  intro="Use this extra principal payment calculator to estimate how additional principal payments change payoff time and total interest. Compare a monthly extra vs a one-time principal payment under consistent assumptions. Educational use only. Not financial advice."
   how={[
     "Baseline schedule uses standard amortization for principal and interest.",
     "Additional principal reduces the balance, which reduces future interest.",
@@ -20,7 +20,7 @@ const description =
   ]}
   faqs={[
     {
-      q: "Additional principal payment mortgage calculator: what does it do?",
+      q: "Extra principal payment calculator: what does it do?",
       a: "It estimates how paying extra principal (monthly or one-time) can shorten payoff time and reduce total interest compared to a baseline schedule."
     },
     {
@@ -72,7 +72,7 @@ const description =
 
     <h2 style="margin:18px 0 10px">Quick checklist (principal-only)</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
-      <li>Confirm the payment is applied to principal, not future due dates (“paid ahead”).</li>
+      <li>Confirm the payment is applied to principal, not future due dates ("paid ahead").</li>
       <li>Check for prepayment penalties and whether your loan allows principal-only payments.</li>
       <li>Keep your regular payment unchanged when comparing scenarios.</li>
       <li>If you want a lower required payment, look into a recast (if available) instead of expecting extra payments to reduce the bill.</li>
@@ -80,7 +80,7 @@ const description =
 
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
-      <li>Escrow (taxes/insurance) typically doesn’t change when you pay extra principal.</li>
+      <li>Escrow (taxes/insurance) typically does not change when you pay extra principal.</li>
       <li>Servicer posting rules can affect results; verify how extra payments are applied.</li>
       <li>Paying extra principal can reduce liquidity; keep an emergency fund in mind.</li>
     </ul>
@@ -93,3 +93,4 @@ const description =
     </div>
   </div>
 </CalculatorLayout>
+
