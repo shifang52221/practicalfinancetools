@@ -41,6 +41,23 @@ const websiteLd = {
   url: homeUrl,
   publisher: { "@id": `${siteUrl}/#organization` }
 };
+const pageType = canonicalPath?.startsWith("/guides")
+  ? "Article"
+  : canonicalPath?.startsWith("/topics")
+    ? "CollectionPage"
+    : "WebPage";
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": pageType,
+  "@id": `${canonical ?? homeUrl}#webpage`,
+  url: canonical ?? homeUrl,
+  name: title,
+  headline: pageType === "Article" ? title : undefined,
+  description: description ?? undefined,
+  isPartOf: { "@id": `${siteUrl}/#website` },
+  publisher: { "@id": `${siteUrl}/#organization` },
+  author: pageType === "Article" ? { "@id": `${siteUrl}/#organization` } : undefined
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -69,6 +86,7 @@ const websiteLd = {
     <meta name="theme-color" content="#0b1220" />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationLd)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteLd)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(webPageLd)} />
     <slot name="head" />
     <script is:inline type="text/javascript">
       (function () {
