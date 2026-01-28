@@ -1,4 +1,4 @@
----
+﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { RentVsBuyCalculator as RentVsBuyCalculatorComponent } from "../../components/calculators/RentVsBuy";
 
@@ -37,7 +37,7 @@ const description =
     },
     {
       q: "Is this an investment recommendation?",
-      a: "No. It’s an educational scenario comparison, not advice."
+      a: "No. It's an educational scenario comparison, not advice."
     },
     {
       q: "Does this include PMI?",
@@ -65,8 +65,8 @@ const description =
 
     <h2 style="margin:18px 0 10px">Example scenarios to try</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
-      <li>Short horizon (2–4 years): test higher selling costs and modest appreciation.</li>
-      <li>Long horizon (7–10+ years): test a conservative appreciation rate and higher maintenance.</li>
+      <li>Short horizon (2-4 years): test higher selling costs and modest appreciation.</li>
+      <li>Long horizon (7-10+ years): test a conservative appreciation rate and higher maintenance.</li>
       <li>Rate sensitivity: run the same home price with a higher mortgage rate to see how quickly results change.</li>
       <li>Opportunity cost: increase investment return to see the effect of tying up cash in a down payment.</li>
     </ul>
@@ -79,16 +79,40 @@ const description =
       <li>Investment return: use a range; after-tax results may be different.</li>
     </ul>
 
+    <h2 style="margin:18px 0 10px">Sensitivity checks</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Change holding period by +/- 2 years to see break-even shifts.</li>
+      <li>Raise the mortgage rate 1% to test payment pressure.</li>
+      <li>Lower appreciation and raise rent growth to stress test buying.</li>
+      <li>Compare a higher down payment vs investing the difference.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Inputs to verify</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Use realistic local tax and insurance estimates.</li>
+      <li>Match the loan term to what you would actually choose.</li>
+      <li>Include expected maintenance for the property type and age.</li>
+      <li>Check that selling costs reflect your market.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Cash assumptions to test</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Down payment size changes both loan cost and invested cash.</li>
+      <li>Closing costs can be large in the first year; test a higher estimate.</li>
+      <li>Renter insurance and utilities are not modeled; include them in your own budget.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Taxes, deductions, and after-tax investment returns are not modeled here.</li>
       <li>Maintenance is uncertain; older homes or condos can have large one-time costs.</li>
       <li>Opportunity cost matters: tying up cash in a down payment can reduce investable funds.</li>
-      <li>Holding period is critical—selling costs can dominate short time horizons.</li>
+      <li>Holding period is critical; selling costs can dominate short time horizons.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Related guides</h2>
     <div class="btn-row" style="margin-top:0">
+      <a class="btn btn-primary" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
       <a class="btn" href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a>

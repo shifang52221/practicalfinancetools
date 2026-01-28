@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+﻿import React, { useMemo, useState } from "react";
 import { buildDebtPlan, extraMonthlyToDebtFreeInMonths, type DebtInput } from "../../lib/calc/debtPlan";
 import { formatCurrency2, formatMonths } from "../../lib/format";
 import { clamp } from "../../lib/math";
@@ -188,7 +188,7 @@ export function DebtSnowballCalculator() {
           </div>
           <div className="kpi">
             <div className="k">Extra needed for {Math.max(1, Math.floor(clamp(targetMonths, 1, 600)))} months</div>
-            <div className="v">{requiredExtra === null ? "—" : formatCurrency2(requiredExtra)}</div>
+            <div className="v">{requiredExtra === null ? "-" : formatCurrency2(requiredExtra)}</div>
             <div className="hint">Estimate; assumes fixed APRs and minimums</div>
           </div>
         </div>

@@ -1,4 +1,4 @@
----
+﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { DebtSnowballCalculator as DebtSnowballCalculatorComponent } from "../../components/calculators/DebtSnowball";
 
@@ -14,7 +14,7 @@ const description =
   canonicalPath="/calculators/debt-snowball-calculator"
   intro="Create a debt payoff plan using the snowball method: pay minimums on everything and attack the smallest balance first. Educational use only. Not financial advice."
   how={[
-    "Each month, interest is estimated as balance × (APR ÷ 12).",
+    "Each month, interest is estimated as balance x (APR / 12).",
     "Minimum payments are applied to all debts; extra money is applied to the target debt (smallest balance).",
     "When a debt is paid off, its payment is freed up for other debts.",
     "Results assume APRs and minimum payments stay constant and you make on-time payments."
@@ -34,7 +34,7 @@ const description =
     },
     {
       q: "Can I include 0% promo balances?",
-      a: "Yes—set APR to 0%. Be aware promo periods can end and minimum payment rules vary by issuer."
+      a: "Yes. Set APR to 0%. Be aware promo periods can end and minimum payment rules vary by issuer."
     },
     {
       q: "Does this include fees or new purchases?",
@@ -60,7 +60,7 @@ const description =
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">How to use this page</h2>
     <p class="muted" style="margin:0">
-      Enter each debt’s balance, APR, and minimum payment. Then add an “extra payment” amount—the additional money you
+      Enter each debt's balance, APR, and minimum payment. Then add an "extra payment" amount, the additional money you
       can put toward debt each month. The snowball method applies that extra amount to the smallest balance first to
       help you get early payoffs.
     </p>
@@ -69,8 +69,32 @@ const description =
     <p class="muted" style="margin:0">
       Suppose you have three debts: (1) $600 at 24% APR with a $25 minimum, (2) $2,500 at 18% with a $70 minimum, and
       (3) $8,000 at 8% with a $160 minimum. If you can pay $150 extra each month, snowball targets the $600 balance
-      first. After it’s paid off, you roll its payment into the next smallest balance and repeat.
+      first. After it's paid off, you roll its payment into the next smallest balance and repeat.
     </p>
+
+    <h2 style="margin:18px 0 10px">Inputs to verify</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Balances are current and include any interest already posted.</li>
+      <li>APR and minimum payments match your statement.</li>
+      <li>Extra payment amount is realistic for your budget.</li>
+      <li>New purchases and fees are excluded from this model.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">When snowball can be a fit</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>You want quick wins to stay motivated.</li>
+      <li>Small balances can be closed quickly with focused payments.</li>
+      <li>You value simplicity over absolute interest minimization.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Compare snowball vs avalanche</h2>
+    <p class="muted" style="margin:0">
+      Snowball targets the smallest balance first for momentum, while avalanche targets the highest APR to minimize interest.
+      Run both plans to see which payoff timeline fits your goals.
+    </p>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn" href="/calculators/debt-avalanche-calculator">Debt avalanche calculator</a>
+    </div>
 
     <h2 style="margin:18px 0 10px">How to make the plan realistic</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
@@ -84,11 +108,12 @@ const description =
       <li>Snowball may not minimize interest; it prioritizes motivation and simplicity over cost.</li>
       <li>APR and minimum payment rules can change (promo APR ends, penalty APR, issuer policy changes).</li>
       <li>Adding new purchases or fees can extend payoff time significantly.</li>
-      <li>If your “extra payment” is not realistic, the plan may be hard to stick with—start conservative.</li>
+      <li>If your "extra payment" is not realistic, the plan may be hard to stick with; start conservative.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Related guides</h2>
     <div class="btn-row" style="margin-top:0">
+      <a class="btn btn-primary" href="/topics/credit-cards">Credit cards topic hub</a>
       <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
       <a class="btn" href="/guides/calculate-credit-card-payoff">Calculate credit card payoff</a>
       <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How credit card interest is calculated</a>

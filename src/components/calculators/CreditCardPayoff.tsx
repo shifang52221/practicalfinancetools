@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+﻿import React, { useMemo, useState } from "react";
 import { creditCardPayoffSchedule, paymentToPayoffInMonths } from "../../lib/calc/creditCard";
 import { formatCurrency2, formatMonths } from "../../lib/format";
 import { clamp } from "../../lib/math";
@@ -121,7 +121,7 @@ export function CreditCardPayoff() {
           </div>
           <div className="kpi">
             <div className="k">Payment to payoff in {targetMonthsSafe} months</div>
-            <div className="v">{suggestedPayment === null ? "—" : formatCurrency2(suggestedPayment)}</div>
+            <div className="v">{suggestedPayment === null ? "-" : formatCurrency2(suggestedPayment)}</div>
           </div>
           <div className="kpi">
             <div className="k">Months shown</div>

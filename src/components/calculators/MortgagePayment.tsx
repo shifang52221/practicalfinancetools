@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+﻿import React, { useMemo, useState } from "react";
 import { amortizationSchedule, mortgageMonthlyBreakdown } from "../../lib/calc/loan";
 import { formatCurrency2, formatPercent } from "../../lib/format";
 import { clamp } from "../../lib/math";
@@ -186,7 +186,7 @@ export function MortgagePaymentCalculator() {
           </div>
           <div className="kpi">
             <div className="k">PMI (est.)</div>
-            <div className="v">{result.pmiMonthly > 0 ? formatCurrency2(result.pmiMonthly) : "—"}</div>
+            <div className="v">{result.pmiMonthly > 0 ? formatCurrency2(result.pmiMonthly) : "-"}</div>
             <div className="hint">
               {result.pmiMonthly > 0
                 ? pmiStopMonth === null
@@ -197,7 +197,7 @@ export function MortgagePaymentCalculator() {
           </div>
           <div className="kpi">
             <div className="k">Total PMI (est.)</div>
-            <div className="v">{result.pmiMonthly > 0 ? formatCurrency2(totalPmiEstimate) : "—"}</div>
+            <div className="v">{result.pmiMonthly > 0 ? formatCurrency2(totalPmiEstimate) : "-"}</div>
           </div>
         </div>
 

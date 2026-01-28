@@ -1,14 +1,14 @@
----
+﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { SITE } from "../config/site";
 
 const title = `Page Not Found | ${SITE.name}`;
-const description = "Sorry—this page doesn’t exist. Browse calculators and resources from the homepage.";
+const description = "Sorry-this page doesn't exist. Browse calculators and resources from the homepage.";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/404" robots="noindex, follow">
   <section class="card hero">
     <h1>Page not found</h1>
-    <p class="muted">The page you’re looking for doesn’t exist or may have moved.</p>
+    <p class="muted">The page you're looking for doesn't exist or may have moved.</p>
   </section>
 
   <section class="card section">
@@ -16,5 +16,32 @@ const description = "Sorry—this page doesn’t exist. Browse calculators and r
       <a class="btn btn-primary" href="/calculators">Browse calculators</a>
       <a class="btn" href="/">Go to homepage</a>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Popular tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment impact</a>
+      <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Try a quick workflow</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Mortgage: estimate payment, then compare extra principal scenarios.</li>
+      <li>Credit cards: run payoff with a fixed payment, then test snowball/avalanche.</li>
+      <li>APR: compare two offers with the same fees and term assumptions.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Need help?</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you expected a page here, tell us the URL and where you found it. We will fix broken links quickly.
+      <a href="/contact">Contact us</a>.
+    </p>
   </section>
 </BaseLayout>

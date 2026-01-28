@@ -1,4 +1,4 @@
----
+﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { MinimumPaymentPayoff } from "../../components/calculators/MinimumPaymentPayoff";
 
@@ -14,7 +14,7 @@ const description =
   canonicalPath="/calculators/minimum-payment-payoff-calculator"
   intro="See how long a balance can take to pay off if you only make minimum payments, and how much interest you may pay. Educational use only. Not financial advice."
   how={[
-    "Monthly interest is estimated as balance × (APR ÷ 12).",
+    "Monthly interest is estimated as balance x (APR / 12).",
     "Minimum payment is estimated as max($ minimum, % of balance) using a simplified common rule.",
     "Estimates assume no new purchases are added and APR stays constant."
   ]}
@@ -51,8 +51,50 @@ const description =
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">Example</h2>
     <p class="muted" style="margin:0">
-      Try a $5,000 balance at 24.99% APR. Compare “minimum payments only” versus paying an extra $25–$100 per month.
+      Try a $5,000 balance at 24.99% APR. Compare minimum payments only versus paying an extra $25-$100 per month.
       Many people are surprised by how much time and interest minimum-only payments can add.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Inputs to sanity-check</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>APR: use the rate from your statement (not a promo teaser rate).</li>
+      <li>Minimum payment rule: some issuers use % of balance plus interest/fees.</li>
+      <li>New purchases: this tool assumes none; new charges can extend payoff.</li>
+      <li>Statement timing: real statements may differ due to daily interest and cycles.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">How to use the results</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Increase the payment until the payoff time feels realistic for your budget.</li>
+      <li>Compare total interest under two payments to see the cost of waiting.</li>
+      <li>If a balance grows, raise the payment above monthly interest.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">If payoff takes too long</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Increase the payment by a small fixed amount and re-run the plan.</li>
+      <li>Check if a lower APR (transfer or refinance) is realistic for you.</li>
+      <li>Focus extra payments on the highest APR balance first.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Pick a target payment</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Set a payoff window (for example 24 or 36 months) and back into a payment.</li>
+      <li>Use the interest total to weigh tradeoffs between speed and cash flow.</li>
+      <li>Re-run every 3-6 months to adjust for balance changes.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Statement fields to verify</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>APR shown on the statement (not marketing or teaser rate).</li>
+      <li>Minimum payment rule and any percentage tiers.</li>
+      <li>Whether fees are included in the minimum payment calculation.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Compare to a fixed-payment plan</h2>
+    <p class="muted" style="margin:0">
+      Minimum payment rules change with the balance. If you want a predictable payoff timeline, compare the same balance in the{" "}
+      <a href="/calculators/credit-card-payoff-calculator">Credit Card Payoff Calculator</a> using a fixed monthly payment.
     </p>
 
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
@@ -60,7 +102,7 @@ const description =
       <li>Issuers often use daily interest and statement cycles; monthly estimates can differ from your statement.</li>
       <li>Minimum payment rules vary by issuer and can change over time.</li>
       <li>New purchases, late fees, and penalty APR can extend payoff dramatically.</li>
-      <li>If you’re carrying multiple balances, prioritization (snowball/avalanche) can matter more than minimum rules.</li>
+      <li>If you're carrying multiple balances, prioritization (snowball/avalanche) can matter more than minimum rules.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Related tools</h2>
@@ -73,6 +115,7 @@ const description =
 
     <h2 style="margin:18px 0 10px">Related guide</h2>
     <div class="btn-row" style="margin-top:0">
+      <a class="btn btn-primary" href="/topics/credit-cards">Credit cards topic hub</a>
       <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a>
       <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
       <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How credit card interest works</a>

@@ -1,4 +1,4 @@
----
+﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { DtiCalculator } from "../../components/calculators/Dti";
 
@@ -10,10 +10,10 @@ const description =
   title={title}
   description={description}
   canonicalPath="/calculators/debt-to-income-calculator"
-  intro="DTI compares your monthly debt obligations to your gross monthly income. It’s commonly used in mortgage underwriting. Educational use only. Not financial advice."
+  intro="DTI compares your monthly debt obligations to your gross monthly income. It's commonly used in mortgage underwriting. Educational use only. Not financial advice."
   how={[
-    "Front-end DTI = housing payment ÷ gross monthly income.",
-    "Back-end DTI = (housing + other debt payments) ÷ gross monthly income.",
+    "Front-end DTI = housing payment / gross monthly income.",
+    "Back-end DTI = (housing + other debt payments) / gross monthly income.",
     "This is an estimate; lenders may include or exclude items based on policy."
   ]}
   faqs={[
@@ -31,7 +31,7 @@ const description =
     },
     {
       q: "What is a good DTI?",
-      a: "Many programs use thresholds around 36%–43% for back-end DTI, but it varies by lender, program, and compensating factors."
+      a: "Many programs use thresholds around 36%-43% for back-end DTI, but it varies by lender, program, and compensating factors."
     },
     {
       q: "Is rent included?",
@@ -76,6 +76,22 @@ const description =
       With $7,000/month gross income, front-end DTI is about 40.7% and back-end DTI is about 43.6%.
     </p>
 
+    <h2 style="margin:18px 0 10px">Inputs to verify</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Use gross income (before taxes) unless your lender specifies otherwise.</li>
+      <li>Include all required monthly debts, not just credit cards.</li>
+      <li>Housing payment should reflect PITI, HOA, and PMI if applicable.</li>
+      <li>Use the minimum payment shown on statements for revolving debt.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">How to improve DTI (scenario testing)</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Pay down revolving balances to reduce required minimums.</li>
+      <li>Refinance to lower required payments if terms improve.</li>
+      <li>Increase verified income or add a co-borrower (if allowed).</li>
+      <li>Avoid new monthly obligations before applying for credit.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">What to include</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Housing payment: rent or PITI (principal, interest, taxes, insurance) plus HOA and PMI if applicable.</li>
@@ -89,7 +105,7 @@ const description =
       <li>DTI usually uses gross income, not take-home pay.</li>
       <li>For mortgages, lenders often use PITI (+ HOA/PMI), not just principal and interest.</li>
       <li>Some debts may be excluded or treated differently depending on lender and program.</li>
-      <li>DTI is only one factor—credit, reserves, and underwriting guidelines still apply.</li>
+      <li>DTI is only one factor; credit, reserves, and underwriting guidelines still apply.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">How to use this number</h2>
@@ -101,6 +117,7 @@ const description =
 
     <h2 style="margin:18px 0 10px">Related guides</h2>
     <div class="btn-row" style="margin-top:0">
+      <a class="btn btn-primary" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
       <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a>
       <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>

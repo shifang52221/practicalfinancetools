@@ -104,6 +104,14 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       </table>
     </div>
 
+    <h2 style="margin:18px 0 10px">Inputs to verify</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Principal amount excludes escrow items and fees.</li>
+      <li>Rate is the note rate (not APR).</li>
+      <li>Extra payments are applied as principal-only by your servicer.</li>
+      <li>If you plan a lump sum, model the timing as early as possible.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">Assumptions & limitations</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Estimates assume extra payments are applied as principal-only (not "paid ahead").</li>
@@ -117,6 +125,14 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       <li>Some lenders have rules for how extra payments are applied; confirm "principal-only" application.</li>
       <li>If your loan has a prepayment penalty, the savings may be reduced.</li>
       <li>Escrow items (tax/insurance) are separate from principal and interest; extra payments don't reduce escrow.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">If results look off</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Confirm your interest rate is the note rate, not APR.</li>
+      <li>Double-check the remaining term in months.</li>
+      <li>Make sure extra payments are applied to principal-only in your scenario.</li>
+      <li>If you are modeling a lump sum, test an earlier timing to see the sensitivity.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Related guide</h2>

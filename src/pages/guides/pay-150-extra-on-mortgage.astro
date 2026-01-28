@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "If I Pay $150 Extra on My Mortgage (how much does it help?)";
@@ -21,6 +21,7 @@ const description =
       loaded early in the loan, starting earlier tends to save more.
     </p>
     <div class="btn-row">
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model $150 extra</a>
       <a class="btn" href="/guides/pay-300-extra-on-mortgage">Pay $300 extra</a>
     </div>
@@ -29,7 +30,7 @@ const description =
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Monthly $150 vs one extra payment per year</h2>
     <p class="muted" style="margin:10px 0 0">
-      A common way to model "one extra payment per year" is to add about (monthly payment ÷ 12) each month. Depending on your mortgage
+      A common way to model "one extra payment per year" is to add about (monthly payment / 12) each month. Depending on your mortgage
       payment, $150/month may be close to that rule-of-thumb.
     </p>
     <div class="btn-row" style="margin-top:12px">
@@ -55,6 +56,46 @@ const description =
         <li>If you want a lower required payment, whether recasting is available.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick way to estimate impact</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Start by comparing your monthly interest (balance x rate / 12) to $150. If the interest portion is much higher,
+      the extra mostly reduces interest early. Use the calculator for precise payoff timing.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Cash flow check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If $150 feels tight, test $100 and $200 to find a sustainable amount. Consistency usually beats a larger extra you cannot keep up.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Monthly extra vs lump sum</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A one-time principal payment early can save more interest than the same total spread across months. Use the
+      <a href="/calculators/additional-principal-payment-calculator">additional principal calculator</a> to compare $150 monthly to a
+      lump sum scenario.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Check the first statements</h2>
+    <p class="muted" style="margin:10px 0 0">
+      After the first $150 extra, verify it reduced principal and did not just advance your due date. If the posting looks off, ask the
+      servicer how to submit principal-only payments.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">If PMI is close to dropping</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you are near the PMI removal threshold, a $150 extra can help you reach it sooner. Compare the monthly PMI savings to the
+      interest savings to understand the total impact.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">

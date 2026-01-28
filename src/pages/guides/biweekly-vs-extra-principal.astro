@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../config/site";
 import { amortizationSchedule } from "../../lib/calc/loan";
@@ -35,7 +35,7 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     <h1>Biweekly vs extra principal</h1>
     <p>
       True biweekly payments (every two weeks) create 26 half-payments per year, which equals 13 full payments. That can
-      reduce interest and shorten payoff time. But some lender “biweekly programs” just hold funds and pay monthly, which
+      reduce interest and shorten payoff time. But some lender "biweekly programs" just hold funds and pay monthly, which
       can reduce the benefit.
     </p>
     <div class="btn-row">
@@ -50,7 +50,7 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <h2 style="margin-top:0">When biweekly helps</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li>Payments are applied as principal-and-interest every two weeks.</li>
-        <li>You avoid a “fee-based” third-party program.</li>
+        <li>You avoid a "fee-based" third-party program.</li>
         <li>You prefer automatic consistency over choosing a monthly extra.</li>
       </ul>
     </div>
@@ -168,7 +168,7 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
           <tr>
             <td>Monthly extra</td>
             <td>Add a fixed principal-only amount each month.</td>
-            <td>Must be applied as principal-only (not “paid ahead”).</td>
+            <td>Must be applied as principal-only (not "paid ahead").</td>
           </tr>
         </tbody>
       </table>
@@ -209,7 +209,7 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     <h2 style="margin-top:0">What to ask your lender</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Are biweekly payments posted immediately or held and posted monthly?</li>
-      <li>Is the “extra” applied as principal-only?</li>
+      <li>Is the "extra" applied as principal-only?</li>
       <li>Are there fees, and can you cancel easily?</li>
     </ul>
     <p class="muted" style="margin:12px 0 0">

@@ -1,4 +1,4 @@
----
+﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { DebtAvalancheCalculator as DebtAvalancheCalculatorComponent } from "../../components/calculators/DebtAvalanche";
 
@@ -14,7 +14,7 @@ const description =
   canonicalPath="/calculators/debt-avalanche-calculator"
   intro="Create a debt payoff plan using the avalanche method: pay minimums on everything and attack the highest APR first. Educational use only. Not financial advice."
   how={[
-    "Each month, interest is estimated as balance × (APR ÷ 12).",
+    "Each month, interest is estimated as balance x (APR / 12).",
     "Minimum payments are applied to all debts; extra money is applied to the target debt (highest APR).",
     "When a debt is paid off, its payment is freed up for other debts.",
     "Results assume APRs and minimum payments stay constant and you make on-time payments."
@@ -34,7 +34,7 @@ const description =
     },
     {
       q: "Can I compare snowball vs avalanche?",
-      a: "Yes—run the same debts through both tools to compare total interest and timeline."
+      a: "Yes. Run the same debts through both tools to compare total interest and timeline."
     },
     {
       q: "Does this include fees, penalties, or new purchases?",
@@ -46,7 +46,7 @@ const description =
     },
     {
       q: "Should I pay off the highest APR even if the balance is huge?",
-      a: "Avalanche targets APR to reduce interest cost, but it can feel slower if the highest-APR balance is large. If motivation is a concern, compare the timeline to snowball and choose the plan you’ll stick with."
+      a: "Avalanche targets APR to reduce interest cost, but it can feel slower if the highest-APR balance is large. If motivation is a concern, compare the timeline to snowball and choose the plan you'll stick with."
     },
     {
       q: "What if two debts have the same APR?",
@@ -60,7 +60,7 @@ const description =
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">How to use this page</h2>
     <p class="muted" style="margin:0">
-      Enter each debt’s balance, APR, and minimum payment. Then add an “extra payment” amount—the additional money you
+      Enter each debt's balance, APR, and minimum payment. Then add an "extra payment" amount, the additional money you
       can put toward debt each month. The avalanche method applies that extra amount to the highest APR first to reduce
       total interest.
     </p>
@@ -69,8 +69,32 @@ const description =
     <p class="muted" style="margin:0">
       Suppose you have three debts: (1) $600 at 24% APR with a $25 minimum, (2) $2,500 at 18% with a $70 minimum, and
       (3) $8,000 at 8% with a $160 minimum. If you can pay $150 extra each month, avalanche targets the 24% APR debt
-      first to reduce interest cost. After it’s paid off, you roll its payment into the next highest APR and repeat.
+      first to reduce interest cost. After it's paid off, you roll its payment into the next highest APR and repeat.
     </p>
+
+    <h2 style="margin:18px 0 10px">Inputs to verify</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>APR matches your statement (promo APRs may be temporary).</li>
+      <li>Minimum payments reflect issuer rules and any fixed minimums.</li>
+      <li>Extra payment amount is sustainable month to month.</li>
+      <li>New purchases and fees are excluded from this model.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">When avalanche can be a fit</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>You want to minimize total interest over the payoff plan.</li>
+      <li>You can stay consistent even if early progress feels slower.</li>
+      <li>Your highest-APR balance is meaningful and worth prioritizing.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Compare avalanche vs snowball</h2>
+    <p class="muted" style="margin:0">
+      Avalanche targets the highest APR first to minimize interest, while snowball targets the smallest balance first for faster wins.
+      Run the same debts through both to compare payoff time and total interest.
+    </p>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn" href="/calculators/debt-snowball-calculator">Debt snowball calculator</a>
+    </div>
 
     <h2 style="margin:18px 0 10px">How to make the plan realistic</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
@@ -84,11 +108,12 @@ const description =
       <li>Avalanche can feel slower early on because it targets APR, not smallest balance.</li>
       <li>Minimum payment rules vary by issuer and can change over time.</li>
       <li>Adding new purchases or fees can extend payoff time significantly.</li>
-      <li>Promo APRs can end—re-run the plan when rates change.</li>
+      <li>Promo APRs can end; rerun the plan when rates change.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Related guides</h2>
     <div class="btn-row" style="margin-top:0">
+      <a class="btn btn-primary" href="/topics/credit-cards">Credit cards topic hub</a>
       <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
       <a class="btn" href="/guides/calculate-credit-card-payoff">Calculate credit card payoff</a>
       <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How credit card interest is calculated</a>

@@ -42,6 +42,25 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare scenarios safely</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Change only one input at a time (rate, term, fee, or extra payment).</li>
+      <li>Keep the baseline constant across comparisons.</li>
+      <li>Use the same assumption about timing (e.g., when an extra payment posts).</li>
+      <li>If results look surprising, verify the note rate vs APR and the remaining term.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes across topics</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Mixing escrow items with principal-and-interest calculations.</li>
+      <li>Comparing monthly payment changes without checking total interest.</li>
+      <li>Assuming extra payments reduce the required payment without a recast.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">FAQ</h2>
     <h3 style="margin:12px 0 0">Do topic pages replace the calculators?</h3>
     <p class="muted" style="margin:8px 0 0">
@@ -53,30 +72,51 @@ const description =
     </p>
   </section>
   <section class="grid" style="margin-top:18px">
-    <a class="card section prose col-6" href="/topics/apr">
+    <div class="card section prose col-6 topic-card">
       <h2 style="margin-top:0">APR & borrowing costs</h2>
       <p class="muted" style="margin:10px 0 0">
-        Compare offers with fees using the <a href="/calculators/apr-calculator">APR calculator</a>.
+        Compare offers with fees and understand when APR can mislead.
       </p>
-    </a>
-    <a class="card section prose col-6" href="/topics/credit-cards">
+      <div class="btn-row" style="margin-top:12px">
+        <a class="btn btn-primary" href="/topics/apr">APR topic</a>
+        <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
+      </div>
+    </div>
+    <div class="card section prose col-6 topic-card">
       <h2 style="margin-top:0">Credit cards & payoff</h2>
       <p class="muted" style="margin:10px 0 0">
-        Model payoff timelines with the <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>.
+        Model payoff timelines and interest costs with fixed payments.
       </p>
-    </a>
-    <a class="card section prose col-6" href="/topics/mortgage-payoff">
+      <div class="btn-row" style="margin-top:12px">
+        <a class="btn btn-primary" href="/topics/credit-cards">Credit cards topic</a>
+        <a class="btn" href="/calculators/credit-card-payoff-calculator">Payoff calculator</a>
+      </div>
+    </div>
+    <div class="card section prose col-6 topic-card">
       <h2 style="margin-top:0">Mortgage payment & payoff planning</h2>
       <p class="muted" style="margin:10px 0 0">
-        Compare extra principal with the <a href="/calculators/extra-payment-calculator">mortgage payoff calculator</a>.
+        Compare extra principal, lump sums, and payoff timelines.
       </p>
-    </a>
-    <div class="card section prose col-6">
+      <div class="btn-row" style="margin-top:12px">
+        <a class="btn btn-primary" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
+        <a class="btn" href="/calculators/extra-payment-calculator">Mortgage payoff calculator</a>
+      </div>
+    </div>
+    <div class="card section prose col-6 topic-card">
       <h2 style="margin-top:0">Request a topic</h2>
       <p class="muted" style="margin:10px 0 0">
         Want a workflow page for a specific question? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
       </p>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What each topic includes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>A primary calculator to model the baseline.</li>
+      <li>Focused guides that explain assumptions and edge cases.</li>
+      <li>Related tools for comparisons and second opinions.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">

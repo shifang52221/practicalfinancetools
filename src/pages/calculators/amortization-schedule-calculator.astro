@@ -51,6 +51,48 @@ const description =
       payment goes toward principal. The "Balance" column shows how much you still owe after each payment.
     </p>
 
+    <h2 style="margin:18px 0 10px">When this schedule is most useful</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Checking how much principal is paid in year 1 vs later years.</li>
+      <li>Estimating the balance at a future date (for refi or sale planning).</li>
+      <li>Comparing two rates or terms under the same loan amount.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">How to compare two loans</h2>
+    <ol class="muted" style="margin:0; padding-left:18px">
+      <li>Run the first loan and note the payment and balance at year 5.</li>
+      <li>Change only one input (rate or term), then re-run.</li>
+      <li>Compare the total interest and balance at the same time point.</li>
+    </ol>
+
+    <h2 style="margin:18px 0 10px">If your statement differs</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Servicers may use different rounding conventions.</li>
+      <li>Payment posting dates can shift interest slightly.</li>
+      <li>Escrow changes do not affect this principal-and-interest schedule.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Useful balance checkpoints</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Balance at year 1: early principal reduction snapshot.</li>
+      <li>Balance at mid-term: compare refinance or recast scenarios.</li>
+      <li>Balance before sale: estimate proceeds after payoff.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">If you plan to pay off early</h2>
+    <p class="muted" style="margin:0">
+      This schedule assumes the standard payment. If you make extra payments or lump sums, use the extra payment calculator to model a
+      new schedule and compare the payoff date and interest saved.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Inputs to verify</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Loan amount is principal only (exclude taxes, insurance, and fees).</li>
+      <li>Interest rate is the note rate, not APR.</li>
+      <li>Term matches your loan (15, 20, 30 years, or custom).</li>
+      <li>If you plan extra payments, use the extra payment calculator to compare.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Escrow items (taxes/insurance) are not part of amortization; this schedule is principal and interest only.</li>
@@ -61,6 +103,7 @@ const description =
 
     <h2 style="margin:18px 0 10px">Related topics</h2>
     <div class="btn-row" style="margin-top:0">
+      <a class="btn btn-primary" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
       <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
       <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>

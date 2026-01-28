@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+﻿import React, { useMemo, useState } from "react";
 import { estimateApr } from "../../lib/calc/apr";
 import { formatCurrency2 } from "../../lib/format";
 import { clamp } from "../../lib/math";
@@ -19,7 +19,7 @@ export function AprCalculator() {
   }, [loanAmount, nominalRate, termMonths, fees]);
 
   const aprText =
-    result.aprPercent === null ? "—" : new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(result.aprPercent) + "%";
+    result.aprPercent === null ? "-" : new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(result.aprPercent) + "%";
 
   const loanAmountSafe = clamp(loanAmount, 0, 1e9);
   const feesSafe = clamp(fees, 0, 1e8);
@@ -97,7 +97,7 @@ export function AprCalculator() {
         </div>
         <div className="hint" style={{ marginTop: 12, lineHeight: 1.5 }}>
           {hasInvalidFee
-            ? "If fees are greater than or equal to the loan amount, APR can’t be estimated meaningfully. Reduce the fee amount."
+            ? "If fees are greater than or equal to the loan amount, APR can't be estimated meaningfully. Reduce the fee amount."
             : "APR calculations can vary by lender and product type. This estimate treats fees as reducing the amount you effectively receive upfront."}
         </div>
       </div>

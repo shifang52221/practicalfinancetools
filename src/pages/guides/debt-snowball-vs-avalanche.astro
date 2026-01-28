@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Debt Snowball vs Avalanche (which payoff method fits)";
+const description =
+  "Compare debt snowball vs debt avalanche with a simple decision framework. See trade-offs, when each method fits, and how to model both with calculators. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/debt-snowball-vs-avalanche">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Snowball vs avalanche</span>
+    </nav>
+    <h1>Debt snowball vs avalanche</h1>
+    <p>
+      Snowball pays the smallest balance first for faster wins. Avalanche pays the highest APR first to minimize interest. This guide
+      shows how to choose based on your goals, then model both in the calculators.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/credit-cards">Credit cards topic hub</a>
+      <a class="btn btn-primary" href="/calculators/debt-snowball-calculator">Debt snowball calculator</a>
+      <a class="btn" href="/calculators/debt-avalanche-calculator">Debt avalanche calculator</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Quick comparison</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><strong>Snowball:</strong> smallest balance first, faster early wins.</li>
+        <li><strong>Avalanche:</strong> highest APR first, usually less interest.</li>
+        <li><strong>Same rules:</strong> pay minimums on all, put extra toward the target.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Which one fits you?</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Choose snowball if momentum keeps you consistent.</li>
+        <li>Choose avalanche if interest cost is the priority.</li>
+        <li>If unsure, run both and pick the plan you can sustain.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to test both methods</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>List each balance, APR, and minimum payment from your statements.</li>
+      <li>Pick a fixed extra amount you can pay every month.</li>
+      <li>Run the same inputs in snowball and avalanche calculators.</li>
+      <li>Compare payoff time and total interest, then pick the plan you will follow.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Tie-breakers when results are close</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If total interest is similar, choose the plan that feels easier to stick with.</li>
+      <li>Use payment counts to compare how fast you clear your first balance.</li>
+      <li>Consider consolidating very small balances to simplify the list.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Handling promos and balance transfers</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Promo APRs can flip the best order. If a low or 0% rate ends soon, model the payoff so that balance is cleared before the promo
+      expires, then re-run the plan with the post-promo APR.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to switch methods</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If motivation is slipping, switching to snowball can create quick wins.</li>
+      <li>If interest costs are rising, switching to avalanche can slow the cost.</li>
+      <li>Re-run the calculators after any large balance change or rate reset.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common pitfalls</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using minimums that are too low or outdated.</li>
+      <li>Choosing an extra payment that is not realistic long term.</li>
+      <li>Adding new purchases while trying to pay down balances.</li>
+      <li>Ignoring promo APR end dates or penalty APRs.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Related tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff</a>
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
+      <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Related guides</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
+      <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a>
+      <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How credit card interest works</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+  </section>
+</BaseLayout>

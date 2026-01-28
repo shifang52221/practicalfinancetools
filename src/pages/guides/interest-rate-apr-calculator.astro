@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { estimateApr } from "../../lib/calc/apr";
 
@@ -145,12 +145,12 @@ const breakevenYears = breakevenMonths == null ? null : breakevenMonths / 12;
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Break-even (time horizon) matters</h2>
     <p class="muted" style="margin:10px 0 0">
-      If you might refinance or repay early, the cheapest APR over the full term isn’t always the cheapest option for your time horizon.
+      If you might refinance or repay early, the cheapest APR over the full term isn't always the cheapest option for your time horizon.
       A simple way to sanity-check fee trade-offs is break-even months:
     </p>
     <ul class="muted" style="margin:12px 0 0; padding-left:18px">
       <li>Monthly savings = old payment - new payment (keep assumptions consistent).</li>
-      <li>Break-even months = upfront fees ÷ monthly savings.</li>
+      <li>Break-even months = upfront fees / monthly savings.</li>
     </ul>
     <p class="muted" style="margin:12px 0 0">
       Example: if fees are {money.format(breakevenFees)} and the lower-rate offer saves {money.format(breakevenMonthlySavings)}/month, the
@@ -159,7 +159,7 @@ const breakevenYears = breakevenMonths == null ? null : breakevenMonths / 12;
       {breakevenYears == null ? "" : ` (${num1.format(breakevenYears)} years)`}.
     </p>
     <p class="muted" style="margin:12px 0 0">
-      Use this as a cross-check alongside APR so you’re not paying large fees for savings you won’t keep long enough to realize.
+      Use this as a cross-check alongside APR so you're not paying large fees for savings you won't keep long enough to realize.
     </p>
   </section>
 

@@ -170,6 +170,15 @@ main.container{flex:1}
 .tool:hover{border-color: rgba(122,162,255,.35)}
 .tool-title{font-weight:750}
 .tool-desc{color:var(--muted); font-size:14px; line-height:1.45}
+.topic-card{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  height:100%;
+}
+.topic-card .btn-row{
+  margin-top:auto;
+}
 .footer{
   padding-top:18px;
   padding-bottom:40px;

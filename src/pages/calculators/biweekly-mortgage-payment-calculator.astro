@@ -1,4 +1,4 @@
----
+﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { BiweeklyMortgageCalculator } from "../../components/calculators/BiweeklyMortgage";
 
@@ -15,7 +15,7 @@ const description =
   intro="Estimate the impact of biweekly mortgage payments using a common approximation (13 payments per year). Compare payoff time and interest savings under consistent assumptions. Educational use only. Not financial advice."
   how={[
     "First we compute the baseline monthly principal-and-interest (P&I) payment using standard amortization.",
-    "Biweekly payments are approximated as an additional principal amount equal to (monthly P&I ÷ 12) each month (the common 13-payments-per-year rule).",
+    "Biweekly payments are approximated as an additional principal amount equal to (monthly P&I / 12) each month (the common 13-payments-per-year rule).",
     "This is an estimate; real results vary based on posting dates, rounding, and whether the lender truly applies payments every two weeks."
   ]}
   faqs={[
@@ -37,11 +37,11 @@ const description =
     },
     {
       q: "Can I model one extra payment per year instead?",
-      a: "Yes. The 13-payments-per-year effect is often similar to adding about (monthly payment ÷ 12) as a monthly extra, or making one extra principal payment per year."
+      a: "Yes. The 13-payments-per-year effect is often similar to adding about (monthly payment / 12) as a monthly extra, or making one extra principal payment per year."
     },
     {
-      q: "What’s the difference between true biweekly and accelerated biweekly?",
-      a: "True biweekly is usually half the monthly principal-and-interest (P&I) payment every two weeks, which results in 26 half payments (13 full payments) per year. Some programs market “biweekly” but actually hold your payments and post them monthly."
+      q: "What's the difference between true biweekly and accelerated biweekly?",
+      a: "True biweekly is usually half the monthly principal-and-interest (P&I) payment every two weeks, which results in 26 half payments (13 full payments) per year. Some programs market \"biweekly\" but actually hold your payments and post them monthly."
     },
     {
       q: "Does biweekly change escrow (taxes and insurance)?",
@@ -60,8 +60,17 @@ const description =
       <li>Compare biweekly to a simple monthly extra to avoid fee-based programs.</li>
     </ul>
 
+    <h2 style="margin:18px 0 10px">Inputs to confirm</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Check whether payments are posted every two weeks or held until month-end.</li>
+      <li>If a program fee exists, compare total fees to estimated interest saved.</li>
+      <li>Confirm extra amounts are applied to principal, not future due dates.</li>
+      <li>If escrow is paid with your mortgage, verify the servicer's biweekly rules.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">Related guides</h2>
     <div class="btn-row" style="margin-top:0">
+      <a class="btn btn-primary" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
       <a class="btn" href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a>
       <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
       <a class="btn" href="/guides/biweekly-mortgage-program-fees">Biweekly program fees</a>
@@ -71,16 +80,37 @@ const description =
     <h2 style="margin:18px 0 10px">How to compare options</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Start with your baseline P&I payment and interest rate.</li>
-      <li>If there’s a biweekly program fee, compare total fees to expected interest saved.</li>
+      <li>If there's a biweekly program fee, compare total fees to expected interest saved.</li>
       <li>If your lender posts biweekly payments monthly, compare to a simple monthly extra instead.</li>
-      <li>Confirm extra amounts are applied to principal (not just “paid ahead”).</li>
+      <li>Confirm extra amounts are applied to principal (not just "paid ahead").</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
-      <li>Some “biweekly” services are third parties that charge fees and don’t speed up posting.</li>
+      <li>Some "biweekly" services are third parties that charge fees and don't speed up posting.</li>
       <li>If payments are held until month-end, savings can be smaller than true biweekly posting.</li>
       <li>Escrow changes can affect the cash flow even if principal-and-interest stays the same.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">When biweekly may not help</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>If the lender posts payments monthly, results can be close to a small monthly extra instead.</li>
+      <li>If the program fee is high, interest savings may be fully offset.</li>
+      <li>If cash flow is irregular, a monthly extra or occasional lump sum can be easier to sustain.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">How to verify your program</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Ask whether payments post every two weeks or only at month-end.</li>
+      <li>Confirm how escrow is handled (some programs require a separate escrow schedule).</li>
+      <li>Check whether a third party charges a setup or monthly fee.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">How to sanity-check the savings</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Compare biweekly results to a monthly extra equal to (payment / 12).</li>
+      <li>Check the payoff date difference and total interest saved, not just monthly payment size.</li>
+      <li>Re-run with a slightly different rate to see how sensitive results are.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Related tools</h2>

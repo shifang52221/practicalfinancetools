@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+﻿import React, { useMemo, useState } from "react";
 import { amortizationSchedule } from "../../lib/calc/loan";
 import { formatCurrency2, formatMonths } from "../../lib/format";
 import { clamp } from "../../lib/math";
@@ -63,7 +63,7 @@ export function BiweeklyMortgageCalculator() {
                 checked={useBiweeklyEquivalent}
                 onChange={(e) => setUseBiweeklyEquivalent(e.target.checked)}
               />
-              Use the "13 payments per year" approximation (monthly extra = monthly P&amp;I ÷ 12)
+              Use the "13 payments per year" approximation (monthly extra = monthly P&amp;I / 12)
             </label>
             <div className="hint">
               Many lenders still post payments monthly. This tool models the common approximation and is for educational comparisons.
