@@ -5,14 +5,14 @@ import { AmortizationScheduleCalculator as AmortizationScheduleCalculatorCompone
 const title = "Amortization Schedule Calculator";
 const metaTitle = "Amortization Schedule Calculator (Payment Table)";
 const description =
-  "Generate an amortization schedule showing monthly payment, interest, principal, and remaining balance. Educational use only.";
+  "Amortization schedule calculator showing monthly payment, interest, principal, and remaining balance. For extra payments, compare to the extra payment calculator. Educational use only.";
 ---
 <CalculatorLayout
   title={title}
   metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/amortization-schedule-calculator"
-  intro="Generate a payment schedule for an amortized loan so you can see how interest and principal change over time. Educational use only. Not financial advice."
+  intro="Generate a payment schedule for an amortized loan so you can see how interest and principal change over time. For amortization with extra payments, compare this schedule to the extra payment calculator. Educational use only. Not financial advice."
   how={[
     "Monthly payment is computed using the standard amortization formula for fixed-rate loans.",
     "Each month, interest is calculated on the remaining balance and the rest of the payment reduces principal.",
@@ -25,11 +25,11 @@ const description =
     },
     {
       q: "Does this support extra payments?",
-      a: "For extra-payment impact, use the Extra Payment Mortgage Calculator."
+      a: "Use the Extra Payment Mortgage Calculator to model extra principal, lump sums, and one extra payment per year."
     },
     {
       q: "Is this exact to the penny?",
-      a: "It’s a close estimate. Real statements can differ due to rounding and timing."
+      a: "It's a close estimate. Real statements can differ due to rounding and timing."
     },
     {
       q: "Is this only for mortgages?",
@@ -48,12 +48,12 @@ const description =
     <h2 style="margin:0 0 10px">How to read the schedule</h2>
     <p class="muted" style="margin:0">
       Early payments are interest-heavy because the balance is highest. Over time, interest decreases and more of each
-      payment goes toward principal. The “Balance” column shows how much you still owe after each payment.
+      payment goes toward principal. The "Balance" column shows how much you still owe after each payment.
     </p>
 
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
-      <li>Escrow items (taxes/insurance) are not part of amortization—this schedule is principal and interest only.</li>
+      <li>Escrow items (taxes/insurance) are not part of amortization; this schedule is principal and interest only.</li>
       <li>Lenders may round payments and interest slightly differently than a calculator.</li>
       <li>Extra payments can change the schedule; use the extra payment calculator for those scenarios.</li>
       <li>Adjustable-rate loans require a rate-change model; this assumes a fixed rate.</li>
@@ -76,3 +76,4 @@ const description =
     </div>
   </div>
 </CalculatorLayout>
+
