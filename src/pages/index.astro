@@ -42,6 +42,11 @@ const slots = SITE.adsenseSlots;
 
   <section class="card section">
     <h2 style="margin:0 0 12px">Featured calculators</h2>
+    <p class="muted" style="margin:0 0 12px">
+      Most-started tools: <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>,{" "}
+      <a href="/calculators/apr-calculator">APR calculator</a>, and{" "}
+      <a href="/calculators/extra-payment-calculator">mortgage payoff calculator</a>.
+    </p>
     <div class="grid">
       {featured.map((t) => (
         <a class="card2 tool col-6" href={`/calculators/${t.slug}`}>
