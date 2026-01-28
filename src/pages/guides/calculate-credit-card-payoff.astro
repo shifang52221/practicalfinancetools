@@ -59,6 +59,10 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       The first month interest is about {money0.format(firstRow?.interest ?? 0)} and the principal reduction is about
       {money0.format(firstRow?.principal ?? 0)}. Your exact statement can differ due to daily interest timing and fees.
     </p>
+    <p class="muted" style="margin:12px 0 0">
+      This is a simple credit card amortization schedule. Use the <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>
+      for the full month-by-month payoff table.
+    </p>
     <div style="overflow:auto; margin-top:12px">
       <table class="table">
         <thead>
