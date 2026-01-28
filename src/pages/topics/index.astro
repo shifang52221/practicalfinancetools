@@ -4,7 +4,7 @@ import { SITE } from "../../config/site";
 
 const title = `Topics | ${SITE.name}`;
 const description =
-  "Browse finance topics and workflows that connect calculators with practical guides: APR, credit cards, and mortgage payoff planning. Educational use only.";
+  "Browse finance topics and workflows that connect calculators with practical guides: APR calculator comparisons, credit card payoff planning, and mortgage payoff strategies. Educational use only.";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/topics">
   <section class="card hero">
@@ -16,7 +16,9 @@ const description =
     <h1>Topics</h1>
     <p>
       These hub pages connect calculators and guides into simple workflows, so users can understand assumptions and compare scenarios
-      consistently.
+      consistently. Start with the <a href="/calculators/apr-calculator">APR calculator</a>,{" "}
+      <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>, or{" "}
+      <a href="/calculators/extra-payment-calculator">mortgage payoff calculator</a>.
     </p>
   </section>
 
@@ -33,9 +35,9 @@ const description =
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Pick the right topic</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>APR: comparing loan offers with fees and different terms.</li>
-      <li>Credit cards: payoff timelines, interest cost, and minimum payment risks.</li>
-      <li>Mortgage payoff: monthly costs, amortization, and extra principal strategies.</li>
+      <li>APR: comparing loan offers with fees and different terms using the <a href="/calculators/apr-calculator">APR calculator</a>.</li>
+      <li>Credit cards: payoff timelines, interest cost, and minimum payment risks with the <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>.</li>
+      <li>Mortgage payoff: monthly costs, amortization, and extra principal strategies in the <a href="/calculators/extra-payment-calculator">mortgage payoff calculator</a>.</li>
     </ul>
   </section>
 
