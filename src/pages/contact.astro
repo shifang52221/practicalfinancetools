@@ -9,7 +9,9 @@ const description =
 <BaseLayout title={title} description={description} canonicalPath="/contact" robots="noindex, follow">
   <section class="card hero">
     <h1>Contact</h1>
-    <p>If you spot an issue or want a calculator added, email us.</p>
+    <p>
+      If you spot an issue, want a calculator added, or have a correction request, email us. We read every message.
+    </p>
   </section>
 
   <section class="card section">
@@ -17,5 +19,31 @@ const description =
     <p style="margin:10px 0 0; font-size:18px">
       <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to include</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>The page URL you are referring to.</li>
+      <li>The calculator inputs you used (if relevant).</li>
+      <li>What result you expected and what you saw instead.</li>
+      <li>Any supporting source or citation if you are requesting a correction.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Response time and scope</h2>
+    <p class="muted" style="margin:10px 0 0">
+      We typically respond within a few business days. We cannot provide personalized financial advice, but we do correct errors and
+      clarify assumptions when needed.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Security or technical issues</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you find a bug or a broken page, include the browser, device, and steps to reproduce the issue.
+    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>

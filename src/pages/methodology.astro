@@ -20,7 +20,7 @@ const description =
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Monthly principal-and-interest (P&amp;I) uses standard fixed-rate amortization math.</li>
       <li>Amortization schedules allocate each payment to interest first, then principal, based on remaining balance.</li>
-      <li>Extra payments assume principal-only application (real servicers may have “paid ahead” behaviors).</li>
+      <li>Extra payments assume principal-only application (real servicers may have "paid ahead" behaviors).</li>
       <li>Escrow items (taxes/insurance) are typically not part of amortization math unless explicitly included as inputs.</li>
     </ul>
   </section>
@@ -35,21 +35,57 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">APR comparisons</h2>
+    <h2 style="margin-top:0">Rounding and timing</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>APR is an estimate designed to compare offers that include upfront fees.</li>
-      <li>Different fee types may or may not be included in official APR disclosures depending on loan type and rules.</li>
-      <li>If you expect to refinance or repay early, “break-even” analysis can be more useful than a single APR number.</li>
+      <li>Rates are converted to a monthly rate for modeling convenience.</li>
+      <li>Interest is calculated on remaining balances and rounded in the display layer.</li>
+      <li>Statement cycles and posting dates can shift real-world results.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Minimum payment modeling</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Minimums are modeled using a percent-of-balance and a dollar floor.</li>
+      <li>When the payment is below interest, balances may not decline.</li>
+      <li>Issuer-specific rules can differ; re-run with your statement values.</li>
+    </ul>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR comparisons</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>APR is an estimate designed to compare offers that include upfront fees.</li>
+      <li>Different fee types may or may not be included in official APR disclosures depending on loan type and rules.</li>
+      <li>If you expect to refinance or repay early, "break-even" analysis can be more useful than a single APR number.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Limitations</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Calculator results are estimates, not official disclosures.</li>
+      <li>We do not model every lender policy, fee, or promotional rule.</li>
+      <li>Use the tools for comparisons and planning, not precise statements.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/" rel="noopener noreferrer" target="_blank">
+          Consumer tools</a>
+      </li>
+    </ul>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Questions</h2>
     <p class="muted" style="margin:10px 0 0">
-      If you’d like a specific formula breakdown for a calculator, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the page
+      If you'd like a specific formula breakdown for a calculator, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the page
       URL.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-25</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>
 
