@@ -21,4 +21,4 @@ Scope: deepen remaining mid-depth guides by adding payoff target examples, savin
 
 ### QA / validation
 - Build: `npm run build` (pass; upstream Vite warning in Astro dependency)
-- Local SEO audit: `reports/seo-audit/local-20260128-095935` (issues.csv empty)
+- Local SEO audit: `reports/seo-audit/local-20260128-101203` (issues.csv empty)
