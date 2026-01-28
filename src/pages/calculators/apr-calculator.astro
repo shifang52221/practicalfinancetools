@@ -5,7 +5,7 @@ import { estimateApr } from "../../lib/calc/apr";
 
 const title = "APR Calculator (Interest Rate + Fees)";
 const description =
-  "Estimate APR from the interest rate, upfront fees, and term so you can compare loan offers more fairly. Educational use only.";
+  "APR calculator to estimate APR from the interest rate, upfront fees, and term so you can compare loan offers more fairly. Educational use only.";
 
 const exampleInput = { loanAmount: 10000, nominalRatePercent: 12, termMonths: 24, fees: 300 };
 const example = estimateApr(exampleInput);
@@ -18,7 +18,7 @@ const exampleApr = example.aprPercent == null ? "N/A" : `${pct.format(example.ap
   title={title}
   description={description}
   canonicalPath="/calculators/apr-calculator"
-  intro="Estimate APR by combining the interest rate with upfront fees, so you can compare loan offers on a more apples-to-apples basis. This is an educational estimate, not an official lender disclosure. Educational use only. Not financial advice."
+  intro="Use this APR calculator to calculate APR by combining the interest rate with upfront fees, so you can compare loan offers on a more apples-to-apples basis. This is an educational estimate, not an official lender disclosure. Not financial advice."
   how={[
     "Monthly payment is calculated from the nominal rate and loan amount using standard amortization.",
     "APR is estimated by solving for the discount rate that makes the present value of payments equal to the net amount received (loan amount minus fees).",

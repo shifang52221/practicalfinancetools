@@ -5,7 +5,7 @@ import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Payoff Calculator (Payoff Date & Interest)";
 const description =
-  "Estimate your credit card payoff time, total interest, and a month-by-month payoff schedule for a fixed APR and payment. Educational use only.";
+  "Credit card payoff calculator to estimate payoff time, total interest, and a month-by-month payoff schedule for a fixed APR and payment. Educational use only.";
 
 const exampleInput = { balance: 5000, aprPercent: 24.99, monthlyPayment: 200 };
 const example = creditCardPayoffSchedule({ ...exampleInput, maxMonths: 1200 });
@@ -18,7 +18,7 @@ const exampleMonthsRemainder = exampleMonths == null ? null : exampleMonths % 12
   title={title}
   description={description}
   canonicalPath="/calculators/credit-card-payoff-calculator"
-  intro="Calculate how long it takes to pay off a credit card balance with a fixed APR and a fixed monthly payment, plus the total interest over time. Educational use only. Not financial advice."
+  intro="Use this credit card payoff calculator to calculate credit card payoff time for a balance with a fixed APR and monthly payment, plus the total interest over time. Educational use only. Not financial advice."
   how={[
     "Monthly interest is estimated as balance * (APR / 12).",
     "Each month, payment is applied to interest first, then principal.",
