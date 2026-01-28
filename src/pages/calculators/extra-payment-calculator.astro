@@ -5,7 +5,7 @@ import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Mortgage Payment Calculator (Extra Principal)";
 const description =
-  "Extra mortgage payment calculator to estimate how extra principal (monthly, lump sum, or one extra payment per year) can shorten mortgage payoff time and reduce total interest. Educational use only.";
+  "Estimate how extra principal (monthly or lump sum) shortens mortgage payoff time and reduces interest. Educational use only.";
 
 const exampleInput = { principal: 300000, aprPercent: 6.5, termMonths: 360, extraMonthly: 300 };
 const base = amortizationSchedule({ principal: exampleInput.principal, aprPercent: exampleInput.aprPercent, termMonths: exampleInput.termMonths });
