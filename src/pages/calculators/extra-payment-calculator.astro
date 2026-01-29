@@ -66,7 +66,7 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       a: "Not necessarily. Results are estimates and real statements can differ due to rounding and timing."
     }
   ]}
-  lastUpdated="2026-01-27"
+  lastUpdated="2026-01-29"
 >
   <ExtraPaymentMortgageCalculator client:load />
 
@@ -110,6 +110,13 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       <li>Rate is the note rate (not APR).</li>
       <li>Extra payments are applied as principal-only by your servicer.</li>
       <li>If you plan a lump sum, model the timing as early as possible.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Match your statement</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Confirm extra payments post as principal-only, not "paid ahead."</li>
+      <li>Check the payment posting date; timing can shift interest slightly.</li>
+      <li>If a lump sum posts after the payment due date, model a later month.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Assumptions & limitations</h2>
