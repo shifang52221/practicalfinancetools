@@ -58,6 +58,7 @@ const webPageLd = {
   publisher: { "@id": `${siteUrl}/#organization` },
   author: pageType === "Article" ? { "@id": `${siteUrl}/#organization` } : undefined
 };
+const ogType = pageType === "Article" ? "article" : "website";
 ---
 <!doctype html>
 <html lang="en">
@@ -73,7 +74,7 @@ const webPageLd = {
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />
     {description ? <meta property="og:description" content={description} /> : null}
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:locale" content={SITE.locale} />
     {canonical ? <meta property="og:url" content={canonical} /> : null}
     <meta property="og:image" content={ogImage} />
