@@ -12,6 +12,8 @@ const examplePayment = 200;
 const payoff = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: examplePayment });
 const firstRow = payoff.rows[0];
 const targetMonths = 24;
+const balanceTransferFeeRate = 0.03;
+const balanceTransferFee = exampleBalance * balanceTransferFeeRate;
 const paymentForTarget = paymentToPayoffInMonths({
   balance: exampleBalance,
   aprPercent: exampleApr,
@@ -134,6 +136,15 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Balance transfer sensitivity</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you are considering a balance transfer, compare the transfer fee to the interest you would save. On{" "}
+      {money0.format(exampleBalance)}, a 3% transfer fee is about {money0.format(balanceTransferFee)}. If the fee is larger than the
+      interest you would pay during the promo window, the transfer may not help.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">When payments do not move the balance</h2>
     <p class="muted" style="margin:10px 0 0">
       If your monthly payment is near or below the interest charge, the balance may not decline at all. In the example above, the
@@ -166,6 +177,15 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <li>Confirm the purchase APR and whether a promo APR ends soon.</li>
       <li>Assume no new purchases on the payoff card.</li>
       <li>Re-run the model if your payment changes or you add a balance transfer.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Statement check</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the purchase APR from your statement, not a teaser rate.</li>
+      <li>Confirm the statement minimum payment for comparison.</li>
+      <li>Note promo end dates so you can model a higher APR later.</li>
     </ul>
   </section>
 
@@ -205,6 +225,6 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn" href="/topics/credit-cards">Credit cards hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
   </section>
 </BaseLayout>

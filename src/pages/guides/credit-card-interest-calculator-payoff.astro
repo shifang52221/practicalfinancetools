@@ -13,6 +13,8 @@ const paymentHigh = 250;
 const payoffLow = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: paymentLow });
 const payoffHigh = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: paymentHigh });
 const firstLow = payoffLow.rows[0];
+const balanceTransferFeeRate = 0.03;
+const balanceTransferFee = exampleBalance * balanceTransferFeeRate;
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
@@ -130,12 +132,29 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Balance transfer fee sensitivity</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A 0% promo can reduce interest, but the transfer fee is real cost. On {money0.format(exampleBalance)}, a 3% fee is about{" "}
+      {money0.format(balanceTransferFee)}. Compare the fee to the interest you expect to save before using a transfer.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Checklist: move beyond interest-only payments</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Confirm your payment is well above monthly interest.</li>
       <li>Stop new purchases while you pay down the balance.</li>
       <li>Test +$25, +$50, and +$100 scenarios to see payoff sensitivity.</li>
       <li>Check whether a promo APR ends soon and model the new rate.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Statement check</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the purchase APR shown on your statement, not a promo rate.</li>
+      <li>Check your statement cycle dates to align timing.</li>
+      <li>Note any balance transfer fee and promo end date.</li>
     </ul>
   </section>
 
@@ -193,6 +212,6 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn" href="/topics/credit-cards">Credit cards hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
   </section>
 </BaseLayout>
