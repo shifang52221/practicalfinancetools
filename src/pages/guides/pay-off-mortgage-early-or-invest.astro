@@ -21,6 +21,9 @@ const withExtra = amortizationSchedule({
 });
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const yearsMonths = (months: number) => ({ years: Math.floor(months / 12), months: months % 12 });
+const baseYm = yearsMonths(base.months);
+const extraYm = yearsMonths(withExtra.months);
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/pay-off-mortgage-early-or-invest">
   <section class="card hero">
@@ -80,12 +83,12 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
         <tbody>
           <tr>
             <td>Baseline (no extra)</td>
-            <td class="num">{base.months} months</td>
+            <td class="num">{base.months} months ({baseYm.years}y {baseYm.months}m)</td>
             <td class="num">{money0.format(base.totalInterest)}</td>
           </tr>
-          <tr>
+        <tr>
             <td>Extra {money0.format(extraMonthly)} per month</td>
-            <td class="num">{withExtra.months} months</td>
+            <td class="num">{withExtra.months} months ({extraYm.years}y {extraYm.months}m)</td>
             <td class="num">{money0.format(withExtra.totalInterest)}</td>
           </tr>
         </tbody>
@@ -120,6 +123,14 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     <p class="muted" style="margin:10px 0 0">
       Extra principal is locked in your home. Before committing, keep a cash buffer for emergencies and large expenses. If that buffer is
       thin, prioritize liquidity over a small interest savings advantage.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Time horizon check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you plan to move or refinance in a few years, compare the savings over that shorter window. The long-term interest savings can
+      look large, but the near-term benefit may be modest.
     </p>
   </section>
   <section class="card section prose" style="margin-top:18px">
@@ -161,6 +172,15 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Statement check</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the note rate and remaining term from your statement.</li>
+      <li>Confirm extra payments are applied as principal-only.</li>
+      <li>Keep the same baseline assumptions when comparing scenarios.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">FAQ</h2>
     <h3 style="margin:12px 0 0">Is paying extra risk-free?</h3>
     <p class="muted" style="margin:8px 0 0">
@@ -198,6 +218,6 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     <p class="muted" style="margin:12px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
   </section>
 </BaseLayout>
