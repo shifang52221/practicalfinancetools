@@ -133,6 +133,18 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Balance transfer sensitivity check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Balance transfer promos can help, but the transfer fee is real cost. Compare the fee to the interest you expect to save:
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>If the fee is higher than the interest you would pay, the transfer may not help.</li>
+      <li>Make sure the balance can be paid off before the promo ends.</li>
+      <li>Re-run the plan using the post-promo APR as a fallback scenario.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">A practical payoff workflow</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>List each balance, APR, and minimum payment (use your statement minimums).</li>
@@ -173,6 +185,15 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     <p class="muted" style="margin:12px 0 0">
       The safest approach is often "boring but consistent": stop new purchases, pay more than the minimum, and automate payments.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Statement check</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the purchase APR shown on your statement, not a teaser rate.</li>
+      <li>Match the statement minimum payment rule (percent + dollar floor).</li>
+      <li>Note any promo end date so you can model the post-promo APR.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -230,6 +251,6 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment timeline</a>
       <a class="btn" href="/calculators/apr-calculator">Compare APR (fees)</a>
     </div>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-27</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
   </section>
 </BaseLayout>
