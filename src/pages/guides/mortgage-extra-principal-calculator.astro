@@ -22,6 +22,9 @@ const withExtra = amortizationSchedule({
 });
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const yearsMonths = (months: number) => ({ years: Math.floor(months / 12), months: months % 12 });
+const baseYm = yearsMonths(base.months);
+const extraYm = yearsMonths(withExtra.months);
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-extra-principal-calculator">
   <section class="card hero">
@@ -154,12 +157,12 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
         <tbody>
           <tr>
             <td>Baseline</td>
-            <td class="num">{base.months} months</td>
+            <td class="num">{base.months} months ({baseYm.years}y {baseYm.months}m)</td>
             <td class="num">{money0.format(base.totalInterest)}</td>
           </tr>
           <tr>
             <td>Extra + lump sum</td>
-            <td class="num">{withExtra.months} months</td>
+            <td class="num">{withExtra.months} months ({extraYm.years}y {extraYm.months}m)</td>
             <td class="num">{money0.format(withExtra.totalInterest)}</td>
           </tr>
         </tbody>
@@ -169,6 +172,15 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       Interest savings in this example are about {money0.format(Math.max(0, base.totalInterest - withExtra.totalInterest))} with a payoff
       acceleration of {Math.max(0, base.months - withExtra.months)} months.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Statement check</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the current balance and note rate from your statement.</li>
+      <li>Confirm extra payments post as principal-only, not "paid ahead."</li>
+      <li>Match the posting timing if your servicer batches payments.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -213,6 +225,6 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
   </section>
 </BaseLayout>

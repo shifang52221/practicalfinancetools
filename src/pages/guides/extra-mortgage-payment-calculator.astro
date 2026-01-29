@@ -28,6 +28,10 @@ const withOneTimeExtra = amortizationSchedule({
 });
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const yearsMonths = (months: number) => ({ years: Math.floor(months / 12), months: months % 12 });
+const baseYm = yearsMonths(base.months);
+const monthlyYm = yearsMonths(withMonthlyExtra.months);
+const oneTimeYm = yearsMonths(withOneTimeExtra.months);
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/extra-mortgage-payment-calculator">
   <section class="card hero">
@@ -80,17 +84,17 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
         <tbody>
           <tr>
             <td>Baseline (no extra)</td>
-            <td class="num">{base.months} months</td>
+            <td class="num">{base.months} months ({baseYm.years}y {baseYm.months}m)</td>
             <td class="num">{money0.format(base.totalInterest)}</td>
           </tr>
           <tr>
             <td>Monthly extra {money0.format(extraMonthly)}</td>
-            <td class="num">{withMonthlyExtra.months} months</td>
+            <td class="num">{withMonthlyExtra.months} months ({monthlyYm.years}y {monthlyYm.months}m)</td>
             <td class="num">{money0.format(withMonthlyExtra.totalInterest)}</td>
           </tr>
           <tr>
             <td>One-time {money0.format(extraOneTime)} in month {extraOneTimeMonth}</td>
-            <td class="num">{withOneTimeExtra.months} months</td>
+            <td class="num">{withOneTimeExtra.months} months ({oneTimeYm.years}y {oneTimeYm.months}m)</td>
             <td class="num">{money0.format(withOneTimeExtra.totalInterest)}</td>
           </tr>
         </tbody>
@@ -151,11 +155,28 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Time horizon check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you plan to refinance or move within a few years, compare savings over that shorter window. The full-term savings can look large,
+      but the near-term impact may be smaller.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">A few details that can change real results</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li><strong>Posting date:</strong> some servicers post extra payments immediately; others may post on a schedule.</li>
       <li><strong>Escrow:</strong> taxes/insurance can change over time and are separate from principal-and-interest payoff math.</li>
       <li><strong>Fees/penalties:</strong> confirm there are no prepayment penalties and avoid fee-based payment programs.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Statement check</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the current note rate and remaining term from your statement.</li>
+      <li>Confirm extra payments post as principal-only.</li>
+      <li>Match the posting month if you are modeling a lump sum.</li>
     </ul>
   </section>
 
@@ -215,6 +236,6 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
   </section>
 </BaseLayout>
