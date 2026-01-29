@@ -22,6 +22,7 @@ const exampleMonthlyFee = 4;
 const totalFees = exampleSetupFee + exampleMonthlyFee * withExtra.months;
 const interestSaved = Math.max(0, base.totalInterest - withExtra.totalInterest);
 const netSavings = interestSaved - totalFees;
+const breakEvenMonthlyFee = withExtra.months > 0 ? interestSaved / withExtra.months : 0;
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -117,12 +118,24 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
             <td>Net savings after fees</td>
             <td class="num">{money0.format(netSavings)}</td>
           </tr>
+          <tr>
+            <td>Break-even monthly fee (approx.)</td>
+            <td class="num">{money2.format(breakEvenMonthlyFee)}</td>
+          </tr>
         </tbody>
       </table>
     </div>
     <p class="muted" style="margin:12px 0 0">
       This example assumes a {money0.format(exampleSetupFee)} setup fee and {money2.format(exampleMonthlyFee)}/month for the life of the
       program. If the program holds funds and posts monthly, the savings can be even smaller.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Fee sensitivity check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use the break-even monthly fee as a quick sanity check. If a program's monthly fee exceeds the break-even estimate, the fee alone
+      can erase the interest savings from biweekly posting (even before any setup or cancellation fees).
     </p>
   </section>
 
@@ -150,6 +163,14 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <li>Can you cancel easily, and what happens to payments in transit?</li>
       <li>Are extra amounts applied as principal-only?</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Time horizon check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you expect to refinance or move within a few years, compare the interest saved over that shorter period. Fees paid early can
+      outweigh the near-term savings, even if the long-term math looks positive.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -207,6 +228,6 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn" href="/guides/principal-only-extra-payments">Principal-only tips</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
   </section>
 </BaseLayout>
