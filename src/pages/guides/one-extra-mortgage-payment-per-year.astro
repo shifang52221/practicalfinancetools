@@ -18,15 +18,27 @@ const withMonthlyExtra = amortizationSchedule({
   termMonths: exampleTerm,
   extraMonthly: monthlyExtra
 });
-const withOneTimeExtra = amortizationSchedule({
+const withOneTimeExtraLate = amortizationSchedule({
   principal: examplePrincipal,
   aprPercent: exampleApr,
   termMonths: exampleTerm,
   extraOneTime: base.paymentPI,
   extraOneTimeMonth: 12
 });
+const withOneTimeExtraEarly = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTerm,
+  extraOneTime: base.paymentPI,
+  extraOneTimeMonth: 1
+});
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const yearsMonths = (months: number) => ({ years: Math.floor(months / 12), months: months % 12 });
+const baseYm = yearsMonths(base.months);
+const monthlyYm = yearsMonths(withMonthlyExtra.months);
+const lateYm = yearsMonths(withOneTimeExtraLate.months);
+const earlyYm = yearsMonths(withOneTimeExtraEarly.months);
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/one-extra-mortgage-payment-per-year">
   <section class="card hero">
@@ -87,7 +99,7 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     <p class="muted" style="margin:10px 0 0">
       Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% for {exampleTerm / 12} years. The base payment is about
       {money0.format(base.paymentPI)}. One extra payment per year is roughly {money0.format(monthlyExtra)}/month or a
-      {money0.format(base.paymentPI)} one-time principal payment.
+      {money0.format(base.paymentPI)} one-time principal payment. Timing matters, so compare a month 1 lump sum to a month 12 lump sum.
     </p>
     <div style="overflow:auto; margin-top:12px">
       <table class="table">
@@ -101,24 +113,30 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
         <tbody>
           <tr>
             <td>Baseline (no extra)</td>
-            <td class="num">{base.months} months</td>
+            <td class="num">{base.months} months ({baseYm.years}y {baseYm.months}m)</td>
             <td class="num">{money0.format(base.totalInterest)}</td>
           </tr>
           <tr>
             <td>Monthly extra {money0.format(monthlyExtra)}</td>
-            <td class="num">{withMonthlyExtra.months} months</td>
+            <td class="num">{withMonthlyExtra.months} months ({monthlyYm.years}y {monthlyYm.months}m)</td>
             <td class="num">{money0.format(withMonthlyExtra.totalInterest)}</td>
           </tr>
           <tr>
+            <td>One-time {money0.format(base.paymentPI)} in month 1</td>
+            <td class="num">{withOneTimeExtraEarly.months} months ({earlyYm.years}y {earlyYm.months}m)</td>
+            <td class="num">{money0.format(withOneTimeExtraEarly.totalInterest)}</td>
+          </tr>
+          <tr>
             <td>One-time {money0.format(base.paymentPI)} in month 12</td>
-            <td class="num">{withOneTimeExtra.months} months</td>
-            <td class="num">{money0.format(withOneTimeExtra.totalInterest)}</td>
+            <td class="num">{withOneTimeExtraLate.months} months ({lateYm.years}y {lateYm.months}m)</td>
+            <td class="num">{money0.format(withOneTimeExtraLate.totalInterest)}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <p class="muted" style="margin:12px 0 0">
-      The earlier monthly extra usually saves more interest than a late-year lump sum, even if the totals are similar.
+      The earlier monthly extra usually saves more interest than a late-year lump sum, even if the totals are similar. The month 1
+      lump sum typically beats the month 12 lump sum because it reduces principal sooner.
     </p>
   </section>
 
@@ -153,6 +171,14 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Time horizon check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you plan to sell or refinance within a few years, compare savings over that shorter window. A plan that looks great over 30
+      years can be less meaningful over 3 to 5 years. Model both to match your expected time in the home.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">If your income is irregular</h2>
     <p class="muted" style="margin:10px 0 0">
       Consider a smaller monthly extra plus a year-end lump sum. This keeps the habit in place while letting you add more when cash flow
@@ -166,6 +192,14 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <li>Confirm the extra goes to principal-only, not escrow.</li>
       <li>Ask how quickly the payment posts to reduce interest.</li>
       <li>Keep receipts or statements showing principal application.</li>
+    </ul>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Statement check</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Verify that the extra reduces principal, not just the next due date.</li>
+      <li>Confirm the posting date used for interest calculations.</li>
+      <li>If your servicer posts in batches, model a later month for realism.</li>
     </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
@@ -220,6 +254,6 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     <p class="muted" style="margin:12px 0 0">
       Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
   </section>
 </BaseLayout>
