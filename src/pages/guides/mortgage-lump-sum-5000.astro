@@ -11,15 +11,26 @@ const exampleApr = 6.5;
 const exampleTermMonths = 360;
 const exampleLumpSum = 5000;
 const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTermMonths });
-const withLump = amortizationSchedule({
+const withLumpEarly = amortizationSchedule({
   principal: examplePrincipal,
   aprPercent: exampleApr,
   termMonths: exampleTermMonths,
   extraOneTime: exampleLumpSum,
   extraOneTimeMonth: 1
 });
+const withLumpLate = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleApr,
+  termMonths: exampleTermMonths,
+  extraOneTime: exampleLumpSum,
+  extraOneTimeMonth: 24
+});
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const yearsMonths = (months: number) => ({ years: Math.floor(months / 12), months: months % 12 });
+const baseYm = yearsMonths(base.months);
+const earlyYm = yearsMonths(withLumpEarly.months);
+const lateYm = yearsMonths(withLumpLate.months);
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-lump-sum-5000" robots="noindex, follow">
   <section class="card hero">
@@ -119,7 +130,7 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     <h2 style="margin-top:0">Worked example (computed)</h2>
     <p class="muted" style="margin:10px 0 0">
       Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Compare baseline to a
-      one-time {money0.format(exampleLumpSum)} principal-only lump sum in month 1.
+      one-time {money0.format(exampleLumpSum)} principal-only lump sum in month 1, then compare to the same lump sum applied later.
     </p>
     <div style="overflow:auto; margin-top:12px">
       <table class="table">
@@ -135,21 +146,36 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
           <tr>
             <td>Baseline</td>
             <td class="num">{money0.format(0)}</td>
-            <td class="num">{base.months} months</td>
+            <td class="num">{base.months} months ({baseYm.years}y {baseYm.months}m)</td>
             <td class="num">{money0.format(base.totalInterest)}</td>
           </tr>
           <tr>
-            <td>With lump sum</td>
+            <td>Lump sum in month 1</td>
             <td class="num">{money0.format(exampleLumpSum)}</td>
-            <td class="num">{withLump.months} months</td>
-            <td class="num">{money0.format(withLump.totalInterest)}</td>
+            <td class="num">{withLumpEarly.months} months ({earlyYm.years}y {earlyYm.months}m)</td>
+            <td class="num">{money0.format(withLumpEarly.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Lump sum in month 24</td>
+            <td class="num">{money0.format(exampleLumpSum)}</td>
+            <td class="num">{withLumpLate.months} months ({lateYm.years}y {lateYm.months}m)</td>
+            <td class="num">{money0.format(withLumpLate.totalInterest)}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <p class="muted" style="margin:12px 0 0">
-      In this example, the lump sum saves about {money0.format(Math.max(0, base.totalInterest - withLump.totalInterest))} in interest and
-      shortens payoff by {Math.max(0, base.months - withLump.months)} months (calculator estimate).
+      In this example, the month 1 lump sum saves about{" "}
+      {money0.format(Math.max(0, base.totalInterest - withLumpEarly.totalInterest))} in interest and shortens payoff by{" "}
+      {Math.max(0, base.months - withLumpEarly.months)} months (calculator estimate).
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Time horizon check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you plan to sell or refinance within a few years, compare savings over that shorter window. A late lump sum can deliver much
+      less benefit before you exit the loan, even if it looks meaningful over the full term.
     </p>
   </section>
 
@@ -160,6 +186,15 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <li><strong>Principal-only:</strong> confirm the payment is applied directly to principal.</li>
       <li><strong>Emergency fund:</strong> keep enough liquidity for unexpected expenses.</li>
       <li><strong>Compare alternatives:</strong> a small monthly extra can beat a late lump sum.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Statement check</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Confirm the lump sum posts as principal-only, not "paid ahead."</li>
+      <li>Match the payment posting date when modeling timing.</li>
+      <li>If the servicer applies extra payments after the due date, model a later month.</li>
     </ul>
   </section>
 
@@ -195,6 +230,6 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
   </section>
 </BaseLayout>
