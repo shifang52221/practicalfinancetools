@@ -70,7 +70,7 @@ const exampleMonthsRemainder = exampleMonths == null ? null : exampleMonths % 12
       a: "If a payment is below the interest charged, the balance can grow and payoff may never happen. Increase the payment or reduce the APR to make progress."
     }
   ]}
-  lastUpdated="2026-01-27"
+  lastUpdated="2026-01-29"
 >
   <CreditCardPayoff client:load />
 
@@ -125,6 +125,13 @@ const exampleMonthsRemainder = exampleMonths == null ? null : exampleMonths % 12
       <li>Payment: enter what you can actually sustain each month.</li>
       <li>New purchases: this tool assumes none; new charges extend payoff.</li>
       <li>Fees: late/annual fees are excluded, so add a buffer if you expect them.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Match your statement details</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Use the APR that matches the balance type (purchases vs cash advances).</li>
+      <li>Compare the statement minimum payment to the payment you model here.</li>
+      <li>If you have a promo APR, run a separate scenario for the promo period.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">If payoff seems too long</h2>
