@@ -6,9 +6,9 @@ const title = "If I Pay $300 Extra on My Mortgage (what changes?)";
 const description =
   "Paying $300 extra toward principal can shorten payoff time and reduce interest. Learn what changes, what to confirm with your lender, and model scenarios.";
 
-const examplePrincipal = 300000;
-const exampleApr = 6.5;
-const exampleTermMonths = 360;
+const examplePrincipal = 325000;
+const exampleApr = 6.25;
+const exampleTermMonths = 300;
 const exampleExtraMonthly = 300;
 const base = amortizationSchedule({ principal: examplePrincipal, aprPercent: exampleApr, termMonths: exampleTermMonths });
 const withExtra = amortizationSchedule({
@@ -19,6 +19,9 @@ const withExtra = amortizationSchedule({
 });
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const ym = (months: number) => `${Math.floor(months / 12)}y ${months % 12}m`;
+const baseYm = ym(base.months);
+const extraYm = ym(withExtra.months);
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/pay-300-extra-on-mortgage" robots="noindex, follow">
   <section class="card hero">
@@ -95,6 +98,14 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Time horizon check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you plan to move or refinance within a few years, compare interest saved over that window. The full-term savings assume you keep
+      the loan longer.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Worked example (computed)</h2>
     <p class="muted" style="margin:10px 0 0">
       Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Compare baseline to adding
@@ -114,13 +125,13 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
           <tr>
             <td>Baseline</td>
             <td class="num">{money0.format(0)}</td>
-            <td class="num">{base.months} months</td>
+            <td class="num">{base.months} months ({baseYm})</td>
             <td class="num">{money0.format(base.totalInterest)}</td>
           </tr>
           <tr>
             <td>With extra</td>
             <td class="num">{money0.format(exampleExtraMonthly)}</td>
-            <td class="num">{withExtra.months} months</td>
+            <td class="num">{withExtra.months} months ({extraYm})</td>
             <td class="num">{money0.format(withExtra.totalInterest)}</td>
           </tr>
         </tbody>
@@ -140,6 +151,14 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <li>Whether a prepayment penalty exists (many loans have none; some do).</li>
       <li>Whether a recast is available if you want a lower required payment after a large principal payment.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Statement check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      After the first extra payment posts, confirm the principal balance dropped by the extra amount and the payment was not marked as
+      paid ahead. If it was, contact the servicer to fix the payment application.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -187,7 +206,7 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-01-28
+      Last updated: 2026-01-29
     </p>
   </section>
 </BaseLayout>
