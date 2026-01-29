@@ -25,7 +25,20 @@ const refi = amortizationSchedule({
 });
 const monthlySavings = Math.max(0, current.paymentPI - refi.paymentPI);
 const breakevenMonths = monthlySavings > 0 ? exampleClosingCosts / monthlySavings : null;
-const breakevenYears = breakevenMonths == null ? null : breakevenMonths / 12;
+const breakevenMonthsRounded = breakevenMonths == null ? null : Math.ceil(breakevenMonths);
+const breakevenYears = breakevenMonthsRounded == null ? null : breakevenMonthsRounded / 12;
+const lowClosingCosts = 4000;
+const highClosingCosts = 8000;
+const breakevenLow = monthlySavings > 0 ? lowClosingCosts / monthlySavings : null;
+const breakevenHigh = monthlySavings > 0 ? highClosingCosts / monthlySavings : null;
+const yearsMonths = (months: number | null) => {
+  if (months == null) return null;
+  const rounded = Math.ceil(months);
+  return { years: Math.floor(rounded / 12), months: rounded % 12, total: rounded };
+};
+const breakevenYm = yearsMonths(breakevenMonths);
+const breakevenLowYm = yearsMonths(breakevenLow);
+const breakevenHighYm = yearsMonths(breakevenHigh);
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -105,9 +118,44 @@ const num1 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 0, maximumF
     </div>
     <p class="muted" style="margin:12px 0 0">
       Monthly savings are about {money2.format(monthlySavings)}. Break-even is roughly{" "}
-      <strong>{breakevenMonths == null ? "N/A" : `${num1.format(breakevenMonths)} months`}</strong>
-      {breakevenYears == null ? "" : ` (${num1.format(breakevenYears)} years)`}.
+      <strong>{breakevenYm == null ? "N/A" : `${num1.format(breakevenYm.total)} months`}</strong>
+      {breakevenYm == null ? "" : ` (${breakevenYm.years}y ${breakevenYm.months}m)`}.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Break-even sensitivity (costs)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Small changes in closing costs can shift break-even by months. Use this table to see how sensitive the estimate is to fees.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Closing costs</th>
+            <th class="num">Break-even (months)</th>
+            <th class="num">Break-even (years)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{money0.format(lowClosingCosts)}</td>
+            <td class="num">{breakevenLowYm == null ? "N/A" : `${num1.format(breakevenLowYm.total)} months`}</td>
+            <td class="num">{breakevenLowYm == null ? "N/A" : `${breakevenLowYm.years}y ${breakevenLowYm.months}m`}</td>
+          </tr>
+          <tr>
+            <td>{money0.format(exampleClosingCosts)}</td>
+            <td class="num">{breakevenYm == null ? "N/A" : `${num1.format(breakevenYm.total)} months`}</td>
+            <td class="num">{breakevenYm == null ? "N/A" : `${breakevenYm.years}y ${breakevenYm.months}m`}</td>
+          </tr>
+          <tr>
+            <td>{money0.format(highClosingCosts)}</td>
+            <td class="num">{breakevenHighYm == null ? "N/A" : `${num1.format(breakevenHighYm.total)} months`}</td>
+            <td class="num">{breakevenHighYm == null ? "N/A" : `${breakevenHighYm.years}y ${breakevenHighYm.months}m`}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -157,6 +205,15 @@ const num1 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 0, maximumF
       A refinance with a lower payment might still cost more in total interest if it extends the term significantly. Always compare the
       total interest over your expected time horizon, not just the monthly payment.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Statement check</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the note rate on your statement, not a blended APR.</li>
+      <li>Confirm the remaining term in months (not the original term).</li>
+      <li>Match the closing cost list to the Loan Estimate fee breakdown.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -216,6 +273,6 @@ const num1 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 0, maximumF
       </li>
     </ul>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
   </section>
 </BaseLayout>
