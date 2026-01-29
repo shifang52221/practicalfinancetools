@@ -31,6 +31,20 @@ body{
   color:var(--text);
 }
 a{color:inherit}
+.skip-link{
+  position:absolute;
+  left:-999px;
+  top:12px;
+  padding:10px 14px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--text);
+  z-index:9999;
+}
+.skip-link:focus{
+  left:16px;
+}
 .chrome{
   background: var(--chrome);
   border:1px solid var(--border);
