@@ -143,6 +143,11 @@ main.container{flex:1}
 .nav{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
 .nav a{color:var(--muted); text-decoration:none; font-weight:600; font-size:14px}
 .nav a:hover{color:var(--text)}
+.nav a[aria-current="page"]{
+  color:var(--text);
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
 .hero{
   padding:34px 22px;
   display:grid;

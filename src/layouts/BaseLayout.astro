@@ -46,6 +46,15 @@ const pageType = canonicalPath?.startsWith("/guides")
   : canonicalPath?.startsWith("/topics")
     ? "CollectionPage"
     : "WebPage";
+const navPath = canonicalPath ?? "";
+const navActive = {
+  calculators: navPath.startsWith("/calculators"),
+  guides: navPath.startsWith("/guides"),
+  topics: navPath.startsWith("/topics"),
+  about: navPath.startsWith("/about"),
+  contact: navPath.startsWith("/contact"),
+  privacy: navPath.startsWith("/privacy-policy")
+};
 const webPageLd = {
   "@context": "https://schema.org",
   "@type": pageType,
@@ -121,12 +130,12 @@ const ogType = pageType === "Article" ? "article" : "website";
             <span>{SITE.name}</span>
           </a>
           <nav class="nav" aria-label="Primary">
-            <a href="/calculators">Calculators</a>
-            <a href="/guides">Guides</a>
-            <a href="/topics">Topics</a>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-            <a href="/privacy-policy">Privacy</a>
+            <a href="/calculators" aria-current={navActive.calculators ? "page" : undefined}>Calculators</a>
+            <a href="/guides" aria-current={navActive.guides ? "page" : undefined}>Guides</a>
+            <a href="/topics" aria-current={navActive.topics ? "page" : undefined}>Topics</a>
+            <a href="/about" aria-current={navActive.about ? "page" : undefined}>About</a>
+            <a href="/contact" aria-current={navActive.contact ? "page" : undefined}>Contact</a>
+            <a href="/privacy-policy" aria-current={navActive.privacy ? "page" : undefined}>Privacy</a>
           </nav>
         </div>
       </header>
