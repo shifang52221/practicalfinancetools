@@ -1,0 +1,108 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "What Counts in Debt-to-Income (DTI)";
+const description =
+  "Understand which debts count in DTI, how lenders treat minimum payments, and how to avoid common mistakes. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/what-counts-in-dti">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">What counts in DTI</span>
+    </nav>
+    <h1>What counts in debt-to-income (DTI)</h1>
+    <p>
+      DTI is usually based on required monthly debt payments divided by gross monthly income. This guide summarizes what typically
+      counts, how minimum payments are treated, and how to document the assumptions you used.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Debts that usually count</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Mortgage or rent payment for the new loan scenario.</li>
+      <li>Auto, student, and personal loan payments.</li>
+      <li>Minimum credit card payments.</li>
+      <li>Required support or alimony obligations.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Items that often cause confusion</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Subscriptions and utilities usually do not count as debt.</li>
+      <li>Insurance premiums can be part of the housing payment, not separate debt.</li>
+      <li>Deferred loans may still count based on lender rules.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">How minimum payments are treated</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Most lenders use the minimum required payment on credit cards, not your planned payoff amount. If you pay more than the minimum,
+        the DTI ratio will still be based on the required minimum unless the lender uses a different rule.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Gross vs net income</h2>
+      <p class="muted" style="margin:10px 0 0">
+        DTI is typically based on gross income before taxes. Using net income will make the ratio look worse, so keep the definition
+        consistent when comparing scenarios.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: document your inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>List each required payment and where it appears on your statement.</li>
+      <li>Record the minimum card payment used in the calculation.</li>
+      <li>Note whether housing payment includes taxes, insurance, and PMI.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Do medical bills count?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Only if they are part of a required monthly payment arrangement. Otherwise, they are not typically included in DTI.
+    </p>
+    <h3 style="margin:12px 0 0">Do co-signed loans count?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      They often do, unless you can document that another party has been paying consistently per lender requirements.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Calculate your DTI</a>
+      <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Reduce balances</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+  </section>
+</BaseLayout>

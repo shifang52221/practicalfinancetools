@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Debt-to-Income Topic Guide (DTI ratios and affordability)";
+const description =
+  "DTI workflow: understand what counts in debt-to-income, calculate your ratio, and improve affordability. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/topics/debt-to-income">
+  <section class="card hero">
+    <span class="pill">Topic</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/topics">Topics</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Debt-to-income</span>
+    </nav>
+    <h1>Debt-to-income (DTI) and affordability</h1>
+    <p>
+      DTI is a simple ratio used by lenders to estimate affordability. This workflow shows what typically counts, how to calculate it,
+      and how to improve the ratio without guessing. Start with the <a href="/calculators/debt-to-income-calculator">DTI calculator</a>.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
+      <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">DTI workflow</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>List monthly debt payments:</strong> loans, minimum card payments, and required obligations.</li>
+      <li><strong>Confirm gross income:</strong> use stable monthly income before taxes.</li>
+      <li><strong>Calculate the ratio:</strong> total debt payments divided by gross income.</li>
+      <li><strong>Test changes:</strong> pay down balances or increase income to see the effect.</li>
+      <li><strong>Document assumptions:</strong> keep notes on which debts were included.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What typically counts</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Required monthly debt payments (auto, student loans, personal loans).</li>
+      <li>Minimum credit card payments.</li>
+      <li>Housing payment for the new loan scenario.</li>
+      <li>Support obligations if required by court order.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/debt-to-income-calculator">Debt-to-income calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a> (housing input)</li>
+        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a> (reduce balances)</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/what-counts-in-dti">What counts in DTI</a></li>
+        <li><a href="/guides/how-to-improve-dti">How to improve DTI</a></li>
+        <li><a href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using net income instead of gross income.</li>
+      <li>Leaving out required debts or minimum card payments.</li>
+      <li>Using a guessed housing payment rather than a calculated one.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Decision checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Do you know which debts the lender will include?</li>
+      <li>Have you used a realistic housing payment estimate?</li>
+      <li>Can you reduce the ratio with a payoff plan or higher income?</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Updates</h2>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+  </section>
+</BaseLayout>

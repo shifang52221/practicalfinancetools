@@ -1,0 +1,118 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Refinance Closing Costs (what to include and compare)";
+const description =
+  "Learn which refinance costs matter, how to compare lender fees, and how costs affect break-even timing. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-closing-costs">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Refinance closing costs</span>
+    </nav>
+    <h1>Refinance closing costs: what to include</h1>
+    <p>
+      Closing costs can make or break a refinance. This guide explains which fees typically matter for comparisons, how to separate
+      upfront costs from ongoing costs, and how to estimate break-even timing.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Break-even guide</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Core fee categories</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Origination fees:</strong> lender or broker charges tied to the loan.</li>
+      <li><strong>Discount points:</strong> paid to reduce the rate.</li>
+      <li><strong>Third-party services:</strong> appraisal, title, and recording fees.</li>
+      <li><strong>Prepaids and escrow:</strong> taxes and insurance paid at closing.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Costs that affect comparisons</h2>
+    <p class="muted" style="margin:10px 0 0">
+      For break-even math, focus on costs that are new out-of-pocket expenses or added to the loan balance. Prepaids can be important for
+      cash flow, but they often replace costs you would pay anyway. Keep a consistent definition across offers.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">How to compare offers</h2>
+      <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>List the rate, points, and total lender fees.</li>
+        <li>Separate true closing costs from prepaids.</li>
+        <li>Calculate monthly payment savings.</li>
+        <li>Divide total costs by monthly savings for break-even.</li>
+      </ol>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Costs that can surprise</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Title insurance and recording fees (vary by state).</li>
+        <li>Rate lock fees or underwriting add-ons.</li>
+        <li>Appraisal waivers that differ by lender.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Points vs lender credits</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Paying points lowers the rate but increases upfront costs. Lender credits reduce upfront costs but raise the rate. Compare both
+      options with the same time horizon to avoid false savings.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist before you commit</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Confirm which costs are being rolled into the loan.</li>
+      <li>Ask for a written fee breakdown, not a single total.</li>
+      <li>Re-run the break-even if the rate lock expires.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Do prepaids count as closing costs?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      They are part of cash to close, but they often replace costs you would pay anyway. Separate them for fair comparisons.
+    </p>
+    <h3 style="margin:12px 0 0">Are points always worth it?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Only if you keep the loan long enough to pass the point break-even. Compare against a no-point option.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Estimate break-even</a>
+      <a class="btn" href="/guides/refinance-checklist">Refinance checklist</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Compare payments</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+  </section>
+</BaseLayout>

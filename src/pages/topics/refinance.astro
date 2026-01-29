@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Refinance Topic Guide (break-even, costs, timing)";
+const description =
+  "Refinance workflow: estimate savings, compare closing costs, and confirm break-even timing. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/topics/refinance">
+  <section class="card hero">
+    <span class="pill">Topic</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/topics">Topics</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Refinance</span>
+    </nav>
+    <h1>Refinance: compare savings, costs, and timing</h1>
+    <p>
+      The refinance decision is usually a trade-off between upfront costs and long-term savings. This workflow helps you compare
+      offers with consistent assumptions, estimate break-even timing, and decide whether a refinance fits your time horizon.
+      Start with the <a href="/guides/refinance-break-even">refinance break-even guide</a>.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Break-even guide</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Refinance workflow</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Baseline the current loan:</strong> rate, balance, term, and remaining months.</li>
+      <li><strong>Model the new offer:</strong> rate, term, and estimated closing costs.</li>
+      <li><strong>Estimate break-even:</strong> divide total costs by monthly savings.</li>
+      <li><strong>Check time horizon:</strong> if you may move or refinance again, compare savings over that window.</li>
+      <li><strong>Validate the fee list:</strong> make sure lender credits or points are included consistently.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What typically drives the decision</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Rate difference and remaining balance.</li>
+      <li>Total cash to close (fees, points, prepaid items).</li>
+      <li>Whether the new term resets the clock.</li>
+      <li>Expected time in the home.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a> (baseline vs new)</li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a> (remaining interest)</li>
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a> (alternative to refi)</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/refinance-break-even">Refinance break-even</a></li>
+        <li><a href="/guides/refinance-closing-costs">Refinance closing costs</a></li>
+        <li><a href="/guides/refinance-checklist">Refinance checklist</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common pitfalls</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing a 30-year new loan to a remaining 22-year term without adjusting for total interest.</li>
+      <li>Ignoring lender credits or points that change the cash-to-close.</li>
+      <li>Focusing only on the monthly payment and missing total cost over time.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Decision checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Do you expect to keep the loan long enough to break even?</li>
+      <li>Are fees paid upfront or rolled into the loan?</li>
+      <li>Does the new term extend the payoff horizon?</li>
+      <li>Have you compared refinance to extra principal payments?</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Updates</h2>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+  </section>
+</BaseLayout>

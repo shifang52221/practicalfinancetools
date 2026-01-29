@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Refinance Checklist (before you lock a rate)";
+const description =
+  "A practical refinance checklist covering documents, fees, timing, and break-even math. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-checklist">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Refinance checklist</span>
+    </nav>
+    <h1>Refinance checklist: before you lock a rate</h1>
+    <p>
+      Use this checklist to confirm inputs, documents, and timing so your refinance comparison is consistent. The goal is to avoid
+      surprises after you lock a rate and to keep the break-even math accurate.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Break-even guide</a>
+      <a class="btn" href="/guides/refinance-closing-costs">Closing costs</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">1) Baseline the current loan</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Current rate, remaining balance, and remaining term.</li>
+      <li>Monthly payment breakdown (principal, interest, escrow, PMI).</li>
+      <li>Prepayment penalties or loan features that could change costs.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">2) Confirm the new offer</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Rate, term, and whether points or lender credits are included.</li>
+      <li>Estimated total costs and cash to close.</li>
+      <li>Whether fees are paid upfront or rolled into the balance.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">3) Run the break-even</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Compute monthly savings from the new payment.</li>
+      <li>Divide total costs by monthly savings for break-even months.</li>
+      <li>Compare to your expected time horizon.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">4) Stress test assumptions</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you might move in 3-5 years, compare savings over that window. If you expect income changes, test a more conservative savings
+      estimate. This prevents break-even from looking better than it will be.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">5) Gather documents</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Recent pay stubs or income verification.</li>
+      <li>Tax returns or W-2s if required.</li>
+      <li>Current mortgage statement and insurance declarations.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">6) Review timing</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Rate lock expiration date.</li>
+      <li>Estimated closing date and any required appraisals.</li>
+      <li>How long it takes to fund and disburse the new loan.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Should I compare a shorter term?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Yes, if you can afford the higher payment. It can reduce total interest and shorten break-even time.
+    </p>
+    <h3 style="margin:12px 0 0">Do escrow changes affect break-even?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Escrow changes can affect cash flow, but compare principal and interest savings first to keep the math consistent.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Break-even guide</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Compare payments</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">View amortization</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+  </section>
+</BaseLayout>
