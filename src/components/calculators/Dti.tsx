@@ -17,57 +17,14 @@ export function DtiCalculator() {
   const [otherDebtPayments, setOtherDebtPayments] = useState(450);
   const [targetFrontEndPct, setTargetFrontEndPct] = useState(28);
   const [targetBackEndPct, setTargetBackEndPct] = useState(36);
-  const [useIncomeBreakdown, setUseIncomeBreakdown] = useState(false);
-  const [useHousingBreakdown, setUseHousingBreakdown] = useState(true);
-  const [useDebtBreakdown, setUseDebtBreakdown] = useState(true);
-  const [incomeBase, setIncomeBase] = useState(5200);
-  const [incomeVariable, setIncomeVariable] = useState(900);
-  const [incomeOther, setIncomeOther] = useState(400);
-  const [housingPrincipalInterest, setHousingPrincipalInterest] = useState(1600);
-  const [housingTaxes, setHousingTaxes] = useState(350);
-  const [housingInsurance, setHousingInsurance] = useState(120);
-  const [housingHoa, setHousingHoa] = useState(80);
-  const [housingPmi, setHousingPmi] = useState(50);
-  const [debtCreditCards, setDebtCreditCards] = useState(120);
-  const [debtAutoLoans, setDebtAutoLoans] = useState(250);
-  const [debtStudentLoans, setDebtStudentLoans] = useState(80);
-  const [debtPersonalLoans, setDebtPersonalLoans] = useState(0);
-  const [debtOther, setDebtOther] = useState(0);
 
   const result = useMemo(() => {
-    const incomeMonthly = useIncomeBreakdown ? incomeBase + incomeVariable + incomeOther : grossIncomeMonthly;
-    const housingMonthly = useHousingBreakdown
-      ? housingPrincipalInterest + housingTaxes + housingInsurance + housingHoa + housingPmi
-      : housingPayment;
-    const otherDebtMonthly = useDebtBreakdown
-      ? debtCreditCards + debtAutoLoans + debtStudentLoans + debtPersonalLoans + debtOther
-      : otherDebtPayments;
     return calculateDti({
-      incomeMonthly: clamp(incomeMonthly, 0, 1e8),
-      housingMonthly: clamp(housingMonthly, 0, 1e8),
-      otherDebtMonthly: clamp(otherDebtMonthly, 0, 1e8)
+      incomeMonthly: clamp(grossIncomeMonthly, 0, 1e8),
+      housingMonthly: clamp(housingPayment, 0, 1e8),
+      otherDebtMonthly: clamp(otherDebtPayments, 0, 1e8)
     });
-  }, [
-    grossIncomeMonthly,
-    housingPayment,
-    otherDebtPayments,
-    useIncomeBreakdown,
-    useHousingBreakdown,
-    useDebtBreakdown,
-    incomeBase,
-    incomeVariable,
-    incomeOther,
-    housingPrincipalInterest,
-    housingTaxes,
-    housingInsurance,
-    housingHoa,
-    housingPmi,
-    debtCreditCards,
-    debtAutoLoans,
-    debtStudentLoans,
-    debtPersonalLoans,
-    debtOther
-  ]);
+  }, [grossIncomeMonthly, housingPayment, otherDebtPayments]);
 
   const targets = useMemo(() => {
     const targetFrontEnd = clamp(targetFrontEndPct, 0, 100) / 100;
@@ -92,8 +49,7 @@ export function DtiCalculator() {
   const backEndText = result.backEndDti === null ? "N/A" : formatPercent(result.backEndDti);
   const frontEndText = result.frontEndDti === null ? "N/A" : formatPercent(result.frontEndDti);
   const maxHousingText = targets.maxHousing === null ? "N/A" : formatCurrency2(targets.maxHousing);
-  const headroomText =
-    targets.maxHousing === null ? "N/A" : formatCurrency2(targets.maxHousing - result.housingMonthly);
+  const headroomText = targets.maxHousing === null ? "N/A" : formatCurrency2(targets.maxHousing - result.housingMonthly);
   const minIncomeFrontText = targets.minIncomeFront === null ? "N/A" : formatCurrency2(targets.minIncomeFront);
   const minIncomeBackText = targets.minIncomeBack === null ? "N/A" : formatCurrency2(targets.minIncomeBack);
   const maxFrontHousingText = targets.maxFrontHousing === null ? "N/A" : formatCurrency2(targets.maxFrontHousing);
@@ -104,171 +60,39 @@ export function DtiCalculator() {
       <div className="panel">
         <h3>Inputs</h3>
         <div className="form">
-          <div className="field field-6">
-            <div className="label">Income</div>
-            <div className="btn-row" style={{ marginTop: 6 }}>
-              <button className="btn" type="button" onClick={() => setUseIncomeBreakdown(!useIncomeBreakdown)}>
-                {useIncomeBreakdown ? "Use single income input" : "Use income breakdown"}
-              </button>
-            </div>
-            <div className="hint">Use gross monthly income (before taxes).</div>
-          </div>
           <div className="field field-3">
             <div className="label">Gross monthly income</div>
             <input
               type="number"
               inputMode="decimal"
-              value={useIncomeBreakdown ? incomeBase + incomeVariable + incomeOther : grossIncomeMonthly}
+              value={grossIncomeMonthly}
               min={0}
-              onChange={(e) =>
-                useIncomeBreakdown ? setIncomeBase(+e.target.value - incomeVariable - incomeOther) : setGrossIncomeMonthly(+e.target.value)
-              }
-              readOnly={useIncomeBreakdown}
+              onChange={(e) => setGrossIncomeMonthly(+e.target.value)}
             />
-            {useIncomeBreakdown && <div className="hint">Sum of base + variable + other income</div>}
-          </div>
-          {useIncomeBreakdown && (
-            <>
-              <div className="field field-3">
-                <div className="label">Base income</div>
-                <input type="number" inputMode="decimal" value={incomeBase} min={0} onChange={(e) => setIncomeBase(+e.target.value)} />
-                <div className="hint">Salary or hourly wages</div>
-              </div>
-              <div className="field field-3">
-                <div className="label">Variable income</div>
-                <input
-                  type="number"
-                  inputMode="decimal"
-                  value={incomeVariable}
-                  min={0}
-                  onChange={(e) => setIncomeVariable(+e.target.value)}
-                />
-                <div className="hint">Bonuses, commission, overtime</div>
-              </div>
-              <div className="field field-3">
-                <div className="label">Other income</div>
-                <input type="number" inputMode="decimal" value={incomeOther} min={0} onChange={(e) => setIncomeOther(+e.target.value)} />
-                <div className="hint">Documentable side income</div>
-              </div>
-            </>
-          )}
-
-          <div className="field field-6">
-            <div className="label">Housing payment</div>
-            <div className="btn-row" style={{ marginTop: 6 }}>
-              <button className="btn" type="button" onClick={() => setUseHousingBreakdown(!useHousingBreakdown)}>
-                {useHousingBreakdown ? "Use single housing input" : "Use housing breakdown"}
-              </button>
-            </div>
-            <div className="hint">Use PITI + HOA + PMI for mortgage scenarios.</div>
+            <div className="hint">Use gross income (before taxes).</div>
           </div>
           <div className="field field-3">
             <div className="label">Monthly housing payment</div>
             <input
               type="number"
               inputMode="decimal"
-              value={
-                useHousingBreakdown
-                  ? housingPrincipalInterest + housingTaxes + housingInsurance + housingHoa + housingPmi
-                  : housingPayment
-              }
+              value={housingPayment}
               min={0}
-              onChange={(e) =>
-                useHousingBreakdown
-                  ? setHousingPrincipalInterest(+e.target.value - housingTaxes - housingInsurance - housingHoa - housingPmi)
-                  : setHousingPayment(+e.target.value)
-              }
-              readOnly={useHousingBreakdown}
+              onChange={(e) => setHousingPayment(+e.target.value)}
             />
-            {useHousingBreakdown && <div className="hint">Sum of P&amp;I + taxes + insurance + HOA + PMI</div>}
-          </div>
-          {useHousingBreakdown && (
-            <>
-              <div className="field field-3">
-                <div className="label">Principal &amp; interest</div>
-                <input
-                  type="number"
-                  inputMode="decimal"
-                  value={housingPrincipalInterest}
-                  min={0}
-                  onChange={(e) => setHousingPrincipalInterest(+e.target.value)}
-                />
-              </div>
-              <div className="field field-3">
-                <div className="label">Property taxes</div>
-                <input type="number" inputMode="decimal" value={housingTaxes} min={0} onChange={(e) => setHousingTaxes(+e.target.value)} />
-              </div>
-              <div className="field field-3">
-                <div className="label">Homeowners insurance</div>
-                <input
-                  type="number"
-                  inputMode="decimal"
-                  value={housingInsurance}
-                  min={0}
-                  onChange={(e) => setHousingInsurance(+e.target.value)}
-                />
-              </div>
-              <div className="field field-3">
-                <div className="label">HOA dues</div>
-                <input type="number" inputMode="decimal" value={housingHoa} min={0} onChange={(e) => setHousingHoa(+e.target.value)} />
-              </div>
-              <div className="field field-3">
-                <div className="label">PMI / mortgage insurance</div>
-                <input type="number" inputMode="decimal" value={housingPmi} min={0} onChange={(e) => setHousingPmi(+e.target.value)} />
-              </div>
-            </>
-          )}
-
-          <div className="field field-6">
-            <div className="label">Other debt payments</div>
-            <div className="btn-row" style={{ marginTop: 6 }}>
-              <button className="btn" type="button" onClick={() => setUseDebtBreakdown(!useDebtBreakdown)}>
-                {useDebtBreakdown ? "Use single debt input" : "Use debt breakdown"}
-              </button>
-            </div>
-            <div className="hint">Use required monthly payments, not planned payments.</div>
+            <div className="hint">Use PITI + HOA + PMI for mortgages.</div>
           </div>
           <div className="field field-3">
             <div className="label">Other monthly debt payments</div>
             <input
               type="number"
               inputMode="decimal"
-              value={useDebtBreakdown ? debtCreditCards + debtAutoLoans + debtStudentLoans + debtPersonalLoans + debtOther : otherDebtPayments}
+              value={otherDebtPayments}
               min={0}
-              onChange={(e) =>
-                useDebtBreakdown
-                  ? setDebtCreditCards(+e.target.value - debtAutoLoans - debtStudentLoans - debtPersonalLoans - debtOther)
-                  : setOtherDebtPayments(+e.target.value)
-              }
-              readOnly={useDebtBreakdown}
+              onChange={(e) => setOtherDebtPayments(+e.target.value)}
             />
-            {useDebtBreakdown && <div className="hint">Sum of required minimums</div>}
+            <div className="hint">Use required minimums, not planned payments.</div>
           </div>
-          {useDebtBreakdown && (
-            <>
-              <div className="field field-3">
-                <div className="label">Credit card minimums</div>
-                <input type="number" inputMode="decimal" value={debtCreditCards} min={0} onChange={(e) => setDebtCreditCards(+e.target.value)} />
-              </div>
-              <div className="field field-3">
-                <div className="label">Auto loans or leases</div>
-                <input type="number" inputMode="decimal" value={debtAutoLoans} min={0} onChange={(e) => setDebtAutoLoans(+e.target.value)} />
-              </div>
-              <div className="field field-3">
-                <div className="label">Student loans</div>
-                <input type="number" inputMode="decimal" value={debtStudentLoans} min={0} onChange={(e) => setDebtStudentLoans(+e.target.value)} />
-              </div>
-              <div className="field field-3">
-                <div className="label">Personal loans</div>
-                <input type="number" inputMode="decimal" value={debtPersonalLoans} min={0} onChange={(e) => setDebtPersonalLoans(+e.target.value)} />
-              </div>
-              <div className="field field-3">
-                <div className="label">Other required debts</div>
-                <input type="number" inputMode="decimal" value={debtOther} min={0} onChange={(e) => setDebtOther(+e.target.value)} />
-              </div>
-            </>
-          )}
-
           <div className="field field-3">
             <div className="label">Target front-end DTI (%)</div>
             <input
@@ -304,36 +128,28 @@ export function DtiCalculator() {
                   setOtherDebtPayments(450);
                   setTargetFrontEndPct(28);
                   setTargetBackEndPct(36);
-                  setIncomeBase(5200);
-                  setIncomeVariable(900);
-                  setIncomeOther(400);
-                  setHousingPrincipalInterest(1600);
-                  setHousingTaxes(350);
-                  setHousingInsurance(120);
-                  setHousingHoa(80);
-                  setHousingPmi(50);
-                  setDebtCreditCards(120);
-                  setDebtAutoLoans(250);
-                  setDebtStudentLoans(80);
-                  setDebtPersonalLoans(0);
-                  setDebtOther(0);
-                  setUseIncomeBreakdown(false);
-                  setUseHousingBreakdown(true);
-                  setUseDebtBreakdown(true);
                 }}
               >
                 Reset example
               </button>
-              <button className="btn" type="button" onClick={() => {
-                setTargetFrontEndPct(28);
-                setTargetBackEndPct(36);
-              }}>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => {
+                  setTargetFrontEndPct(28);
+                  setTargetBackEndPct(36);
+                }}
+              >
                 28/36 targets
               </button>
-              <button className="btn" type="button" onClick={() => {
-                setTargetFrontEndPct(31);
-                setTargetBackEndPct(43);
-              }}>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => {
+                  setTargetFrontEndPct(31);
+                  setTargetBackEndPct(43);
+                }}
+              >
                 31/43 targets
               </button>
             </div>
