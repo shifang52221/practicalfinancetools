@@ -1,0 +1,117 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rent vs Buy Topic Hub";
+const description =
+  "A rent vs buy workflow that connects the calculator, break-even guide, and mortgage payment inputs. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/topics/rent-vs-buy">
+  <section class="card hero">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/topics">Topics</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Rent vs buy</span>
+    </nav>
+    <h1>Rent vs buy</h1>
+    <p>
+      This topic helps you compare renting and buying with consistent assumptions. Start with the calculator, then use the checklist
+      guide to tighten your inputs and test realistic scenarios.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Recommended workflow</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Estimate the mortgage payment (PITI + HOA + PMI if needed).</li>
+      <li>Enter a conservative rent growth and home appreciation rate.</li>
+      <li>Set a realistic holding period and selling cost assumption.</li>
+      <li>Run a base case, then change one input at a time.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Key inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Property taxes and insurance from local quotes.</li>
+      <li>Maintenance and HOA costs for your property type.</li>
+      <li>Closing and selling costs that match your market.</li>
+      <li>Investment return assumptions for cash not used in a down payment.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Short horizon checks</h2>
+      <p class="muted" style="margin:10px 0 0">
+        If you may move within a few years, test higher selling costs and lower appreciation. Short horizons are sensitive to
+        transaction costs and can swing the result.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Long horizon checks</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Over longer horizons, amortization and appreciation matter more. Run a conservative base case and compare to an optimistic
+        scenario to see the range.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using a holding period that is longer than your realistic plan.</li>
+      <li>Ignoring selling costs or underestimating maintenance.</li>
+      <li>Comparing results without keeping the same time horizon.</li>
+      <li>Using an optimistic appreciation rate without a conservative case.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">What does break-even mean?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Break-even is the point where your modeled outcomes look similar under the assumptions you entered. It is not a prediction.
+    </p>
+    <h3 style="margin:12px 0 0">Do I need to model taxes?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      This workflow is simplified and does not model income taxes or deductions. If taxes are important to your decision, model them
+      separately and compare alongside the calculator output.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Related guides</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn btn-primary" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+      <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
+      <a class="btn" href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Related tools</h2>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Read the guide</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>
