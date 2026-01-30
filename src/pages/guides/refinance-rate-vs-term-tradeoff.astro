@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Refinance Rate vs Term Tradeoff";
+const description =
+  "How to compare a lower rate with a longer term, and when a shorter term might save more. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-rate-vs-term-tradeoff">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Rate vs term</span>
+    </nav>
+    <h1>Refinance rate vs term tradeoff</h1>
+    <p>
+      A lower rate can still increase total interest if the new term resets the clock. This guide shows how to compare total cost
+      across term lengths without getting misled by a lower monthly payment.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Refinance break-even</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why term length matters</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Extending the term reduces the payment but spreads interest over more years. The tradeoff is lower cash flow now versus more
+      total interest over time.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare terms</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Calculate remaining term on your current loan (months left).</li>
+      <li>Model a new loan at the same remaining term and at 30 years.</li>
+      <li>Compare total interest and break-even under the same horizon.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick checks</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If the term resets to 30 years, total interest can rise even with a lower rate.</li>
+      <li>If you shorten the term, payment may rise but total cost often drops.</li>
+      <li>Compare both cases to your actual time horizon, not the full term.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing a 30-year new loan to a remaining 20-year current loan.</li>
+      <li>Only comparing monthly payments without total interest.</li>
+      <li>Ignoring the time horizon if you plan to move or refi again.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is a lower payment always better?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not always. A lower payment can come with a higher total interest cost if the term is extended.
+    </p>
+    <h3 style="margin:12px 0 0">What if I plan to pay extra?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Model the lower payment case and then test extra payments using the extra payment calculator to see the actual payoff timeline.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/refinance-break-even">Refinance break-even</a></li>
+        <li><a href="/guides/refinance-closing-costs">Refinance closing costs</a></li>
+        <li><a href="/guides/refinance-checklist">Refinance checklist</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Break-even guide</a>
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Run payment comparisons</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

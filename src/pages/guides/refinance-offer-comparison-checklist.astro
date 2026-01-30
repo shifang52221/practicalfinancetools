@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Refinance Offer Comparison Checklist";
+const description =
+  "Checklist for comparing refinance offers with consistent terms, fees, and cash-to-close. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-offer-comparison-checklist">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Offer checklist</span>
+    </nav>
+    <h1>Refinance offer comparison checklist</h1>
+    <p>
+      Comparing refinance offers is easy to get wrong if terms or fees are inconsistent. Use this checklist to align the offers
+      before you compare payment, APR, and total cost.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/guides/refinance-checklist">Refinance checklist</a>
+      <a class="btn" href="/guides/refinance-break-even">Break-even guide</a>
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Alignment checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Same remaining term vs new term (avoid 30 vs 22 without adjustments).</li>
+      <li>Same fee list: lender fees, points, credits, and third-party costs.</li>
+      <li>Same cash-to-close treatment (paid upfront vs rolled in).</li>
+      <li>Same start date assumptions for monthly savings.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Red flags</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>APR looks good but cash-to-close is much higher.</li>
+      <li>Payment is lower but term is extended by years.</li>
+      <li>Fees are missing or buried in other categories.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Should I compare only APR?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      APR is useful but not enough. Compare total cost over your time horizon and cash-to-close.
+    </p>
+    <h3 style="margin:12px 0 0">What about lender credits?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Credits reduce cash-to-close but usually increase the rate. Compare both structures over your horizon.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/refinance-no-closing-costs-myth">No closing cost refinance</a></li>
+        <li><a href="/guides/refinance-rolling-costs-into-loan">Rolling costs into the loan</a></li>
+        <li><a href="/guides/refinance-points-break-even">Points break-even</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/guides/refinance-checklist">Refinance checklist</a>
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+      <a class="btn" href="/guides/refinance-break-even">Break-even guide</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

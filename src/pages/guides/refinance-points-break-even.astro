@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Refinance Points Break-Even";
+const description =
+  "How to evaluate discount points in a refinance and calculate break-even. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-points-break-even">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Points break-even</span>
+    </nav>
+    <h1>Refinance points break-even</h1>
+    <p>
+      Discount points lower the rate in exchange for upfront cost. This guide shows how to compute the break-even timeline and compare
+      points vs no-points offers.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Refinance break-even</a>
+      <a class="btn" href="/guides/discount-points-vs-lender-credits">Points vs credits</a>
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How points work</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Points are upfront fees paid to reduce the interest rate. The savings show up over time in lower monthly payments.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Break-even formula</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Break-even months = points cost / monthly payment savings.</li>
+      <li>Compare to your expected time in the home.</li>
+      <li>Short horizons usually favor fewer points.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Ignoring how long you plan to keep the loan.</li>
+      <li>Comparing offers with different terms or balances.</li>
+      <li>Not accounting for lender credits that change cash-to-close.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Are points worth it?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      They can be if your break-even is shorter than your expected time in the loan.
+    </p>
+    <h3 style="margin:12px 0 0">Should I compare APR instead?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      APR helps, but you should still compare total cost over your time horizon.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/apr-and-points-break-even">APR and points break-even</a></li>
+        <li><a href="/guides/refinance-closing-costs">Refinance closing costs</a></li>
+        <li><a href="/guides/refinance-checklist">Refinance checklist</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Break-even guide</a>
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+      <a class="btn" href="/guides/refinance-checklist">Refinance checklist</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

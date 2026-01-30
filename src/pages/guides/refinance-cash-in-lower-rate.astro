@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Cash-In Refinance (Pay down balance to qualify)";
+const description =
+  "How cash-in refinances work, when they help, and how to model the tradeoff. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-cash-in-lower-rate">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Cash-in refinance</span>
+    </nav>
+    <h1>Cash-in refinance: lower balance, lower rate</h1>
+    <p>
+      A cash-in refinance reduces your loan balance by bringing cash to closing, which can improve pricing and lower the rate. This
+      guide shows how to evaluate the tradeoff between using cash vs keeping it invested.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Refinance break-even</a>
+      <a class="btn" href="/guides/refinance-rolling-costs-into-loan">Rolling costs into the loan</a>
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why cash-in can help</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Lower balance can reduce the rate and monthly payment.</li>
+      <li>Lower loan-to-value can remove mortgage insurance.</li>
+      <li>More equity can improve pricing tiers.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to model the tradeoff</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Model the refinance without cash-in.</li>
+      <li>Model the cash-in amount and new rate/term.</li>
+      <li>Compare monthly savings to the cash you invest.</li>
+      <li>Decide if the break-even timeline fits your horizon.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Ignoring opportunity cost of the cash used to pay down.</li>
+      <li>Comparing different terms without adjusting total interest.</li>
+      <li>Using a rate quote that does not reflect the new balance tier.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Does cash-in always lower the rate?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not always, but it can move you into a better pricing tier or reduce mortgage insurance.
+    </p>
+    <h3 style="margin:12px 0 0">Should I use emergency savings?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      This is not financial advice. Preserve emergency liquidity before tying up cash in a refinance.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/rent-vs-buy-investment-return">Investment return assumptions</a></li>
+        <li><a href="/guides/refinance-closing-costs">Refinance closing costs</a></li>
+        <li><a href="/guides/refinance-checklist">Refinance checklist</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Break-even guide</a>
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+      <a class="btn" href="/guides/refinance-checklist">Refinance checklist</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

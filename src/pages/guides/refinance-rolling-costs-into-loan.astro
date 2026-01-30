@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rolling Refinance Costs Into the Loan";
+const description =
+  "How rolling closing costs into the loan affects APR, payment, and break-even. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-rolling-costs-into-loan">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Rolling costs</span>
+    </nav>
+    <h1>Rolling refinance costs into the loan</h1>
+    <p>
+      Rolling closing costs into the new loan lowers cash-to-close but increases the loan balance and total interest. This guide
+      shows how to compare paying costs upfront versus financing them.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Refinance break-even</a>
+      <a class="btn" href="/guides/refinance-closing-costs">Closing costs</a>
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What changes when costs are financed</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan balance increases by the amount of financed costs.</li>
+      <li>Monthly payment and total interest rise.</li>
+      <li>APR is higher than the note rate.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare the two options</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Model the offer with costs paid upfront.</li>
+      <li>Model the same offer with costs added to the loan.</li>
+      <li>Compare break-even, total interest, and cash needs.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming "no cash" means no cost.</li>
+      <li>Comparing offers that treat costs differently.</li>
+      <li>Ignoring the higher interest cost from a larger balance.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is rolling costs always worse?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not necessarily. It can improve short-term cash flow, but total cost is usually higher.
+    </p>
+    <h3 style="margin:12px 0 0">How does this affect APR?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Financing costs increases the effective APR because you pay interest on those costs over time.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/apr-when-fees-are-financed">APR when fees are financed</a></li>
+        <li><a href="/guides/refinance-closing-costs">Refinance closing costs</a></li>
+        <li><a href="/guides/refinance-checklist">Refinance checklist</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Break-even guide</a>
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+      <a class="btn" href="/guides/refinance-checklist">Refinance checklist</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>
