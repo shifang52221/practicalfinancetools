@@ -36,6 +36,7 @@ export function ExtraPaymentMortgageCalculator() {
 
   const interestSaved = base.totalInterest - withExtra.totalInterest;
   const monthsSaved = base.months - withExtra.months;
+  const extraPaidTotal = Math.max(0, withExtra.totalPaid - base.totalPaid + interestSaved);
   const preview = withExtra.rows.slice(0, 24);
   const extraMonthlyApplies =
     extraMonthly > 0 && (extraMonthlyEndMonth <= 0 || extraMonthlyEndMonth >= extraMonthlyStartMonth);
@@ -88,6 +89,28 @@ export function ExtraPaymentMortgageCalculator() {
           <div className="field field-3">
             <div className="label">Extra payment (monthly)</div>
             <input type="number" inputMode="decimal" value={extraMonthly} min={0} onChange={(e) => setExtraMonthly(+e.target.value)} />
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setExtraMonthly(100)}>
+                +$100
+              </button>
+              <button className="btn" type="button" onClick={() => setExtraMonthly(250)}>
+                +$250
+              </button>
+              <button className="btn" type="button" onClick={() => setExtraMonthly(Math.round(base.paymentPI / 12))}>
+                One extra / year
+              </button>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => {
+                  const rounded = Math.ceil(base.paymentPI / 100) * 100;
+                  setExtraMonthly(Math.max(0, rounded - base.paymentPI));
+                }}
+              >
+                Round to $100
+              </button>
+            </div>
+            <div className="hint">Base P&amp;I: {formatCurrency2(base.paymentPI)}</div>
           </div>
           <div className="field field-3">
             <div className="label">Extra starts (month)</div>
@@ -153,6 +176,11 @@ export function ExtraPaymentMortgageCalculator() {
             <div className="v">{formatCurrency2(interestSaved)}</div>
           </div>
           <div className="kpi">
+            <div className="k">Extra paid (total)</div>
+            <div className="v">{formatCurrency2(extraPaidTotal)}</div>
+            <div className="hint">Additional principal paid</div>
+          </div>
+          <div className="kpi">
             <div className="k">Time saved</div>
             <div className="v">{formatMonths(monthsSaved)}</div>
           </div>
@@ -164,6 +192,14 @@ export function ExtraPaymentMortgageCalculator() {
             <div className="k">New monthly P&amp;I</div>
             <div className="v">{formatCurrency2(withExtra.paymentPI + (extraMonthlyApplies ? extraMonthly : 0))}</div>
             <div className="hint">Required P&amp;I stays the same; extra is added when active</div>
+          </div>
+          <div className="kpi">
+            <div className="k">Total interest (base)</div>
+            <div className="v">{formatCurrency2(base.totalInterest)}</div>
+          </div>
+          <div className="kpi">
+            <div className="k">Total interest (new)</div>
+            <div className="v">{formatCurrency2(withExtra.totalInterest)}</div>
           </div>
         </div>
 
