@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Mortgage Escrow Account Basics";
+const description =
+  "How escrow accounts work for taxes and insurance and how they affect your mortgage payment. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-escrow-account">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Escrow account</span>
+    </nav>
+    <h1>Mortgage escrow account basics</h1>
+    <p>
+      Escrow accounts collect monthly amounts for taxes and insurance. This guide explains how escrow affects your mortgage payment
+      and why it can change after closing.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/guides/principal-and-interest-vs-escrow">Principal vs escrow</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What escrow covers</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Property taxes.</li>
+      <li>Homeowners insurance premiums.</li>
+      <li>Sometimes flood or other required insurance.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why escrow changes</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Escrow payments are based on estimates. When taxes or insurance rise, the servicer updates your escrow payment, which increases
+      the monthly mortgage bill.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Escrow cushion</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Many lenders require a small reserve (cushion) in the escrow account. This can increase cash-to-close and the monthly escrow
+      amount in the first year.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming escrow never changes after closing.</li>
+      <li>Ignoring the escrow cushion in cash-to-close planning.</li>
+      <li>Comparing payments without confirming escrow assumptions.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/mortgage-payment-escrow-shortage">Escrow shortage</a></li>
+        <li><a href="/guides/mortgage-payment-prepaids-and-reserves">Prepaids and reserves</a></li>
+        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
+      <a class="btn" href="/guides/principal-and-interest-vs-escrow">Principal vs escrow</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

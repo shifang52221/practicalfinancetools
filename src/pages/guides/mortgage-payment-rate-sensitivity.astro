@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Mortgage Payment Rate Sensitivity";
+const description =
+  "How interest rate changes affect the monthly mortgage payment and affordability. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-rate-sensitivity">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Rate sensitivity</span>
+    </nav>
+    <h1>Mortgage payment rate sensitivity</h1>
+    <p>
+      Small rate changes can materially alter the monthly payment. Use this guide to test rate scenarios and understand the
+      affordability impact.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Scenario template</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Run the current rate as your base case.</li>
+      <li>Test +0.25% and +0.50% to see affordability impact.</li>
+      <li>Test -0.25% to see potential savings from a better rate.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to keep constant</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Home price and down payment.</li>
+      <li>Taxes, insurance, HOA, and PMI assumptions.</li>
+      <li>Term length (30 vs 15 should be compared separately).</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Changing multiple inputs at once, which hides the rate effect.</li>
+      <li>Using APR instead of the note rate for payment calculations.</li>
+      <li>Ignoring how rate changes affect DTI thresholds.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/debt-to-income-calculator">DTI calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/mortgage-payment-total-cost-vs-payment">Payment vs total cost</a></li>
+        <li><a href="/guides/mortgage-payment-15-vs-30-year">15 vs 30 year payment</a></li>
+        <li><a href="/guides/mortgage-payment-dti-housing-payment">DTI housing payment</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run rate scenarios</a>
+      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

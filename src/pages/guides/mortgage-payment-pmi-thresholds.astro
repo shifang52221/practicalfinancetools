@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "PMI Thresholds and Mortgage Payments";
+const description =
+  "When PMI applies, how it affects monthly payments, and how to plan for removal. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-pmi-thresholds">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">PMI thresholds</span>
+    </nav>
+    <h1>PMI thresholds and mortgage payments</h1>
+    <p>
+      PMI can add hundreds to a monthly payment when the down payment is below certain thresholds. This guide shows when PMI applies
+      and how to plan for removal.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/guides/estimating-pmi-cost">Estimating PMI cost</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When PMI is required</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Commonly required when down payment is below 20%.</li>
+      <li>Rules vary by loan program and lender.</li>
+      <li>Mortgage insurance may continue until a specific equity threshold is met.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to model PMI</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use a conservative PMI rate estimate if you do not have a quote.</li>
+      <li>Test multiple down payment scenarios to see PMI impact.</li>
+      <li>Plan for removal timing based on the loan program rules.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Ignoring PMI in the payment when putting less than 20% down.</li>
+      <li>Assuming PMI drops off automatically on all loan types.</li>
+      <li>Using the same PMI rate across different credit profiles.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/estimating-pmi-cost">Estimating PMI cost</a></li>
+        <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
+        <li><a href="/guides/mortgage-payment-down-payment-impact">Down payment impact</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
+      <a class="btn" href="/guides/estimating-pmi-cost">Estimate PMI cost</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

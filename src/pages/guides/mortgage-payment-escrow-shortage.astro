@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Mortgage Escrow Shortage (Why payments jump)";
+const description =
+  "How escrow shortages happen and why they can increase your monthly mortgage payment. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-escrow-shortage">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Escrow shortage</span>
+    </nav>
+    <h1>Escrow shortage: why mortgage payments jump</h1>
+    <p>
+      Escrow shortages happen when taxes or insurance rise beyond the estimate. This guide explains how shortages are calculated and
+      how they affect your monthly payment.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/guides/mortgage-payment-escrow-account">Escrow account basics</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why shortages occur</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Property taxes increased after reassessment.</li>
+      <li>Insurance premiums rose at renewal.</li>
+      <li>Initial escrow estimates were too low.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How it affects payments</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Servicers spread the shortage across your monthly payments (often over 12 months) and also raise the ongoing escrow amount.
+      This can cause a sudden payment jump.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to plan ahead</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use conservative tax and insurance estimates.</li>
+      <li>Review annual escrow statements for changes.</li>
+      <li>Ask your servicer about payment options if a shortage occurs.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming the initial payment will never change.</li>
+      <li>Ignoring reassessment or insurance renewal notices.</li>
+      <li>Failing to budget for a higher payment after year one.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/mortgage-payment-property-tax-assumptions">Property tax assumptions</a></li>
+        <li><a href="/guides/mortgage-payment-insurance-assumptions">Insurance assumptions</a></li>
+        <li><a href="/guides/mortgage-payment-prepaids-and-reserves">Prepaids and reserves</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/guides/mortgage-payment-escrow-account">Escrow account basics</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

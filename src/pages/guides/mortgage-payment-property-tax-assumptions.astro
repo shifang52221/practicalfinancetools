@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Property Tax Assumptions for Mortgage Payments";
+const description =
+  "How to estimate property taxes for a mortgage payment and avoid underestimating escrow. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-property-tax-assumptions">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Property taxes</span>
+    </nav>
+    <h1>Property tax assumptions for mortgage payments</h1>
+    <p>
+      Property taxes can swing the monthly payment more than rate changes. Use this guide to estimate taxes with local data and keep
+      your mortgage payment realistic.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/guides/how-to-estimate-property-taxes">Estimate property taxes</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Start with local rates</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use your county or city tax rate and apply it to the assessed value. Do not rely on national averages. If the property will be
+      reassessed after purchase, expect taxes to rise.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common inputs to gather</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Current tax bill or public assessment data.</li>
+      <li>Local tax rate and any special assessments.</li>
+      <li>Expected reassessment rules after purchase.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Escrow impact</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Lenders usually collect taxes monthly in escrow. If your estimate is low, the monthly payment can rise after the first escrow
+      analysis. Use a conservative tax assumption to avoid payment shock.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using the seller's tax bill after a reassessment will apply.</li>
+      <li>Ignoring special assessments or local levies.</li>
+      <li>Assuming tax growth is zero for long horizons.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/how-to-estimate-property-taxes">Estimate property taxes</a></li>
+        <li><a href="/guides/mortgage-payment-escrow-account">Escrow account basics</a></li>
+        <li><a href="/guides/mortgage-payment-prepaids-and-reserves">Prepaids and reserves</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
+      <a class="btn" href="/guides/how-to-estimate-property-taxes">Estimate property taxes</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

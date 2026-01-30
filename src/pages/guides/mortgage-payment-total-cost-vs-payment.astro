@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Mortgage Payment vs Total Cost";
+const description =
+  "Why a lower monthly payment can still cost more over time and how to compare total interest. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-total-cost-vs-payment">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Payment vs total cost</span>
+    </nav>
+    <h1>Mortgage payment vs total cost</h1>
+    <p>
+      A lower monthly payment can still lead to higher total interest if the term is longer. This guide shows how to compare total
+      cost, not just the payment.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why total cost matters</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Monthly payment is a cash flow metric. Total interest shows how much the loan costs over time. Comparing both prevents a lower
+      payment from masking a higher total cost.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the same loan amount and rate across scenarios.</li>
+      <li>Compare 15-year vs 30-year or remaining term vs new term.</li>
+      <li>Use total interest from the amortization schedule.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Only comparing payments and ignoring total interest.</li>
+      <li>Comparing different terms without adjusting for time horizon.</li>
+      <li>Using APR instead of the note rate for payment comparisons.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/mortgage-payment-15-vs-30-year">15 vs 30 year payment</a></li>
+        <li><a href="/guides/mortgage-payment-rate-sensitivity">Rate sensitivity</a></li>
+        <li><a href="/guides/refinance-rate-vs-term-tradeoff">Refinance rate vs term</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/amortization-schedule-calculator">Run amortization</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

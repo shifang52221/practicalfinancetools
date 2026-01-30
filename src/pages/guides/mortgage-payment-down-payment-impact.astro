@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Down Payment Impact on Mortgage Payments";
+const description =
+  "How down payment size changes monthly mortgage payments, PMI, and total cost. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-down-payment-impact">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Down payment impact</span>
+    </nav>
+    <h1>Down payment impact on mortgage payments</h1>
+    <p>
+      A larger down payment reduces the loan balance and can remove PMI, but it also uses more cash. This guide shows how to model
+      the payment impact and tradeoffs.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/guides/estimating-pmi-cost">Estimating PMI cost</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What changes with a bigger down payment</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Lower loan balance and monthly principal &amp; interest.</li>
+      <li>Potentially lower PMI or no PMI at 20%+ down.</li>
+      <li>Less cash available for reserves or investments.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Scenario template</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Run 5%, 10%, and 20% down payment scenarios.</li>
+      <li>Compare the monthly payment and PMI impact.</li>
+      <li>Compare total interest over your expected horizon.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Ignoring cash reserves and emergency funds.</li>
+      <li>Assuming PMI is the same across all down payments.</li>
+      <li>Only comparing monthly payment and skipping total cost.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/estimating-pmi-cost">Estimating PMI cost</a></li>
+        <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
+        <li><a href="/guides/rent-vs-buy-down-payment">Rent vs buy down payment tradeoffs</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
+      <a class="btn" href="/guides/estimating-pmi-cost">Estimate PMI cost</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

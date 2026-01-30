@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Mortgage Prepaids and Escrow Reserves";
+const description =
+  "How prepaids and escrow reserves affect cash-to-close and the monthly mortgage payment. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-prepaids-and-reserves">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Prepaids and reserves</span>
+    </nav>
+    <h1>Prepaids and escrow reserves</h1>
+    <p>
+      Prepaid taxes and insurance plus escrow reserves can add thousands to cash-to-close. This guide explains where they show up and
+      how they affect your monthly payment.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/guides/mortgage-payment-escrow-account">Escrow account basics</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What counts as prepaids</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Upfront property tax and insurance payments.</li>
+      <li>Initial escrow deposits to build a reserve.</li>
+      <li>Per-diem interest for the days before the first payment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why they matter</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Prepaids do not change the base loan balance but they increase cash-to-close. If you only look at the monthly payment, you can
+      underestimate the upfront cash needed.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming prepaids are part of closing costs paid by the lender.</li>
+      <li>Ignoring per-diem interest when timing the closing date.</li>
+      <li>Failing to budget for escrow reserves in year one.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/mortgage-payment-property-tax-assumptions">Property tax assumptions</a></li>
+        <li><a href="/guides/mortgage-payment-insurance-assumptions">Insurance assumptions</a></li>
+        <li><a href="/guides/mortgage-payment-escrow-shortage">Escrow shortage</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
+      <a class="btn" href="/guides/mortgage-payment-escrow-account">Escrow account basics</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>
