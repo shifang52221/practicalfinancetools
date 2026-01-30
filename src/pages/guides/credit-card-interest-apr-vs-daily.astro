@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Credit Card Interest: APR/12 vs Daily Balance";
+const description =
+  "Compare monthly APR estimates to daily balance interest and see why statements differ. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-interest-apr-vs-daily">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR vs daily interest</span>
+    </nav>
+    <h1>APR/12 vs daily balance interest</h1>
+    <p>
+      Many calculators use APR/12 for a monthly estimate, while issuers often use daily balance interest. This guide helps
+      you interpret the difference so your payoff plan stays realistic.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/guides/how-credit-card-interest-is-calculated">Interest calculation guide</a>
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why the numbers differ</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Interest accrues daily on the statement balance.</li>
+      <li>Payment timing within the cycle affects daily balance.</li>
+      <li>Purchases and fees change the daily balance mid-cycle.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to use monthly estimates</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Monthly estimates are useful for planning and comparing scenarios, even if the exact statement interest differs.
+      If you need statement-level accuracy, align the cycle dates and payment posting schedule.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming interest is calculated once per month.</li>
+      <li>Ignoring the effect of mid-cycle purchases.</li>
+      <li>Using the wrong APR for the balance type.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff</a></li>
+        <li><a href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/average-daily-balance-interest">Average daily balance interest</a></li>
+        <li><a href="/guides/how-credit-card-interest-is-calculated">How credit card interest is calculated</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Which estimate should I trust?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Use statement interest for exact accounting. Use monthly estimates for planning and comparisons.
+    </p>
+    <h3 style="margin:12px 0 0">Do daily balance methods vary by issuer?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Yes. Issuers can use different daily balance conventions. Check your card agreement for details.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/guides/how-credit-card-interest-is-calculated">Read the interest guide</a>
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Run payoff estimates</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

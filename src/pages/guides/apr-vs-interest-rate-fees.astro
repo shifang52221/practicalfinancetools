@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR vs Interest Rate: Why fees matter";
+const description =
+  "APR includes certain fees while interest rate does not. Learn how fees change the comparison. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-vs-interest-rate-fees">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR vs rate (fees)</span>
+    </nav>
+    <h1>APR vs interest rate: why fees matter</h1>
+    <p>
+      APR includes certain fees and can be higher than the nominal rate. This guide explains how fees change comparisons
+      and when APR is the right metric.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why APR rises</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Fees reduce the net amount you receive.</li>
+      <li>The payment stays the same, so the effective rate rises.</li>
+      <li>APR captures some of those upfront costs.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Comparison checklist</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Keep the loan amount and term constant.</li>
+      <li>Include all required upfront fees.</li>
+      <li>Compare total dollars paid over your horizon.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing APR across different terms.</li>
+      <li>Ignoring financed fees that raise the balance.</li>
+      <li>Choosing the lowest rate without checking total cost.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/apr-with-origination-fee">APR with origination fee</a></li>
+        <li><a href="/guides/apr-when-fees-are-financed">APR when fees are financed</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is APR always higher than the rate?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Often, but not always. If fees are low, APR can be close to the rate.
+    </p>
+    <h3 style="margin:12px 0 0">Does APR include all closing costs?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not all costs are included. Review the disclosure to see which fees count.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Run APR comparisons</a>
+      <a class="btn" href="/guides/apr-when-fees-are-financed">APR when fees are financed</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

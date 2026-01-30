@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR for Student Loans (What to compare)";
+const description =
+  "Compare student loan APRs by aligning term, fees, and repayment plan. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/student-loan-apr-comparison">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Student loan APR</span>
+    </nav>
+    <h1>Student loan APR comparison</h1>
+    <p>
+      Student loans can have different terms and repayment plans. This guide shows how to compare APR and total cost
+      with consistent assumptions.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/guides/apr-comparison-checklist">APR comparison checklist</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to align</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Same loan amount and term.</li>
+      <li>Same fee treatment and repayment plan.</li>
+      <li>Same time horizon if you plan to prepay.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing fixed and variable APRs without a horizon.</li>
+      <li>Ignoring origination fees or capitalized interest.</li>
+      <li>Comparing offers with different repayment plans.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/apr-and-prepayment">APR and prepayment</a></li>
+        <li><a href="/guides/personal-loan-apr-comparison">Personal loan APR comparison</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Do federal loans include fees in APR?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Federal loan terms vary by program. Review the disclosure to understand how fees are treated.
+    </p>
+    <h3 style="margin:12px 0 0">Should I compare total dollars paid?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Yes. APR is useful, but total dollars paid over your horizon is the final comparison.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Compare APR offers</a>
+      <a class="btn" href="/guides/apr-comparison-checklist">APR checklist</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

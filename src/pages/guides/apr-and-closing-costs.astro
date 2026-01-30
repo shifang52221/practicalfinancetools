@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR and Closing Costs: What to compare";
+const description =
+  "APR does not include every closing cost. Learn how to compare total cost. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-and-closing-costs">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR and closing costs</span>
+    </nav>
+    <h1>APR and closing costs</h1>
+    <p>
+      APR captures certain finance charges but not all closing costs. This guide shows how to compare total cost so your
+      decision matches your time horizon.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/guides/apr-and-fees-origination-vs-closing">APR and fees guide</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What APR includes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Origination fees and certain finance charges.</li>
+      <li>Some points or prepaid finance fees.</li>
+      <li>Costs defined by regulation for APR.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to compare separately</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Title, appraisal, and recording fees.</li>
+      <li>Taxes, insurance, and escrow setup.</li>
+      <li>Cash-to-close requirements.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing APR without reviewing the full Loan Estimate.</li>
+      <li>Ignoring cash-to-close differences.</li>
+      <li>Comparing APR across different terms.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/apr-and-fees-origination-vs-closing">APR and fees</a></li>
+        <li><a href="/guides/discount-points-vs-lender-credits">Points vs credits</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Can APR be low but closing costs high?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Yes. APR focuses on finance charges, not all closing costs. Compare total cash and total dollars paid.
+    </p>
+    <h3 style="margin:12px 0 0">Is APR still useful?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Yes. It is a consistent comparison for finance charges, but not the whole picture.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Run APR comparisons</a>
+      <a class="btn" href="/guides/apr-and-fees-origination-vs-closing">APR and fees guide</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

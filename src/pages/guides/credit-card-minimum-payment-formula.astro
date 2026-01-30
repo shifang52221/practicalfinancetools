@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Credit Card Minimum Payment Formula (How it works)";
+const description =
+  "Understand how credit card minimum payments are calculated and why balances can take so long to pay off. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-minimum-payment-formula">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Minimum payment formula</span>
+    </nav>
+    <h1>How credit card minimum payments are calculated</h1>
+    <p>
+      Minimum payments are often a small percentage of your balance with a dollar floor. That makes payoff slow when
+      interest is high. Use this guide to understand the formula and model it accurately.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Typical minimum payment rules</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Minimum = max(dollar floor, percent of balance).</li>
+      <li>Some issuers add interest and fees to the formula.</li>
+      <li>Rules can differ by issuer and can change over time.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why payoff can take so long</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If the minimum is close to the monthly interest, principal reduction is tiny. That keeps the balance high and
+      stretches payoff over many years.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to model your card</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use your statement APR (not a promo headline rate).</li>
+      <li>Find the minimum payment rule on your statement or card agreement.</li>
+      <li>Enter the percent and dollar floor in the calculator.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using a guessed percent that does not match your issuer.</li>
+      <li>Ignoring interest and fees that can be added to the minimum.</li>
+      <li>Assuming minimums stay the same when balances change.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a></li>
+        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a></li>
+        <li><a href="/guides/how-credit-card-interest-is-calculated">How credit card interest is calculated</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Can issuers change the minimum rule?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Yes. Issuers can update the formula, so check statements or account terms periodically.
+    </p>
+    <h3 style="margin:12px 0 0">Does paying more than the minimum help a lot?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Usually yes. Even a small extra amount can reduce total interest and shorten payoff time.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/minimum-payment-payoff-calculator">Run the minimum payment calculator</a>
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Compare a fixed payment</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

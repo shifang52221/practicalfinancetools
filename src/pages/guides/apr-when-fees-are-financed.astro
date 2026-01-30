@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR When Fees Are Financed";
+const description =
+  "Financed fees change APR and total cost. Learn how to compare financed vs paid-upfront fees. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-when-fees-are-financed">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Financed fees</span>
+    </nav>
+    <h1>APR when fees are financed</h1>
+    <p>
+      Paying fees upfront lowers the net amount you receive, while financing fees raises the balance. This guide shows
+      how each option affects APR and total dollars paid.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Two ways fees show up</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Paid upfront:</strong> lower net amount received.</li>
+      <li><strong>Financed:</strong> higher balance and more interest over time.</li>
+      <li>APR can differ even if the rate is the same.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Run the APR calculator with fees paid upfront.</li>
+      <li>Run it again with fees financed (add to the loan amount).</li>
+      <li>Compare APR and total dollars paid over your horizon.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing APRs without matching the same term.</li>
+      <li>Ignoring cash-to-close when choosing the fee option.</li>
+      <li>Assuming financed fees are always worse.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/interest-rate-apr-calculator">Interest rate vs APR</a></li>
+        <li><a href="/guides/discount-points-vs-lender-credits">Points vs credits</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Does financing fees always raise APR?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It often does, but the effect depends on term, rate, and fee size. Compare both options.
+    </p>
+    <h3 style="margin:12px 0 0">Which option is better for short horizons?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It depends on cash flow. Compare total dollars paid over your expected horizon.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Run APR comparisons</a>
+      <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

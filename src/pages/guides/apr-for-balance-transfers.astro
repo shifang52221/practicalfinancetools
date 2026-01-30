@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR for Balance Transfers (When to compare)";
+const description =
+  "Balance transfers have fees that can change effective cost. Learn when APR comparisons help. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-for-balance-transfers">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR for balance transfers</span>
+    </nav>
+    <h1>APR for balance transfers</h1>
+    <p>
+      Balance transfers often have a low promo APR but a transfer fee. This guide shows when APR comparisons are helpful
+      and when total dollars paid is the better metric.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
+      <a class="btn" href="/guides/credit-card-balance-transfer-fee">Balance transfer fee guide</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to compare</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Transfer fee and promo APR length.</li>
+      <li>Post-promo APR if the balance remains.</li>
+      <li>Total cost over your expected payoff timeline.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When APR helps</h2>
+    <p class="muted" style="margin:10px 0 0">
+      APR comparisons help when you align the same timeline and include fees. For short promo periods, total dollars paid
+      can be clearer than a single APR number.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Ignoring the transfer fee.</li>
+      <li>Using APR without matching the payoff horizon.</li>
+      <li>Assuming the promo APR applies forever.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff</a></li>
+        <li><a href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/credit-card-balance-transfer-fee">Balance transfer fee vs savings</a></li>
+        <li><a href="/guides/0-apr-credit-card-payoff-plan">0% APR payoff plan</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is there a true APR for balance transfers?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Because fees and promos vary, APR is less consistent than total cost over your timeline. Use both views.
+    </p>
+    <h3 style="margin:12px 0 0">Should I transfer multiple balances?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      If the fee is reasonable and you can pay off within the promo period, it can help. Model each balance separately.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Run payoff comparisons</a>
+      <a class="btn" href="/guides/credit-card-balance-transfer-fee">Balance transfer fee guide</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR and Fees: Origination vs Closing Costs";
+const description =
+  "Learn how origination fees and closing costs affect APR and total loan cost. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-and-fees-origination-vs-closing">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR and fees</span>
+    </nav>
+    <h1>APR and fees: origination vs closing costs</h1>
+    <p>
+      APR includes certain fees but not all closing costs. This guide shows how to separate fees so your comparison stays
+      accurate.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Fees that typically affect APR</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Origination fees and points.</li>
+      <li>Certain lender fees required to get the loan.</li>
+      <li>Some prepaid finance charges.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Costs that may not be in APR</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Appraisal, title, and recording fees.</li>
+      <li>Insurance premiums and escrow setup.</li>
+      <li>Taxes and transfer fees.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare offers</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use APR to compare finance charges.</li>
+      <li>List non-APR closing costs separately.</li>
+      <li>Compare total dollars paid over your time horizon.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming APR includes every closing cost.</li>
+      <li>Comparing APR without matching the loan term.</li>
+      <li>Ignoring upfront cash requirements.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/apr-when-fees-are-financed">APR when fees are financed</a></li>
+        <li><a href="/guides/discount-points-vs-lender-credits">Points vs credits</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Can two loans have the same APR but different cash to close?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Yes. APR focuses on finance charges, while cash to close includes many other costs.
+    </p>
+    <h3 style="margin:12px 0 0">Should I compare APR or total cost?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Use both. APR is a good comparison, but total dollars paid over your horizon is the final decision metric.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Compare APR offers</a>
+      <a class="btn" href="/guides/apr-when-fees-are-financed">APR when fees are financed</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

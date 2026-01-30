@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR Comparison Checklist";
+const description =
+  "A short checklist to compare APR offers consistently and avoid common mistakes. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-comparison-checklist">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR checklist</span>
+    </nav>
+    <h1>APR comparison checklist</h1>
+    <p>
+      APR can be a reliable comparison if you align the same terms and fee treatment. Use this checklist to keep your
+      comparisons consistent.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Match the loan amount and term.</li>
+      <li>Confirm whether fees are paid upfront or financed.</li>
+      <li>Compare APR and total dollars paid over your horizon.</li>
+      <li>Note any prepayment penalties or rate resets.</li>
+      <li>Verify inputs against the Loan Estimate or disclosure.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing APRs across different terms.</li>
+      <li>Ignoring fees that are excluded from APR.</li>
+      <li>Using APR when you plan to refinance soon.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/interest-rate-apr-calculator">Interest rate vs APR</a></li>
+        <li><a href="/guides/apr-with-origination-fee">APR with origination fee</a></li>
+        <li><a href="/guides/discount-points-vs-lender-credits">Points vs credits</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is APR enough to decide?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It is a strong starting point, but also compare total dollars paid over your expected horizon.
+    </p>
+    <h3 style="margin:12px 0 0">Should I compare APR for adjustable loans?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Use a shorter horizon and compare initial payments, since rates can change later.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Run APR comparisons</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+      <a class="btn" href="/guides/discount-points-vs-lender-credits">Points vs credits</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

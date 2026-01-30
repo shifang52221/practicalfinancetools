@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR for Small Business Loans (Comparison checklist)";
+const description =
+  "Compare small business loan APR offers by aligning term, fees, and cash received. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/small-business-loan-apr-comparison">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Business loan APR</span>
+    </nav>
+    <h1>Small business loan APR comparison</h1>
+    <p>
+      Business loan offers can vary by fees, term, and payment schedule. This guide shows how to compare APR and total cost
+      on a consistent basis.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/guides/apr-comparison-checklist">APR comparison checklist</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to align</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Same term and payment schedule (monthly vs weekly).</li>
+      <li>Same fee treatment (paid upfront vs financed).</li>
+      <li>Same cash received after fees.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why APR helps</h2>
+    <p class="muted" style="margin:10px 0 0">
+      APR captures the effective borrowing cost when fees are included, which is helpful when offers have different fee structures.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing offers with different terms or payment schedules.</li>
+      <li>Ignoring fees that reduce the net amount received.</li>
+      <li>Using rate alone without calculating APR.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/apr-when-fees-are-financed">APR when fees are financed</a></li>
+        <li><a href="/guides/apr-and-prepayment">APR and prepayment</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Do business loans always disclose APR?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Disclosure rules vary by product and state. Ask for APR-equivalent cost if it is not provided.
+    </p>
+    <h3 style="margin:12px 0 0">Should I compare APR or total cost?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Use both. APR is a useful metric, but total dollars paid over your horizon is the final comparison.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Run APR comparisons</a>
+      <a class="btn" href="/guides/apr-comparison-checklist">APR checklist</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

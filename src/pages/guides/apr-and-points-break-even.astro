@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR and Points: When a lower rate pays off";
+const description =
+  "Learn how points affect APR and when they pay off based on your time horizon. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-and-points-break-even">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Points break-even</span>
+    </nav>
+    <h1>APR and points break-even</h1>
+    <p>
+      Paying points can lower the rate, but the upfront cost needs time to pay off. This guide shows how to compare points
+      using APR and a break-even horizon.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/guides/discount-points-vs-lender-credits">Points vs credits</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Break-even logic</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Points are paid upfront to reduce the rate.</li>
+      <li>Monthly savings accumulate over time.</li>
+      <li>Break-even = upfront cost / monthly savings.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Run the APR calculator with and without points.</li>
+      <li>Calculate the monthly payment difference.</li>
+      <li>Compare break-even to your expected horizon.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Buying points when you might refinance soon.</li>
+      <li>Ignoring lender credits that may be a better fit.</li>
+      <li>Comparing points across different terms.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/discount-points-vs-lender-credits">Points vs credits</a></li>
+        <li><a href="/guides/apr-and-prepayment">APR and prepayment</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Do points always lower APR?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Often yes, but the benefit depends on term and fee size. Compare both scenarios.
+    </p>
+    <h3 style="margin:12px 0 0">Can points be financed?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Sometimes. Financing points can raise total cost; compare both approaches.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Compare points scenarios</a>
+      <a class="btn" href="/guides/discount-points-vs-lender-credits">Points vs credits</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

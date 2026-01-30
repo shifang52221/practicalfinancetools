@@ -1,0 +1,97 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Balance Transfer Fee vs Interest Savings";
+const description =
+  "Compare balance transfer fees to interest savings so you can see if a 0% offer helps. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-balance-transfer-fee">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Balance transfer fee</span>
+    </nav>
+    <h1>Balance transfer fee vs interest savings</h1>
+    <p>
+      A 0% transfer can help, but the fee can offset the savings. This guide shows how to compare total cost and make sure
+      the balance clears before the promo ends.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to compare</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Transfer fee (often 3% to 5% of the balance).</li>
+      <li>Interest you would pay if you keep the balance where it is.</li>
+      <li>Time needed to pay off before the promo ends.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick workflow</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Calculate the transfer fee.</li>
+      <li>Estimate interest on the current card with the payoff calculator.</li>
+      <li>Confirm your payment clears the balance before the promo ends.</li>
+      <li>Model a backup scenario with the post-promo APR.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Ignoring the transfer fee in the comparison.</li>
+      <li>Missing the promo end date by a cycle.</li>
+      <li>Adding new purchases on the transfer card.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff</a></li>
+        <li><a href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/0-apr-credit-card-payoff-plan">0% APR payoff plan</a></li>
+        <li><a href="/guides/credit-card-penalty-apr">Penalty APR explained</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is a balance transfer always worth it?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not always. It depends on the fee, your payment pace, and the post-promo APR. Run the comparison first.
+    </p>
+    <h3 style="margin:12px 0 0">Do balance transfers affect utilization?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      They can. Moving a balance can change utilization across cards and affect your credit profile.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Compare payoff scenarios</a>
+      <a class="btn" href="/guides/0-apr-credit-card-payoff-plan">0% APR payoff plan</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

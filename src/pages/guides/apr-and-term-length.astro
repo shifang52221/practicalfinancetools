@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR and Term Length (Short vs long)";
+const description =
+  "APR can change with term length. Learn how to compare short vs long terms. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-and-term-length">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR and term</span>
+    </nav>
+    <h1>APR and term length</h1>
+    <p>
+      APR can look worse on longer terms because fees are spread out differently. This guide explains how to compare
+      short vs long terms with consistent assumptions.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/guides/apr-comparison-checklist">APR comparison checklist</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why term changes APR</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Fees are amortized over a longer period.</li>
+      <li>Payments differ, which changes the effective cost rate.</li>
+      <li>Total dollars paid can rise even if APR is lower.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Keep loan amount and fees constant.</li>
+      <li>Compare APR and total dollars paid.</li>
+      <li>Use your expected payoff horizon, not just the full term.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing APR without comparing total cost.</li>
+      <li>Assuming longer terms are always cheaper.</li>
+      <li>Ignoring prepayment or refinance plans.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/interest-rate-apr-calculator">Interest rate vs APR</a></li>
+        <li><a href="/guides/apr-and-prepayment">APR and prepayment</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is a longer term always worse?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It lowers the payment but often increases total interest. Compare total dollars over your horizon.
+    </p>
+    <h3 style="margin:12px 0 0">Why does APR look higher on longer terms?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Fees can create a higher effective rate when spread across a longer schedule.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Compare APR by term</a>
+      <a class="btn" href="/guides/apr-comparison-checklist">APR checklist</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "0% APR Credit Card Payoff Plan";
+const description =
+  "Plan a 0% APR payoff so the balance clears before the promo ends and model a backup scenario. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/0-apr-credit-card-payoff-plan">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">0% APR payoff</span>
+    </nav>
+    <h1>0% APR credit card payoff plan</h1>
+    <p>
+      A 0% promo can save interest, but only if you clear the balance before the promo ends. This guide shows how to set a
+      payment target and model a backup plan using the post-promo APR.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Set the payment target</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Divide the balance by the promo months.</li>
+      <li>Add a buffer for any fees or timing slippage.</li>
+      <li>Use the payoff calculator to verify the timeline.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Backup scenario</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If the balance remains after the promo ends, the APR can jump. Run a second scenario with the standard APR so you
+      understand the cost of missing the deadline.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Missing the promo end date by one cycle.</li>
+      <li>Making only the minimum payment during the promo.</li>
+      <li>Adding new purchases to the promo balance.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff</a></li>
+        <li><a href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/credit-card-balance-transfer-fee">Balance transfer fee vs savings</a></li>
+        <li><a href="/guides/credit-card-penalty-apr">Penalty APR explained</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is a 0% promo the same as a balance transfer?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Some promos apply to new purchases, others to transfers. Check the card terms to confirm what is covered.
+    </p>
+    <h3 style="margin:12px 0 0">What if I miss a payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Missing a payment can end the promo and trigger a higher APR. Build a buffer to reduce that risk.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Build the payoff plan</a>
+      <a class="btn" href="/guides/credit-card-balance-transfer-fee">Balance transfer fee guide</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

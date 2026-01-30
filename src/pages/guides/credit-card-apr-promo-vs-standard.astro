@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR for Credit Cards: Promo vs Standard";
+const description =
+  "Promo APRs can end quickly. Learn how to compare promo vs standard APR costs. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-apr-promo-vs-standard">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Promo vs standard APR</span>
+    </nav>
+    <h1>Promo APR vs standard APR</h1>
+    <p>
+      Promo APRs can save interest if you pay off before the promo ends. This guide helps you compare promo and standard
+      APR scenarios so you can avoid surprises.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
+      <a class="btn" href="/guides/0-apr-credit-card-payoff-plan">0% APR payoff plan</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Model a payoff plan that clears the balance before the promo ends.</li>
+      <li>Model a backup plan using the standard APR after the promo.</li>
+      <li>Compare total interest and payoff time across both.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Missing the promo end date by a payment cycle.</li>
+      <li>Using the promo APR for the entire payoff period.</li>
+      <li>Ignoring transfer fees or annual fees.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff</a></li>
+        <li><a href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/credit-card-balance-transfer-fee">Balance transfer fee vs savings</a></li>
+        <li><a href="/guides/credit-card-penalty-apr">Penalty APR</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Does promo APR apply to new purchases?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not always. Promo terms vary by card, so confirm which balance types are covered.
+    </p>
+    <h3 style="margin:12px 0 0">Is a longer promo always better?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It helps, but you still need a payment plan. Compare total dollars paid, not just the promo length.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Run payoff scenarios</a>
+      <a class="btn" href="/guides/0-apr-credit-card-payoff-plan">0% APR payoff plan</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

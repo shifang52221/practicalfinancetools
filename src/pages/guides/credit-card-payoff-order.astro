@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Credit Card Payoff Order (Which balance first?)";
+const description =
+  "Choose a payoff order based on APR, balance size, and motivation. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-payoff-order">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Payoff order</span>
+    </nav>
+    <h1>Credit card payoff order</h1>
+    <p>
+      There are two common payoff orders: highest APR first (avalanche) and smallest balance first (snowball). This guide
+      helps you choose based on cost and motivation.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/debt-avalanche-calculator">Debt avalanche calculator</a>
+      <a class="btn" href="/calculators/debt-snowball-calculator">Debt snowball calculator</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Two common strategies</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Avalanche:</strong> pay highest APR first to minimize interest.</li>
+      <li><strong>Snowball:</strong> pay smallest balance first for quick wins.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to decide</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If cost is the main goal, use avalanche.</li>
+      <li>If staying consistent is the main goal, snowball can help.</li>
+      <li>Run both calculators to compare timelines and interest.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Ignoring minimum payment rules in the plan.</li>
+      <li>Adding new purchases while trying to pay off balances.</li>
+      <li>Switching strategies too often without a clear reason.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/debt-avalanche-calculator">Debt avalanche</a></li>
+        <li><a href="/calculators/debt-snowball-calculator">Debt snowball</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/debt-snowball-vs-avalanche">Debt snowball vs avalanche</a></li>
+        <li><a href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Can I combine strategies?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      You can prioritize a high APR balance first, then switch to snowball for motivation. Just keep the plan consistent.
+    </p>
+    <h3 style="margin:12px 0 0">Does payoff order matter with one balance?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      No. Order only matters when you have multiple balances.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-avalanche-calculator">Try avalanche</a>
+      <a class="btn" href="/calculators/debt-snowball-calculator">Try snowball</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

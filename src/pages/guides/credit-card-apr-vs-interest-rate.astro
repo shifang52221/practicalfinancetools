@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR vs Interest Rate on Credit Cards (Why it matters)";
+const description =
+  "APR and interest rate on credit cards are often the same, but fees and penalties can change the total cost. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-apr-vs-interest-rate">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR vs rate (cards)</span>
+    </nav>
+    <h1>APR vs interest rate on credit cards</h1>
+    <p>
+      Credit card APR often equals the nominal rate, but fees and penalties still change total cost. This guide explains
+      the difference so you can compare offers accurately.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
+      <a class="btn" href="/guides/credit-card-penalty-apr">Penalty APR</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What usually happens on cards</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>APR is the stated borrowing rate for a balance type.</li>
+      <li>Fees and penalties can increase total cost beyond the rate.</li>
+      <li>Promotional APRs change after the promo period ends.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare offers</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the APR that matches the balance type.</li>
+      <li>Include annual fees or transfer fees in the comparison.</li>
+      <li>Compare total cost over your payoff horizon.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using purchase APR for balance transfers.</li>
+      <li>Ignoring penalty APR and late fees.</li>
+      <li>Assuming a promo APR lasts forever.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff</a></li>
+        <li><a href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/credit-card-balance-transfer-fee">Balance transfer fee vs savings</a></li>
+        <li><a href="/guides/0-apr-credit-card-payoff-plan">0% APR payoff plan</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is APR the same as interest rate on cards?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Often yes, but fees and penalties change the total cost. Compare total dollars, not just the rate.
+    </p>
+    <h3 style="margin:12px 0 0">Do rewards change the APR comparison?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Rewards reduce net cost for spenders, but if you carry a balance, the APR still dominates.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Run payoff estimates</a>
+      <a class="btn" href="/guides/credit-card-balance-transfer-fee">Balance transfer fee guide</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

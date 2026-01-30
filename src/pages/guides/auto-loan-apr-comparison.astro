@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR for Auto Loans (How to compare offers)";
+const description =
+  "Auto loan APR comparisons depend on term, fees, and cash paid upfront. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/auto-loan-apr-comparison">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Auto loan APR</span>
+    </nav>
+    <h1>Auto loan APR comparison</h1>
+    <p>
+      Auto loan offers can differ by term, fees, and cash down. This guide shows how to compare APRs consistently so you
+      can evaluate total cost.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/guides/apr-comparison-checklist">APR comparison checklist</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to align</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Same loan amount and term.</li>
+      <li>Same fee treatment (paid upfront vs financed).</li>
+      <li>Same down payment or trade-in credit.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why APR helps</h2>
+    <p class="muted" style="margin:10px 0 0">
+      APR captures certain fees and gives a more complete cost measure than nominal rate alone. Compare APR alongside total
+      dollars paid for your time horizon.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing offers with different terms.</li>
+      <li>Ignoring dealer fees or add-ons.</li>
+      <li>Using rate instead of APR for comparisons.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/apr-when-fees-are-financed">APR when fees are financed</a></li>
+        <li><a href="/guides/personal-loan-apr-comparison">Personal loan APR comparison</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is dealer financing always worse?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not always. Compare APR and total cost for the same term before deciding.
+    </p>
+    <h3 style="margin:12px 0 0">Should I choose a longer term to lower payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Longer terms lower the payment but raise total interest. Compare total dollars over your expected ownership period.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Compare APR offers</a>
+      <a class="btn" href="/guides/apr-comparison-checklist">APR comparison checklist</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

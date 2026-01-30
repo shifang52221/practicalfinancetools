@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Credit Card Payoff Timeline";
+const description =
+  "Estimate payoff time based on balance, APR, and payment. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-payoff-timeline">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Payoff timeline</span>
+    </nav>
+    <h1>Credit card payoff timeline</h1>
+    <p>
+      Your payoff timeline depends on the payment amount relative to monthly interest. This guide shows how to estimate
+      the timeline and how small payment changes can shorten payoff.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How payoff time is determined</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Monthly interest = balance x APR / 12.</li>
+      <li>If payment is near interest, payoff time stretches.</li>
+      <li>Extra payments reduce interest and shorten the timeline.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick estimate</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Calculate monthly interest.</li>
+      <li>Check how much of your payment goes to principal.</li>
+      <li>Increase payment to improve the principal portion.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using a promo APR that will end soon.</li>
+      <li>Ignoring fees that add to the balance.</li>
+      <li>Assuming minimum payments stay constant.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff</a></li>
+        <li><a href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/credit-card-minimum-payment-formula">Minimum payment formula</a></li>
+        <li><a href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">How much should I pay to finish in 24 months?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Use the payoff calculator to solve for a 24-month target payment, then compare to your budget.
+    </p>
+    <h3 style="margin:12px 0 0">Why does payoff slow near the end?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Minimum payment rules can reduce the payment as balance drops, which slows the final months.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Estimate payoff time</a>
+      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Compare minimum payments</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

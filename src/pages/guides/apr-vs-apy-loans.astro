@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR vs APY for Loans (Why they differ)";
+const description =
+  "APR and APY measure different things. Use APR for loans and APY for savings. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-vs-apy-loans">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR vs APY</span>
+    </nav>
+    <h1>APR vs APY for loans</h1>
+    <p>
+      APR is the cost of borrowing, while APY reflects compounding on savings. Use APR to compare loans and APY to compare
+      deposit accounts. This guide explains the difference.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Key differences</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>APR:</strong> annualized borrowing cost including certain fees.</li>
+      <li><strong>APY:</strong> annualized yield for savings with compounding.</li>
+      <li>APR applies to loans; APY applies to deposits.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why APR is the right comparison</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Loan offers may have similar rates but different fees. APR helps compare the effective cost on a consistent basis.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using APY when comparing loan offers.</li>
+      <li>Comparing APR across different terms.</li>
+      <li>Ignoring fees that change the net amount received.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/apr-with-origination-fee">APR with origination fee</a></li>
+        <li><a href="/guides/interest-rate-apr-calculator">Interest rate vs APR</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Should I use APR or APY for credit cards?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Credit cards use APR for borrowing cost. APY applies to deposit accounts.
+    </p>
+    <h3 style="margin:12px 0 0">Does APR include all fees?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not always. It includes certain fees defined by regulation, but not all costs.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Calculate APR</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>
