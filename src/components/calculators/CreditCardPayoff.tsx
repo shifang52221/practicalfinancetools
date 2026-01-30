@@ -32,6 +32,7 @@ export function CreditCardPayoff() {
 
   const preview = result.rows.slice(0, 18);
   const notPayingOff = result.months === null && balanceSafe > 0.005;
+  const firstMonthInterest = result.rows[0]?.interest ?? 0;
 
   function toCsv(rows: typeof result.rows) {
     const header = ["month", "starting_balance", "interest", "payment", "principal", "ending_balance"];
@@ -71,11 +72,42 @@ export function CreditCardPayoff() {
           <div className="field field-3">
             <div className="label">Monthly payment</div>
             <input type="number" inputMode="decimal" value={payment} min={0} onChange={(e) => setPayment(+e.target.value)} />
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => {
+                  if (suggestedPayment !== null) setPayment(Math.ceil(suggestedPayment));
+                }}
+              >
+                Use target payment
+              </button>
+              <button className="btn" type="button" onClick={() => setPayment(Math.ceil(result.minPaymentToAvoidGrowth))}>
+                Cover interest
+              </button>
+              <button className="btn" type="button" onClick={() => setPayment(paymentSafe + 25)}>
+                +$25
+              </button>
+              <button className="btn" type="button" onClick={() => setPayment(paymentSafe + 100)}>
+                +$100
+              </button>
+            </div>
           </div>
           <div className="field field-3">
             <div className="label">Target payoff (months)</div>
             <input type="number" inputMode="numeric" value={targetMonths} min={1} step={1} onChange={(e) => setTargetMonths(+e.target.value)} />
             <div className="hint">Used to estimate required payment</div>
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setTargetMonths(12)}>
+                12
+              </button>
+              <button className="btn" type="button" onClick={() => setTargetMonths(24)}>
+                24
+              </button>
+              <button className="btn" type="button" onClick={() => setTargetMonths(36)}>
+                36
+              </button>
+            </div>
           </div>
           <div className="field field-6">
             <div className="btn-row">
@@ -118,6 +150,10 @@ export function CreditCardPayoff() {
             <div className="k">Payment to avoid growth</div>
             <div className="v">{formatCurrency2(result.minPaymentToAvoidGrowth)}</div>
             <div className="hint">Based on month-1 interest</div>
+          </div>
+          <div className="kpi">
+            <div className="k">First-month interest</div>
+            <div className="v">{formatCurrency2(firstMonthInterest)}</div>
           </div>
           <div className="kpi">
             <div className="k">Payment to payoff in {targetMonthsSafe} months</div>
@@ -172,4 +208,3 @@ export function CreditCardPayoff() {
     </div>
   );
 }
-
