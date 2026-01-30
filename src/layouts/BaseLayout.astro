@@ -59,7 +59,7 @@ const pageType = isGuidesIndex
   ? "CollectionPage"
   : isGuidesDetail
     ? "Article"
-    : isTopicsIndex || isTopicsDetail
+    : isTopicsIndex || isTopicsDetail || isCalculatorsIndex
       ? "CollectionPage"
       : "WebPage";
 const navPath = canonicalPath ?? "";

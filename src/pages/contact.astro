@@ -6,7 +6,14 @@ const title = `Contact | ${SITE.name}`;
 const description =
   "Contact Practical Finance Tools to report calculator issues, request corrections, or suggest a new tool. We read every message.";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/contact" robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/contact"
+  robots="noindex, follow"
+  includePageSchema={false}
+  includeBreadcrumbSchema={false}
+>
   <section class="card hero">
     <h1>Contact</h1>
     <p>
