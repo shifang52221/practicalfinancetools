@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "DTI and Credit Card Minimum Payments";
+const description =
+  "How credit card minimum payments affect DTI and why balances matter only through the required payment. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/dti-credit-card-minimums">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Card minimums</span>
+    </nav>
+    <h1>DTI and credit card minimum payments</h1>
+    <p>
+      DTI uses the required monthly payment on your credit report or statement, not the balance itself. This guide shows how minimums
+      are determined and how paydowns affect the ratio.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why the minimum matters</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Credit card balances affect DTI only through the minimum payment. A lower balance usually reduces the minimum, but not always
+      immediately. Wait for the statement update to confirm the new required payment.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to use in the calculator</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the statement minimum payment for each card.</li>
+      <li>If multiple cards, add the minimums together.</li>
+      <li>Do not use your planned payment amount.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Paydown impact</h2>
+      <p class="muted" style="margin:10px 0 0">
+        A large paydown can reduce the minimum payment after the next statement cycle. Capture the new minimum on the statement and
+        rerun the DTI calculator with the updated number.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Balance transfers</h2>
+      <p class="muted" style="margin:10px 0 0">
+        A balance transfer can lower the required payment or keep it the same, depending on the card terms. Use the new statement
+        minimum when it is available, not the promotional payment you plan to make.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist before you apply</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Wait for statements to reflect the lower minimums.</li>
+      <li>Do not open new cards that add required payments.</li>
+      <li>Confirm the credit report shows the updated payment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Recalculate DTI</a>
+      <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
+      <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

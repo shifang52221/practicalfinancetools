@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "DTI Variable Income Averaging";
+const description =
+  "How to average variable income for DTI calculations so your ratio aligns with underwriting documentation. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/dti-variable-income-averaging">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Variable income</span>
+    </nav>
+    <h1>DTI variable income averaging</h1>
+    <p>
+      Commissions, bonuses, and seasonal income often need to be averaged. This guide shows a simple approach to estimating a stable
+      monthly income that matches what lenders typically review.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/guides/dti-income-documentation-checklist">Income documentation checklist</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why averaging matters</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Variable income can fluctuate month to month. Using a single high month can inflate DTI results, while averaging creates a more
+      stable number that aligns with underwriting documentation.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A simple averaging method</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Gather 12-24 months of income history.</li>
+      <li>Add the variable income for the period.</li>
+      <li>Divide by the number of months to get a monthly average.</li>
+      <li>Use that average in the DTI calculator.</li>
+    </ol>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">If income is rising</h2>
+      <p class="muted" style="margin:10px 0 0">
+        A recent increase may not fully count until documented for long enough. Use a weighted average only if the newer income level
+        is consistent and supported by pay stubs or tax records.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">If income is volatile</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Use a longer period and avoid cherry-picking. If income drops significantly, assume the lower number so you do not overestimate
+        affordability.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Documents to keep</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Pay stubs that show year-to-date income.</li>
+      <li>Tax returns showing prior-year income totals.</li>
+      <li>A simple worksheet showing how the monthly average was calculated.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common pitfalls</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using a peak month as the monthly figure.</li>
+      <li>Ignoring a recent decrease in variable income.</li>
+      <li>Mixing pre-tax and after-tax income.</li>
+      <li>Counting income that cannot be documented.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Run DTI with averaged income</a>
+      <a class="btn" href="/guides/dti-self-employed-income">Self-employed income</a>
+      <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

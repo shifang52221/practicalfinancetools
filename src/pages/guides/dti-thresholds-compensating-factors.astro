@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "DTI Thresholds and Compensating Factors";
+const description =
+  "How DTI ranges vary by program and how compensating factors can offset a higher ratio. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/dti-thresholds-compensating-factors">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">DTI thresholds</span>
+    </nav>
+    <h1>DTI thresholds and compensating factors</h1>
+    <p>
+      There is no single DTI cutoff. Programs use ranges, and other factors can offset a higher ratio. This guide shows how to think
+      about thresholds and what inputs tend to strengthen an application.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Typical ranges</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Many programs target back-end DTI ranges in the mid-30s to low-40s, but underwriting can allow higher ratios if other factors are
+      strong. Use the DTI calculator to test how small changes move you across a range.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Compensating factors</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Higher credit scores and strong payment history.</li>
+        <li>Cash reserves after closing.</li>
+        <li>Stable, documented income.</li>
+        <li>Lower loan-to-value or larger down payment.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Factors that raise risk</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>High revolving utilization or recent new debt.</li>
+        <li>Unstable income or short job history.</li>
+        <li>Minimal cash reserves.</li>
+        <li>Large projected housing payment increases.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to use this in planning</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Calculate your baseline DTI with documented numbers.</li>
+      <li>Test a payoff or income increase to move into a safer range.</li>
+      <li>Compare the DTI shift with your credit score and reserves.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Test your DTI range</a>
+      <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
+      <a class="btn" href="/guides/dti-calculation-step-by-step">DTI calculation steps</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

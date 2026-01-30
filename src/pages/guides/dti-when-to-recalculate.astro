@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "When to Recalculate DTI";
+const description =
+  "Key moments to rerun DTI after payoffs, income changes, or housing payment updates. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/dti-when-to-recalculate">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Recalculate DTI</span>
+    </nav>
+    <h1>When to recalculate DTI</h1>
+    <p>
+      DTI should be recalculated whenever a required payment or income figure changes. This guide shows the best checkpoints so your
+      ratio stays aligned with current statements and underwriting inputs.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Recalculate after these events</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>A credit card payoff or new statement with a lower minimum.</li>
+      <li>A new loan payment, refinance, or debt consolidation.</li>
+      <li>A raise, job change, or verified income update.</li>
+      <li>New housing payment estimates from a Loan Estimate.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Timing tips</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Wait for statement cycles to reflect the new required payments. Updating DTI too early can overstate the improvement and cause
+        surprises later in underwriting.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Keep an input log</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Track the date and source for each input (statement, pay stub, loan estimate). This makes it easy to show how the DTI was
+        calculated and to update it quickly when something changes.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist for each rerun</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Verify gross income matches your most recent documentation.</li>
+      <li>Update housing payment with taxes, insurance, HOA, and PMI.</li>
+      <li>Use required minimum payments for all debts.</li>
+      <li>Save the updated inputs as a new baseline.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Recalculate DTI</a>
+      <a class="btn" href="/guides/dti-calculation-step-by-step">DTI calculation steps</a>
+      <a class="btn" href="/guides/dti-credit-card-minimums">Credit card minimums</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

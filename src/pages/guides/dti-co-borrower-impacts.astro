@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "DTI and Co-Borrower Impacts";
+const description =
+  "How a co-borrower affects DTI by adding both income and debts, plus a checklist to keep the ratio realistic. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/dti-co-borrower-impacts">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Co-borrower DTI</span>
+    </nav>
+    <h1>DTI and co-borrower impacts</h1>
+    <p>
+      Adding a co-borrower can improve DTI, but only if the added income exceeds the added debts. Use this guide to model the combined
+      ratio and avoid surprises.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/guides/dti-income-documentation-checklist">Income documentation</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How the math changes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Combine both borrowers' gross monthly income.</li>
+      <li>Combine both borrowers' required monthly debt payments.</li>
+      <li>Use the new housing payment for the loan scenario.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick example</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Borrower A earns $6,000/month with $1,500 in debt payments. Borrower B earns $3,000/month with $700 in debt payments. Combined
+      income is $9,000 and combined debt is $2,200. If housing is $2,400, back-end DTI is 51% ((2,400 + 2,200) / 9,000). The ratio
+      improved only if the new income outweighs the new debts.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">When it helps</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Co-borrower has stable income and low required debts.</li>
+        <li>Combined housing payment is reasonable for both incomes.</li>
+        <li>Documentation supports the full income amount.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">When it does not</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Co-borrower has high required debt payments.</li>
+        <li>Income is variable or not fully documentable.</li>
+        <li>New housing payment rises too much for the added income.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist before you rely on the new DTI</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Verify both borrowers' income sources and documentation.</li>
+      <li>Confirm all required monthly debts on both credit reports.</li>
+      <li>Use the lender's housing payment estimate (PITI + HOA + PMI).</li>
+      <li>Recalculate after any new debt or income changes.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Run combined DTI</a>
+      <a class="btn" href="/guides/dti-credit-card-minimums">Credit card minimums</a>
+      <a class="btn" href="/guides/dti-housing-payment-piti-includes">Housing payment inputs</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

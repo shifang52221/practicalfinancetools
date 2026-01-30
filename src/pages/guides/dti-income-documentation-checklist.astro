@@ -1,0 +1,100 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "DTI Income Documentation Checklist";
+const description =
+  "How to document income for DTI calculations, including pay stubs, tax records, and variable income notes. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/dti-income-documentation-checklist">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Income documentation</span>
+    </nav>
+    <h1>DTI income documentation checklist</h1>
+    <p>
+      DTI relies on gross monthly income that can be verified. This checklist helps you align calculator inputs with the documents
+      lenders typically review so your ratio reflects what underwriting will see.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/guides/dti-variable-income-averaging">Variable income averaging</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Core checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Recent pay stubs showing year-to-date income.</li>
+      <li>Two years of W-2s or tax returns (if requested).</li>
+      <li>Employment verification or offer letter for new roles.</li>
+      <li>Bonus or commission documentation if it is consistent.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">W-2 income</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Use your stable base pay converted to a monthly amount. If overtime or bonuses are irregular, do not rely on a single strong
+        month unless it is documented and consistent.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Variable income</h2>
+      <p class="muted" style="margin:10px 0 0">
+        For commissions or bonuses, lenders often use a multi-year average. Keep a simple record of the period used so the DTI input
+        matches the documentation.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Co-borrower documentation</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you are adding a co-borrower to improve DTI, include their income documents and also their required debts. The ratio only
+      improves if the added income outweighs the added debt payments.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Self-employed income notes</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Self-employed income is usually based on net income after expenses. Gather recent tax returns, year-to-date P&L statements,
+      and any required add-back documentation before using a monthly income figure.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Income conversion tips</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Hourly wages: multiply by average hours per week and by 52, then divide by 12.</li>
+      <li>Biweekly pay: multiply by 26 to get annual, then divide by 12.</li>
+      <li>Monthly pay: use the gross monthly number on the statement.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Keep a simple income worksheet</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Save the sources you used for each income line (pay stubs, tax returns, or P&L). When you rerun the DTI calculator, you can
+      update only the lines that changed without rechecking everything.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Run DTI with documented income</a>
+      <a class="btn" href="/guides/dti-self-employed-income">Self-employed income</a>
+      <a class="btn" href="/guides/dti-co-borrower-impacts">Co-borrower impacts</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

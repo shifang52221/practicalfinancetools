@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "DTI and Installment Loans or Leases";
+const description =
+  "How installment loan and lease payments are counted in DTI, including auto loans, personal loans, and student loans. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/dti-installment-loans-and-leases">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Installment loans</span>
+    </nav>
+    <h1>DTI and installment loans or leases</h1>
+    <p>
+      Installment loan and lease payments are usually included in DTI. This guide explains which payments to use and how deferred or
+      soon-to-end loans are treated in a typical DTI workflow.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/guides/dti-and-student-loans">DTI and student loans</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What usually counts</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Auto loan payments and lease payments.</li>
+      <li>Personal loan payments and installment credit.</li>
+      <li>Student loan payments (see program rules).</li>
+      <li>Other required monthly obligations reported on credit.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Loans with low remaining balance</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Some lenders may allow exclusion of a loan that is close to payoff, but do not assume this. Use the required payment unless
+        your lender confirms it will be excluded.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Deferred or paused loans</h2>
+      <p class="muted" style="margin:10px 0 0">
+        For deferred loans, some programs use an assumed payment rather than $0. If your statement shows $0, ask how the payment will
+        be calculated before you finalize your DTI estimate.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist for installment debts</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the required payment shown on the credit report or statement.</li>
+      <li>Include leases and personal loans, not just auto loans.</li>
+      <li>Confirm treatment of deferred or income-based student loans.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Recalculate DTI</a>
+      <a class="btn" href="/guides/dti-credit-card-minimums">Credit card minimums</a>
+      <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "DTI for Self-Employed Income";
+const description =
+  "How self-employed income is used in DTI calculations, including net income, add-backs, and documentation basics. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/dti-self-employed-income">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Self-employed DTI</span>
+    </nav>
+    <h1>DTI for self-employed income</h1>
+    <p>
+      Self-employed income is usually based on net income, not gross receipts. This guide explains how to estimate a stable monthly
+      income and what to document before running a DTI scenario.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/guides/dti-income-documentation-checklist">Income documentation</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Start with net income</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Many lenders use net income after expenses, which is why your gross receipts can look much higher than the income used in DTI.
+      Use recent tax returns and year-to-date P&L statements to estimate a monthly net figure.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Typical documents</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Two years of business and personal tax returns.</li>
+      <li>Year-to-date profit and loss statement.</li>
+      <li>Balance sheet if required by the lender.</li>
+      <li>Notes on any one-time expenses or add-backs.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Add-backs and adjustments</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Some non-cash expenses may be added back by the lender. Only use add-backs that are allowed and documented; otherwise keep
+        the estimate conservative.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Seasonal or volatile income</h2>
+      <p class="muted" style="margin:10px 0 0">
+        If business income swings, average across a longer period to avoid overstating your monthly income. This keeps the DTI estimate
+        aligned with underwriting reality.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common pitfalls</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using gross revenue instead of net income.</li>
+      <li>Counting income that is not documented.</li>
+      <li>Ignoring recent declines in business income.</li>
+      <li>Mixing personal and business debt payments.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Run DTI with net income</a>
+      <a class="btn" href="/guides/dti-variable-income-averaging">Variable income averaging</a>
+      <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

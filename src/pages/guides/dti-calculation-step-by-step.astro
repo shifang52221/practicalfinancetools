@@ -1,0 +1,97 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "DTI Calculation Step by Step";
+const description =
+  "A step-by-step guide to calculating front-end and back-end DTI using gross income and required monthly payments. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/dti-calculation-step-by-step">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">DTI calculation</span>
+    </nav>
+    <h1>DTI calculation step by step</h1>
+    <p>
+      Debt-to-income (DTI) is a ratio of required monthly debt payments to gross monthly income. This guide shows a clean
+      workflow for both front-end and back-end DTI so you can keep assumptions consistent across scenarios.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">DTI formulas</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Front-end DTI:</strong> housing payment / gross monthly income.</li>
+      <li><strong>Back-end DTI:</strong> (housing + other required debts) / gross monthly income.</li>
+      <li>Use required monthly payments, not what you plan to pay.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Inputs checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Gross monthly income from pay stubs or tax documents.</li>
+      <li>Housing payment: PITI + HOA + PMI if applicable.</li>
+      <li>Minimum credit card payments from statements.</li>
+      <li>Installment loan payments from statements or credit report.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Step-by-step workflow</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Write down gross monthly income (stable, documentable).</li>
+      <li>Add the full housing payment for the scenario you are testing.</li>
+      <li>List required monthly debt payments (not balances).</li>
+      <li>Calculate front-end DTI with housing only.</li>
+      <li>Calculate back-end DTI with housing + other debts.</li>
+      <li>Save the inputs so you can compare future scenarios.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick example</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If gross income is $7,500/month and housing is $2,400, front-end DTI is 32%. Add $550 in other debt payments and back-end
+      DTI is 39.3%. If the housing payment increases to $2,700, front-end DTI becomes 36% and back-end DTI rises to 43.3%.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes to avoid</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using net income instead of gross income.</li>
+      <li>Using planned payments instead of required minimums.</li>
+      <li>Leaving out taxes, insurance, or HOA from the housing payment.</li>
+      <li>Mixing current housing payment with a future loan scenario.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to use the calculator</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Enter a single scenario, then change only one variable at a time. This keeps the comparison clean and shows which input is
+      driving your DTI change. Save each input set as a baseline before testing the next change.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Recalculate DTI</a>
+      <a class="btn" href="/guides/front-end-vs-back-end-dti">Front-end vs back-end DTI</a>
+      <a class="btn" href="/guides/dti-housing-payment-piti-includes">Housing payment inputs</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

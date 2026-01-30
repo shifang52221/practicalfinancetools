@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "DTI Housing Payment Inputs (PITI, HOA, PMI)";
+const description =
+  "What to include in the housing payment for DTI: principal, interest, taxes, insurance, HOA, and PMI. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/dti-housing-payment-piti-includes">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Housing payment</span>
+    </nav>
+    <h1>DTI housing payment inputs (PITI, HOA, PMI)</h1>
+    <p>
+      DTI uses a full housing payment, not just principal and interest. This guide explains what to include so your affordability
+      estimates align with lender calculations.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to include in housing payment</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Principal and interest (P&amp;I).</li>
+      <li>Property taxes.</li>
+      <li>Homeowners insurance.</li>
+      <li>HOA dues (if applicable).</li>
+      <li>PMI or mortgage insurance (if applicable).</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Estimating taxes and insurance</h2>
+      <p class="muted" style="margin:10px 0 0">
+        If you do not have a quote, use local averages and then update the inputs once you receive a Loan Estimate. Understating
+        these items will make DTI look better than it really is.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">PMI and HOA</h2>
+      <p class="muted" style="margin:10px 0 0">
+        PMI and HOA are often missed in early estimates. If either applies, include them so your back-end DTI matches the lender's
+        underwriting calculation.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Refinance and rent scenarios</h2>
+    <p class="muted" style="margin:10px 0 0">
+      For refinances, use the new projected payment, not the current payment. For rent-based affordability checks, use the actual
+      rent as the housing input.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use PITI + HOA + PMI for mortgage scenarios.</li>
+      <li>Update estimates when a Loan Estimate is available.</li>
+      <li>Use consistent assumptions when comparing options.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Run DTI with full housing payment</a>
+      <a class="btn" href="/guides/mortgage-payment-dti-housing-payment">Mortgage payment in DTI</a>
+      <a class="btn" href="/guides/what-is-piti">What is PITI</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>
