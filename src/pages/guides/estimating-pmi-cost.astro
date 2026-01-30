@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Estimating PMI Cost (Monthly Mortgage Insurance)";
+const description =
+  "Estimate PMI cost and understand how it affects your monthly payment and removal timeline. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/estimating-pmi-cost">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">PMI cost</span>
+    </nav>
+    <h1>Estimating PMI cost</h1>
+    <p>
+      PMI is usually required when your down payment is below 20%. This guide shows how to estimate the monthly PMI cost and
+      how it fits into your housing payment.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When PMI applies</h2>
+    <p class="muted" style="margin:10px 0 0">
+      PMI is commonly required on conventional loans when your down payment is below 20% of the purchase price. The rules vary
+      by loan type, credit profile, and lender.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to estimate PMI</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Ask your lender for the estimated PMI rate.</li>
+      <li>Multiply the loan amount by the PMI rate to get the annual cost.</li>
+      <li>Divide by 12 to get the monthly PMI amount.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">PMI removal timing</h2>
+    <p class="muted" style="margin:10px 0 0">
+      PMI can typically be removed once your loan reaches a certain loan-to-value threshold, but the rules depend on your loan
+      terms and payment history. Extra principal can accelerate that timeline.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using a generic PMI rate instead of a lender quote.</li>
+      <li>Ignoring PMI when estimating the housing payment and DTI.</li>
+      <li>Assuming PMI removal is automatic without confirming the lender process.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
+        <li><a href="/guides/how-mortgage-payments-are-calculated">How mortgage payments are calculated</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Does PMI apply to FHA loans?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      FHA loans use a different type of mortgage insurance with different rules. Ask your lender how it will be calculated.
+    </p>
+    <h3 style="margin:12px 0 0">Can I remove PMI early?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      You may be able to request removal once you meet the loan-to-value threshold. Confirm the lender requirements and timing.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the mortgage payment calculator</a>
+      <a class="btn" href="/guides/pmi-removal-vs-extra-principal">PMI removal guide</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

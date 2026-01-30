@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Front-End vs Back-End DTI (Housing vs Total Debt)";
+const description =
+  "Learn the difference between front-end and back-end DTI and how to compute each for mortgage affordability. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/front-end-vs-back-end-dti">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Front-end vs back-end DTI</span>
+    </nav>
+    <h1>Front-end vs back-end DTI</h1>
+    <p>
+      Front-end DTI looks at housing costs only. Back-end DTI includes housing plus all other required monthly debts.
+      This guide shows how to compute each and avoid mixing definitions.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
+      <a class="btn" href="/topics/debt-to-income">DTI topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Definitions</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Front-end DTI:</strong> housing payment / gross monthly income.</li>
+      <li><strong>Back-end DTI:</strong> (housing + other required debts) / gross monthly income.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Housing payment inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Principal and interest.</li>
+      <li>Property taxes and homeowners insurance (escrow).</li>
+      <li>HOA and PMI when applicable.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Other debt inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Auto, student, and personal loan payments.</li>
+      <li>Minimum credit card payments.</li>
+      <li>Required support obligations if applicable.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using net income instead of gross income.</li>
+      <li>Leaving out taxes and insurance from the housing payment.</li>
+      <li>Comparing front-end results to a back-end target.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/debt-to-income-calculator">DTI calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/how-to-improve-dti">How to improve DTI</a></li>
+        <li><a href="/guides/dti-and-student-loans">DTI and student loans</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Which ratio matters more?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Many programs focus on back-end DTI, but front-end limits can still apply. Confirm your lender's guidelines.
+    </p>
+    <h3 style="margin:12px 0 0">Can I use estimated housing payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Yes, but include taxes, insurance, HOA, and PMI so the ratio is realistic.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Run the DTI calculator</a>
+      <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
+      <a class="btn" href="/topics/debt-to-income">DTI topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

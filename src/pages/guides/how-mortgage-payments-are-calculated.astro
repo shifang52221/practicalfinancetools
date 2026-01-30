@@ -1,0 +1,121 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "How Mortgage Payments Are Calculated (P&I + Escrow)";
+const description =
+  "Understand how mortgage payments are calculated, including principal and interest plus taxes, insurance, HOA, and PMI. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/how-mortgage-payments-are-calculated">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Mortgage payment math</span>
+    </nav>
+    <h1>How mortgage payments are calculated</h1>
+    <p>
+      Your mortgage payment is usually two parts: principal and interest (P&amp;I) plus escrow items like taxes and insurance.
+      This guide shows the inputs that drive the payment so your estimates match what lenders use.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">The payment formula (high level)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Principal &amp; interest:</strong> set by the loan amount, rate, and term.</li>
+      <li><strong>Escrow items:</strong> property taxes and homeowners insurance (plus HOA and PMI when applicable).</li>
+      <li><strong>Total payment:</strong> P&amp;I + taxes + insurance + HOA + PMI.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Inputs you need</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Home price and down payment (determines the loan amount).</li>
+      <li>Interest rate and term (15, 20, 30 years).</li>
+      <li>Annual property taxes and homeowners insurance.</li>
+      <li>Monthly HOA dues, if any.</li>
+      <li>PMI rate, if your down payment is below 20%.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Step-by-step workflow</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Calculate loan amount = home price minus down payment.</li>
+      <li>Compute the monthly P&amp;I payment from the rate and term.</li>
+      <li>Convert annual taxes and insurance into monthly amounts.</li>
+      <li>Add HOA and PMI if they apply.</li>
+      <li>Compare the total to your lender estimate or Loan Estimate.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why payments change over time</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The P&amp;I payment is fixed for fixed-rate loans, but escrow items can change after closing due to tax reassessments or
+      insurance renewals. This is why total payment can rise even when the interest rate is fixed.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using APR instead of the note rate for P&amp;I calculations.</li>
+      <li>Leaving out taxes or insurance when estimating affordability.</li>
+      <li>Ignoring HOA dues or PMI costs that affect the housing payment.</li>
+      <li>Comparing payments without matching the same term and rate.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+        <li><a href="/calculators/debt-to-income-calculator">DTI calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
+        <li><a href="/guides/principal-and-interest-vs-escrow">Principal and interest vs escrow</a></li>
+        <li><a href="/guides/mortgage-payment-15-vs-30-year">15-year vs 30-year payment</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Does a bigger down payment always lower the total payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It lowers the loan amount and can remove PMI, which usually lowers the total. Taxes and insurance are based on the property,
+      so those do not change with your down payment.
+    </p>
+    <h3 style="margin:12px 0 0">Why does my lender estimate differ from the calculator?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Lenders may use different tax or insurance assumptions and may include escrow reserves. Match their inputs to align results.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the mortgage payment calculator</a>
+      <a class="btn" href="/calculators/debt-to-income-calculator">Check DTI</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payment topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

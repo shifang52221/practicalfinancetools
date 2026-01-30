@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "DTI and Student Loans (How payments are treated)";
+const description =
+  "Learn how student loan payments can affect DTI calculations and how to model them in affordability checks. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/dti-and-student-loans">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">DTI and student loans</span>
+    </nav>
+    <h1>DTI and student loans</h1>
+    <p>
+      Student loan payments can change your DTI materially. This guide explains how lenders often treat student loans and how
+      to model them accurately in your affordability checks.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
+      <a class="btn" href="/topics/debt-to-income">DTI topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What lenders look at</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Payment shown on your credit report or statement.</li>
+      <li>If the payment is $0 or deferred, some programs use an assumed payment.</li>
+      <li>Rules can vary by loan program and lender guidelines.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to model it</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the required monthly payment shown on your statement when available.</li>
+      <li>If payments are deferred, ask your lender which assumed payment they will use.</li>
+      <li>Run the DTI calculator with that payment to see the impact.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using a $0 payment when the lender will use an assumed payment.</li>
+      <li>Forgetting to include multiple student loans.</li>
+      <li>Assuming income-based payments will always be accepted without documentation.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/debt-to-income-calculator">DTI calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/front-end-vs-back-end-dti">Front-end vs back-end DTI</a></li>
+        <li><a href="/guides/how-to-improve-dti">How to improve DTI</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Do deferred loans count in DTI?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Often yes. Some lenders use an assumed payment when loans are deferred. Confirm the rule with your lender.
+    </p>
+    <h3 style="margin:12px 0 0">Should I use income-based payments?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      If that is your documented payment, it may be used. Documentation requirements vary, so verify with your lender.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Run the DTI calculator</a>
+      <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
+      <a class="btn" href="/topics/debt-to-income">DTI topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

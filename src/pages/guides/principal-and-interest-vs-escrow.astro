@@ -1,0 +1,113 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Principal & Interest vs Escrow (What's in your payment)";
+const description =
+  "Understand the difference between principal and interest vs escrow items like taxes and insurance. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/principal-and-interest-vs-escrow">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">P&I vs escrow</span>
+    </nav>
+    <h1>Principal and interest vs escrow</h1>
+    <p>
+      Your mortgage payment is usually made up of principal &amp; interest plus escrow for taxes and insurance. This guide
+      explains what changes the P&amp;I portion and why escrow can change after closing.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
+      <a class="btn" href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Principal &amp; interest (P&amp;I)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Based on loan amount, rate, and term.</li>
+      <li>Fixed for fixed-rate loans.</li>
+      <li>Changes if you refinance or recast.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Escrow items</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Property taxes and homeowners insurance.</li>
+      <li>HOA and PMI may be included depending on lender policy.</li>
+      <li>Can change yearly based on tax bills or insurance renewal.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why your payment changes</h2>
+    <p class="muted" style="margin:10px 0 0">
+      For fixed-rate loans, P&amp;I stays the same, but escrow can go up or down. A tax reassessment or higher insurance renewal
+      is the most common reason your total payment increases.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Statement alignment</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Compare P&amp;I on your statement to the calculator output.</li>
+      <li>Track escrow changes separately to understand payment shifts.</li>
+      <li>Verify whether HOA is included in escrow or paid separately.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming escrow stays fixed for the life of the loan.</li>
+      <li>Leaving out PMI or HOA when estimating the total payment.</li>
+      <li>Comparing payments without matching the same tax and insurance inputs.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/how-to-estimate-property-taxes">Estimate property taxes</a></li>
+        <li><a href="/guides/how-to-estimate-homeowners-insurance">Estimate homeowners insurance</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Can I pay escrow separately?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Some lenders allow it, but many require escrow. If you pay separately, budget for large annual bills.
+    </p>
+    <h3 style="margin:12px 0 0">Does extra principal lower escrow?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      No. Extra principal reduces the loan balance but does not change taxes or insurance.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the mortgage payment calculator</a>
+      <a class="btn" href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>
