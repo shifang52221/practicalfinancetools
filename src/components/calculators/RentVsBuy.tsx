@@ -9,6 +9,8 @@ export function RentVsBuyCalculator() {
   const [rentGrowth, setRentGrowth] = useState(3);
   const [homePrice, setHomePrice] = useState(450000);
   const [downPayment, setDownPayment] = useState(90000);
+  const [downPaymentMode, setDownPaymentMode] = useState<"amount" | "percent">("amount");
+  const [downPaymentPercent, setDownPaymentPercent] = useState(20);
   const [rate, setRate] = useState(6.5);
   const [termYears, setTermYears] = useState(30);
   const [homeApp, setHomeApp] = useState(3);
@@ -20,13 +22,19 @@ export function RentVsBuyCalculator() {
   const [maintenancePct, setMaintenancePct] = useState(1);
   const [investReturn, setInvestReturn] = useState(6);
 
+  const homePriceSafe = clamp(homePrice, 0, 1e9);
+  const downPaymentPercentSafe = clamp(downPaymentPercent, 0, 100);
+  const downPaymentEffective =
+    downPaymentMode === "percent" ? (homePriceSafe * downPaymentPercentSafe) / 100 : clamp(downPayment, 0, 1e9);
+  const downPaymentCapped = clamp(downPaymentEffective, 0, homePriceSafe);
+
   const result = useMemo(() => {
     return rentVsBuy({
       years: clamp(years, 1, 40),
       monthlyRent: clamp(monthlyRent, 0, 1e8),
       rentGrowthPercent: clamp(rentGrowth, 0, 30),
-      homePrice: clamp(homePrice, 0, 1e9),
-      downPayment: clamp(downPayment, 0, 1e9),
+      homePrice: homePriceSafe,
+      downPayment: downPaymentCapped,
       aprPercent: clamp(rate, 0, 30),
       termYears: clamp(termYears, 1, 60),
       homeAppreciationPercent: clamp(homeApp, 0, 20),
@@ -43,7 +51,7 @@ export function RentVsBuyCalculator() {
     monthlyRent,
     rentGrowth,
     homePrice,
-    downPayment,
+    downPaymentCapped,
     rate,
     termYears,
     homeApp,
@@ -58,6 +66,8 @@ export function RentVsBuyCalculator() {
 
   const last = result.series[result.series.length - 1];
   const diffAtHorizon = (last?.netWorthBuy ?? 0) - (last?.netWorthRent ?? 0);
+  const cashToClose = downPaymentCapped + (homePriceSafe * clamp(closingCostsPct, 0, 10)) / 100;
+  const initialOwnerCost = result.series[0]?.ownerMonthlyCashCost ?? 0;
 
   const breakEvenYearText = result.breakEvenYear === null ? "N/A" : `${result.breakEvenYear} yr`;
   const breakEvenMonthText = result.breakEvenMonth === null ? "N/A" : `${result.breakEvenMonth} mo`;
@@ -122,7 +132,49 @@ export function RentVsBuyCalculator() {
           </div>
           <div className="field field-3">
             <div className="label">Down payment</div>
-            <input type="number" inputMode="decimal" value={downPayment} min={0} onChange={(e) => setDownPayment(+e.target.value)} />
+            <div className="btn-row" style={{ marginTop: 6 }}>
+              <button
+                className={`btn ${downPaymentMode === "amount" ? "btn-primary" : ""}`}
+                type="button"
+                onClick={() => {
+                  setDownPaymentMode("amount");
+                  setDownPayment(downPaymentCapped);
+                }}
+              >
+                Amount ($)
+              </button>
+              <button
+                className={`btn ${downPaymentMode === "percent" ? "btn-primary" : ""}`}
+                type="button"
+                onClick={() => {
+                  setDownPaymentMode("percent");
+                  setDownPaymentPercent(homePriceSafe > 0 ? (downPaymentCapped / homePriceSafe) * 100 : 0);
+                }}
+              >
+                Percent (%)
+              </button>
+            </div>
+            {downPaymentMode === "amount" ? (
+              <input
+                style={{ marginTop: 10 }}
+                type="number"
+                inputMode="decimal"
+                value={downPayment}
+                min={0}
+                onChange={(e) => setDownPayment(+e.target.value)}
+              />
+            ) : (
+              <input
+                style={{ marginTop: 10 }}
+                type="number"
+                inputMode="decimal"
+                value={downPaymentPercent}
+                min={0}
+                step={0.1}
+                onChange={(e) => setDownPaymentPercent(+e.target.value)}
+              />
+            )}
+            <div className="hint">{formatCurrency2(downPaymentCapped)} of price</div>
           </div>
           <div className="field field-3">
             <div className="label">Mortgage rate (APR %)</div>
@@ -168,6 +220,56 @@ export function RentVsBuyCalculator() {
           </div>
 
           <div className="field field-6">
+            <div className="label">Quick scenarios</div>
+            <div className="btn-row" style={{ marginTop: 6 }}>
+              <button className="btn" type="button" onClick={() => setYears(5)}>
+                5-year horizon
+              </button>
+              <button className="btn" type="button" onClick={() => setYears(10)}>
+                10-year horizon
+              </button>
+              <button className="btn" type="button" onClick={() => setYears(15)}>
+                15-year horizon
+              </button>
+            </div>
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => {
+                  setRentGrowth(2);
+                  setHomeApp(2);
+                  setInvestReturn(5);
+                }}
+              >
+                Conservative
+              </button>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => {
+                  setRentGrowth(3);
+                  setHomeApp(3);
+                  setInvestReturn(6);
+                }}
+              >
+                Balanced
+              </button>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => {
+                  setRentGrowth(4);
+                  setHomeApp(4);
+                  setInvestReturn(7);
+                }}
+              >
+                Aggressive
+              </button>
+            </div>
+          </div>
+
+          <div className="field field-6">
             <div className="btn-row">
               <button
                 className="btn"
@@ -178,6 +280,8 @@ export function RentVsBuyCalculator() {
                   setRentGrowth(3);
                   setHomePrice(450000);
                   setDownPayment(90000);
+                  setDownPaymentMode("amount");
+                  setDownPaymentPercent(20);
                   setRate(6.5);
                   setTermYears(30);
                   setHomeApp(3);
@@ -230,6 +334,16 @@ export function RentVsBuyCalculator() {
           <div className="kpi">
             <div className="k">Winner at horizon</div>
             <div className="v">{diffAtHorizon >= 0 ? "Buy" : "Rent"}</div>
+          </div>
+          <div className="kpi">
+            <div className="k">Cash to close (est.)</div>
+            <div className="v">{formatCurrency2(cashToClose)}</div>
+            <div className="hint">Down payment + closing costs</div>
+          </div>
+          <div className="kpi">
+            <div className="k">Initial owner cost (mo.)</div>
+            <div className="v">{formatCurrency2(initialOwnerCost)}</div>
+            <div className="hint">Year 1 monthly cash cost</div>
           </div>
         </div>
 
