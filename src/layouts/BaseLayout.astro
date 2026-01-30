@@ -10,9 +10,18 @@ type Props = {
   description?: string;
   canonicalPath?: string;
   robots?: string;
+  includePageSchema?: boolean;
+  includeBreadcrumbSchema?: boolean;
 };
 
-const { title, description, canonicalPath, robots } = Astro.props;
+const {
+  title,
+  description,
+  canonicalPath,
+  robots,
+  includePageSchema = true,
+  includeBreadcrumbSchema = true
+} = Astro.props;
 const siteUrlRaw = Astro.site ? Astro.site.toString() : SITE.url;
 const siteUrl = siteUrlRaw.endsWith("/") ? siteUrlRaw.slice(0, -1) : siteUrlRaw;
 const homeUrl = `${siteUrl}/`;
@@ -104,8 +113,8 @@ const ogType = pageType === "Article" ? "article" : "website";
     <meta name="theme-color" content="#0b1220" />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationLd)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteLd)} />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(webPageLd)} />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+    {includePageSchema ? <script is:inline type="application/ld+json" set:html={JSON.stringify(webPageLd)} /> : null}
+    {includeBreadcrumbSchema ? <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} /> : null}
     <slot name="head" />
     <script is:inline type="text/javascript">
       (function () {

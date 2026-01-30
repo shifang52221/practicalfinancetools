@@ -78,7 +78,13 @@ const webAppLd = {
   mainEntityOfPage: { "@id": `${pageUrl}#webpage` }
 };
 ---
-<BaseLayout title={pageTitle} description={description} canonicalPath={canonicalPath}>
+<BaseLayout
+  title={pageTitle}
+  description={description}
+  canonicalPath={canonicalPath}
+  includePageSchema={false}
+  includeBreadcrumbSchema={false}
+>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(webPageLd)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(webAppLd)} />
