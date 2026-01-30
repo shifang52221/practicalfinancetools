@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Extra Payments vs Refinance";
+const description =
+  "How to compare extra principal payments to a refinance using the same time horizon. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-vs-refinance">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Extra vs refinance</span>
+    </nav>
+    <h1>Extra payments vs refinance</h1>
+    <p>
+      Extra payments reduce interest without new fees, while a refinance can lower the rate but adds closing costs. This guide shows
+      how to compare both using the same time horizon.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Model extra payments on the current loan.</li>
+      <li>Model a refinance with realistic closing costs.</li>
+      <li>Compare total interest and cash outlay over your horizon.</li>
+      <li>Account for the time you expect to keep the loan.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using a refinance payment without including closing costs.</li>
+      <li>Comparing different horizons (30 years vs 5 years).</li>
+      <li>Ignoring that extra payments keep your existing term.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/refinance-break-even">Refinance break-even</a></li>
+        <li><a href="/guides/refinance-rate-vs-term-tradeoff">Rate vs term tradeoff</a></li>
+        <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
+      <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
+      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

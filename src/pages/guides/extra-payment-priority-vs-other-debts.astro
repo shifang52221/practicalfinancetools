@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Extra Payments vs Other Debts";
+const description =
+  "How to prioritize extra mortgage payments versus higher-interest debts. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-priority-vs-other-debts">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Priority vs other debts</span>
+    </nav>
+    <h1>Extra payments vs other debts</h1>
+    <p>
+      Extra mortgage payments can save interest, but higher-interest debts often cost more. This guide shows how to prioritize using
+      simple rate and risk comparisons.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
+      <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick framework</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Compare mortgage rate to other debt APRs.</li>
+      <li>Prioritize higher-rate debt unless liquidity needs dominate.</li>
+      <li>Keep a cash reserve before accelerating payoff.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Paying extra on a low-rate mortgage while carrying high-rate cards.</li>
+      <li>Ignoring tax impacts or liquidity needs.</li>
+      <li>Not comparing total interest savings across debts.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a></li>
+        <li><a href="/guides/debt-snowball-vs-avalanche">Debt snowball vs avalanche</a></li>
+        <li><a href="/guides/extra-payment-liquidity-reserve">Liquidity reserve check</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Model high-rate debt</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Model extra payments</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

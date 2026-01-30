@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Lump Sum vs Monthly Extra Mortgage Payments";
+const description =
+  "Compare lump sum timing to monthly extra payments and see which saves more interest. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-lump-sum-vs-monthly">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Lump sum vs monthly</span>
+    </nav>
+    <h1>Lump sum vs monthly extra payments</h1>
+    <p>
+      Paying extra earlier usually saves more interest. This guide shows how to compare a lump sum to monthly extra payments using the
+      same baseline.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why timing matters</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Interest is calculated on the remaining balance. Extra payments made sooner reduce the balance earlier and lower interest
+      faster.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Model a baseline without extra payments.</li>
+      <li>Model a lump sum at the month you expect to receive it.</li>
+      <li>Model a monthly extra that equals the lump sum spread over time.</li>
+      <li>Compare payoff date and interest saved.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing different baselines or rates.</li>
+      <li>Assuming a late lump sum beats monthly extras starting now.</li>
+      <li>Ignoring posting dates and principal-only rules.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a></li>
+        <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
+        <li><a href="/guides/principal-only-extra-payments">Principal-only extra payments</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Run the calculator</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Extra payment guide</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

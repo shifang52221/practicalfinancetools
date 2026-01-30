@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Extra Payment Prepayment Penalty Checklist";
+const description =
+  "Checklist to confirm prepayment penalties and lender rules before making extra mortgage payments. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-prepayment-penalty-checklist">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Prepayment penalty</span>
+    </nav>
+    <h1>Prepayment penalty checklist for extra payments</h1>
+    <p>
+      Some loans charge prepayment penalties or limit how extra payments are applied. Use this checklist to confirm rules before you
+      accelerate payoff.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Extra payment guide</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Read the note for prepayment penalty terms.</li>
+      <li>Check if penalties apply only in the first few years.</li>
+      <li>Ask the servicer how extra payments are applied (principal-only vs paid ahead).</li>
+      <li>Confirm any caps on extra payment amounts.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming all loans allow unlimited prepayments.</li>
+      <li>Sending extra without a principal-only instruction.</li>
+      <li>Ignoring a penalty window that is still active.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/principal-only-extra-payments">Principal-only extra payments</a></li>
+        <li><a href="/guides/mortgage-recast-vs-extra-payments">Recast vs extra payments</a></li>
+        <li><a href="/guides/refinance-break-even">Refinance break-even</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Extra payment guide</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

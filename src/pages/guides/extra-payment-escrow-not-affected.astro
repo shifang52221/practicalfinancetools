@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Extra Payments and Escrow (What changes)";
+const description =
+  "Extra principal payments do not reduce escrow items like taxes and insurance. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-escrow-not-affected">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Escrow not affected</span>
+    </nav>
+    <h1>Extra payments do not reduce escrow</h1>
+    <p>
+      Extra payments reduce principal and interest but do not lower taxes, insurance, or HOA. This guide explains why your total
+      payment may not fall even as you prepay.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/guides/mortgage-payment-escrow-account">Escrow account basics</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What changes and what does not</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Principal balance drops faster.</li>
+      <li>Interest paid over time decreases.</li>
+      <li>Escrow items (taxes, insurance, HOA) stay the same.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Expecting the total payment to drop immediately.</li>
+      <li>Assuming escrow is part of the payoff math.</li>
+      <li>Ignoring escrow changes after tax or insurance updates.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/mortgage-payment-escrow-account">Escrow account basics</a></li>
+        <li><a href="/guides/mortgage-payment-escrow-shortage">Escrow shortage</a></li>
+        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
+      <a class="btn" href="/guides/mortgage-payment-escrow-account">Escrow account basics</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

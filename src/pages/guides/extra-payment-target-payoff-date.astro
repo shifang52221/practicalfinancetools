@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Target Payoff Date with Extra Payments";
+const description =
+  "How to set a target mortgage payoff date and back into the extra payment needed. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-target-payoff-date">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Target payoff date</span>
+    </nav>
+    <h1>Target a payoff date with extra payments</h1>
+    <p>
+      If you want to be mortgage-free by a specific year, use a target payoff date and back into the extra payment amount. This guide
+      shows a simple workflow.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Workflow</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Get your current balance, rate, and remaining term.</li>
+      <li>Pick a target payoff year and convert to months.</li>
+      <li>Increase extra payments until the payoff date matches.</li>
+      <li>Re-check annually as balances and rates change.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using an unrealistic target date without a budget check.</li>
+      <li>Ignoring one-time lump sums that can accelerate the timeline.</li>
+      <li>Not verifying that extra payments are principal-only.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/extra-payment-lump-sum-vs-monthly">Lump sum vs monthly</a></li>
+        <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
+        <li><a href="/guides/mortgage-payment-rate-sensitivity">Rate sensitivity</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Set a payoff target</a>
+      <a class="btn" href="/guides/extra-payment-lump-sum-vs-monthly">Lump sum vs monthly</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

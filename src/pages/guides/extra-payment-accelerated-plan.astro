@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Accelerated Payment Plans (How they work)";
+const description =
+  "Understand accelerated payment plans and how they compare to simple extra payments. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-accelerated-plan">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Accelerated plan</span>
+    </nav>
+    <h1>Accelerated payment plans</h1>
+    <p>
+      Accelerated plans often split payments into more frequent intervals. This guide shows how to compare them to a simple monthly
+      extra payment without paying unnecessary fees.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly calculator</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to compare fairly</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Compare total dollars paid per year, not payment frequency.</li>
+      <li>Check for program fees that reduce the savings.</li>
+      <li>Model the same extra amount using a monthly extra payment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Paying fees for a plan you can replicate yourself.</li>
+      <li>Assuming biweekly always saves more than monthly extra.</li>
+      <li>Ignoring posting timing differences.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/biweekly-mortgage-payment-calculator">Biweekly mortgage calculator</a></li>
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a></li>
+        <li><a href="/guides/biweekly-mortgage-program-fees">Biweekly program fees</a></li>
+        <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model monthly extra</a>
+      <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Model biweekly</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Extra Payments and Servicer Posting Rules";
+const description =
+  "How to make sure extra payments are applied to principal and not marked as paid ahead. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-servicer-posting-rules">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Posting rules</span>
+    </nav>
+    <h1>Extra payments and servicer posting rules</h1>
+    <p>
+      Extra payments only help if they are applied to principal. This guide shows how to confirm posting rules and avoid "paid ahead"
+      treatment.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Posting checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Confirm the extra amount is labeled "principal only".</li>
+      <li>Check the payment history for principal reduction.</li>
+      <li>Ask if the servicer offers a principal-only toggle.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming all extra payments are principal-only by default.</li>
+      <li>Sending extras with the monthly payment without instructions.</li>
+      <li>Not checking the posting date and allocation on statements.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/principal-only-extra-payments">Principal-only extra payments</a></li>
+        <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
+        <li><a href="/guides/extra-payment-prepayment-penalty-checklist">Prepayment penalty checklist</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Run the calculator</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>
