@@ -1,11 +1,25 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { MortgagePaymentCalculator as MortgagePaymentCalculatorComponent } from "../../components/calculators/MortgagePayment";
+import { mortgageMonthlyBreakdown } from "../../lib/calc/loan";
 
 const title = "Mortgage Payment Calculator";
 const metaTitle = "Mortgage Payment Calculator (PITI + PMI)";
 const description =
   "Estimate your monthly mortgage payment including principal & interest plus taxes, insurance, HOA, and PMI. Educational use only.";
+
+const exampleInput = {
+  homePrice: 450000,
+  downPayment: 90000,
+  aprPercent: 6.5,
+  termYears: 30,
+  propertyTaxAnnual: 5400,
+  insuranceAnnual: 1800,
+  hoaMonthly: 0,
+  pmiRateAnnual: 0.6
+};
+const example = mortgageMonthlyBreakdown(exampleInput);
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <CalculatorLayout
   title={title}
@@ -56,6 +70,44 @@ const description =
       $1,800/yr insurance, $0 HOA, and 0.60% PMI rate. Use this to sanity-check what you can afford and compare
       scenarios (rate, down payment, taxes, and insurance).
     </p>
+
+    <h2 style="margin:18px 0 10px">Example output (estimate)</h2>
+    <div style="overflow:auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Monthly amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Principal &amp; interest</td>
+            <td>{money.format(example.paymentPI)}</td>
+          </tr>
+          <tr>
+            <td>Property tax</td>
+            <td>{money.format(example.taxMonthly)}</td>
+          </tr>
+          <tr>
+            <td>Insurance</td>
+            <td>{money.format(example.insuranceMonthly)}</td>
+          </tr>
+          <tr>
+            <td>HOA</td>
+            <td>{money.format(example.hoaMonthly)}</td>
+          </tr>
+          <tr>
+            <td>PMI (estimate)</td>
+            <td>{money.format(example.pmiMonthly)}</td>
+          </tr>
+          <tr>
+            <td>Total monthly</td>
+            <td>{money.format(example.totalMonthly)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2 style="margin:18px 0 10px">Inputs to double-check</h2>
     <ul class="muted" style="margin:0; padding-left:18px">

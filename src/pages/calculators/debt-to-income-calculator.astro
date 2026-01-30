@@ -1,10 +1,18 @@
 ﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { DtiCalculator } from "../../components/calculators/Dti";
+import { calculateDti } from "../../lib/calc/dti";
 
 const title = "Debt-to-Income (DTI) Calculator";
 const description =
   "Estimate your front-end and back-end DTI ratios from your gross monthly income and debt payments. Educational use only.";
+
+const exampleInput = { incomeMonthly: 8000, housingMonthly: 2400, otherDebtMonthly: 600 };
+const example = calculateDti(exampleInput);
+const pct = new Intl.NumberFormat("en-US", { style: "percent", minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const exampleFront = example.frontEndDti == null ? "N/A" : pct.format(example.frontEndDti);
+const exampleBack = example.backEndDti == null ? "N/A" : pct.format(example.backEndDti);
 ---
 <CalculatorLayout
   title={title}
@@ -58,7 +66,7 @@ const description =
       a: "Common approaches include reducing required monthly payments (paying down revolving debt, refinancing to lower required payments, paying off installment loans) and increasing verifiable income. Avoid taking on new monthly obligations before applying."
     }
   ]}
-  lastUpdated="2026-01-29"
+  lastUpdated="2026-01-30"
 >
   <DtiCalculator client:load />
 
@@ -68,6 +76,40 @@ const description =
       Suppose your gross income is $8,000/month. If your total housing payment is $2,400 and other monthly debts are
       $600, your front-end DTI is 30% and your back-end DTI is 37.5%.
     </p>
+
+    <h2 style="margin:18px 0 10px">Example output (estimate)</h2>
+    <div style="overflow:auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gross monthly income</td>
+            <td>{money.format(exampleInput.incomeMonthly)}</td>
+          </tr>
+          <tr>
+            <td>Housing payment</td>
+            <td>{money.format(exampleInput.housingMonthly)}</td>
+          </tr>
+          <tr>
+            <td>Other debt</td>
+            <td>{money.format(exampleInput.otherDebtMonthly)}</td>
+          </tr>
+          <tr>
+            <td>Front-end DTI</td>
+            <td>{exampleFront}</td>
+          </tr>
+          <tr>
+            <td>Back-end DTI</td>
+            <td>{exampleBack}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2 style="margin:18px 0 10px">Example (mortgage-style housing payment)</h2>
     <p class="muted" style="margin:0">

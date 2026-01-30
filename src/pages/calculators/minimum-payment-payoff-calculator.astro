@@ -1,11 +1,16 @@
 ﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { MinimumPaymentPayoff } from "../../components/calculators/MinimumPaymentPayoff";
+import { minimumPaymentPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Minimum Payment Payoff Calculator";
 const metaTitle = "Minimum Payment Payoff Calculator (Time & Interest)";
 const description =
   "Estimate how long it could take to pay off a balance with minimum payments, and the total interest cost. Educational use only.";
+
+const exampleInput = { balance: 5000, aprPercent: 24.99, minPercent: 2, minDollars: 25 };
+const example = minimumPaymentPayoffSchedule(exampleInput);
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <CalculatorLayout
   title={title}
@@ -44,7 +49,7 @@ const description =
       a: "Pay more than the minimum, reduce APR (e.g., refinance/transfer), and prioritize higher-APR balances first."
     }
   ]}
-  lastUpdated="2026-01-29"
+  lastUpdated="2026-01-30"
 >
   <MinimumPaymentPayoff client:load />
 
@@ -54,6 +59,40 @@ const description =
       Try a $5,000 balance at 24.99% APR. Compare minimum payments only versus paying an extra $25-$100 per month.
       Many people are surprised by how much time and interest minimum-only payments can add.
     </p>
+
+    <h2 style="margin:18px 0 10px">Example output (estimate)</h2>
+    <p class="muted" style="margin:0">
+      Example inputs: ${money.format(exampleInput.balance)} balance, {exampleInput.aprPercent}% APR, minimum = {exampleInput.minPercent}% or
+      ${money.format(exampleInput.minDollars)}.
+    </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Payoff time</td>
+            <td>{example.months} months</td>
+          </tr>
+          <tr>
+            <td>Total interest</td>
+            <td>{money.format(example.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Total paid</td>
+            <td>{money.format(example.totalPaid)}</td>
+          </tr>
+          <tr>
+            <td>Min payment to avoid growth (approx.)</td>
+            <td>{money.format(example.minPaymentToAvoidGrowth)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2 style="margin:18px 0 10px">Inputs to sanity-check</h2>
     <ul class="muted" style="margin:0; padding-left:18px">

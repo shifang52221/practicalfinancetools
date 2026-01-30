@@ -1,11 +1,33 @@
 ﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { RentVsBuyCalculator as RentVsBuyCalculatorComponent } from "../../components/calculators/RentVsBuy";
+import { rentVsBuy } from "../../lib/calc/rentBuy";
 
 const title = "Rent vs Buy Calculator";
 const metaTitle = "Rent vs Buy Calculator (Break-even)";
 const description =
   "Compare renting vs buying with scenario assumptions to estimate break-even and projected net worth. Educational use only.";
+
+const exampleInput = {
+  years: 7,
+  monthlyRent: 2200,
+  rentGrowthPercent: 3,
+  homePrice: 420000,
+  downPayment: 84000,
+  aprPercent: 6.5,
+  termYears: 30,
+  homeAppreciationPercent: 3,
+  closingCostsPercent: 3,
+  sellingCostsPercent: 6,
+  propertyTaxPercent: 1.1,
+  insuranceAnnual: 1800,
+  hoaMonthly: 0,
+  maintenancePercent: 1,
+  investmentReturnPercent: 5
+};
+const example = rentVsBuy(exampleInput);
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const exampleBreakEven = example.breakEvenYear == null ? "Not within horizon" : `${example.breakEvenYear} years`;
 ---
 <CalculatorLayout
   title={title}
@@ -52,7 +74,7 @@ const description =
       a: "Different tools include different costs (taxes, maintenance, opportunity cost, and tax impacts) and use different modeling assumptions."
     }
   ]}
-  lastUpdated="2026-01-29"
+  lastUpdated="2026-01-30"
 >
   <RentVsBuyCalculatorComponent client:load />
 
@@ -62,6 +84,36 @@ const description =
       Rent vs buy results depend heavily on assumptions. Use this tool to compare scenarios, not to predict the future.
       Small changes in appreciation, rent growth, or mortgage rate can change the break-even horizon.
     </p>
+
+    <h2 style="margin:18px 0 10px">Example output (estimate)</h2>
+    <p class="muted" style="margin:0">
+      Example inputs: ${money.format(exampleInput.homePrice)} home, {exampleInput.aprPercent}% APR, {exampleInput.years}-year horizon,
+      ${money.format(exampleInput.monthlyRent)} rent.
+    </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Break-even (model)</td>
+            <td>{exampleBreakEven}</td>
+          </tr>
+          <tr>
+            <td>Net worth (rent) at year {example.atHorizon.years}</td>
+            <td>{money.format(example.atHorizon.netWorthRent)}</td>
+          </tr>
+          <tr>
+            <td>Net worth (buy) at year {example.atHorizon.years}</td>
+            <td>{money.format(example.atHorizon.netWorthBuy)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2 style="margin:18px 0 10px">Example scenarios to try</h2>
     <ul class="muted" style="margin:0; padding-left:18px">

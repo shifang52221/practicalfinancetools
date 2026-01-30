@@ -13,6 +13,8 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
 const pct = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const examplePayment = money.format(example.payment);
 const exampleApr = example.aprPercent == null ? "N/A" : `${pct.format(example.aprPercent)}%`;
+const exampleSpread =
+  example.aprPercent == null ? "N/A" : `${pct.format(example.aprPercent - exampleInput.nominalRatePercent)}%`;
 ---
 <CalculatorLayout
   title={title}
@@ -62,7 +64,7 @@ const exampleApr = example.aprPercent == null ? "N/A" : `${pct.format(example.ap
       a: "No. It's an educational estimate to compare scenarios. Official APR disclosures follow specific legal rules."
     }
   ]}
-  lastUpdated="2026-01-29"
+  lastUpdated="2026-01-30"
 >
   <AprCalculatorComponent client:load />
 
@@ -158,6 +160,10 @@ const exampleApr = example.aprPercent == null ? "N/A" : `${pct.format(example.ap
           <tr>
             <td>Estimated APR</td>
             <td>{exampleApr}</td>
+          </tr>
+          <tr>
+            <td>APR minus rate (spread)</td>
+            <td>{exampleSpread}</td>
           </tr>
         </tbody>
       </table>

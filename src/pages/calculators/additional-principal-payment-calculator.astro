@@ -1,11 +1,29 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { ExtraPaymentMortgageCalculator } from "../../components/calculators/ExtraPayment";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Principal Payment Calculator (Mortgage)";
 const metaTitle = "Extra Principal Payment Mortgage Calculator";
 const description =
   "Estimate how extra principal payments (monthly or lump sum) change mortgage payoff time and total interest. Educational use only.";
+
+const exampleInput = { principal: 360000, aprPercent: 6.5, termMonths: 360, extraMonthly: 200 };
+const exampleBase = amortizationSchedule({
+  principal: exampleInput.principal,
+  aprPercent: exampleInput.aprPercent,
+  termMonths: exampleInput.termMonths
+});
+const exampleExtra = amortizationSchedule({
+  principal: exampleInput.principal,
+  aprPercent: exampleInput.aprPercent,
+  termMonths: exampleInput.termMonths,
+  extraMonthly: exampleInput.extraMonthly,
+  extraMonthlyStartMonth: 1
+});
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const monthsSaved = Math.max(0, exampleBase.months - exampleExtra.months);
+const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.totalInterest);
 ---
 <CalculatorLayout
   title={title}
@@ -48,7 +66,7 @@ const description =
       a: "Some loans have prepayment penalties or restrictions. This calculator assumes no prepayment penalty. Check your note or ask your servicer before making extra principal payments."
     }
   ]}
-  lastUpdated="2026-01-29"
+  lastUpdated="2026-01-30"
 >
   <ExtraPaymentMortgageCalculator client:load />
 
@@ -58,6 +76,40 @@ const description =
       Try $360,000 at 6.50% for 30 years, then compare: (1) $100-$300 extra per month, and (2) a one-time principal payment (e.g., from a
       bonus) early in the loan. Keep the baseline constant when you compare scenarios.
     </p>
+
+    <h2 style="margin:18px 0 10px">Example output (monthly extra)</h2>
+    <p class="muted" style="margin:0">
+      Example inputs: ${money.format(exampleInput.principal)} loan, {exampleInput.aprPercent}% APR, 30-year term,
+      ${money.format(exampleInput.extraMonthly)} extra monthly.
+    </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Payoff time</th>
+            <th>Total interest (estimate)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline</td>
+            <td>{exampleBase.months} months</td>
+            <td>{money.format(exampleBase.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>With extra</td>
+            <td>{exampleExtra.months} months</td>
+            <td>{money.format(exampleExtra.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Savings</td>
+            <td>{monthsSaved} months</td>
+            <td>{money.format(interestSaved)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2 style="margin:18px 0 10px">When extra principal can make sense</h2>
     <ul class="muted" style="margin:0; padding-left:18px">

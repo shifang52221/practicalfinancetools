@@ -1,11 +1,20 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { AmortizationScheduleCalculator as AmortizationScheduleCalculatorComponent } from "../../components/calculators/Amortization";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Amortization Schedule Calculator";
 const metaTitle = "Amortization Schedule Calculator (Payment Table)";
 const description =
   "Amortization schedule showing payment, interest, principal, and balance. Compare to the extra payment calculator for extras. Educational use only.";
+
+const exampleInput = { principal: 300000, aprPercent: 6.5, termMonths: 360 };
+const example = amortizationSchedule(exampleInput);
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const examplePayment = money.format(example.paymentPI);
+const exampleYear1Balance = money.format(example.rows[11]?.endingBalance ?? 0);
+const exampleYear5Balance = money.format(example.rows[59]?.endingBalance ?? 0);
+const exampleTotalInterest = money.format(example.totalInterest);
 ---
 <CalculatorLayout
   title={title}
@@ -40,7 +49,7 @@ const description =
       a: "This assumes a fixed rate. Adjustable-rate loans require a different model."
     }
   ]}
-  lastUpdated="2026-01-29"
+  lastUpdated="2026-01-30"
 >
   <AmortizationScheduleCalculatorComponent client:load />
 
@@ -50,6 +59,39 @@ const description =
       Early payments are interest-heavy because the balance is highest. Over time, interest decreases and more of each
       payment goes toward principal. The "Balance" column shows how much you still owe after each payment.
     </p>
+
+    <h2 style="margin:18px 0 10px">Example snapshot</h2>
+    <p class="muted" style="margin:0">
+      Example inputs: ${money.format(exampleInput.principal)} loan, {exampleInput.aprPercent}% APR, 30-year term.
+    </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Output (estimate)</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monthly P&amp;I payment</td>
+            <td>{examplePayment}</td>
+          </tr>
+          <tr>
+            <td>Balance after year 1</td>
+            <td>{exampleYear1Balance}</td>
+          </tr>
+          <tr>
+            <td>Balance after year 5</td>
+            <td>{exampleYear5Balance}</td>
+          </tr>
+          <tr>
+            <td>Total interest (full term)</td>
+            <td>{exampleTotalInterest}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2 style="margin:18px 0 10px">When this schedule is most useful</h2>
     <ul class="muted" style="margin:0; padding-left:18px">

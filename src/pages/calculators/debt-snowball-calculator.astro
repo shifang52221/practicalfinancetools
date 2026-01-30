@@ -1,11 +1,20 @@
 ﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { DebtSnowballCalculator as DebtSnowballCalculatorComponent } from "../../components/calculators/DebtSnowball";
+import { buildDebtPlan } from "../../lib/calc/debtPlan";
 
 const title = "Debt Snowball Calculator";
 const metaTitle = "Debt Snowball Calculator (Smallest Balance First)";
 const description =
   "Build a debt payoff plan using the snowball method (smallest balance first). Estimate payoff time and interest. Educational use only.";
+
+const exampleDebts = [
+  { id: "card-a", name: "Card A", balance: 600, aprPercent: 24, minPayment: 25 },
+  { id: "card-b", name: "Card B", balance: 2500, aprPercent: 18, minPayment: 70 },
+  { id: "loan-c", name: "Loan C", balance: 8000, aprPercent: 8, minPayment: 160 }
+];
+const examplePlan = buildDebtPlan({ debts: exampleDebts, extraMonthly: 150, strategy: "snowball" });
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 <CalculatorLayout
   title={title}
@@ -53,7 +62,7 @@ const description =
       a: "Closing accounts can affect your credit profile and may not be necessary. Consider factors like annual fees, spending habits, and credit utilization, and choose what you can sustain."
     }
   ]}
-  lastUpdated="2026-01-29"
+  lastUpdated="2026-01-30"
 >
   <DebtSnowballCalculatorComponent client:load />
 
@@ -71,6 +80,40 @@ const description =
       (3) $8,000 at 8% with a $160 minimum. If you can pay $150 extra each month, snowball targets the $600 balance
       first. After it's paid off, you roll its payment into the next smallest balance and repeat.
     </p>
+
+    <h2 style="margin:18px 0 10px">Example output (estimate)</h2>
+    <div style="overflow:auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Total payoff time</td>
+            <td>{examplePlan.months} months</td>
+          </tr>
+          <tr>
+            <td>Total interest</td>
+            <td>{money.format(examplePlan.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>First payoff</td>
+            <td>
+              {examplePlan.payoffs[0]?.name ?? "Debt"} (month {examplePlan.payoffs[0]?.payoffMonth ?? "N/A"})
+            </td>
+          </tr>
+          <tr>
+            <td>Second payoff</td>
+            <td>
+              {examplePlan.payoffs[1]?.name ?? "Debt"} (month {examplePlan.payoffs[1]?.payoffMonth ?? "N/A"})
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2 style="margin:18px 0 10px">Inputs to verify</h2>
     <ul class="muted" style="margin:0; padding-left:18px">

@@ -1,11 +1,26 @@
 ﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { BiweeklyMortgageCalculator } from "../../components/calculators/BiweeklyMortgage";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Biweekly Mortgage Payment Calculator";
 const metaTitle = "Biweekly Mortgage Payment Calculator (Estimate Savings)";
 const description =
   "Estimate how biweekly mortgage payments can shorten payoff time and reduce total interest, and compare to an equivalent monthly extra payment. Educational use only.";
+
+const exampleInput = { principal: 360000, aprPercent: 6.5, termMonths: 360 };
+const exampleBase = amortizationSchedule(exampleInput);
+const exampleExtraMonthly = exampleBase.paymentPI / 12;
+const exampleBiweekly = amortizationSchedule({
+  principal: exampleInput.principal,
+  aprPercent: exampleInput.aprPercent,
+  termMonths: exampleInput.termMonths,
+  extraMonthly: exampleExtraMonthly,
+  extraMonthlyStartMonth: 1
+});
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const monthsSaved = Math.max(0, exampleBase.months - exampleBiweekly.months);
+const interestSaved = Math.max(0, exampleBase.totalInterest - exampleBiweekly.totalInterest);
 ---
 <CalculatorLayout
   title={title}
@@ -48,7 +63,7 @@ const description =
       a: "Escrow amounts are set by your servicer and can change over time. This calculator focuses on principal and interest. If you pay escrow with your mortgage, make sure your payment method covers escrow correctly."
     }
   ]}
-  lastUpdated="2026-01-29"
+  lastUpdated="2026-01-30"
 >
   <BiweeklyMortgageCalculator client:load />
 
@@ -59,6 +74,40 @@ const description =
       <li>If payments are held and posted monthly, savings can be smaller than expected.</li>
       <li>Compare biweekly to a simple monthly extra to avoid fee-based programs.</li>
     </ul>
+
+    <h2 style="margin:18px 0 10px">Example savings (approx.)</h2>
+    <p class="muted" style="margin:0">
+      Example inputs: ${money.format(exampleInput.principal)} loan, {exampleInput.aprPercent}% APR, 30-year term.
+      We approximate biweekly as an extra monthly payment equal to (P&amp;I / 12).
+    </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Payoff time</th>
+            <th>Total interest (estimate)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline</td>
+            <td>{exampleBase.months} months</td>
+            <td>{money.format(exampleBase.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Biweekly approximation</td>
+            <td>{exampleBiweekly.months} months</td>
+            <td>{money.format(exampleBiweekly.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>Savings</td>
+            <td>{monthsSaved} months</td>
+            <td>{money.format(interestSaved)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2 style="margin:18px 0 10px">Inputs to confirm</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
