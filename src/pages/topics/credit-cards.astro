@@ -92,6 +92,15 @@ const description =
       <li>Re-run with a lower APR scenario if a transfer is realistic.</li>
     </ul>
   </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Multiple APR tiers</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Purchases, balance transfers, and cash advances often carry different APRs. Separate these when you model payoff so the
+      highest-cost balances are targeted first.
+    </p>
+  </section>
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Tools</h2>
@@ -126,6 +135,14 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Grace period reset</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Carrying a balance can remove the grace period on new purchases. If you keep using the card, interest can accrue immediately,
+      which slows payoff. Consider using a different card for new spending while paying down the balance.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">FAQ</h2>
     <h3 style="margin:12px 0 0">Why does payoff take so long with minimum payments?</h3>
     <p class="muted" style="margin:8px 0 0">
@@ -150,6 +167,6 @@ const description =
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-01-30</p>
   </section>
 </BaseLayout>
