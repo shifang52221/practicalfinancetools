@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rent vs Buy Rent Growth (How to set assumptions)";
+const description =
+  "How to choose rent growth assumptions for rent vs buy modeling, using local data and scenario ranges. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-rent-growth">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Rent growth</span>
+    </nav>
+    <h1>Rent growth assumptions for rent vs buy</h1>
+    <p>
+      Rent growth drives how fast the renting scenario costs rise. This guide shows how to set a realistic rent growth assumption and
+      how to test a range of outcomes.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Start with local data</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use recent local rent comps and lease renewals if you have them. National averages can be misleading, especially in high-growth
+      or stable markets.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Account for lease terms</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Short leases can reset to market rates faster.</li>
+      <li>Long leases can lock in lower growth temporarily.</li>
+      <li>Concessions should be reflected as lower effective rent.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use a scenario range</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Pick a conservative rent growth rate.</li>
+      <li>Add a base case from recent local trends.</li>
+      <li>Test a higher-growth scenario if your market is volatile.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using a high growth rate without a conservative case.</li>
+      <li>Assuming rent growth is flat in a rising market.</li>
+      <li>Ignoring the effect of moving to a different neighborhood or unit type.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Should rent growth match home appreciation?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not necessarily. Rent growth and home appreciation can move differently based on local supply, demand, and income growth.
+    </p>
+    <h3 style="margin:12px 0 0">What if I plan to move to a cheaper area?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Use a lower rent baseline or a scenario that reflects that move. Keep assumptions consistent across scenarios you compare.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/rent-vs-buy-home-appreciation">Home appreciation assumptions</a></li>
+        <li><a href="/guides/rent-vs-buy-time-horizon">Time horizon impact</a></li>
+        <li><a href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+      <a class="btn" href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

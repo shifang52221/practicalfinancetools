@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rent vs Buy Investment Return (Opportunity cost)";
+const description =
+  "How to set investment return assumptions for the rent vs buy opportunity cost and how to model conservative ranges. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-investment-return">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Investment return</span>
+    </nav>
+    <h1>Investment return assumptions in rent vs buy</h1>
+    <p>
+      The rent vs buy model compares a homeowner scenario with a renter who can invest cash instead. This guide explains how to set a
+      reasonable investment return assumption and why after-tax returns matter.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-down-payment">Down payment tradeoffs</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What the investment return represents</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The return rate models what the renter could earn on cash not used for a down payment or closing costs. It is not a guarantee,
+      so use a conservative range.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">After-tax vs pre-tax returns</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>After-tax returns are more realistic if you expect taxable gains.</li>
+      <li>Use a lower return if the investment is low risk or short term.</li>
+      <li>Match the return assumption to your actual investing plan.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Scenario range to test</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Conservative scenario: lower return to reflect volatility.</li>
+      <li>Base scenario: long-run balanced portfolio assumptions.</li>
+      <li>Optimistic scenario: only if aligned with your risk tolerance.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using a high return that does not match your actual plan.</li>
+      <li>Ignoring taxes and fees that reduce net returns.</li>
+      <li>Assuming returns are smooth year to year.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Should I use stock market averages?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Use a return that matches your risk tolerance and tax situation. Long-run averages can be a reference, but they may be too high
+      for short horizons.
+    </p>
+    <h3 style="margin:12px 0 0">What if I would keep the cash in savings?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Use a lower return that matches your savings yield. That will usually make the buy scenario relatively stronger.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/rent-vs-buy-down-payment">Down payment tradeoffs</a></li>
+        <li><a href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a></li>
+        <li><a href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-down-payment">Down payment tradeoffs</a>
+      <a class="btn" href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,117 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rent vs Buy Time Horizon (Holding period impact)";
+const description =
+  "How holding period changes rent vs buy results, with short, medium, and long horizon checks. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-time-horizon">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Time horizon</span>
+    </nav>
+    <h1>Rent vs buy: time horizon matters most</h1>
+    <p>
+      Your holding period often drives the rent vs buy result more than any other single input. Use this guide to model short and long
+      horizons and see how transaction costs and appreciation change the comparison.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why holding period dominates</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Buying has large upfront and exit costs. Renting has lower transaction costs but no equity build-up. The shorter your horizon,
+      the more those transaction costs can outweigh equity and appreciation.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Short horizon (2-4 years)</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Transaction costs can dominate the result.</li>
+        <li>Use higher selling cost estimates to stress test.</li>
+        <li>Appreciation has limited time to compound.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Medium horizon (5-7 years)</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Mortgage amortization starts to matter.</li>
+        <li>Small changes in rate or appreciation can shift break-even.</li>
+        <li>Model both conservative and base cases.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Long horizon (8-15+ years)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Appreciation and principal paydown become more influential.</li>
+      <li>Maintenance and property taxes compound over time.</li>
+      <li>Test a lower appreciation scenario to avoid optimistic bias.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to stress test time horizon</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Pick your most likely horizon as the base case.</li>
+      <li>Run a shorter horizon that reflects a potential move.</li>
+      <li>Run a longer horizon only if it is realistic for your plans.</li>
+      <li>Record which assumptions change the result across horizons.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Should I use the longest possible horizon?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      No. Use the most realistic horizon for your life plans. Overly long horizons can make buying look better than it is for your
+      actual timeline.
+    </p>
+    <h3 style="margin:12px 0 0">What if I am unsure?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Model a range of horizons. If buying only wins on a very long horizon, that is a signal to be cautious.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a></li>
+        <li><a href="/guides/rent-vs-buy-closing-costs">Closing costs detail</a></li>
+        <li><a href="/guides/rent-vs-buy-home-appreciation">Home appreciation assumptions</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+      <a class="btn" href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

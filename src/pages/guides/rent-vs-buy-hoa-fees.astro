@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rent vs Buy HOA Fees (Condo and community costs)";
+const description =
+  "How HOA dues affect rent vs buy comparisons, including what they cover and how to model them. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-hoa-fees">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">HOA fees</span>
+    </nav>
+    <h1>HOA fees in rent vs buy comparisons</h1>
+    <p>
+      HOA dues can materially change monthly homeowner costs, especially for condos or planned communities. This guide shows how to
+      model HOA fees and avoid double counting.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-costs-to-include">Costs to include</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What HOA fees typically cover</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Shared maintenance (roof, exterior, common areas).</li>
+      <li>Amenities (pool, gym, landscaping, security).</li>
+      <li>Reserves for future repairs, depending on the HOA budget.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to model HOA fees</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the current monthly HOA amount in the homeowner costs.</li>
+      <li>Check if HOA covers items you would otherwise include as maintenance.</li>
+      <li>Plan for potential increases over time if the HOA history shows growth.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Avoid double counting</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If the HOA covers exterior maintenance or major repairs, reduce your separate maintenance assumption so you do not double count
+      the same costs.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Ignoring HOA dues entirely.</li>
+      <li>Assuming HOA dues never increase.</li>
+      <li>Counting HOA fees and full maintenance at the same time.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">What if HOA dues cover most maintenance?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Reduce the separate maintenance assumption to cover only what is not included in the HOA budget.
+    </p>
+    <h3 style="margin:12px 0 0">Should I model special assessments?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      If special assessments are possible, add a buffer to maintenance or include a one-time cost scenario.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/rent-vs-buy-costs-to-include">Costs to include</a></li>
+        <li><a href="/guides/rent-vs-buy-maintenance-estimate">Maintenance estimate</a></li>
+        <li><a href="/guides/hoa-fees-and-mortgage-payment">HOA fees and mortgage payment</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-costs-to-include">Costs to include</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

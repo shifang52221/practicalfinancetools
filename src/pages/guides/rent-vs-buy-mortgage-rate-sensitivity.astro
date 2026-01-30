@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rent vs Buy Mortgage Rate Sensitivity";
+const description =
+  "How mortgage rate changes affect rent vs buy outcomes and how to stress test rate scenarios. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-mortgage-rate-sensitivity">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Mortgage rate sensitivity</span>
+    </nav>
+    <h1>Mortgage rate sensitivity in rent vs buy</h1>
+    <p>
+      Mortgage rates can swing monthly payments and change the break-even timeline. This guide shows how to test higher and lower
+      rate scenarios and interpret the results.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why rate changes matter</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Higher rates increase monthly payment and reduce the share of payment going to principal early on. This can push break-even
+      further out or make renting look better for shorter horizons.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Scenario template</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Run your base case with the current rate quote.</li>
+      <li>Run a higher-rate scenario to stress test affordability.</li>
+      <li>Run a lower-rate scenario if you expect to refinance later.</li>
+      <li>Compare break-even and total cost in each case.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to keep consistent</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the same home price, down payment, and holding period.</li>
+      <li>Keep taxes, insurance, and maintenance unchanged.</li>
+      <li>Change only the rate so you can isolate its impact.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming rates will fall without modeling the current rate.</li>
+      <li>Changing multiple inputs at once, which hides the rate effect.</li>
+      <li>Ignoring the impact of rate changes on DTI and affordability.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Should I model a refinance?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      If you expect to refinance, run a second scenario with a lower rate and a shorter horizon that reflects that plan.
+    </p>
+    <h3 style="margin:12px 0 0">What rate should I use?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Use a current rate quote for the property type and your credit profile. Avoid generic averages if you have a real quote.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/rent-vs-buy-time-horizon">Time horizon impact</a></li>
+        <li><a href="/guides/rent-vs-buy-break-even">Break-even guide</a></li>
+        <li><a href="/guides/apr-vs-interest-rate">APR vs interest rate</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

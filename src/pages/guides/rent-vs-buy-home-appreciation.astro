@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rent vs Buy Home Appreciation (Assumptions)";
+const description =
+  "How to set home appreciation assumptions in rent vs buy models and how to test conservative scenarios. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-home-appreciation">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Home appreciation</span>
+    </nav>
+    <h1>Home appreciation assumptions for rent vs buy</h1>
+    <p>
+      Home appreciation can swing rent vs buy outcomes, especially over long horizons. This guide shows how to set realistic
+      appreciation assumptions and how to stress test the result.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-time-horizon">Time horizon impact</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use conservative baselines</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Appreciation varies by market and by time period. Start with a conservative assumption based on local history rather than a
+      single strong year.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Local volatility matters</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Some markets have higher volatility and longer recovery cycles.</li>
+      <li>Submarkets can differ meaningfully within the same city.</li>
+      <li>Supply constraints or new construction can shift long-term trends.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Scenario range to test</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Conservative scenario: lower appreciation to stress test.</li>
+      <li>Base scenario: use local long-run averages if available.</li>
+      <li>Optimistic scenario: only if supported by strong local data.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using a single recent boom year as the long-term rate.</li>
+      <li>Assuming appreciation is guaranteed or linear.</li>
+      <li>Ignoring the effect of selling costs on net proceeds.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Should I use national averages?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Prefer local data when possible. National averages can mask high or low growth markets.
+    </p>
+    <h3 style="margin:12px 0 0">What if I expect no appreciation?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      That is a valid conservative scenario. Run it to see how much of the buy case relies on appreciation.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/rent-vs-buy-rent-growth">Rent growth assumptions</a></li>
+        <li><a href="/guides/rent-vs-buy-time-horizon">Time horizon impact</a></li>
+        <li><a href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+      <a class="btn" href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

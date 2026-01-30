@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rent vs Buy Maintenance Estimate (How to model)";
+const description =
+  "How to estimate maintenance costs for rent vs buy comparisons, including reserves for repairs and property type differences. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-maintenance-estimate">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Maintenance estimate</span>
+    </nav>
+    <h1>Maintenance estimates for rent vs buy</h1>
+    <p>
+      Maintenance is one of the most underestimated costs in rent vs buy models. This guide shows how to set a realistic maintenance
+      assumption and how to stress test it.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-costs-to-include">Costs to include</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What maintenance includes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Routine upkeep (HVAC servicing, minor repairs, landscaping).</li>
+      <li>Major replacements over time (roof, appliances, systems).</li>
+      <li>Unexpected repairs from wear or weather.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Percent of value vs actual costs</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Many models use a percent of home value as a maintenance estimate. That can be a good starting point, but older homes and
+      larger properties often require higher reserves. Compare your estimate with local contractor quotes if available.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Property type matters</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Single-family homes: broader maintenance responsibility.</li>
+      <li>Condos: some maintenance is covered by HOA fees.</li>
+      <li>Older homes: more frequent repairs and replacements.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to stress test maintenance</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Run a base case with a conservative maintenance estimate.</li>
+      <li>Run a higher-maintenance scenario to reflect older or higher-risk properties.</li>
+      <li>Compare results to see how sensitive break-even is to maintenance.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming maintenance is zero in the first few years.</li>
+      <li>Ignoring big-ticket replacements like roofs or HVAC.</li>
+      <li>Double-counting HOA maintenance and homeowner maintenance.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Should I use HOA dues instead of maintenance?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      No. HOA dues may cover some maintenance, but they rarely cover everything. Use both where appropriate.
+    </p>
+    <h3 style="margin:12px 0 0">Is a percent-of-value estimate good enough?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It is a starting point. For older homes, consider a higher reserve or add a one-time repair cost.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/rent-vs-buy-costs-to-include">Costs to include</a></li>
+        <li><a href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a></li>
+        <li><a href="/guides/how-to-estimate-homeowners-insurance">Estimate homeowners insurance</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-costs-to-include">Costs to include</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rent vs Buy Costs to Include (Owner and renter)";
+const description =
+  "List of one-time and ongoing costs to include when comparing renting and buying, including closing costs, maintenance, HOA, and selling costs. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-costs-to-include">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Rent vs buy costs</span>
+    </nav>
+    <h1>Rent vs buy costs to include</h1>
+    <p>
+      Missing costs can flip a rent vs buy result. Use this list to include the most common owner and renter costs so your comparison
+      is complete and realistic.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">One-time buyer costs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Closing costs (lender fees, title, escrow, appraisal, inspections).</li>
+      <li>Moving and setup costs (furniture, repairs, utilities setup).</li>
+      <li>Upfront escrow or prepaid items (taxes, insurance).</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Ongoing homeowner costs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Property taxes and homeowners insurance.</li>
+      <li>HOA dues or condo fees.</li>
+      <li>Maintenance and repairs (set a reserve, especially for older homes).</li>
+      <li>PMI or other mortgage insurance if applicable.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Ongoing renter costs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Monthly rent plus any expected rent growth.</li>
+      <li>Renter insurance.</li>
+      <li>Moving costs at lease renewal if you expect to move often.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Selling costs for owners</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Agent commissions and listing fees.</li>
+      <li>Seller closing costs (varies by market).</li>
+      <li>Repairs or concessions needed to sell.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to plug costs into the calculator</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Enter buyer closing costs and seller costs separately.</li>
+      <li>Use monthly amounts for taxes, insurance, HOA, and maintenance.</li>
+      <li>Adjust rent growth and appreciation in line with your market.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Forgetting maintenance or assuming it is zero.</li>
+      <li>Ignoring selling costs on short horizons.</li>
+      <li>Leaving out HOA dues or mortgage insurance.</li>
+      <li>Using unrealistic rent growth or appreciation assumptions.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Do taxes and insurance belong in the model?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Yes. They can be a meaningful share of monthly homeowner costs and should be included for a fair comparison.
+    </p>
+    <h3 style="margin:12px 0 0">Should I include renovation costs?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      If they are likely within your holding period, include them in maintenance or one-time costs.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a></li>
+        <li><a href="/guides/rent-vs-buy-closing-costs">Closing costs detail</a></li>
+        <li><a href="/guides/rent-vs-buy-maintenance-estimate">Maintenance estimate</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

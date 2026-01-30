@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rent vs Buy PMI Assumptions (Mortgage insurance)";
+const description =
+  "How to include mortgage insurance (PMI) in rent vs buy comparisons and how it affects the monthly cost. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-pmi-assumptions">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">PMI assumptions</span>
+    </nav>
+    <h1>PMI assumptions in rent vs buy</h1>
+    <p>
+      Mortgage insurance can add a meaningful monthly cost when your down payment is below a lender threshold. This guide shows how to
+      model PMI and avoid underestimating homeowner costs.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-down-payment">Down payment tradeoffs</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When PMI applies</h2>
+    <p class="muted" style="margin:10px 0 0">
+      PMI typically applies when the down payment is below a certain threshold. It is an added monthly cost on top of principal,
+      interest, taxes, insurance, and HOA dues.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to model PMI</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Add PMI as a monthly cost in the rent vs buy calculator.</li>
+      <li>Use your lender quote if available or a conservative estimate.</li>
+      <li>Model PMI removal timing if you expect it to drop off later.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why PMI can move break-even</h2>
+    <p class="muted" style="margin:10px 0 0">
+      PMI increases monthly homeowner costs, which can delay break-even. If you expect to remove PMI after a few years, run a
+      scenario without it after that point to see the impact.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Ignoring PMI when the down payment is low.</li>
+      <li>Assuming PMI drops off immediately after purchase.</li>
+      <li>Failing to match PMI assumptions to lender rules.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">How do I estimate PMI?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Use a lender quote if possible. If not, include a conservative placeholder and test a range.
+    </p>
+    <h3 style="margin:12px 0 0">Does PMI last the full loan term?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not usually. Many loans allow PMI removal after you reach a certain equity threshold, but rules vary.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/rent-vs-buy-down-payment">Down payment tradeoffs</a></li>
+        <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
+        <li><a href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-down-payment">Down payment tradeoffs</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

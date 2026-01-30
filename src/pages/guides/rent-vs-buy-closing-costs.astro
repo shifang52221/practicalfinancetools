@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rent vs Buy Closing Costs (Buyer and seller)";
+const description =
+  "Overview of closing and selling costs to include in rent vs buy comparisons and why they matter on short horizons. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-closing-costs">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Closing costs</span>
+    </nav>
+    <h1>Closing costs in rent vs buy comparisons</h1>
+    <p>
+      Closing and selling costs are often the biggest reason buying loses over short horizons. This guide shows where those costs show
+      up and how to model them realistically.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-time-horizon">Time horizon impact</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Buyer closing costs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Lender fees, title and escrow, appraisal, inspections.</li>
+      <li>Prepaid items like taxes and insurance.</li>
+      <li>Upfront points or origination fees if applicable.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Seller costs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Agent commissions and listing fees.</li>
+      <li>Seller closing costs and concessions.</li>
+      <li>Repairs to prepare for sale.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why short horizons are sensitive</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you sell within a few years, these costs are spread over a short period, which can overwhelm any equity or appreciation.
+      Model higher selling costs when your holding period is short.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to estimate them</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use a recent Loan Estimate to capture lender and title fees.</li>
+      <li>Ask local agents about typical seller costs in your area.</li>
+      <li>Run a range of costs to see how sensitive the result is.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming closing costs are zero because they can be financed.</li>
+      <li>Ignoring seller costs or assuming a discount.</li>
+      <li>Using the same costs for every market.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Should I include buyer points?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Yes. Points are upfront costs that can change the APR and break-even timeline.
+    </p>
+    <h3 style="margin:12px 0 0">What if I roll costs into the loan?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Rolling costs into the loan still increases your total cost. Include them in the model either as closing costs or higher loan
+      amount.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a></li>
+        <li><a href="/guides/rent-vs-buy-time-horizon">Time horizon impact</a></li>
+        <li><a href="/guides/rent-vs-buy-costs-to-include">Costs to include</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-time-horizon">Time horizon impact</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

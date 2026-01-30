@@ -1,0 +1,131 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rent vs Buy Checklist (Inputs to gather)";
+const description =
+  "Checklist to gather the key inputs for a rent vs buy comparison: taxes, insurance, maintenance, closing costs, rent growth, appreciation, and time horizon. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-checklist">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Rent vs buy checklist</span>
+    </nav>
+    <h1>Rent vs buy checklist</h1>
+    <p>
+      Rent vs buy results are only as good as the inputs. Use this checklist to collect realistic assumptions before you run the
+      calculator so your scenarios are comparable and grounded.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Core inputs to gather</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Monthly rent for a comparable unit (with any concessions adjusted).</li>
+      <li>Expected holding period (years you plan to stay).</li>
+      <li>Home price, down payment, and mortgage rate quote.</li>
+      <li>Property taxes, insurance, HOA, and maintenance assumptions.</li>
+      <li>Closing and selling costs for your market.</li>
+      <li>Rent growth, home appreciation, and investment return assumptions.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Mortgage payment inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the note rate, not APR, for principal and interest.</li>
+      <li>Convert annual taxes and insurance into monthly amounts.</li>
+      <li>Add HOA dues and PMI if they apply.</li>
+      <li>Confirm the term you would actually choose (30, 20, 15 years).</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Rent assumptions</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Start with a current market rent for a comparable home or apartment.</li>
+      <li>Adjust for concessions by lowering effective rent.</li>
+      <li>Use a rent growth range (base and conservative scenarios).</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Time horizon and transaction costs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Pick the most likely holding period, not the best case.</li>
+      <li>Include buyer closing costs and seller costs separately.</li>
+      <li>Short horizons are sensitive to these costs, so test higher values.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Opportunity cost assumptions</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Decide how you would invest cash not used for a down payment.</li>
+      <li>Use an after-tax return assumption if you want more realism.</li>
+      <li>Model both conservative and optimistic return scenarios.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to use the checklist</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Gather inputs from real quotes and local data sources.</li>
+      <li>Run a base case with conservative assumptions.</li>
+      <li>Change one input at a time to see what moves break-even.</li>
+      <li>Record the assumptions you plan to use long-term.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Which assumption matters most?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Holding period, selling costs, and mortgage rate usually move the result the most. Appreciation and rent growth matter more
+      on longer horizons.
+    </p>
+    <h3 style="margin:12px 0 0">Should I use national averages?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Prefer local data whenever possible. Taxes, insurance, and rent trends vary widely by market.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a></li>
+        <li><a href="/guides/rent-vs-buy-costs-to-include">Costs to include</a></li>
+        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the rent vs buy calculator</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>

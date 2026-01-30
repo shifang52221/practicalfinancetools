@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Rent vs Buy Down Payment (Tradeoffs and impact)";
+const description =
+  "How down payment size affects rent vs buy results, PMI, and opportunity cost. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-down-payment">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Down payment</span>
+    </nav>
+    <h1>Down payment tradeoffs in rent vs buy</h1>
+    <p>
+      A bigger down payment can lower your mortgage payment and reduce interest, but it also ties up cash that could be invested.
+      This guide shows how to model both sides of that tradeoff.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What changes with a larger down payment</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Lower loan balance and monthly principal and interest.</li>
+      <li>Potentially lower rate and lower mortgage insurance costs.</li>
+      <li>Less cash available to invest or keep liquid.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">PMI and thresholds</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If your down payment is below a lender threshold, mortgage insurance can add to monthly costs. Model PMI as an added monthly
+      cost in the rent vs buy calculator so the comparison stays realistic.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Opportunity cost</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Any extra cash used for the down payment is cash that cannot be invested elsewhere. Use the investment return input to model
+      what that cash could earn if you rented instead.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Scenario template</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Run a base case with your likely down payment.</li>
+      <li>Run a higher down payment scenario (lower rate and payment).</li>
+      <li>Run a lower down payment scenario (higher payment + PMI).</li>
+      <li>Compare total cost and break-even across scenarios.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Ignoring PMI or assuming it is negligible.</li>
+      <li>Using the same investment return for all scenarios without adjusting risk.</li>
+      <li>Not accounting for reduced liquidity after a large down payment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is a larger down payment always better?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not always. It lowers payment and interest, but it can reduce liquidity and investment opportunities.
+    </p>
+    <h3 style="margin:12px 0 0">Should I use retirement savings for a down payment?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      This guide does not provide financial advice. Model the opportunity cost and consult a qualified advisor if needed.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a></li>
+        <li><a href="/guides/rent-vs-buy-investment-return">Investment return assumptions</a></li>
+        <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>
