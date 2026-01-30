@@ -44,12 +44,28 @@ const description =
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Posting order and allocation</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Many lenders apply payments in a specific order (interest first, then principal). Credit cards may allocate payments across
+      balances with different APRs. When in doubt, follow the rules stated on your statement or lender disclosure.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Minimum payment modeling</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Minimums are modeled using a percent-of-balance and a dollar floor.</li>
       <li>When the payment is below interest, balances may not decline.</li>
       <li>Issuer-specific rules can differ; re-run with your statement values.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Inflation and opportunity cost</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Calculators focus on cash flow and interest, not broader economic factors. If you are comparing payoff vs investing, use a
+      conservative return and document the time horizon so the comparison is fair.
+    </p>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">APR comparisons</h2>
@@ -110,6 +126,6 @@ const description =
       If you'd like a specific formula breakdown for a calculator, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the page
       URL.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
   </section>
 </BaseLayout>
