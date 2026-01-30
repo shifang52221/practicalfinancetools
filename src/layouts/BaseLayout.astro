@@ -50,11 +50,18 @@ const websiteLd = {
   url: homeUrl,
   publisher: { "@id": `${siteUrl}/#organization` }
 };
-const pageType = canonicalPath?.startsWith("/guides")
-  ? "Article"
-  : canonicalPath?.startsWith("/topics")
-    ? "CollectionPage"
-    : "WebPage";
+const isGuidesIndex = canonicalPath === "/guides";
+const isGuidesDetail = canonicalPath?.startsWith("/guides/");
+const isTopicsIndex = canonicalPath === "/topics";
+const isTopicsDetail = canonicalPath?.startsWith("/topics/");
+const isCalculatorsIndex = canonicalPath === "/calculators";
+const pageType = isGuidesIndex
+  ? "CollectionPage"
+  : isGuidesDetail
+    ? "Article"
+    : isTopicsIndex || isTopicsDetail
+      ? "CollectionPage"
+      : "WebPage";
 const navPath = canonicalPath ?? "";
 const navActive = {
   calculators: navPath.startsWith("/calculators"),
@@ -76,13 +83,34 @@ const webPageLd = {
   publisher: { "@id": `${siteUrl}/#organization` },
   author: pageType === "Article" ? { "@id": `${siteUrl}/#organization` } : undefined
 };
+const breadcrumbItems = [{ "@type": "ListItem", position: 1, name: "Home", item: homeUrl }];
+let breadcrumbPosition = 2;
+if (isGuidesIndex || isGuidesDetail) {
+  breadcrumbItems.push({ "@type": "ListItem", position: breadcrumbPosition, name: "Guides", item: `${siteUrl}/guides` });
+  breadcrumbPosition += 1;
+}
+if (isTopicsIndex || isTopicsDetail) {
+  breadcrumbItems.push({ "@type": "ListItem", position: breadcrumbPosition, name: "Topics", item: `${siteUrl}/topics` });
+  breadcrumbPosition += 1;
+}
+if (isCalculatorsIndex) {
+  breadcrumbItems.push({ "@type": "ListItem", position: breadcrumbPosition, name: "Calculators", item: `${siteUrl}/calculators` });
+  breadcrumbPosition += 1;
+}
+const shouldAppendCurrent =
+  !(isGuidesIndex || isTopicsIndex || isCalculatorsIndex);
+if (shouldAppendCurrent) {
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    position: breadcrumbPosition,
+    name: title,
+    item: canonical ?? homeUrl
+  });
+}
 const breadcrumbLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: homeUrl },
-    { "@type": "ListItem", position: 2, name: title, item: canonical ?? homeUrl }
-  ]
+  itemListElement: breadcrumbItems
 };
 const ogType = pageType === "Article" ? "article" : "website";
 ---
