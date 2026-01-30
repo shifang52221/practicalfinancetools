@@ -1,0 +1,110 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "What Is PITI? (Mortgage Payment Breakdown)";
+const description =
+  "Understand PITI (principal, interest, taxes, insurance), when PMI and HOA add-ons apply, and how to verify your mortgage payment inputs. Educational use only.";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/what-is-piti">
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">What is PITI</span>
+    </nav>
+    <h1>What is PITI?</h1>
+    <p>
+      PITI is the common breakdown of a mortgage payment: principal, interest, taxes, and insurance. This guide explains what each
+      part includes, how to estimate it, and what to check before using a mortgage payment calculator.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">PITI components</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><strong>Principal</strong>: the part of your payment that reduces the loan balance.</li>
+      <li><strong>Interest</strong>: the cost of borrowing, calculated on the remaining balance.</li>
+      <li><strong>Taxes</strong>: property taxes, typically escrowed and paid monthly.</li>
+      <li><strong>Insurance</strong>: homeowners insurance (and sometimes flood or other required policies).</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">PMI or mortgage insurance</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Private mortgage insurance (PMI) is common when the down payment is under 20%. FHA and some other programs use mortgage
+        insurance premiums (MIP). The cost varies by program, down payment, and credit profile.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">HOA dues</h2>
+      <p class="muted" style="margin:10px 0 0">
+        HOA dues are not part of PITI but are often added to the housing payment for affordability checks. Use the actual monthly HOA
+        amount if applicable.
+      </p>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to estimate taxes and insurance</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use a local property tax rate and recent assessments for the zip code.</li>
+      <li>Get a rough insurance quote from a carrier if possible.</li>
+      <li>Condo or flood-prone areas may need extra coverage.</li>
+      <li>Convert annual numbers to monthly amounts for the calculator.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why statements can differ</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Escrow amounts can change after tax or insurance renewals.</li>
+      <li>Servicers may round differently than calculators.</li>
+      <li>PMI rules vary by program and lender.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: verify your inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Confirm loan amount and down payment match your offer.</li>
+      <li>Use the note rate, not APR, for principal and interest.</li>
+      <li>Use current property tax and insurance estimates.</li>
+      <li>Add HOA and PMI if they apply to your scenario.</li>
+      <li>Keep the same assumptions when comparing offers.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is PITI the full monthly housing cost?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      It covers principal, interest, taxes, and insurance. If you have HOA dues or PMI, add them to get the full housing payment.
+    </p>
+    <h3 style="margin:12px 0 0">Why does my PITI change over time?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Taxes and insurance can rise, and escrow adjustments can change the monthly amount even when the principal and interest stay
+      the same.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the mortgage payment calculator</a>
+      <a class="btn" href="/calculators/debt-to-income-calculator">Use the DTI calculator</a>
+      <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+  </section>
+</BaseLayout>
