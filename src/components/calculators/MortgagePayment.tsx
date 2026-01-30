@@ -6,6 +6,8 @@ import { clamp } from "../../lib/math";
 export function MortgagePaymentCalculator() {
   const [homePrice, setHomePrice] = useState(450000);
   const [downPayment, setDownPayment] = useState(90000);
+  const [downPaymentMode, setDownPaymentMode] = useState<"amount" | "percent">("amount");
+  const [downPaymentPercent, setDownPaymentPercent] = useState(20);
   const [rate, setRate] = useState(6.5);
   const [termYears, setTermYears] = useState(30);
   const [propertyTaxMode, setPropertyTaxMode] = useState<"annual" | "rate">("annual");
@@ -19,13 +21,17 @@ export function MortgagePaymentCalculator() {
   const downPaymentSafe = clamp(downPayment, 0, 1e9);
   const termYearsSafe = clamp(termYears, 1, 60);
   const rateSafe = clamp(rate, 0, 30);
+  const downPaymentPercentSafe = clamp(downPaymentPercent, 0, 100);
+  const downPaymentEffective =
+    downPaymentMode === "percent" ? (homePriceSafe * downPaymentPercentSafe) / 100 : downPaymentSafe;
+  const downPaymentCapped = clamp(downPaymentEffective, 0, homePriceSafe);
   const propertyTaxAnnualComputed =
     propertyTaxMode === "rate" ? (homePriceSafe * clamp(propertyTaxRate, 0, 20)) / 100 : clamp(propertyTaxAnnual, 0, 1e8);
 
   const result = useMemo(() => {
     return mortgageMonthlyBreakdown({
       homePrice: homePriceSafe,
-      downPayment: downPaymentSafe,
+      downPayment: downPaymentCapped,
       aprPercent: rateSafe,
       termYears: termYearsSafe,
       propertyTaxAnnual: propertyTaxAnnualComputed,
@@ -33,9 +39,9 @@ export function MortgagePaymentCalculator() {
       hoaMonthly: clamp(hoaMonthly, 0, 1e6),
       pmiRateAnnual: clamp(pmiRateAnnual, 0, 5)
     });
-  }, [homePriceSafe, downPaymentSafe, rateSafe, termYearsSafe, propertyTaxAnnualComputed, insuranceAnnual, hoaMonthly, pmiRateAnnual]);
+  }, [homePriceSafe, downPaymentCapped, rateSafe, termYearsSafe, propertyTaxAnnualComputed, insuranceAnnual, hoaMonthly, pmiRateAnnual]);
 
-  const dpPct = useMemo(() => (homePriceSafe > 0 ? clamp(downPaymentSafe, 0, homePriceSafe) / homePriceSafe : 0), [homePriceSafe, downPaymentSafe]);
+  const dpPct = useMemo(() => (homePriceSafe > 0 ? downPaymentCapped / homePriceSafe : 0), [homePriceSafe, downPaymentCapped]);
   const ltv = useMemo(() => (homePriceSafe > 0 ? result.loanAmount / homePriceSafe : 0), [homePriceSafe, result.loanAmount]);
   const termMonths = Math.round(termYearsSafe * 12);
 
@@ -61,6 +67,10 @@ export function MortgagePaymentCalculator() {
   }, [result.pmiMonthly, pmiStopMonth, termMonths]);
 
   const totalPmiEstimate = result.pmiMonthly * pmiMonths;
+  const totalPaidPI = result.paymentPI * termMonths;
+  const totalInterest = totalPaidPI - result.loanAmount;
+  const totalHousingCostEstimate =
+    (result.paymentPI + result.taxMonthly + result.insuranceMonthly + result.hoaMonthly) * termMonths + totalPmiEstimate;
 
   return (
     <div className="calc-grid">
@@ -73,8 +83,51 @@ export function MortgagePaymentCalculator() {
           </div>
           <div className="field field-3">
             <div className="label">Down payment</div>
-            <input type="number" inputMode="decimal" value={downPayment} min={0} onChange={(e) => setDownPayment(+e.target.value)} />
-            <div className="hint">{formatPercent(dpPct, 1)} of price</div>
+            <div className="btn-row" style={{ marginTop: 6 }}>
+              <button
+                className={`btn ${downPaymentMode === "amount" ? "btn-primary" : ""}`}
+                type="button"
+                onClick={() => {
+                  setDownPaymentMode("amount");
+                  setDownPayment(downPaymentCapped);
+                }}
+              >
+                Amount ($)
+              </button>
+              <button
+                className={`btn ${downPaymentMode === "percent" ? "btn-primary" : ""}`}
+                type="button"
+                onClick={() => {
+                  setDownPaymentMode("percent");
+                  setDownPaymentPercent(homePriceSafe > 0 ? (downPaymentCapped / homePriceSafe) * 100 : 0);
+                }}
+              >
+                Percent (%)
+              </button>
+            </div>
+            {downPaymentMode === "amount" ? (
+              <input
+                style={{ marginTop: 10 }}
+                type="number"
+                inputMode="decimal"
+                value={downPayment}
+                min={0}
+                onChange={(e) => setDownPayment(+e.target.value)}
+              />
+            ) : (
+              <input
+                style={{ marginTop: 10 }}
+                type="number"
+                inputMode="decimal"
+                value={downPaymentPercent}
+                min={0}
+                step={0.1}
+                onChange={(e) => setDownPaymentPercent(+e.target.value)}
+              />
+            )}
+            <div className="hint">
+              {formatCurrency2(downPaymentCapped)} ({formatPercent(dpPct, 1)} of price)
+            </div>
           </div>
           <div className="field field-3">
             <div className="label">Interest rate (APR %)</div>
@@ -147,6 +200,8 @@ export function MortgagePaymentCalculator() {
                 onClick={() => {
                   setHomePrice(450000);
                   setDownPayment(90000);
+                  setDownPaymentMode("amount");
+                  setDownPaymentPercent(20);
                   setRate(6.5);
                   setTermYears(30);
                   setPropertyTaxMode("annual");
@@ -198,6 +253,16 @@ export function MortgagePaymentCalculator() {
           <div className="kpi">
             <div className="k">Total PMI (est.)</div>
             <div className="v">{result.pmiMonthly > 0 ? formatCurrency2(totalPmiEstimate) : "-"}</div>
+          </div>
+          <div className="kpi">
+            <div className="k">Total interest (est.)</div>
+            <div className="v">{formatCurrency2(totalInterest)}</div>
+            <div className="hint">Over {termMonths} months (principal + interest)</div>
+          </div>
+          <div className="kpi">
+            <div className="k">Total housing cost (est.)</div>
+            <div className="v">{formatCurrency2(totalHousingCostEstimate)}</div>
+            <div className="hint">P&amp;I + taxes + insurance + HOA + PMI</div>
           </div>
         </div>
 
