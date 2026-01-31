@@ -9,16 +9,24 @@ export function MinimumPaymentPayoff() {
   const [minPercent, setMinPercent] = useState(2);
   const [minDollars, setMinDollars] = useState(25);
 
+  const balanceSafe = clamp(balance, 0, 1e9);
+  const aprSafe = clamp(apr, 0, 200);
+  const minPercentSafe = clamp(minPercent, 0, 100);
+  const minDollarsSafe = clamp(minDollars, 0, 1e6);
+
   const result = useMemo(() => {
     return minimumPaymentPayoffSchedule({
-      balance: clamp(balance, 0, 1e9),
-      aprPercent: clamp(apr, 0, 200),
-      minPercent: clamp(minPercent, 0, 100),
-      minDollars: clamp(minDollars, 0, 1e6)
+      balance: balanceSafe,
+      aprPercent: aprSafe,
+      minPercent: minPercentSafe,
+      minDollars: minDollarsSafe
     });
-  }, [balance, apr, minPercent, minDollars]);
+  }, [balanceSafe, aprSafe, minPercentSafe, minDollarsSafe]);
 
   const preview = result.rows.slice(0, 18);
+  const firstPayment = result.rows[0]?.payment ?? 0;
+  const firstInterest = result.rows[0]?.interest ?? 0;
+  const minPercentAmount = (balanceSafe * minPercentSafe) / 100;
 
   return (
     <div className="calc-grid">
@@ -37,11 +45,33 @@ export function MinimumPaymentPayoff() {
             <div className="label">Minimum payment (%)</div>
             <input type="number" inputMode="decimal" value={minPercent} min={0} step={0.1} onChange={(e) => setMinPercent(+e.target.value)} />
             <div className="hint">Example: 2% of balance</div>
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setMinPercent(1)}>
+                1%
+              </button>
+              <button className="btn" type="button" onClick={() => setMinPercent(2)}>
+                2%
+              </button>
+              <button className="btn" type="button" onClick={() => setMinPercent(3)}>
+                3%
+              </button>
+            </div>
           </div>
           <div className="field field-3">
             <div className="label">Minimum payment ($)</div>
             <input type="number" inputMode="decimal" value={minDollars} min={0} onChange={(e) => setMinDollars(+e.target.value)} />
             <div className="hint">Example: $25 minimum</div>
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setMinDollars(25)}>
+                $25
+              </button>
+              <button className="btn" type="button" onClick={() => setMinDollars(35)}>
+                $35
+              </button>
+              <button className="btn" type="button" onClick={() => setMinDollars(50)}>
+                $50
+              </button>
+            </div>
           </div>
           <div className="field field-6">
             <div className="btn-row">
@@ -79,6 +109,17 @@ export function MinimumPaymentPayoff() {
           <div className="kpi">
             <div className="k">Total paid</div>
             <div className="v">{formatCurrency2(result.totalPaid)}</div>
+          </div>
+          <div className="kpi">
+            <div className="k">First minimum payment</div>
+            <div className="v">{formatCurrency2(firstPayment)}</div>
+            <div className="hint">
+              Max({formatCurrency2(minPercentAmount)}, {formatCurrency2(minDollarsSafe)}) then at least interest
+            </div>
+          </div>
+          <div className="kpi">
+            <div className="k">First-month interest</div>
+            <div className="v">{formatCurrency2(firstInterest)}</div>
           </div>
           <div className="kpi">
             <div className="k">Months shown</div>
