@@ -10,13 +10,17 @@ export function BiweeklyMortgageCalculator() {
   const [useBiweeklyEquivalent, setUseBiweeklyEquivalent] = useState(true);
   const [extraMonthlyOverride, setExtraMonthlyOverride] = useState(0);
 
+  const principalSafe = clamp(principal, 0, 1e9);
+  const rateSafe = clamp(rate, 0, 30);
+  const termYearsSafe = clamp(termYears, 1, 60);
+
   const base = useMemo(() => {
     return amortizationSchedule({
-      principal: clamp(principal, 0, 1e9),
-      aprPercent: clamp(rate, 0, 30),
-      termMonths: Math.round(clamp(termYears, 1, 60) * 12)
+      principal: principalSafe,
+      aprPercent: rateSafe,
+      termMonths: Math.round(termYearsSafe * 12)
     });
-  }, [principal, rate, termYears]);
+  }, [principalSafe, rateSafe, termYearsSafe]);
 
   const extraMonthly = useMemo(() => {
     if (!useBiweeklyEquivalent) return clamp(extraMonthlyOverride, 0, 1e8);
@@ -25,12 +29,12 @@ export function BiweeklyMortgageCalculator() {
 
   const withExtra = useMemo(() => {
     return amortizationSchedule({
-      principal: clamp(principal, 0, 1e9),
-      aprPercent: clamp(rate, 0, 30),
-      termMonths: Math.round(clamp(termYears, 1, 60) * 12),
+      principal: principalSafe,
+      aprPercent: rateSafe,
+      termMonths: Math.round(termYearsSafe * 12),
       extraMonthly
     });
-  }, [principal, rate, termYears, extraMonthly]);
+  }, [principalSafe, rateSafe, termYearsSafe, extraMonthly]);
 
   const interestSaved = base.totalInterest - withExtra.totalInterest;
   const monthsSaved = base.months - withExtra.months;
@@ -45,14 +49,44 @@ export function BiweeklyMortgageCalculator() {
           <div className="field field-3">
             <div className="label">Loan amount</div>
             <input type="number" inputMode="decimal" value={principal} min={0} onChange={(e) => setPrincipal(+e.target.value)} />
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setPrincipal(250000)}>
+                $250k
+              </button>
+              <button className="btn" type="button" onClick={() => setPrincipal(360000)}>
+                $360k
+              </button>
+              <button className="btn" type="button" onClick={() => setPrincipal(500000)}>
+                $500k
+              </button>
+            </div>
           </div>
           <div className="field field-3">
             <div className="label">Interest rate (APR %)</div>
             <input type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setRate(5.5)}>
+                5.50%
+              </button>
+              <button className="btn" type="button" onClick={() => setRate(6.5)}>
+                6.50%
+              </button>
+              <button className="btn" type="button" onClick={() => setRate(7.5)}>
+                7.50%
+              </button>
+            </div>
           </div>
           <div className="field field-3">
             <div className="label">Term (years)</div>
             <input type="number" inputMode="numeric" value={termYears} min={1} step={1} onChange={(e) => setTermYears(+e.target.value)} />
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setTermYears(15)}>
+                15
+              </button>
+              <button className="btn" type="button" onClick={() => setTermYears(30)}>
+                30
+              </button>
+            </div>
           </div>
 
           <div className="field field-6">
@@ -80,6 +114,20 @@ export function BiweeklyMortgageCalculator() {
                 min={0}
                 onChange={(e) => setExtraMonthlyOverride(+e.target.value)}
               />
+              <div className="btn-row" style={{ marginTop: 8 }}>
+                <button className="btn" type="button" onClick={() => setExtraMonthlyOverride(0)}>
+                  $0
+                </button>
+                <button className="btn" type="button" onClick={() => setExtraMonthlyOverride(100)}>
+                  $100
+                </button>
+                <button className="btn" type="button" onClick={() => setExtraMonthlyOverride(250)}>
+                  $250
+                </button>
+                <button className="btn" type="button" onClick={() => setExtraMonthlyOverride(500)}>
+                  $500
+                </button>
+              </div>
             </div>
           ) : (
             <div className="field field-3">
@@ -111,12 +159,22 @@ export function BiweeklyMortgageCalculator() {
 
       <div className="panel">
         <h3>Results</h3>
-        <div className="kpis">
-          <div className="kpi">
-            <div className="k">Estimated biweekly payment (P&amp;I)</div>
-            <div className="v">{formatCurrency2(biweeklyPayment)}</div>
-            <div className="hint">Half of monthly P&amp;I (escrow not included).</div>
-          </div>
+          <div className="kpis">
+            <div className="kpi">
+              <div className="k">Monthly P&amp;I</div>
+              <div className="v">{formatCurrency2(base.paymentPI)}</div>
+              <div className="hint">Before biweekly extra</div>
+            </div>
+            <div className="kpi">
+              <div className="k">Extra monthly applied</div>
+              <div className="v">{formatCurrency2(extraMonthly)}</div>
+              <div className="hint">{useBiweeklyEquivalent ? "13th payment equivalent" : "Custom extra"}</div>
+            </div>
+            <div className="kpi">
+              <div className="k">Estimated biweekly payment (P&amp;I)</div>
+              <div className="v">{formatCurrency2(biweeklyPayment)}</div>
+              <div className="hint">Half of monthly P&amp;I (escrow not included).</div>
+            </div>
           <div className="kpi">
             <div className="k">Interest saved (est.)</div>
             <div className="v">{formatCurrency2(interestSaved)}</div>
@@ -162,4 +220,3 @@ export function BiweeklyMortgageCalculator() {
     </div>
   );
 }
-
