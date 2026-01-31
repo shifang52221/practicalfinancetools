@@ -18,17 +18,23 @@ export function DtiCalculator() {
   const [targetFrontEndPct, setTargetFrontEndPct] = useState(28);
   const [targetBackEndPct, setTargetBackEndPct] = useState(36);
 
+  const incomeSafe = clamp(grossIncomeMonthly, 0, 1e8);
+  const housingSafe = clamp(housingPayment, 0, 1e8);
+  const otherDebtSafe = clamp(otherDebtPayments, 0, 1e8);
+  const targetFrontEndSafe = clamp(targetFrontEndPct, 0, 100);
+  const targetBackEndSafe = clamp(targetBackEndPct, 0, 100);
+
   const result = useMemo(() => {
     return calculateDti({
-      incomeMonthly: clamp(grossIncomeMonthly, 0, 1e8),
-      housingMonthly: clamp(housingPayment, 0, 1e8),
-      otherDebtMonthly: clamp(otherDebtPayments, 0, 1e8)
+      incomeMonthly: incomeSafe,
+      housingMonthly: housingSafe,
+      otherDebtMonthly: otherDebtSafe
     });
-  }, [grossIncomeMonthly, housingPayment, otherDebtPayments]);
+  }, [incomeSafe, housingSafe, otherDebtSafe]);
 
   const targets = useMemo(() => {
-    const targetFrontEnd = clamp(targetFrontEndPct, 0, 100) / 100;
-    const targetBackEnd = clamp(targetBackEndPct, 0, 100) / 100;
+    const targetFrontEnd = targetFrontEndSafe / 100;
+    const targetBackEnd = targetBackEndSafe / 100;
 
     const maxFrontHousing = maxHousingForFrontEndDti({
       incomeMonthly: result.incomeMonthly,
@@ -44,7 +50,7 @@ export function DtiCalculator() {
     const minIncomeFront = targetFrontEnd > 0 ? result.housingMonthly / targetFrontEnd : null;
     const minIncomeBack = targetBackEnd > 0 ? result.totalDebtMonthly / targetBackEnd : null;
     return { targetFrontEnd, targetBackEnd, maxHousing, maxFrontHousing, maxBackHousing, minIncomeFront, minIncomeBack };
-  }, [result.incomeMonthly, result.otherDebtMonthly, targetFrontEndPct, targetBackEndPct]);
+  }, [result.incomeMonthly, result.otherDebtMonthly, targetFrontEndSafe, targetBackEndSafe]);
 
   const backEndText = result.backEndDti === null ? "N/A" : formatPercent(result.backEndDti);
   const frontEndText = result.frontEndDti === null ? "N/A" : formatPercent(result.frontEndDti);
@@ -70,6 +76,17 @@ export function DtiCalculator() {
               onChange={(e) => setGrossIncomeMonthly(+e.target.value)}
             />
             <div className="hint">Use gross income (before taxes).</div>
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setGrossIncomeMonthly(4000)}>
+                $4,000
+              </button>
+              <button className="btn" type="button" onClick={() => setGrossIncomeMonthly(6500)}>
+                $6,500
+              </button>
+              <button className="btn" type="button" onClick={() => setGrossIncomeMonthly(10000)}>
+                $10,000
+              </button>
+            </div>
           </div>
           <div className="field field-3">
             <div className="label">Monthly housing payment</div>
@@ -81,6 +98,17 @@ export function DtiCalculator() {
               onChange={(e) => setHousingPayment(+e.target.value)}
             />
             <div className="hint">Use PITI + HOA + PMI for mortgages.</div>
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setHousingPayment(1500)}>
+                $1,500
+              </button>
+              <button className="btn" type="button" onClick={() => setHousingPayment(2200)}>
+                $2,200
+              </button>
+              <button className="btn" type="button" onClick={() => setHousingPayment(3000)}>
+                $3,000
+              </button>
+            </div>
           </div>
           <div className="field field-3">
             <div className="label">Other monthly debt payments</div>
@@ -92,6 +120,17 @@ export function DtiCalculator() {
               onChange={(e) => setOtherDebtPayments(+e.target.value)}
             />
             <div className="hint">Use required minimums, not planned payments.</div>
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setOtherDebtPayments(0)}>
+                $0
+              </button>
+              <button className="btn" type="button" onClick={() => setOtherDebtPayments(300)}>
+                $300
+              </button>
+              <button className="btn" type="button" onClick={() => setOtherDebtPayments(600)}>
+                $600
+              </button>
+            </div>
           </div>
           <div className="field field-3">
             <div className="label">Target front-end DTI (%)</div>
@@ -151,6 +190,17 @@ export function DtiCalculator() {
                 }}
               >
                 31/43 targets
+              </button>
+              <button
+                className="btn btn-primary"
+                type="button"
+                onClick={() => {
+                  if (targets.maxHousing === null) return;
+                  setHousingPayment(Math.max(0, Math.round(targets.maxHousing)));
+                }}
+                disabled={targets.maxHousing === null}
+              >
+                Use max housing
               </button>
             </div>
           </div>
