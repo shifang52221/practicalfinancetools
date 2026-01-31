@@ -9,26 +9,34 @@ export function AprCalculator() {
   const [termMonths, setTermMonths] = useState(60);
   const [fees, setFees] = useState(600);
 
+  const loanAmountSafe = clamp(loanAmount, 0, 1e9);
+  const nominalRateSafe = clamp(nominalRate, 0, 200);
+  const termMonthsSafe = Math.max(1, Math.floor(clamp(termMonths, 1, 600)));
+  const feesSafe = clamp(fees, 0, 1e8);
+
   const result = useMemo(() => {
     return estimateApr({
-      loanAmount: clamp(loanAmount, 0, 1e9),
-      nominalRatePercent: clamp(nominalRate, 0, 200),
-      termMonths: clamp(termMonths, 1, 600),
-      fees: clamp(fees, 0, 1e8)
+      loanAmount: loanAmountSafe,
+      nominalRatePercent: nominalRateSafe,
+      termMonths: termMonthsSafe,
+      fees: feesSafe
     });
-  }, [loanAmount, nominalRate, termMonths, fees]);
+  }, [loanAmountSafe, nominalRateSafe, termMonthsSafe, feesSafe]);
 
   const aprText =
     result.aprPercent === null ? "-" : new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(result.aprPercent) + "%";
 
-  const loanAmountSafe = clamp(loanAmount, 0, 1e9);
-  const feesSafe = clamp(fees, 0, 1e8);
-  const termMonthsSafe = Math.max(1, Math.floor(clamp(termMonths, 1, 600)));
   const netReceived = Math.max(0, loanAmountSafe - feesSafe);
   const totalPaid = result.payment * termMonthsSafe;
   const totalInterest = Math.max(0, totalPaid - loanAmountSafe);
   const feePct = loanAmountSafe > 0 ? (feesSafe / loanAmountSafe) * 100 : 0;
+  const totalCost = totalPaid + feesSafe;
   const hasInvalidFee = loanAmountSafe > 0 && feesSafe >= loanAmountSafe;
+  const aprDelta = result.aprPercent === null ? null : result.aprPercent - nominalRateSafe;
+  const aprDeltaText =
+    aprDelta === null
+      ? "-"
+      : new Intl.NumberFormat("en-US", { maximumFractionDigits: 2, signDisplay: "exceptZero" }).format(aprDelta) + "%";
 
   return (
     <div className="calc-grid">
@@ -38,24 +46,95 @@ export function AprCalculator() {
           <div className="field field-3">
             <div className="label">Loan amount</div>
             <input type="number" inputMode="decimal" value={loanAmount} min={0} onChange={(e) => setLoanAmount(+e.target.value)} />
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setLoanAmount(5000)}>
+                $5,000
+              </button>
+              <button className="btn" type="button" onClick={() => setLoanAmount(15000)}>
+                $15,000
+              </button>
+              <button className="btn" type="button" onClick={() => setLoanAmount(30000)}>
+                $30,000
+              </button>
+            </div>
           </div>
           <div className="field field-3">
             <div className="label">Nominal interest rate (%)</div>
             <input type="number" inputMode="decimal" value={nominalRate} min={0} step={0.01} onChange={(e) => setNominalRate(+e.target.value)} />
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setNominalRate(5.99)}>
+                5.99%
+              </button>
+              <button className="btn" type="button" onClick={() => setNominalRate(9.99)}>
+                9.99%
+              </button>
+              <button className="btn" type="button" onClick={() => setNominalRate(14.99)}>
+                14.99%
+              </button>
+            </div>
           </div>
           <div className="field field-3">
             <div className="label">Term (months)</div>
             <input type="number" inputMode="numeric" value={termMonths} min={1} step={1} onChange={(e) => setTermMonths(+e.target.value)} />
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setTermMonths(36)}>
+                36
+              </button>
+              <button className="btn" type="button" onClick={() => setTermMonths(60)}>
+                60
+              </button>
+              <button className="btn" type="button" onClick={() => setTermMonths(72)}>
+                72
+              </button>
+            </div>
           </div>
           <div className="field field-3">
             <div className="label">Upfront fees</div>
             <input type="number" inputMode="decimal" value={fees} min={0} onChange={(e) => setFees(+e.target.value)} />
             <div className="hint">Origination and similar fees</div>
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setFees(0)}>
+                $0
+              </button>
+              <button className="btn" type="button" onClick={() => setFees(300)}>
+                $300
+              </button>
+              <button className="btn" type="button" onClick={() => setFees(600)}>
+                $600
+              </button>
+              <button className="btn" type="button" onClick={() => setFees(1000)}>
+                $1,000
+              </button>
+            </div>
           </div>
           <div className="field field-6">
             <div className="btn-row">
               <button className="btn" type="button" onClick={() => { setLoanAmount(15000); setNominalRate(9.99); setTermMonths(60); setFees(600); }}>
                 Reset example
+              </button>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => {
+                  setLoanAmount(25000);
+                  setNominalRate(6.49);
+                  setTermMonths(60);
+                  setFees(400);
+                }}
+              >
+                Auto loan
+              </button>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => {
+                  setLoanAmount(12000);
+                  setNominalRate(11.99);
+                  setTermMonths(48);
+                  setFees(500);
+                }}
+              >
+                Personal loan
               </button>
             </div>
           </div>
@@ -86,6 +165,11 @@ export function AprCalculator() {
             <div className="hint">{termMonthsSafe} payments</div>
           </div>
           <div className="kpi">
+            <div className="k">Total cost incl. fees</div>
+            <div className="v">{formatCurrency2(totalCost)}</div>
+            <div className="hint">Payments plus upfront fees</div>
+          </div>
+          <div className="kpi">
             <div className="k">Total interest (est.)</div>
             <div className="v">{formatCurrency2(totalInterest)}</div>
             <div className="hint">Excludes fees</div>
@@ -93,6 +177,11 @@ export function AprCalculator() {
           <div className="kpi">
             <div className="k">Fees (% of amount)</div>
             <div className="v">{new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(feePct)}%</div>
+          </div>
+          <div className="kpi">
+            <div className="k">APR vs nominal</div>
+            <div className="v">{aprDeltaText}</div>
+            <div className="hint">Fee impact on APR</div>
           </div>
         </div>
         <div className="hint" style={{ marginTop: 12, lineHeight: 1.5 }}>
