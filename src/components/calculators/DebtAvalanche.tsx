@@ -26,24 +26,30 @@ export function DebtAvalancheCalculator() {
     { id: uid(), name: "Loan", balance: 12000, aprPercent: 9.5, minPayment: 260 }
   ]);
 
+  const extraMonthlySafe = clamp(extraMonthly, 0, 1e8);
+  const targetMonthsSafe = Math.floor(clamp(targetMonths, 1, 600));
+
   const plan = useMemo(() => {
     return buildDebtPlan({
       debts: debts.map(sanitizeDebt),
-      extraMonthly: clamp(extraMonthly, 0, 1e8),
+      extraMonthly: extraMonthlySafe,
       strategy: "avalanche"
     });
-  }, [debts, extraMonthly]);
+  }, [debts, extraMonthlySafe]);
 
   const requiredExtra = useMemo(() => {
     return extraMonthlyToDebtFreeInMonths({
       debts: debts.map(sanitizeDebt),
       strategy: "avalanche",
-      targetMonths: clamp(targetMonths, 1, 600)
+      targetMonths: targetMonthsSafe
     });
-  }, [debts, targetMonths]);
+  }, [debts, targetMonthsSafe]);
 
   const payoffPreview = plan.payoffs.slice(0, 8);
   const timelinePreview = plan.rows.slice(0, 24);
+  const firstMonthPayment = plan.rows[0]?.payment ?? 0;
+  const firstMonthInterest = plan.rows[0]?.interest ?? 0;
+  const firstMonthBalance = plan.rows[0]?.totalBalance ?? 0;
 
   function toCsvTimeline(rows: typeof plan.rows) {
     const header = ["month", "total_balance", "payment", "interest"];
@@ -78,11 +84,36 @@ export function DebtAvalancheCalculator() {
             <div className="label">Extra payment (monthly)</div>
             <input type="number" inputMode="decimal" value={extraMonthly} min={0} onChange={(e) => setExtraMonthly(+e.target.value)} />
             <div className="hint">Extra amount added on top of all minimum payments.</div>
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setExtraMonthly(0)}>
+                $0
+              </button>
+              <button className="btn" type="button" onClick={() => setExtraMonthly(50)}>
+                $50
+              </button>
+              <button className="btn" type="button" onClick={() => setExtraMonthly(150)}>
+                $150
+              </button>
+              <button className="btn" type="button" onClick={() => setExtraMonthly(300)}>
+                $300
+              </button>
+            </div>
           </div>
           <div className="field field-6">
             <div className="label">Target debt-free time (months)</div>
             <input type="number" inputMode="numeric" value={targetMonths} min={1} step={1} onChange={(e) => setTargetMonths(+e.target.value)} />
             <div className="hint">Used to estimate the extra payment needed to hit your target.</div>
+            <div className="btn-row" style={{ marginTop: 8 }}>
+              <button className="btn" type="button" onClick={() => setTargetMonths(24)}>
+                24 months
+              </button>
+              <button className="btn" type="button" onClick={() => setTargetMonths(36)}>
+                36 months
+              </button>
+              <button className="btn" type="button" onClick={() => setTargetMonths(60)}>
+                60 months
+              </button>
+            </div>
           </div>
 
           <div className="field field-6" style={{ marginTop: 4 }}>
@@ -187,13 +218,37 @@ export function DebtAvalancheCalculator() {
             <div className="v">{formatCurrency2(plan.totalInterest)}</div>
           </div>
           <div className="kpi">
-            <div className="k">Extra needed for {Math.max(1, Math.floor(clamp(targetMonths, 1, 600)))} months</div>
+            <div className="k">Extra needed for {targetMonthsSafe} months</div>
             <div className="v">{requiredExtra === null ? "-" : formatCurrency2(requiredExtra)}</div>
             <div className="hint">Estimate; assumes fixed APRs and minimums</div>
+          </div>
+          <div className="kpi">
+            <div className="k">First-month payment</div>
+            <div className="v">{formatCurrency2(firstMonthPayment)}</div>
+            <div className="hint">Includes minimums and extra</div>
+          </div>
+          <div className="kpi">
+            <div className="k">First-month interest</div>
+            <div className="v">{formatCurrency2(firstMonthInterest)}</div>
+          </div>
+          <div className="kpi">
+            <div className="k">Balance after month 1</div>
+            <div className="v">{formatCurrency2(firstMonthBalance)}</div>
           </div>
         </div>
 
         <div className="btn-row" style={{ marginTop: 12 }}>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={() => {
+              if (requiredExtra === null) return;
+              setExtraMonthly(Math.ceil(requiredExtra));
+            }}
+            disabled={requiredExtra === null}
+          >
+            Use required extra
+          </button>
           <button className="btn" type="button" onClick={() => downloadCsv("debt-avalanche-timeline.csv", toCsvTimeline(plan.rows))}>
             Download timeline (CSV)
           </button>
