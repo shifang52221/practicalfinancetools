@@ -3,9 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Lump Sum vs Monthly Extra Mortgage Payments";
 const description =
-  "Compare lump sum timing to monthly extra payments and see which saves more interest. Educational use only.";
+  "Lump sum vs monthly extra mortgage payments: compare timing and see which saves more interest. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-lump-sum-vs-monthly">
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-lump-sum-vs-monthly" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -43,6 +45,16 @@ const description =
       <li>Model a monthly extra that equals the lump sum spread over time.</li>
       <li>Compare payoff date and interest saved.</li>
     </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Lump sum vs monthly extra inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Note rate and remaining term.</li>
+      <li>Lump sum amount and the month it will post.</li>
+      <li>Monthly extra amount you can sustain.</li>
+      <li>Any prepayment penalties or posting restrictions.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -120,6 +132,7 @@ const description =
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

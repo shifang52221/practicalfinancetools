@@ -4,6 +4,7 @@ import { ExtraPaymentMortgageCalculator } from "../../components/calculators/Ext
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Mortgage Payment Calculator (Extra Principal)";
+const metaTitle = "Extra Principal Payment Calculator - Extra Mortgage Payments";
 const description =
   "Estimate how extra principal (monthly or lump sum) shortens mortgage payoff time and reduces interest. Educational use only.";
 
@@ -20,6 +21,7 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
 ---
 <CalculatorLayout
   title={title}
+  metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/extra-payment-calculator"
   intro="See how paying extra toward principal (monthly extra, one-time lump sum, or additional principal payments) can shorten your mortgage payoff timeline and reduce total interest. Educational use only. Not financial advice."
@@ -66,7 +68,7 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       a: "Not necessarily. Results are estimates and real statements can differ due to rounding and timing."
     }
   ]}
-  lastUpdated="2026-01-29"
+  lastUpdated="2026-02-08"
 >
   <ExtraPaymentMortgageCalculator client:load />
 
@@ -104,7 +106,7 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       </table>
     </div>
 
-    <h2 style="margin:18px 0 10px">Inputs to verify</h2>
+    <h2 style="margin:18px 0 10px">Extra principal payment calculator inputs to verify</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Principal amount excludes escrow items and fees.</li>
       <li>Rate is the note rate (not APR).</li>

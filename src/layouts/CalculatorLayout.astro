@@ -82,6 +82,7 @@ const webAppLd = {
   title={pageTitle}
   description={description}
   canonicalPath={canonicalPath}
+  lastUpdated={lastUpdated}
   includePageSchema={false}
   includeBreadcrumbSchema={false}
 >
@@ -102,9 +103,12 @@ const webAppLd = {
     </nav>
     <h1>{title}</h1>
     <p>{intro}</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#calculator">Jump to calculator</a>
+    </div>
   </section>
 
-  <section class="card section">
+  <section id="calculator" class="card section">
     <slot />
   </section>
 

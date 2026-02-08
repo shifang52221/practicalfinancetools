@@ -4,8 +4,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const title = "DTI Variable Income Averaging";
 const description =
   "How to average variable income for DTI calculations so your ratio aligns with underwriting documentation. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/dti-variable-income-averaging">
+<BaseLayout title={title} description={description} canonicalPath="/guides/dti-variable-income-averaging" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,6 +27,15 @@ const description =
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
       <a class="btn" href="/guides/dti-income-documentation-checklist">Income documentation checklist</a>
     </div>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">DTI inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Gross monthly income from documented sources.</li>
+      <li>Housing payment (PITI + HOA + PMI if applicable).</li>
+      <li>Required minimum payments for other debts.</li>
+      <li>Any lender-specific rules for student loans or deferred debt.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -109,6 +120,8 @@ const description =
       <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
+

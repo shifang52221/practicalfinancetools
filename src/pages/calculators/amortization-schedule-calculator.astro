@@ -49,7 +49,7 @@ const exampleTotalInterest = money.format(example.totalInterest);
       a: "This assumes a fixed rate. Adjustable-rate loans require a different model."
     }
   ]}
-  lastUpdated="2026-01-30"
+  lastUpdated="2026-02-08"
 >
   <AmortizationScheduleCalculatorComponent client:load />
 
@@ -60,7 +60,7 @@ const exampleTotalInterest = money.format(example.totalInterest);
       payment goes toward principal. The "Balance" column shows how much you still owe after each payment.
     </p>
 
-    <h2 style="margin:18px 0 10px">Example snapshot</h2>
+    <h2 style="margin:18px 0 10px">Amortization schedule example snapshot</h2>
     <p class="muted" style="margin:0">
       Example inputs: ${money.format(exampleInput.principal)} loan, {exampleInput.aprPercent}% APR, 30-year term.
     </p>
@@ -140,7 +140,7 @@ const exampleTotalInterest = money.format(example.totalInterest);
       new schedule and compare the payoff date and interest saved.
     </p>
 
-    <h2 style="margin:18px 0 10px">Inputs to verify</h2>
+    <h2 style="margin:18px 0 10px">Amortization schedule calculator inputs to verify</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Loan amount is principal only (exclude taxes, insurance, and fees).</li>
       <li>Interest rate is the note rate, not APR.</li>

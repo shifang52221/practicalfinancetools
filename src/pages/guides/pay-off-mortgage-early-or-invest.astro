@@ -24,8 +24,10 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
 const yearsMonths = (months: number) => ({ years: Math.floor(months / 12), months: months % 12 });
 const baseYm = yearsMonths(base.months);
 const extraYm = yearsMonths(withExtra.months);
+
+const lastUpdated = "2026-01-29";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/pay-off-mortgage-early-or-invest">
+<BaseLayout title={title} description={description} canonicalPath="/guides/pay-off-mortgage-early-or-invest" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -221,3 +223,4 @@ const extraYm = yearsMonths(withExtra.months);
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
   </section>
 </BaseLayout>
+

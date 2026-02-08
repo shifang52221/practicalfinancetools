@@ -5,8 +5,10 @@ import { SITE } from "../config/site";
 const title = `Calculator Methodology | ${SITE.name}`;
 const description =
   "High-level methodology and assumptions used in our calculators (amortization, APR, debt payoff). Educational use only.";
+
+const lastUpdated = "2026-01-30";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/methodology">
+<BaseLayout title={title} description={description} canonicalPath="/methodology" lastUpdated={lastUpdated}>
   <section class="card hero">
     <h1>Calculator methodology</h1>
     <p>
@@ -145,3 +147,4 @@ const description =
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
   </section>
 </BaseLayout>
+

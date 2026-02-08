@@ -5,8 +5,10 @@ import { SITE } from "../config/site";
 const title = `Terms of Use | ${SITE.name}`;
 const description =
   "Terms of use for Practical Finance Tools, including educational-use disclaimers, assumptions, and limitations for calculators and content.";
+
+const lastUpdated = "2026-01-30";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/terms">
+<BaseLayout title={title} description={description} canonicalPath="/terms" lastUpdated={lastUpdated}>
   <section class="card hero">
     <h1>Terms of Use</h1>
     <p>Last updated: 2026-01-30</p>
@@ -118,3 +120,4 @@ const description =
     </p>
   </section>
 </BaseLayout>
+

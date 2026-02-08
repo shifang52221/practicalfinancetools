@@ -4,6 +4,8 @@ import { SITE } from "../config/site";
 
 const title = `Cookie Notice | ${SITE.name}`;
 const description = "Cookie notice describing how we use cookies and how to change your preferences.";
+
+const lastUpdated = "2026-01-30";
 ---
 <BaseLayout
   title={title}
@@ -12,7 +14,7 @@ const description = "Cookie notice describing how we use cookies and how to chan
   robots="noindex, follow"
   includePageSchema={false}
   includeBreadcrumbSchema={false}
->
+ lastUpdated={lastUpdated}>
   <section class="card hero">
     <h1>Cookie Notice</h1>
     <p>Last updated: 2026-01-30</p>
@@ -199,3 +201,4 @@ const description = "Cookie notice describing how we use cookies and how to chan
     </p>
   </section>
 </BaseLayout>
+

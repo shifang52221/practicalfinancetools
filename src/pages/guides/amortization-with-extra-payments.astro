@@ -5,7 +5,7 @@ import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Amortization With Extra Payments (how to model it)";
 const description =
-  "How extra principal payments change an amortization schedule, why timing matters, and which calculator to use. Educational use only.";
+  "Amortization with extra payments: how extra principal changes the schedule, why timing matters, and which calculator to use. Educational use only.";
 
 const examplePrincipal = 300000;
 const exampleApr = 6.5;
@@ -25,8 +25,10 @@ const e2 = withExtra.rows.length >= 2 ? withExtra.rows[1] : null;
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/amortization-with-extra-payments">
+<BaseLayout title={title} description={description} canonicalPath="/guides/amortization-with-extra-payments" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -106,6 +108,16 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       If you only need the baseline principal-and-interest table, use the{" "}
       <a href="/calculators/amortization-schedule-calculator">Amortization Schedule Calculator</a>.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Amortization with extra payments inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Current balance and remaining term.</li>
+      <li>Note rate (not APR).</li>
+      <li>Monthly extra amount or one-time lump sum timing.</li>
+      <li>Principal-only posting rules.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -214,8 +226,9 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     <p class="muted" style="margin:12px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-27</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
 
 

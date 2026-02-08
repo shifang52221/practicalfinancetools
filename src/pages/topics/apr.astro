@@ -4,8 +4,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const title = "APR Calculator Topic Guide (fees, comparisons, and pitfalls)";
 const description =
   "Workflow to use an APR calculator, compare loans with fees, and understand APR vs rate. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/topics/apr">
+<BaseLayout title={title} description={description} canonicalPath="/topics/apr" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Topic</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -26,6 +28,16 @@ const description =
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
       <a class="btn" href="/guides/apr-with-origination-fee">Origination fees</a>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR topic inputs to gather</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan amount, term, and nominal rate.</li>
+      <li>Upfront fees (origination, points, lender credits).</li>
+      <li>Cash vs financed fees.</li>
+      <li>Expected time horizon before payoff or refinance.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -177,6 +189,8 @@ const description =
     <p class="muted" style="margin:12px 0 0">
       Educational use only. Not financial advice. Verify fees, posting rules, and disclosures with lenders.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
+

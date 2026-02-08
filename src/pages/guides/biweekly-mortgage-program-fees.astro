@@ -4,7 +4,7 @@ import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Biweekly Mortgage Program Fees (is it worth it?)";
 const description =
-  "Some biweekly programs charge fees or delay posting payments. Learn what to ask, how to compare to a simple monthly extra, and how to model scenarios.";
+  "Biweekly mortgage program fees can reduce savings. Learn what to ask, how to compare to a monthly extra, and how to model scenarios.";
 
 const examplePrincipal = 300000;
 const exampleApr = 6.5;
@@ -26,8 +26,10 @@ const breakEvenMonthlyFee = withExtra.months > 0 ? interestSaved / withExtra.mon
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/biweekly-mortgage-program-fees">
+<BaseLayout title={title} description={description} canonicalPath="/guides/biweekly-mortgage-program-fees" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -77,6 +79,16 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     <p class="muted" style="margin:12px 0 0">
       Even small monthly fees add up over years. Always compare total fees across the time you expect to keep the loan.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Biweekly mortgage program fees checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Confirm whether payments are posted biweekly or held monthly.</li>
+      <li>Add setup + monthly fees across your expected time horizon.</li>
+      <li>Compare net savings to a no-fee monthly extra (P&amp;I / 12).</li>
+      <li>Verify principal-only application of any extra amounts.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -228,6 +240,7 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn" href="/guides/principal-only-extra-payments">Principal-only tips</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

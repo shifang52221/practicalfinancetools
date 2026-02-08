@@ -3,9 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "How to Estimate Property Taxes for a Mortgage Payment";
 const description =
-  "Estimate property taxes using local rates and recent bills so your mortgage payment inputs are realistic. Educational use only.";
+  "Estimate property taxes for a mortgage payment using local rates and recent bills so your inputs are realistic. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/how-to-estimate-property-taxes">
+<BaseLayout title={title} description={description} canonicalPath="/guides/how-to-estimate-property-taxes" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -43,6 +45,14 @@ const description =
       <li>Multiply the tax rate by the assessed value (or purchase price if applicable).</li>
       <li>Divide the annual tax by 12 to get the monthly amount.</li>
     </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Property tax estimate example</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If the tax rate is 1.1% and the assessed value is $400,000, annual tax is about $4,400 and the monthly estimate is about $367.
+      Use this monthly number in your mortgage payment calculator inputs.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -108,6 +118,7 @@ const description =
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

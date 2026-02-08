@@ -25,8 +25,10 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
 const yearsMonths = (months: number) => ({ years: Math.floor(months / 12), months: months % 12 });
 const baseYm = yearsMonths(base.months);
 const extraYm = yearsMonths(withExtra.months);
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-extra-principal-calculator">
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-extra-principal-calculator" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -64,10 +66,10 @@ const extraYm = yearsMonths(withExtra.months);
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Inputs that matter most</h2>
+      <h2 style="margin-top:0">Mortgage extra principal calculator inputs</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li>Current principal balance (or original amount if you're early in the loan).</li>
-        <li>Interest rate (APR).</li>
+        <li>Interest rate (note rate, not APR).</li>
         <li>Term (years).</li>
         <li>Extra principal (monthly) and any one-time lump sum.</li>
       </ul>
@@ -225,6 +227,7 @@ const extraYm = yearsMonths(withExtra.months);
       <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

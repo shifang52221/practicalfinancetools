@@ -31,8 +31,10 @@ const yearsMonths = (months: number) => ({ years: Math.floor(months / 12), month
 const baseYm = yearsMonths(base.months);
 const earlyYm = yearsMonths(withLumpEarly.months);
 const lateYm = yearsMonths(withLumpLate.months);
+
+const lastUpdated = "2026-01-29";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-lump-sum-10000" robots="noindex, follow">
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-lump-sum-10000" robots="noindex, follow" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -227,3 +229,4 @@ const lateYm = yearsMonths(withLumpLate.months);
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
   </section>
 </BaseLayout>
+

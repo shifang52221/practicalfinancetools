@@ -5,8 +5,10 @@ import { SITE } from "../../config/site";
 const title = `Topics | ${SITE.name}`;
 const description =
   "Topic hubs that connect calculators with guides for APR, credit cards, and mortgage payoff workflows. Educational use only.";
+
+const lastUpdated = "2026-01-30";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/topics">
+<BaseLayout title={title} description={description} canonicalPath="/topics" lastUpdated={lastUpdated}>
   <section class="card hero">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <a href="/">Home</a>
@@ -181,3 +183,4 @@ const description =
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
   </section>
 </BaseLayout>
+

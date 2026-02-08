@@ -81,8 +81,8 @@ export function DebtSnowballCalculator() {
         <h3>Inputs</h3>
         <div className="form">
           <div className="field field-6">
-            <div className="label">Extra payment (monthly)</div>
-            <input type="number" inputMode="decimal" value={extraMonthly} min={0} onChange={(e) => setExtraMonthly(+e.target.value)} />
+            <label className="label" htmlFor="debt-snowball-extra-monthly">Extra payment (monthly)</label>
+            <input id="debt-snowball-extra-monthly" type="number" inputMode="decimal" value={extraMonthly} min={0} onChange={(e) => setExtraMonthly(+e.target.value)} />
             <div className="hint">Extra amount added on top of all minimum payments.</div>
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setExtraMonthly(0)}>
@@ -100,8 +100,8 @@ export function DebtSnowballCalculator() {
             </div>
           </div>
           <div className="field field-6">
-            <div className="label">Target debt-free time (months)</div>
-            <input type="number" inputMode="numeric" value={targetMonths} min={1} step={1} onChange={(e) => setTargetMonths(+e.target.value)} />
+            <label className="label" htmlFor="debt-snowball-target-months">Target debt-free time (months)</label>
+            <input id="debt-snowball-target-months" type="number" inputMode="numeric" value={targetMonths} min={1} step={1} onChange={(e) => setTargetMonths(+e.target.value)} />
             <div className="hint">Used to estimate the extra payment needed to hit your target.</div>
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setTargetMonths(24)}>
@@ -123,12 +123,17 @@ export function DebtSnowballCalculator() {
                 <div key={d.id} className="card2" style={{ padding: 12 }}>
                   <div className="form" style={{ gridTemplateColumns: "repeat(6, 1fr)" }}>
                     <div className="field field-2">
-                      <div className="label">Name</div>
-                      <input value={d.name} onChange={(e) => setDebts((prev) => prev.map((x) => (x.id === d.id ? { ...x, name: e.target.value } : x)))} />
+                      <label className="label" htmlFor={`debt-snowball-name-${d.id}`}>Name</label>
+                      <input
+                        id={`debt-snowball-name-${d.id}`}
+                        value={d.name}
+                        onChange={(e) => setDebts((prev) => prev.map((x) => (x.id === d.id ? { ...x, name: e.target.value } : x)))}
+                      />
                     </div>
                     <div className="field field-2">
-                      <div className="label">Balance</div>
+                      <label className="label" htmlFor={`debt-snowball-balance-${d.id}`}>Balance</label>
                       <input
+                        id={`debt-snowball-balance-${d.id}`}
                         type="number"
                         inputMode="decimal"
                         value={d.balance}
@@ -137,8 +142,9 @@ export function DebtSnowballCalculator() {
                       />
                     </div>
                     <div className="field field-1">
-                      <div className="label">APR (%)</div>
+                      <label className="label" htmlFor={`debt-snowball-apr-${d.id}`}>APR (%)</label>
                       <input
+                        id={`debt-snowball-apr-${d.id}`}
                         type="number"
                         inputMode="decimal"
                         value={d.aprPercent}
@@ -148,8 +154,9 @@ export function DebtSnowballCalculator() {
                       />
                     </div>
                     <div className="field field-1">
-                      <div className="label">Min/mo</div>
+                      <label className="label" htmlFor={`debt-snowball-min-${d.id}`}>Min/mo</label>
                       <input
+                        id={`debt-snowball-min-${d.id}`}
                         type="number"
                         inputMode="decimal"
                         value={d.minPayment}

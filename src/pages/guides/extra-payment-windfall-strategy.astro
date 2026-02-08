@@ -3,9 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Windfall Extra Payment Strategy";
 const description =
-  "How to use a bonus or windfall for a mortgage extra payment while keeping liquidity in mind. Educational use only.";
+  "Windfall extra payment strategy: use a bonus for mortgage principal while keeping liquidity in mind. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-windfall-strategy">
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-windfall-strategy" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -35,6 +37,16 @@ const description =
       <li>Model a lump sum using the extra payment calculator.</li>
       <li>Compare to a smaller monthly extra over time.</li>
     </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Windfall extra payment inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Net windfall amount after taxes.</li>
+      <li>Target emergency reserve and near-term expenses.</li>
+      <li>Mortgage note rate vs other debt APRs.</li>
+      <li>Any prepayment penalties or posting rules.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -114,6 +126,7 @@ const description =
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

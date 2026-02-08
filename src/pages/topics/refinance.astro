@@ -4,8 +4,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const title = "Refinance Topic Guide (break-even, costs, timing)";
 const description =
   "Refinance workflow: estimate savings, compare closing costs, and confirm break-even timing. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/topics/refinance">
+<BaseLayout title={title} description={description} canonicalPath="/topics/refinance" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Topic</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -26,6 +28,16 @@ const description =
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Refinance inputs to gather</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Current balance, note rate, and remaining term.</li>
+      <li>New rate/term and any points or fees.</li>
+      <li>Cash-to-close vs rolled-in costs.</li>
+      <li>Time horizon before selling or refinancing again.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -216,6 +228,8 @@ const description =
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
+

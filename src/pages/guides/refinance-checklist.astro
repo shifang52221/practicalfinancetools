@@ -4,8 +4,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const title = "Refinance Checklist (before you lock a rate)";
 const description =
   "A practical refinance checklist covering documents, fees, timing, and break-even math. Educational use only.";
+
+const lastUpdated = "2026-01-30";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-checklist">
+<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-checklist" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -172,3 +174,4 @@ const description =
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
   </section>
 </BaseLayout>
+

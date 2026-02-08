@@ -5,8 +5,10 @@ import { SITE } from "../../config/site";
 const title = `Guides | ${SITE.name}`;
 const description =
   "Practical guides on mortgage, APR, and credit card payoff topics with links to related calculators. Educational use only.";
+
+const lastUpdated = "2026-01-30";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides">
+<BaseLayout title={title} description={description} canonicalPath="/guides" lastUpdated={lastUpdated}>
   <section class="card hero">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <a href="/">Home</a>
@@ -26,6 +28,28 @@ const description =
     </div>
   </section>
 
+  <section class="card section" style="margin-top:18px">
+    <h2 style="margin-top:0">Find a guide</h2>
+    <div class="form">
+      <div class="field field-3">
+        <label class="label" for="guide-search">Search guides</label>
+        <input id="guide-search" type="search" placeholder="e.g., balance transfer, PMI removal" />
+        <div class="hint">Searches titles in the lists below.</div>
+      </div>
+      <div class="field field-3">
+        <label class="label" for="guide-filter">Filter by topic</label>
+        <select id="guide-filter">
+          <option value="all">All topics</option>
+          <option value="credit-cards">Credit cards</option>
+          <option value="apr">APR & borrowing costs</option>
+          <option value="mortgages">Mortgages</option>
+          <option value="dti">Affordability & DTI</option>
+          <option value="rent-vs-buy">Rent vs buy</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How to use these guides</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -36,7 +60,7 @@ const description =
     </ul>
   </section>
   <section class="grid" style="margin-top:18px">
-    <div class="card section prose col-6">
+    <div class="card section prose col-6" data-guide-group="credit-cards">
       <h2 style="margin-top:0">Credit cards</h2>
       <p class="muted" style="margin:8px 0 0">
         Start with the <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>.
@@ -65,7 +89,7 @@ const description =
         <li><a href="/guides/credit-card-payoff-payment-target">Payoff payment target</a></li>
       </ul>
     </div>
-    <div class="card section prose col-6">
+    <div class="card section prose col-6" data-guide-group="apr">
       <h2 style="margin-top:0">APR & borrowing costs</h2>
       <p class="muted" style="margin:8px 0 0">
         Compare offers with the <a href="/calculators/apr-calculator">APR calculator</a>.
@@ -109,7 +133,7 @@ const description =
     </p>
   </section>
   <section class="grid" style="margin-top:18px">
-    <div class="card section prose col-6">
+    <div class="card section prose col-6" data-guide-group="mortgages">
       <h2 style="margin-top:0">Mortgages</h2>
       <p class="muted" style="margin:8px 0 0">
         Use the <a href="/calculators/extra-payment-calculator">mortgage payoff calculator</a> to model extra principal.
@@ -175,7 +199,7 @@ const description =
         <li><a href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a></li>
       </ul>
     </div>
-    <div class="card section prose col-6">
+    <div class="card section prose col-6" data-guide-group="dti">
       <h2 style="margin-top:0">Affordability & DTI</h2>
       <p class="muted" style="margin:8px 0 0">
         Start with the <a href="/calculators/debt-to-income-calculator">DTI calculator</a>.
@@ -198,7 +222,7 @@ const description =
         <li><a href="/guides/dti-when-to-recalculate">When to recalculate DTI</a></li>
       </ul>
     </div>
-    <div class="card section prose col-6">
+    <div class="card section prose col-6" data-guide-group="rent-vs-buy">
       <h2 style="margin-top:0">Rent vs buy</h2>
       <p class="muted" style="margin:8px 0 0">
         Start with the <a href="/calculators/rent-vs-buy-calculator">rent vs buy calculator</a>.
@@ -317,4 +341,49 @@ const description =
     <p class="muted" style="margin:10px 0 0">Guides are updated as calculators change or new scenarios are added.</p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
   </section>
+
+  <script is:inline type="text/javascript">
+    (function () {
+      var search = document.getElementById("guide-search");
+      var filter = document.getElementById("guide-filter");
+      if (!search || !filter) return;
+
+      var groups = Array.prototype.slice.call(document.querySelectorAll("[data-guide-group]"));
+      var links = Array.prototype.slice.call(document.querySelectorAll("[data-guide-group] a"));
+      links.forEach(function (link) {
+        link.setAttribute("data-astro-prefetch", "false");
+      });
+
+      function applyFilters() {
+        var q = (search.value || "").trim().toLowerCase();
+        var f = filter.value || "all";
+
+        groups.forEach(function (group) {
+          var groupId = group.getAttribute("data-guide-group") || "";
+          var groupMatches = f === "all" || f === groupId;
+          var items = group.querySelectorAll("li");
+          var anyVisible = false;
+
+          items.forEach(function (li) {
+            if (!q) {
+              li.hidden = false;
+              anyVisible = true;
+              return;
+            }
+            var text = (li.textContent || "").toLowerCase();
+            var match = text.indexOf(q) !== -1;
+            li.hidden = !match;
+            if (match) anyVisible = true;
+          });
+
+          group.hidden = !groupMatches || (q && !anyVisible);
+        });
+      }
+
+      search.addEventListener("input", applyFilters);
+      filter.addEventListener("change", applyFilters);
+      applyFilters();
+    })();
+  </script>
 </BaseLayout>
+

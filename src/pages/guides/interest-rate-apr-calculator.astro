@@ -1,4 +1,4 @@
-﻿---
+---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { estimateApr } from "../../lib/calc/apr";
 
@@ -24,8 +24,10 @@ const breakevenFees = 3000;
 const breakevenMonthlySavings = 80;
 const breakevenMonths = breakevenMonthlySavings > 0 ? breakevenFees / breakevenMonthlySavings : null;
 const breakevenYears = breakevenMonths == null ? null : breakevenMonths / 12;
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/interest-rate-apr-calculator">
+<BaseLayout title={title} description={description} canonicalPath="/guides/interest-rate-apr-calculator" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -45,6 +47,15 @@ const breakevenYears = breakevenMonths == null ? null : breakevenMonths / 12;
       <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator (include fees)</a>
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
     </div>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR comparison inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan amount and term (keep them constant across offers).</li>
+      <li>Nominal rate vs APR and which fees are included.</li>
+      <li>Upfront fees paid in cash vs financed.</li>
+      <li>Expected time horizon before refinance or payoff.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -226,6 +237,9 @@ const breakevenYears = breakevenMonths == null ? null : breakevenMonths / 12;
       <a class="btn" href="/guides/refinance-break-even">Break-even (time horizon)</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-27</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
+
+

@@ -114,24 +114,24 @@ export function RentVsBuyCalculator() {
         <h3>Inputs</h3>
         <div className="form">
           <div className="field field-3">
-            <div className="label">Horizon (years)</div>
-            <input type="number" inputMode="numeric" value={years} min={1} step={1} onChange={(e) => setYears(+e.target.value)} />
+            <label className="label" htmlFor="rentbuy-years">Horizon (years)</label>
+            <input id="rentbuy-years" type="number" inputMode="numeric" value={years} min={1} step={1} onChange={(e) => setYears(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Monthly rent</div>
-            <input type="number" inputMode="decimal" value={monthlyRent} min={0} onChange={(e) => setMonthlyRent(+e.target.value)} />
+            <label className="label" htmlFor="rentbuy-monthly-rent">Monthly rent</label>
+            <input id="rentbuy-monthly-rent" type="number" inputMode="decimal" value={monthlyRent} min={0} onChange={(e) => setMonthlyRent(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Rent growth (%)</div>
-            <input type="number" inputMode="decimal" value={rentGrowth} min={0} step={0.1} onChange={(e) => setRentGrowth(+e.target.value)} />
+            <label className="label" htmlFor="rentbuy-rent-growth">Rent growth (%)</label>
+            <input id="rentbuy-rent-growth" type="number" inputMode="decimal" value={rentGrowth} min={0} step={0.1} onChange={(e) => setRentGrowth(+e.target.value)} />
           </div>
 
           <div className="field field-3">
-            <div className="label">Home price</div>
-            <input type="number" inputMode="decimal" value={homePrice} min={0} onChange={(e) => setHomePrice(+e.target.value)} />
+            <label className="label" htmlFor="rentbuy-home-price">Home price</label>
+            <input id="rentbuy-home-price" type="number" inputMode="decimal" value={homePrice} min={0} onChange={(e) => setHomePrice(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Down payment</div>
+            <label className="label" htmlFor="rentbuy-down-payment">Down payment</label>
             <div className="btn-row" style={{ marginTop: 6 }}>
               <button
                 className={`btn ${downPaymentMode === "amount" ? "btn-primary" : ""}`}
@@ -156,6 +156,7 @@ export function RentVsBuyCalculator() {
             </div>
             {downPaymentMode === "amount" ? (
               <input
+                id="rentbuy-down-payment"
                 style={{ marginTop: 10 }}
                 type="number"
                 inputMode="decimal"
@@ -165,6 +166,7 @@ export function RentVsBuyCalculator() {
               />
             ) : (
               <input
+                id="rentbuy-down-payment"
                 style={{ marginTop: 10 }}
                 type="number"
                 inputMode="decimal"
@@ -177,46 +179,46 @@ export function RentVsBuyCalculator() {
             <div className="hint">{formatCurrency2(downPaymentCapped)} of price</div>
           </div>
           <div className="field field-3">
-            <div className="label">Mortgage rate (APR %)</div>
-            <input type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
+            <label className="label" htmlFor="rentbuy-rate">Mortgage rate (APR %)</label>
+            <input id="rentbuy-rate" type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Mortgage term (years)</div>
-            <input type="number" inputMode="numeric" value={termYears} min={1} step={1} onChange={(e) => setTermYears(+e.target.value)} />
-          </div>
-
-          <div className="field field-3">
-            <div className="label">Home appreciation (%)</div>
-            <input type="number" inputMode="decimal" value={homeApp} min={0} step={0.1} onChange={(e) => setHomeApp(+e.target.value)} />
-          </div>
-          <div className="field field-3">
-            <div className="label">Closing costs (%)</div>
-            <input type="number" inputMode="decimal" value={closingCostsPct} min={0} step={0.1} onChange={(e) => setClosingCostsPct(+e.target.value)} />
-          </div>
-          <div className="field field-3">
-            <div className="label">Selling costs (%)</div>
-            <input type="number" inputMode="decimal" value={sellingCostsPct} min={0} step={0.1} onChange={(e) => setSellingCostsPct(+e.target.value)} />
+            <label className="label" htmlFor="rentbuy-term-years">Mortgage term (years)</label>
+            <input id="rentbuy-term-years" type="number" inputMode="numeric" value={termYears} min={1} step={1} onChange={(e) => setTermYears(+e.target.value)} />
           </div>
 
           <div className="field field-3">
-            <div className="label">Property tax (%)</div>
-            <input type="number" inputMode="decimal" value={propertyTaxPct} min={0} step={0.1} onChange={(e) => setPropertyTaxPct(+e.target.value)} />
+            <label className="label" htmlFor="rentbuy-home-app">Home appreciation (%)</label>
+            <input id="rentbuy-home-app" type="number" inputMode="decimal" value={homeApp} min={0} step={0.1} onChange={(e) => setHomeApp(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Home insurance (annual)</div>
-            <input type="number" inputMode="decimal" value={insuranceAnnual} min={0} onChange={(e) => setInsuranceAnnual(+e.target.value)} />
+            <label className="label" htmlFor="rentbuy-closing-costs">Closing costs (%)</label>
+            <input id="rentbuy-closing-costs" type="number" inputMode="decimal" value={closingCostsPct} min={0} step={0.1} onChange={(e) => setClosingCostsPct(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">HOA (monthly)</div>
-            <input type="number" inputMode="decimal" value={hoaMonthly} min={0} onChange={(e) => setHoaMonthly(+e.target.value)} />
+            <label className="label" htmlFor="rentbuy-selling-costs">Selling costs (%)</label>
+            <input id="rentbuy-selling-costs" type="number" inputMode="decimal" value={sellingCostsPct} min={0} step={0.1} onChange={(e) => setSellingCostsPct(+e.target.value)} />
+          </div>
+
+          <div className="field field-3">
+            <label className="label" htmlFor="rentbuy-property-tax">Property tax (%)</label>
+            <input id="rentbuy-property-tax" type="number" inputMode="decimal" value={propertyTaxPct} min={0} step={0.1} onChange={(e) => setPropertyTaxPct(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Maintenance (%)</div>
-            <input type="number" inputMode="decimal" value={maintenancePct} min={0} step={0.1} onChange={(e) => setMaintenancePct(+e.target.value)} />
+            <label className="label" htmlFor="rentbuy-insurance">Home insurance (annual)</label>
+            <input id="rentbuy-insurance" type="number" inputMode="decimal" value={insuranceAnnual} min={0} onChange={(e) => setInsuranceAnnual(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Investment return (%)</div>
-            <input type="number" inputMode="decimal" value={investReturn} min={0} step={0.1} onChange={(e) => setInvestReturn(+e.target.value)} />
+            <label className="label" htmlFor="rentbuy-hoa">HOA (monthly)</label>
+            <input id="rentbuy-hoa" type="number" inputMode="decimal" value={hoaMonthly} min={0} onChange={(e) => setHoaMonthly(+e.target.value)} />
+          </div>
+          <div className="field field-3">
+            <label className="label" htmlFor="rentbuy-maintenance">Maintenance (%)</label>
+            <input id="rentbuy-maintenance" type="number" inputMode="decimal" value={maintenancePct} min={0} step={0.1} onChange={(e) => setMaintenancePct(+e.target.value)} />
+          </div>
+          <div className="field field-3">
+            <label className="label" htmlFor="rentbuy-invest-return">Investment return (%)</label>
+            <input id="rentbuy-invest-return" type="number" inputMode="decimal" value={investReturn} min={0} step={0.1} onChange={(e) => setInvestReturn(+e.target.value)} />
           </div>
 
           <div className="field field-6">

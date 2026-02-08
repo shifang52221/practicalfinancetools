@@ -4,8 +4,10 @@ import { SITE } from "../config/site";
 
 const title = `Privacy Policy | ${SITE.name}`;
 const description = "Privacy policy describing how this site handles data, cookies, and advertising.";
+
+const lastUpdated = "2026-01-30";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/privacy-policy">
+<BaseLayout title={title} description={description} canonicalPath="/privacy-policy" lastUpdated={lastUpdated}>
   <section class="card hero">
     <h1>Privacy Policy</h1>
     <p>Last updated: 2026-01-30</p>
@@ -123,3 +125,4 @@ const description = "Privacy policy describing how this site handles data, cooki
     </p>
   </section>
 </BaseLayout>
+

@@ -4,8 +4,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const title = "Discount Points vs Lender Credits";
 const description =
   "Compare discount points and lender credits using APR and your time horizon. Educational use only.";
+
+const lastUpdated = "2026-01-31";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/discount-points-vs-lender-credits">
+<BaseLayout title={title} description={description} canonicalPath="/guides/discount-points-vs-lender-credits" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -124,3 +126,4 @@ const description =
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
   </section>
 </BaseLayout>
+

@@ -5,8 +5,10 @@ import { SITE } from "../config/site";
 const title = `Editorial Policy | ${SITE.name}`;
 const description =
   "How we create and update calculator explanations, what we consider before publishing, and how to request corrections. Educational use only.";
+
+const lastUpdated = "2026-01-30";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/editorial-policy">
+<BaseLayout title={title} description={description} canonicalPath="/editorial-policy" lastUpdated={lastUpdated}>
   <section class="card hero">
     <h1>Editorial policy</h1>
     <p>
@@ -151,3 +153,4 @@ const description =
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
   </section>
 </BaseLayout>
+

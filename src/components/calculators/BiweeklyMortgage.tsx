@@ -47,8 +47,8 @@ export function BiweeklyMortgageCalculator() {
         <h3>Inputs</h3>
         <div className="form">
           <div className="field field-3">
-            <div className="label">Loan amount</div>
-            <input type="number" inputMode="decimal" value={principal} min={0} onChange={(e) => setPrincipal(+e.target.value)} />
+            <label className="label" htmlFor="biweekly-loan-amount">Loan amount</label>
+            <input id="biweekly-loan-amount" type="number" inputMode="decimal" value={principal} min={0} onChange={(e) => setPrincipal(+e.target.value)} />
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setPrincipal(250000)}>
                 $250k
@@ -62,8 +62,8 @@ export function BiweeklyMortgageCalculator() {
             </div>
           </div>
           <div className="field field-3">
-            <div className="label">Interest rate (APR %)</div>
-            <input type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
+            <label className="label" htmlFor="biweekly-rate">Interest rate (APR %)</label>
+            <input id="biweekly-rate" type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setRate(5.5)}>
                 5.50%
@@ -77,8 +77,8 @@ export function BiweeklyMortgageCalculator() {
             </div>
           </div>
           <div className="field field-3">
-            <div className="label">Term (years)</div>
-            <input type="number" inputMode="numeric" value={termYears} min={1} step={1} onChange={(e) => setTermYears(+e.target.value)} />
+            <label className="label" htmlFor="biweekly-term-years">Term (years)</label>
+            <input id="biweekly-term-years" type="number" inputMode="numeric" value={termYears} min={1} step={1} onChange={(e) => setTermYears(+e.target.value)} />
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setTermYears(15)}>
                 15
@@ -106,8 +106,9 @@ export function BiweeklyMortgageCalculator() {
 
           {!useBiweeklyEquivalent ? (
             <div className="field field-3">
-              <div className="label">Extra principal (monthly)</div>
+              <label className="label" htmlFor="biweekly-extra-monthly">Extra principal (monthly)</label>
               <input
+                id="biweekly-extra-monthly"
                 type="number"
                 inputMode="decimal"
                 value={extraMonthlyOverride}
@@ -131,8 +132,8 @@ export function BiweeklyMortgageCalculator() {
             </div>
           ) : (
             <div className="field field-3">
-              <div className="label">Equivalent monthly extra (est.)</div>
-              <input type="number" inputMode="decimal" value={Math.round(extraMonthly)} readOnly />
+              <label className="label" htmlFor="biweekly-extra-equivalent">Equivalent monthly extra (est.)</label>
+              <input id="biweekly-extra-equivalent" type="number" inputMode="decimal" value={Math.round(extraMonthly)} readOnly />
               <div className="hint">Based on monthly P&amp;I only (not escrow).</div>
             </div>
           )}

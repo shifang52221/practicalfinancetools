@@ -4,8 +4,10 @@ import { SITE } from "../config/site";
 
 const title = `About | ${SITE.name}`;
 const description = "About this site, our goals, and how to use the calculators responsibly.";
+
+const lastUpdated = "2026-01-30";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/about">
+<BaseLayout title={title} description={description} canonicalPath="/about" lastUpdated={lastUpdated}>
   <section class="card hero">
     <h1>About</h1>
     <p>
@@ -149,3 +151,4 @@ const description = "About this site, our goals, and how to use the calculators 
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
   </section>
 </BaseLayout>
+

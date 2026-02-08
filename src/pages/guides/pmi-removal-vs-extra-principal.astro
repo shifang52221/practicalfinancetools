@@ -28,8 +28,10 @@ const monthsSaved = baselineMonth != null && extraMonth != null ? Math.max(0, ba
 const pmiSaved = monthsSaved == null ? null : monthsSaved * examplePmiMonthly;
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const lastUpdated = "2026-01-28";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/pmi-removal-vs-extra-principal">
+<BaseLayout title={title} description={description} canonicalPath="/guides/pmi-removal-vs-extra-principal" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -218,3 +220,4 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
   </section>
 </BaseLayout>
+

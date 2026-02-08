@@ -3,9 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Debt Snowball vs Avalanche (which payoff method fits)";
 const description =
-  "Compare debt snowball vs avalanche, trade-offs, and how to model both methods. Educational use only.";
+  "Debt snowball vs avalanche: compare payoff methods, trade-offs, and how to model both with calculators. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/debt-snowball-vs-avalanche">
+<BaseLayout title={title} description={description} canonicalPath="/guides/debt-snowball-vs-avalanche" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -54,6 +56,16 @@ const description =
       <li>Run the same inputs in snowball and avalanche calculators.</li>
       <li>Compare payoff time and total interest, then pick the plan you will follow.</li>
     </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Debt snowball vs avalanche calculator inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Each balance and APR (use the statement purchase APR).</li>
+      <li>Required minimum payments for each account.</li>
+      <li>Extra payment amount you can sustain monthly.</li>
+      <li>Promo APR end dates (model a second scenario if needed).</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -158,6 +170,7 @@ const description =
       <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How credit card interest works</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

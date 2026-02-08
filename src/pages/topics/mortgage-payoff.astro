@@ -4,8 +4,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const title = "Mortgage Payoff Topic Guide (payment, amortization, extras)";
 const description =
   "Mortgage payoff workflow: estimate payment, view amortization, and compare extra principal strategies. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/topics/mortgage-payoff">
+<BaseLayout title={title} description={description} canonicalPath="/topics/mortgage-payoff" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Topic</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -26,6 +28,16 @@ const description =
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
       <a class="btn" href="/calculators/extra-payment-calculator">Extra payment mortgage calculator</a>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Mortgage payoff inputs to gather</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Current balance, note rate, and remaining term.</li>
+      <li>Monthly P&amp;I payment and escrow amounts.</li>
+      <li>Extra payment amount (monthly or lump sum timing).</li>
+      <li>Servicer rules for principal-only posting.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -203,6 +215,8 @@ const description =
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
+

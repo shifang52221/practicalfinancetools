@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const title = "Mortgage Escrow Account Basics";
+const title = "Mortgage Payment Escrow Account (Basics)";
 const description =
-  "How escrow accounts work for taxes and insurance and how they affect your mortgage payment. Educational use only.";
+  "Mortgage payment escrow account basics: how escrow works for taxes and insurance and why your payment changes. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-escrow-account">
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-escrow-account" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -15,16 +17,25 @@ const description =
       <span aria-hidden="true">/</span>
       <span aria-current="page">Escrow account</span>
     </nav>
-    <h1>Mortgage escrow account basics</h1>
+    <h1>Mortgage payment escrow account basics</h1>
     <p>
-      Escrow accounts collect monthly amounts for taxes and insurance. This guide explains how escrow affects your mortgage payment
-      and why it can change after closing.
+      Escrow accounts collect monthly amounts for taxes and insurance. This guide explains how a mortgage payment escrow account affects
+      your monthly payment and why it can change after closing.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/guides/principal-and-interest-vs-escrow">Principal vs escrow</a>
       <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
     </div>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan amount, note rate, and term.</li>
+      <li>Taxes, insurance, HOA, and PMI assumptions.</li>
+      <li>Escrow rules or reserves used by the lender.</li>
+      <li>Time horizon if comparing scenarios.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -42,6 +53,39 @@ const description =
       Escrow payments are based on estimates. When taxes or insurance rise, the servicer updates your escrow payment, which increases
       the monthly mortgage bill.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Mortgage payment escrow account example</h2>
+    <p class="muted" style="margin:10px 0 0">Illustrative monthly breakdown:</p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Principal &amp; interest</td>
+            <td>$1,800</td>
+          </tr>
+          <tr>
+            <td>Property taxes (escrow)</td>
+            <td>$350</td>
+          </tr>
+          <tr>
+            <td>Insurance (escrow)</td>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <td>Total payment</td>
+            <td>$2,250</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -128,6 +172,9 @@ const description =
       <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
+
+

@@ -44,8 +44,8 @@ export function AprCalculator() {
         <h3>Inputs</h3>
         <div className="form">
           <div className="field field-3">
-            <div className="label">Loan amount</div>
-            <input type="number" inputMode="decimal" value={loanAmount} min={0} onChange={(e) => setLoanAmount(+e.target.value)} />
+            <label className="label" htmlFor="apr-loan-amount">Loan amount</label>
+            <input id="apr-loan-amount" type="number" inputMode="decimal" value={loanAmount} min={0} onChange={(e) => setLoanAmount(+e.target.value)} />
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setLoanAmount(5000)}>
                 $5,000
@@ -59,8 +59,8 @@ export function AprCalculator() {
             </div>
           </div>
           <div className="field field-3">
-            <div className="label">Nominal interest rate (%)</div>
-            <input type="number" inputMode="decimal" value={nominalRate} min={0} step={0.01} onChange={(e) => setNominalRate(+e.target.value)} />
+            <label className="label" htmlFor="apr-nominal-rate">Nominal interest rate (%)</label>
+            <input id="apr-nominal-rate" type="number" inputMode="decimal" value={nominalRate} min={0} step={0.01} onChange={(e) => setNominalRate(+e.target.value)} />
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setNominalRate(5.99)}>
                 5.99%
@@ -74,8 +74,8 @@ export function AprCalculator() {
             </div>
           </div>
           <div className="field field-3">
-            <div className="label">Term (months)</div>
-            <input type="number" inputMode="numeric" value={termMonths} min={1} step={1} onChange={(e) => setTermMonths(+e.target.value)} />
+            <label className="label" htmlFor="apr-term-months">Term (months)</label>
+            <input id="apr-term-months" type="number" inputMode="numeric" value={termMonths} min={1} step={1} onChange={(e) => setTermMonths(+e.target.value)} />
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setTermMonths(36)}>
                 36
@@ -89,8 +89,8 @@ export function AprCalculator() {
             </div>
           </div>
           <div className="field field-3">
-            <div className="label">Upfront fees</div>
-            <input type="number" inputMode="decimal" value={fees} min={0} onChange={(e) => setFees(+e.target.value)} />
+            <label className="label" htmlFor="apr-upfront-fees">Upfront fees</label>
+            <input id="apr-upfront-fees" type="number" inputMode="decimal" value={fees} min={0} onChange={(e) => setFees(+e.target.value)} />
             <div className="hint">Origination and similar fees</div>
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setFees(0)}>

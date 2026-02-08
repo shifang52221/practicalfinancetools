@@ -34,16 +34,16 @@ export function MinimumPaymentPayoff() {
         <h3>Inputs</h3>
         <div className="form">
           <div className="field field-3">
-            <div className="label">Balance</div>
-            <input type="number" inputMode="decimal" value={balance} min={0} onChange={(e) => setBalance(+e.target.value)} />
+            <label className="label" htmlFor="minpay-balance">Balance</label>
+            <input id="minpay-balance" type="number" inputMode="decimal" value={balance} min={0} onChange={(e) => setBalance(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">APR (%)</div>
-            <input type="number" inputMode="decimal" value={apr} min={0} step={0.01} onChange={(e) => setApr(+e.target.value)} />
+            <label className="label" htmlFor="minpay-apr">APR (%)</label>
+            <input id="minpay-apr" type="number" inputMode="decimal" value={apr} min={0} step={0.01} onChange={(e) => setApr(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Minimum payment (%)</div>
-            <input type="number" inputMode="decimal" value={minPercent} min={0} step={0.1} onChange={(e) => setMinPercent(+e.target.value)} />
+            <label className="label" htmlFor="minpay-percent">Minimum payment (%)</label>
+            <input id="minpay-percent" type="number" inputMode="decimal" value={minPercent} min={0} step={0.1} onChange={(e) => setMinPercent(+e.target.value)} />
             <div className="hint">Example: 2% of balance</div>
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setMinPercent(1)}>
@@ -58,8 +58,8 @@ export function MinimumPaymentPayoff() {
             </div>
           </div>
           <div className="field field-3">
-            <div className="label">Minimum payment ($)</div>
-            <input type="number" inputMode="decimal" value={minDollars} min={0} onChange={(e) => setMinDollars(+e.target.value)} />
+            <label className="label" htmlFor="minpay-dollars">Minimum payment ($)</label>
+            <input id="minpay-dollars" type="number" inputMode="decimal" value={minDollars} min={0} onChange={(e) => setMinDollars(+e.target.value)} />
             <div className="hint">Example: $25 minimum</div>
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setMinDollars(25)}>

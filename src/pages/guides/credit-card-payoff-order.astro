@@ -4,8 +4,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const title = "Credit Card Payoff Order (Which balance first?)";
 const description =
   "Choose a payoff order based on APR, balance size, and motivation. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-payoff-order">
+<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-payoff-order" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,6 +27,15 @@ const description =
       <a class="btn" href="/calculators/debt-snowball-calculator">Debt snowball calculator</a>
       <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
     </div>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Credit card inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Current balance, APR, and any promo end date.</li>
+      <li>Minimum payment rule or fixed payment amount.</li>
+      <li>Fees or new purchases that affect the balance.</li>
+      <li>Statement cycle dates and posting timing.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -129,6 +140,8 @@ const description =
       <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
+

@@ -4,8 +4,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const title = "APR and Points: When a lower rate pays off";
 const description =
   "Learn how points affect APR and when they pay off based on your time horizon. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/apr-and-points-break-even">
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-and-points-break-even" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,6 +27,15 @@ const description =
       <a class="btn" href="/guides/discount-points-vs-lender-credits">Points vs credits</a>
       <a class="btn" href="/topics/apr">APR topic</a>
     </div>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR comparison inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan amount and term (keep them constant across offers).</li>
+      <li>Nominal rate vs APR and which fees are included.</li>
+      <li>Upfront fees paid in cash vs financed.</li>
+      <li>Expected time horizon before refinance or payoff.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -130,6 +141,9 @@ const description =
       <a class="btn" href="/topics/apr">APR topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
+
+

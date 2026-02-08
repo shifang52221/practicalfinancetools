@@ -3,9 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Average Daily Balance Interest (Why statements differ)";
 const description =
-  "Learn how average daily balance interest works and why it can differ from monthly estimates. Educational use only.";
+  "Average daily balance interest explains why statement interest can differ from monthly estimates. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/average-daily-balance-interest">
+<BaseLayout title={title} description={description} canonicalPath="/guides/average-daily-balance-interest" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -43,6 +45,48 @@ const description =
       <li>Track when payments post, not just when they are sent.</li>
       <li>Compare one or two months to validate your inputs.</li>
     </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Average daily balance interest example</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A simple illustration (30-day cycle, 24% APR):
+    </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Days in cycle</th>
+            <th>Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Days 1-10</td>
+            <td>$1,000</td>
+          </tr>
+          <tr>
+            <td>Days 11-20</td>
+            <td>$1,500</td>
+          </tr>
+          <tr>
+            <td>Days 21-30</td>
+            <td>$800</td>
+          </tr>
+          <tr>
+            <td>Average daily balance</td>
+            <td>$1,100</td>
+          </tr>
+          <tr>
+            <td>Approx. interest for the cycle</td>
+            <td>About $21.70</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:10px 0 0">
+      Issuers compute interest using their daily rate and cycle length, so your statement can differ slightly.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -120,6 +164,7 @@ const description =
       <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

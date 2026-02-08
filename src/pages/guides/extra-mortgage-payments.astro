@@ -4,7 +4,7 @@ import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Mortgage Payments (save interest, shorten payoff)";
 const description =
-  "Learn how extra principal payments change amortization, what to confirm with your lender, and how to compare scenarios. Educational use only.";
+  "Extra mortgage payments guide: how extra principal changes amortization, what to confirm with your lender, and how to compare scenarios. Educational use only.";
 
 const examplePrincipal = 300000;
 const exampleApr = 6.5;
@@ -20,8 +20,10 @@ const withExtra = amortizationSchedule({
 
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/extra-mortgage-payments">
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-mortgage-payments" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -68,6 +70,19 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       Interest is calculated on the remaining balance. When you pay extra principal, you reduce the balance earlier than scheduled. That
       reduces future interest charges, which accelerates payoff. You usually keep the same required monthly payment, but more of that
       payment goes to principal sooner.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Extra mortgage payments calculator inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Current principal balance and remaining term.</li>
+      <li>Note rate (not APR).</li>
+      <li>Monthly extra amount or one-time lump sum and timing.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Use the{" "}
+      <a href="/calculators/extra-payment-calculator">extra mortgage payment calculator</a> to compare scenarios on the same baseline.
     </p>
   </section>
 
@@ -243,6 +258,7 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn" href="/calculators/rent-vs-buy-calculator">Rent vs buy</a>
       <a class="btn" href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a>
     </div>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

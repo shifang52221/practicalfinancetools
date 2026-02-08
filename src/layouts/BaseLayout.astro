@@ -12,6 +12,8 @@ type Props = {
   robots?: string;
   includePageSchema?: boolean;
   includeBreadcrumbSchema?: boolean;
+  lastUpdated?: string;
+  datePublished?: string;
 };
 
 const {
@@ -20,7 +22,9 @@ const {
   canonicalPath,
   robots,
   includePageSchema = true,
-  includeBreadcrumbSchema = true
+  includeBreadcrumbSchema = true,
+  lastUpdated,
+  datePublished
 } = Astro.props;
 const siteUrlRaw = Astro.site ? Astro.site.toString() : SITE.url;
 const siteUrl = siteUrlRaw.endsWith("/") ? siteUrlRaw.slice(0, -1) : siteUrlRaw;
@@ -39,7 +43,8 @@ const organizationLd = {
   "@id": `${siteUrl}/#organization`,
   name: SITE.name,
   url: siteUrl,
-  email: SITE.email
+  email: SITE.email,
+  logo: ogImage
 };
 
 const websiteLd = {
@@ -81,7 +86,9 @@ const webPageLd = {
   description: description ?? undefined,
   isPartOf: { "@id": `${siteUrl}/#website` },
   publisher: { "@id": `${siteUrl}/#organization` },
-  author: pageType === "Article" ? { "@id": `${siteUrl}/#organization` } : undefined
+  author: pageType === "Article" ? { "@id": `${siteUrl}/#organization` } : undefined,
+  datePublished: datePublished ?? undefined,
+  dateModified: lastUpdated ?? undefined
 };
 const breadcrumbItems = [{ "@type": "ListItem", position: 1, name: "Home", item: homeUrl }];
 let breadcrumbPosition = 2;

@@ -4,8 +4,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const title = "Rent vs Buy Closing Costs (Buyer and seller)";
 const description =
   "Overview of closing and selling costs to include in rent vs buy comparisons and why they matter on short horizons. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-closing-costs">
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-closing-costs" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,6 +27,15 @@ const description =
       <a class="btn" href="/guides/rent-vs-buy-time-horizon">Time horizon impact</a>
       <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
     </div>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Rent vs buy inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Holding period (time horizon).</li>
+      <li>Mortgage rate, down payment, and closing/selling costs.</li>
+      <li>Rent growth and home appreciation assumptions.</li>
+      <li>Maintenance, taxes, insurance, HOA, and investment return.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -120,6 +131,9 @@ const description =
       <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
+
+

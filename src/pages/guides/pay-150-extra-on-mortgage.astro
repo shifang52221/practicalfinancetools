@@ -1,11 +1,13 @@
-﻿---
+---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "If I Pay $150 Extra on My Mortgage (how much does it help?)";
 const description =
   "Paying an extra $150 toward principal can shorten payoff time and reduce total interest. Learn what changes, what to confirm with your lender, and model it with the extra payment calculator. Educational use only.";
+
+const lastUpdated = "2026-01-29";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/pay-150-extra-on-mortgage" robots="noindex, follow">
+<BaseLayout title={title} description={description} canonicalPath="/guides/pay-150-extra-on-mortgage" robots="noindex, follow" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -125,3 +127,4 @@ const description =
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
   </section>
 </BaseLayout>
+

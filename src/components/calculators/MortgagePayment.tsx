@@ -78,11 +78,11 @@ export function MortgagePaymentCalculator() {
         <h3>Inputs</h3>
         <div className="form">
           <div className="field field-3">
-            <div className="label">Home price</div>
-            <input type="number" inputMode="decimal" value={homePrice} min={0} onChange={(e) => setHomePrice(+e.target.value)} />
+            <label className="label" htmlFor="mortgage-home-price">Home price</label>
+            <input id="mortgage-home-price" type="number" inputMode="decimal" value={homePrice} min={0} onChange={(e) => setHomePrice(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Down payment</div>
+            <label className="label" htmlFor="mortgage-down-payment">Down payment</label>
             <div className="btn-row" style={{ marginTop: 6 }}>
               <button
                 className={`btn ${downPaymentMode === "amount" ? "btn-primary" : ""}`}
@@ -107,6 +107,7 @@ export function MortgagePaymentCalculator() {
             </div>
             {downPaymentMode === "amount" ? (
               <input
+                id="mortgage-down-payment"
                 style={{ marginTop: 10 }}
                 type="number"
                 inputMode="decimal"
@@ -116,6 +117,7 @@ export function MortgagePaymentCalculator() {
               />
             ) : (
               <input
+                id="mortgage-down-payment"
                 style={{ marginTop: 10 }}
                 type="number"
                 inputMode="decimal"
@@ -130,15 +132,15 @@ export function MortgagePaymentCalculator() {
             </div>
           </div>
           <div className="field field-3">
-            <div className="label">Interest rate (APR %)</div>
-            <input type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
+            <label className="label" htmlFor="mortgage-rate">Interest rate (APR %)</label>
+            <input id="mortgage-rate" type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Term (years)</div>
-            <input type="number" inputMode="numeric" value={termYears} min={1} step={1} onChange={(e) => setTermYears(+e.target.value)} />
+            <label className="label" htmlFor="mortgage-term-years">Term (years)</label>
+            <input id="mortgage-term-years" type="number" inputMode="numeric" value={termYears} min={1} step={1} onChange={(e) => setTermYears(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Property tax</div>
+            <label className="label" htmlFor="mortgage-property-tax">Property tax</label>
             <div className="btn-row" style={{ marginTop: 6 }}>
               <button
                 className={`btn ${propertyTaxMode === "annual" ? "btn-primary" : ""}`}
@@ -157,6 +159,7 @@ export function MortgagePaymentCalculator() {
             </div>
             {propertyTaxMode === "annual" ? (
               <input
+                id="mortgage-property-tax"
                 style={{ marginTop: 10 }}
                 type="number"
                 inputMode="decimal"
@@ -166,6 +169,7 @@ export function MortgagePaymentCalculator() {
               />
             ) : (
               <input
+                id="mortgage-property-tax"
                 style={{ marginTop: 10 }}
                 type="number"
                 inputMode="decimal"
@@ -180,16 +184,16 @@ export function MortgagePaymentCalculator() {
             </div>
           </div>
           <div className="field field-3">
-            <div className="label">Home insurance (annual)</div>
-            <input type="number" inputMode="decimal" value={insuranceAnnual} min={0} onChange={(e) => setInsuranceAnnual(+e.target.value)} />
+            <label className="label" htmlFor="mortgage-insurance">Home insurance (annual)</label>
+            <input id="mortgage-insurance" type="number" inputMode="decimal" value={insuranceAnnual} min={0} onChange={(e) => setInsuranceAnnual(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">HOA (monthly)</div>
-            <input type="number" inputMode="decimal" value={hoaMonthly} min={0} onChange={(e) => setHoaMonthly(+e.target.value)} />
+            <label className="label" htmlFor="mortgage-hoa">HOA (monthly)</label>
+            <input id="mortgage-hoa" type="number" inputMode="decimal" value={hoaMonthly} min={0} onChange={(e) => setHoaMonthly(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">PMI rate (annual %)</div>
-            <input type="number" inputMode="decimal" value={pmiRateAnnual} min={0} step={0.01} onChange={(e) => setPmiRateAnnual(+e.target.value)} />
+            <label className="label" htmlFor="mortgage-pmi-rate">PMI rate (annual %)</label>
+            <input id="mortgage-pmi-rate" type="number" inputMode="decimal" value={pmiRateAnnual} min={0} step={0.01} onChange={(e) => setPmiRateAnnual(+e.target.value)} />
             <div className="hint">Applied if down payment &lt; 20%</div>
           </div>
           <div className="field field-6">

@@ -4,8 +4,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const title = "Credit Card Payoff Topic Guide (interest, minimums, plans)";
 const description =
   "Credit card payoff workflow: model interest, minimum payments, and multi-debt plans with calculators. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/topics/credit-cards">
+<BaseLayout title={title} description={description} canonicalPath="/topics/credit-cards" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Topic</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -26,6 +28,16 @@ const description =
       <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
       <a class="btn" href="/calculators/debt-avalanche-calculator">Debt avalanche</a>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Credit card payoff inputs to gather</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Balance, APR, and any promo end date.</li>
+      <li>Minimum payment rule or fixed payment amount.</li>
+      <li>Statement cycle dates and posting timing.</li>
+      <li>Whether you will stop new purchases during payoff.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -195,6 +207,8 @@ const description =
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
+

@@ -4,6 +4,7 @@ import { CreditCardPayoff } from "../../components/calculators/CreditCardPayoff"
 import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Payoff Calculator (Payoff Date & Interest)";
+const metaTitle = "Credit Card Payoff Calculator - Payoff Date & Interest";
 const description =
   "Credit card payoff calculator to estimate payoff time, total interest, and a month-by-month payoff schedule for a fixed APR and payment. Educational use only.";
 
@@ -16,6 +17,7 @@ const exampleMonthsRemainder = exampleMonths == null ? null : exampleMonths % 12
 ---
 <CalculatorLayout
   title={title}
+  metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/credit-card-payoff-calculator"
   intro="Use this credit card payoff calculator to calculate credit card payoff time for a balance with a fixed APR and monthly payment, plus the total interest over time. Educational use only. Not financial advice."
@@ -70,7 +72,7 @@ const exampleMonthsRemainder = exampleMonths == null ? null : exampleMonths % 12
       a: "If a payment is below the interest charged, the balance can grow and payoff may never happen. Increase the payment or reduce the APR to make progress."
     }
   ]}
-  lastUpdated="2026-01-29"
+  lastUpdated="2026-02-08"
 >
   <CreditCardPayoff client:load />
 
@@ -119,7 +121,7 @@ const exampleMonthsRemainder = exampleMonths == null ? null : exampleMonths % 12
       </table>
     </div>
 
-    <h2 style="margin:18px 0 10px">Inputs to verify</h2>
+    <h2 style="margin:18px 0 10px">Credit card payoff calculator inputs to verify</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>APR: use your statement rate, not a teaser or balance transfer promo.</li>
       <li>Payment: enter what you can actually sustain each month.</li>
@@ -155,10 +157,11 @@ const exampleMonthsRemainder = exampleMonths == null ? null : exampleMonths % 12
       <li>Use the same payment amount as your planned autopay to keep the model realistic.</li>
     </ul>
 
-    <h2 style="margin:18px 0 10px">Daily interest note</h2>
+    <h2 style="margin:18px 0 10px">Daily interest note (average daily balance)</h2>
     <p class="muted" style="margin:0">
       Many issuers use average daily balance to compute interest. This calculator uses a monthly estimate for planning, so small
-      differences vs your statement are normal.
+      differences vs your statement are normal. See the{" "}
+      <a href="/guides/average-daily-balance-interest">average daily balance interest guide</a> for statement timing details.
     </p>
 
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>

@@ -39,8 +39,10 @@ const baseYm = yearsMonths(base.months);
 const monthlyYm = yearsMonths(withMonthlyExtra.months);
 const lateYm = yearsMonths(withOneTimeExtraLate.months);
 const earlyYm = yearsMonths(withOneTimeExtraEarly.months);
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/one-extra-mortgage-payment-per-year">
+<BaseLayout title={title} description={description} canonicalPath="/guides/one-extra-mortgage-payment-per-year" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -92,6 +94,16 @@ const earlyYm = yearsMonths(withOneTimeExtraEarly.months);
     <p class="muted" style="margin:12px 0 0">
       Real results can differ based on the exact day the lender applies the extra payment and how interest is calculated.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">One extra mortgage payment per year inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Note rate (not APR) and remaining term.</li>
+      <li>Monthly P&amp;I payment amount.</li>
+      <li>Lump sum timing vs monthly extra timing.</li>
+      <li>Servicer posting rules for principal-only extras.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -254,6 +266,7 @@ const earlyYm = yearsMonths(withOneTimeExtraEarly.months);
     <p class="muted" style="margin:12px 0 0">
       Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

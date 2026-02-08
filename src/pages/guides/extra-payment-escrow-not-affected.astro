@@ -3,9 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Extra Payments and Escrow (What changes)";
 const description =
-  "Extra principal payments do not reduce escrow items like taxes and insurance. Educational use only.";
+  "Extra mortgage payments do not reduce escrow items like taxes and insurance. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-escrow-not-affected">
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-escrow-not-affected" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -53,6 +55,14 @@ const description =
       <li>Extra principal does not change tax assessments or insurance premiums.</li>
       <li>Payment changes usually follow a shortage or surplus analysis.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Example: extra payment vs escrow</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you pay $200 extra toward principal, your principal balance drops faster and interest savings increase, but your tax and
+      insurance escrow amounts stay the same until the next escrow review.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -121,6 +131,7 @@ const description =
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

@@ -4,7 +4,7 @@ import { estimateApr } from "../../lib/calc/apr";
 
 const title = "APR Tool (estimate APR with fees and compare offers)";
 const description =
-  "A practical APR tool to compare loans by including upfront fees, plus guidance on what APR means and how to use it safely. Educational use only.";
+  "APR tool to compare loans by including upfront fees, plus guidance on what APR means and how to use it safely. Educational use only.";
 
 const exampleLoan = 20000;
 const exampleTerm = 60;
@@ -16,8 +16,10 @@ const offerA = estimateApr({ loanAmount: exampleLoan, nominalRatePercent: rateA,
 const offerB = estimateApr({ loanAmount: exampleLoan, nominalRatePercent: rateB, termMonths: exampleTerm, fees: feeB });
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/apr-tool">
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-tool" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -37,9 +39,18 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn" href="/guides/how-to-find-your-apr">How to find your APR</a>
     </div>
   </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR comparison inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan amount and term (keep them constant across offers).</li>
+      <li>Nominal rate vs APR and which fees are included.</li>
+      <li>Upfront fees paid in cash vs financed.</li>
+      <li>Expected time horizon before refinance or payoff.</li>
+    </ul>
+  </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What to enter</h2>
+    <h2 style="margin-top:0">APR tool inputs to enter</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Loan amount</li>
       <li>Interest rate</li>
@@ -110,6 +121,16 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       If a lower rate comes with fees, the break-even point is when the monthly savings offset the upfront cost. Use the calculator to
       compare total dollars paid over the number of months you expect to keep the loan, not just over the full term.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR tool checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Keep term, rate type, and loan amount identical.</li>
+      <li>List all upfront fees and points the lender charges.</li>
+      <li>Decide whether fees are paid in cash or financed.</li>
+      <li>Compare total cost over your expected time horizon.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -190,6 +211,9 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn" href="/topics/apr">APR hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
+
+

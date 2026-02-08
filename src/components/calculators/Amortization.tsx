@@ -46,16 +46,16 @@ export function AmortizationScheduleCalculator() {
         <h3>Inputs</h3>
         <div className="form">
           <div className="field field-3">
-            <div className="label">Loan amount</div>
-            <input type="number" inputMode="decimal" value={principal} min={0} onChange={(e) => setPrincipal(+e.target.value)} />
+            <label className="label" htmlFor="amort-principal">Loan amount</label>
+            <input id="amort-principal" type="number" inputMode="decimal" value={principal} min={0} onChange={(e) => setPrincipal(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Interest rate (APR %)</div>
-            <input type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
+            <label className="label" htmlFor="amort-rate">Interest rate (APR %)</label>
+            <input id="amort-rate" type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Term (years)</div>
-            <input type="number" inputMode="numeric" value={termYears} min={1} step={1} onChange={(e) => setTermYears(+e.target.value)} />
+            <label className="label" htmlFor="amort-term-years">Term (years)</label>
+            <input id="amort-term-years" type="number" inputMode="numeric" value={termYears} min={1} step={1} onChange={(e) => setTermYears(+e.target.value)} />
           </div>
           <div className="field field-6">
             <div className="btn-row">

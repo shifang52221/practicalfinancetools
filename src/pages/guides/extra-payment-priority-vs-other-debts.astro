@@ -3,9 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Extra Payments vs Other Debts";
 const description =
-  "How to prioritize extra mortgage payments versus higher-interest debts. Educational use only.";
+  "Extra mortgage payments vs other debts: how to prioritize using rate and risk comparisons. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-priority-vs-other-debts">
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-priority-vs-other-debts" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -33,6 +35,16 @@ const description =
       <li>Compare mortgage rate to other debt APRs.</li>
       <li>Prioritize higher-rate debt unless liquidity needs dominate.</li>
       <li>Keep a cash reserve before accelerating payoff.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Extra payments vs other debts inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Mortgage note rate vs other debt APRs.</li>
+      <li>Minimum payment flexibility and penalties.</li>
+      <li>Liquidity reserve targets and cash flow needs.</li>
+      <li>Time horizon before refinance or sale.</li>
     </ul>
   </section>
 
@@ -121,6 +133,7 @@ const description =
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

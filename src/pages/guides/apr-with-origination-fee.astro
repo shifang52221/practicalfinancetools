@@ -25,8 +25,10 @@ const withFee = estimateApr({
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/apr-with-origination-fee">
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-with-origination-fee" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -46,6 +48,15 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator (with fees)</a>
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
     </div>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR comparison inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan amount and term (keep them constant across offers).</li>
+      <li>Nominal rate vs APR and which fees are included.</li>
+      <li>Upfront fees paid in cash vs financed.</li>
+      <li>Expected time horizon before refinance or payoff.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -207,7 +218,10 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-01-27
+      Last updated: 2026-02-08
     </p>
   </section>
 </BaseLayout>
+
+
+

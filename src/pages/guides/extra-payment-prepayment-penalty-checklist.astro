@@ -3,9 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Extra Payment Prepayment Penalty Checklist";
 const description =
-  "Checklist to confirm prepayment penalties and lender rules before making extra mortgage payments. Educational use only.";
+  "Prepayment penalty checklist for extra mortgage payments: confirm lender rules before accelerating payoff. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-prepayment-penalty-checklist">
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-prepayment-penalty-checklist" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -34,6 +36,16 @@ const description =
       <li>Check if penalties apply only in the first few years.</li>
       <li>Ask the servicer how extra payments are applied (principal-only vs paid ahead).</li>
       <li>Confirm any caps on extra payment amounts.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Prepayment penalty inputs to confirm</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Penalty window dates and remaining months.</li>
+      <li>Penalty formula (percent vs months of interest).</li>
+      <li>Cap on extra payment amounts.</li>
+      <li>Whether penalties apply to partial prepayments.</li>
     </ul>
   </section>
 
@@ -122,6 +134,7 @@ const description =
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

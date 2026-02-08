@@ -14,8 +14,10 @@ const payoffA = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: 
 const payoffB = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: examplePaymentB });
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-payment-payoff-calculator">
+<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-payment-payoff-calculator" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -34,6 +36,15 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Payoff calculator</a>
       <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payments</a>
     </div>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Credit card inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Current balance, APR, and any promo end date.</li>
+      <li>Minimum payment rule or fixed payment amount.</li>
+      <li>Fees or new purchases that affect the balance.</li>
+      <li>Statement cycle dates and posting timing.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -231,6 +242,8 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn" href="/topics/credit-cards">Credit cards hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
+

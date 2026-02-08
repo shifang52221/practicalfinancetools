@@ -1,11 +1,11 @@
-﻿---
+---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../config/site";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Biweekly Payments vs Extra Principal (which saves more?)";
 const description =
-  "Biweekly mortgage payments can act like an extra payment per year, but results depend on how your lender applies them. Educational use only.";
+  "Biweekly mortgage payments vs extra principal: which saves more depends on posting timing and fees. Educational use only.";
 
 const examplePrincipal = 300000;
 const exampleApr = 6.5;
@@ -21,8 +21,10 @@ const withExtra = amortizationSchedule({
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/biweekly-vs-extra-principal">
+<BaseLayout title={title} description={description} canonicalPath="/guides/biweekly-vs-extra-principal" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -74,6 +76,16 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       Use the <a href="/calculators/extra-payment-calculator">Extra Payment Mortgage Calculator</a> to test an extra amount and
       sanity-check with the <a href="/calculators/amortization-schedule-calculator">Amortization Schedule Calculator</a>.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Biweekly vs extra principal inputs to compare</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Current balance, note rate, and remaining term.</li>
+      <li>Whether payments post biweekly or are held monthly.</li>
+      <li>Any program fees (setup and monthly).</li>
+      <li>Monthly extra equivalent (P&amp;I / 12).</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -232,6 +244,7 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     <p class="muted" style="margin:12px 0 0">
       For questions, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

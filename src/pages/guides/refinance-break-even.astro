@@ -25,8 +25,6 @@ const refi = amortizationSchedule({
 });
 const monthlySavings = Math.max(0, current.paymentPI - refi.paymentPI);
 const breakevenMonths = monthlySavings > 0 ? exampleClosingCosts / monthlySavings : null;
-const breakevenMonthsRounded = breakevenMonths == null ? null : Math.ceil(breakevenMonths);
-const breakevenYears = breakevenMonthsRounded == null ? null : breakevenMonthsRounded / 12;
 const lowClosingCosts = 4000;
 const highClosingCosts = 8000;
 const breakevenLow = monthlySavings > 0 ? lowClosingCosts / monthlySavings : null;
@@ -43,8 +41,10 @@ const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const num1 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 1 });
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-break-even">
+<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-break-even" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -273,6 +273,7 @@ const num1 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 0, maximumF
       </li>
     </ul>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

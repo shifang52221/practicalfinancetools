@@ -75,20 +75,20 @@ export function ExtraPaymentMortgageCalculator() {
         <h3>Inputs</h3>
         <div className="form">
           <div className="field field-3">
-            <div className="label">Loan amount</div>
-            <input type="number" inputMode="decimal" value={principal} min={0} onChange={(e) => setPrincipal(+e.target.value)} />
+            <label className="label" htmlFor="extra-loan-amount">Loan amount</label>
+            <input id="extra-loan-amount" type="number" inputMode="decimal" value={principal} min={0} onChange={(e) => setPrincipal(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Interest rate (APR %)</div>
-            <input type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
+            <label className="label" htmlFor="extra-rate">Interest rate (APR %)</label>
+            <input id="extra-rate" type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Term (years)</div>
-            <input type="number" inputMode="numeric" value={termYears} min={1} step={1} onChange={(e) => setTermYears(+e.target.value)} />
+            <label className="label" htmlFor="extra-term-years">Term (years)</label>
+            <input id="extra-term-years" type="number" inputMode="numeric" value={termYears} min={1} step={1} onChange={(e) => setTermYears(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Extra payment (monthly)</div>
-            <input type="number" inputMode="decimal" value={extraMonthly} min={0} onChange={(e) => setExtraMonthly(+e.target.value)} />
+            <label className="label" htmlFor="extra-monthly">Extra payment (monthly)</label>
+            <input id="extra-monthly" type="number" inputMode="decimal" value={extraMonthly} min={0} onChange={(e) => setExtraMonthly(+e.target.value)} />
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setExtraMonthly(100)}>
                 +$100
@@ -113,8 +113,9 @@ export function ExtraPaymentMortgageCalculator() {
             <div className="hint">Base P&amp;I: {formatCurrency2(base.paymentPI)}</div>
           </div>
           <div className="field field-3">
-            <div className="label">Extra starts (month)</div>
+            <label className="label" htmlFor="extra-start-month">Extra starts (month)</label>
             <input
+              id="extra-start-month"
               type="number"
               inputMode="numeric"
               value={extraMonthlyStartMonth}
@@ -125,8 +126,9 @@ export function ExtraPaymentMortgageCalculator() {
             <div className="hint">Month 1 = first payment</div>
           </div>
           <div className="field field-3">
-            <div className="label">Extra ends (month)</div>
+            <label className="label" htmlFor="extra-end-month">Extra ends (month)</label>
             <input
+              id="extra-end-month"
               type="number"
               inputMode="numeric"
               value={extraMonthlyEndMonth}
@@ -137,12 +139,12 @@ export function ExtraPaymentMortgageCalculator() {
             <div className="hint">0 = no end date</div>
           </div>
           <div className="field field-3">
-            <div className="label">One-time extra</div>
-            <input type="number" inputMode="decimal" value={extraOneTime} min={0} onChange={(e) => setExtraOneTime(+e.target.value)} />
+            <label className="label" htmlFor="extra-one-time">One-time extra</label>
+            <input id="extra-one-time" type="number" inputMode="decimal" value={extraOneTime} min={0} onChange={(e) => setExtraOneTime(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">One-time month</div>
-            <input type="number" inputMode="numeric" value={extraOneTimeMonth} min={1} step={1} onChange={(e) => setExtraOneTimeMonth(+e.target.value)} />
+            <label className="label" htmlFor="extra-one-time-month">One-time month</label>
+            <input id="extra-one-time-month" type="number" inputMode="numeric" value={extraOneTimeMonth} min={1} step={1} onChange={(e) => setExtraOneTimeMonth(+e.target.value)} />
             <div className="hint">Month 1 = first payment</div>
           </div>
           <div className="field field-6">

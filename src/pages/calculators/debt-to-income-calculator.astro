@@ -4,8 +4,9 @@ import { DtiCalculator } from "../../components/calculators/Dti";
 import { calculateDti } from "../../lib/calc/dti";
 
 const title = "Debt-to-Income (DTI) Calculator";
+const metaTitle = "Debt-to-Income (DTI) Calculator - Front-End & Back-End";
 const description =
-  "Estimate your front-end and back-end DTI ratios from your gross monthly income and debt payments. Educational use only.";
+  "Debt to income (DTI) calculator to estimate front-end and back-end ratios from gross income and debt payments. Educational use only.";
 
 const exampleInput = { incomeMonthly: 8000, housingMonthly: 2400, otherDebtMonthly: 600 };
 const example = calculateDti(exampleInput);
@@ -16,9 +17,10 @@ const exampleBack = example.backEndDti == null ? "N/A" : pct.format(example.back
 ---
 <CalculatorLayout
   title={title}
+  metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/debt-to-income-calculator"
-  intro="DTI compares your monthly debt obligations to your gross monthly income. It's commonly used in mortgage underwriting. Educational use only. Not financial advice."
+  intro="Use this debt to income (DTI) calculator to compare monthly debt obligations to gross income. It's commonly used in mortgage underwriting. Educational use only. Not financial advice."
   how={[
     "Front-end DTI = housing payment / gross monthly income.",
     "Back-end DTI = (housing + other debt payments) / gross monthly income.",
@@ -66,7 +68,7 @@ const exampleBack = example.backEndDti == null ? "N/A" : pct.format(example.back
       a: "Common approaches include reducing required monthly payments (paying down revolving debt, refinancing to lower required payments, paying off installment loans) and increasing verifiable income. Avoid taking on new monthly obligations before applying."
     }
   ]}
-  lastUpdated="2026-01-30"
+  lastUpdated="2026-02-08"
 >
   <DtiCalculator client:load />
 
@@ -118,7 +120,7 @@ const exampleBack = example.backEndDti == null ? "N/A" : pct.format(example.back
       With $7,000/month gross income, front-end DTI is about 40.7% and back-end DTI is about 43.6%.
     </p>
 
-    <h2 style="margin:18px 0 10px">Inputs to verify</h2>
+    <h2 style="margin:18px 0 10px">DTI calculator inputs to verify</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Use gross income (before taxes) unless your lender specifies otherwise.</li>
       <li>Include all required monthly debts, not just credit cards.</li>

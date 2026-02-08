@@ -3,9 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Extra Payments and Servicer Posting Rules";
 const description =
-  "How to make sure extra payments are applied to principal and not marked as paid ahead. Educational use only.";
+  "Extra payment servicer posting rules: make sure extras apply to principal and not paid ahead. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-servicer-posting-rules">
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-servicer-posting-rules" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -33,6 +35,16 @@ const description =
       <li>Confirm the extra amount is labeled "principal only".</li>
       <li>Check the payment history for principal reduction.</li>
       <li>Ask if the servicer offers a principal-only toggle.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Servicer posting inputs to confirm</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>How the portal labels principal-only payments.</li>
+      <li>Whether "paid ahead" is enabled by default.</li>
+      <li>Posting date vs draft date timing.</li>
+      <li>Split between regular payment and extra amount.</li>
     </ul>
   </section>
 
@@ -122,6 +134,7 @@ const description =
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

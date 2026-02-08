@@ -62,16 +62,16 @@ export function CreditCardPayoff() {
         <h3>Inputs</h3>
         <div className="form">
           <div className="field field-3">
-            <div className="label">Balance</div>
-            <input type="number" inputMode="decimal" value={balance} min={0} onChange={(e) => setBalance(+e.target.value)} />
+            <label className="label" htmlFor="cc-payoff-balance">Balance</label>
+            <input id="cc-payoff-balance" type="number" inputMode="decimal" value={balance} min={0} onChange={(e) => setBalance(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">APR (%)</div>
-            <input type="number" inputMode="decimal" value={apr} min={0} step={0.01} onChange={(e) => setApr(+e.target.value)} />
+            <label className="label" htmlFor="cc-payoff-apr">APR (%)</label>
+            <input id="cc-payoff-apr" type="number" inputMode="decimal" value={apr} min={0} step={0.01} onChange={(e) => setApr(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <div className="label">Monthly payment</div>
-            <input type="number" inputMode="decimal" value={payment} min={0} onChange={(e) => setPayment(+e.target.value)} />
+            <label className="label" htmlFor="cc-payoff-payment">Monthly payment</label>
+            <input id="cc-payoff-payment" type="number" inputMode="decimal" value={payment} min={0} onChange={(e) => setPayment(+e.target.value)} />
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button
                 className="btn"
@@ -94,8 +94,8 @@ export function CreditCardPayoff() {
             </div>
           </div>
           <div className="field field-3">
-            <div className="label">Target payoff (months)</div>
-            <input type="number" inputMode="numeric" value={targetMonths} min={1} step={1} onChange={(e) => setTargetMonths(+e.target.value)} />
+            <label className="label" htmlFor="cc-payoff-target-months">Target payoff (months)</label>
+            <input id="cc-payoff-target-months" type="number" inputMode="numeric" value={targetMonths} min={1} step={1} onChange={(e) => setTargetMonths(+e.target.value)} />
             <div className="hint">Used to estimate required payment</div>
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setTargetMonths(12)}>

@@ -4,7 +4,7 @@ import { estimateApr } from "../../lib/calc/apr";
 
 const title = "APR Calculator Payment (rate, fees, and monthly payment)";
 const description =
-  "How APR and fees relate to your monthly payment, what an APR calculator is estimating, and how to compare offers safely. Educational use only.";
+  "APR calculator payment guide: how APR and fees relate to your monthly payment and how to compare offers safely. Educational use only.";
 
 const exampleLoan = 25000;
 const exampleTerm = 60;
@@ -15,8 +15,10 @@ const offerLow = estimateApr({ loanAmount: exampleLoan, nominalRatePercent: exam
 const offerHigh = estimateApr({ loanAmount: exampleLoan, nominalRatePercent: exampleRate, termMonths: exampleTerm, fees: feeHigh });
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/apr-calculator-payment">
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-calculator-payment" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -35,6 +37,15 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
     </div>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR comparison inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan amount and term (keep them constant across offers).</li>
+      <li>Nominal rate vs APR and which fees are included.</li>
+      <li>Upfront fees paid in cash vs financed.</li>
+      <li>Expected time horizon before refinance or payoff.</li>
+    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -66,6 +77,16 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       This is why two offers can have similar payments but different APR: the payment is about the loan math, while APR is trying to
       express the "rate-equivalent" cost of fees over time.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR calculator payment inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan amount: use the amount financed (not the purchase price).</li>
+      <li>Rate: confirm the nominal rate in the offer.</li>
+      <li>Term: keep the term identical when comparing offers.</li>
+      <li>Fees: note which fees are paid upfront vs financed.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -208,6 +229,9 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
       <a class="btn" href="/topics/apr">APR hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
+
+

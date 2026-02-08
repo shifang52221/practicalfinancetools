@@ -3,9 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Liquidity Reserve Check for Extra Payments";
 const description =
-  "How to keep cash reserves while making extra mortgage payments. Educational use only.";
+  "Liquidity reserve check for extra mortgage payments: keep cash reserves while prepaying principal. Educational use only.";
+
+const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-liquidity-reserve">
+<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-liquidity-reserve" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -32,6 +34,16 @@ const description =
       <li>Keep a cash buffer for emergencies and repairs.</li>
       <li>Account for upcoming major expenses or income changes.</li>
       <li>Make extra payments only with funds beyond that reserve.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Liquidity reserve inputs to track</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Essential monthly expenses and required payments.</li>
+      <li>Target reserve months based on income stability.</li>
+      <li>Upcoming large expenses within 12 months.</li>
+      <li>Amount you can prepay without dropping below reserve.</li>
     </ul>
   </section>
 
@@ -121,6 +133,7 @@ const description =
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+

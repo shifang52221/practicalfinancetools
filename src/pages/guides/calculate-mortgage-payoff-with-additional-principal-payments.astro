@@ -20,12 +20,14 @@ const withExtra = amortizationSchedule({
 });
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const lastUpdated = "2026-01-28";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/calculate-mortgage-payoff-with-additional-principal-payments"
->
+ lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -214,3 +216,4 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
     </p>
   </section>
 </BaseLayout>
+

@@ -67,8 +67,9 @@ export function DtiCalculator() {
         <h3>Inputs</h3>
         <div className="form">
           <div className="field field-3">
-            <div className="label">Gross monthly income</div>
+            <label className="label" htmlFor="dti-income">Gross monthly income</label>
             <input
+              id="dti-income"
               type="number"
               inputMode="decimal"
               value={grossIncomeMonthly}
@@ -89,8 +90,9 @@ export function DtiCalculator() {
             </div>
           </div>
           <div className="field field-3">
-            <div className="label">Monthly housing payment</div>
+            <label className="label" htmlFor="dti-housing">Monthly housing payment</label>
             <input
+              id="dti-housing"
               type="number"
               inputMode="decimal"
               value={housingPayment}
@@ -111,8 +113,9 @@ export function DtiCalculator() {
             </div>
           </div>
           <div className="field field-3">
-            <div className="label">Other monthly debt payments</div>
+            <label className="label" htmlFor="dti-other-debt">Other monthly debt payments</label>
             <input
+              id="dti-other-debt"
               type="number"
               inputMode="decimal"
               value={otherDebtPayments}
@@ -133,8 +136,9 @@ export function DtiCalculator() {
             </div>
           </div>
           <div className="field field-3">
-            <div className="label">Target front-end DTI (%)</div>
+            <label className="label" htmlFor="dti-front-end">Target front-end DTI (%)</label>
             <input
+              id="dti-front-end"
               type="number"
               inputMode="decimal"
               value={targetFrontEndPct}
@@ -145,8 +149,9 @@ export function DtiCalculator() {
             <div className="hint">Housing-only target</div>
           </div>
           <div className="field field-3">
-            <div className="label">Target back-end DTI (%)</div>
+            <label className="label" htmlFor="dti-back-end">Target back-end DTI (%)</label>
             <input
+              id="dti-back-end"
               type="number"
               inputMode="decimal"
               value={targetBackEndPct}
