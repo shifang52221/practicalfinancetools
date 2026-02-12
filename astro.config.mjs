@@ -23,6 +23,14 @@ export default defineConfig({
         } catch {}
         pathname = pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
         if (["/contact", "/cookie-notice"].includes(pathname)) return false;
+        if (
+          [
+            "/guides/extra-mortgage-payment-calculator",
+            "/guides/mortgage-extra-principal-calculator",
+            "/guides/calculate-mortgage-payoff-with-additional-principal-payments"
+          ].includes(pathname)
+        )
+          return false;
         if (/^\/guides\/pay-\d+-extra-on-mortgage$/.test(pathname)) return false;
         if (/^\/guides\/mortgage-lump-sum-\d+$/.test(pathname)) return false;
         return true;

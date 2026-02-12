@@ -11,6 +11,17 @@
     }
   ],
   "redirects": [
+    { "source": "/guides/extra-mortgage-payment-calculator", "destination": "/calculators/extra-payment-calculator", "permanent": true },
+    { "source": "/guides/mortgage-extra-principal-calculator", "destination": "/calculators/additional-principal-payment-calculator", "permanent": true },
+    { "source": "/guides/calculate-mortgage-payoff-with-additional-principal-payments", "destination": "/calculators/extra-payment-calculator", "permanent": true },
+    { "source": "/guides/pay-50-extra-on-mortgage", "destination": "/guides/pay-100-extra-on-mortgage", "permanent": true },
+    { "source": "/guides/pay-150-extra-on-mortgage", "destination": "/guides/pay-100-extra-on-mortgage", "permanent": true },
+    { "source": "/guides/pay-200-extra-on-mortgage", "destination": "/guides/pay-100-extra-on-mortgage", "permanent": true },
+    { "source": "/guides/pay-250-extra-on-mortgage", "destination": "/guides/pay-100-extra-on-mortgage", "permanent": true },
+    { "source": "/guides/pay-300-extra-on-mortgage", "destination": "/guides/pay-100-extra-on-mortgage", "permanent": true },
+    { "source": "/guides/pay-400-extra-on-mortgage", "destination": "/guides/pay-100-extra-on-mortgage", "permanent": true },
+    { "source": "/guides/pay-500-extra-on-mortgage", "destination": "/guides/pay-100-extra-on-mortgage", "permanent": true },
+    { "source": "/guides/pay-1000-extra-on-mortgage", "destination": "/guides/pay-100-extra-on-mortgage", "permanent": true },
     {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.practicalfinancetools.com" }],
