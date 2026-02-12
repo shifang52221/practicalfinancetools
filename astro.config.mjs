@@ -27,7 +27,11 @@ export default defineConfig({
           [
             "/guides/extra-mortgage-payment-calculator",
             "/guides/mortgage-extra-principal-calculator",
-            "/guides/calculate-mortgage-payoff-with-additional-principal-payments"
+            "/guides/calculate-mortgage-payoff-with-additional-principal-payments",
+            "/guides/apr-tool",
+            "/guides/apr-calculator-payment",
+            "/guides/interest-rate-apr-calculator",
+            "/guides/apr-vs-interest-rate-fees"
           ].includes(pathname)
         )
           return false;

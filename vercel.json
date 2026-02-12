@@ -22,6 +22,10 @@
     { "source": "/guides/pay-400-extra-on-mortgage", "destination": "/guides/pay-100-extra-on-mortgage", "permanent": true },
     { "source": "/guides/pay-500-extra-on-mortgage", "destination": "/guides/pay-100-extra-on-mortgage", "permanent": true },
     { "source": "/guides/pay-1000-extra-on-mortgage", "destination": "/guides/pay-100-extra-on-mortgage", "permanent": true },
+    { "source": "/guides/apr-tool", "destination": "/calculators/apr-calculator", "permanent": true },
+    { "source": "/guides/apr-calculator-payment", "destination": "/calculators/apr-calculator", "permanent": true },
+    { "source": "/guides/interest-rate-apr-calculator", "destination": "/guides/apr-vs-interest-rate", "permanent": true },
+    { "source": "/guides/apr-vs-interest-rate-fees", "destination": "/guides/apr-vs-interest-rate", "permanent": true },
     {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.practicalfinancetools.com" }],
