@@ -31,7 +31,18 @@ export default defineConfig({
             "/guides/apr-tool",
             "/guides/apr-calculator-payment",
             "/guides/interest-rate-apr-calculator",
-            "/guides/apr-vs-interest-rate-fees"
+            "/guides/apr-vs-interest-rate-fees",
+            "/guides/apr-for-refinance-comparison",
+            "/guides/refinance-rate-vs-term-tradeoff",
+            "/guides/refinance-reset-amortization",
+            "/guides/refinance-points-break-even",
+            "/guides/refinance-when-not-to-refinance",
+            "/guides/refinance-cash-in-lower-rate",
+            "/guides/refinance-offer-comparison-checklist",
+            "/guides/refinance-rate-lock",
+            "/guides/refinance-cash-out-vs-rate-term",
+            "/guides/refinance-rolling-costs-into-loan",
+            "/guides/refinance-no-closing-costs-myth"
           ].includes(pathname)
         )
           return false;
