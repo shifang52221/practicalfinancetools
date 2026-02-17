@@ -12,10 +12,18 @@ const exampleInput = { loanAmount: 10000, nominalRatePercent: 12, termMonths: 24
 const example = estimateApr(exampleInput);
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const num1 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 1 });
 const examplePayment = money.format(example.payment);
 const exampleApr = example.aprPercent == null ? "N/A" : `${pct.format(example.aprPercent)}%`;
 const exampleSpread =
   example.aprPercent == null ? "N/A" : `${pct.format(example.aprPercent - exampleInput.nominalRatePercent)}%`;
+const breakevenA = { loanAmount: 15000, nominalRatePercent: 10.5, termMonths: 36, fees: 0 };
+const breakevenB = { loanAmount: 15000, nominalRatePercent: 9.75, termMonths: 36, fees: 450 };
+const breakevenAResult = estimateApr(breakevenA);
+const breakevenBResult = estimateApr(breakevenB);
+const breakevenMonthlySavings = breakevenAResult.payment - breakevenBResult.payment;
+const breakevenMonths =
+  breakevenMonthlySavings > 0 ? breakevenB.fees / breakevenMonthlySavings : null;
 ---
 <CalculatorLayout
   title={title}
@@ -66,7 +74,7 @@ const exampleSpread =
       a: "No. It's an educational estimate to compare scenarios. Official APR disclosures follow specific legal rules."
     }
   ]}
-  lastUpdated="2026-02-08"
+  lastUpdated="2026-02-17"
 >
   <AprCalculatorComponent client:load />
 
@@ -77,6 +85,18 @@ const exampleSpread =
       <li>Compare offers using the same term and assumptions.</li>
       <li>If you refinance or prepay early, the lowest-APR offer may not be the cheapest for you.</li>
     </ul>
+
+    <h2 style="margin:18px 0 10px">APR in one equation (conceptual)</h2>
+    <p class="muted" style="margin:0 0 10px">
+      APR is the rate that makes the present value of the payment stream equal to the cash you actually receive. A simplified monthly
+      model looks like this:
+    </p>
+    <pre style="margin:0 0 10px"><code>Sum from t=1..n of Payment / (1 + r)^t = Loan Amount - Upfront Fees
+APR (annualized) ≈ r * 12</code></pre>
+    <p class="muted" style="margin:0">
+      This calculator estimates APR using a standard fixed-rate payment schedule. Official disclosures follow specific rules for which
+      fees are included and how timing is treated.
+    </p>
 
     <h2 style="margin:0 0 10px">Example</h2>
     <p class="muted" style="margin:0">
@@ -109,6 +129,16 @@ const exampleSpread =
             <td>Financed fees</td>
             <td>Added to the balance</td>
             <td>Increases the amount you repay, changing the true cost.</td>
+          </tr>
+          <tr>
+            <td>Third-party closing costs</td>
+            <td>Appraisal, title, recording</td>
+            <td>Often not included in APR; still part of your cash-to-close.</td>
+          </tr>
+          <tr>
+            <td>Taxes, insurance, escrow</td>
+            <td>Ongoing housing costs</td>
+            <td>Not part of APR, but essential for affordability.</td>
           </tr>
         </tbody>
       </table>
@@ -170,6 +200,47 @@ const exampleSpread =
         </tbody>
       </table>
     </div>
+    <p class="muted" style="margin:12px 0 0">
+      Interpretation: the payment is based on the nominal rate and term. The APR rises because fees reduce the net amount you receive,
+      so the effective cost is higher than the rate line suggests.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Break-even quick check (fees vs lower rate)</h2>
+    <p class="muted" style="margin:0 0 10px">
+      If a lower rate requires fees, estimate how long it takes for monthly savings to offset those fees. This is a quick sanity check,
+      not a substitute for full disclosures.
+    </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Rate</th>
+            <th class="num">Fees</th>
+            <th class="num">Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Offer A</td>
+            <td class="num">{pct.format(breakevenA.nominalRatePercent)}%</td>
+            <td class="num">{money.format(breakevenA.fees)}</td>
+            <td class="num">{money.format(breakevenAResult.payment)}</td>
+          </tr>
+          <tr>
+            <td>Offer B</td>
+            <td class="num">{pct.format(breakevenB.nominalRatePercent)}%</td>
+            <td class="num">{money.format(breakevenB.fees)}</td>
+            <td class="num">{money.format(breakevenBResult.payment)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Monthly savings is about {money.format(Math.max(0, breakevenMonthlySavings))}. Break-even is
+      {breakevenMonths == null ? "N/A" : `${num1.format(breakevenMonths)} months`}. If you expect to pay off or refinance sooner than the
+      break-even window, the lower-rate offer may not be cheaper for you.
+    </p>
 
     <h2 style="margin:18px 0 10px">APR calculator assumptions & limitations</h2>
     <ul class="muted" style="margin:0; padding-left:18px">

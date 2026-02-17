@@ -5,7 +5,7 @@ const title = "Credit Card Payoff Topic Guide (interest, minimums, plans)";
 const description =
   "Credit card payoff workflow: model interest, minimum payments, and multi-debt plans with calculators. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/topics/credit-cards" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -41,6 +41,16 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Where to find the numbers</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Monthly statement: purchase APR, balance transfer APR, and cash advance APR.</li>
+      <li>Statement summary: minimum payment rule and due date.</li>
+      <li>Cardmember agreement: how interest is calculated (daily balance vs monthly).</li>
+      <li>Promo terms: end date and post-promo APR.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Payoff workflow (fast and accurate)</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
       <li><strong>Use your statement APR:</strong> not a promotional headline rate.</li>
@@ -49,6 +59,49 @@ const lastUpdated = "2026-02-08";
       <li><strong>If you have many debts:</strong> use avalanche/snowball and add a target payoff time if needed.</li>
       <li><strong>Re-check after changes:</strong> rates, balances, and minimum rules change.</li>
     </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Payoff plan template</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Current balance</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Purchase APR</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Promo APR end date</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Minimum payment rule</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Planned fixed payment</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Payoff target (months)</td>
+            <td>---</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Keep the balance and APR consistent when comparing plans. Only change one variable at a time (payment, APR, or balance).
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -68,6 +121,14 @@ const lastUpdated = "2026-02-08";
       <li>Use the same payoff start date for all scenarios.</li>
       <li>Check the first 3-6 months to confirm the balance is dropping as expected.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Daily interest reminder</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Many issuers compute interest using average daily balance. This is why statements can differ from simple APR/12 estimates, especially
+      if you pay before the statement closes or make new purchases mid-cycle.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -207,7 +268,7 @@ const lastUpdated = "2026-02-08";
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
 

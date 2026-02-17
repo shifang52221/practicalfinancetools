@@ -25,8 +25,32 @@ const withFees = estimateApr({
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const num1 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 1 });
 
-const lastUpdated = "2026-02-08";
+const scenarioLoanAmount = 20000;
+const scenarioTermMonths = 60;
+const scenarioRateA = 9.5;
+const scenarioRateB = 8.9;
+const scenarioFeeB = 600;
+const scenarioA = estimateApr({
+  loanAmount: scenarioLoanAmount,
+  nominalRatePercent: scenarioRateA,
+  termMonths: scenarioTermMonths,
+  fees: 0
+});
+const scenarioB = estimateApr({
+  loanAmount: scenarioLoanAmount,
+  nominalRatePercent: scenarioRateB,
+  termMonths: scenarioTermMonths,
+  fees: scenarioFeeB
+});
+const scenarioMonthlySavings = scenarioA.payment - scenarioB.payment;
+const scenarioBreakEvenMonths = scenarioMonthlySavings > 0 ? scenarioFeeB / scenarioMonthlySavings : null;
+const scenarioHorizonMonths = 36;
+const scenarioCostA = scenarioA.payment * scenarioHorizonMonths;
+const scenarioCostB = scenarioB.payment * scenarioHorizonMonths + scenarioFeeB;
+
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/apr-vs-interest-rate" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -66,6 +90,19 @@ const lastUpdated = "2026-02-08";
       <li>APR: a cost comparison metric that can incorporate certain upfront fees.</li>
       <li>Why APR can be higher: fees reduce the amount you effectively receive, but you still repay the full loan balance.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR formula (conceptual)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      APR is the rate that equates the payment stream to the net amount you receive. A simplified monthly model looks like:
+    </p>
+    <pre style="margin:12px 0 0"><code>Sum from t=1..n of Payment / (1 + r)^t = Loan Amount - Upfront Fees
+APR (annualized) ≈ r * 12</code></pre>
+    <p class="muted" style="margin:12px 0 0">
+      Official disclosures follow specific rules for fee inclusion and timing, so use APR as a comparison metric, not an exact replica of
+      every lender's calculation.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -165,6 +202,47 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Time-horizon example (break-even)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A lower rate with fees is only cheaper if you keep the loan long enough. Here is a simplified comparison using a 36-month horizon.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Offer</th>
+            <th class="num">Rate</th>
+            <th class="num">Fees</th>
+            <th class="num">Payment</th>
+            <th class="num">36-month cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A</td>
+            <td class="num">{pct2.format(scenarioRateA)}%</td>
+            <td class="num">{money0.format(0)}</td>
+            <td class="num">{money2.format(scenarioA.payment)}</td>
+            <td class="num">{money0.format(scenarioCostA)}</td>
+          </tr>
+          <tr>
+            <td>B</td>
+            <td class="num">{pct2.format(scenarioRateB)}%</td>
+            <td class="num">{money0.format(scenarioFeeB)}</td>
+            <td class="num">{money2.format(scenarioB.payment)}</td>
+            <td class="num">{money0.format(scenarioCostB)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Monthly savings is about {money2.format(Math.max(0, scenarioMonthlySavings))}. Break-even is
+      {scenarioBreakEvenMonths == null ? "N/A" : ` ${num1.format(scenarioBreakEvenMonths)} months`}. If you expect to refinance earlier,
+      the higher-fee option may not be cheaper.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">When APR is helpful (and when it isn't)</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Helpful: comparing offers with the same term where fees differ (points, origination, lender fees).</li>
@@ -233,7 +311,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/calculators/amortization-schedule-calculator">View amortization</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
 

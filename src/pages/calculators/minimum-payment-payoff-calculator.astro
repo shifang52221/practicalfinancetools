@@ -11,6 +11,15 @@ const description =
 const exampleInput = { balance: 5000, aprPercent: 24.99, minPercent: 2, minDollars: 25 };
 const example = minimumPaymentPayoffSchedule(exampleInput);
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const exampleMonthlyInterest = exampleInput.balance * (exampleInput.aprPercent / 100 / 12);
+const fixedPaymentA = 125;
+const fixedPaymentB = 200;
+const fixedPaymentC = 300;
+const fixedA = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, minDollars: fixedPaymentA });
+const fixedB = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, minDollars: fixedPaymentB });
+const fixedC = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, minDollars: fixedPaymentC });
 ---
 <CalculatorLayout
   title={title}
@@ -49,11 +58,21 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       a: "Pay more than the minimum, reduce APR (e.g., refinance/transfer), and prioritize higher-APR balances first."
     }
   ]}
-  lastUpdated="2026-02-08"
+  lastUpdated="2026-02-17"
 >
   <MinimumPaymentPayoff client:load />
 
   <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Minimum payment formula (simplified)</h2>
+    <p class="muted" style="margin:0 0 10px">
+      Many issuers use a rule like:
+    </p>
+    <pre style="margin:0 0 10px"><code>Minimum payment = max(dollar floor, percent of balance)
+Some issuers add interest and fees to that amount</code></pre>
+    <p class="muted" style="margin:0">
+      This calculator models the common percent-of-balance + dollar floor rule. Check your statement for the exact formula.
+    </p>
+
     <h2 style="margin:0 0 10px">Example</h2>
     <p class="muted" style="margin:0">
       Try a $5,000 balance at 24.99% APR. Compare minimum payments only versus paying an extra $25-$100 per month.
@@ -93,6 +112,10 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
         </tbody>
       </table>
     </div>
+    <p class="muted" style="margin:12px 0 0">
+      First-month interest estimate is about {money.format(exampleMonthlyInterest)}. If the minimum payment is close to this number,
+      principal reduction is tiny.
+    </p>
 
     <h2 style="margin:18px 0 10px">Credit card minimum payment calculator inputs</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
@@ -141,6 +164,42 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
     <p class="muted" style="margin:0">
       Minimum payment rules change with the balance. If you want a predictable payoff timeline, compare the same balance in the{" "}
       <a href="/calculators/credit-card-payoff-calculator">Credit Card Payoff Calculator</a> using a fixed monthly payment.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Fixed payment comparison (same balance, same APR)</h2>
+    <p class="muted" style="margin:0">
+      If you can commit to a fixed payment, payoff time becomes more predictable. Here is a quick comparison using the same balance and APR:
+    </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="num">Payment</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">{money0.format(fixedPaymentA)}</td>
+            <td class="num">{fixedA.months == null ? "N/A" : `${fixedA.months} months`}</td>
+            <td class="num">{money.format(fixedA.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td class="num">{money0.format(fixedPaymentB)}</td>
+            <td class="num">{fixedB.months == null ? "N/A" : `${fixedB.months} months`}</td>
+            <td class="num">{money.format(fixedB.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td class="num">{money0.format(fixedPaymentC)}</td>
+            <td class="num">{fixedC.months == null ? "N/A" : `${fixedC.months} months`}</td>
+            <td class="num">{money.format(fixedC.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Use this table to pick a payment that fits your budget and payoff target. Then compare it to your statement minimum.
     </p>
 
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>

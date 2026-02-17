@@ -13,9 +13,15 @@ const examplePaymentB = 250;
 const payoffA = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: examplePaymentA });
 const payoffB = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: exampleApr, monthlyPayment: examplePaymentB });
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const exampleMonthlyInterest = exampleBalance * (exampleApr / 100 / 12);
+const promoBalance = 3600;
+const promoMonths = 12;
+const promoPaymentTarget = promoBalance / promoMonths;
+const promoPaymentRounded = Math.ceil(promoPaymentTarget);
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-payoff-strategy" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -68,6 +74,18 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Start with the interest math</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A simple way to sanity-check your payment is to compare it to the first-month interest estimate:
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Estimated monthly interest ≈ balance × (APR / 12).</li>
+      <li>Using this example: {money0.format(exampleBalance)} × {pct2.format(exampleApr)}% / 12 ≈ {money2.format(exampleMonthlyInterest)}.</li>
+      <li>If your payment is near that number, principal barely moves and payoff will be slow.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Worked example: payment size dominates</h2>
     <p class="muted" style="margin:10px 0 0">
       Example: {money0.format(exampleBalance)} at {pct2.format(exampleApr)}% APR. A bigger fixed payment reduces interest because the
@@ -100,6 +118,18 @@ const lastUpdated = "2026-02-08";
       In this example, the higher payment saves about {money0.format(Math.max(0, payoffA.totalInterest - payoffB.totalInterest))} in
       interest (calculator estimate) and reaches payoff sooner.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Promo APR payoff target (simple rule)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you have a 0% promo APR, the cleanest strategy is to pay the balance off before the promo ends.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Target payment ≈ promo balance / promo months.</li>
+      <li>Example: {money0.format(promoBalance)} over {promoMonths} months → about {money0.format(promoPaymentRounded)}/month.</li>
+      <li>Re-run with the post-promo APR as a backup scenario in case you miss the target.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -153,6 +183,14 @@ const lastUpdated = "2026-02-08";
       <li>Make sure the balance can be paid off before the promo ends.</li>
       <li>Re-run the plan using the post-promo APR as a fallback scenario.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Payment allocation (multi-APR cards)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Cards often apply payments to balances with different APRs in a specific order. If you carry both a promo balance and a purchase
+      balance, ask your issuer how payments are applied so your plan targets the highest-cost balance first.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -262,7 +300,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment timeline</a>
       <a class="btn" href="/calculators/apr-calculator">Compare APR (fees)</a>
     </div>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
 

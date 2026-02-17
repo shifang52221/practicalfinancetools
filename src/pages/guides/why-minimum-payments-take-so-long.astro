@@ -24,12 +24,15 @@ const month60 = example.rows.length >= 60 ? example.rows[59] : null;
 const first60 = example.rows.slice(0, 60);
 const totalPaid60 = first60.reduce((sum, r) => sum + r.payment, 0);
 const totalInterest60 = first60.reduce((sum, r) => sum + r.interest, 0);
+const monthlyInterestApprox = exampleBalance * (exampleApr / 100 / 12);
+const percentRulePayment = exampleBalance * (exampleMinPercent / 100);
+const effectiveMinPayment = Math.max(percentRulePayment, exampleMinDollars);
 
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/why-minimum-payments-take-so-long" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -80,6 +83,20 @@ const lastUpdated = "2026-02-08";
     </p>
     <p class="muted" style="margin:12px 0 0">
       The payoff curve improves later because the balance is lower, so interest shrinks. But it can take a long time to get there.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Minimum payment math (numbers)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Monthly interest estimate: {money2.format(monthlyInterestApprox)}</li>
+      <li>Percent rule (2% of balance): {money2.format(percentRulePayment)}</li>
+      <li>Dollar floor: {money2.format(exampleMinDollars)}</li>
+      <li>Effective minimum payment: {money2.format(effectiveMinPayment)}</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      If the minimum is only slightly above interest, principal moves slowly. As the balance shrinks, the minimum can shrink too, which
+      stretches payoff.
     </p>
   </section>
 
@@ -236,7 +253,7 @@ const lastUpdated = "2026-02-08";
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-02-08
+      Last updated: 2026-02-17
     </p>
   </section>
 </BaseLayout>

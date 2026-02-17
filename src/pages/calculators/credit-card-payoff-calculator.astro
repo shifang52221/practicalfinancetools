@@ -14,6 +14,24 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
 const exampleMonths = example.months;
 const exampleYears = exampleMonths == null ? null : Math.floor(exampleMonths / 12);
 const exampleMonthsRemainder = exampleMonths == null ? null : exampleMonths % 12;
+const exampleMonthlyInterest = exampleInput.balance * (exampleInput.aprPercent / 100 / 12);
+const exampleDailyInterest =
+  exampleInput.balance * (exampleInput.aprPercent / 100 / 365) * 30;
+const scenarioLow = creditCardPayoffSchedule({
+  balance: exampleInput.balance,
+  aprPercent: exampleInput.aprPercent,
+  monthlyPayment: 150
+});
+const scenarioMid = creditCardPayoffSchedule({
+  balance: exampleInput.balance,
+  aprPercent: exampleInput.aprPercent,
+  monthlyPayment: 250
+});
+const scenarioHigh = creditCardPayoffSchedule({
+  balance: exampleInput.balance,
+  aprPercent: exampleInput.aprPercent,
+  monthlyPayment: 350
+});
 ---
 <CalculatorLayout
   title={title}
@@ -72,7 +90,7 @@ const exampleMonthsRemainder = exampleMonths == null ? null : exampleMonths % 12
       a: "If a payment is below the interest charged, the balance can grow and payoff may never happen. Increase the payment or reduce the APR to make progress."
     }
   ]}
-  lastUpdated="2026-02-08"
+  lastUpdated="2026-02-17"
 >
   <CreditCardPayoff client:load />
 
@@ -120,6 +138,43 @@ const exampleMonthsRemainder = exampleMonths == null ? null : exampleMonths % 12
         </tbody>
       </table>
     </div>
+    <p class="muted" style="margin:12px 0 0">
+      The first-month interest estimate is about {money.format(exampleMonthlyInterest)} using APR/12. If your payment is close to that
+      amount, principal barely moves.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Payment target table (same balance, same APR)</h2>
+    <p class="muted" style="margin:0">
+      Small payment increases can dramatically reduce payoff time and total interest.
+    </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="num">Payment</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">$150</td>
+            <td class="num">{scenarioLow.months == null ? "N/A" : `${scenarioLow.months} months`}</td>
+            <td class="num">{money.format(scenarioLow.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td class="num">$250</td>
+            <td class="num">{scenarioMid.months == null ? "N/A" : `${scenarioMid.months} months`}</td>
+            <td class="num">{money.format(scenarioMid.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td class="num">$350</td>
+            <td class="num">{scenarioHigh.months == null ? "N/A" : `${scenarioHigh.months} months`}</td>
+            <td class="num">{money.format(scenarioHigh.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2 style="margin:18px 0 10px">Credit card payoff calculator inputs to verify</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
@@ -156,6 +211,17 @@ const exampleMonthsRemainder = exampleMonths == null ? null : exampleMonths % 12
       <li>If you pay before the statement closes, interest can be lower than the monthly estimate.</li>
       <li>Use the same payment amount as your planned autopay to keep the model realistic.</li>
     </ul>
+
+    <h2 style="margin:18px 0 10px">Daily interest math (why statements differ)</h2>
+    <p class="muted" style="margin:0">
+      Many issuers compute interest using average daily balance. A simple approximation is:
+    </p>
+    <pre style="margin:10px 0 0"><code>Daily rate = APR / 365
+Interest ≈ Average Daily Balance × Daily rate × Days in cycle</code></pre>
+    <p class="muted" style="margin:10px 0 0">
+      Example (if the balance stayed roughly flat): {money.format(exampleInput.balance)} × {exampleInput.aprPercent}% / 365 × 30 ≈{" "}
+      {money.format(exampleDailyInterest)} for a 30-day cycle. Your real statement can differ based on payment timing and purchases.
+    </p>
 
     <h2 style="margin:18px 0 10px">Daily interest note (average daily balance)</h2>
     <p class="muted" style="margin:0">

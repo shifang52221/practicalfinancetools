@@ -5,7 +5,7 @@ const title = "APR Calculator Topic Guide (fees, comparisons, and pitfalls)";
 const description =
   "Workflow to use an APR calculator, compare loans with fees, and understand APR vs rate. Educational use only.";
 
-const lastUpdated = "2026-02-12";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/topics/apr" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -41,6 +41,16 @@ const lastUpdated = "2026-02-12";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Where to find the numbers</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Mortgages: Loan Estimate and Closing Disclosure show rate, APR, and itemized fees.</li>
+      <li>Personal/auto loans: offer sheet or Truth-in-Lending disclosure lists rate, term, and finance charges.</li>
+      <li>Credit cards: statement and cardmember agreement list APRs and balance types.</li>
+      <li>Ask the lender if a fee is optional; compare both versions.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Best-practice workflow</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
       <li><strong>Start with the same term:</strong> compare 36 months vs 36 months (not 36 vs 60).</li>
@@ -49,6 +59,66 @@ const lastUpdated = "2026-02-12";
       <li><strong>Use your time horizon:</strong> if you may refinance or sell early, compare total dollars over that horizon.</li>
       <li><strong>Sanity check:</strong> if a low rate has high fees, APR should rise-if it doesn't, re-check inputs.</li>
     </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Comparison template (copy this)</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Offer A</th>
+            <th>Offer B</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Loan amount</td>
+            <td>Same</td>
+            <td>Same</td>
+          </tr>
+          <tr>
+            <td>Term</td>
+            <td>Same</td>
+            <td>Same</td>
+          </tr>
+          <tr>
+            <td>Rate</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Upfront fees</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Cash to close</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Monthly payment (P&amp;I)</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>APR</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Break-even months</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Keep the loan amount and term identical. If you change both, APR comparisons stop being apples-to-apples.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -82,6 +152,15 @@ const lastUpdated = "2026-02-12";
       <li>Confirm whether fees are paid upfront or financed.</li>
       <li>Compare APR and total dollars paid over your expected time horizon.</li>
       <li>Re-run the comparison if you plan to refinance or pay off early.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR sanity checks</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If fees rise, APR should generally move higher when term and rate stay the same.</li>
+      <li>If APR looks lower than the rate, check for lender credits or special fee treatment.</li>
+      <li>If you will refinance soon, compare total cost over your likely time horizon, not just APR.</li>
     </ul>
   </section>
   <section class="grid" style="margin-top:18px">
@@ -189,7 +268,7 @@ const lastUpdated = "2026-02-12";
     <p class="muted" style="margin:12px 0 0">
       Educational use only. Not financial advice. Verify fees, posting rules, and disclosures with lenders.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-12</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
 

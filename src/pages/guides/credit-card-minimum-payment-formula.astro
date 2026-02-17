@@ -1,11 +1,29 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { minimumPaymentPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Minimum Payment Formula (How it works)";
 const description =
   "Understand how credit card minimum payments are calculated and why balances can take so long to pay off. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const exampleBalance = 3500;
+const exampleApr = 22.9;
+const exampleMinPercent = 2;
+const exampleMinDollars = 29;
+const example = minimumPaymentPayoffSchedule({
+  balance: exampleBalance,
+  aprPercent: exampleApr,
+  minPercent: exampleMinPercent,
+  minDollars: exampleMinDollars,
+  maxMonths: 360
+});
+const month1 = example.rows[0];
+const month12 = example.rows.length >= 12 ? example.rows[11] : null;
+const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-minimum-payment-formula" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -48,10 +66,61 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Minimum payment formula (example)</h2>
+    <pre style="margin:10px 0 0"><code>Minimum payment = max(% of balance, dollar floor)
+Example: max(2% × $3,500, $29) = max($70, $29) = $70</code></pre>
+    <p class="muted" style="margin:12px 0 0">
+      Some issuers add interest and fees on top of that base number, which makes the minimum higher than the simple % rule.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Why payoff can take so long</h2>
     <p class="muted" style="margin:10px 0 0">
       If the minimum is close to the monthly interest, principal reduction is tiny. That keeps the balance high and
       stretches payoff over many years.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Worked example (computed)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: {money0.format(exampleBalance)} balance at {pct2.format(exampleApr)}% APR with a {exampleMinPercent}% minimum and
+      {money0.format(exampleMinDollars)} floor.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Checkpoint</th>
+            <th class="num">Payment</th>
+            <th class="num">Interest</th>
+            <th class="num">Principal</th>
+            <th class="num">Ending balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Month 1</td>
+            <td class="num">{money2.format(month1.payment)}</td>
+            <td class="num">{money2.format(month1.interest)}</td>
+            <td class="num">{money2.format(month1.principal)}</td>
+            <td class="num">{money2.format(month1.endingBalance)}</td>
+          </tr>
+          {month12 && (
+            <tr>
+              <td>Month 12</td>
+              <td class="num">{money2.format(month12.payment)}</td>
+              <td class="num">{money2.format(month12.interest)}</td>
+              <td class="num">{money2.format(month12.principal)}</td>
+              <td class="num">{money2.format(month12.endingBalance)}</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      The minimum payment can decline as the balance drops, which slows payoff unless you keep paying a fixed amount above the minimum.
     </p>
   </section>
 
@@ -102,6 +171,16 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Checklist: match your issuer</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Check whether interest and fees are added to the minimum.</li>
+      <li>Confirm the dollar floor (often $25 or $35).</li>
+      <li>Verify the percent-of-balance rule in the cardmember agreement.</li>
+      <li>Re-check after promo periods end.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">FAQ</h2>
     <h3 style="margin:12px 0 0">Can issuers change the minimum rule?</h3>
     <p class="muted" style="margin:8px 0 0">
@@ -121,7 +200,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
 
