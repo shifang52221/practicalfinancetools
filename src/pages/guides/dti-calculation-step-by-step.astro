@@ -5,7 +5,7 @@ const title = "DTI Calculation Step by Step";
 const description =
   "A step-by-step guide to calculating front-end and back-end DTI using gross income and required monthly payments. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/dti-calculation-step-by-step" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -96,15 +96,45 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to recalculate DTI</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>After a statement updates a required minimum payment.</li>
+      <li>After a payoff posts or a new loan is opened.</li>
+      <li>After you receive updated income documentation.</li>
+      <li>After taxes, insurance, HOA, or PMI estimates change.</li>
+    </ul>
+  </section>
+
+    <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-debt-to-income-dti-ratio-en-1791/" rel="noopener noreferrer" target="_blank">
+          What is a debt-to-income (DTI) ratio?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-loan-estimate-en-195/" rel="noopener noreferrer" target="_blank">
+          What is a Loan Estimate?
+        </a>
+      </li>
+    </ul>
+  </section>
+
+<section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Recalculate DTI</a>
-      <a class="btn" href="/guides/front-end-vs-back-end-dti">Front-end vs back-end DTI</a>
+      <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
       <a class="btn" href="/guides/dti-housing-payment-piti-includes">Housing payment inputs</a>
+      <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
+
 
 

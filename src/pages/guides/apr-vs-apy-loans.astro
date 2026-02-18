@@ -5,7 +5,7 @@ const title = "APR vs APY Loans (Which to use)";
 const description =
   "APR vs APY loans: APR compares borrowing costs while APY compares savings yields. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/apr-vs-apy-loans" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -48,12 +48,34 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APY formula (simple)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      APY reflects compounding. A common approximation is:
+    </p>
+    <pre style="margin:10px 0 0"><code>APY = (1 + r / n) ^ n - 1
+where r = nominal rate, n = compounding periods per year</code></pre>
+    <p class="muted" style="margin:12px 0 0">
+      If a savings account advertises 5% interest compounded monthly, the APY is slightly higher than 5% because interest earns
+      interest over the year.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">APR vs APY loans: quick rule</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Use APR to compare loan offers and borrowing costs.</li>
       <li>Use APY to compare savings, CDs, and deposit yields.</li>
       <li>If an offer is a loan, APR is the metric that applies.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Example: 5% APR loan vs 5% APY savings</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A 5% APR loan means you pay about 5% per year in borrowing cost (plus any fees included in APR). A 5% APY savings account
+      means you earn slightly more than 5% in interest due to compounding. The numbers are not interchangeable because one is a cost
+      and the other is a yield.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -64,6 +86,15 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why APR and APY are not interchangeable</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>APR is about borrowing cost; APY is about earning yield.</li>
+      <li>APR includes certain fees; APY does not include fees.</li>
+      <li>Compounding affects APY, while APR is a cost rate.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Quick comparison checklist</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Use APR to compare loan offers side by side.</li>
@@ -71,6 +102,14 @@ const lastUpdated = "2026-02-08";
       <li>Confirm the loan term matches across offers.</li>
       <li>Ask for the fee breakdown that feeds APR.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR with fees: why it can exceed the rate</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If a loan has origination fees or points, APR can be higher than the nominal rate. The fee treatment is what makes APR
+      useful for comparing offers with different upfront costs.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -93,6 +132,38 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Compounding frequency effect</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The more frequently interest compounds, the higher the APY for the same nominal rate. Monthly compounding produces a higher
+      APY than annual compounding.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Nominal vs effective rate</h2>
+    <p class="muted" style="margin:10px 0 0">
+      APR is closer to a nominal borrowing rate that includes certain fees. APY is an effective yield that reflects compounding.
+      When you compare offers, match the metric to the product type.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">If you see APY on a loan offer</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Most loan disclosures use APR. If a lender mentions APY, ask for the APR and the full fee breakdown so you can compare
+      the loan to other offers on the same basis.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APY is not a loan cost metric</h2>
+    <p class="muted" style="margin:10px 0 0">
+      APY describes how earnings compound on deposits. It does not capture borrowing fees, and it is not the standard way to
+      compare loans. Use APR for loans, APY for savings.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Decision inputs</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Fees included in APR and those excluded.</li>
@@ -101,6 +172,23 @@ const lastUpdated = "2026-02-08";
       <li>Net cash received after fees.</li>
       <li>Alternate uses for cash if comparing APY products.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to use both metrics</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>When deciding whether to pay down a loan or keep cash in savings.</li>
+      <li>When comparing a promotional APR loan to a savings yield.</li>
+      <li>When evaluating opportunity cost of a down payment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick decision example</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If a loan costs 6% APR and your savings earn 4% APY, paying down the loan often reduces cost faster than keeping cash in savings.
+      But liquidity needs and taxes can change the decision, so use both metrics and your cash needs.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -141,6 +229,30 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-apr-and-why-is-it-higher-than-my-interest-rate-en-156/" rel="noopener noreferrer" target="_blank">
+          What is APR and why is it higher than my interest rate?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/rules-policy/regulations/1030/" rel="noopener noreferrer" target="_blank">
+          Regulation DD (Truth in Savings)
+        </a>
+      </li>
+      <li>
+        FDIC:{" "}
+        <a href="https://www.fdic.gov/consumers/consumer/news/cnwin14/high-yield-checking-accounts.html" rel="noopener noreferrer" target="_blank">
+          High-yield checking accounts (APY definition)
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/apr-calculator">Calculate APR</a>
@@ -148,7 +260,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
 

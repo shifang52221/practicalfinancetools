@@ -16,7 +16,7 @@ const payoffB = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: 
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/how-credit-card-interest-is-calculated" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -87,6 +87,46 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Average daily balance example (simplified)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Example: 30-day cycle at 24% APR. If your balance is $1,000 for 10 days, $1,500 for 10 days, and $800 for 10 days, the average
+      daily balance is about $1,100. Using a daily rate, interest for the cycle is roughly $21.70.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Days in cycle</th>
+            <th>Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Days 1-10</td>
+            <td>$1,000</td>
+          </tr>
+          <tr>
+            <td>Days 11-20</td>
+            <td>$1,500</td>
+          </tr>
+          <tr>
+            <td>Days 21-30</td>
+            <td>$800</td>
+          </tr>
+          <tr>
+            <td>Average daily balance</td>
+            <td>$1,100</td>
+          </tr>
+          <tr>
+            <td>Approx. interest for the cycle</td>
+            <td>About $21.70</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Grace period: why you might pay $0 interest</h2>
     <p class="muted" style="margin:10px 0 0">
       Many credit cards offer a grace period on purchases: if you pay the statement balance in full by the due date, purchases may not
@@ -100,6 +140,19 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Different APR buckets on the same card</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Many cards have different APRs for purchases, balance transfers, and cash advances. Each bucket can accrue interest
+      differently, and payments may be applied to the lowest-rate balance first.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Check the APR for each balance type on your statement.</li>
+      <li>A promo APR often applies to one balance type only.</li>
+      <li>New purchases can accrue interest even when a transfer has 0% APR.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How payoff calculators estimate interest</h2>
     <p class="muted" style="margin:10px 0 0">
       For planning, many calculators estimate interest monthly as balance * (APR / 12). That makes it easy to compare "what if" scenarios
@@ -110,6 +163,14 @@ const lastUpdated = "2026-02-08";
     </p>
   </section>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why interest looks high early in payoff plans</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Early in a payoff plan, the balance is largest, so interest is largest. If your payment is only a little higher than the monthly
+      interest amount, principal barely moves and the payoff feels slow. This is why payoff calculators often show large interest totals
+      in the early months.
+    </p>
+  </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Worked example: fixed payment payoff</h2>
     <p class="muted" style="margin:10px 0 0">
@@ -218,7 +279,7 @@ const lastUpdated = "2026-02-08";
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-02-08
+      Last updated: 2026-02-17
     </p>
   </section>
 </BaseLayout>

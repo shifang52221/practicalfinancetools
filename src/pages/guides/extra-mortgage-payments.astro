@@ -21,7 +21,7 @@ const withExtra = amortizationSchedule({
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/extra-mortgage-payments" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -164,6 +164,7 @@ const lastUpdated = "2026-02-08";
       <li>One-time lump sum (bonus/refund): compare paying it today vs spreading it monthly.</li>
       <li>Biweekly vs monthly extra: some "biweekly programs" don't post payments early, so compare both.</li>
       <li>Liquidity check: compare extra payments vs keeping more cash on hand.</li>
+      <li>Target payoff date: adjust the extra amount until the payoff date fits your plan.</li>
     </ul>
     <div class="btn-row" style="margin-top:12px">
       <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly comparison</a>
@@ -173,18 +174,40 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common extra payment amounts</h2>
-    <p class="muted" style="margin:10px 0 0">
-      If you want a quick reference, start with the $100 extra example and scale from there. The math is the same; the
-      savings usually scale with the extra amount and timing.
-    </p>
+    <h2 style="margin-top:0">Example amounts to model</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>$100 to $300 monthly extra (steady, sustainable plan).</li>
+      <li>One extra payment per year (monthly extra equals 1/12 of a payment).</li>
+      <li>A lump sum now vs a smaller monthly extra starting today.</li>
+      <li>Payoff date target (adjust extra monthly until it fits your horizon).</li>
+    </ul>
     <div class="btn-row" style="margin-top:12px">
-      <a class="btn" href="/guides/pay-100-extra-on-mortgage">Pay $100 extra</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/calculators/additional-principal-payment-calculator">Monthly vs lump sum</a>
+      <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
     </div>
-    <div class="btn-row" style="margin-top:10px">
-      <a class="btn" href="/guides/mortgage-lump-sum-5000">Pay a $5,000 lump sum</a>
-      <a class="btn" href="/guides/mortgage-lump-sum-10000">Pay a $10,000 lump sum</a>
-    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Liquidity and priorities</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Keep an emergency fund before committing to extra principal.</li>
+      <li>If you have higher-interest debt, compare the savings there first.</li>
+      <li>Pause extra payments if cash reserves drop below your target.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Tax and after-tax comparison</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Extra payments reduce interest and potential mortgage interest deductions. If you itemize, compare after-tax savings rather than
+      pre-tax rates to avoid overstating the benefit.
+    </p>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Confirm whether you itemize deductions most years.</li>
+      <li>Use an after-tax mortgage rate when comparing to investment returns.</li>
+      <li>Recheck assumptions after income or tax law changes.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -194,6 +217,7 @@ const lastUpdated = "2026-02-08";
       <li>Escrow changes: taxes/insurance can rise even if your principal-and-interest payment is fixed.</li>
       <li>Fees: avoid fee-based payment programs unless the interest savings clearly exceed the fees.</li>
       <li>Prepayment penalties: uncommon on many consumer mortgages, but verify your note.</li>
+      <li>Tax assumptions: mortgage interest deductions may not apply if you do not itemize.</li>
     </ul>
   </section>
 
@@ -206,6 +230,7 @@ const lastUpdated = "2026-02-08";
       <li><strong>Escrow is separate:</strong> extra principal usually does not change taxes/insurance escrow.</li>
       <li><strong>Recast option:</strong> if you want a lower required payment, ask about recasting and fees.</li>
       <li><strong>Liquidity:</strong> keep an emergency fund; prepaying principal can be hard to reverse.</li>
+      <li><strong>Taxes:</strong> compare after-tax savings if you itemize deductions.</li>
     </ul>
   </section>
 
@@ -253,7 +278,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/calculators/rent-vs-buy-calculator">Rent vs buy</a>
       <a class="btn" href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a>
     </div>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
 

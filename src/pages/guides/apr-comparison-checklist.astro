@@ -5,7 +5,7 @@ const title = "APR Comparison Checklist";
 const description =
   "A short checklist to compare APR offers consistently and avoid common mistakes. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/apr-comparison-checklist" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -39,6 +39,33 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Where to find the numbers</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan Estimate or disclosure for rate, APR, and itemized fees.</li>
+      <li>Fee worksheet or lender quote for origination charges and credits.</li>
+      <li>Closing timeline and lock period in the lender's quote.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR vs total cost (quick test)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If two offers have similar APR but different fees, the lower-fee option can be cheaper over a short horizon. Always compare
+      total dollars paid over your expected time horizon, not just APR.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Fee inclusion checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Origination fees and points.</li>
+      <li>Underwriting or processing fees.</li>
+      <li>Discount points or lender credits (show both in dollars).</li>
+      <li>Prepaid items and escrow reserves (keep assumptions consistent).</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Checklist</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Match the loan amount and term.</li>
@@ -47,6 +74,71 @@ const lastUpdated = "2026-02-08";
       <li>Note any prepayment penalties or rate resets.</li>
       <li>Verify inputs against the Loan Estimate or disclosure.</li>
     </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick comparison table</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Offer A</th>
+            <th>Offer B</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Loan amount</td>
+            <td>Same</td>
+            <td>Same</td>
+          </tr>
+          <tr>
+            <td>Term</td>
+            <td>Same</td>
+            <td>Same</td>
+          </tr>
+          <tr>
+            <td>Rate</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>APR</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Upfront fees</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Cash to close</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Term length and prepayment checks</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>APR comparisons should use the same term (36 vs 36, not 36 vs 60).</li>
+      <li>If you plan to prepay early, compare total dollars over your expected horizon.</li>
+      <li>Ask whether there are prepayment penalties or minimum interest rules.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR sanity checks</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If fees go up, APR should generally rise (all else equal).</li>
+      <li>If APR is lower than the rate, check for lender credits.</li>
+      <li>If terms differ, APR is not an apples-to-apples comparison.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -79,6 +171,22 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick example (sanity check)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Offer A has a lower rate but $2,000 more in fees. Offer B has a slightly higher rate and lower fees. If you might refinance
+      in 3 years, the higher-fee offer may not have time to break even. Use your horizon to decide.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Short horizon vs long horizon</h2>
+    <p class="muted" style="margin:10px 0 0">
+      APR is a useful standardized metric, but it does not guarantee the lowest cost over a short horizon. If you expect to refinance
+      or sell early, focus on total dollars paid over that shorter timeline and treat APR as a secondary check.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Scenario checklist</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Use the same credit score and income assumptions.</li>
@@ -95,6 +203,42 @@ const lastUpdated = "2026-02-08";
       <li>Compare offers locked on the same day when possible.</li>
       <li>Short lock periods can hide higher extension costs.</li>
       <li>Ask for a fee worksheet to verify APR inputs.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Loan type notes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Mortgages: verify points, lender credits, and prepaid items.</li>
+      <li>Auto loans: include dealer fees and add-ons in the comparison.</li>
+      <li>Personal loans: check origination fees and cash received.</li>
+      <li>Credit cards: APR varies by balance type and promo periods.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Match borrower profile</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the same credit score and income assumptions.</li>
+      <li>Confirm down payment and LTV are identical.</li>
+      <li>Do not compare quotes based on different documentation levels.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR vs payment</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Monthly payment is driven mainly by rate and term. APR adds certain fees to express a rate-equivalent cost. Two offers can have
+      similar payments but different APRs if fees differ. Use both signals to avoid missing a high-fee offer.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Documents to keep</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan Estimate or disclosure showing APR and fees.</li>
+      <li>Fee worksheet with points, credits, and origination charges.</li>
+      <li>Lock confirmation with dates and terms.</li>
     </ul>
   </section>
 
@@ -128,6 +272,30 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-loan-estimate-en-195/" rel="noopener noreferrer" target="_blank">
+          What is a Loan Estimate?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/compare/" rel="noopener noreferrer" target="_blank">
+          Compare and negotiate your loan offers
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-apr-and-why-is-it-higher-than-my-interest-rate-en-156/" rel="noopener noreferrer" target="_blank">
+          What is APR and why is it higher than my interest rate?
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/apr-calculator">Run APR comparisons</a>
@@ -135,7 +303,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/guides/discount-points-vs-lender-credits">Points vs credits</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
 

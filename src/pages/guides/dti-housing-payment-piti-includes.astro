@@ -5,7 +5,7 @@ const title = "DTI Housing Payment Inputs (PITI, HOA, PMI)";
 const description =
   "What to include in the housing payment for DTI: principal, interest, taxes, insurance, HOA, and PMI. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/dti-housing-payment-piti-includes" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -49,6 +49,27 @@ const lastUpdated = "2026-02-08";
     </ul>
   </section>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">PITI definition and monthly estimate</h2>
+    <p class="muted" style="margin:10px 0 0">
+      PITI stands for principal, interest, taxes, and insurance. Even if you do not escrow taxes and insurance, lenders still
+      use a monthly estimate in DTI calculations.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Monthly taxes = annual tax bill / 12.</li>
+      <li>Monthly insurance = annual premium / 12.</li>
+      <li>Add HOA and PMI to get the full housing payment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Escrow vs no escrow</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Whether you escrow or not, DTI should still include taxes and insurance as monthly equivalents. Leaving them out can
+      make your DTI look better than the lender's underwriting calculation.
+    </p>
+  </section>
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Estimating taxes and insurance</h2>
@@ -71,6 +92,14 @@ const lastUpdated = "2026-02-08";
     <p class="muted" style="margin:10px 0 0">
       For refinances, use the new projected payment, not the current payment. For rent-based affordability checks, use the actual
       rent as the housing input.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Example housing payment input</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If principal and interest are $1,650, taxes are $3,600 per year, insurance is $1,200 per year, HOA is $75 per month, and PMI
+      is $90 per month, the DTI housing payment is $1,650 + $300 + $100 + $75 + $90 = $2,215.
     </p>
   </section>
 
@@ -115,14 +144,43 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using only principal and interest as the housing input.</li>
+      <li>Forgetting HOA or PMI.</li>
+      <li>Using outdated tax or insurance estimates.</li>
+      <li>Comparing scenarios with inconsistent assumptions.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-debt-to-income-dti-ratio-en-1791/" rel="noopener noreferrer" target="_blank">
+          What is a debt-to-income (DTI) ratio?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-loan-estimate-en-195/" rel="noopener noreferrer" target="_blank">
+          What is a Loan Estimate?
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Run DTI with full housing payment</a>
-      <a class="btn" href="/guides/mortgage-payment-dti-housing-payment">Mortgage payment in DTI</a>
+      <a class="btn" href="/guides/dti-calculation-step-by-step">DTI calculation steps</a>
+      <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
       <a class="btn" href="/guides/what-is-piti">What is PITI</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
 

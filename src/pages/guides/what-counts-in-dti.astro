@@ -5,7 +5,7 @@ const title = "What Counts in Debt-to-Income (DTI)";
 const description =
   "Understand which debts count in DTI, how lenders treat minimum payments, and how to avoid common mistakes. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/what-counts-in-dti" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -55,6 +55,90 @@ const lastUpdated = "2026-02-08";
       <li>Insurance premiums can be part of the housing payment, not separate debt.</li>
       <li>Deferred loans may still count based on lender rules.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Debt treatment quick reference</h2>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Debt type</th>
+            <th>Typical DTI treatment</th>
+            <th>Notes to confirm</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Credit cards</td>
+            <td>Use the required minimum payment on the statement or credit report.</td>
+            <td>Some lenders use a percent of balance when minimums are not listed.</td>
+          </tr>
+          <tr>
+            <td>Installment loans / leases</td>
+            <td>Use the required monthly payment.</td>
+            <td>Some programs allow exclusions if a loan is near payoff and will be closed.</td>
+          </tr>
+          <tr>
+            <td>Student loans</td>
+            <td>Use the reported payment if it is active.</td>
+            <td>Deferred or $0 payments may be replaced with an assumed payment.</td>
+          </tr>
+          <tr>
+            <td>Support obligations</td>
+            <td>Include any required payments by court order.</td>
+            <td>Document the required amount and payment schedule.</td>
+          </tr>
+          <tr>
+            <td>Co-signed loans</td>
+            <td>Often included unless you can document another party has been paying.</td>
+            <td>Ask the lender which documentation is needed for exclusion.</td>
+          </tr>
+          <tr>
+            <td>Collections or medical</td>
+            <td>Usually excluded unless there is a required payment plan.</td>
+            <td>Confirm whether the payment shows on your credit report.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Income documentation quick reference</h2>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Income source</th>
+            <th>Typical documentation</th>
+            <th>How it is used in DTI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Base salary or hourly</td>
+            <td>Recent pay stubs and W-2s</td>
+            <td>Use gross monthly income shown on documents.</td>
+          </tr>
+          <tr>
+            <td>Bonuses or commissions</td>
+            <td>Pay stubs, W-2s, and history</td>
+            <td>Often averaged over a stable period.</td>
+          </tr>
+          <tr>
+            <td>Self-employed</td>
+            <td>Tax returns, year-to-date P&amp;L</td>
+            <td>Use documented net income with lender-approved add-backs.</td>
+          </tr>
+          <tr>
+            <td>Rental or secondary income</td>
+            <td>Lease agreements and tax returns</td>
+            <td>Use stable, documented income after expenses.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -107,8 +191,8 @@ const lastUpdated = "2026-02-08";
     </p>
     <ul class="muted" style="margin:12px 0 0; padding-left:18px">
       <li>Lower DTI usually means easier approval and more pricing options.</li>
-      <li>Borderline DTI often requires stronger credit or more documentation.</li>
-      <li>Higher DTI can still be approved, but rules are stricter and vary by program.</li>
+      <li>Borderline DTI often requires stronger credit, larger reserves, or more documentation.</li>
+      <li>Higher DTI can still be approved with compensating factors like higher down payment or stable income.</li>
     </ul>
   </section>
 
@@ -127,6 +211,14 @@ const lastUpdated = "2026-02-08";
       <li>Record the minimum card payment used in the calculation.</li>
       <li>Note whether housing payment includes taxes, insurance, and PMI.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Variable income and co-borrowers</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If income varies, use a stable documented average rather than a best month. For co-borrowers, combine documented gross income
+      and include required debts for both borrowers so the ratio matches underwriting.
+    </p>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">When exceptions apply</h2>
@@ -186,7 +278,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/calculators/credit-card-payoff-calculator">Reduce balances</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
 

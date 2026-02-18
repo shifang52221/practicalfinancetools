@@ -5,7 +5,7 @@ const title = "How to Use APR for Credit Cards (Comparisons)";
 const description =
   "APR can help compare card offers when terms differ. Learn how to compare APR and fees accurately. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/how-to-use-apr-for-credit-cards" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -24,17 +24,17 @@ const lastUpdated = "2026-02-08";
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
-      <a class="btn" href="/guides/credit-card-penalty-apr">Penalty APR</a>
+      <a class="btn" href="/guides/credit-card-payoff-strategy">Payoff strategy</a>
       <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
     </div>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">APR comparison inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan amount and term (keep them constant across offers).</li>
-      <li>Nominal rate vs APR and which fees are included.</li>
-      <li>Upfront fees paid in cash vs financed.</li>
-      <li>Expected time horizon before refinance or payoff.</li>
+      <li>Balance type (purchases vs balance transfers vs cash advances).</li>
+      <li>Promo APR duration and the post-promo APR.</li>
+      <li>Balance transfer fee and any annual fee.</li>
+      <li>Expected monthly payment or payoff timeline.</li>
     </ul>
   </section>
 
@@ -44,6 +44,54 @@ const lastUpdated = "2026-02-08";
       <li>Same balance type (purchases vs balance transfers).</li>
       <li>Same payment plan or payoff timeline.</li>
       <li>Annual fees and any transfer fees.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR vs interest rate (credit cards)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Credit card APR is the annualized rate, but interest is usually calculated using a daily periodic rate on an average daily balance.
+      That means your statement interest can differ from a simple APR/12 estimate, especially if you make payments mid-cycle.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Daily interest vs APR</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Daily periodic rate is usually APR / 365 (or 360 depending on issuer).</li>
+      <li>Interest is charged on the average daily balance during the cycle.</li>
+      <li>Paying earlier in the cycle can reduce interest more than paying on the due date.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Promo APR vs standard APR</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Promos often apply only to balance transfers or purchases, not both.</li>
+      <li>Track the promo end date and the post-promo APR.</li>
+      <li>If you miss the payoff target, costs can jump quickly after the promo ends.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Penalty APR triggers</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Late or returned payments can trigger penalty APR.</li>
+      <li>Penalty APR can apply to existing balances and new purchases.</li>
+      <li>Check how long the penalty rate lasts and how to restore the standard APR.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Balance transfer fee math (quick test)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Balance transfer fees are real costs (often 3% to 5%). If the fee is higher than the interest you would pay without the transfer,
+      the promo does not help. Use a payoff calculator to compare both scenarios.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Fee = transfer balance x fee %.</li>
+      <li>Target payment = transfer balance / promo months.</li>
+      <li>Re-run the plan using the post-promo APR as a fallback scenario.</li>
     </ul>
   </section>
 
@@ -106,8 +154,8 @@ const lastUpdated = "2026-02-08";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/credit-card-balance-transfer-fee">Balance transfer fee vs savings</a></li>
-        <li><a href="/guides/0-apr-credit-card-payoff-plan">0% APR payoff plan</a></li>
+        <li><a href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a></li>
+        <li><a href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a></li>
       </ul>
     </div>
   </section>
@@ -124,17 +172,37 @@ const lastUpdated = "2026-02-08";
     </p>
   </section>
 
-  <section class="card section prose" style="margin-top:18px">
+    <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/" rel="noopener noreferrer" target="_blank">
+          Credit card key terms (APR, balance transfers)
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/how-is-interest-on-a-credit-card-calculated-en-44/" rel="noopener noreferrer" target="_blank">
+          How is interest on a credit card calculated?
+        </a>
+      </li>
+    </ul>
+  </section>
+
+<section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Compare payoff scenarios</a>
-      <a class="btn" href="/guides/credit-card-balance-transfer-fee">Balance transfer fee guide</a>
+      <a class="btn" href="/guides/credit-card-payoff-strategy">Payoff strategy</a>
       <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
+
+
 
 
 

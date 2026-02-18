@@ -5,7 +5,7 @@ const title = "Rent vs Buy Break-Even Guide";
 const description =
   "A practical checklist to model rent vs buy break-even using assumptions for appreciation, rent growth, costs, and time horizon. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-break-even" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -59,6 +59,44 @@ const lastUpdated = "2026-02-08";
     </ul>
   </section>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Price-to-rent ratio as a sanity check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A high price-to-rent ratio often means a longer break-even period. Use it as a rough reasonableness check, then rely on the
+      full model for your actual decision.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Rate sensitivity quick test</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Run the same scenario with a rate that is 0.50% higher.</li>
+      <li>Compare the break-even horizon and total cost gap.</li>
+      <li>If results flip quickly, your decision is rate-sensitive.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Cash flow vs net worth view</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Rent vs buy can be framed two ways: monthly cash flow and long-term net worth. A scenario can look worse on monthly
+      cash flow but still build equity over time. Use both views so you do not overreact to short-term payment differences.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Cash flow view: compare monthly out-of-pocket costs.</li>
+      <li>Net worth view: include equity, appreciation, and investment returns.</li>
+      <li>Consistency matters more than optimism.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Break-even is a range, not a date</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Small changes in appreciation, rent growth, or selling costs can move break-even by years. Use a conservative base case
+      plus a downside scenario so you see the range, not a single point estimate.
+    </p>
+  </section>
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Short horizon (2-4 years)</h2>
@@ -110,6 +148,16 @@ const lastUpdated = "2026-02-08";
       5% selling costs, 3% appreciation, 3% rent growth, 5% investment return, and a 7-year holding period. Adjust one input at a time
       to see which assumption drives the result.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Decision checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use a holding period that matches your realistic plans.</li>
+      <li>Model both a conservative and optimistic case.</li>
+      <li>Include selling costs and moving costs on short horizons.</li>
+      <li>Re-run when rates or rents change materially.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -178,7 +226,25 @@ const lastUpdated = "2026-02-08";
     </p>
   </section>
 
-  <section class="card section prose" style="margin-top:18px">
+    <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/" rel="noopener noreferrer" target="_blank">
+          Owning a home: mortgage basics
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-are-closing-costs-en-196/" rel="noopener noreferrer" target="_blank">
+          What are closing costs?
+        </a>
+      </li>
+    </ul>
+  </section>
+
+<section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the rent vs buy calculator</a>
@@ -186,9 +252,10 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/calculators/extra-payment-calculator">Extra payment impact</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
+
 
 
 

@@ -5,7 +5,7 @@ const title = "Discount Points vs Lender Credits";
 const description =
   "Compare discount points and lender credits using APR and your time horizon. Educational use only.";
 
-const lastUpdated = "2026-01-31";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/discount-points-vs-lender-credits" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -39,12 +39,107 @@ const lastUpdated = "2026-01-31";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Points cost formula</h2>
+    <p class="muted" style="margin:10px 0 0">
+      One point is typically 1% of the loan amount. The dollars paid for points are part of your upfront cost and should be
+      included in comparisons.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Points cost = loan amount x points percent.</li>
+      <li>If points are financed, the loan amount increases.</li>
+      <li>Compare cash-to-close across each option.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Comparison checklist</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Use the same loan amount and term.</li>
       <li>Compare monthly payment and total cost over your horizon.</li>
       <li>Check APR to see how fees change the effective rate.</li>
     </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When lender credits can win</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>You expect to refinance or move within a few years.</li>
+      <li>Cash-to-close is the binding constraint.</li>
+      <li>You want to preserve cash for reserves or renovations.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Rate-and-point grid</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Lenders often provide a grid showing the rate available at different point levels. Use the grid to compare a no-points
+      option, a points option, and a credit option on the same term.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Keep the loan amount and term identical.</li>
+      <li>Calculate monthly savings for each rate.</li>
+      <li>Compare total cost over your expected horizon.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick comparison template</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>No points</th>
+            <th>Points</th>
+            <th>Credits</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Rate</td>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Points / credits</td>
+            <td>$0</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Cash to close</td>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Monthly payment</td>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Break-even months</td>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Use the same loan amount and term across all columns so the comparison is consistent.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Decision flow (simple)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If you plan to stay long-term, points can lower total cost.</li>
+      <li>If you plan to refinance or move early, credits can be safer.</li>
+      <li>If cash-to-close is tight, prioritize the option with lower upfront cost.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -58,6 +153,47 @@ const lastUpdated = "2026-01-31";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Where to find the numbers</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan Estimate: Section A for origination charges and points.</li>
+      <li>Loan Estimate: Section J for total cash to close.</li>
+      <li>Ask for a side-by-side quote sheet if possible.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR vs total cost</h2>
+    <p class="muted" style="margin:10px 0 0">
+      APR helps compare offers with different fees, but it does not show your total dollars paid over a short time horizon.
+      If you expect to refinance early, compare total cost over that horizon, not just APR.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Refinance vs purchase context</h2>
+    <p class="muted" style="margin:10px 0 0">
+      On a refinance, your break-even depends on how long you keep the new loan. On a purchase, the timeline is often longer,
+      but cash-to-close may be tighter. Use the same break-even math in both cases.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Rate lock and re-quote risk</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If rates move between pre-approval and lock, point pricing can change. Ask for updated quotes and re-run the break-even
+      calculation before you commit.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Tax note (general)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Tax treatment of points can vary by loan type and situation. If you plan to rely on a tax benefit, confirm the rules
+      for your specific case. Do not assume a deduction will offset a higher upfront cost.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Break-even checklist</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Calculate monthly savings from the lower rate.</li>
@@ -65,6 +201,22 @@ const lastUpdated = "2026-01-31";
       <li>Compare break-even to your planned horizon.</li>
       <li>Re-run if rates or fees change.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Credits and no-cost scenarios</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A "no-cost" option often means lender credits cover some closing costs in exchange for a higher rate. It can be a good
+      fit if you expect to move or refinance before the break-even point.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quick break-even example</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If points cost $1,800 and the lower rate saves $45 per month, break-even is about 40 months. If you might refinance or sell before
+      40 months, the no-points or credit option could be cheaper overall.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -84,6 +236,7 @@ const lastUpdated = "2026-01-31";
       <li>Choosing points without considering your horizon.</li>
       <li>Comparing APRs across different terms.</li>
       <li>Ignoring cash-to-close constraints.</li>
+      <li>Assuming credits are free without a higher rate.</li>
     </ul>
   </section>
 
@@ -98,7 +251,7 @@ const lastUpdated = "2026-01-31";
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/guides/apr-vs-interest-rate">Interest rate vs APR</a></li>
-        <li><a href="/guides/apr-when-fees-are-financed">APR when fees are financed</a></li>
+        <li><a href="/guides/apr-comparison-checklist">APR comparison checklist</a></li>
       </ul>
     </div>
   </section>
@@ -115,7 +268,31 @@ const lastUpdated = "2026-01-31";
     </p>
   </section>
 
-  <section class="card section prose" style="margin-top:18px">
+    <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-are-closing-costs-en-196/" rel="noopener noreferrer" target="_blank">
+          What are closing costs?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-loan-estimate-en-195/" rel="noopener noreferrer" target="_blank">
+          What is a Loan Estimate?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-apr-and-why-is-it-higher-than-my-interest-rate-en-156/" rel="noopener noreferrer" target="_blank">
+          What is APR and why is it higher than my interest rate?
+        </a>
+      </li>
+    </ul>
+  </section>
+
+<section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/apr-calculator">Compare APR</a>
@@ -123,7 +300,8 @@ const lastUpdated = "2026-01-31";
       <a class="btn" href="/topics/apr">APR topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
+
 

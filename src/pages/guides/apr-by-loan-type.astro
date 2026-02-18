@@ -1,0 +1,326 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "APR by Loan Type (Auto, Personal, Student, Business)";
+const description =
+  "How APR comparisons change across auto, personal, student, and small business loans. Educational use only.";
+
+const lastUpdated = "2026-02-17";
+---
+<BaseLayout title={title} description={description} canonicalPath="/guides/apr-by-loan-type" lastUpdated={lastUpdated}>
+  <section class="card hero">
+    <span class="pill">Guide</span>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/guides">Guides</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">APR by loan type</span>
+    </nav>
+    <h1>APR by loan type</h1>
+    <p>
+      APR comparisons are only reliable when you match term, fees, and cash received. This guide shows what changes by
+      loan type so you can compare auto, personal, student, and small business loans consistently.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/guides/apr-comparison-checklist">APR comparison checklist</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What changes by loan type</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Fee structure (origination, documentation, guarantee, and dealer fees).</li>
+      <li>Collateral and risk (secured vs unsecured).</li>
+      <li>Term length and payment structure.</li>
+      <li>Prepayment rules and refinance behavior.</li>
+      <li>Required documentation and underwriting model.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Step 1: Align the comparison inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use the same loan amount and term for every offer.</li>
+      <li>Confirm which fees are financed vs paid in cash.</li>
+      <li>Use the same time horizon if you plan to refinance or sell.</li>
+      <li>Compare APR and total dollars paid over your horizon.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Step 2: Compare cash received, not just loan amount</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Some loans deduct fees from the proceeds. If you borrow $20,000 but receive $19,200 after fees, your effective cost is higher.
+      Use the same cash received number when you compare offers across loan types.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Cash received = loan amount minus upfront fees.</li>
+      <li>Keep the same cash received when comparing offers.</li>
+      <li>APR and total dollars paid should both reflect the fee treatment.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Step 3: Use a fee break-even check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If one offer has a lower rate but higher upfront fees, calculate how long it takes for the lower payment to repay those fees.
+      If you will sell or refinance before that break-even point, the higher-fee offer can be worse even if its APR is lower.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Break-even months = fee difference / monthly payment savings.</li>
+      <li>Compare break-even to your expected holding period.</li>
+      <li>Re-run the comparison if term or fees change.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Auto loan APR comparison</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Dealer fees and add-ons can change the effective cost.</li>
+        <li>Loan term length varies widely (36 to 84 months).</li>
+        <li>Trade-in value and cash down affect the true cash received.</li>
+        <li>Discounts for autopay or manufacturer incentives may apply.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Personal loan APR comparison</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Origination fees are common and reduce cash received.</li>
+        <li>Unsecured loans usually carry higher APR than secured loans.</li>
+        <li>Some lenders use precomputed interest or minimum interest rules.</li>
+        <li>Late fees and payment processing fees can vary by lender.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Student loan APR comparison</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Federal loans have fixed rules and protections; private loans vary.</li>
+        <li>Grace periods and deferment rules affect the real cost.</li>
+        <li>Fees and capitalization rules can change total interest paid.</li>
+        <li>Compare fixed vs variable rates over your expected repayment horizon.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Small business loan APR comparison</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Guarantee, servicing, or packaging fees can be material.</li>
+        <li>Collateral and personal guarantees affect pricing.</li>
+        <li>Term structure varies by program (working capital vs equipment).</li>
+        <li>Prepayment penalties can apply on longer-term loans.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to ask each lender for</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Itemized fees and whether they are paid upfront or financed.</li>
+      <li>Exact term length and payment frequency.</li>
+      <li>Prepayment penalties or minimum interest rules.</li>
+      <li>Any conditions for discounts (autopay, direct deposit, or incentives).</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Fees and APR inclusion</h2>
+    <p class="muted" style="margin:10px 0 0">
+      APR includes certain mandatory fees, but not every cost. For apples-to-apples comparisons, list every upfront fee and
+      add-on and then decide which version represents your true cost.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Auto loans: dealer add-ons, documentation fees, and incentives.</li>
+      <li>Personal loans: origination and administrative fees.</li>
+      <li>Student loans: origination or disbursement fees (varies by program).</li>
+      <li>Business loans: guarantee, packaging, and servicing fees.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Example comparison (quick math)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Offer A: $20,000 personal loan at 10.5% with a 4% origination fee ($800). Offer B: $20,000 at 11.2% with no fee.
+      Even if APR favors one offer, compare total dollars over your planned payoff timeline and the cash received after fees.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Cash received for Offer A is $19,200, not $20,000.</li>
+      <li>If you pay off early, the fee can outweigh the rate savings.</li>
+      <li>APR alone can hide the short-term cost difference.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Term structure and cash received</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>APR comparisons break down if terms are different (36 vs 60 months).</li>
+      <li>If fees are deducted from proceeds, compare cash received, not just loan amount.</li>
+      <li>Shorter terms can raise payment but reduce total interest materially.</li>
+      <li>Use the same payment frequency when comparing offers.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When APR can mislead</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If you plan to refinance or sell early, total cost matters more than APR.</li>
+      <li>Large upfront fees can dominate the short-term cost.</li>
+      <li>Loan products with different fee rules are not true apples-to-apples.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Prepayment and refinance behavior</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Ask whether the loan has a prepayment penalty or minimum interest rule.</li>
+      <li>If you expect to refinance or sell early, compare total cost over that horizon.</li>
+      <li>APR alone can mislead when you plan to pay off early.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Comparison worksheet (copy this)</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Offer A</th>
+            <th>Offer B</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Loan type</td>
+            <td>Auto / Personal / Student / Business</td>
+            <td>Auto / Personal / Student / Business</td>
+          </tr>
+          <tr>
+            <td>Loan amount</td>
+            <td>Same</td>
+            <td>Same</td>
+          </tr>
+          <tr>
+            <td>Term</td>
+            <td>Same</td>
+            <td>Same</td>
+          </tr>
+          <tr>
+            <td>Rate</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>APR</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Upfront fees</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Cash received</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td>Time horizon</td>
+            <td>---</td>
+            <td>---</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      If you change more than one field at a time, APR comparisons stop being apples-to-apples.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing offers with different terms or payment frequencies.</li>
+      <li>Ignoring fees that reduce the cash you actually receive.</li>
+      <li>Using APR alone when you plan to pay off early.</li>
+      <li>Assuming APR includes every dealer or service fee.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related tools</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule calculator</a></li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Related guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/apr-vs-interest-rate">APR vs interest rate</a></li>
+        <li><a href="/guides/apr-with-origination-fee">APR with origination fee</a></li>
+        <li><a href="/guides/discount-points-vs-lender-credits">Discount points vs lender credits</a></li>
+        <li><a href="/guides/apr-comparison-checklist">APR comparison checklist</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">FAQ</h2>
+    <h3 style="margin:12px 0 0">Is a lower APR always better?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Usually, but only if the term and time horizon are the same. Higher fees can make a lower APR cost more in the short run.
+    </p>
+    <h3 style="margin:12px 0 0">Do dealer fees show up in APR?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Not always. Some add-ons are optional and may not be included, so compare total cost with and without them.
+    </p>
+    <h3 style="margin:12px 0 0">Why compare cash received?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      If fees are deducted from the loan proceeds, the effective cost is higher than the stated loan amount suggests.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-apr-and-why-is-it-higher-than-my-interest-rate-en-156/" rel="noopener noreferrer" target="_blank">
+          What is APR and why is it higher than my interest rate?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-loan-estimate-en-195/" rel="noopener noreferrer" target="_blank">
+          What is a Loan Estimate?
+        </a>
+      </li>
+      <li>
+        Federal Reserve:{" "}
+        <a href="https://www.federalreserve.gov/boarddocs/supmanual/cch/200806/1020a.htm" rel="noopener noreferrer" target="_blank">
+          Regulation Z (Truth in Lending) overview
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/apr-calculator">Compare APR offers</a>
+      <a class="btn" href="/guides/apr-comparison-checklist">APR comparison checklist</a>
+      <a class="btn" href="/topics/apr">APR topic</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+  </section>
+</BaseLayout>
+

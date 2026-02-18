@@ -5,7 +5,7 @@ const title = "Rent vs Buy Costs to Include (Owner and renter)";
 const description =
   "List of one-time and ongoing costs to include when comparing renting and buying, including closing costs, maintenance, HOA, and selling costs. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-costs-to-include" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -48,12 +48,64 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Opportunity cost of the down payment</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Cash used for a down payment is cash you cannot invest elsewhere. A rent vs buy comparison should include the investment
+      return you might earn if you rented and kept that cash invested.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Use a conservative investment return assumption.</li>
+      <li>Apply the same assumption across all scenarios.</li>
+      <li>Test a higher and lower return to see sensitivity.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Cash reserves and emergency buffer</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Buying a home can reduce your cash cushion. If you need to keep a larger emergency fund after buying, include that as a
+      real cost in your comparison. A rent vs buy decision should not rely on running your cash reserves too low.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Ongoing homeowner costs</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Property taxes and homeowners insurance.</li>
       <li>HOA dues or condo fees.</li>
       <li>Maintenance and repairs (set a reserve, especially for older homes).</li>
       <li>PMI or other mortgage insurance if applicable.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Utilities and ownership overhead</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Some utilities may be higher for a larger owned home.</li>
+      <li>Yard care, pest control, or service contracts can add recurring costs.</li>
+      <li>Budget for periodic big-ticket repairs (roof, HVAC, appliances).</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Maintenance vs improvements</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Maintenance keeps the home in good condition. Improvements are optional upgrades. Keep them separate so your comparison stays
+      realistic and you do not overstate homeowner costs.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Include routine repairs in maintenance.</li>
+      <li>Count major upgrades only if you expect to do them.</li>
+      <li>Use a reserve for larger items with long lifespans.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Down payment and PMI notes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Smaller down payments can add PMI, increasing monthly costs.</li>
+      <li>Run at least two down payment scenarios (e.g., 5% vs 20%).</li>
+      <li>Include PMI removal timing if you expect to reach the threshold.</li>
     </ul>
   </section>
 
@@ -67,12 +119,70 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Renter fees and add-ons</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Pet rent or pet deposits.</li>
+      <li>Parking fees or storage fees.</li>
+      <li>Application or move-in fees (if you move often).</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Insurance differences</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Homeowners insurance is typically higher than renters insurance. If you are comparing monthly cash flow, make sure both scenarios
+      include realistic insurance premiums.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Tax considerations (general)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Taxes can change the after-tax cost of owning. If you plan to include tax effects, apply them consistently and avoid optimistic
+      assumptions. For most comparisons, it is safer to use a conservative after-tax estimate.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Time and hassle cost</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Homeownership requires time for maintenance, repairs, and coordination. It is not a direct cash cost, but it affects the real
+      cost of owning. If time is scarce, consider that in your decision.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Selling costs for owners</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Agent commissions and listing fees.</li>
       <li>Seller closing costs (varies by market).</li>
       <li>Repairs or concessions needed to sell.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Holding period sensitivity</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Short horizons amplify closing and selling costs.</li>
+      <li>Longer horizons give appreciation and amortization time to matter.</li>
+      <li>Run multiple holding periods to see when results flip.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Cost inflation over time</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Taxes, insurance, and maintenance often rise over time. If you model them as flat numbers, the comparison can be biased.
+      Use modest annual increases to keep the long-term comparison realistic.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Effective rent (concessions and fees)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If a lease includes free months, credits, or move-in incentives, convert them into an effective monthly rent so your rent
+      vs buy comparison stays accurate.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -92,6 +202,14 @@ const lastUpdated = "2026-02-08";
       <li>Leaving out HOA dues or mortgage insurance.</li>
       <li>Using unrealistic rent growth or appreciation assumptions.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Authority note</h2>
+    <p class="muted" style="margin:10px 0 0">
+      For accurate numbers, use your Loan Estimate for closing costs, local tax bills for property tax assumptions, and actual
+      insurance quotes. Avoid relying on generic averages when you can use real data.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -118,10 +236,28 @@ const lastUpdated = "2026-02-08";
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a></li>
-        <li><a href="/guides/rent-vs-buy-closing-costs">Closing costs detail</a></li>
-        <li><a href="/guides/rent-vs-buy-maintenance-estimate">Maintenance estimate</a></li>
+        <li><a href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a></li>
+        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-loan-estimate-en-195/" rel="noopener noreferrer" target="_blank">
+          What is a Loan Estimate?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-are-closing-costs-en-196/" rel="noopener noreferrer" target="_blank">
+          What are closing costs?
+        </a>
+      </li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -132,7 +268,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
 

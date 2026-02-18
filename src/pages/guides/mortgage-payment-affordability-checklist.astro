@@ -5,7 +5,7 @@ const title = "Mortgage Payment Affordability Checklist";
 const description =
   "A practical checklist to validate mortgage affordability: payment components, DTI, buffers, and timing. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-affordability-checklist" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -66,7 +66,16 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">4) Budget for non-escrow costs</h2>
+    <h2 style="margin-top:0">4) Compare payment vs total cost</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Lower payment can mean higher total interest if the term is longer.</li>
+      <li>Use the amortization schedule to compare total interest at the same horizon.</li>
+      <li>Keep loan amount and rate consistent when comparing terms.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">5) Budget for non-escrow costs</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Maintenance and repairs (especially for older homes).</li>
       <li>Utilities that may be higher than rent.</li>
@@ -75,7 +84,7 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">5) Plan for changes</h2>
+    <h2 style="margin-top:0">6) Plan for changes</h2>
     <p class="muted" style="margin:10px 0 0">
       Escrow adjustments, insurance renewals, and tax changes can increase monthly payments. Build a buffer so small changes do not
       force difficult trade-offs.
@@ -103,7 +112,7 @@ const lastUpdated = "2026-02-08";
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/guides/how-mortgage-payments-are-calculated">How mortgage payments are calculated</a></li>
-        <li><a href="/guides/front-end-vs-back-end-dti">Front-end vs back-end DTI</a></li>
+        <li><a href="/guides/dti-calculation-step-by-step">DTI calculation step by step</a></li>
       </ul>
     </div>
   </section>
@@ -120,7 +129,25 @@ const lastUpdated = "2026-02-08";
     </p>
   </section>
 
-  <section class="card section prose" style="margin-top:18px">
+    <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-debt-to-income-dti-ratio-en-1791/" rel="noopener noreferrer" target="_blank">
+          What is a debt-to-income (DTI) ratio?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/" rel="noopener noreferrer" target="_blank">
+          Owning a home: mortgage basics
+        </a>
+      </li>
+    </ul>
+  </section>
+
+<section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the mortgage payment calculator</a>
@@ -128,9 +155,10 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
+
 
 
 

@@ -26,7 +26,7 @@ const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/apr-with-origination-fee" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -116,6 +116,18 @@ const lastUpdated = "2026-02-08";
     <p class="muted" style="margin:12px 0 0">
       The same fee can change the loan differently depending on the product and lender disclosures. Use APR as a comparison metric, and
       also compare cash-to-close and total dollars paid.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">APR vs closing costs (what is not included)</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Title, appraisal, and recording fees often sit outside APR.</li>
+      <li>Taxes, insurance, and escrow setup can change cash-to-close.</li>
+      <li>Compare total dollars paid over your time horizon, not just APR.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Use the Loan Estimate to separate lender fees from third-party costs. If a fee is optional, compare both versions side by side.
     </p>
   </section>
 
@@ -211,14 +223,14 @@ const lastUpdated = "2026-02-08";
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/apr-calculator">Estimate APR with fees</a>
-      <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
-      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/guides/apr-comparison-checklist">APR comparison checklist</a>
+      <a class="btn" href="/guides/discount-points-vs-lender-credits">Points vs credits</a>
     </div>
     <p class="muted" style="margin:12px 0 0">
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-02-08
+      Last updated: 2026-02-17
     </p>
   </section>
 </BaseLayout>

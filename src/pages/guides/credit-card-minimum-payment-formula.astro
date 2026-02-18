@@ -25,7 +25,7 @@ const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumF
 
 const lastUpdated = "2026-02-17";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-minimum-payment-formula" lastUpdated={lastUpdated}>
+<BaseLayout title={title} description={description} canonicalPath="/guides/why-minimum-payments-take-so-long" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -68,7 +68,7 @@ const lastUpdated = "2026-02-17";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Minimum payment formula (example)</h2>
     <pre style="margin:10px 0 0"><code>Minimum payment = max(% of balance, dollar floor)
-Example: max(2% × $3,500, $29) = max($70, $29) = $70</code></pre>
+Example: max(2% x $3,500, $29) = max($70, $29) = $70</code></pre>
     <p class="muted" style="margin:12px 0 0">
       Some issuers add interest and fees on top of that base number, which makes the minimum higher than the simple % rule.
     </p>
@@ -203,5 +203,7 @@ Example: max(2% × $3,500, $29) = max($70, $29) = $70</code></pre>
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
+
+
 
 

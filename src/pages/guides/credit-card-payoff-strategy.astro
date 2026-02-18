@@ -74,13 +74,25 @@ const lastUpdated = "2026-02-17";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Calculate payoff in three steps</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Enter balance, APR, and your planned monthly payment.</li>
+      <li>Review payoff time and total interest.</li>
+      <li>Test +$25 to +$100 to see how sensitive payoff is to payment size.</li>
+    </ol>
+    <p class="muted" style="margin:12px 0 0">
+      If you want a specific payoff date, use the calculator to find the required payment and then stress test the plan with a higher APR.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Start with the interest math</h2>
     <p class="muted" style="margin:10px 0 0">
       A simple way to sanity-check your payment is to compare it to the first-month interest estimate:
     </p>
     <ul class="muted" style="margin:12px 0 0; padding-left:18px">
-      <li>Estimated monthly interest ≈ balance × (APR / 12).</li>
-      <li>Using this example: {money0.format(exampleBalance)} × {pct2.format(exampleApr)}% / 12 ≈ {money2.format(exampleMonthlyInterest)}.</li>
+      <li>Estimated monthly interest ~=balance x (APR / 12).</li>
+      <li>Using this example: {money0.format(exampleBalance)} x {pct2.format(exampleApr)}% / 12 ~={money2.format(exampleMonthlyInterest)}.</li>
       <li>If your payment is near that number, principal barely moves and payoff will be slow.</li>
     </ul>
   </section>
@@ -126,10 +138,57 @@ const lastUpdated = "2026-02-17";
       If you have a 0% promo APR, the cleanest strategy is to pay the balance off before the promo ends.
     </p>
     <ul class="muted" style="margin:12px 0 0; padding-left:18px">
-      <li>Target payment ≈ promo balance / promo months.</li>
-      <li>Example: {money0.format(promoBalance)} over {promoMonths} months → about {money0.format(promoPaymentRounded)}/month.</li>
+      <li>Target payment ~=promo balance / promo months.</li>
+      <li>Example: {money0.format(promoBalance)} over {promoMonths} months ->about {money0.format(promoPaymentRounded)}/month.</li>
       <li>Re-run with the post-promo APR as a backup scenario in case you miss the target.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Fixed payment vs minimum payment</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Minimum payments usually shrink as your balance drops, which stretches payoff. A fixed monthly payment (even a modest one) keeps
+      principal reduction steady and shortens the timeline.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Use a fixed payment amount you can sustain for months.</li>
+      <li>Compare the fixed payment to the minimum to see the time and interest saved.</li>
+      <li>When the minimum drops, keep your fixed payment to speed payoff.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Payment timing and interest</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Credit card interest is usually based on the average daily balance. Paying earlier in the cycle can reduce the daily
+      balance and lower interest more than paying on the due date.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Split a payment into two smaller payments per month if cash flow allows.</li>
+      <li>Pay before the statement date if you want a lower reported balance.</li>
+      <li>Keep the payment plan consistent so the payoff schedule stays accurate.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Balance transfer vs higher fixed payment</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A balance transfer can reduce interest, but it is not always the best move. Compare a transfer fee plus promo APR to
+      a higher fixed payment on your current card.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Transfer fee is an upfront cost, typically 3% to 5%.</li>
+      <li>If you can increase payments enough, you may not need the transfer.</li>
+      <li>Model both scenarios in the payoff calculator.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Payoff payment target (hit a date)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you want the balance gone by a specific month, use the payoff calculator to find the fixed payment that reaches that target.
+      For a 0% promo, the quick rule is balance / months. For interest-bearing balances, the calculator is more accurate.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -180,6 +239,7 @@ const lastUpdated = "2026-02-17";
     </p>
     <ul class="muted" style="margin:12px 0 0; padding-left:18px">
       <li>If the fee is higher than the interest you would pay, the transfer may not help.</li>
+      <li>Use the promo months to set a payoff target: balance / months.</li>
       <li>Make sure the balance can be paid off before the promo ends.</li>
       <li>Re-run the plan using the post-promo APR as a fallback scenario.</li>
     </ul>
@@ -190,6 +250,14 @@ const lastUpdated = "2026-02-17";
     <p class="muted" style="margin:10px 0 0">
       Cards often apply payments to balances with different APRs in a specific order. If you carry both a promo balance and a purchase
       balance, ask your issuer how payments are applied so your plan targets the highest-cost balance first.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Utilization vs payoff timing</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Paying before the statement closes can reduce reported utilization, which may help your score in the short term. The payoff plan
+      still depends on consistent monthly payments and stopping new purchases while you are paying down the balance.
     </p>
   </section>
 
@@ -303,5 +371,6 @@ const lastUpdated = "2026-02-17";
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
+
 
 

@@ -5,7 +5,7 @@ const title = "APR for Balance Transfers (When to compare)";
 const description =
   "Balance transfers have fees that can change effective cost. Learn when APR comparisons help. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/apr-for-balance-transfers" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -24,17 +24,17 @@ const lastUpdated = "2026-02-08";
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
-      <a class="btn" href="/guides/credit-card-balance-transfer-fee">Balance transfer fee guide</a>
+      <a class="btn" href="/guides/how-to-use-apr-for-credit-cards">Balance transfer fee guide</a>
       <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
     </div>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">APR comparison inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan amount and term (keep them constant across offers).</li>
-      <li>Nominal rate vs APR and which fees are included.</li>
-      <li>Upfront fees paid in cash vs financed.</li>
-      <li>Expected time horizon before refinance or payoff.</li>
+      <li>Transfer balance and the promo APR length.</li>
+      <li>Transfer fee percent and any minimum fee.</li>
+      <li>Post-promo APR if a balance remains.</li>
+      <li>Monthly payment you can sustain during the promo.</li>
     </ul>
   </section>
 
@@ -48,11 +48,72 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Balance transfer fee math</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The fee is an upfront cost, usually 3% to 5% of the transfer amount. If the fee is larger than the interest you would
+      pay without the transfer, the promo is not actually cheaper.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Fee = transfer balance x fee percent.</li>
+      <li>Total cost = fee + interest paid during the payoff.</li>
+      <li>Compare against keeping the balance on the current card.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">0% APR balance transfer payoff plan</h2>
+    <p class="muted" style="margin:10px 0 0">
+      To use a 0% APR balance transfer effectively, set a payment that clears the balance before the promo ends. If you cannot
+      clear it, model the post-promo APR as the backup scenario.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Target payment = (transfer balance + fee) / promo months.</li>
+      <li>Re-run the plan assuming a smaller payment and the post-promo APR.</li>
+      <li>Avoid new purchases that accrue interest immediately.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Balance transfer vs personal loan</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A balance transfer can be cheaper than a personal loan when the promo APR is low and the fee is small relative to the
+      balance. A personal loan can be better when you need a longer payoff horizon or want a fixed payment and term.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Compare total dollars paid over the same timeline.</li>
+      <li>Include the transfer fee as part of the upfront cost.</li>
+      <li>Use the post-promo APR as the fallback case.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">When APR helps</h2>
     <p class="muted" style="margin:10px 0 0">
       APR comparisons help when you align the same timeline and include fees. For short promo periods, total dollars paid
       can be clearer than a single APR number.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When total cost matters more than APR</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>The promo period is short relative to your payoff timeline.</li>
+      <li>The transfer fee is high relative to the balance.</li>
+      <li>You may miss the promo payoff target and pay the post-promo APR.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Payment allocation and new purchases</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Some issuers apply payments to lower-rate balances first. If you put new purchases on the same card, those balances can
+      accrue interest while the transfer stays at the promo rate. That can erase the benefit of the transfer.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Avoid new purchases on a balance transfer card if possible.</li>
+      <li>Pay above the minimum so the transfer balance shrinks faster.</li>
+      <li>Read the cardmember agreement for allocation rules.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -63,6 +124,48 @@ const lastUpdated = "2026-02-08";
       <li>Monthly payment you can sustain during the promo.</li>
       <li>Whether the transfer amount includes new purchases.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Timing checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Confirm the promo start date and exact end date.</li>
+      <li>Set an autopay amount that clears the balance by the end date.</li>
+      <li>Track the transfer posting date to avoid a late promo start.</li>
+      <li>Re-check your plan if the transfer is delayed.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Eligibility and transfer limits</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Balance transfer limits are often below your credit limit.</li>
+      <li>Some issuers exclude transfers from the same bank.</li>
+      <li>Intro offers can change if you miss a payment.</li>
+      <li>Read the offer terms before you initiate the transfer.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Credit score and utilization effects</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A transfer can lower utilization on the original card but raise utilization on the new card. The net effect depends on your
+      total limits and balances. If you are applying for new credit soon, check how the utilization shift affects your profile.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Lower utilization can help scores, but it depends on total limits.</li>
+      <li>Do not close old cards immediately if that reduces your total limit.</li>
+      <li>Paying down balances is the most reliable long-term improvement.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Example: transfer vs no transfer</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you move $6,000 to a 0% APR offer with a 4% fee, the fee is $240. If your current card would cost $260 of interest
+      over the same payoff timeline, the transfer is slightly better. If you take longer than the promo period, re-run with
+      the post-promo APR to avoid surprises.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -81,6 +184,7 @@ const lastUpdated = "2026-02-08";
       <li>Ignoring the transfer fee.</li>
       <li>Using APR without matching the payoff horizon.</li>
       <li>Assuming the promo APR applies forever.</li>
+      <li>Charging new purchases that accrue interest immediately.</li>
     </ul>
   </section>
 
@@ -104,8 +208,8 @@ const lastUpdated = "2026-02-08";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/credit-card-balance-transfer-fee">Balance transfer fee vs savings</a></li>
-        <li><a href="/guides/0-apr-credit-card-payoff-plan">0% APR payoff plan</a></li>
+        <li><a href="/guides/how-to-use-apr-for-credit-cards">Balance transfer fee vs savings</a></li>
+        <li><a href="/guides/credit-card-payoff-strategy">0% APR payoff plan</a></li>
       </ul>
     </div>
   </section>
@@ -123,16 +227,35 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/" rel="noopener noreferrer" target="_blank">
+          Credit card key terms (APR, balance transfers)
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/compliance/bulletins/2012/credit-card-promotional-offers/" rel="noopener noreferrer" target="_blank">
+          Credit card promotional offers (bulletin)
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Run payoff comparisons</a>
-      <a class="btn" href="/guides/credit-card-balance-transfer-fee">Balance transfer fee guide</a>
+      <a class="btn" href="/guides/how-to-use-apr-for-credit-cards">Balance transfer fee guide</a>
       <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>
+
 
 
 

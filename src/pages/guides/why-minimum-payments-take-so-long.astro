@@ -101,6 +101,38 @@ const lastUpdated = "2026-02-17";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Minimum payment formula (typical)</h2>
+    <pre style="margin:10px 0 0"><code>Minimum payment = max(% of balance, dollar floor)
+Example: max(2% x $5,000, $35) = $100</code></pre>
+    <p class="muted" style="margin:12px 0 0">
+      Some issuers add interest and fees on top of that base number, which makes the minimum higher than the simple percent rule.
+      Your statement or cardmember agreement is the source of truth.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why the minimum keeps shrinking</h2>
+    <p class="muted" style="margin:10px 0 0">
+      When the minimum is a percentage of the balance, the required payment drops as the balance drops. That slows payoff because
+      you never lock in a fixed payment amount.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Smaller balance means a smaller minimum and slower principal reduction.</li>
+      <li>Raising your payment above the minimum breaks this cycle.</li>
+      <li>Even a small fixed boost can cut years off the payoff.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Issuer rules vary</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Some issuers use a percent of balance plus interest and fees.</li>
+      <li>Some apply a higher minimum for low balances.</li>
+      <li>Promotional APR balances can follow different rules.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Worked example (computed)</h2>
     <p class="muted" style="margin:10px 0 0">
       Using the calculator model: {money0.format(exampleBalance)} at {pct2.format(exampleApr)}% APR with a minimum payment rule of{" "}
@@ -229,8 +261,14 @@ const lastUpdated = "2026-02-17";
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>
         CFPB:{" "}
-        <a href="https://www.consumerfinance.gov/consumer-tools/credit-cards/" rel="noopener noreferrer" target="_blank">
-          Credit card resources
+        <a href="https://www.consumerfinance.gov/ask-cfpb/how-is-the-minimum-payment-on-my-credit-card-statement-calculated-en-45/" rel="noopener noreferrer" target="_blank">
+          How is the minimum payment on my credit card statement calculated?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-the-minimum-payment-warning-on-my-credit-card-statement-en-58/" rel="noopener noreferrer" target="_blank">
+          What is the minimum payment warning on my credit card statement?
         </a>
       </li>
       <li>
@@ -257,5 +295,7 @@ const lastUpdated = "2026-02-17";
     </p>
   </section>
 </BaseLayout>
+
+
 
 
