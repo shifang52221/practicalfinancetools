@@ -4,9 +4,9 @@ import { DebtSnowballCalculator as DebtSnowballCalculatorComponent } from "../..
 import { buildDebtPlan } from "../../lib/calc/debtPlan";
 
 const title = "Debt Snowball Calculator";
-const metaTitle = "Debt Snowball Calculator (Smallest Balance First)";
+const metaTitle = "Debt Snowball Calculator | Payoff Time and Interest";
 const description =
-  "Build a debt payoff plan using the snowball method (smallest balance first). Estimate payoff time and interest. Educational use only.";
+  "Debt snowball calculator to estimate payoff time and total interest using the smallest-balance-first method. Educational use only.";
 
 const exampleDebts = [
   { id: "card-a", name: "Card A", balance: 600, aprPercent: 24, minPayment: 25 },
@@ -21,7 +21,7 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
   metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/debt-snowball-calculator"
-  intro="Create a debt payoff plan using the snowball method: pay minimums on everything and attack the smallest balance first. Educational use only. Not financial advice."
+  intro="This debt snowball calculator estimates payoff timeline and interest when you pay minimums on every debt and target the smallest balance first. Educational use only. Not financial advice."
   how={[
     "Each month, interest is estimated as balance x (APR / 12).",
     "Minimum payments are applied to all debts; extra money is applied to the target debt (smallest balance).",
@@ -67,11 +67,12 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
   <DebtSnowballCalculatorComponent client:load />
 
   <div class="prose" style="margin-top:16px">
-    <h2 style="margin:0 0 10px">How to use this page</h2>
+    <h2 style="margin:0 0 10px">How to use this debt snowball calculator</h2>
     <p class="muted" style="margin:0">
       Enter each debt's balance, APR, and minimum payment. Then add an "extra payment" amount, the additional money you
       can put toward debt each month. The snowball method applies that extra amount to the smallest balance first to
-      help you get early payoffs.
+      help you get early payoffs. If you also want to model a single card in isolation, compare with the{" "}
+      <a href="/calculators/minimum-payment-payoff-calculator">credit card minimum payment calculator</a>.
     </p>
 
     <h2 style="margin:18px 0 10px">Example scenario</h2>
@@ -179,7 +180,7 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
     <div class="btn-row" style="margin-top:0">
       <a class="btn btn-primary" href="/topics/credit-cards">Credit cards topic hub</a>
       <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
-      <a class="btn" href="/guides/credit-card-payoff-strategy">Calculate credit card payoff</a>
+      <a class="btn" href="/guides/debt-snowball-vs-avalanche">Debt snowball vs avalanche</a>
       <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How credit card interest is calculated</a>
       <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a>
     </div>

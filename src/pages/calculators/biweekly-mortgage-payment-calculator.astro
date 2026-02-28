@@ -4,9 +4,9 @@ import { BiweeklyMortgageCalculator } from "../../components/calculators/Biweekl
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Biweekly Mortgage Payment Calculator";
-const metaTitle = "Biweekly Mortgage Payment Calculator (Estimate Savings)";
+const metaTitle = "Biweekly Mortgage Calculator | Payment, Payoff Time and Interest";
 const description =
-  "Estimate how biweekly mortgage payments can shorten payoff time and reduce total interest, and compare to an equivalent monthly extra payment. Educational use only.";
+  "Biweekly mortgage calculator to estimate payment amount, payoff time, and total interest savings versus monthly payment scenarios. Educational use only.";
 
 const exampleInput = { principal: 360000, aprPercent: 6.5, termMonths: 360 };
 const exampleBase = amortizationSchedule(exampleInput);
@@ -27,7 +27,7 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleBiweekly.to
   metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/biweekly-mortgage-payment-calculator"
-  intro="Estimate the impact of biweekly mortgage payments with this biweekly mortgage calculator using a common approximation (13 payments per year). Compare payoff time and interest savings under consistent assumptions. Educational use only. Not financial advice."
+  intro="Use this biweekly mortgage calculator to estimate biweekly payment impact (13 payments per year approximation), payoff timeline, and interest savings under consistent assumptions. Educational use only. Not financial advice."
   how={[
     "First we compute the baseline monthly principal-and-interest (P&I) payment using standard amortization.",
     "Biweekly payments are approximated as an additional principal amount equal to (monthly P&I / 12) each month (the common 13-payments-per-year rule).",
@@ -68,6 +68,12 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleBiweekly.to
   <BiweeklyMortgageCalculator client:load />
 
   <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">How much is a biweekly mortgage payment?</h2>
+    <p class="muted" style="margin:0">
+      A common estimate is <strong>monthly principal-and-interest payment divided by 2</strong>. True biweekly schedules create 26
+      half-payments per year (13 full monthly-equivalent payments), which is why payoff can accelerate.
+    </p>
+
     <h2 style="margin:0 0 10px">Quick takeaways</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>True biweekly payments create 13 full payments per year (26 half payments).</li>

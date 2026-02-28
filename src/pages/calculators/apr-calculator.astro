@@ -3,10 +3,10 @@ import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { AprCalculator as AprCalculatorComponent } from "../../components/calculators/Apr";
 import { estimateApr } from "../../lib/calc/apr";
 
-const title = "APR Calculator (Interest Rate + Fees)";
-const metaTitle = "Annual Percentage Rate (APR) Calculator - Estimate APR with Fees";
+const title = "APR Calculator";
+const metaTitle = "APR Calculator | Estimate Annual APR from Rate and Fees";
 const description =
-  "Annual percentage rate (APR) calculator to estimate APR from the interest rate, upfront fees, and term so you can compare loan offers more fairly. Educational use only.";
+  "APR calculator to estimate annual percentage rate from interest rate, upfront fees, and loan term so you can compare offers fairly. Educational use only.";
 
 const exampleInput = { loanAmount: 10000, nominalRatePercent: 12, termMonths: 24, fees: 300 };
 const example = estimateApr(exampleInput);
@@ -30,7 +30,7 @@ const breakevenMonths =
   metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/apr-calculator"
-  intro="Use this APR calculator to calculate APR by combining the interest rate with upfront fees, so you can compare loan offers on a more apples-to-apples basis. This is an educational estimate, not an official lender disclosure. Not financial advice."
+  intro="Use this APR calculator to estimate annual APR by combining interest rate, term, and upfront fees. This estimate helps you compare loan offers on a consistent basis. Educational use only, not an official lender disclosure."
   how={[
     "Monthly payment is calculated from the nominal rate and loan amount using standard amortization.",
     "APR is estimated by solving for the discount rate that makes the present value of payments equal to the net amount received (loan amount minus fees).",
@@ -92,7 +92,7 @@ const breakevenMonths =
       model looks like this:
     </p>
     <pre style="margin:0 0 10px"><code>Sum from t=1..n of Payment / (1 + r)^t = Loan Amount - Upfront Fees
-APR (annualized) ≈ r * 12</code></pre>
+APR (annualized) approx = r * 12</code></pre>
     <p class="muted" style="margin:0">
       This calculator estimates APR using a standard fixed-rate payment schedule. Official disclosures follow specific rules for which
       fees are included and how timing is treated.
@@ -102,6 +102,13 @@ APR (annualized) ≈ r * 12</code></pre>
     <p class="muted" style="margin:0">
       If two loans have the same nominal rate but one has higher upfront fees, the loan with higher fees can have a
       higher APR. Use this page to compare offers on a consistent term and payment schedule.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Monthly rate to annual APR quick check</h2>
+    <p class="muted" style="margin:0">
+      If you search "what is annual APR with 0.61 monthly rate", a quick nominal estimate is <strong>0.61% x 12 = 7.32%</strong>.
+      With monthly compounding, the effective annual rate is about <strong>7.57%</strong>. When upfront fees exist, use this
+      calculator because fees can push APR above both quick conversions.
     </p>
 
     <h2 style="margin:18px 0 10px">Common fees that affect APR</h2>

@@ -4,9 +4,9 @@ import { MinimumPaymentPayoff } from "../../components/calculators/MinimumPaymen
 import { minimumPaymentPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Minimum Payment Calculator";
-const metaTitle = "Credit Card Minimum Payment Calculator (Payoff Time & Interest)";
+const metaTitle = "Credit Card Minimum Payment Calculator | Payoff Time and Interest";
 const description =
-  "Credit card minimum payment calculator to estimate payoff time and total interest when you make only minimum payments. Educational use only.";
+  "Credit card minimum payment calculator to estimate payoff time, total interest, and total cost when you make only minimum payments. Educational use only.";
 
 const exampleInput = { balance: 5000, aprPercent: 24.99, minPercent: 2, minDollars: 25 };
 const example = minimumPaymentPayoffSchedule(exampleInput);
@@ -26,7 +26,7 @@ const fixedC = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, mi
   metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/minimum-payment-payoff-calculator"
-  intro="Use this credit card minimum payment calculator to estimate payoff time and total interest when you only make minimum payments. Educational use only. Not financial advice."
+  intro="This credit card minimum payment calculator estimates payoff time and total interest when you only make minimum payments. Educational use only. Not financial advice."
   how={[
     "Monthly interest is estimated as balance x (APR / 12).",
     "Minimum payment is estimated as max($ minimum, % of balance) using a simplified common rule.",
@@ -63,6 +63,11 @@ const fixedC = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, mi
   <MinimumPaymentPayoff client:load />
 
   <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">How this credit card minimum payment calculator works</h2>
+    <p class="muted" style="margin:0 0 10px">
+      This model is useful for the query "credit card minimum payment calculator" because it shows whether your current minimum
+      is enough to reduce principal at a meaningful speed.
+    </p>
     <h2 style="margin:0 0 10px">Minimum payment formula (simplified)</h2>
     <p class="muted" style="margin:0 0 10px">
       Many issuers use a rule like:
@@ -130,6 +135,7 @@ Some issuers add interest and fees to that amount</code></pre>
       <li>Increase the payment until the payoff time feels realistic for your budget.</li>
       <li>Compare total interest under two payments to see the cost of waiting.</li>
       <li>If a balance grows, raise the payment above monthly interest.</li>
+      <li>If you have multiple debts, use the <a href="/calculators/debt-snowball-calculator">debt snowball calculator</a> to prioritize payoff order.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">If payoff takes too long</h2>
