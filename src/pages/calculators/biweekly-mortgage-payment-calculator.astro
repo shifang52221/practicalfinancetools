@@ -63,7 +63,7 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleBiweekly.to
       a: "Escrow amounts are set by your servicer and can change over time. This calculator focuses on principal and interest. If you pay escrow with your mortgage, make sure your payment method covers escrow correctly."
     }
   ]}
-  lastUpdated="2026-02-08"
+  lastUpdated="2026-02-28"
 >
   <BiweeklyMortgageCalculator client:load />
 
@@ -72,6 +72,12 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleBiweekly.to
     <p class="muted" style="margin:0">
       A common estimate is <strong>monthly principal-and-interest payment divided by 2</strong>. True biweekly schedules create 26
       half-payments per year (13 full monthly-equivalent payments), which is why payoff can accelerate.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Biweekly calculator mortgage quick answer</h2>
+    <p class="muted" style="margin:0">
+      If you're searching "biweekly calculator mortgage", compare true biweekly posting to a simple monthly extra equal to payment/12.
+      The two can be very close when the servicer posts only once per month.
     </p>
 
     <h2 style="margin:0 0 10px">Quick takeaways</h2>
@@ -181,5 +187,14 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleBiweekly.to
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
     </div>
+
+    <h2 style="margin:18px 0 10px">References</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer">
+          CFPB: Mortgage resources
+        </a>
+      </li>
+    </ul>
   </div>
 </CalculatorLayout>

@@ -62,7 +62,7 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       a: "If APRs are equal, many people break ties by paying the smaller balance first (for a quicker payoff) or by paying the higher minimum first. The difference is usually small if APRs are identical."
     }
   ]}
-  lastUpdated="2026-02-08"
+  lastUpdated="2026-02-28"
 >
   <DebtAvalancheCalculatorComponent client:load />
 
@@ -147,6 +147,12 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       <a class="btn" href="/calculators/debt-snowball-calculator">Debt snowball calculator</a>
     </div>
 
+    <h2 style="margin:18px 0 10px">Debt avalanche calculator quick check</h2>
+    <p class="muted" style="margin:0">
+      For a reliable "debt avalanche calculator" result, make sure each APR is current and promo expiration scenarios are modeled.
+      Avalanche benefits are often understated when future APR resets are ignored.
+    </p>
+
     <h2 style="margin:18px 0 10px">How to make the plan realistic</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Use the statement minimum payment (or required payment) so the schedule stays realistic.</li>
@@ -192,6 +198,20 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
       <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
     </div>
+
+    <h2 style="margin:18px 0 10px">References</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>
+        <a href="https://www.consumerfinance.gov/consumer-tools/debt-collection/" rel="noopener noreferrer">
+          CFPB: Debt resources
+        </a>
+      </li>
+      <li>
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-minimum-payment-en-23/" rel="noopener noreferrer">
+          CFPB: Minimum payment basics
+        </a>
+      </li>
+    </ul>
   </div>
 </CalculatorLayout>
 

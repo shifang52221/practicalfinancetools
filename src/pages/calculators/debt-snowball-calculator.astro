@@ -62,7 +62,7 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       a: "Closing accounts can affect your credit profile and may not be necessary. Consider factors like annual fees, spending habits, and credit utilization, and choose what you can sustain."
     }
   ]}
-  lastUpdated="2026-02-08"
+  lastUpdated="2026-02-28"
 >
   <DebtSnowballCalculatorComponent client:load />
 
@@ -147,6 +147,12 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       <a class="btn" href="/calculators/debt-avalanche-calculator">Debt avalanche calculator</a>
     </div>
 
+    <h2 style="margin:18px 0 10px">Snowball debt calculator quick check</h2>
+    <p class="muted" style="margin:0">
+      If you search for a "snowball debt calculator", verify two things first: statement minimums are accurate and your extra
+      payment is sustainable. Those two inputs drive most payoff-date differences.
+    </p>
+
     <h2 style="margin:18px 0 10px">How to make the plan realistic</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Use the statement minimum payment (or required payment) so the schedule stays realistic.</li>
@@ -192,6 +198,20 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
       <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
     </div>
+
+    <h2 style="margin:18px 0 10px">References</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>
+        <a href="https://www.consumerfinance.gov/consumer-tools/debt-collection/" rel="noopener noreferrer">
+          CFPB: Debt resources
+        </a>
+      </li>
+      <li>
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-minimum-payment-en-23/" rel="noopener noreferrer">
+          CFPB: Minimum payment basics
+        </a>
+      </li>
+    </ul>
   </div>
 </CalculatorLayout>
 

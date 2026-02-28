@@ -58,7 +58,7 @@ const fixedC = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, mi
       a: "Pay more than the minimum, reduce APR (e.g., refinance/transfer), and prioritize higher-APR balances first."
     }
   ]}
-  lastUpdated="2026-02-17"
+  lastUpdated="2026-02-28"
 >
   <MinimumPaymentPayoff client:load />
 
@@ -76,6 +76,12 @@ const fixedC = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, mi
 Some issuers add interest and fees to that amount</code></pre>
     <p class="muted" style="margin:0">
       This calculator models the common percent-of-balance + dollar floor rule. Check your statement for the exact formula.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Minimum payment calculation quick example</h2>
+    <p class="muted" style="margin:0">
+      If your issuer uses 2% of balance with a $25 floor, a $5,000 balance implies a minimum payment calculation of
+      max($25, $100) = $100 before any issuer-specific adjustments for fees or interest treatment.
     </p>
 
     <h2 style="margin:0 0 10px">Example</h2>
@@ -244,5 +250,19 @@ Some issuers add interest and fees to that amount</code></pre>
       <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
       <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How credit card interest works</a>
     </div>
+
+    <h2 style="margin:18px 0 10px">References</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-minimum-payment-en-23/" rel="noopener noreferrer">
+          CFPB: What is a minimum payment?
+        </a>
+      </li>
+      <li>
+        <a href="https://www.consumerfinance.gov/ask-cfpb/how-is-interest-calculated-on-a-credit-card-en-71/" rel="noopener noreferrer">
+          CFPB: How is interest calculated on a credit card?
+        </a>
+      </li>
+    </ul>
   </div>
 </CalculatorLayout>
