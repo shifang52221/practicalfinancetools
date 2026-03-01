@@ -6,7 +6,7 @@ const title = `Editorial Policy | ${SITE.name}`;
 const description =
   "How we create and update calculator explanations, what we consider before publishing, and how to request corrections. Educational use only.";
 
-const lastUpdated = "2026-01-30";
+const lastUpdated = "2026-03-01";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/editorial-policy" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -48,6 +48,43 @@ const lastUpdated = "2026-01-30";
       We test calculators with sample inputs and sanity checks that confirm the results follow the stated assumptions. When possible,
       we compare outcomes with publicly documented formulas or lender examples to ensure consistency.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Editorial workflow checkpoints</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>What we check</th>
+            <th>Release requirement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Scope review</td>
+            <td>User intent, assumptions, and formula fit</td>
+            <td>Page has a clear decision use case</td>
+          </tr>
+          <tr>
+            <td>Calculation review</td>
+            <td>Known test cases and edge scenarios</td>
+            <td>No material mismatch vs expected behavior</td>
+          </tr>
+          <tr>
+            <td>Content review</td>
+            <td>Assumptions, limits, and source links</td>
+            <td>Limits are explicit and readable</td>
+          </tr>
+          <tr>
+            <td>Post-publish check</td>
+            <td>Feedback and issue monitoring</td>
+            <td>Corrections reflected with updated date</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -106,6 +143,15 @@ const lastUpdated = "2026-01-30";
       We review all correction requests. If a change is warranted, we update the page and mark it with a new "Last updated" date.
     </p>
   </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Correction response target</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Acknowledgement target: within 3 business days.</li>
+      <li>Material calculation issues: prioritized for fastest available patch cycle.</li>
+      <li>Clarification edits: bundled into scheduled content updates.</li>
+    </ul>
+  </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Calculator change policy</h2>
     <p class="muted" style="margin:10px 0 0">
@@ -150,7 +196,7 @@ const lastUpdated = "2026-01-30";
       When we make a correction that changes a calculation or explanation, we update the page and adjust the "Last updated" date so
       readers can see that a change was made.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-01</p>
   </section>
 </BaseLayout>
 

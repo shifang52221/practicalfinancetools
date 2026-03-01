@@ -62,7 +62,7 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       a: "Closing accounts can affect your credit profile and may not be necessary. Consider factors like annual fees, spending habits, and credit utilization, and choose what you can sustain."
     }
   ]}
-  lastUpdated="2026-02-28"
+  lastUpdated="2026-03-01"
 >
   <DebtSnowballCalculatorComponent client:load />
 
@@ -124,11 +124,49 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       <li>New purchases and fees are excluded from this model.</li>
     </ul>
 
+    <h2 style="margin:18px 0 10px">Statement-to-input mapping</h2>
+    <div style="overflow:auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Calculator input</th>
+            <th>Where to get it</th>
+            <th>Common mismatch</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Balance</td>
+            <td>Latest statement balance for each account</td>
+            <td>Using an old balance before recent payments post</td>
+          </tr>
+          <tr>
+            <td>APR</td>
+            <td>Statement APR for that balance type</td>
+            <td>Using promo APR after promo period ends</td>
+          </tr>
+          <tr>
+            <td>Minimum payment</td>
+            <td>Statement minimum due</td>
+            <td>Guessing a percent instead of using issuer minimum</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <h2 style="margin:18px 0 10px">Match your statements</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Use the statement minimums for each account, not just a guessed percentage.</li>
       <li>Verify promo APR end dates and model the post-promo rate as a scenario.</li>
       <li>If a balance has multiple APRs (purchases vs cash advance), use the higher rate.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Boundary scenarios to test</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Promo APR ends in 3-6 months and resets to a higher standard APR.</li>
+      <li>Minimum payment increases after a balance threshold is crossed.</li>
+      <li>Two debts have similar balances: compare snowball tie-break vs avalanche.</li>
+      <li>A small residual interest month appears after payoff ("trailing interest").</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">When snowball can be a fit</h2>

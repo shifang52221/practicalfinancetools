@@ -6,7 +6,7 @@ const title = `Topics | ${SITE.name}`;
 const description =
   "Topic hubs that connect calculators with guides for APR, credit cards, and mortgage payoff workflows. Educational use only.";
 
-const lastUpdated = "2026-01-30";
+const lastUpdated = "2026-03-01";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/topics" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -32,6 +32,38 @@ const lastUpdated = "2026-01-30";
       <li>Change one input at a time to compare scenarios fairly (fees, rate, payment, or extra amount).</li>
       <li>Use the FAQ sections on calculator pages for edge cases and limitations.</li>
     </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Topic quality checkpoints</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Checkpoint</th>
+            <th>What to verify</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Input source</td>
+            <td>Statement or disclosure values (not memory)</td>
+            <td>Prevents garbage-in/garbage-out scenarios</td>
+          </tr>
+          <tr>
+            <td>Time horizon</td>
+            <td>Match full-term vs short-horizon intent</td>
+            <td>Avoids misleading "best option" conclusions</td>
+          </tr>
+          <tr>
+            <td>Posting assumptions</td>
+            <td>Payment timing and principal-only rules</td>
+            <td>Can materially change savings estimates</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -180,7 +212,7 @@ const lastUpdated = "2026-01-30";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
     <p class="muted" style="margin:10px 0 0">Topics are updated as calculators and guides change. If you want a new workflow, contact us.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-01</p>
   </section>
 </BaseLayout>
 

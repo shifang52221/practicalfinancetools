@@ -90,7 +90,7 @@ const scenarioHigh = creditCardPayoffSchedule({
       a: "If a payment is below the interest charged, the balance can grow and payoff may never happen. Increase the payment or reduce the APR to make progress."
     }
   ]}
-  lastUpdated="2026-02-28"
+  lastUpdated="2026-03-01"
 >
   <CreditCardPayoff client:load />
 
@@ -190,6 +190,36 @@ const scenarioHigh = creditCardPayoffSchedule({
       <li>Fees: late/annual fees are excluded, so add a buffer if you expect them.</li>
     </ul>
 
+    <h2 style="margin:18px 0 10px">Statement-to-input mapping</h2>
+    <div style="overflow:auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Calculator input</th>
+            <th>Where to verify</th>
+            <th>Common mismatch</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>APR</td>
+            <td>Statement APR by balance type</td>
+            <td>Using promo APR after expiry date</td>
+          </tr>
+          <tr>
+            <td>Payment amount</td>
+            <td>Autopay plan / budget</td>
+            <td>Using a target payment that is not sustainable</td>
+          </tr>
+          <tr>
+            <td>Starting balance</td>
+            <td>Latest statement closing balance</td>
+            <td>Ignoring pending interest or recent charges</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <h2 style="margin:18px 0 10px">Match your statement details</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Use the APR that matches the balance type (purchases vs cash advances).</li>
@@ -209,6 +239,14 @@ const scenarioHigh = creditCardPayoffSchedule({
       <li>This page estimates interest monthly using APR/12; many issuers use daily interest and statement cycles.</li>
       <li>Assumes you stop adding new purchases and fees; adding purchases can extend payoff time.</li>
       <li>If APR changes mid-stream (promo ends, penalty APR), re-run the numbers with the new rate.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Boundary scenarios to run</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Promo APR ends in month 6 and resets higher.</li>
+      <li>One month payment miss with late fee impact.</li>
+      <li>Payment amount reduced for 2-3 months due to cash-flow shock.</li>
+      <li>New purchase added monthly to see how quickly payoff stalls.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Match your statement timing</h2>

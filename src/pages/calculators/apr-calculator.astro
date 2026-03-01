@@ -74,7 +74,7 @@ const breakevenMonths =
       a: "No. It's an educational estimate to compare scenarios. Official APR disclosures follow specific legal rules."
     }
   ]}
-  lastUpdated="2026-02-28"
+  lastUpdated="2026-03-01"
 >
   <AprCalculatorComponent client:load />
 
@@ -249,11 +249,54 @@ APR (annualized) approx = r * 12</code></pre>
       break-even window, the lower-rate offer may not be cheaper for you.
     </p>
 
+    <h2 style="margin:18px 0 10px">Disclosure-to-input mapping</h2>
+    <div style="overflow:auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Calculator input</th>
+            <th>Where to verify</th>
+            <th>Common mismatch</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Loan amount</td>
+            <td>Loan Estimate / offer sheet principal amount</td>
+            <td>Using financed-fee amount as principal</td>
+          </tr>
+          <tr>
+            <td>Nominal rate</td>
+            <td>Interest rate line in disclosure</td>
+            <td>Mixing teaser rate with full-rate scenario</td>
+          </tr>
+          <tr>
+            <td>Term</td>
+            <td>Payment schedule (months)</td>
+            <td>Comparing different terms and treating APR as equivalent</td>
+          </tr>
+          <tr>
+            <td>Upfront fees</td>
+            <td>Origination/points in closing details</td>
+            <td>Ignoring fees paid outside principal</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <h2 style="margin:18px 0 10px">APR calculator assumptions & limitations</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>This is a simplified fixed-rate estimate using a standard monthly payment schedule.</li>
       <li>We treat fees as reducing the net amount received; lender disclosures can categorize fees differently.</li>
       <li>If you plan to refinance or repay early, compare total cost over your expected time horizon.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Boundary scenarios to run</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Same rate, higher fee to confirm APR rises as expected.</li>
+      <li>Lower rate with points to test break-even horizon sensitivity.</li>
+      <li>Short horizon (24-36 months) versus full-term hold.</li>
+      <li>Fees paid cash vs financed to compare true cash burden.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>

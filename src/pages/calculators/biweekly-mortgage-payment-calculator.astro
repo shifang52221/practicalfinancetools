@@ -1,4 +1,4 @@
-﻿---
+---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { BiweeklyMortgageCalculator } from "../../components/calculators/BiweeklyMortgage";
 import { amortizationSchedule } from "../../lib/calc/loan";
@@ -63,7 +63,7 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleBiweekly.to
       a: "Escrow amounts are set by your servicer and can change over time. This calculator focuses on principal and interest. If you pay escrow with your mortgage, make sure your payment method covers escrow correctly."
     }
   ]}
-  lastUpdated="2026-02-28"
+  lastUpdated="2026-03-01"
 >
   <BiweeklyMortgageCalculator client:load />
 
@@ -129,6 +129,36 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleBiweekly.to
       <li>If escrow is paid with your mortgage, verify the servicer's biweekly rules.</li>
     </ul>
 
+    <h2 style="margin:18px 0 10px">Posting-method comparison</h2>
+    <div style="overflow:auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Servicer behavior</th>
+            <th>Expected impact</th>
+            <th>What to verify</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>True biweekly posting</td>
+            <td>Usually highest interest savings</td>
+            <td>Statement shows principal posting every two weeks</td>
+          </tr>
+          <tr>
+            <td>Held then posted monthly</td>
+            <td>Often similar to monthly extra</td>
+            <td>No mid-month principal reduction</td>
+          </tr>
+          <tr>
+            <td>Third-party fee program</td>
+            <td>Savings can be offset by fees</td>
+            <td>Total annual fees vs projected interest saved</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <h2 style="margin:18px 0 10px">Related guides</h2>
     <div class="btn-row" style="margin-top:0">
       <a class="btn btn-primary" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
@@ -179,6 +209,14 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleBiweekly.to
       <li>Compare biweekly results to a monthly extra equal to (payment / 12).</li>
       <li>Check the payoff date difference and total interest saved, not just monthly payment size.</li>
       <li>Re-run with a slightly different rate to see how sensitive results are.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Boundary scenarios to test</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>No-fee monthly extra vs paid biweekly program.</li>
+      <li>Escrow change year where total draft amount increases.</li>
+      <li>Lump-sum month plus biweekly to test combined strategy.</li>
+      <li>Early years vs late years where interest savings sensitivity differs.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Related tools</h2>

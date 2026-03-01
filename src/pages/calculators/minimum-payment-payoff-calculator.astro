@@ -1,4 +1,4 @@
-﻿---
+---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { MinimumPaymentPayoff } from "../../components/calculators/MinimumPaymentPayoff";
 import { minimumPaymentPayoffSchedule } from "../../lib/calc/creditCard";
@@ -58,7 +58,7 @@ const fixedC = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, mi
       a: "Pay more than the minimum, reduce APR (e.g., refinance/transfer), and prioritize higher-APR balances first."
     }
   ]}
-  lastUpdated="2026-02-28"
+  lastUpdated="2026-03-01"
 >
   <MinimumPaymentPayoff client:load />
 
@@ -165,6 +165,36 @@ Some issuers add interest and fees to that amount</code></pre>
       <li>Whether fees are included in the minimum payment calculation.</li>
     </ul>
 
+    <h2 style="margin:18px 0 10px">Issuer minimum-rule comparison</h2>
+    <div style="overflow:auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Rule pattern</th>
+            <th>How to model here</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>max(floor, % of balance)</td>
+            <td>Use both percent and floor inputs</td>
+            <td>Most common baseline for planning</td>
+          </tr>
+          <tr>
+            <td>Interest + fees + small principal</td>
+            <td>Increase percent input until first-month minimum matches statement</td>
+            <td>Can materially increase total paid</td>
+          </tr>
+          <tr>
+            <td>Tiered percentage by balance range</td>
+            <td>Re-check inputs as balance declines</td>
+            <td>Minimum payment may fall faster than expected</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <h2 style="margin:18px 0 10px">Match your statement minimum</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Use the statement minimum as a reality check against the calculator output.</li>
@@ -234,6 +264,14 @@ Some issuers add interest and fees to that amount</code></pre>
       Many issuers calculate minimums as a percentage of balance with a dollar floor, but some add interest and fees.
       Use your statement to estimate the implied percentage and update the input so the model stays realistic.
     </p>
+
+    <h2 style="margin:18px 0 10px">Boundary tests that catch bad assumptions</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Minimum payment is very close to monthly interest (balance may barely drop).</li>
+      <li>APR changes after promo expiry and minimum rule also changes.</li>
+      <li>Balance approaches the dollar floor where percent rule stops driving the minimum.</li>
+      <li>A single late fee month pushes minimum and timeline off-plan.</li>
+    </ul>
 
     <h2 style="margin:18px 0 10px">Related tools</h2>
     <div class="btn-row" style="margin-top:0">

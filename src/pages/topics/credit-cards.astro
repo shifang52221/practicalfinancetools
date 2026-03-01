@@ -5,7 +5,7 @@ const title = "Credit Card Payoff Topic Guide (interest, minimums, plans)";
 const description =
   "Credit card payoff workflow: model interest, minimum payments, and multi-debt plans with calculators. Educational use only.";
 
-const lastUpdated = "2026-02-28";
+const lastUpdated = "2026-03-01";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/topics/credit-cards" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -70,6 +70,38 @@ const lastUpdated = "2026-02-28";
       <li>Cardmember agreement: how interest is calculated (daily balance vs monthly).</li>
       <li>Promo terms: end date and post-promo APR.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Official-checkpoint table</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Decision</th>
+            <th>Primary source</th>
+            <th>Why it changes payoff</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Minimum payment rule</td>
+            <td>Statement minimum due details</td>
+            <td>Sets baseline speed of principal reduction</td>
+          </tr>
+          <tr>
+            <td>Promo APR expiry</td>
+            <td>Offer terms / statement notices</td>
+            <td>Can sharply increase monthly interest</td>
+          </tr>
+          <tr>
+            <td>Payment allocation order</td>
+            <td>Cardmember agreement</td>
+            <td>Determines which balance is reduced first</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -280,7 +312,7 @@ const lastUpdated = "2026-02-28";
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-03-01</p>
   </section>
 </BaseLayout>
 

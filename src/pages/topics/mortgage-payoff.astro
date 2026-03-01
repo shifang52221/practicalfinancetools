@@ -5,7 +5,7 @@ const title = "Mortgage Payoff Topic Guide (payment, amortization, extras)";
 const description =
   "Mortgage payoff workflow: estimate payment, view amortization, and compare extra principal strategies. Educational use only.";
 
-const lastUpdated = "2026-02-28";
+const lastUpdated = "2026-03-01";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/topics/mortgage-payoff" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -105,6 +105,38 @@ const lastUpdated = "2026-02-28";
       <li>Check the payment posting date; timing affects interest.</li>
       <li>Compare a few rows in the amortization table to your statement.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Servicer verification table</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>What to verify</th>
+            <th>Where to check</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Principal-only posting</td>
+            <td>Servicer FAQ / monthly statement</td>
+            <td>Determines if extra payment reduces interest immediately</td>
+          </tr>
+          <tr>
+            <td>Biweekly posting date</td>
+            <td>Transaction history</td>
+            <td>Mid-month posting can improve savings vs month-end posting</td>
+          </tr>
+          <tr>
+            <td>Prepayment penalty</td>
+            <td>Note and closing documents</td>
+            <td>Can offset part of expected savings</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -210,7 +242,7 @@ const lastUpdated = "2026-02-28";
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-03-01</p>
   </section>
 </BaseLayout>
 

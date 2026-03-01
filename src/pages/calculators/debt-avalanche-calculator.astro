@@ -62,7 +62,7 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       a: "If APRs are equal, many people break ties by paying the smaller balance first (for a quicker payoff) or by paying the higher minimum first. The difference is usually small if APRs are identical."
     }
   ]}
-  lastUpdated="2026-02-28"
+  lastUpdated="2026-03-01"
 >
   <DebtAvalancheCalculatorComponent client:load />
 
@@ -124,6 +124,36 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       <li>New purchases and fees are excluded from this model.</li>
     </ul>
 
+    <h2 style="margin:18px 0 10px">Statement-to-input mapping</h2>
+    <div style="overflow:auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Calculator input</th>
+            <th>Where to get it</th>
+            <th>Common mismatch</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>APR</td>
+            <td>Latest statement APR per balance type</td>
+            <td>Using promo APR without modeling reset month</td>
+          </tr>
+          <tr>
+            <td>Minimum payment</td>
+            <td>Statement minimum due</td>
+            <td>Using estimated percent instead of issuer rule</td>
+          </tr>
+          <tr>
+            <td>Extra payment</td>
+            <td>Monthly cash-flow plan</td>
+            <td>Setting an amount that is not sustainable</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <h2 style="margin:18px 0 10px">Match your statements</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Use each account's statement minimum so the payoff order is accurate.</li>
@@ -173,6 +203,14 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       <li>APRs and minimum payments are fixed unless you update them.</li>
       <li>No new purchases or fees are added while you are paying down balances.</li>
       <li>Payments are made on time every month without penalty APRs.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Boundary scenarios to test</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Promo APR expires and resets to standard APR mid-plan.</li>
+      <li>Two debts share the same APR and require a tie-break rule.</li>
+      <li>Minimum payment rises after a missed payment month.</li>
+      <li>Highest-APR debt has very small balance, changing payoff order quickly.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">If results look off</h2>

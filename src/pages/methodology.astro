@@ -6,7 +6,7 @@ const title = `Calculator Methodology | ${SITE.name}`;
 const description =
   "High-level methodology and assumptions used in our calculators (amortization, APR, debt payoff). Educational use only.";
 
-const lastUpdated = "2026-01-30";
+const lastUpdated = "2026-03-01";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/methodology" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -43,6 +43,38 @@ const lastUpdated = "2026-01-30";
       <li>Interest is calculated on remaining balances and rounded in the display layer.</li>
       <li>Statement cycles and posting dates can shift real-world results.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Method verification checklist</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Model area</th>
+            <th>Validation approach</th>
+            <th>Pass condition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Amortization</td>
+            <td>Cross-check payment and balance path with known schedules</td>
+            <td>No material deviation in payoff month</td>
+          </tr>
+          <tr>
+            <td>Debt payoff</td>
+            <td>Snowball vs avalanche order and payoff roll-over checks</td>
+            <td>Ordering and rollover logic consistent with inputs</td>
+          </tr>
+          <tr>
+            <td>APR estimate</td>
+            <td>Fee/no-fee scenario comparisons and sensitivity checks</td>
+            <td>APR directionality matches fee and term changes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -139,12 +171,20 @@ const lastUpdated = "2026-01-30";
     </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Source hierarchy</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Primary: statements, lender disclosures, and official regulator guidance.</li>
+      <li>Secondary: educational references used only for interpretation context.</li>
+      <li>When sources conflict, official disclosures and product terms take priority.</li>
+    </ul>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Questions</h2>
     <p class="muted" style="margin:10px 0 0">
       If you'd like a specific formula breakdown for a calculator, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the page
       URL.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-01</p>
   </section>
 </BaseLayout>
 

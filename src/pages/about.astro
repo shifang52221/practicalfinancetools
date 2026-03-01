@@ -5,7 +5,7 @@ import { SITE } from "../config/site";
 const title = `About | ${SITE.name}`;
 const description = "About this site, our goals, and how to use the calculators responsibly.";
 
-const lastUpdated = "2026-01-30";
+const lastUpdated = "2026-03-01";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/about" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -63,12 +63,53 @@ const lastUpdated = "2026-01-30";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Who maintains this site</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Maintained by the Practical Finance Tools editorial and product team.</li>
+      <li>Content and calculator updates are tracked with page-level "Last updated" dates.</li>
+      <li>Feedback and corrections are handled through <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How to get the most accurate results</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Use your latest statement values for balance, rate, and minimum payment rules.</li>
       <li>Match the remaining term in months, not the original term.</li>
       <li>Keep the same baseline when comparing scenarios so the changes are clear.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Trust checklist before decisions</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Checkpoint</th>
+            <th>Quick test</th>
+            <th>If not true</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Input freshness</td>
+            <td>Values come from latest statement/disclosure</td>
+            <td>Update inputs before comparing options</td>
+          </tr>
+          <tr>
+            <td>Scenario consistency</td>
+            <td>Only one variable changes at a time</td>
+            <td>Re-run to isolate cause of difference</td>
+          </tr>
+          <tr>
+            <td>Policy fit</td>
+            <td>Posting/fee rules match servicer or issuer policy</td>
+            <td>Use conservative assumptions and verify documents</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -148,7 +189,7 @@ const lastUpdated = "2026-01-30";
       Educational use only. Not financial advice. We do not provide personalized recommendations, and we do not guarantee the accuracy of
       results. Always confirm figures with your lender, servicer, card issuer, or financial professional.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-01</p>
   </section>
 </BaseLayout>
 
