@@ -1,6 +1,7 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { DebtSnowballCalculator as DebtSnowballCalculatorComponent } from "../../components/calculators/DebtSnowball";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { buildDebtPlan } from "../../lib/calc/debtPlan";
 
 const title = "Debt Snowball Calculator";
@@ -15,6 +16,30 @@ const exampleDebts = [
 ];
 const examplePlan = buildDebtPlan({ debts: exampleDebts, extraMonthly: 150, strategy: "snowball" });
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const caseOneDebts = [
+  { id: "store-card", name: "Store Card", balance: 900, aprPercent: 29.99, minPayment: 40 },
+  { id: "visa", name: "Visa", balance: 3800, aprPercent: 21.49, minPayment: 95 },
+  { id: "personal-loan", name: "Personal Loan", balance: 6400, aprPercent: 11.2, minPayment: 170 }
+];
+const caseOnePlan = buildDebtPlan({ debts: caseOneDebts, extraMonthly: 220, strategy: "snowball" });
+const caseOneTightCashflow = buildDebtPlan({ debts: caseOneDebts, extraMonthly: 120, strategy: "snowball" });
+const caseOneMonthsFaster = Math.max(0, caseOneTightCashflow.months - caseOnePlan.months);
+const caseOneInterestLower = Math.max(0, caseOneTightCashflow.totalInterest - caseOnePlan.totalInterest);
+const caseTwoPromoDebts = [
+  { id: "promo-card", name: "Promo Card", balance: 3400, aprPercent: 0, minPayment: 45 },
+  { id: "travel-card", name: "Travel Card", balance: 2600, aprPercent: 23.99, minPayment: 75 },
+  { id: "line-credit", name: "Line of Credit", balance: 5200, aprPercent: 9.8, minPayment: 130 }
+];
+const caseTwoPromoPlan = buildDebtPlan({ debts: caseTwoPromoDebts, extraMonthly: 180, strategy: "snowball" });
+const caseTwoResetPlan = buildDebtPlan({
+  debts: caseTwoPromoDebts.map((debt) =>
+    debt.id === "promo-card" ? { ...debt, aprPercent: 27.99 } : debt
+  ),
+  extraMonthly: 180,
+  strategy: "snowball"
+});
+const caseTwoResetMonthDiff = Math.max(0, caseTwoResetPlan.months - caseTwoPromoPlan.months);
+const caseTwoResetInterestDiff = Math.max(0, caseTwoResetPlan.totalInterest - caseTwoPromoPlan.totalInterest);
 ---
 <CalculatorLayout
   title={title}
@@ -62,9 +87,14 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       a: "Closing accounts can affect your credit profile and may not be necessary. Consider factors like annual fees, spending habits, and credit utilization, and choose what you can sustain."
     }
   ]}
-  lastUpdated="2026-03-01"
+  lastUpdated="2026-03-03"
 >
   <DebtSnowballCalculatorComponent client:load />
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Content and methodology review"
+    reviewedOn="2026-03-03"
+  />
 
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">How to use this debt snowball calculator</h2>
@@ -168,6 +198,52 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       <li>Two debts have similar balances: compare snowball tie-break vs avalanche.</li>
       <li>A small residual interest month appears after payoff ("trailing interest").</li>
     </ul>
+
+    <h2 style="margin:18px 0 10px">Real-world case studies</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Input snapshot</th>
+            <th>Result snapshot</th>
+            <th>Decision note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Three-debt household with stable APRs</td>
+            <td>
+              Debts: {money.format(900)}, {money.format(3800)}, {money.format(6400)}.
+              Snowball extra payment: {money.format(220)} vs {money.format(120)}.
+            </td>
+            <td>
+              Higher extra is {caseOneMonthsFaster} months faster and lowers interest by {money.format(caseOneInterestLower)}.
+              First payoff: {caseOnePlan.payoffs[0]?.name ?? "Debt"} in month {caseOnePlan.payoffs[0]?.payoffMonth ?? "N/A"}.
+            </td>
+            <td>
+              A sustainable extra payment matters more than perfect strategy details in early months.
+            </td>
+          </tr>
+          <tr>
+            <td>Promo APR reset stress test</td>
+            <td>
+              Same balances and minimums, extra {money.format(180)}. Base model keeps promo card at 0% APR; stress case resets promo card to 27.99%.
+            </td>
+            <td>
+              Reset scenario extends payoff by {caseTwoResetMonthDiff} months and adds {money.format(caseTwoResetInterestDiff)} interest.
+              Base payoff: {caseTwoPromoPlan.months} months; reset payoff: {caseTwoResetPlan.months} months.
+            </td>
+            <td>
+              If a promo is ending soon, plan using the post-promo APR first to avoid underestimating payoff time.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Boundary condition to test: run one scenario with minimum payments increased by 10%-15% to see if issuer rule changes materially shift payoff order.
+    </p>
 
     <h2 style="margin:18px 0 10px">When snowball can be a fit</h2>
     <ul class="muted" style="margin:0; padding-left:18px">

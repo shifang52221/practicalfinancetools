@@ -1,6 +1,7 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { MinimumPaymentPayoff } from "../../components/calculators/MinimumPaymentPayoff";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { minimumPaymentPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Minimum Payment Calculator";
@@ -20,6 +21,29 @@ const fixedPaymentC = 300;
 const fixedA = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, minDollars: fixedPaymentA });
 const fixedB = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, minDollars: fixedPaymentB });
 const fixedC = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, minDollars: fixedPaymentC });
+const caseOneInput = { balance: 7800, aprPercent: 26.99, minPercent: 2, minDollars: 35 };
+const caseOneMinimumOnly = minimumPaymentPayoffSchedule(caseOneInput);
+const caseOneBoosted = minimumPaymentPayoffSchedule({
+  ...caseOneInput,
+  minPercent: 0,
+  minDollars: 190
+});
+const caseOneMinimumOnlyMonths = caseOneMinimumOnly.months ?? caseOneMinimumOnly.rows.length;
+const caseOneBoostedMonths = caseOneBoosted.months ?? caseOneBoosted.rows.length;
+const caseOneMonthsSaved = Math.max(0, caseOneMinimumOnlyMonths - caseOneBoostedMonths);
+const caseOneInterestSaved = Math.max(0, caseOneMinimumOnly.totalInterest - caseOneBoosted.totalInterest);
+const caseTwoBaseInput = { balance: 4200, aprPercent: 18.99, minPercent: 1, minDollars: 40 };
+const caseTwoBase = minimumPaymentPayoffSchedule(caseTwoBaseInput);
+const caseTwoReset = minimumPaymentPayoffSchedule({
+  ...caseTwoBaseInput,
+  aprPercent: 29.99
+});
+const caseTwoBaseMonths = caseTwoBase.months ?? caseTwoBase.rows.length;
+const caseTwoResetMonths = caseTwoReset.months ?? caseTwoReset.rows.length;
+const caseTwoMonthDelta = Math.max(0, caseTwoResetMonths - caseTwoBaseMonths);
+const caseTwoInterestDelta = Math.max(0, caseTwoReset.totalInterest - caseTwoBase.totalInterest);
+const caseTwoFirstMonthInterestBase = caseTwoBaseInput.balance * (caseTwoBaseInput.aprPercent / 100 / 12);
+const caseTwoFirstMonthInterestReset = caseTwoBaseInput.balance * (29.99 / 100 / 12);
 ---
 <CalculatorLayout
   title={title}
@@ -58,9 +82,14 @@ const fixedC = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, mi
       a: "Pay more than the minimum, reduce APR (e.g., refinance/transfer), and prioritize higher-APR balances first."
     }
   ]}
-  lastUpdated="2026-03-01"
+  lastUpdated="2026-03-03"
 >
   <MinimumPaymentPayoff client:load />
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Content and methodology review"
+    reviewedOn="2026-03-03"
+  />
 
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">How this credit card minimum payment calculator works</h2>
@@ -242,6 +271,52 @@ Some issuers add interest and fees to that amount</code></pre>
     </div>
     <p class="muted" style="margin:12px 0 0">
       Use this table to pick a payment that fits your budget and payoff target. Then compare it to your statement minimum.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Real-world case studies</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Input snapshot</th>
+            <th>Result snapshot</th>
+            <th>Decision note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Minimum-only vs fixed boosted payment</td>
+            <td>
+              {money.format(caseOneInput.balance)} at {pct2.format(caseOneInput.aprPercent)}% APR.
+              Minimum rule {caseOneInput.minPercent}% or {money.format(caseOneInput.minDollars)}; boosted plan uses fixed {money.format(190)}.
+            </td>
+            <td>
+              Boosted payment shortens payoff by {caseOneMonthsSaved} months and cuts interest by {money.format(caseOneInterestSaved)}.
+            </td>
+            <td>
+              A fixed payment target can convert an open-ended minimum cycle into a predictable payoff window.
+            </td>
+          </tr>
+          <tr>
+            <td>APR reset stress test</td>
+            <td>
+              {money.format(caseTwoBaseInput.balance)} with minimum rule {caseTwoBaseInput.minPercent}% or {money.format(caseTwoBaseInput.minDollars)}.
+              Compare APR {pct2.format(caseTwoBaseInput.aprPercent)}% vs {pct2.format(29.99)}%.
+            </td>
+            <td>
+              First-month interest rises from {money.format(caseTwoFirstMonthInterestBase)} to {money.format(caseTwoFirstMonthInterestReset)}.
+              Payoff extends by {caseTwoMonthDelta} months with {money.format(caseTwoInterestDelta)} more interest.
+            </td>
+            <td>
+              If promo APR may end, model the reset rate now and set payment based on the stressed case.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Boundary condition to test: when minimum payment is near monthly interest, add a late-fee month in your own plan assumptions and re-check payoff drift.
     </p>
 
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>

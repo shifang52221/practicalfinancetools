@@ -1,12 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
 
 const title = `Topics | ${SITE.name}`;
 const description =
   "Topic hubs that connect calculators with guides for APR, credit cards, and mortgage payoff workflows. Educational use only.";
 
-const lastUpdated = "2026-03-01";
+const lastUpdated = "2026-03-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/topics" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -23,6 +24,12 @@ const lastUpdated = "2026-03-01";
       <a href="/calculators/extra-payment-calculator">mortgage payoff calculator</a>.
     </p>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Topic framework and content review"
+    reviewedOn="2026-03-03"
+  />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How to use topic pages</h2>
@@ -212,7 +219,7 @@ const lastUpdated = "2026-03-01";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
     <p class="muted" style="margin:10px 0 0">Topics are updated as calculators and guides change. If you want a new workflow, contact us.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-01</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-03</p>
   </section>
 </BaseLayout>
 

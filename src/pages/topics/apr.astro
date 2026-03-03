@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "APR Calculator Topic Guide (fees, comparisons, and pitfalls)";
 const description =
   "Workflow to use an APR calculator, compare loans with fees, and understand APR vs rate. Educational use only.";
 
-const lastUpdated = "2026-03-01";
+const lastUpdated = "2026-03-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/topics/apr" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -29,6 +30,12 @@ const lastUpdated = "2026-03-01";
       <a class="btn" href="/guides/apr-with-origination-fee">Origination fees</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="APR topic and source review"
+    reviewedOn="2026-03-03"
+  />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">High-intent APR calculator paths</h2>
@@ -311,7 +318,7 @@ const lastUpdated = "2026-03-01";
     <p class="muted" style="margin:12px 0 0">
       Educational use only. Not financial advice. Verify fees, posting rules, and disclosures with lenders.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-01</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-03</p>
   </section>
 </BaseLayout>
 

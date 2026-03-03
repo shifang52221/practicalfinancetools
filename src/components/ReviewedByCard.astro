@@ -1,0 +1,21 @@
+---
+import { SITE } from "../config/site";
+
+type Props = {
+  reviewedBy: string;
+  reviewerRole: string;
+  reviewedOn: string;
+};
+
+const { reviewedBy, reviewerRole, reviewedOn } = Astro.props;
+---
+<section class="card section prose" style="margin-top:18px">
+  <h2 style="margin-top:0">Reviewed By</h2>
+  <p class="muted" style="margin:10px 0 0">
+    <strong>{reviewedBy}</strong> ({reviewerRole}) reviewed this page on <time datetime={reviewedOn}>{reviewedOn}</time>.
+    See our <a href="/editorial-policy">editorial policy</a> and <a href="/methodology">methodology</a>.
+  </p>
+  <p class="muted" style="margin:10px 0 0">
+    Report corrections: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+  </p>
+</section>

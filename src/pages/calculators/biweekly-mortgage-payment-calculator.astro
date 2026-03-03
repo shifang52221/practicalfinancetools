@@ -1,6 +1,7 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { BiweeklyMortgageCalculator } from "../../components/calculators/BiweeklyMortgage";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Biweekly Mortgage Payment Calculator";
@@ -21,6 +22,35 @@ const exampleBiweekly = amortizationSchedule({
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const monthsSaved = Math.max(0, exampleBase.months - exampleBiweekly.months);
 const interestSaved = Math.max(0, exampleBase.totalInterest - exampleBiweekly.totalInterest);
+const caseOneInput = { principal: 420000, aprPercent: 6.75, termMonths: 360 };
+const caseOneBase = amortizationSchedule(caseOneInput);
+const caseOneBiweekly = amortizationSchedule({
+  ...caseOneInput,
+  extraMonthly: caseOneBase.paymentPI / 12,
+  extraMonthlyStartMonth: 1
+});
+const caseOneMonthsSaved = Math.max(0, caseOneBase.months - caseOneBiweekly.months);
+const caseOneInterestSaved = Math.max(0, caseOneBase.totalInterest - caseOneBiweekly.totalInterest);
+const caseTwoInput = { principal: 325000, aprPercent: 6.2, termMonths: 360 };
+const caseTwoBase = amortizationSchedule(caseTwoInput);
+const caseTwoBiweekly = amortizationSchedule({
+  ...caseTwoInput,
+  extraMonthly: caseTwoBase.paymentPI / 12,
+  extraMonthlyStartMonth: 1
+});
+const caseTwoHorizonMonths = 84;
+const caseTwoProgramSetupFee = 495;
+const caseTwoProgramMonthlyFee = 4;
+const caseTwoProgramFees = caseTwoProgramSetupFee + caseTwoProgramMonthlyFee * caseTwoHorizonMonths;
+const caseTwoBaseHorizonCost = caseTwoBase.rows
+  .slice(0, caseTwoHorizonMonths)
+  .reduce((sum, row) => sum + row.payment + row.extraPrincipal, 0);
+const caseTwoBiweeklyHorizonCost =
+  caseTwoBiweekly.rows
+    .slice(0, caseTwoHorizonMonths)
+    .reduce((sum, row) => sum + row.payment + row.extraPrincipal, 0) + caseTwoProgramFees;
+const caseTwoHorizonCostDiff = caseTwoBiweeklyHorizonCost - caseTwoBaseHorizonCost;
+const caseTwoMonthsSavedFullTerm = Math.max(0, caseTwoBase.months - caseTwoBiweekly.months);
 ---
 <CalculatorLayout
   title={title}
@@ -63,9 +93,14 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleBiweekly.to
       a: "Escrow amounts are set by your servicer and can change over time. This calculator focuses on principal and interest. If you pay escrow with your mortgage, make sure your payment method covers escrow correctly."
     }
   ]}
-  lastUpdated="2026-03-01"
+  lastUpdated="2026-03-03"
 >
   <BiweeklyMortgageCalculator client:load />
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Content and methodology review"
+    reviewedOn="2026-03-03"
+  />
 
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">How much is a biweekly mortgage payment?</h2>
@@ -158,6 +193,52 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleBiweekly.to
         </tbody>
       </table>
     </div>
+
+    <h2 style="margin:18px 0 10px">Real-world case studies</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Input snapshot</th>
+            <th>Result snapshot</th>
+            <th>Decision note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Long-hold owner with no program fee</td>
+            <td>
+              {money.format(caseOneInput.principal)} loan, {caseOneInput.aprPercent}% APR, 30-year term.
+              Biweekly modeled as extra {money.format(caseOneBase.paymentPI / 12)} monthly from month 1.
+            </td>
+            <td>
+              Payoff faster by {caseOneMonthsSaved} months; estimated interest lower by {money.format(caseOneInterestSaved)}.
+            </td>
+            <td>
+              For stable long-hold plans, true biweekly behavior can produce meaningful payoff acceleration.
+            </td>
+          </tr>
+          <tr>
+            <td>7-year horizon with paid program</td>
+            <td>
+              {money.format(caseTwoInput.principal)} loan, {caseTwoInput.aprPercent}% APR, 30-year term.
+              Program fees: {money.format(caseTwoProgramSetupFee)} setup + {money.format(caseTwoProgramMonthlyFee)}/month.
+            </td>
+            <td>
+              Full-term months saved: {caseTwoMonthsSavedFullTerm}. Over {caseTwoHorizonMonths} months, cash outflow difference is
+              {money.format(Math.abs(caseTwoHorizonCostDiff))} ({caseTwoHorizonCostDiff > 0 ? "biweekly higher" : "biweekly lower"}).
+            </td>
+            <td>
+              If expected hold period is short and fees exist, no-fee monthly extra can be safer.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Boundary condition to test: if your servicer posts only monthly, compare this plan to a plain monthly extra and include all setup/servicing fees.
+    </p>
 
     <h2 style="margin:18px 0 10px">Related guides</h2>
     <div class="btn-row" style="margin-top:0">

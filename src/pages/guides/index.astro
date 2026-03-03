@@ -1,12 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
 
 const title = `Guides | ${SITE.name}`;
 const description =
   "Practical guides on mortgage, APR, and credit card payoff topics with links to related calculators. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-03-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -95,6 +96,12 @@ const lastUpdated = "2026-02-17";
       </ul>
     </div>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Guide catalog and link quality review"
+    reviewedOn="2026-03-03"
+  />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">FAQ</h2>
@@ -259,7 +266,7 @@ const lastUpdated = "2026-02-17";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
     <p class="muted" style="margin:10px 0 0">Guides are updated as calculators change or new scenarios are added.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-03</p>
   </section>
 
   <script is:inline type="text/javascript">

@@ -1,12 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ReviewedByCard from "../components/ReviewedByCard.astro";
 import { SITE } from "../config/site";
 
 const title = `Editorial Policy | ${SITE.name}`;
 const description =
   "How we create and update calculator explanations, what we consider before publishing, and how to request corrections. Educational use only.";
 
-const lastUpdated = "2026-03-01";
+const lastUpdated = "2026-03-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/editorial-policy" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -16,6 +17,12 @@ const lastUpdated = "2026-03-01";
       transparent about assumptions, avoid hype, and keep the site easy to use.
     </p>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Editorial standards and correction policy review"
+    reviewedOn="2026-03-03"
+  />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What we publish</h2>
@@ -196,7 +203,7 @@ const lastUpdated = "2026-03-01";
       When we make a correction that changes a calculation or explanation, we update the page and adjust the "Last updated" date so
       readers can see that a change was made.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-01</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-03</p>
   </section>
 </BaseLayout>
 

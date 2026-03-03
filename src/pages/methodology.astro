@@ -1,12 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ReviewedByCard from "../components/ReviewedByCard.astro";
 import { SITE } from "../config/site";
 
 const title = `Calculator Methodology | ${SITE.name}`;
 const description =
   "High-level methodology and assumptions used in our calculators (amortization, APR, debt payoff). Educational use only.";
 
-const lastUpdated = "2026-03-01";
+const lastUpdated = "2026-03-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/methodology" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -16,6 +17,12 @@ const lastUpdated = "2026-03-01";
       posting dates, fees, and policies. Use results to compare scenarios, not as official disclosures.
     </p>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Formula and assumptions review"
+    reviewedOn="2026-03-03"
+  />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Mortgage payment and amortization</h2>
@@ -184,7 +191,7 @@ const lastUpdated = "2026-03-01";
       If you'd like a specific formula breakdown for a calculator, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the page
       URL.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-01</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-03</p>
   </section>
 </BaseLayout>
 

@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Mortgage Payoff Topic Guide (payment, amortization, extras)";
 const description =
   "Mortgage payoff workflow: estimate payment, view amortization, and compare extra principal strategies. Educational use only.";
 
-const lastUpdated = "2026-03-01";
+const lastUpdated = "2026-03-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/topics/mortgage-payoff" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -30,6 +31,12 @@ const lastUpdated = "2026-03-01";
       <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly mortgage calculator</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Mortgage payoff topic review"
+    reviewedOn="2026-03-03"
+  />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Biweekly vs monthly extra</h2>
@@ -242,7 +249,7 @@ const lastUpdated = "2026-03-01";
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-03-01</p>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-03-03</p>
   </section>
 </BaseLayout>
 

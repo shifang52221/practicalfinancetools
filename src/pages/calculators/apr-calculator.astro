@@ -1,6 +1,7 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { AprCalculator as AprCalculatorComponent } from "../../components/calculators/Apr";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { estimateApr } from "../../lib/calc/apr";
 
 const title = "APR Calculator";
@@ -24,6 +25,21 @@ const breakevenBResult = estimateApr(breakevenB);
 const breakevenMonthlySavings = breakevenAResult.payment - breakevenBResult.payment;
 const breakevenMonths =
   breakevenMonthlySavings > 0 ? breakevenB.fees / breakevenMonthlySavings : null;
+const formatApr = (apr: number | null) => (apr == null ? "N/A" : `${pct.format(apr)}%`);
+const caseOneA = { loanAmount: 250000, nominalRatePercent: 6.35, termMonths: 360, fees: 2200 };
+const caseOneB = { loanAmount: 250000, nominalRatePercent: 6.05, termMonths: 360, fees: 7600 };
+const caseOneAResult = estimateApr(caseOneA);
+const caseOneBResult = estimateApr(caseOneB);
+const caseOneHorizonMonths = 48;
+const caseOneCashA = caseOneAResult.payment * caseOneHorizonMonths + caseOneA.fees;
+const caseOneCashB = caseOneBResult.payment * caseOneHorizonMonths + caseOneB.fees;
+const caseOneCashDiff = caseOneCashB - caseOneCashA;
+const caseTwoA = { loanAmount: 15000, nominalRatePercent: 11.9, termMonths: 48, fees: 0 };
+const caseTwoB = { loanAmount: 15000, nominalRatePercent: 10.9, termMonths: 48, fees: 900 };
+const caseTwoAResult = estimateApr(caseTwoA);
+const caseTwoBResult = estimateApr(caseTwoB);
+const caseTwoSavingsMonthly = caseTwoAResult.payment - caseTwoBResult.payment;
+const caseTwoBreakevenMonths = caseTwoSavingsMonthly > 0 ? caseTwoB.fees / caseTwoSavingsMonthly : null;
 ---
 <CalculatorLayout
   title={title}
@@ -74,9 +90,14 @@ const breakevenMonths =
       a: "No. It's an educational estimate to compare scenarios. Official APR disclosures follow specific legal rules."
     }
   ]}
-  lastUpdated="2026-03-01"
+  lastUpdated="2026-03-03"
 >
   <AprCalculatorComponent client:load />
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Content and methodology review"
+    reviewedOn="2026-03-03"
+  />
 
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">Quick takeaways</h2>
@@ -247,6 +268,53 @@ APR (annualized) approx = r * 12</code></pre>
       Monthly savings is about {money.format(Math.max(0, breakevenMonthlySavings))}. Break-even is
       {breakevenMonths == null ? "N/A" : `${num1.format(breakevenMonths)} months`}. If you expect to pay off or refinance sooner than the
       break-even window, the lower-rate offer may not be cheaper for you.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Real-world case studies</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Input snapshot</th>
+            <th>Result snapshot</th>
+            <th>Decision note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Refinance hold period (48-month view)</td>
+            <td>
+              Offer A: {pct.format(caseOneA.nominalRatePercent)} rate + {money.format(caseOneA.fees)} fees.
+              Offer B: {pct.format(caseOneB.nominalRatePercent)} rate + {money.format(caseOneB.fees)} fees.
+            </td>
+            <td>
+              A APR {formatApr(caseOneAResult.aprPercent)}, B APR {formatApr(caseOneBResult.aprPercent)}.
+              48-month cash outflow diff: {money.format(Math.abs(caseOneCashDiff))} ({caseOneCashDiff > 0 ? "B higher" : "A higher"}).
+            </td>
+            <td>
+              For shorter hold periods, lower rate with high upfront fees may not win.
+            </td>
+          </tr>
+          <tr>
+            <td>Personal loan fee tradeoff</td>
+            <td>
+              Option 1: {pct.format(caseTwoA.nominalRatePercent)} rate, {money.format(caseTwoA.fees)} fees.
+              Option 2: {pct.format(caseTwoB.nominalRatePercent)} rate, {money.format(caseTwoB.fees)} fees.
+            </td>
+            <td>
+              Option 1 APR {formatApr(caseTwoAResult.aprPercent)}, option 2 APR {formatApr(caseTwoBResult.aprPercent)}.
+              Break-even approx: {caseTwoBreakevenMonths == null ? "N/A" : `${num1.format(caseTwoBreakevenMonths)} months`}.
+            </td>
+            <td>
+              If payoff horizon is shorter than break-even, no-fee option can be safer.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      Boundary condition to test: run both cases with fees paid cash vs fees financed to see how ranking changes.
     </p>
 
     <h2 style="margin:18px 0 10px">Disclosure-to-input mapping</h2>
