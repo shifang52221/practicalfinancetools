@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { estimateApr } from "../../lib/calc/apr";
 
@@ -27,7 +27,7 @@ const breakevenYears = breakevenMonths == null ? null : breakevenMonths / 12;
 
 const lastUpdated = "2026-02-08";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/apr-vs-interest-rate" lastUpdated={lastUpdated}>
+<BaseLayout title={title} description={description} canonicalPath="/guides/interest-rate-apr-calculator" lastUpdated={lastUpdated}>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -240,6 +240,7 @@ const lastUpdated = "2026-02-08";
     <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>
+
 
 
 
