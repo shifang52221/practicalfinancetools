@@ -6,7 +6,7 @@ import { amortizationSchedule } from "../../lib/calc/loan";
 const title = "Extra Mortgage Payment Calculator (Extra Principal)";
 const metaTitle = "Extra Principal Payment Calculator - Extra Mortgage Payments";
 const description =
-  "Estimate how extra principal (monthly or lump sum) shortens mortgage payoff time and reduces interest. Educational use only.";
+  "Estimate how recurring extra mortgage payments, one extra payment per year, or a lump sum can shorten payoff time and reduce interest. Educational use only.";
 
 const exampleInput = { principal: 300000, aprPercent: 6.5, termMonths: 360, extraMonthly: 300 };
 const base = amortizationSchedule({ principal: exampleInput.principal, aprPercent: exampleInput.aprPercent, termMonths: exampleInput.termMonths });
@@ -24,7 +24,7 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
   metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/extra-payment-calculator"
-  intro="See how paying extra toward principal (monthly extra, one-time lump sum, or additional principal payments) can shorten your mortgage payoff timeline and reduce total interest. Educational use only. Not financial advice."
+  intro="See how recurring monthly extra payments, one extra payment per year, or a one-time lump sum can shorten your mortgage payoff timeline and reduce total interest. Educational use only. Not financial advice."
   how={[
     "Baseline schedule uses standard amortization for principal & interest.",
     "Extra payments are applied to principal (reducing future interest).",
@@ -73,6 +73,13 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
   <ExtraPaymentMortgageCalculator client:load />
 
   <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Choose the right calculator</h2>
+    <p class="muted" style="margin:0">
+      Use this page for broad mortgage extra-payment planning: recurring monthly extras, one extra payment per year, and general payoff
+      acceleration. If your main question is how a <a href="/calculators/additional-principal-payment-calculator">lump sum or principal-only payment</a> should be modeled, use the
+      dedicated additional principal calculator.
+    </p>
+
     <h2 style="margin:0 0 10px">Worked example</h2>
     <p class="muted" style="margin:0">
       Example inputs: ${money.format(exampleInput.principal)} principal, {exampleInput.aprPercent}% APR, 30-year term, ${money.format(exampleInput.extraMonthly)} extra monthly.
@@ -208,7 +215,7 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
 
     <h2 style="margin:18px 0 10px">Related tools</h2>
     <div class="btn-row" style="margin-top:0">
-      <a class="btn" href="/calculators/additional-principal-payment-calculator">Additional principal payment</a>
+      <a class="btn" href="/calculators/additional-principal-payment-calculator">Additional principal / lump sum</a>
       <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly payments</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>

@@ -6,7 +6,7 @@ import { amortizationSchedule } from "../../lib/calc/loan";
 const title = "Extra Principal Payment Calculator (Mortgage)";
 const metaTitle = "Extra Principal Payment Mortgage Calculator";
 const description =
-  "Estimate how extra principal payments (monthly or lump sum) change mortgage payoff time and total interest. Educational use only.";
+  "Estimate how additional principal, lump-sum principal payments, and principal-only extras change mortgage payoff time and total interest. Educational use only.";
 
 const exampleInput = { principal: 360000, aprPercent: 6.5, termMonths: 360, extraMonthly: 200 };
 const exampleBase = amortizationSchedule({
@@ -30,16 +30,16 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.total
   metaTitle={metaTitle}
   description={description}
   canonicalPath="/calculators/additional-principal-payment-calculator"
-  intro="Use this extra principal payment calculator to estimate how additional principal payments change payoff time and total interest. Compare a monthly extra vs a one-time principal payment under consistent assumptions. Educational use only. Not financial advice."
+  intro="Use this additional principal payment calculator to estimate how a lump-sum or principal-only payment changes payoff time and total interest. Compare a one-time principal payment to recurring monthly extras under the same baseline. Educational use only. Not financial advice."
   how={[
     "Baseline schedule uses standard amortization for principal and interest.",
-    "Additional principal reduces the balance, which reduces future interest.",
-    "This assumes extra amounts are applied as principal-only and that there is no prepayment penalty."
+    "A one-time or recurring additional principal payment reduces the balance, which reduces future interest.",
+    "This page is designed for principal-only and lump-sum scenarios, assuming extra amounts are applied correctly and there is no prepayment penalty."
   ]}
   faqs={[
     {
-      q: "Extra principal payment calculator: what does it do?",
-      a: "It estimates how paying extra principal (monthly or one-time) can shorten payoff time and reduce total interest compared to a baseline schedule."
+      q: "How do I model a lump-sum principal payment?",
+      a: "Enter the same loan baseline, then compare a one-time principal payment to a recurring monthly extra. This is the better page when your main question is a bonus, refund, or other lump sum."
     },
     {
       q: "Does additional principal lower my required monthly payment?",
@@ -71,7 +71,15 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.total
   <ExtraPaymentMortgageCalculator client:load />
 
   <div class="prose" style="margin-top:16px">
-    <h2 style="margin:0 0 10px">Example</h2>
+    <h2 style="margin:0 0 10px">Use this calculator for additional principal and lump-sum scenarios</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Model a bonus, refund, or windfall as a one-time principal payment.</li>
+      <li>Compare principal-only posting to a recurring monthly extra.</li>
+      <li>Stress-test "paid ahead" vs principal-only assumptions with the same loan baseline.</li>
+      <li>If you mainly want recurring monthly extra-payment planning, use the <a href="/calculators/extra-payment-calculator">Extra Payment Calculator</a>.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">Additional principal example</h2>
     <p class="muted" style="margin:0">
       Try $360,000 at 6.50% for 30 years, then compare: (1) $100-$300 extra per month, and (2) a one-time principal payment (e.g., from a
       bonus) early in the loan. Keep the baseline constant when you compare scenarios.
@@ -181,6 +189,7 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.total
     <h2 style="margin:18px 0 10px">Related tools</h2>
     <div class="btn-row" style="margin-top:0">
       <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly mortgage payments</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Recurring monthly extra payments</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
     </div>
