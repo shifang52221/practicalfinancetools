@@ -44,6 +44,26 @@ function getStaticGuideRedirectSources(): Set<string> {
   );
 }
 
+function getStaticGuideRedirectMap(): Map<string, string> {
+  const vercelConfig = JSON.parse(readFileSync(join(process.cwd(), "vercel.json"), "utf8")) as {
+    redirects?: Array<{ source?: string; destination?: string }>;
+  };
+
+  return new Map(
+    (vercelConfig.redirects ?? [])
+      .filter(
+        (redirect): redirect is { source: string; destination: string } =>
+          typeof redirect.source === "string" &&
+          typeof redirect.destination === "string" &&
+          redirect.source.startsWith("/guides/") &&
+          !redirect.source.includes(":") &&
+          !redirect.source.includes("(.*)") &&
+          !redirect.source.endsWith("/")
+      )
+      .map((redirect) => [redirect.source, redirect.destination])
+  );
+}
+
 test("SEO: canonicalPath should match the page route path", () => {
   const pagesRoot = join(process.cwd(), "src", "pages");
   const files = collectAstroFiles(pagesRoot);
@@ -183,30 +203,78 @@ test("SEO: priority workflow pages should include visible review coverage", () =
   );
 });
 
-test("SEO: thin refinance support guides should be noindex while stronger refinance hubs carry the cluster", () => {
-  const expectedNoindexPages = [
-    "src/pages/guides/refinance-offer-comparison-checklist.astro",
-    "src/pages/guides/refinance-points-break-even.astro",
-    "src/pages/guides/refinance-rate-lock.astro",
-    "src/pages/guides/refinance-rate-vs-term-tradeoff.astro",
-    "src/pages/guides/refinance-reset-amortization.astro",
-    "src/pages/guides/refinance-rolling-costs-into-loan.astro",
-    "src/pages/guides/refinance-when-not-to-refinance.astro",
-    "src/pages/guides/refinance-cash-in-lower-rate.astro",
-    "src/pages/guides/refinance-cash-out-vs-rate-term.astro",
-    "src/pages/guides/refinance-no-closing-costs-myth.astro"
-  ];
+test("SEO: refinance support guides should stay consolidated across redirects, sitemap exclusion, and source-page noindex", () => {
+  const expectedConsolidation = new Map<string, string>([
+    ["/guides/refinance-offer-comparison-checklist", "/guides/refinance-checklist"],
+    ["/guides/refinance-points-break-even", "/guides/refinance-break-even"],
+    ["/guides/refinance-rate-lock", "/guides/refinance-checklist"],
+    ["/guides/refinance-rate-vs-term-tradeoff", "/guides/refinance-break-even"],
+    ["/guides/refinance-reset-amortization", "/guides/refinance-break-even"],
+    ["/guides/refinance-rolling-costs-into-loan", "/guides/refinance-closing-costs"],
+    ["/guides/refinance-when-not-to-refinance", "/guides/refinance-break-even"],
+    ["/guides/refinance-cash-in-lower-rate", "/guides/refinance-break-even"],
+    ["/guides/refinance-cash-out-vs-rate-term", "/guides/refinance-checklist"],
+    ["/guides/refinance-no-closing-costs-myth", "/guides/refinance-closing-costs"]
+  ]);
 
-  const missingNoindex = expectedNoindexPages.filter((file) => {
-    const source = readFileSync(join(process.cwd(), file), "utf8");
-    return !source.includes('robots="noindex, follow"');
-  });
+  const redirectMap = getStaticGuideRedirectMap();
+  const astroConfigSource = readFileSync(join(process.cwd(), "astro.config.mjs"), "utf8");
+  const issues: string[] = [];
+
+  for (const [sourcePath, destinationPath] of expectedConsolidation) {
+    if (redirectMap.get(sourcePath) !== destinationPath) {
+      issues.push(`${sourcePath} -> expected redirect to ${destinationPath}`);
+    }
+    if (!astroConfigSource.includes(`"${sourcePath}"`)) {
+      issues.push(`${sourcePath} -> missing sitemap exclusion`);
+    }
+
+    const filePath = join(process.cwd(), "src", "pages", `${sourcePath.slice(1)}.astro`);
+    const pageSource = readFileSync(filePath, "utf8");
+    if (!pageSource.includes('robots="noindex, follow"')) {
+      issues.push(`${sourcePath} -> missing source-page noindex guard`);
+    }
+  }
 
   assert.equal(
-    missingNoindex.length,
+    issues.length,
     0,
-    missingNoindex.length > 0
-      ? `Thin refinance guides missing noindex:\n${missingNoindex.join("\n")}`
+    issues.length > 0 ? `Refinance consolidation drift detected:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: refinance consolidation targets should explicitly absorb redirected support topics", () => {
+  const expectedCoverage = [
+    {
+      file: "src/pages/guides/refinance-break-even.astro",
+      phrases: ["when not to refinance", "cash-in refinance", "reset amortization"]
+    },
+    {
+      file: "src/pages/guides/refinance-checklist.astro",
+      phrases: ["offer comparison", "rate lock"]
+    },
+    {
+      file: "src/pages/guides/refinance-closing-costs.astro",
+      phrases: ["rolling costs", "no closing cost"]
+    }
+  ];
+
+  const missingCoverage: string[] = [];
+
+  for (const item of expectedCoverage) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8").toLowerCase();
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        missingCoverage.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    missingCoverage.length,
+    0,
+    missingCoverage.length > 0
+      ? `Refinance destination guides are missing absorbed topics:\n${missingCoverage.join("\n")}`
       : ""
   );
 });
