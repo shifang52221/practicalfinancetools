@@ -1,6 +1,7 @@
 ﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { CreditCardPayoff } from "../../components/calculators/CreditCardPayoff";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Payoff Calculator";
@@ -90,9 +91,14 @@ const scenarioHigh = creditCardPayoffSchedule({
       a: "If a payment is below the interest charged, the balance can grow and payoff may never happen. Increase the payment or reduce the APR to make progress."
     }
   ]}
-  lastUpdated="2026-03-01"
+  lastUpdated="2026-04-03"
 >
   <CreditCardPayoff client:load />
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Content and methodology review"
+    reviewedOn="2026-04-03"
+  />
 
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">How to use this credit card payoff calculator</h2>

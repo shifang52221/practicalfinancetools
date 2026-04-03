@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ReviewedByCard from "../components/ReviewedByCard.astro";
 import { SITE } from "../config/site";
 import { TOOLS } from "../lib/tools";
 import AdSlot from "../components/AdSlot.astro";
@@ -9,12 +10,12 @@ const description =
   "Practical, fast calculators for credit card payoff, APR calculator comparisons, mortgage payoff planning, and rent vs buy. Educational use only.";
 
 const featuredSlugs = [
+  "minimum-payment-payoff-calculator",
+  "apr-calculator",
+  "biweekly-mortgage-payment-calculator",
+  "extra-payment-calculator",
   "credit-card-payoff-calculator",
-  "debt-snowball-calculator",
-  "debt-avalanche-calculator",
-  "mortgage-payment-calculator",
-  "amortization-schedule-calculator",
-  "rent-vs-buy-calculator"
+  "mortgage-payment-calculator"
 ];
 
 const featured = TOOLS.filter((t) => featuredSlugs.includes(t.slug));
@@ -23,29 +24,64 @@ const slots = SITE.adsenseSlots;
 ---
 <BaseLayout title={title} description={description} canonicalPath="/">
   <section class="card hero">
-    <span class="pill">US-focused - Free - No signup</span>
-    <h1>Practical finance calculators for debt and mortgages</h1>
+    <span class="pill">US-focused - Decision-first - No signup</span>
+    <h1>Choose the right calculator for payoff, APR, and mortgage decisions</h1>
     <p>
       Estimate payoff timelines, interest cost, and payment schedules with clear assumptions. Your inputs stay in your
-      browser and results are educational only. Start with the{" "}
-      <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>,{" "}
-      <a href="/calculators/apr-calculator">APR calculator</a>, or{" "}
-      <a href="/calculators/extra-payment-calculator">mortgage payoff calculator</a>.
+      browser and results are educational only. If you are trying to pay off credit cards, compare loan offers, or plan
+      extra mortgage payments, start with a workflow below instead of browsing the whole catalog.
     </p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="/calculators">Browse calculators</a>
-      <a class="btn" href="/guides">Read guides</a>
+      <a class="btn btn-primary" href="/topics/credit-cards">Start credit-card payoff</a>
+      <a class="btn" href="/topics/apr">Compare APR offers</a>
+      <a class="btn" href="/topics/mortgage-payoff">Plan mortgage payoff</a>
       <a class="btn" href="/about">About this site</a>
-      <a class="btn" href="/cookie-notice">Cookie preferences</a>
+    </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Sitewide workflow and methodology review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section" style="margin-top:18px">
+    <h2 style="margin:0 0 12px">Start with a workflow</h2>
+    <p class="muted" style="margin:0 0 12px">
+      These are the three clusters currently carrying the clearest search demand and the strongest practical user intent.
+    </p>
+    <div class="grid">
+      <a class="card2 tool col-6" href="/topics/credit-cards">
+        <div class="tool-title">Credit card payoff and minimum payments</div>
+        <div class="tool-desc">
+          Start with payoff math, minimum-payment risk, and snowball vs avalanche in one guided flow.
+        </div>
+        <div class="muted" style="font-size:12px; margin-top:4px">Best entry points: payoff, minimum payment, snowball</div>
+      </a>
+      <a class="card2 tool col-6" href="/topics/apr">
+        <div class="tool-title">APR comparisons and borrowing costs</div>
+        <div class="tool-desc">
+          Compare offers with fees, points, and lender credits without mixing terms or cash-to-close assumptions.
+        </div>
+        <div class="muted" style="font-size:12px; margin-top:4px">Best entry points: APR calculator, APR vs rate</div>
+      </a>
+      <a class="card2 tool col-6" href="/topics/mortgage-payoff">
+        <div class="tool-title">Mortgage payoff, biweekly, and extra principal</div>
+        <div class="tool-desc">
+          Work from baseline payment to amortization, monthly extra, lump sum, and biweekly comparisons.
+        </div>
+        <div class="muted" style="font-size:12px; margin-top:4px">Best entry points: extra payments, biweekly, principal-only</div>
+      </a>
     </div>
   </section>
 
   <section class="card section">
-    <h2 style="margin:0 0 12px">Featured calculators</h2>
+    <h2 style="margin:0 0 12px">Core calculators</h2>
     <p class="muted" style="margin:0 0 12px">
-      Most-started tools: <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>,{" "}
-      <a href="/calculators/apr-calculator">APR calculator</a>, and{" "}
-      <a href="/calculators/extra-payment-calculator">mortgage payoff calculator</a>.
+      Highest-priority tools for this site right now: <a href="/calculators/minimum-payment-payoff-calculator">minimum payment</a>,{" "}
+      <a href="/calculators/apr-calculator">APR calculator</a>,{" "}
+      <a href="/calculators/biweekly-mortgage-payment-calculator">biweekly mortgage</a>, and{" "}
+      <a href="/calculators/extra-payment-calculator">extra payment mortgage</a>.
     </p>
     <div class="grid">
       {featured.map((t) => (
@@ -60,25 +96,27 @@ const slots = SITE.adsenseSlots;
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Choose the right tool</h2>
+      <h2 style="margin-top:0">Choose the right calculator first</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li>
-          Credit cards: use <a href="/calculators/credit-card-payoff-calculator">Credit Card Payoff</a> for a fixed payment.
+          Minimum-payment risk: use <a href="/calculators/minimum-payment-payoff-calculator">Minimum Payment Payoff</a>.
         </li>
         <li>
-          Multiple debts: compare <a href="/calculators/debt-snowball-calculator">Snowball</a> vs{" "}
-          <a href="/calculators/debt-avalanche-calculator">Avalanche</a>.
+          Fixed-payment credit-card plan: use <a href="/calculators/credit-card-payoff-calculator">Credit Card Payoff</a>.
         </li>
         <li>
           Borrowing comparisons: use <a href="/calculators/apr-calculator">APR Calculator</a> to include fees.
         </li>
         <li>
-          Home shopping: use <a href="/calculators/mortgage-payment-calculator">Mortgage Payment</a> to estimate monthly cost.
+          Biweekly vs monthly extra: use <a href="/calculators/biweekly-mortgage-payment-calculator">Biweekly Mortgage</a>.
+        </li>
+        <li>
+          General mortgage payoff: use <a href="/calculators/extra-payment-calculator">Extra Payment Mortgage</a>.
         </li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">How to use results</h2>
+      <h2 style="margin-top:0">How to use results safely</h2>
       <p class="muted" style="margin:10px 0 0">
         Use outputs to compare scenarios (payment size, extra payments, APRs), not as exact lender quotes. Always confirm
         final terms, escrow, and fees with your lender or card issuer.
@@ -96,7 +134,7 @@ const slots = SITE.adsenseSlots;
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Mortgage extra payment scenarios</h2>
+      <h2 style="margin-top:0">Most active mortgage workflow</h2>
       <p class="muted" style="margin:10px 0 0">
         Popular questions include: "If I pay $300 extra on my mortgage, how much interest do I save?", "One extra payment per year",
         and "Biweekly payments vs extra principal". Use the tools below to compare the payoff date and total interest under consistent
@@ -111,8 +149,17 @@ const slots = SITE.adsenseSlots;
       </div>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Mortgage guides</h2>
+      <h2 style="margin-top:0">Deep guides worth reading first</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>
+          <a href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a>: see why balances stall when payments are close to interest.
+        </li>
+        <li>
+          <a href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>: choose between fixed payment, snowball, and avalanche.
+        </li>
+        <li>
+          <a href="/guides/apr-vs-interest-rate">APR vs interest rate</a>: compare fees and rate without misleading shortcuts.
+        </li>
         <li>
           <a href="/guides/extra-mortgage-payments">Extra mortgage payments</a>: how principal prepayments change amortization and
           interest.
@@ -153,22 +200,6 @@ const slots = SITE.adsenseSlots;
   <section class="card section" style="margin-top:18px">
     <h2 style="margin:0 0 12px">Guides</h2>
     <div class="grid">
-      <a class="card2 tool col-6" href="/guides/why-minimum-payments-take-so-long">
-        <div class="tool-title">Why minimum payments take so long</div>
-        <div class="tool-desc">Why balances can linger for years, how issuers set minimums, and what to model.</div>
-      </a>
-      <a class="card2 tool col-6" href="/guides/how-credit-card-interest-is-calculated">
-        <div class="tool-title">How credit card interest is calculated</div>
-        <div class="tool-desc">APR vs daily interest, why statements differ, and how to model payoff consistently.</div>
-      </a>
-      <a class="card2 tool col-6" href="/guides/how-to-find-your-apr">
-        <div class="tool-title">How to find out your APR</div>
-        <div class="tool-desc">Where to find APR on credit cards and loans, and how to use it in comparisons.</div>
-      </a>
-      <a class="card2 tool col-6" href="/guides/amortization-with-extra-payments">
-        <div class="tool-title">Amortization with extra payments</div>
-        <div class="tool-desc">What changes in the payment table when you pay extra principal, and why timing matters.</div>
-      </a>
       <a class="card2 tool col-6" href="/guides/apr-vs-interest-rate">
         <div class="tool-title">APR vs interest rate</div>
         <div class="tool-desc">What APR includes, how fees change comparisons, and when APR can mislead.</div>
@@ -185,9 +216,17 @@ const slots = SITE.adsenseSlots;
         <div class="tool-title">Refinance break-even</div>
         <div class="tool-desc">Compare monthly savings to closing costs and your time horizon.</div>
       </a>
+      <a class="card2 tool col-6" href="/guides/why-minimum-payments-take-so-long">
+        <div class="tool-title">Why minimum payments take so long</div>
+        <div class="tool-desc">See why balances can linger for years and what payment changes actually move the payoff date.</div>
+      </a>
+      <a class="card2 tool col-6" href="/guides/how-credit-card-interest-is-calculated">
+        <div class="tool-title">How credit card interest is calculated</div>
+        <div class="tool-desc">APR vs daily interest, statement timing, and why issuer math can differ from quick estimates.</div>
+      </a>
       <a class="card2 tool col-6" href="/guides">
         <div class="tool-title">Browse all guides</div>
-        <div class="tool-desc">Short explanations that link to the right calculator for your situation.</div>
+        <div class="tool-desc">Browse the full guide library after you have picked the right workflow.</div>
       </a>
     </div>
   </section>

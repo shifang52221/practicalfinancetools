@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Refinance Checklist (before you lock a rate)";
 const description =
   "A practical refinance checklist covering documents, fees, timing, and break-even math. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/refinance-checklist" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -28,6 +29,12 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/refinance-closing-costs">Closing costs</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Refinance document and timing review"
+    reviewedOn="2026-04-03"
+  />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">1) Baseline the current loan</h2>

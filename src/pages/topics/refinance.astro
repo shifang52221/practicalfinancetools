@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Refinance Topic Guide (break-even, costs, timing)";
 const description =
   "Refinance workflow: estimate savings, compare closing costs, and confirm break-even timing. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/topics/refinance" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -28,6 +29,24 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Refinance workflow consolidation review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Start with these three refinance pages</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li><a href="/guides/refinance-break-even">Refinance break-even</a> for time-horizon math and term-reset tradeoffs.</li>
+      <li><a href="/guides/refinance-closing-costs">Refinance closing costs</a> for lender fees, prepaids, and cash-to-close.</li>
+      <li><a href="/guides/refinance-checklist">Refinance checklist</a> for documents, lock timing, and final review before closing.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      The thinner refinance pages are now supporting references. Use the three pages above as the main workflow set for refinance decisions.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">

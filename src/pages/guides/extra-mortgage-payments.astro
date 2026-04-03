@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Mortgage Payments (save interest, shorten payoff)";
@@ -21,7 +22,7 @@ const withExtra = amortizationSchedule({
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/extra-mortgage-payments" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -44,6 +45,12 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Mortgage payoff guide review"
+    reviewedOn="2026-04-03"
+  />
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">

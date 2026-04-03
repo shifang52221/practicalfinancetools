@@ -157,3 +157,56 @@ test("SEO: mortgage extra-payment guides should point to the intended calculator
     details.length > 0 ? `Mortgage extra-payment intent links are missing:\n${details}` : ""
   );
 });
+
+test("SEO: priority workflow pages should include visible review coverage", () => {
+  const expectedReviewedPages = [
+    "src/pages/topics/refinance.astro",
+    "src/pages/topics/mortgage-payoff.astro",
+    "src/pages/topics/apr.astro",
+    "src/pages/topics/credit-cards.astro",
+    "src/pages/guides/extra-mortgage-payments.astro",
+    "src/pages/guides/credit-card-payoff-strategy.astro",
+    "src/pages/guides/why-minimum-payments-take-so-long.astro"
+  ];
+
+  const missingReviewCoverage = expectedReviewedPages.filter((file) => {
+    const source = readFileSync(join(process.cwd(), file), "utf8");
+    return !source.includes("ReviewedByCard");
+  });
+
+  assert.equal(
+    missingReviewCoverage.length,
+    0,
+    missingReviewCoverage.length > 0
+      ? `Priority pages missing ReviewedByCard:\n${missingReviewCoverage.join("\n")}`
+      : ""
+  );
+});
+
+test("SEO: thin refinance support guides should be noindex while stronger refinance hubs carry the cluster", () => {
+  const expectedNoindexPages = [
+    "src/pages/guides/refinance-offer-comparison-checklist.astro",
+    "src/pages/guides/refinance-points-break-even.astro",
+    "src/pages/guides/refinance-rate-lock.astro",
+    "src/pages/guides/refinance-rate-vs-term-tradeoff.astro",
+    "src/pages/guides/refinance-reset-amortization.astro",
+    "src/pages/guides/refinance-rolling-costs-into-loan.astro",
+    "src/pages/guides/refinance-when-not-to-refinance.astro",
+    "src/pages/guides/refinance-cash-in-lower-rate.astro",
+    "src/pages/guides/refinance-cash-out-vs-rate-term.astro",
+    "src/pages/guides/refinance-no-closing-costs-myth.astro"
+  ];
+
+  const missingNoindex = expectedNoindexPages.filter((file) => {
+    const source = readFileSync(join(process.cwd(), file), "utf8");
+    return !source.includes('robots="noindex, follow"');
+  });
+
+  assert.equal(
+    missingNoindex.length,
+    0,
+    missingNoindex.length > 0
+      ? `Thin refinance guides missing noindex:\n${missingNoindex.join("\n")}`
+      : ""
+  );
+});

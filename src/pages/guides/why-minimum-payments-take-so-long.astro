@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { minimumPaymentPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Why Minimum Payments Take So Long (credit cards)";
@@ -32,7 +33,7 @@ const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/why-minimum-payments-take-so-long" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -55,6 +56,12 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/calculators/credit-card-payoff-calculator">Fixed payment payoff</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Minimum payment guide review"
+    reviewedOn="2026-04-03"
+  />
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Credit card inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
