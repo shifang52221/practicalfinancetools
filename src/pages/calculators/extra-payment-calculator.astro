@@ -1,6 +1,7 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { ExtraPaymentMortgageCalculator } from "../../components/calculators/ExtraPayment";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Mortgage Payment Calculator (Extra Principal)";
@@ -68,9 +69,14 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       a: "Not necessarily. Results are estimates and real statements can differ due to rounding and timing."
     }
   ]}
-  lastUpdated="2026-02-17"
+  lastUpdated="2026-04-03"
 >
   <ExtraPaymentMortgageCalculator client:load />
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Mortgage extra-payment calculator review"
+    reviewedOn="2026-04-03"
+  />
 
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">Choose the right calculator</h2>
@@ -222,5 +228,21 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
       <a class="btn" href="/calculators/rent-vs-buy-calculator">Rent vs buy</a>
     </div>
+
+    <h2 style="margin:18px 0 10px">References</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-an-amortization-schedule-en-1951/" rel="noopener noreferrer" target="_blank">
+          What is an amortization schedule?
+        </a>
+      </li>
+    </ul>
   </div>
 </CalculatorLayout>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { estimateApr } from "../../lib/calc/apr";
 
 const title = "APR vs Interest Rate (with examples)";
@@ -50,7 +51,7 @@ const scenarioHorizonMonths = 36;
 const scenarioCostA = scenarioA.payment * scenarioHorizonMonths;
 const scenarioCostB = scenarioB.payment * scenarioHorizonMonths + scenarioFeeB;
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/apr-vs-interest-rate" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -73,6 +74,13 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="APR comparison guide review"
+    reviewedOn="2026-04-03"
+  />
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">APR comparison inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -311,7 +319,7 @@ APR (annualized) ~=r * 12</code></pre>
       <a class="btn" href="/calculators/amortization-schedule-calculator">View amortization</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

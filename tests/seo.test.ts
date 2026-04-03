@@ -278,3 +278,30 @@ test("SEO: refinance consolidation targets should explicitly absorb redirected s
       : ""
   );
 });
+
+test("SEO: selected high-impression support pages should include visible review coverage and references", () => {
+  const expectedPages = [
+    "src/pages/calculators/extra-payment-calculator.astro",
+    "src/pages/calculators/additional-principal-payment-calculator.astro",
+    "src/pages/guides/apr-vs-interest-rate.astro",
+    "src/pages/guides/apr-by-loan-type.astro"
+  ];
+
+  const issues: string[] = [];
+
+  for (const file of expectedPages) {
+    const source = readFileSync(join(process.cwd(), file), "utf8");
+    if (!source.includes("ReviewedByCard")) {
+      issues.push(`${file} -> missing ReviewedByCard`);
+    }
+    if (!source.includes(">References<")) {
+      issues.push(`${file} -> missing References section`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `High-impression support pages missing trust coverage:\n${issues.join("\n")}` : ""
+  );
+});

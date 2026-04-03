@@ -1,6 +1,7 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { ExtraPaymentMortgageCalculator } from "../../components/calculators/ExtraPayment";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Principal Payment Calculator (Mortgage)";
@@ -66,9 +67,14 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.total
       a: "Some loans have prepayment penalties or restrictions. This calculator assumes no prepayment penalty. Check your note or ask your servicer before making extra principal payments."
     }
   ]}
-  lastUpdated="2026-02-17"
+  lastUpdated="2026-04-03"
 >
   <ExtraPaymentMortgageCalculator client:load />
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Additional principal and lump-sum calculator review"
+    reviewedOn="2026-04-03"
+  />
 
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">Use this calculator for additional principal and lump-sum scenarios</h2>
@@ -193,6 +199,22 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.total
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
     </div>
+
+    <h2 style="margin:18px 0 10px">References</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-an-amortization-schedule-en-1951/" rel="noopener noreferrer" target="_blank">
+          What is an amortization schedule?
+        </a>
+      </li>
+    </ul>
   </div>
 </CalculatorLayout>
 
