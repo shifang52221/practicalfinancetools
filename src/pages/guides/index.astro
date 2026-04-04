@@ -2,14 +2,22 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = `Guides | ${SITE.name}`;
 const description =
   "Practical guides on mortgage, APR, and credit card payoff topics with links to related calculators. Educational use only.";
 
-const lastUpdated = "2026-03-03";
+const lastUpdated = "2026-04-04";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+>
   <section class="card hero">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <a href="/">Home</a>
@@ -26,6 +34,14 @@ const lastUpdated = "2026-03-03";
       <a class="btn" href="/calculators">Browse calculators</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Guide-library curation, strongest-path surfacing, and supporting-page maintenance across the educational catalog."
+    reviewedOn="2026-04-04"
+  />
 
   <section class="card section" style="margin-top:18px">
     <h2 style="margin:0 0 12px">Start with the strongest guide paths</h2>
@@ -80,6 +96,15 @@ const lastUpdated = "2026-03-03";
       <li>Use the checklist and FAQ sections to catch statement, fee, and timing pitfalls.</li>
     </ul>
   </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How this library is curated</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The strongest workflow pages and decision-support guides are surfaced first on this index. Narrower edge-case pages remain available,
+      but they are supporting assets rather than the best starting point for most users. Start with the clearest guide path, then move into
+      narrower pages only when the main workflow exposes a specific question.
+    </p>
+  </section>
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6" data-guide-group="credit-cards">
       <h2 style="margin-top:0">Credit cards</h2>
@@ -114,12 +139,6 @@ const lastUpdated = "2026-03-03";
       </ul>
     </div>
   </section>
-
-  <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Guide catalog and link quality review"
-    reviewedOn="2026-03-03"
-  />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">FAQ</h2>
@@ -284,7 +303,7 @@ const lastUpdated = "2026-03-03";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
     <p class="muted" style="margin:10px 0 0">Guides are updated as calculators change or new scenarios are added.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
   </section>
 
   <script is:inline type="text/javascript">

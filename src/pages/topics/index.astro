@@ -2,14 +2,22 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = `Topics | ${SITE.name}`;
 const description =
   "Topic hubs that connect calculators with guides for APR, credit cards, and mortgage payoff workflows. Educational use only.";
 
-const lastUpdated = "2026-03-03";
+const lastUpdated = "2026-04-04";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/topics" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/topics"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+>
   <section class="card hero">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <a href="/">Home</a>
@@ -25,10 +33,21 @@ const lastUpdated = "2026-03-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Topic framework and content review"
-    reviewedOn="2026-03-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Topic-hub workflow framing, calculator-to-guide routing, and strongest-path maintenance across decision journeys."
+    reviewedOn="2026-04-04"
   />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to start with a topic hub</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Start here when you have a real-world decision to make, but you are not yet sure which calculator or guide should come first.</li>
+      <li>Topic hubs are designed to route you from the baseline calculator into the few supporting guides most likely to change the decision.</li>
+      <li>If you already know the exact tool you need, the <a href="/calculators">calculator directory</a> is usually the faster entry point.</li>
+    </ul>
+  </section>
 
   <section class="card section" style="margin-top:18px">
     <h2 style="margin:0 0 12px">Priority workflows</h2>
@@ -243,7 +262,7 @@ const lastUpdated = "2026-03-03";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
     <p class="muted" style="margin:10px 0 0">Topics are updated as calculators and guides change. If you want a new workflow, contact us.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
   </section>
 </BaseLayout>
 

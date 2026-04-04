@@ -1,12 +1,15 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
+import { TRUST_PROFILES } from "../../config/trust";
 import { TOOLS } from "../../lib/tools";
 import AdSlot from "../../components/AdSlot.astro";
 
 const title = `Calculators | ${SITE.name}`;
 const description =
   "Free debt and mortgage calculators: credit card payoff, APR (fees), DTI, mortgage payment, amortization, extra payments, and rent vs buy. Educational use only.";
+const lastUpdated = "2026-04-04";
 
 const grouped = TOOLS.reduce<Record<string, typeof TOOLS>>((acc, t) => {
   (acc[t.category] ||= []).push(t);
@@ -14,7 +17,14 @@ const grouped = TOOLS.reduce<Record<string, typeof TOOLS>>((acc, t) => {
 }, {});
 const slots = SITE.adsenseSlots;
 ---
-<BaseLayout title={title} description={description} canonicalPath="/calculators">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/calculators"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+>
   <section class="card hero">
     <h1>Calculators</h1>
     <p>
@@ -37,6 +47,14 @@ const slots = SITE.adsenseSlots;
       <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly mortgage calculator</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Calculator directory curation, task-based routing, and strongest-path prioritization across the tool library."
+    reviewedOn="2026-04-04"
+  />
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
@@ -100,6 +118,15 @@ const slots = SITE.adsenseSlots;
     <p class="muted" style="margin:12px 0 0">
       If your lender offers biweekly programs, confirm whether payments are posted immediately or held and posted monthly.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to start here vs use a topic hub</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Start here when you already know the kind of calculator you need and want to run numbers quickly.</li>
+      <li>Use <a href="/topics">Topics</a> instead when the bigger question is a decision flow, such as rent vs buy, refinance timing, or payoff strategy choice.</li>
+      <li>If you need more explanation before entering numbers, move into <a href="/guides">Guides</a> after choosing the closest calculator.</li>
+    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -186,5 +213,14 @@ const slots = SITE.adsenseSlots;
         No. This site is for educational use only. Verify results with lenders, card issuers, and professionals.
       </div>
     </details>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How we prioritize calculator paths</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The calculators surfaced first on this page are the strongest starting points for common finance jobs: payoff planning, APR comparison,
+      housing payment estimation, and rent-vs-buy scenario work. Narrower tools still appear below, but the main paths are intentionally
+      prioritized so users start with the clearest workflow before moving into edge cases.
+    </p>
   </section>
 </BaseLayout>
