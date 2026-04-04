@@ -2,6 +2,7 @@
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { DebtSnowballCalculator as DebtSnowballCalculatorComponent } from "../../components/calculators/DebtSnowball";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 import { buildDebtPlan } from "../../lib/calc/debtPlan";
 
 const title = "Debt Snowball Calculator";
@@ -87,16 +88,27 @@ const caseTwoResetInterestDiff = Math.max(0, caseTwoResetPlan.totalInterest - ca
       a: "Closing accounts can affect your credit profile and may not be necessary. Consider factors like annual fees, spending habits, and credit utilization, and choose what you can sustain."
     }
   ]}
-  lastUpdated="2026-03-03"
+  lastUpdated="2026-04-04"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
   <DebtSnowballCalculatorComponent client:load />
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Content and methodology review"
-    reviewedOn="2026-03-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Snowball payoff sequencing, motivation-versus-interest tradeoffs, and comparison guidance against avalanche."
+    reviewedOn="2026-04-04"
   />
 
   <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Use snowball when staying consistent is the main risk</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>This page is strongest when you want early account closures to build momentum and keep the plan emotionally sustainable.</li>
+      <li>Snowball does not usually minimize interest; it trades some cost efficiency for a simpler, more motivating payoff order.</li>
+      <li>If motivation is not the bottleneck, compare the same debts in avalanche before you lock in a long payoff plan.</li>
+    </ul>
+
     <h2 style="margin:0 0 10px">How to use this debt snowball calculator</h2>
     <p class="muted" style="margin:0">
       Enter each debt's balance, APR, and minimum payment. Then add an "extra payment" amount, the additional money you
@@ -272,6 +284,13 @@ const caseTwoResetInterestDiff = Math.max(0, caseTwoResetPlan.totalInterest - ca
       <li>Use the statement minimum payment (or required payment) so the schedule stays realistic.</li>
       <li>Start with an extra payment you can sustain, then increase it when you have proof it works.</li>
       <li>If you have promo APRs that will end, rerun the plan with the future APR as a scenario.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">When to switch to another payoff tool</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Use the single-card payoff calculator if you are modeling one balance instead of a multi-debt sequence.</li>
+      <li>Use the minimum payment calculator if your main question is how long issuer minimums will keep a balance open.</li>
+      <li>Use avalanche when minimizing total interest matters more than quick visible wins.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
