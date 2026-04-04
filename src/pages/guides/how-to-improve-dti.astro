@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "How to Improve Debt-to-Income (DTI)";
 const description =
   "Practical ways to improve DTI: reduce balances, increase income, and document changes. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-04";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/how-to-improve-dti" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -27,6 +28,21 @@ const lastUpdated = "2026-02-17";
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
       <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="DTI improvement guide review"
+    reviewedOn="2026-04-04"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you need the highest-impact order of operations to lower DTI and know when to rerun it</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when you need to rank the fastest ways to lower a required payment instead of guessing which debt to attack first.</li>
+      <li>Use this page when statement cycles determine when a lower payment becomes real enough to recalculate DTI for underwriting.</li>
+      <li>If your ratio is not moving as expected, wait for the new required payment to appear and then rerun the numbers with fresh documentation.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -229,7 +245,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
   </section>
 </BaseLayout>
 

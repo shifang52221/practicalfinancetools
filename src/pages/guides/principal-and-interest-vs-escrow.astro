@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Escrow vs Principal (Principal & Interest vs Escrow)";
 const description =
   "Escrow vs principal: understand the difference between principal and interest vs escrow items like taxes and insurance. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/principal-and-interest-vs-escrow" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -27,6 +28,21 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
       <a class="btn" href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Escrow and payment-structure review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when your statement question is escrow versus principal and interest</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when the payment changed and you need to know whether the change came from escrow or from the loan itself.</li>
+      <li>If you need the full housing-payment breakdown first, move next to <a href="/guides/what-is-piti">What is PITI?</a>.</li>
+      <li>If you need the affordability workflow, move next to the <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -198,7 +214,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

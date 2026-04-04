@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Mortgage Payment vs Total Cost";
 const description =
   "Why a lower monthly payment can still cost more over time and how to compare total interest. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-total-cost-vs-payment" lastUpdated={lastUpdated}>
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-total-cost-vs-payment" lastUpdated={lastUpdated} robots="noindex, follow">
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,8 +26,22 @@ const lastUpdated = "2026-02-08";
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-15-vs-30-year">15 vs 30 year</a>
     </div>
+  </section>
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Mortgage cost comparison review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when the cheapest monthly payment is not automatically the cheapest loan</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when one option feels easier monthly but may cost more in total interest, fees, or a longer payoff clock.</li>
+      <li>If the comparison is specifically 15-year versus 30-year, move next to <a href="/guides/mortgage-payment-15-vs-30-year">15-year vs 30-year mortgage payment</a>.</li>
+      <li>If you need the baseline payment formula first, move to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
@@ -105,6 +120,14 @@ const lastUpdated = "2026-02-08";
     </ul>
   </section>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why monthly comfort can hide a weaker long-term answer</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Extending the term, resetting the amortization clock, or choosing the lowest payment can make cash flow look better in the short run.
+      But if you keep the loan long enough, that easier payment can translate into materially higher total interest and slower equity growth.
+    </p>
+  </section>
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related tools</h2>
@@ -116,6 +139,8 @@ const lastUpdated = "2026-02-08";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
+        <li><a href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a></li>
         <li><a href="/guides/mortgage-payment-15-vs-30-year">15 vs 30 year payment</a></li>
         <li><a href="/guides/mortgage-payment-rate-sensitivity">Rate sensitivity</a></li>
         <li><a href="/guides/refinance-break-even">Refinance rate vs term</a></li>
@@ -124,14 +149,32 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/explore/home-loan-toolkit/" rel="noopener noreferrer" target="_blank">
+          Your home loan toolkit
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/" rel="noopener noreferrer" target="_blank">
+          Buying a house: tools and resources for homebuyers
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/amortization-schedule-calculator">Run amortization</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-15-vs-30-year">Compare term choice</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

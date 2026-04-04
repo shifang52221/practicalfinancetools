@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "DTI and Credit Card Minimum Payments";
 const description =
   "How credit card minimum payments affect DTI and why balances matter only through the required payment. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/dti-credit-card-minimums" lastUpdated={lastUpdated}>
+<BaseLayout title={title} description={description} canonicalPath="/guides/dti-credit-card-minimums" lastUpdated={lastUpdated} robots="noindex, follow">
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -28,6 +29,22 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="DTI support guide review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when credit card minimum payments are the DTI bottleneck</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when a required card minimum, not the raw balance, is the number pushing your DTI too high.</li>
+      <li>If you need the full ratio, move next to the <a href="/calculators/debt-to-income-calculator">DTI calculator</a>.</li>
+      <li>If you need to estimate how the minimum itself changes, switch to the <a href="/calculators/minimum-payment-payoff-calculator">minimum payment payoff calculator</a>.</li>
+    </ul>
+  </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">DTI inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -103,6 +120,24 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources
+        </a>
+      </li>
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-minimum-payment-en-23/" rel="noopener noreferrer" target="_blank">
+          What is a minimum payment?
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Recalculate DTI</a>
@@ -110,7 +145,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { estimateApr } from "../../lib/calc/apr";
 
 const title = "APR with an Origination Fee (how to compare loans)";
@@ -26,7 +27,7 @@ const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/apr-with-origination-fee" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -48,6 +49,20 @@ const lastUpdated = "2026-02-17";
       <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator (with fees)</a>
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="APR fee-comparison guide review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when...</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use this guide when origination fees, closing costs, or financed fees change the real borrowing cost. It is the right page when two
+      offers share a similar stated rate but differ in upfront charges, financed fees, cash to close, or break-even timing.
+    </p>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">APR comparison inputs to verify</h2>
@@ -230,7 +245,7 @@ const lastUpdated = "2026-02-17";
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-02-17
+      Last updated: 2026-04-03
     </p>
   </section>
 </BaseLayout>

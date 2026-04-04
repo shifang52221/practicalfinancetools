@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Mortgage Payment Escrow Account (Basics)";
 const description =
   "Mortgage payment escrow account basics: how escrow works for taxes and insurance and why your payment changes. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-escrow-account" lastUpdated={lastUpdated}>
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-escrow-account" lastUpdated={lastUpdated} robots="noindex, follow">
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,8 +26,23 @@ const lastUpdated = "2026-02-08";
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/guides/principal-and-interest-vs-escrow">Principal vs escrow</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Escrow payment-structure review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you need the escrow baseline before troubleshooting payment changes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when you are trying to understand what escrow covers and why it belongs in the total monthly payment.</li>
+      <li>If your payment already jumped after a yearly review, move next to <a href="/guides/mortgage-payment-escrow-shortage">mortgage payment escrow shortage</a>.</li>
+      <li>If your real question is the statement split between P&amp;I and escrow, move next to <a href="/guides/principal-and-interest-vs-escrow">principal and interest vs escrow</a>.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
@@ -107,6 +123,15 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How escrow fits the payment workflow</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Start with the mortgage calculator to separate principal and interest from taxes, insurance, HOA, and PMI.</li>
+      <li>Use the escrow account guide to understand which housing costs the servicer collects monthly and which remain separate.</li>
+      <li>Then compare your annual escrow analysis with your calculator assumptions so you can explain any payment drift line by line.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Year-one budgeting tips</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Expect escrow to adjust after the first annual review.</li>
@@ -157,6 +182,7 @@ const lastUpdated = "2026-02-08";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
         <li><a href="/guides/mortgage-payment-escrow-shortage">Escrow shortage</a></li>
         <li><a href="/guides/mortgage-payment-prepaids-and-reserves">Prepaids and reserves</a></li>
         <li><a href="/guides/what-is-piti">What is PITI?</a></li>
@@ -165,14 +191,32 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-an-escrow-or-impound-account-en-140/" rel="noopener noreferrer" target="_blank">
+          What is an escrow or impound account?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/closing-disclosure/" rel="noopener noreferrer" target="_blank">
+          Closing Disclosure explainer
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
       <a class="btn" href="/guides/principal-and-interest-vs-escrow">Principal vs escrow</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-escrow-shortage">Review shortage scenarios</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

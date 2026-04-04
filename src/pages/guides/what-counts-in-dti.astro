@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "What Counts in Debt-to-Income (DTI)";
 const description =
   "Understand which debts count in DTI, how lenders treat minimum payments, and how to avoid common mistakes. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-04";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/what-counts-in-dti" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -27,6 +28,21 @@ const lastUpdated = "2026-02-17";
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
       <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="DTI debt-and-income inclusion guide review"
+    reviewedOn="2026-04-04"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you are deciding which debts, income sources, and documentation actually count in DTI</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when student loans, installment loans, or credit card minimums are the main reason your DTI answer changes.</li>
+      <li>Use this page when self-employed, variable income, or co-borrower documentation changes which income can be used.</li>
+      <li>Use this page when compensating factors matter only after you know which debts and income belong in the ratio.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">DTI inputs to verify</h2>
@@ -278,7 +294,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/calculators/credit-card-payoff-calculator">Reduce balances</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
   </section>
 </BaseLayout>
 

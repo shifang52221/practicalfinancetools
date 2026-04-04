@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Mortgage Prepaids and Escrow Reserves";
 const description =
   "How prepaids and escrow reserves affect cash-to-close and the monthly mortgage payment. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-prepaids-and-reserves" lastUpdated={lastUpdated}>
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-prepaids-and-reserves" lastUpdated={lastUpdated} robots="noindex, follow">
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,8 +26,23 @@ const lastUpdated = "2026-02-08";
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/guides/mortgage-payment-escrow-account">Escrow account basics</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Closing-cost and reserve planning review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when cash to close is the part of the mortgage payment workflow you need to explain</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when the monthly payment looks manageable but the upfront cash requirement at closing is still unclear.</li>
+      <li>If you are troubleshooting the monthly escrow portion itself, move first to <a href="/guides/mortgage-payment-escrow-account">mortgage payment escrow account basics</a>.</li>
+      <li>If the real issue is overall payment fit, move next to the <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
@@ -85,6 +101,15 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How prepaids differ from the recurring payment</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Prepaids and initial reserves usually hit you once at closing, while taxes and insurance continue as ongoing monthly escrow items.</li>
+      <li>That means a loan can look affordable on a monthly basis but still be hard to close if your reserve assumptions are too low.</li>
+      <li>Reviewing both the payment estimate and the cash-to-close estimate together is what makes this page different from a basic mortgage-payment explainer.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Decision inputs</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Closing date target and first payment date.</li>
@@ -116,6 +141,7 @@ const lastUpdated = "2026-02-08";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
         <li><a href="/guides/mortgage-payment-property-tax-assumptions">Property tax assumptions</a></li>
         <li><a href="/guides/mortgage-payment-insurance-assumptions">Insurance assumptions</a></li>
         <li><a href="/guides/mortgage-payment-escrow-shortage">Escrow shortage</a></li>
@@ -124,14 +150,32 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-are-closing-costs-en-196/" rel="noopener noreferrer" target="_blank">
+          What are closing costs?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/closing-disclosure/" rel="noopener noreferrer" target="_blank">
+          Closing Disclosure explainer
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
       <a class="btn" href="/guides/mortgage-payment-escrow-account">Escrow account basics</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Check affordability</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

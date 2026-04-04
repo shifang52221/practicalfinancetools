@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Rent vs Buy Price-to-Rent Ratio Guide";
 const description =
   "How to use the price-to-rent ratio as a quick signal and why it should not replace a full rent vs buy model. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-price-to-rent-ratio" lastUpdated={lastUpdated}>
+<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-price-to-rent-ratio" lastUpdated={lastUpdated} robots="noindex, follow">
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -28,6 +29,22 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Rent vs buy support guide review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you need a quick market screen before the full model</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when you want a fast price-to-rent signal before spending time on a full rent-vs-buy scenario.</li>
+      <li>If you are making an actual buy-versus-rent decision, move next to the <a href="/calculators/rent-vs-buy-calculator">rent vs buy calculator</a>.</li>
+      <li>If your main question is the holding period needed to break even, the <a href="/guides/rent-vs-buy-break-even">break-even guide</a> is the better next step.</li>
+    </ul>
+  </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Rent vs buy inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -113,6 +130,24 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources
+        </a>
+      </li>
+      <li>
+        FHFA:{' '}
+        <a href="https://www.fhfa.gov/data" rel="noopener noreferrer" target="_blank">
+          Housing and home price data resources
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
@@ -120,7 +155,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Home Insurance Assumptions for Mortgage Payments";
 const description =
   "How to estimate homeowners insurance for a mortgage payment and avoid underestimating escrow. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-insurance-assumptions" lastUpdated={lastUpdated}>
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-insurance-assumptions" lastUpdated={lastUpdated} robots="noindex, follow">
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,8 +26,23 @@ const lastUpdated = "2026-02-08";
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/guides/how-to-estimate-homeowners-insurance">Estimate homeowners insurance</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Homeowners insurance mortgage-input review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when homeowners insurance assumptions are the weak point in your payment estimate</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when the payment looks unrealistic because the insurance number is a placeholder, an old quote, or missing required coverage.</li>
+      <li>If you need the baseline mortgage-payment structure first, move to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
+      <li>If the payment already changed after escrow review, move next to <a href="/guides/mortgage-payment-escrow-shortage">mortgage payment escrow shortage</a>.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
@@ -61,6 +77,15 @@ const lastUpdated = "2026-02-08";
       <li>Deductible choices and their premium impact.</li>
       <li>Any required riders (flood, wind, earthquake).</li>
       <li>Claims history that could affect pricing.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Quote hygiene</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Compare quotes with the same dwelling coverage, deductible, and endorsement assumptions so you are not comparing mismatched policies.</li>
+      <li>Ask whether flood, wind, or earthquake risks require separate policies, because the missing policy can make the monthly estimate look artificially low.</li>
+      <li>Feed the final quoted premium back into your mortgage calculator and escrow workflow instead of keeping a rough placeholder number.</li>
     </ul>
   </section>
 
@@ -113,6 +138,7 @@ const lastUpdated = "2026-02-08";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
         <li><a href="/guides/how-to-estimate-homeowners-insurance">Estimate homeowners insurance</a></li>
         <li><a href="/guides/mortgage-payment-escrow-account">Escrow account basics</a></li>
         <li><a href="/guides/mortgage-payment-prepaids-and-reserves">Prepaids and reserves</a></li>
@@ -121,14 +147,32 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/close/shop-for-homeowners-insurance/" rel="noopener noreferrer" target="_blank">
+          Shop for homeowner's insurance
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/explore/find-the-right-home/" rel="noopener noreferrer" target="_blank">
+          Find the right home
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
       <a class="btn" href="/guides/how-to-estimate-homeowners-insurance">Estimate homeowners insurance</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-escrow-account">Review escrow impact</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

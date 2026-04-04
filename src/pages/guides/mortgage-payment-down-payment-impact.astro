@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Down Payment Impact on Mortgage Payments";
 const description =
   "How down payment size changes monthly mortgage payments, PMI, and total cost. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-down-payment-impact" lastUpdated={lastUpdated}>
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-down-payment-impact" lastUpdated={lastUpdated} robots="noindex, follow">
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,8 +26,22 @@ const lastUpdated = "2026-02-08";
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/guides/estimating-pmi-cost">Estimating PMI cost</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a>
     </div>
+  </section>
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Down-payment tradeoff review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when the main tradeoff is down payment versus reserves and PMI</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when the question is not just how to lower the payment, but whether using more cash upfront is worth the lower loan balance or lower PMI.</li>
+      <li>If you need the general payment formula first, move to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
+      <li>If PMI is the main variable driving the comparison, move next to <a href="/guides/mortgage-payment-pmi-thresholds">PMI thresholds and mortgage payments</a>.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
@@ -97,6 +112,14 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why this is a cash-management decision</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A larger down payment can improve the monthly payment, but it can also leave you with less cushion for closing costs, repairs,
+      income shocks, or investment alternatives. That is why this comparison belongs beside affordability, PMI, and reserve planning rather than payment math alone.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Scenario checklist</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Compare 5%, 10%, and 20% down side by side.</li>
@@ -118,6 +141,9 @@ const lastUpdated = "2026-02-08";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
+        <li><a href="/guides/mortgage-payment-pmi-thresholds">PMI thresholds</a></li>
+        <li><a href="/guides/mortgage-payment-prepaids-and-reserves">Prepaids and reserves</a></li>
         <li><a href="/guides/estimating-pmi-cost">Estimating PMI cost</a></li>
         <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
         <li><a href="/guides/rent-vs-buy-costs-to-include">Rent vs buy costs to include</a></li>
@@ -126,14 +152,32 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/ready-to-buy-a-home/" rel="noopener noreferrer" target="_blank">
+          Ready to buy a home?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/explore/home-loan-toolkit/" rel="noopener noreferrer" target="_blank">
+          Your home loan toolkit
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
       <a class="btn" href="/guides/estimating-pmi-cost">Estimate PMI cost</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Check affordability</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

@@ -69,7 +69,7 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       a: "Not necessarily. Results are estimates and real statements can differ due to rounding and timing."
     }
   ]}
-  lastUpdated="2026-04-03"
+  lastUpdated="2026-04-04"
 >
   <ExtraPaymentMortgageCalculator client:load />
   <ReviewedByCard
@@ -79,7 +79,14 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
   />
 
   <div class="prose" style="margin-top:16px">
-    <h2 style="margin:0 0 10px">Choose the right calculator</h2>
+    <h2 style="margin:0 0 10px">Use this calculator when you need the broad extra-payment payoff plan before narrowing to principal-only or lump-sum-only moves</h2>
+    <p class="muted" style="margin:0">
+      Start here when the question is still broad: extra mortgage payment calculator scenarios, recurring extra payments, or how to
+      calculate mortgage payoff changes with additional principal payments under one consistent baseline. If the only thing you need is a
+      pure principal-only or lump-sum workflow, then move next to the <a href="/calculators/additional-principal-payment-calculator">additional principal calculator</a>.
+    </p>
+
+    <h2 style="margin:18px 0 10px">Choose the right calculator</h2>
     <p class="muted" style="margin:0">
       Use this page for broad mortgage extra-payment planning: recurring monthly extras, one extra payment per year, and general payoff
       acceleration. If your main question is how a <a href="/calculators/additional-principal-payment-calculator">lump sum or principal-only payment</a> should be modeled, use the
@@ -244,5 +251,7 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
         </a>
       </li>
     </ul>
+
+    <p class="muted" style="margin:18px 0 0; font-size:13px">Last updated: 2026-04-04</p>
   </div>
 </CalculatorLayout>

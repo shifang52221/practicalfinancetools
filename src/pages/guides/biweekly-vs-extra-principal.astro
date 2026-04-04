@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
@@ -22,7 +23,7 @@ const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/biweekly-vs-extra-principal" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -47,6 +48,12 @@ const lastUpdated = "2026-02-08";
     </div>
   </section>
 
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Mortgage payoff comparison review"
+    reviewedOn="2026-04-03"
+  />
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">When biweekly helps</h2>
@@ -64,6 +71,15 @@ const lastUpdated = "2026-02-08";
         <li>Your cash flow is uneven and biweekly causes overdrafts.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you are deciding between biweekly and principal-only extra payments</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when the real question is whether biweekly timing creates more value than a plain principal-only extra.</li>
+      <li>If the program charges fees, move next to the <a href="/guides/biweekly-mortgage-program-fees">biweekly mortgage program fees</a> guide before enrolling.</li>
+      <li>If you already know the extra amount you want to test, switch to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a> for direct scenario math.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -244,7 +260,7 @@ const lastUpdated = "2026-02-08";
     <p class="muted" style="margin:12px 0 0">
       For questions, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

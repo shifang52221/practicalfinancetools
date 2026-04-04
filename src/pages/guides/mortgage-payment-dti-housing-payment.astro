@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Mortgage Payment in DTI Calculations";
 const description =
   "How to use the full housing payment (PITI + HOA + PMI) in DTI and affordability checks. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-dti-housing-payment" lastUpdated={lastUpdated}>
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-dti-housing-payment" lastUpdated={lastUpdated} robots="noindex, follow">
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,8 +26,23 @@ const lastUpdated = "2026-02-08";
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
-      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="DTI housing-payment inclusion review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when your DTI answer depends on the full housing payment</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when the lender's DTI result looks tighter than your own math because taxes, insurance, HOA, or PMI were left out.</li>
+      <li>If you need the basic payment structure first, move to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
+      <li>If the next decision is whether the payment still fits your budget, move next to the <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
@@ -76,6 +92,14 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why lender math often feels higher than borrower math</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Borrowers often compare DTI using principal and interest only, but underwriting usually works from the full housing payment.
+      That means taxes, homeowners insurance, HOA dues, and mortgage insurance can turn a comfortable-looking estimate into a tighter approval ratio.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Inputs to double-check</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Monthly taxes and insurance after escrow adjustments.</li>
@@ -117,6 +141,7 @@ const lastUpdated = "2026-02-08";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
         <li><a href="/guides/front-end-vs-back-end-dti">Front-end vs back-end DTI</a></li>
         <li><a href="/guides/what-is-piti">What is PITI?</a></li>
         <li><a href="/guides/mortgage-payment-affordability-checklist">Mortgage payment affordability checklist</a></li>
@@ -125,14 +150,32 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/ready-to-buy-a-home/" rel="noopener noreferrer" target="_blank">
+          Ready to buy a home?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/explore/home-loan-toolkit/" rel="noopener noreferrer" target="_blank">
+          Your home loan toolkit
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Run the DTI calculator</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Estimate the payment</a>
-      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Check affordability</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

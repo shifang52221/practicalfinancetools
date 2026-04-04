@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Biweekly Mortgage Program Fees (is it worth it?)";
@@ -27,7 +28,7 @@ const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/biweekly-mortgage-program-fees" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -51,6 +52,12 @@ const lastUpdated = "2026-02-08";
     </div>
   </section>
 
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Mortgage fee-comparison review"
+    reviewedOn="2026-04-03"
+  />
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Fees can cancel savings</h2>
@@ -66,6 +73,15 @@ const lastUpdated = "2026-02-08";
         savings compared to true biweekly posting.
       </p>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when a biweekly program charges fees or controls payment posting</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when a lender or third party is selling a biweekly program and you need to test whether fees wipe out the benefit.</li>
+      <li>If you only need the payoff math, compare the same loan in the <a href="/calculators/biweekly-mortgage-payment-calculator">biweekly calculator</a> and the <a href="/calculators/extra-payment-calculator">extra payment calculator</a>.</li>
+      <li>If the main question is monthly extra versus biweekly timing, the <a href="/guides/biweekly-vs-extra-principal">biweekly vs extra principal</a> guide is the better first stop.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -240,7 +256,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/guides/principal-only-extra-payments">Principal-only tips</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

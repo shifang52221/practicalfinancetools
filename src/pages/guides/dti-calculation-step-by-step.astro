@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "DTI Calculation Step by Step";
 const description =
   "A step-by-step guide to calculating front-end and back-end DTI using gross income and required monthly payments. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-04";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/dti-calculation-step-by-step" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -27,6 +28,21 @@ const lastUpdated = "2026-02-17";
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
       <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="DTI workflow guide review"
+    reviewedOn="2026-04-04"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you need the exact DTI workflow before comparing front-end, back-end, or housing-payment scenarios</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when you need a clean order of operations for front-end DTI and back-end DTI before changing assumptions.</li>
+      <li>Use this page when the housing payment is the input creating confusion and you need to keep PITI, HOA, and PMI aligned inside the ratio.</li>
+      <li>If the next question is which debts or income sources belong in the ratio, move next to <a href="/guides/what-counts-in-dti">what counts in DTI</a>.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">DTI inputs to verify</h2>
@@ -132,7 +148,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
   </section>
 </BaseLayout>
 

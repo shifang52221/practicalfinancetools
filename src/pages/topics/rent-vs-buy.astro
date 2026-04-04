@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Rent vs Buy Topic Hub";
 const description =
   "A rent vs buy workflow that connects the calculator, break-even guide, and mortgage payment inputs. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/topics/rent-vs-buy" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -27,6 +28,21 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
       <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Rent vs buy topic review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Choose your rent vs buy starting point</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Start with the <a href="/calculators/rent-vs-buy-calculator">rent vs buy calculator</a> when you want a full scenario with time horizon, costs, and appreciation assumptions.</li>
+      <li>Start with the <a href="/guides/rent-vs-buy-break-even">break-even guide</a> when the main question is how long you need to stay for buying to make sense.</li>
+      <li>Start with the <a href="/guides/rent-vs-buy-costs-to-include">costs-to-include guide</a> when taxes, insurance, HOA, maintenance, or closing costs are still the weak part of the model.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -168,6 +184,24 @@ const lastUpdated = "2026-02-17";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources
+        </a>
+      </li>
+      <li>
+        FHFA:{' '}
+        <a href="https://www.fhfa.gov/data" rel="noopener noreferrer" target="_blank">
+          Housing and home price data resources
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
@@ -175,7 +209,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

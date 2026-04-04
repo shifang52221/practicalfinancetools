@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "How Mortgage Payments Are Calculated (P&I + Escrow)";
 const description =
   "Understand how mortgage payments are calculated, including principal and interest plus taxes, insurance, HOA, and PMI. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/how-mortgage-payments-are-calculated" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -28,6 +29,22 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Mortgage payment methodology review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you need the baseline mortgage payment formula</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when your first question is how the monthly payment is built from loan amount, rate, term, and housing-cost inputs.</li>
+      <li>If your question is specifically the payment breakdown, move next to <a href="/guides/what-is-piti">What is PITI?</a>.</li>
+      <li>If your question is whether the payment fits your budget, move next to the <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
+    </ul>
+  </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -145,7 +162,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payment topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

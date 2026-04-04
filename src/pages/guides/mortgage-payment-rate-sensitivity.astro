@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Mortgage Payment Rate Sensitivity";
 const description =
   "How interest rate changes affect the monthly mortgage payment and affordability. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-rate-sensitivity" lastUpdated={lastUpdated}>
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-rate-sensitivity" lastUpdated={lastUpdated} robots="noindex, follow">
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,8 +26,23 @@ const lastUpdated = "2026-02-08";
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Mortgage payment sensitivity review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when rate sensitivity is the main mortgage-payment question</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when you already understand the mortgage payment formula and need to see how a small rate change moves the monthly payment.</li>
+      <li>If you still need the baseline payment structure, move first to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
+      <li>If your real decision is whether the payment still fits your budget, move next to the <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
@@ -63,6 +79,15 @@ const lastUpdated = "2026-02-08";
       <li>Estimated taxes, insurance, and HOA dues.</li>
       <li>Target down payment and loan amount.</li>
       <li>DTI limit or payment comfort range.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to read the result</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Track the monthly payment change for each 0.25% rate move before you change any other input.</li>
+      <li>Compare that change with your DTI ceiling and your personal comfort ceiling, because they are not always the same number.</li>
+      <li>Keep taxes, insurance, HOA, and PMI constant so the sensitivity result isolates the rate effect instead of mixing multiple variables.</li>
     </ul>
   </section>
 
@@ -117,22 +142,42 @@ const lastUpdated = "2026-02-08";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
+        <li><a href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a></li>
         <li><a href="/guides/mortgage-payment-total-cost-vs-payment">Payment vs total cost</a></li>
         <li><a href="/guides/mortgage-payment-15-vs-30-year">15 vs 30 year payment</a></li>
-        <li><a href="/guides/mortgage-payment-dti-housing-payment">DTI housing payment</a></li>
+        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/" rel="noopener noreferrer" target="_blank">
+          Buying a house: tools and resources for homebuyers
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/explore/home-loan-toolkit/" rel="noopener noreferrer" target="_blank">
+          Your home loan toolkit
+        </a>
+      </li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run rate scenarios</a>
-      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Check affordability</a>
+      <a class="btn" href="/guides/how-mortgage-payments-are-calculated">Review the payment math</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

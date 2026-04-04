@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "How Credit Card Interest Works (APR, daily interest, payoff)";
@@ -16,7 +17,7 @@ const payoffB = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: 
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/how-credit-card-interest-is-calculated" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -39,6 +40,12 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment payoff</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Credit card interest guide review"
+    reviewedOn="2026-04-03"
+  />
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Credit card inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -279,7 +286,7 @@ const lastUpdated = "2026-02-17";
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-02-17
+      Last updated: 2026-04-03
     </p>
   </section>
 </BaseLayout>

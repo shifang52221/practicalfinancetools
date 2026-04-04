@@ -1,6 +1,7 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { MortgagePaymentCalculator as MortgagePaymentCalculatorComponent } from "../../components/calculators/MortgagePayment";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { mortgageMonthlyBreakdown } from "../../lib/calc/loan";
 
 const title = "Mortgage Payment Calculator";
@@ -59,11 +60,23 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       a: "This calculator assumes a fixed rate for the entire term. Adjustable-rate loans can change payment over time."
     }
   ]}
-  lastUpdated="2026-02-17"
+  lastUpdated="2026-04-03"
 >
   <MortgagePaymentCalculatorComponent client:load />
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Mortgage payment calculator review"
+    reviewedOn="2026-04-03"
+  />
 
   <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Use this calculator when you need the full monthly housing payment in one place</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Use this page when you need principal, interest, taxes, insurance, HOA, and PMI in one monthly estimate before comparing loan options.</li>
+      <li>If taxes or insurance are the weak point in your estimate, move next to <a href="/guides/what-is-piti">What is PITI?</a>, which now acts as the main housing-payment breakdown page.</li>
+      <li>If your next question is lender qualification, move next to <a href="/guides/dti-housing-payment-piti-includes">mortgage payment in DTI</a>.</li>
+    </ul>
+
     <h2 style="margin:0 0 10px">Example</h2>
     <p class="muted" style="margin:0">
       Example inputs: $450,000 home price, $90,000 down payment, 6.50% APR, 30-year term, $5,400/yr property taxes,
@@ -111,7 +124,7 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
 
     <h2 style="margin:18px 0 10px">Mortgage payment calculator inputs to double-check</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
-      <li>Taxes and insurance are annual figures; confirm the local numbers.</li>
+      <li>Taxes and insurance are annual figures; confirm the local numbers before you compare scenarios.</li>
       <li>PMI rate depends on credit score and loan type; use a conservative estimate.</li>
       <li>HOA dues vary by property; include them if applicable.</li>
       <li>Down payment affects PMI and loan size; test 5%, 10%, 20% scenarios.</li>
@@ -166,6 +179,13 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       loan type, and lender. If you're close to a threshold, test a higher tax/insurance and PMI rate to avoid surprises.
     </p>
 
+    <h2 style="margin:18px 0 10px">Build better tax and insurance inputs first</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Use <a href="/guides/what-is-piti">What is PITI?</a> when you need the main tax, insurance, HOA, and PMI breakdown before comparing scenarios.</li>
+      <li>Use <a href="/guides/principal-and-interest-vs-escrow">principal and interest vs escrow</a> when you need to separate the loan payment from changing escrow inputs.</li>
+      <li>Once those numbers are grounded, compare payment changes from rate, term, and down payment with much more confidence.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">Related topics</h2>
     <div class="btn-row" style="margin-top:0">
       <a class="btn btn-primary" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
@@ -191,5 +211,21 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       <a class="btn" href="/calculators/debt-to-income-calculator">DTI calculator</a>
       <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
     </div>
+
+    <h2 style="margin:18px 0 10px">References</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/" rel="noopener noreferrer" target="_blank">
+          Buying a house: tools and resources for homebuyers
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/explore/home-loan-toolkit/" rel="noopener noreferrer" target="_blank">
+          Your home loan toolkit
+        </a>
+      </li>
+    </ul>
   </div>
 </CalculatorLayout>

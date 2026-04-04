@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Debt-to-Income Topic Guide (DTI ratios and affordability)";
 const description =
   "Debt to income (DTI) workflow: understand what counts, calculate your ratio, and improve affordability. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/topics/debt-to-income" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -28,6 +29,21 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
       <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Debt-to-income topic review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Choose your DTI starting point</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Start with the <a href="/calculators/debt-to-income-calculator">DTI calculator</a> when you already know your income and required monthly debts.</li>
+      <li>Start with <a href="/guides/what-counts-in-dti">what counts in DTI</a> when card minimums are the main reason your ratio is too high and you need the lender-side rule first.</li>
+      <li>Start with housing-input guides when your uncertainty is really PITI, HOA, PMI, or the monthly payment used in the ratio.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -198,7 +214,7 @@ const lastUpdated = "2026-02-17";
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

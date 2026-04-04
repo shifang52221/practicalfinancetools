@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "What Is PITI? (Mortgage Payment Breakdown)";
 const description =
   "Understand PITI (principal, interest, taxes, insurance), when PMI and HOA add-ons apply, and how to verify your mortgage payment inputs. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-04";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/what-is-piti" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -28,6 +29,31 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Mortgage payment component review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you need the housing-payment breakdown</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when you need to separate principal, interest, taxes, insurance, PMI, and HOA before using a payment or DTI tool.</li>
+      <li>If you need the underlying mortgage payment formula, move next to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
+      <li>If your question is why the statement changed after closing, move next to <a href="/guides/principal-and-interest-vs-escrow">principal and interest vs escrow</a>.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when PMI cost is the missing piece of the full housing-payment estimate</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when an old "estimating PMI cost" entry point is really asking how monthly PMI fits into the complete housing payment.</li>
+      <li>Use this page when monthly PMI, taxes, insurance, and HOA need to be modeled together instead of as separate payment ideas.</li>
+      <li>If you already know the PMI rule and only want payoff timing tradeoffs, move next to <a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a>.</li>
+    </ul>
+  </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -163,7 +189,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
   </section>
 </BaseLayout>
 

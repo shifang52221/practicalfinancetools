@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Rent vs Buy Costs to Include (Owner and renter)";
 const description =
   "List of one-time and ongoing costs to include when comparing renting and buying, including closing costs, maintenance, HOA, and selling costs. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-04";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-costs-to-include" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -28,6 +29,22 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Rent vs buy ownership-cost guide review"
+    reviewedOn="2026-04-04"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when ownership costs, upfront cash needs, and incomplete assumptions are the main modeling problem</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when down payment tradeoffs, upfront cash to close, or closing costs are the main rent-vs-buy question.</li>
+      <li>Use this page when maintenance, HOA, insurance, taxes, or PMI assumptions are the weak point in your ownership-cost model.</li>
+      <li>Use this page when the break-even result looks wrong because key ownership costs are missing or unrealistic.</li>
+    </ul>
+  </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Rent vs buy inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -268,7 +285,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
   </section>
 </BaseLayout>
 

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
@@ -40,7 +41,7 @@ const monthlyYm = yearsMonths(withMonthlyExtra.months);
 const lateYm = yearsMonths(withOneTimeExtraLate.months);
 const earlyYm = yearsMonths(withOneTimeExtraEarly.months);
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/one-extra-mortgage-payment-per-year" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -63,6 +64,12 @@ const lastUpdated = "2026-02-08";
     </div>
   </section>
 
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Mortgage extra-payment timing review"
+    reviewedOn="2026-04-03"
+  />
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Two common ways to do it</h2>
@@ -78,6 +85,15 @@ const lastUpdated = "2026-02-08";
         the extra through the year can beat a single late-year payment.
       </p>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you want the one-extra-payment-per-year effect without guesswork</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when you want to compare a monthly extra, an early lump sum, and a late-year lump sum under the same loan baseline.</li>
+      <li>If you are deciding whether a paid biweekly program is worth it, switch to the <a href="/guides/biweekly-mortgage-program-fees">biweekly mortgage program fees</a> guide.</li>
+      <li>If you already know the amount and timing you want to test, jump into the <a href="/calculators/extra-payment-calculator">extra payment calculator</a>.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -266,7 +282,7 @@ const lastUpdated = "2026-02-08";
     <p class="muted" style="margin:12px 0 0">
       Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

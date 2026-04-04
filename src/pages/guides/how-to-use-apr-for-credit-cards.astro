@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "How to Use APR for Credit Cards (Comparisons)";
 const description =
   "APR can help compare card offers when terms differ. Learn how to compare APR and fees accurately. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/how-to-use-apr-for-credit-cards" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -27,6 +28,20 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/credit-card-payoff-strategy">Payoff strategy</a>
       <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Credit card APR guide review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when...</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use this guide when you are comparing credit card APR types, promo windows, or penalty-rate risk. It helps you separate daily periodic
+      rate math, promo APR deadlines, balance transfer fees, and penalty APR triggers before you choose a payoff plan.
+    </p>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">APR comparison inputs to verify</h2>
@@ -198,7 +213,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "PMI Thresholds and Mortgage Payments";
 const description =
   "When PMI applies, how it affects monthly payments, and how to plan for removal. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-pmi-thresholds" lastUpdated={lastUpdated}>
+<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-pmi-thresholds" lastUpdated={lastUpdated} robots="noindex, follow">
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,8 +26,23 @@ const lastUpdated = "2026-02-08";
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/guides/estimating-pmi-cost">Estimating PMI cost</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-down-payment-impact">Down payment impact</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="PMI threshold and payment planning review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when PMI is the reason the payment scenario changes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when the payment difference between two down-payment scenarios is mostly explained by PMI rather than by principal and interest alone.</li>
+      <li>If you need the base payment build first, move to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
+      <li>If you need to compare the cost of a larger down payment with affordability or payoff tradeoffs, move next to <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
@@ -76,6 +92,15 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why PMI changes the comparison</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>PMI can make a small-down-payment option look affordable on principal and interest alone but much less attractive once the full monthly payment is modeled.</li>
+      <li>The key comparison is not just the starting payment, but how long PMI stays in place and what it takes to remove it.</li>
+      <li>That is why this page belongs between down-payment planning, mortgage-payment modeling, and extra-payment strategy.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Inputs to gather</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Current loan balance and original purchase price.</li>
@@ -117,6 +142,8 @@ const lastUpdated = "2026-02-08";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
+        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
         <li><a href="/guides/estimating-pmi-cost">Estimating PMI cost</a></li>
         <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
         <li><a href="/guides/mortgage-payment-down-payment-impact">Down payment impact</a></li>
@@ -125,14 +152,32 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/when-can-i-remove-private-mortgage-insurance-pmi-from-my-loan-en-202/" rel="noopener noreferrer" target="_blank">
+          When can I remove private mortgage insurance (PMI) from my loan?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/ready-to-buy-a-home/" rel="noopener noreferrer" target="_blank">
+          Ready to buy a home?
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
       <a class="btn" href="/guides/estimating-pmi-cost">Estimate PMI cost</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage topic hub</a>
+      <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Check affordability</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

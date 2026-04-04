@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "Extra Payments vs Refinance";
 const description =
   "How to compare extra principal payments to a refinance using the same time horizon. Educational use only.";
 
-const lastUpdated = "2026-01-31";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-vs-refinance" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -27,6 +28,21 @@ const lastUpdated = "2026-01-31";
       <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
       <a class="btn" href="/topics/refinance">Refinance topic hub</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Mortgage payoff versus refinance comparison review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you are deciding between faster payoff and refinancing</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when your real decision is whether to keep the current loan and pay it down faster or replace it with a new loan.</li>
+      <li>If you already know you want to stay on the current loan, move next to <a href="/guides/extra-mortgage-payments">extra mortgage payments</a>.</li>
+      <li>If the refinance path is the frontrunner, move next to <a href="/guides/refinance-break-even">refinance break-even</a> for the cost-recovery math.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -117,6 +133,24 @@ const lastUpdated = "2026-01-31";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources
+        </a>
+      </li>
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-are-closing-costs-en-196/" rel="noopener noreferrer" target="_blank">
+          What are closing costs?
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
@@ -124,7 +158,7 @@ const lastUpdated = "2026-01-31";
       <a class="btn" href="/topics/refinance">Refinance topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-31</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

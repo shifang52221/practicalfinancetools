@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 
 const title = "How to Estimate Property Taxes for a Mortgage Payment";
 const description =
   "Estimate property taxes for a mortgage payment using local rates and recent bills so your inputs are realistic. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-03";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/how-to-estimate-property-taxes" lastUpdated={lastUpdated}>
+<BaseLayout title={title} description={description} canonicalPath="/guides/how-to-estimate-property-taxes" lastUpdated={lastUpdated} robots="noindex, follow">
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,8 +26,23 @@ const lastUpdated = "2026-02-08";
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
+      <a class="btn" href="/guides/how-to-estimate-homeowners-insurance">Estimate homeowners insurance</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    reviewedBy="Practical Finance Tools Editorial Team"
+    reviewerRole="Property tax input-estimation review"
+    reviewedOn="2026-04-03"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when property taxes are the last uncertain input in your mortgage payment estimate</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when the payment estimate depends on getting the property-tax number right, especially in reassessment markets.</li>
+      <li>If insurance is the fuzzy input instead, move to <a href="/guides/how-to-estimate-homeowners-insurance">how to estimate homeowners insurance</a>.</li>
+      <li>If you need to plug the final number into a full payment model, move to the <a href="/calculators/mortgage-payment-calculator">mortgage payment calculator</a>.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -52,6 +68,14 @@ const lastUpdated = "2026-02-08";
     <p class="muted" style="margin:10px 0 0">
       If the tax rate is 1.1% and the assessed value is $400,000, annual tax is about $4,400 and the monthly estimate is about $367.
       Use this monthly number in your mortgage payment calculator inputs.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why this estimate is often the biggest source of payment error</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Buyers often copy the seller's current bill or a generic listing estimate, but post-sale reassessment, exemptions, and local fees
+      can push the real tax amount much higher. That makes tax estimation one of the most common reasons a mortgage payment looks too low.
     </p>
   </section>
 
@@ -92,6 +116,8 @@ const lastUpdated = "2026-02-08";
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/guides/how-mortgage-payments-are-calculated">How mortgage payments are calculated</a></li>
+        <li><a href="/guides/how-to-estimate-homeowners-insurance">Estimate homeowners insurance</a></li>
+        <li><a href="/guides/mortgage-payment-property-tax-assumptions">Property tax assumptions</a></li>
         <li><a href="/guides/principal-and-interest-vs-escrow">Principal and interest vs escrow</a></li>
       </ul>
     </div>
@@ -111,14 +137,32 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/explore/home-loan-toolkit/" rel="noopener noreferrer" target="_blank">
+          Your home loan toolkit
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/" rel="noopener noreferrer" target="_blank">
+          Buying a house: tools and resources for homebuyers
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the mortgage payment calculator</a>
       <a class="btn" href="/guides/how-to-estimate-homeowners-insurance">Estimate homeowners insurance</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
+      <a class="btn" href="/guides/mortgage-payment-property-tax-assumptions">Review tax assumptions</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 
