@@ -1415,3 +1415,69 @@ test("SEO: core workflow pages and layouts should adopt the stronger trust model
     issues.length > 0 ? `Core trust-model rollout is missing:\n${issues.join("\n")}` : ""
   );
 });
+
+test("SEO: remaining calculators should adopt the phase-2 trust model", () => {
+  const remainingCalculators = [
+    "src/pages/calculators/debt-snowball-calculator.astro",
+    "src/pages/calculators/debt-avalanche-calculator.astro",
+    "src/pages/calculators/debt-to-income-calculator.astro",
+    "src/pages/calculators/rent-vs-buy-calculator.astro",
+    "src/pages/calculators/amortization-schedule-calculator.astro"
+  ];
+  const issues: string[] = [];
+
+  for (const file of remainingCalculators) {
+    const source = readFileSync(join(process.cwd(), file), "utf8");
+
+    if (!source.includes("TRUST_PROFILES")) {
+      issues.push(`${file} -> missing TRUST_PROFILES usage`);
+    }
+    if (!source.includes("writtenBy=")) {
+      issues.push(`${file} -> missing writtenBy= trust summary`);
+    }
+    if (!source.includes("reviewScope=")) {
+      issues.push(`${file} -> missing reviewScope= trust summary`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Phase 2 calculator trust deployment is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: calculators/topics/guides index pages should expose the stronger trust navigation model", () => {
+  const indexPages = [
+    "src/pages/calculators/index.astro",
+    "src/pages/topics/index.astro",
+    "src/pages/guides/index.astro"
+  ];
+  const issues: string[] = [];
+
+  for (const file of indexPages) {
+    const source = readFileSync(join(process.cwd(), file), "utf8");
+
+    if (!source.includes("TRUST_PROFILES")) {
+      issues.push(`${file} -> missing TRUST_PROFILES usage`);
+    }
+    if (!source.includes("ReviewedByCard")) {
+      issues.push(`${file} -> missing ReviewedByCard trust summary`);
+    }
+    if (!source.includes("authorProfile=")) {
+      issues.push(`${file} -> missing authorProfile metadata`);
+    }
+    if (!source.includes("reviewProfiles=")) {
+      issues.push(`${file} -> missing reviewProfiles metadata`);
+    }
+    if (!source.includes("reviewScope=")) {
+      issues.push(`${file} -> missing reviewScope= trust summary`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Index trust navigation coverage is missing:\n${issues.join("\n")}` : ""
+  );
+});
