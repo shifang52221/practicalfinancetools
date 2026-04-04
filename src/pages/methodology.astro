@@ -1,15 +1,24 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ReviewedByCard from "../components/ReviewedByCard.astro";
+import TrustRoles from "../components/TrustRoles.astro";
 import { SITE } from "../config/site";
+import { TRUST_PROFILES } from "../config/trust";
 
 const title = `Calculator Methodology | ${SITE.name}`;
 const description =
   "High-level methodology and assumptions used in our calculators (amortization, APR, debt payoff). Educational use only.";
 
-const lastUpdated = "2026-03-03";
+const lastUpdated = "2026-04-04";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/methodology" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/methodology"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <h1>Calculator methodology</h1>
     <p>
@@ -19,9 +28,16 @@ const lastUpdated = "2026-03-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Formula and assumptions review"
-    reviewedOn="2026-03-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Formula behavior, assumptions, scenario limits, and how model changes are checked before release."
+    reviewedOn="2026-04-04"
+  />
+
+  <TrustRoles
+    roles={[TRUST_PROFILES.siteOwner, TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+    intro="Updated pages use these roles to show who owns workflow choices, who reviews formulas, and who reviews educational clarity."
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -191,7 +207,7 @@ const lastUpdated = "2026-03-03";
       If you'd like a specific formula breakdown for a calculator, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the page
       URL.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
   </section>
 </BaseLayout>
 

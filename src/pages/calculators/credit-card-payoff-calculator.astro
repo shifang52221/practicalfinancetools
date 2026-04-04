@@ -2,6 +2,7 @@
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { CreditCardPayoff } from "../../components/calculators/CreditCardPayoff";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Payoff Calculator";
@@ -92,11 +93,15 @@ const scenarioHigh = creditCardPayoffSchedule({
     }
   ]}
   lastUpdated="2026-04-03"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
   <CreditCardPayoff client:load />
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Content and methodology review"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Fixed-payment payoff behavior, assumption limits, and interpretation guidance for payoff timing."
     reviewedOn="2026-04-03"
   />
 

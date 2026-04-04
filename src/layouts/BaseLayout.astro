@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { SITE } from "../config/site";
+import { getTrustSchemaEntity, type TrustProfile } from "../config/trust";
 import AdSenseScript from "../components/AdSenseScript.astro";
 import Ga4Script from "../components/Ga4Script.astro";
 import ConsentBanner from "../components/ConsentBanner.astro";
@@ -14,6 +15,8 @@ type Props = {
   includeBreadcrumbSchema?: boolean;
   lastUpdated?: string;
   datePublished?: string;
+  authorProfile?: TrustProfile;
+  reviewProfiles?: TrustProfile[];
 };
 
 const {
@@ -24,7 +27,9 @@ const {
   includePageSchema = true,
   includeBreadcrumbSchema = true,
   lastUpdated,
-  datePublished
+  datePublished,
+  authorProfile,
+  reviewProfiles = []
 } = Astro.props;
 const siteUrlRaw = Astro.site ? Astro.site.toString() : SITE.url;
 const siteUrl = siteUrlRaw.endsWith("/") ? siteUrlRaw.slice(0, -1) : siteUrlRaw;
@@ -55,6 +60,11 @@ const websiteLd = {
   url: homeUrl,
   publisher: { "@id": `${siteUrl}/#organization` }
 };
+const authorEntity = authorProfile ? getTrustSchemaEntity(authorProfile, siteUrl) : undefined;
+const reviewEntities = reviewProfiles.map((profile) => getTrustSchemaEntity(profile, siteUrl));
+const authorRef = authorEntity ? { "@id": authorEntity["@id"] } : undefined;
+const reviewedBy =
+  reviewEntities.length > 0 ? reviewEntities.map((entity) => ({ "@id": entity["@id"] })) : undefined;
 const isGuidesIndex = canonicalPath === "/guides";
 const isGuidesDetail = canonicalPath?.startsWith("/guides/");
 const isTopicsIndex = canonicalPath === "/topics";
@@ -86,7 +96,8 @@ const webPageLd = {
   description: description ?? undefined,
   isPartOf: { "@id": `${siteUrl}/#website` },
   publisher: { "@id": `${siteUrl}/#organization` },
-  author: pageType === "Article" ? { "@id": `${siteUrl}/#organization` } : undefined,
+  author: authorRef ?? (pageType === "Article" ? { "@id": `${siteUrl}/#organization` } : undefined),
+  reviewedBy,
   datePublished: datePublished ?? undefined,
   dateModified: lastUpdated ?? undefined
 };
@@ -148,6 +159,10 @@ const ogType = pageType === "Article" ? "article" : "website";
     <meta name="theme-color" content="#0b1220" />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationLd)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteLd)} />
+    {authorEntity ? <script is:inline type="application/ld+json" set:html={JSON.stringify(authorEntity)} /> : null}
+    {reviewEntities.map((entity) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(entity)} />
+    ))}
     {includePageSchema ? <script is:inline type="application/ld+json" set:html={JSON.stringify(webPageLd)} /> : null}
     {includeBreadcrumbSchema ? <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} /> : null}
     <slot name="head" />

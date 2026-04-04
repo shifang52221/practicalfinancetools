@@ -2,6 +2,7 @@
 import BaseLayout from "./BaseLayout.astro";
 import AdSlot from "../components/AdSlot.astro";
 import { SITE } from "../config/site";
+import { getTrustSchemaEntity, type TrustProfile } from "../config/trust";
 
 type FAQ = { q: string; a: string };
 
@@ -14,9 +15,22 @@ type Props = {
   how: string[];
   faqs: FAQ[];
   lastUpdated: string;
+  authorProfile?: TrustProfile;
+  reviewProfiles?: TrustProfile[];
 };
 
-const { title, metaTitle, description, canonicalPath, intro, how, faqs, lastUpdated } = Astro.props;
+const {
+  title,
+  metaTitle,
+  description,
+  canonicalPath,
+  intro,
+  how,
+  faqs,
+  lastUpdated,
+  authorProfile,
+  reviewProfiles = []
+} = Astro.props;
 const slots = SITE.adsenseSlots;
 const pageTitle = metaTitle ?? title;
 
@@ -26,6 +40,11 @@ const pageUrl = new URL(canonicalPath, siteUrl).toString();
 const calculatorsUrl = new URL("/calculators", siteUrl).toString();
 const organizationId = `${siteUrl}/#organization`;
 const websiteId = `${siteUrl}/#website`;
+const authorEntity = authorProfile ? getTrustSchemaEntity(authorProfile, siteUrl) : undefined;
+const reviewEntities = reviewProfiles.map((profile) => getTrustSchemaEntity(profile, siteUrl));
+const authorRef = authorEntity ? { "@id": authorEntity["@id"] } : undefined;
+const reviewedBy =
+  reviewEntities.length > 0 ? reviewEntities.map((entity) => ({ "@id": entity["@id"] })) : undefined;
 
 const breadcrumbLd = {
   "@context": "https://schema.org",
@@ -60,6 +79,8 @@ const webPageLd = {
   url: pageUrl,
   isPartOf: { "@id": websiteId },
   publisher: { "@id": organizationId },
+  author: authorRef ?? { "@id": organizationId },
+  reviewedBy,
   breadcrumb: { "@id": `${pageUrl}#breadcrumb` }
 };
 
@@ -75,6 +96,8 @@ const webAppLd = {
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   isPartOf: { "@id": websiteId },
   publisher: { "@id": organizationId },
+  author: authorRef ?? { "@id": organizationId },
+  reviewedBy,
   mainEntityOfPage: { "@id": `${pageUrl}#webpage` }
 };
 ---
@@ -83,6 +106,8 @@ const webAppLd = {
   description={description}
   canonicalPath={canonicalPath}
   lastUpdated={lastUpdated}
+  authorProfile={authorProfile}
+  reviewProfiles={reviewProfiles}
   includePageSchema={false}
   includeBreadcrumbSchema={false}
 >

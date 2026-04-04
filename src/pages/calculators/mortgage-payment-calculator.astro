@@ -2,6 +2,7 @@
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { MortgagePaymentCalculator as MortgagePaymentCalculatorComponent } from "../../components/calculators/MortgagePayment";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 import { mortgageMonthlyBreakdown } from "../../lib/calc/loan";
 
 const title = "Mortgage Payment Calculator";
@@ -61,11 +62,15 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
     }
   ]}
   lastUpdated="2026-04-03"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
   <MortgagePaymentCalculatorComponent client:load />
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Mortgage payment calculator review"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Mortgage payment formula behavior, escrow assumptions, and next-step guidance into related tools."
     reviewedOn="2026-04-03"
   />
 

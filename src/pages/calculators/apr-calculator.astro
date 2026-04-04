@@ -2,6 +2,7 @@
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { AprCalculator as AprCalculatorComponent } from "../../components/calculators/Apr";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 import { estimateApr } from "../../lib/calc/apr";
 
 const title = "APR Calculator";
@@ -91,11 +92,15 @@ const caseTwoBreakevenMonths = caseTwoSavingsMonthly > 0 ? caseTwoB.fees / caseT
     }
   ]}
   lastUpdated="2026-03-03"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
   <AprCalculatorComponent client:load />
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Content and methodology review"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="APR formula assumptions, fee-handling behavior, and comparison-use guidance."
     reviewedOn="2026-03-03"
   />
 

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "APR Calculator Topic Guide (fees, comparisons, and pitfalls)";
 const description =
@@ -8,7 +9,14 @@ const description =
 
 const lastUpdated = "2026-03-03";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/topics/apr" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/topics/apr"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+>
   <section class="card hero">
     <span class="pill">Topic</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -32,8 +40,10 @@ const lastUpdated = "2026-03-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="APR topic and source review"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="APR workflow framing, source selection, and next-step routing for calculator and guide choices."
     reviewedOn="2026-03-03"
   />
 

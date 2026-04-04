@@ -1,18 +1,81 @@
 ---
 import { SITE } from "../config/site";
+import type { TrustProfile } from "../config/trust";
+
+type TrustIdentity = string | TrustProfile;
 
 type Props = {
-  reviewedBy: string;
-  reviewerRole: string;
+  reviewedBy: TrustIdentity;
+  reviewerRole?: string;
   reviewedOn: string;
+  writtenBy?: TrustIdentity;
+  writerRole?: string;
+  secondaryReview?: TrustIdentity;
+  secondaryReviewerRole?: string;
+  reviewScope?: string;
 };
 
-const { reviewedBy, reviewerRole, reviewedOn } = Astro.props;
+const {
+  reviewedBy,
+  reviewerRole,
+  reviewedOn,
+  writtenBy,
+  writerRole,
+  secondaryReview,
+  secondaryReviewerRole,
+  reviewScope
+} = Astro.props;
+
+function normalizeIdentity(identity: TrustIdentity | undefined, fallbackRole?: string) {
+  if (!identity) return null;
+  if (typeof identity === "string") {
+    return {
+      name: identity,
+      title: fallbackRole ?? "",
+      path: undefined as string | undefined
+    };
+  }
+
+  return {
+    name: identity.name,
+    title: identity.title || fallbackRole || "",
+    path: identity.path
+  };
+}
+
+const writer = normalizeIdentity(writtenBy, writerRole);
+const primaryReviewer = normalizeIdentity(reviewedBy, reviewerRole);
+const secondaryReviewer = normalizeIdentity(secondaryReview, secondaryReviewerRole);
 ---
 <section class="card section prose" style="margin-top:18px">
   <h2 style="margin-top:0">Reviewed By</h2>
+  {writer ? (
+    <p class="muted" style="margin:10px 0 0">
+      <strong>Written by</strong>:{" "}
+      {writer.path ? <a href={writer.path}>{writer.name}</a> : writer.name}
+      {writer.title ? ` (${writer.title})` : ""}.
+    </p>
+  ) : null}
+  {primaryReviewer ? (
+    <p class="muted" style="margin:10px 0 0">
+      <strong>Reviewed by</strong>:{" "}
+      {primaryReviewer.path ? <a href={primaryReviewer.path}>{primaryReviewer.name}</a> : primaryReviewer.name}
+      {primaryReviewer.title ? ` (${primaryReviewer.title})` : ""} on <time datetime={reviewedOn}>{reviewedOn}</time>.
+    </p>
+  ) : null}
+  {secondaryReviewer ? (
+    <p class="muted" style="margin:10px 0 0">
+      <strong>Secondary review</strong>:{" "}
+      {secondaryReviewer.path ? <a href={secondaryReviewer.path}>{secondaryReviewer.name}</a> : secondaryReviewer.name}
+      {secondaryReviewer.title ? ` (${secondaryReviewer.title})` : ""}.
+    </p>
+  ) : null}
+  {reviewScope ? (
+    <p class="muted" style="margin:10px 0 0">
+      <strong>Review scope</strong>: {reviewScope}
+    </p>
+  ) : null}
   <p class="muted" style="margin:10px 0 0">
-    <strong>{reviewedBy}</strong> ({reviewerRole}) reviewed this page on <time datetime={reviewedOn}>{reviewedOn}</time>.
     See our <a href="/editorial-policy">editorial policy</a> and <a href="/methodology">methodology</a>.
   </p>
   <p class="muted" style="margin:10px 0 0">

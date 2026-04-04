@@ -1,0 +1,29 @@
+---
+import { TRUST_ROLE_LIST, type TrustProfile } from "../config/trust";
+
+type Props = {
+  title?: string;
+  intro?: string;
+  roles?: TrustProfile[];
+};
+
+const {
+  title = "Responsibility model",
+  intro = "These are the public roles we use to show who owns product decisions, methodology review, and editorial standards across the site.",
+  roles = TRUST_ROLE_LIST
+} = Astro.props;
+---
+<section class="card section prose" style="margin-top:18px">
+  <h2 style="margin-top:0">{title}</h2>
+  <p class="muted" style="margin:10px 0 0">{intro}</p>
+  <div class="grid" style="margin-top:12px">
+    {roles.map((role) => (
+      <article class="card2 prose col-6" id={role.id} style="padding:16px">
+        <h3 style="margin:0">{role.name}</h3>
+        <p class="muted" style="margin:8px 0 0"><strong>{role.title}</strong></p>
+        <p class="muted" style="margin:8px 0 0">{role.scope}</p>
+        <p class="muted" style="margin:8px 0 0">{role.description}</p>
+      </article>
+    ))}
+  </div>
+</section>

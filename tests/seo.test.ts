@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 
 function collectAstroFiles(dir: string): string[] {
@@ -1292,5 +1292,126 @@ test("SEO: APR destination guides should keep trust signals and absorbed-intent 
     issues.length,
     0,
     issues.length > 0 ? `APR destination trust alignment is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: trust registry and review-summary component should support the stronger author-review model", () => {
+  const trustFile = join(process.cwd(), "src/config/trust.ts");
+  const reviewCardFile = join(process.cwd(), "src/components/ReviewedByCard.astro");
+  const issues: string[] = [];
+
+  if (!existsSync(trustFile)) {
+    issues.push("src/config/trust.ts -> missing trust registry");
+  } else {
+    const trustSource = readFileSync(trustFile, "utf8");
+    for (const label of [
+      "Practical Finance Tools Site Owner",
+      "Practical Finance Tools Methodology Review",
+      "Practical Finance Tools Editorial Review"
+    ]) {
+      if (!trustSource.includes(label)) {
+        issues.push(`src/config/trust.ts -> missing "${label}"`);
+      }
+    }
+  }
+
+  const reviewCardSource = readFileSync(reviewCardFile, "utf8");
+  if (!reviewCardSource.includes("Written by")) {
+    issues.push("src/components/ReviewedByCard.astro -> missing Written by support");
+  }
+  if (!reviewCardSource.includes("Review scope")) {
+    issues.push("src/components/ReviewedByCard.astro -> missing Review scope support");
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Trust registry/component support is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: trust pages should expose the shared responsibility model", () => {
+  const expectedPages = [
+    "src/pages/about.astro",
+    "src/pages/editorial-policy.astro",
+    "src/pages/methodology.astro",
+    "src/pages/contact.astro"
+  ];
+  const issues: string[] = [];
+
+  for (const file of expectedPages) {
+    const source = readFileSync(join(process.cwd(), file), "utf8");
+    if (!source.includes("TrustRoles")) {
+      issues.push(`${file} -> missing TrustRoles`);
+    }
+    if (!source.includes("TRUST_PROFILES")) {
+      issues.push(`${file} -> missing TRUST_PROFILES usage`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Trust-page responsibility coverage is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: core workflow pages and layouts should adopt the stronger trust model", () => {
+  const layoutExpectations = [
+    {
+      file: "src/layouts/BaseLayout.astro",
+      phrases: ["authorProfile", "reviewProfiles", "reviewedBy"]
+    },
+    {
+      file: "src/layouts/CalculatorLayout.astro",
+      phrases: ["authorProfile", "reviewProfiles", "reviewedBy"]
+    }
+  ];
+
+  const corePages = [
+    "src/pages/index.astro",
+    "src/pages/topics/apr.astro",
+    "src/pages/topics/credit-cards.astro",
+    "src/pages/topics/mortgage-payoff.astro",
+    "src/pages/topics/refinance.astro",
+    "src/pages/topics/debt-to-income.astro",
+    "src/pages/topics/rent-vs-buy.astro",
+    "src/pages/calculators/apr-calculator.astro",
+    "src/pages/calculators/credit-card-payoff-calculator.astro",
+    "src/pages/calculators/minimum-payment-payoff-calculator.astro",
+    "src/pages/calculators/mortgage-payment-calculator.astro",
+    "src/pages/calculators/extra-payment-calculator.astro",
+    "src/pages/calculators/biweekly-mortgage-payment-calculator.astro",
+    "src/pages/calculators/additional-principal-payment-calculator.astro"
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of layoutExpectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}" support`);
+      }
+    }
+  }
+
+  for (const file of corePages) {
+    const source = readFileSync(join(process.cwd(), file), "utf8");
+    if (!source.includes("TRUST_PROFILES")) {
+      issues.push(`${file} -> missing TRUST_PROFILES usage`);
+    }
+    if (!source.includes("writtenBy=")) {
+      issues.push(`${file} -> missing writtenBy= trust summary`);
+    }
+    if (!source.includes("reviewScope=")) {
+      issues.push(`${file} -> missing reviewScope= trust summary`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Core trust-model rollout is missing:\n${issues.join("\n")}` : ""
   );
 });

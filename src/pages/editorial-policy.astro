@@ -1,15 +1,24 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ReviewedByCard from "../components/ReviewedByCard.astro";
+import TrustRoles from "../components/TrustRoles.astro";
 import { SITE } from "../config/site";
+import { TRUST_PROFILES } from "../config/trust";
 
 const title = `Editorial Policy | ${SITE.name}`;
 const description =
   "How we create and update calculator explanations, what we consider before publishing, and how to request corrections. Educational use only.";
 
-const lastUpdated = "2026-03-03";
+const lastUpdated = "2026-04-04";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/editorial-policy" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/editorial-policy"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+>
   <section class="card hero">
     <h1>Editorial policy</h1>
     <p>
@@ -19,9 +28,16 @@ const lastUpdated = "2026-03-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Editorial standards and correction policy review"
-    reviewedOn="2026-03-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Editorial standards, source use, automation boundaries, and correction-response policy."
+    reviewedOn="2026-04-04"
+  />
+
+  <TrustRoles
+    roles={[TRUST_PROFILES.siteOwner, TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+    intro="These are the public roles behind the editorial system used on updated pages. They separate site ownership from methodology review and editorial standards review."
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -203,7 +219,7 @@ const lastUpdated = "2026-03-03";
       When we make a correction that changes a calculation or explanation, we update the page and adjust the "Last updated" date so
       readers can see that a change was made.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
   </section>
 </BaseLayout>
 

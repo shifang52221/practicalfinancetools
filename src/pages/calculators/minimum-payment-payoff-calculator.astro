@@ -2,6 +2,7 @@
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { MinimumPaymentPayoff } from "../../components/calculators/MinimumPaymentPayoff";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 import { minimumPaymentPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Minimum Payment Calculator";
@@ -83,11 +84,15 @@ const caseTwoFirstMonthInterestReset = caseTwoBaseInput.balance * (29.99 / 100 /
     }
   ]}
   lastUpdated="2026-04-03"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
   <MinimumPaymentPayoff client:load />
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Content and methodology review"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Minimum-payment modeling, statement-style assumptions, and risk framing for slow payoff paths."
     reviewedOn="2026-04-03"
   />
 

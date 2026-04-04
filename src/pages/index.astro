@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ReviewedByCard from "../components/ReviewedByCard.astro";
 import { SITE } from "../config/site";
+import { TRUST_PROFILES } from "../config/trust";
 import { TOOLS } from "../lib/tools";
 import AdSlot from "../components/AdSlot.astro";
 
@@ -22,7 +23,13 @@ const featured = TOOLS.filter((t) => featuredSlugs.includes(t.slug));
 const all = TOOLS;
 const slots = SITE.adsenseSlots;
 ---
-<BaseLayout title={title} description={description} canonicalPath="/">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+>
   <section class="card hero">
     <span class="pill">US-focused - Decision-first - No signup</span>
     <h1>Choose the right calculator for payoff, APR, and mortgage decisions</h1>
@@ -40,8 +47,10 @@ const slots = SITE.adsenseSlots;
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Sitewide workflow and methodology review"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Homepage workflow framing, trust-page alignment, and core decision-path routing."
     reviewedOn="2026-04-03"
   />
 

@@ -2,6 +2,7 @@
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { ExtraPaymentMortgageCalculator } from "../../components/calculators/ExtraPayment";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Principal Payment Calculator (Mortgage)";
@@ -68,11 +69,15 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.total
     }
   ]}
   lastUpdated="2026-04-03"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
   <ExtraPaymentMortgageCalculator client:load />
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Additional principal and lump-sum calculator review"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Principal-only and lump-sum payoff assumptions, result boundaries, and next-step comparison guidance."
     reviewedOn="2026-04-03"
   />
 

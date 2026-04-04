@@ -1,14 +1,23 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ReviewedByCard from "../components/ReviewedByCard.astro";
+import TrustRoles from "../components/TrustRoles.astro";
 import { SITE } from "../config/site";
+import { TRUST_PROFILES } from "../config/trust";
 
 const title = `About | ${SITE.name}`;
 const description = "About this site, our goals, and how to use the calculators responsibly.";
 
-const lastUpdated = "2026-03-03";
+const lastUpdated = "2026-04-04";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/about" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/about"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+>
   <section class="card hero">
     <h1>About</h1>
     <p>
@@ -18,9 +27,16 @@ const lastUpdated = "2026-03-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Site-wide content governance review"
-    reviewedOn="2026-03-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Site ownership, maintenance expectations, correction handling, and public trust disclosures."
+    reviewedOn="2026-04-04"
+  />
+
+  <TrustRoles
+    roles={[TRUST_PROFILES.siteOwner, TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+    intro="These roles explain who owns product decisions, who reviews formulas and assumptions, and who reviews educational framing across the site."
   />
 
   <section class="grid" style="margin-top:18px">
@@ -196,7 +212,7 @@ const lastUpdated = "2026-03-03";
       Educational use only. Not financial advice. We do not provide personalized recommendations, and we do not guarantee the accuracy of
       results. Always confirm figures with your lender, servicer, card issuer, or financial professional.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
   </section>
 </BaseLayout>
 
