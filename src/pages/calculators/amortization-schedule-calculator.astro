@@ -1,6 +1,8 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { AmortizationScheduleCalculator as AmortizationScheduleCalculatorComponent } from "../../components/calculators/Amortization";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Amortization Schedule Calculator";
@@ -49,11 +51,27 @@ const exampleTotalInterest = money.format(example.totalInterest);
       a: "This assumes a fixed rate. Adjustable-rate loans require a different model."
     }
   ]}
-  lastUpdated="2026-02-08"
+  lastUpdated="2026-04-04"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
   <AmortizationScheduleCalculatorComponent client:load />
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Fixed-rate amortization behavior, note-rate versus APR distinctions, and schedule-versus-payoff workflow guidance."
+    reviewedOn="2026-04-04"
+  />
 
   <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Use this page when the payment schedule itself is the question</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Use this calculator when you want to see how a fixed-rate payment splits between interest and principal over time.</li>
+      <li>Do not use APR here as the interest input; this schedule is built from the note rate used for the loan payment.</li>
+      <li>If your real question is how extra payments change payoff, switch to the extra payment calculator rather than reading that answer from a standard schedule.</li>
+    </ul>
+
     <h2 style="margin:0 0 10px">How to read the schedule</h2>
     <p class="muted" style="margin:0">
       Early payments are interest-heavy because the balance is highest. Over time, interest decreases and more of each
@@ -160,6 +178,13 @@ const exampleTotalInterest = money.format(example.totalInterest);
       <li>Check the payment posting date; interest can shift if your servicer posts earlier or later.</li>
       <li>Compare one or two rows in the schedule to your statement to validate rounding.</li>
       <li>If the statement shows escrow, compare only principal and interest amounts.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">When to run a second schedule</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Run a second schedule when you are comparing a different rate or term and want the same year-1 or year-5 checkpoint.</li>
+      <li>Run the extra payment calculator instead when monthly extra principal or lump sums are part of the decision.</li>
+      <li>Run the mortgage payment calculator if the real confusion is about taxes, insurance, HOA, or PMI rather than principal and interest.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Related topics</h2>

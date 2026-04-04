@@ -1,6 +1,8 @@
 ﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { RentVsBuyCalculator as RentVsBuyCalculatorComponent } from "../../components/calculators/RentVsBuy";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 import { rentVsBuy } from "../../lib/calc/rentBuy";
 
 const title = "Rent vs Buy Calculator";
@@ -74,11 +76,27 @@ const exampleBreakEven = example.breakEvenYear == null ? "Not within horizon" : 
       a: "Different tools include different costs (taxes, maintenance, opportunity cost, and tax impacts) and use different modeling assumptions."
     }
   ]}
-  lastUpdated="2026-02-17"
+  lastUpdated="2026-04-04"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
   <RentVsBuyCalculatorComponent client:load />
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Break-even interpretation, housing-cost assumptions, and scenario-stress guidance for rent-versus-buy comparisons."
+    reviewedOn="2026-04-04"
+  />
 
   <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Use this calculator for scenario comparison, not prediction</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>This tool is strongest when you want to compare a small number of realistic scenarios using the same time horizon and cost assumptions.</li>
+      <li>Break-even here is a modeled threshold under your inputs, not a forecast of home prices, rent, or investment returns.</li>
+      <li>If small assumption changes flip the answer, treat the decision as fragile and keep comparing conservative cases.</li>
+    </ul>
+
     <h2 style="margin:0 0 10px">How to interpret results</h2>
     <p class="muted" style="margin:0">
       Rent vs buy results depend heavily on assumptions. Use this tool to compare scenarios, not to predict the future.
@@ -167,6 +185,13 @@ const exampleBreakEven = example.breakEvenYear == null ? "Not within horizon" : 
       <li>Use real property tax and insurance quotes for your zip code.</li>
       <li>Validate maintenance assumptions against recent estimates or HOA budgets.</li>
       <li>Confirm rent growth and appreciation with local historical ranges.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">When to run a second scenario before deciding</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Run a shorter holding-period case if there is any chance you move sooner than planned.</li>
+      <li>Run a higher-rate and higher-maintenance case if the ownership budget already feels tight.</li>
+      <li>Run a lower-appreciation and lower-investment-return case if you want a more conservative baseline for the decision.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Related guides</h2>

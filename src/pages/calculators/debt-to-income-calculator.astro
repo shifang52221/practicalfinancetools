@@ -1,6 +1,8 @@
 ﻿---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { DtiCalculator } from "../../components/calculators/Dti";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 import { calculateDti } from "../../lib/calc/dti";
 
 const title = "Debt-to-Income (DTI) Calculator";
@@ -68,11 +70,27 @@ const exampleBack = example.backEndDti == null ? "N/A" : pct.format(example.back
       a: "Common approaches include reducing required monthly payments (paying down revolving debt, refinancing to lower required payments, paying off installment loans) and increasing verifiable income. Avoid taking on new monthly obligations before applying."
     }
   ]}
-  lastUpdated="2026-02-17"
+  lastUpdated="2026-04-04"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
   <DtiCalculator client:load />
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Front-end versus back-end DTI interpretation, housing-payment assumptions, and approval-boundary guidance."
+    reviewedOn="2026-04-04"
+  />
 
   <div class="prose" style="margin-top:16px">
+    <h2 style="margin:0 0 10px">Use this calculator to estimate ratio pressure, not approval odds</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>This page is best for checking whether your current payment mix looks comfortably inside or uncomfortably close to common DTI ranges.</li>
+      <li>It does not tell you whether a lender will approve the file; underwriting rules, reserves, credit, documentation, and program-specific overlays can all change the answer.</li>
+      <li>If the result is borderline, treat that as a prompt to run more conservative scenarios rather than as a final yes/no decision.</li>
+    </ul>
+
     <h2 style="margin:0 0 10px">Example</h2>
     <p class="muted" style="margin:0">
       Suppose your gross income is $8,000/month. If your total housing payment is $2,400 and other monthly debts are
@@ -164,6 +182,13 @@ const exampleBack = example.backEndDti == null ? "N/A" : pct.format(example.back
       <li>Use front-end DTI to sanity-check housing affordability under your assumptions.</li>
       <li>Use back-end DTI to see how non-housing debts change affordability and risk.</li>
       <li>If results are borderline, try scenarios: higher rate, higher taxes/insurance, and a higher minimum payment.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">When to run another DTI scenario</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Run a higher housing-payment scenario if taxes, insurance, HOA, or PMI still feel uncertain.</li>
+      <li>Run a higher debt-payment scenario if any card minimum or student-loan treatment may change before underwriting.</li>
+      <li>Run an income-downside scenario if overtime, bonus, or variable income may not be fully counted by the lender.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">DTI guide deep dives</h2>
