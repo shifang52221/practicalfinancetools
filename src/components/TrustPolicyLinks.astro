@@ -9,12 +9,14 @@ type Props = {
   title?: string;
   intro?: string;
   currentPath?: string;
+  sectionId?: string;
 };
 
 const {
   title = "Trust center",
   intro = "Use these pages to understand who maintains the site, how pages are reviewed, how formulas are checked, and where to send corrections.",
-  currentPath
+  currentPath,
+  sectionId = "trust-center"
 } = Astro.props;
 
 const links: TrustPolicyLink[] = [
@@ -40,7 +42,7 @@ const links: TrustPolicyLink[] = [
   }
 ];
 ---
-<section class="card section prose" style="margin-top:18px">
+<section class="card section prose" style="margin-top:18px" id={sectionId}>
   <h2 style="margin-top:0">{title}</h2>
   <p class="muted" style="margin:10px 0 0">{intro}</p>
   <div class="grid" style="margin-top:12px">

@@ -83,8 +83,8 @@ const navActive = {
   guides: navPath.startsWith("/guides"),
   topics: navPath.startsWith("/topics"),
   about: navPath.startsWith("/about"),
-  contact: navPath.startsWith("/contact"),
-  privacy: navPath.startsWith("/privacy-policy")
+  trustCenter: ["/editorial-policy", "/methodology"].some((path) => navPath.startsWith(path)),
+  contact: navPath.startsWith("/contact")
 };
 const webPageLd = {
   "@context": "https://schema.org",
@@ -182,20 +182,50 @@ const ogType = pageType === "Article" ? "article" : "website";
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="page">
-      <header class="container">
-        <div class="chrome topbar">
-          <a class="brand" href="/">
-            <span class="brand-badge" aria-hidden="true"></span>
-            <span>{SITE.name}</span>
-          </a>
-          <nav class="nav" aria-label="Primary">
-            <a href="/calculators" aria-current={navActive.calculators ? "page" : undefined}>Calculators</a>
-            <a href="/guides" aria-current={navActive.guides ? "page" : undefined}>Guides</a>
-            <a href="/topics" aria-current={navActive.topics ? "page" : undefined}>Topics</a>
-            <a href="/about" aria-current={navActive.about ? "page" : undefined}>About</a>
-            <a href="/contact" aria-current={navActive.contact ? "page" : undefined}>Contact</a>
-            <a href="/privacy-policy" aria-current={navActive.privacy ? "page" : undefined}>Privacy</a>
-          </nav>
+      <header class="site-header">
+        <div class="container site-header__inner">
+          <div class="chrome topbar">
+            <a class="brand" href="/">
+              <span class="brand-badge" aria-hidden="true">
+                <svg viewBox="0 0 32 32" class="brand-mark-svg" role="img" focusable="false">
+                  <defs>
+                    <linearGradient id="brandMarkGradient" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#7aa2ff"></stop>
+                      <stop offset="100%" stop-color="#7dffc8"></stop>
+                    </linearGradient>
+                  </defs>
+                  <path d="M5 25.5H27" stroke="rgba(255,255,255,0.26)" stroke-width="1.5" stroke-linecap="round"></path>
+                  <rect x="6" y="16" width="4" height="9" rx="1.8" fill="url(#brandMarkGradient)"></rect>
+                  <rect x="14" y="12" width="4" height="13" rx="1.8" fill="url(#brandMarkGradient)" opacity="0.9"></rect>
+                  <rect x="22" y="8" width="4" height="17" rx="1.8" fill="url(#brandMarkGradient)" opacity="0.78"></rect>
+                  <path
+                    d="M6.5 19.5L12 15.5L17 17L25.5 9"
+                    stroke="#eaf0ff"
+                    stroke-width="2.1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+              </span>
+              <span class="brand-copy">
+                <span class="brand-name">{SITE.name}</span>
+                <span class="brand-tag">US finance calculators and decision guides</span>
+              </span>
+            </a>
+            <nav class="nav" aria-label="Primary">
+              <a href="/calculators" aria-current={navActive.calculators ? "page" : undefined}>Calculators</a>
+              <a href="/guides" aria-current={navActive.guides ? "page" : undefined}>Guides</a>
+              <a href="/topics" aria-current={navActive.topics ? "page" : undefined}>Topics</a>
+              <a href="/about" aria-current={navActive.about ? "page" : undefined}>About</a>
+            </nav>
+            <div class="topbar-actions">
+              <nav class="header-utility" aria-label="Secondary">
+                <a href="/about#trust-center" aria-current={navActive.trustCenter ? "page" : undefined}>Trust Center</a>
+                <a href="/contact" aria-current={navActive.contact ? "page" : undefined}>Contact</a>
+              </nav>
+              <a class="btn btn-primary header-cta" href="/calculators">Start With Calculators</a>
+            </div>
+          </div>
         </div>
       </header>
 
