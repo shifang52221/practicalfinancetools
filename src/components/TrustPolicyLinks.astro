@@ -1,0 +1,66 @@
+---
+type TrustPolicyLink = {
+  href: string;
+  title: string;
+  description: string;
+};
+
+type Props = {
+  title?: string;
+  intro?: string;
+  currentPath?: string;
+};
+
+const {
+  title = "Trust center",
+  intro = "Use these pages to understand who maintains the site, how pages are reviewed, how formulas are checked, and where to send corrections.",
+  currentPath
+} = Astro.props;
+
+const links: TrustPolicyLink[] = [
+  {
+    href: "/about",
+    title: "About",
+    description: "Who the site serves, what it publishes, and how maintenance priorities are set."
+  },
+  {
+    href: "/editorial-policy",
+    title: "Editorial policy",
+    description: "How pages are reviewed, what standards they must meet, and how corrections are handled."
+  },
+  {
+    href: "/methodology",
+    title: "Methodology",
+    description: "How formulas, assumptions, and scenario limits are checked before and after updates."
+  },
+  {
+    href: "/contact",
+    title: "Contact",
+    description: "Where to report broken pages, request corrections, or ask methodology questions."
+  }
+];
+---
+<section class="card section prose" style="margin-top:18px">
+  <h2 style="margin-top:0">{title}</h2>
+  <p class="muted" style="margin:10px 0 0">{intro}</p>
+  <div class="grid" style="margin-top:12px">
+    {links.map((link) => {
+      const isCurrent = currentPath === link.href;
+      return (
+        <article class="card2 prose col-6" style="padding:16px">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
+            <h3 style="margin:0">
+              <a href={link.href}>{link.title}</a>
+            </h3>
+            {isCurrent ? (
+              <span class="pill" aria-label="Current trust page">
+                Current page
+              </span>
+            ) : null}
+          </div>
+          <p class="muted" style="margin:10px 0 0">{link.description}</p>
+        </article>
+      );
+    })}
+  </div>
+</section>

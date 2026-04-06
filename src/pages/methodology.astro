@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ReviewedByCard from "../components/ReviewedByCard.astro";
 import TrustRoles from "../components/TrustRoles.astro";
+import TrustPolicyLinks from "../components/TrustPolicyLinks.astro";
 import { SITE } from "../config/site";
 import { TRUST_PROFILES } from "../config/trust";
 
@@ -9,7 +10,7 @@ const title = `Calculator Methodology | ${SITE.name}`;
 const description =
   "High-level methodology and assumptions used in our calculators (amortization, APR, debt payoff). Educational use only.";
 
-const lastUpdated = "2026-04-04";
+const lastUpdated = "2026-04-06";
 ---
 <BaseLayout
   title={title}
@@ -32,13 +33,15 @@ const lastUpdated = "2026-04-04";
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Formula behavior, assumptions, scenario limits, and how model changes are checked before release."
-    reviewedOn="2026-04-04"
+    reviewedOn="2026-04-06"
   />
 
   <TrustRoles
     roles={[TRUST_PROFILES.siteOwner, TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
     intro="Updated pages use these roles to show who owns workflow choices, who reviews formulas, and who reviews educational clarity."
   />
+
+  <TrustPolicyLinks currentPath="/methodology" />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Mortgage payment and amortization</h2>
@@ -202,12 +205,20 @@ const lastUpdated = "2026-04-04";
     </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When methodology is updated</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>We revisit methodology when a calculator formula changes, when a support guide introduces a new assumption, or when a correction request reveals a misleading simplification.</li>
+      <li>Material updates should be reflected in the calculator page, any affected support guide, and this methodology page so the trust chain stays aligned.</li>
+      <li>If a workflow depends heavily on lender-specific rules, we favor plain-language boundaries over pretending the model is universal.</li>
+    </ul>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Questions</h2>
     <p class="muted" style="margin:10px 0 0">
       If you'd like a specific formula breakdown for a calculator, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the page
       URL.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-06</p>
   </section>
 </BaseLayout>
 

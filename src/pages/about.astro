@@ -2,13 +2,14 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ReviewedByCard from "../components/ReviewedByCard.astro";
 import TrustRoles from "../components/TrustRoles.astro";
+import TrustPolicyLinks from "../components/TrustPolicyLinks.astro";
 import { SITE } from "../config/site";
 import { TRUST_PROFILES } from "../config/trust";
 
 const title = `About | ${SITE.name}`;
 const description = "About this site, our goals, and how to use the calculators responsibly.";
 
-const lastUpdated = "2026-04-04";
+const lastUpdated = "2026-04-06";
 ---
 <BaseLayout
   title={title}
@@ -31,7 +32,7 @@ const lastUpdated = "2026-04-04";
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
     reviewScope="Site ownership, maintenance expectations, correction handling, and public trust disclosures."
-    reviewedOn="2026-04-04"
+    reviewedOn="2026-04-06"
   />
 
   <TrustRoles
@@ -39,13 +40,15 @@ const lastUpdated = "2026-04-04";
     intro="These roles explain who owns product decisions, who reviews formulas and assumptions, and who reviews educational framing across the site."
   />
 
+  <TrustPolicyLinks currentPath="/about" />
+
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">What you will find here</h2>
+      <h2 style="margin-top:0">What this site publishes</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>Calculators for debt payoff planning, APR comparisons, and mortgage scenarios.</li>
-        <li>Short guides that explain how to interpret outputs and compare trade-offs.</li>
-        <li>Clear assumptions so you can sanity-check results.</li>
+        <li>Decision-first calculators for payoff planning, APR comparisons, mortgage scenarios, DTI, and rent-vs-buy trade-offs.</li>
+        <li>Guides that explain what the output means, what assumptions matter, and when a calculator should not be used alone.</li>
+        <li>Topic hubs that route readers to the right next step instead of forcing them to browse the full catalog.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
@@ -53,53 +56,35 @@ const lastUpdated = "2026-04-04";
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li>Not personalized financial advice.</li>
         <li>Not an official lender/issuer disclosure.</li>
-        <li>Not a substitute for reading your statements and loan documents.</li>
+        <li>Not a substitute for statements, disclosures, payoff letters, or loan documents.</li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to use the calculators responsibly</h2>
+    <h2 style="margin-top:0">Who the site is for</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use results to compare scenarios (rate, payment size, fees, time horizon), not to predict exact statements.</li>
-      <li>Confirm assumptions: posting dates, rounding, minimum payment rules, escrow changes, and lender policies.</li>
-      <li>When a decision is close, run conservative scenarios (higher rate, higher costs, lower return).</li>
+      <li>Readers comparing loan offers and trying to normalize fees, rates, and terms.</li>
+      <li>Borrowers modeling payoff timelines for mortgages, credit cards, or other debt balances.</li>
+      <li>People who want transparent assumptions before relying on a calculator result.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Who this site is for</h2>
+    <h2 style="margin-top:0">How maintenance works</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>People comparing loan offers and trying to normalize fees and terms.</li>
-      <li>Borrowers modeling payoff timelines for credit cards and mortgages.</li>
-      <li>Anyone who wants to understand how a calculator arrives at its result.</li>
+      <li>We prioritize issues that affect calculator results, interpretation, or broken user flows.</li>
+      <li>Material changes are reflected in page-level updates so readers can see that maintenance is ongoing.</li>
+      <li>Corrections are routed through <a href="/contact">contact</a>, then checked against our <a href="/editorial-policy">editorial policy</a> and <a href="/methodology">methodology</a>.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How we build calculators</h2>
+    <h2 style="margin-top:0">How we build and review calculators</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>We use standard formulas (amortization, APR estimation, payoff schedules).</li>
-      <li>We keep inputs explicit and avoid hidden assumptions whenever possible.</li>
-      <li>We test calculators against expected behaviors and edge cases.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Who maintains this site</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Maintained by the Practical Finance Tools editorial and product team.</li>
-      <li>Content and calculator updates are tracked with page-level "Last updated" dates.</li>
-      <li>Feedback and corrections are handled through <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to get the most accurate results</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use your latest statement values for balance, rate, and minimum payment rules.</li>
-      <li>Match the remaining term in months, not the original term.</li>
-      <li>Keep the same baseline when comparing scenarios so the changes are clear.</li>
+      <li>We use standard formulas where possible and keep assumptions explicit when a lender policy can vary.</li>
+      <li>We test calculators against expected behaviors and edge cases before treating a workflow as stable.</li>
+      <li>We keep methodology notes and support guides close to the calculator so users can verify what the result does and does not represent.</li>
     </ul>
   </section>
 
@@ -153,57 +138,19 @@ const lastUpdated = "2026-04-04";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Our goal</h2>
+    <h2 style="margin-top:0">Advertising and independence</h2>
     <p class="muted" style="margin:10px 0 0">
-      Help you understand trade-offs, not tell you what to do. We aim for clarity over complexity and highlight the assumptions that
-      change outcomes the most.
+      We may display advertising to support hosting, maintenance, and development. Advertising does not change calculator outputs,
+      page conclusions, or the correction process. We keep advertising separate from methodology and editorial review.
     </p>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Data to gather first</h2>
-    <p class="muted" style="margin:10px 0 0">
-      For the most accurate comparisons, pull the latest statement or loan estimate. Confirm the balance, rate/APR, term, minimum
-      payment, fees, and any promo end dates. Using real numbers makes the comparisons meaningful.
-    </p>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Transparency</h2>
-    <p class="muted" style="margin:10px 0 0">
-      We aim to keep the site simple and independent. We may display advertising to support hosting and development.
-      Advertising does not change calculator outputs.
-    </p>
-    <div class="btn-row" style="margin-top:12px">
-      <a class="btn" href="/editorial-policy">Editorial policy</a>
-      <a class="btn" href="/methodology">Calculator methodology</a>
-      <a class="btn" href="/privacy-policy">Privacy policy</a>
-      <a class="btn" href="/contact">Contact</a>
-    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Corrections and updates</h2>
     <p class="muted" style="margin:10px 0 0">
-      If you see a discrepancy with a statement or lender disclosure, send us the page URL and a source. We document changes and
-      refresh dates so you can track updates.
+      If you see a discrepancy with a statement, disclosure, or public source, send us the page URL and the issue through <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      We review corrections, update affected pages when warranted, and use visible dates so the maintenance trail stays public.
     </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to help us improve</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Report broken pages or confusing outputs with a link and inputs used.</li>
-      <li>Suggest calculators you need for real decisions (we prioritize demand and clarity).</li>
-      <li>Point us to authoritative sources if you see a definition that can be clearer.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How we prioritize new tools</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>High demand topics with clear, repeatable formulas.</li>
-      <li>Workflows that reduce confusion (payment vs interest, APR vs rate).</li>
-      <li>Calculators that can be validated with public guidance.</li>
-    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -212,7 +159,7 @@ const lastUpdated = "2026-04-04";
       Educational use only. Not financial advice. We do not provide personalized recommendations, and we do not guarantee the accuracy of
       results. Always confirm figures with your lender, servicer, card issuer, or financial professional.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-06</p>
   </section>
 </BaseLayout>
 

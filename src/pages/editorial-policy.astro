@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ReviewedByCard from "../components/ReviewedByCard.astro";
 import TrustRoles from "../components/TrustRoles.astro";
+import TrustPolicyLinks from "../components/TrustPolicyLinks.astro";
 import { SITE } from "../config/site";
 import { TRUST_PROFILES } from "../config/trust";
 
@@ -9,7 +10,7 @@ const title = `Editorial Policy | ${SITE.name}`;
 const description =
   "How we create and update calculator explanations, what we consider before publishing, and how to request corrections. Educational use only.";
 
-const lastUpdated = "2026-04-04";
+const lastUpdated = "2026-04-06";
 ---
 <BaseLayout
   title={title}
@@ -32,13 +33,15 @@ const lastUpdated = "2026-04-04";
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
     reviewScope="Editorial standards, source use, automation boundaries, and correction-response policy."
-    reviewedOn="2026-04-04"
+    reviewedOn="2026-04-06"
   />
 
   <TrustRoles
     roles={[TRUST_PROFILES.siteOwner, TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
     intro="These are the public roles behind the editorial system used on updated pages. They separate site ownership from methodology review and editorial standards review."
   />
+
+  <TrustPolicyLinks currentPath="/editorial-policy" />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What we publish</h2>
@@ -71,6 +74,15 @@ const lastUpdated = "2026-04-04";
       We test calculators with sample inputs and sanity checks that confirm the results follow the stated assumptions. When possible,
       we compare outcomes with publicly documented formulas or lender examples to ensure consistency.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Source hierarchy</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Primary sources come first: lender disclosures, statements, servicer guidance, and regulator materials.</li>
+      <li>Secondary sources can help with plain-language explanations, but they do not override official product terms.</li>
+      <li>If a source cannot be checked or conflicts with a disclosure, we treat the disclosure as the controlling reference.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -186,8 +198,8 @@ const lastUpdated = "2026-04-04";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Use of automation</h2>
     <p class="muted" style="margin:10px 0 0">
-      We may use internal tools to draft outlines or check for consistency, but every page is reviewed for accuracy, clarity, and
-      usefulness before publishing.
+      We may use internal tools to draft outlines, compare wording, or flag consistency issues, but automation does not publish pages on
+      its own. Every page still goes through editorial review for usefulness and methodology review when formula logic or assumptions are involved.
     </p>
   </section>
   <section class="card section prose" style="margin-top:18px">
@@ -201,8 +213,8 @@ const lastUpdated = "2026-04-04";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Advertising and independence</h2>
     <p class="muted" style="margin:10px 0 0">
-      We may display advertising to support the site. Advertising does not change calculator results and does not determine what we
-      publish. We do not sell personalized financial advice.
+      We may display advertising to support the site. Advertising does not change calculator results, methodology notes, or the topics we
+      choose to publish. Editorial independence remains separate from ad delivery and monetization decisions.
     </p>
   </section>
 
@@ -219,7 +231,7 @@ const lastUpdated = "2026-04-04";
       When we make a correction that changes a calculation or explanation, we update the page and adjust the "Last updated" date so
       readers can see that a change was made.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-06</p>
   </section>
 </BaseLayout>
 

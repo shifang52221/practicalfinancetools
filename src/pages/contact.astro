@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TrustRoles from "../components/TrustRoles.astro";
+import TrustPolicyLinks from "../components/TrustPolicyLinks.astro";
 import { SITE } from "../config/site";
 import { TRUST_PROFILES } from "../config/trust";
 
@@ -8,7 +9,7 @@ const title = `Contact | ${SITE.name}`;
 const description =
   "Contact Practical Finance Tools to report calculator issues, request corrections, or suggest a new tool. We read every message.";
 
-const lastUpdated = "2026-04-04";
+const lastUpdated = "2026-04-06";
 ---
 <BaseLayout
   title={title}
@@ -40,6 +41,17 @@ const lastUpdated = "2026-04-04";
     intro="These are the public roles behind maintenance, formula review, and editorial review. Correction requests sent here are routed through that responsibility chain."
   />
 
+  <TrustPolicyLinks currentPath="/contact" />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to contact us</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Report a correction request tied to a calculator, guide, or policy page.</li>
+      <li>Flag a broken page, incorrect assumption, or output that does not match the stated methodology.</li>
+      <li>Suggest a new tool or workflow when you can explain the decision problem it solves.</li>
+    </ul>
+  </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">What to include</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -51,14 +63,14 @@ const lastUpdated = "2026-04-04";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Response time and scope</h2>
+    <h2 style="margin-top:0">How we triage reports</h2>
     <p class="muted" style="margin:10px 0 0">
-      We typically respond within a few business days. We cannot provide personalized financial advice, but we do correct errors and
-      clarify assumptions when needed.
+      We prioritize issues that affect calculator results, broken pages, or misleading assumptions first. Requests for new tools and
+      general feedback are reviewed after correctness and site-access issues.
     </p>
     <p class="muted" style="margin:10px 0 0">
-      If your question relates to a personal account, statement, or loan offer, please contact your lender or provider directly. We do
-      not have access to account data and cannot verify account-specific details.
+      We typically respond within a few business days. If your question relates to a personal account, statement, or loan offer, please
+      contact your lender or provider directly because we do not have access to account-specific data.
     </p>
   </section>
 
@@ -90,13 +102,14 @@ const lastUpdated = "2026-04-04";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Security or technical issues</h2>
+    <h2 style="margin-top:0">Privacy and sensitive information</h2>
     <p class="muted" style="margin:10px 0 0">
-      If you find a bug or a broken page, include the browser, device, and steps to reproduce the issue.
+      Do not send full statements, account numbers, or other sensitive information. If you need to explain a correction, send only the
+      details necessary to reproduce the issue and point us to the policy, statement rule, or disclosure language involved.
     </p>
     <p class="muted" style="margin:10px 0 0">
-      If you suspect a security issue, do not post sensitive information. Describe the issue at a high level and include the affected
-      URL so we can investigate quickly.
+      See our <a href="/privacy-policy">privacy policy</a> for how contact emails are handled. If you suspect a security issue, describe it
+      at a high level and include the affected URL so we can investigate without receiving unnecessary private data.
     </p>
   </section>
 
@@ -109,13 +122,6 @@ const lastUpdated = "2026-04-04";
     </ul>
   </section>
 
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Privacy note</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Please do not send sensitive personal information. See our <a href="/privacy-policy">privacy policy</a> for details on how we
-      handle contact emails.
-    </p>
-  </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Preferred response format</h2>
     <p class="muted" style="margin:10px 0 0">
@@ -168,7 +174,7 @@ const lastUpdated = "2026-04-04";
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Last updated</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-04-04</p>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-04-06</p>
   </section>
 </BaseLayout>
 

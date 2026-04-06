@@ -1520,6 +1520,47 @@ test("SEO: trust pages should expose the shared responsibility model", () => {
   );
 });
 
+test("SEO: trust pages should form a public trust center with accountability coverage", () => {
+  const pageExpectations = [
+    {
+      file: "src/pages/about.astro",
+      requiredPhrases: ["maintenance", "advertising", "corrections"]
+    },
+    {
+      file: "src/pages/editorial-policy.astro",
+      requiredPhrases: ["source hierarchy", "automation", "independence"]
+    },
+    {
+      file: "src/pages/methodology.astro",
+      requiredPhrases: ["validation", "limitations", "update"]
+    },
+    {
+      file: "src/pages/contact.astro",
+      requiredPhrases: ["correction", "sensitive", "privacy"]
+    }
+  ];
+  const issues: string[] = [];
+
+  for (const page of pageExpectations) {
+    const source = readFileSync(join(process.cwd(), page.file), "utf8");
+    if (!source.includes("TrustPolicyLinks")) {
+      issues.push(`${page.file} -> missing TrustPolicyLinks`);
+    }
+
+    for (const phrase of page.requiredPhrases) {
+      if (!source.toLowerCase().includes(phrase)) {
+        issues.push(`${page.file} -> missing accountability phrase "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Trust-center accountability coverage is incomplete:\n${issues.join("\n")}` : ""
+  );
+});
+
 test("SEO: core workflow pages and layouts should adopt the stronger trust model", () => {
   const layoutExpectations = [
     {
