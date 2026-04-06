@@ -3773,3 +3773,137 @@ test("SEO: refinance points support should use the exact APR-and-points destinat
       : ""
   );
 });
+
+test("SEO: remaining indexable guide holdouts should adopt the current trust model", () => {
+  const expectations = [
+    {
+      file: "src/pages/guides/how-to-find-your-apr.astro",
+      rolePhrase: "Use this guide when you need to locate the exact APR that belongs in your comparison or payoff decision"
+    },
+    {
+      file: "src/pages/guides/apr-for-balance-transfers.astro",
+      rolePhrase: "Use this guide when a balance-transfer offer looks cheap up front but the APR rules and fee timing may change the real payoff math"
+    },
+    {
+      file: "src/pages/guides/apr-vs-apy-loans.astro",
+      rolePhrase: "Use this guide when loan marketing mixes APR and APY language and you need to separate borrowing cost from yield math"
+    },
+    {
+      file: "src/pages/guides/debt-snowball-vs-avalanche.astro",
+      rolePhrase: "Use this guide when you need to choose between behavioral momentum and interest-cost efficiency in a debt payoff plan"
+    },
+    {
+      file: "src/pages/guides/dti-housing-payment-piti-includes.astro",
+      rolePhrase: "Use this guide when you need to confirm whether PITI belongs in the housing-payment side of your DTI calculation"
+    }
+  ];
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    const requiredSnippets = [
+      "TRUST_PROFILES",
+      "authorProfile={TRUST_PROFILES.siteOwner}",
+      "reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}",
+      "ReviewedByCard",
+      "writtenBy={TRUST_PROFILES.siteOwner}",
+      "reviewScope=",
+      ">References<",
+      'const lastUpdated = "2026-04-06";',
+      "Last updated: 2026-04-06",
+      item.rolePhrase
+    ];
+
+    for (const snippet of requiredSnippets) {
+      if (!source.includes(snippet)) {
+        issues.push(`${item.file} -> missing "${snippet}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0
+      ? `Remaining indexable guide holdout trust coverage is missing:\n${issues.join("\n")}`
+      : ""
+  );
+});
+
+test("SEO: privacy and terms should read like maintained public accountability documents", () => {
+  const expectations = [
+    {
+      file: "src/pages/privacy-policy.astro",
+      requiredSnippets: [
+        'const lastUpdated = "2026-04-06";',
+        "Last updated: 2026-04-06",
+        "consent banner",
+        "Google Analytics",
+        "advertising",
+        "local storage",
+        "privacy requests"
+      ]
+    },
+    {
+      file: "src/pages/terms.astro",
+      requiredSnippets: [
+        'const lastUpdated = "2026-04-06";',
+        "Last updated: 2026-04-06",
+        "calculator limitations",
+        "educational use only",
+        "acceptable use",
+        "service availability"
+      ]
+    }
+  ];
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    for (const snippet of item.requiredSnippets) {
+      if (!source.includes(snippet)) {
+        issues.push(`${item.file} -> missing "${snippet}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0
+      ? `Privacy/terms maintained-document coverage is missing:\n${issues.join("\n")}`
+      : ""
+  );
+});
+
+test("SEO: BaseLayout should expose the upgraded trust-forward header contract", () => {
+  const source = readFileSync(join(process.cwd(), "src/layouts/BaseLayout.astro"), "utf8");
+  const issues: string[] = [];
+  const requiredSnippets = [
+    "Trust Center",
+    "Start With Calculators",
+    "US finance calculators and decision guides"
+  ];
+
+  for (const snippet of requiredSnippets) {
+    if (!source.includes(snippet)) {
+      issues.push(`src/layouts/BaseLayout.astro -> missing "${snippet}"`);
+    }
+  }
+
+  const primaryNavMatch = source.match(/<nav class=\"nav\" aria-label=\"Primary\">([\s\S]*?)<\/nav>/);
+  if (!primaryNavMatch) {
+    issues.push("src/layouts/BaseLayout.astro -> missing primary nav block");
+  } else if (primaryNavMatch[1].includes(">Privacy<")) {
+    issues.push('src/layouts/BaseLayout.astro -> primary nav should not include "Privacy"');
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0
+      ? `BaseLayout trust-forward header contract is incomplete:\n${issues.join("\n")}`
+      : ""
+  );
+});
