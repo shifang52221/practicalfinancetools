@@ -64,6 +64,17 @@ function getStaticGuideRedirectMap(): Map<string, string> {
   );
 }
 
+function vercelSourcePatternToRegex(source: string): RegExp {
+  const withPlaceholders = source
+    .replace(/\(\.\*\)/g, "__VERCEL_WILDCARD__")
+    .replace(/:([A-Za-z0-9_]+)/g, "__VERCEL_PARAM__");
+  const escaped = withPlaceholders.replace(/[.+?^${}()|[\]\\]/g, "\\$&");
+  const withWildcards = escaped
+    .replace(/__VERCEL_WILDCARD__/g, ".*")
+    .replace(/__VERCEL_PARAM__/g, "[^/]+");
+  return new RegExp(`^${withWildcards}$`);
+}
+
 test("SEO: canonicalPath should match the page route path", () => {
   const pagesRoot = join(process.cwd(), "src", "pages");
   const files = collectAstroFiles(pagesRoot);
@@ -879,6 +890,44 @@ test("SEO: extra-payment and PITI destinations should keep final absorbed-intent
     issues.length,
     0,
     issues.length > 0 ? `Final extra-payment/PITI destination trust alignment is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: extra-payment support guides should not be captured by Vercel redirect patterns", () => {
+  const vercelConfig = JSON.parse(readFileSync(join(process.cwd(), "vercel.json"), "utf8")) as {
+    redirects?: Array<{ source?: string; destination?: string; has?: unknown }>;
+  };
+  const supportPaths = [
+    "/guides/extra-payment-accelerated-plan",
+    "/guides/extra-payment-escrow-not-affected",
+    "/guides/extra-payment-liquidity-reserve",
+    "/guides/extra-payment-lump-sum-vs-monthly",
+    "/guides/extra-payment-prepayment-penalty-checklist",
+    "/guides/extra-payment-priority-vs-other-debts",
+    "/guides/extra-payment-servicer-posting-rules",
+    "/guides/extra-payment-target-payoff-date",
+    "/guides/extra-payment-tax-deduction-impact",
+    "/guides/extra-payment-vs-refinance",
+    "/guides/extra-payment-windfall-strategy"
+  ];
+  const issues: string[] = [];
+
+  for (const redirect of vercelConfig.redirects ?? []) {
+    if (typeof redirect.source !== "string" || typeof redirect.destination !== "string") continue;
+    if (Array.isArray(redirect.has) && redirect.has.length > 0) continue;
+    const regex = vercelSourcePatternToRegex(redirect.source);
+
+    for (const path of supportPaths) {
+      if (regex.test(path)) {
+        issues.push(`${path} -> should not match redirect ${redirect.source} -> ${redirect.destination}`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Extra-payment support guides are wrongly captured by redirects:\n${issues.join("\n")}` : ""
   );
 });
 

@@ -16,7 +16,6 @@
     { "source": "/guides/calculate-mortgage-payoff-with-additional-principal-payments", "destination": "/calculators/extra-payment-calculator", "permanent": true },
     { "source": "/guides/pay-:amount-extra-on-mortgage", "destination": "/guides/extra-mortgage-payments", "permanent": true },
     { "source": "/guides/mortgage-lump-sum-:amount", "destination": "/guides/extra-mortgage-payments", "permanent": true },
-    { "source": "/guides/extra-payment-:slug", "destination": "/guides/extra-mortgage-payments", "permanent": true },
     { "source": "/guides/apr-tool", "destination": "/calculators/apr-calculator", "permanent": true },
     { "source": "/guides/apr-calculator-payment", "destination": "/calculators/apr-calculator", "permanent": true },
     { "source": "/guides/interest-rate-apr-calculator", "destination": "/guides/apr-vs-interest-rate", "permanent": true },
