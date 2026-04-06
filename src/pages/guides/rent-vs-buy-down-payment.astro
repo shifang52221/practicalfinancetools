@@ -1,13 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Rent vs Buy Down Payment (Tradeoffs and impact)";
 const description =
   "How down payment size affects rent vs buy results, PMI, and opportunity cost. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-down-payment" lastUpdated={lastUpdated} robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/rent-vs-buy-down-payment"
+  lastUpdated={lastUpdated}
+  robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -27,6 +37,23 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Down-payment tradeoffs inside rent-versus-buy modeling, PMI and liquidity framing, and routing between costs-to-include, investment-return, PMI, and break-even workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when the down payment decision is changing both your monthly payment and your opportunity-cost assumptions</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when buying only looks stronger after increasing the down payment and you need to see what that does to liquidity.</li>
+      <li>Use this page when a lower down payment introduces PMI and changes the real monthly ownership cost.</li>
+      <li>If closing costs and the broader ownership stack are still rough estimates, pair this page with the <a href="/guides/rent-vs-buy-costs-to-include">costs-to-include guide</a> before trusting the break-even result.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Rent vs buy inputs to verify</h2>
@@ -108,22 +135,45 @@ const lastUpdated = "2026-02-08";
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a></li>
         <li><a href="/guides/rent-vs-buy-investment-return">Investment return assumptions</a></li>
-        <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
+        <li><a href="/guides/rent-vs-buy-pmi-assumptions">PMI assumptions</a></li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a
+          href="https://www.consumerfinance.gov/owning-a-home/prepare/determine-your-down-payment/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Determine your down payment
+        </a>
+      </li>
+      <li>
+        CFPB Ask CFPB:{' '}
+        <a
+          href="https://www.consumerfinance.gov/ask-cfpb/what-is-private-mortgage-insurance-en-122/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          What is private mortgage insurance?
+        </a>
+      </li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
-      <a class="btn" href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a>
+      <a class="btn" href="/guides/rent-vs-buy-costs-to-include">Costs to include</a>
       <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
-
-
-

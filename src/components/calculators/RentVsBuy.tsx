@@ -179,7 +179,7 @@ export function RentVsBuyCalculator() {
             <div className="hint">{formatCurrency2(downPaymentCapped)} of price</div>
           </div>
           <div className="field field-3">
-            <label className="label" htmlFor="rentbuy-rate">Mortgage rate (APR %)</label>
+            <label className="label" htmlFor="rentbuy-rate">Mortgage rate (%)</label>
             <input id="rentbuy-rate" type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
           </div>
           <div className="field field-3">

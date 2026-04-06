@@ -132,7 +132,7 @@ export function MortgagePaymentCalculator() {
             </div>
           </div>
           <div className="field field-3">
-            <label className="label" htmlFor="mortgage-rate">Interest rate (APR %)</label>
+            <label className="label" htmlFor="mortgage-rate">Interest rate (%)</label>
             <input id="mortgage-rate" type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
           </div>
           <div className="field field-3">

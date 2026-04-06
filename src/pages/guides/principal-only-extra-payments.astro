@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
+import { TRUST_PROFILES } from "../../config/trust";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Principal-Only Extra Payments (avoid common pitfalls)";
@@ -21,9 +23,16 @@ const withExtra = amortizationSchedule({
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-01-30";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/principal-only-extra-payments" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/principal-only-extra-payments"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -43,6 +52,23 @@ const lastUpdated = "2026-01-30";
       <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Model principal-only payments</a>
       <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments guide</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Principal-only posting guidance, paid-ahead risk framing, and routing between targeted principal-prepayment and broader mortgage payoff workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when principal posting is the main question</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when you already know you want to pay extra, but you need to confirm the servicer will post it to principal.</li>
+      <li>Use this page when "paid ahead" language on the statement or portal makes the payoff result harder to interpret.</li>
+      <li>If you still need to compare monthly extras, lump sums, or biweekly paths, move next to the <a href="/guides/extra-mortgage-payments">extra mortgage payments guide</a>.</li>
+    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -90,7 +116,7 @@ const lastUpdated = "2026-01-30";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Worked example: why principal-only matters</h2>
     <p class="muted" style="margin:10px 0 0">
-      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Compare baseline vs adding
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% note rate for {exampleTermMonths} months. Compare baseline vs adding
       {money0.format(exampleExtraMonthly)}/month in principal-only payments.
     </p>
     <div style="overflow:auto; margin-top:12px">
@@ -199,12 +225,12 @@ const lastUpdated = "2026-01-30";
       <a class="btn" href="/calculators/extra-payment-calculator">Recurring monthly extras</a>
       <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
       <a class="btn" href="/guides/mortgage-recast-vs-extra-payments">Recast vs extra payments</a>
-      <a class="btn" href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a>
+      <a class="btn" href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a>
     </div>
     <p class="muted" style="margin:12px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-30</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

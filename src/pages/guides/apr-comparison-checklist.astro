@@ -1,13 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "APR Comparison Checklist";
 const description =
   "A short checklist to compare APR offers consistently and avoid common mistakes. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/apr-comparison-checklist" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/apr-comparison-checklist"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -27,6 +36,23 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/topics/apr">APR topic</a>
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="APR-offer comparison workflow, fee-treatment consistency checks, and routing between APR examples, fee-heavy comparisons, and points-versus-credits decisions."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you need a clean apples-to-apples offer check</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when multiple lenders or loan products look similar and you need a simple checklist before trusting the APR comparison.</li>
+      <li>Use this page when fee treatment, lock timing, or a short payoff horizon could make the headline APR less useful by itself.</li>
+      <li>If the main issue is one specific fee structure, move next to <a href="/guides/apr-with-origination-fee">APR with origination fee</a> or <a href="/guides/discount-points-vs-lender-credits">discount points vs lender credits</a>.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">APR comparison inputs to verify</h2>
@@ -303,7 +329,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/discount-points-vs-lender-credits">Points vs credits</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

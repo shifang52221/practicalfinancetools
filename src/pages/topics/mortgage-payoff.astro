@@ -5,9 +5,9 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Mortgage Payoff Topic Guide (payment, amortization, extras)";
 const description =
-  "Mortgage payoff workflow: estimate payment, view amortization, and compare extra principal strategies. Educational use only.";
+  "Mortgage payoff workflow: estimate the baseline payment, compare extra principal strategies, and choose the right decision or execution guide. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-06";
 ---
 <BaseLayout
   title={title}
@@ -15,7 +15,7 @@ const lastUpdated = "2026-04-03";
   canonicalPath="/topics/mortgage-payoff"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
   <section class="card hero">
     <span class="pill">Topic</span>
@@ -28,248 +28,128 @@ const lastUpdated = "2026-04-03";
     </nav>
     <h1>Mortgage payment and payoff planning</h1>
     <p>
-      The most common mortgage queries are variations of the same scenario: estimate the baseline payment, then test extra principal
-      strategies (monthly extra, one-time lump sum, or biweekly) under consistent assumptions.
-      Start with the <a href="/calculators/extra-payment-calculator">extra payment mortgage calculator</a> to see payoff impact.
+      Most mortgage payoff questions boil down to the same workflow: verify the baseline payment, compare extra-principal scenarios,
+      and decide whether the better next step is a risk check, a payoff comparison, or an execution detail such as timing or posting.
     </p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
+      <a class="btn" href="/calculators/additional-principal-payment-calculator">Additional principal calculator</a>
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
-      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment mortgage calculator</a>
-      <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly mortgage calculator</a>
     </div>
   </section>
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.editorialReview}
-    secondaryReview={TRUST_PROFILES.methodologyReview}
-    reviewScope="Mortgage payoff workflow framing, scenario sequencing, and payoff-method comparison coverage."
-    reviewedOn="2026-04-03"
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Mortgage payoff topic routing, extra-payment decision-versus-execution guide structure, and calculator-to-guide workflow coverage."
+    reviewedOn="2026-04-06"
   />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Choose your mortgage payoff starting point</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Start with the <a href="/calculators/extra-payment-calculator">extra payment calculator</a> when you want to compare monthly extra, lump-sum, or target-payoff scenarios.</li>
-      <li>Start with the <a href="/calculators/biweekly-mortgage-payment-calculator">biweekly calculator</a> when the real question is biweekly versus a simple monthly extra.</li>
-      <li>Start with your servicer statement and the supporting guides when you need to confirm principal-only posting, fees, or payment timing before trusting the savings estimate.</li>
+      <li>Start with the <a href="/calculators/extra-payment-calculator">extra payment calculator</a> when you want to compare monthly extra, lump-sum, and target-payoff scenarios on the same loan baseline.</li>
+      <li>Start with the <a href="/calculators/mortgage-payment-calculator">mortgage payment calculator</a> or the <a href="/calculators/amortization-schedule-calculator">amortization schedule</a> if you still need to confirm the base payment and schedule first.</li>
+      <li>Start with the decision or execution guides below if the real blocker is not the math itself, but whether extra payments are the right priority or whether they will be applied correctly.</li>
     </ul>
   </section>
 
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Biweekly vs monthly extra</h2>
-    <p class="muted" style="margin:10px 0 0">
-      If you are searching for a <a href="/calculators/biweekly-mortgage-payment-calculator">biweekly mortgage calculator</a>,
-      compare the result to an equivalent monthly extra payment. This catches cases where a paid biweekly service does not post early
-      enough to create meaningful additional savings.
-    </p>
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Choose the extra-payment decision guide</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/extra-payment-liquidity-reserve">Liquidity reserve</a>: use this when cash reserves and emergency planning might matter more than a faster payoff.</li>
+        <li><a href="/guides/extra-payment-priority-vs-other-debts">Priority vs other debts</a>: use this when credit cards or other higher-cost debt may deserve the extra cash first.</li>
+        <li><a href="/guides/extra-payment-tax-deduction-impact">Tax deduction impact</a>: use this when after-tax assumptions are changing the payoff-versus-alternative comparison.</li>
+        <li><a href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a>: use this when the real decision is payoff certainty versus market-return uncertainty.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Choose the extra-payment execution guide</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/extra-payment-lump-sum-vs-monthly">Lump sum vs monthly</a>: use this when timing is the reason two equal-dollar plans may not save the same amount.</li>
+        <li><a href="/guides/extra-payment-target-payoff-date">Target payoff date</a>: use this when you have a mortgage-free deadline and need to reverse-engineer a realistic monthly extra.</li>
+        <li><a href="/guides/extra-payment-servicer-posting-rules">Servicer posting rules</a>: use this when statement behavior or paid-ahead treatment makes the savings hard to trust.</li>
+        <li><a href="/guides/principal-only-extra-payments">Principal-only extra payments</a> and <a href="/guides/one-extra-mortgage-payment-per-year">one extra payment per year</a>: use these when the plan is chosen and the remaining question is how to execute it correctly.</li>
+      </ul>
+    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Mortgage payoff inputs to gather</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Current balance, note rate, and remaining term.</li>
-      <li>Monthly P&amp;I payment and escrow amounts.</li>
-      <li>Extra payment amount (monthly or lump sum timing).</li>
-      <li>Servicer rules for principal-only posting.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Payoff workflow</h2>
+    <h2 style="margin-top:0">Core payoff workflow</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li><strong>Estimate monthly cost:</strong> include taxes, insurance, HOA, and PMI (not just principal & interest).</li>
-      <li><strong>Check the amortization table:</strong> understand early interest-heavy months.</li>
-      <li><strong>Model extra principal:</strong> monthly extra, one extra payment per year, or a lump sum at a chosen month.</li>
-      <li><strong>Confirm posting rules:</strong> extra payments should be applied as principal-only (not "paid ahead").</li>
-      <li><strong>Compare alternatives:</strong> recast vs prepay, PMI removal thresholds, refinance break-even.</li>
+      <li>Confirm your current balance, note rate, remaining term, and whether your statement reflects principal-only extra payments correctly.</li>
+      <li>Model the baseline first so every extra-payment scenario uses the same starting assumptions.</li>
+      <li>Run the decision layer if reserves, higher-cost debt, taxes, or investing alternatives could change the answer.</li>
+      <li>Run the execution layer after the decision is made so timing, target dates, and servicer behavior do not distort the result.</li>
     </ol>
   </section>
 
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Key decisions to compare</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Monthly extra vs a one-time lump sum.</li>
-      <li>Biweekly programs vs a simple monthly extra.</li>
-      <li>Extra principal vs PMI removal or recast.</li>
-      <li>Prepay vs invest when rates are low.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Compare scenarios safely</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Keep the baseline constant when you compare options.</li>
-      <li>Change one input at a time (extra amount, timing, or rate).</li>
-      <li>Use the same assumption for payment posting dates.</li>
-      <li>Check results at the same time point (year 5, year 10) if you may move.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Translate payoff months into a target date</h2>
-    <p class="muted" style="margin:10px 0 0">
-      When the calculator shows payoff time in months, convert it to years and months. Example: 276 months equals 23 years.
-      A clear target date makes it easier to compare $200 vs $300 extra or a one-time lump sum.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">When extra payments may not be ideal</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>If you have high-interest debt, paying that down first may save more.</li>
-      <li>If you might refinance or move soon, the long-term savings may not materialize.</li>
-      <li>If cash reserves are low, prioritize liquidity before extra principal.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Statement alignment checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Confirm extra payments post as principal-only, not future due.</li>
-      <li>Check the payment posting date; timing affects interest.</li>
-      <li>Compare a few rows in the amortization table to your statement.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Servicer verification table</h2>
-    <div style="overflow:auto; margin-top:10px">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>What to verify</th>
-            <th>Where to check</th>
-            <th>Why it matters</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Principal-only posting</td>
-            <td>Servicer FAQ / monthly statement</td>
-            <td>Determines if extra payment reduces interest immediately</td>
-          </tr>
-          <tr>
-            <td>Biweekly posting date</td>
-            <td>Transaction history</td>
-            <td>Mid-month posting can improve savings vs month-end posting</td>
-          </tr>
-          <tr>
-            <td>Prepayment penalty</td>
-            <td>Note and closing documents</td>
-            <td>Can offset part of expected savings</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">PMI removal vs extra principal</h2>
-    <p class="muted" style="margin:10px 0 0">
-      If you pay PMI, compare the savings from removing PMI sooner to the interest savings from extra principal. The better choice
-      depends on how close you are to the removal threshold and your monthly PMI cost.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario example</h2>
-    <p class="muted" style="margin:10px 0 0">
-      A $360,000 loan at 6.50% for 30 years with $200 extra per month can reduce payoff time by years. Re-run with a $5,000 lump sum in
-      month 6 to compare which saves more interest under the same baseline.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Annual check-in</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Re-run the payoff scenarios once a year or after a refinance. Small changes in rate, balance, or payment timing can shift the
-      payoff date and the interest saved.
-    </p>
-  </section>
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Tools</h2>
+      <h2 style="margin-top:0">Core calculators</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a> (PITI + PMI)</li>
-        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a> (full table)</li>
-        <li><a href="/calculators/extra-payment-calculator">Extra payment mortgage calculator</a> (monthly, lump sum, annual)</li>
-        <li><a href="/calculators/biweekly-mortgage-payment-calculator">Biweekly mortgage payment</a> (compare to monthly extra)</li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+        <li><a href="/calculators/additional-principal-payment-calculator">Additional principal calculator</a></li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Guides</h2>
+      <h2 style="margin-top:0">Related payoff comparisons</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments (hub)</a></li>
-        <li><a href="/guides/principal-only-extra-payments">Principal-only checklist</a></li>
-        <li><a href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a></li>
         <li><a href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a></li>
-        <li><a href="/guides/amortization-with-extra-payments">Amortization with extra payments</a></li>
         <li><a href="/guides/mortgage-recast-vs-extra-payments">Recast vs extra payments</a></li>
         <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
-        <li><a href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a></li>
-        <li><a href="/guides/principal-and-interest-vs-escrow">Principal vs escrow</a></li>
+        <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
       </ul>
-      <p class="muted" style="margin:10px 0 0">
-        Full guide library: <a href="/guides">Browse all guides</a>.
-      </p>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision checklist</h2>
+    <h2 style="margin-top:0">Common mortgage-payoff mistakes</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Do you have any prepayment penalty or program fees?</li>
-      <li>Does your servicer apply extras as principal-only by default?</li>
-      <li>Is PMI removable and what are the exact requirements?</li>
-      <li>If you might refinance or move, compare costs over your expected time horizon.</li>
+      <li>Comparing extra-payment scenarios without first locking the same baseline balance, rate, and remaining term.</li>
+      <li>Ignoring liquidity, competing debt, or tax treatment and assuming mortgage payoff is always the best extra use of cash.</li>
+      <li>Trusting a calculator result without confirming the servicer posts the extra payment to principal the way the model assumes.</li>
+      <li>Using long-term savings headlines when the real time horizon is short because a refinance or move is likely.</li>
     </ul>
-    <p class="muted" style="margin:12px 0 0">
-      Educational use only. Not financial advice. Verify loan terms and servicing rules before making decisions.
-    </p>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Related workflows</h2>
-    <p class="muted" style="margin:10px 0 0">
-      If you are still deciding between renting and buying, compare scenarios with the{" "}
-      <a href="/topics/rent-vs-buy">rent vs buy topic hub</a> and the{" "}
-      <a href="/guides/rent-vs-buy-break-even">break-even guide</a>. Use the PITI breakdown to make sure your housing inputs are realistic.
-    </p>
-    <div class="btn-row" style="margin-top:10px">
-      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic</a>
-      <a class="btn" href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a>
-      <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
-    </div>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">FAQ</h2>
-    <h3 style="margin:12px 0 0">Do extra payments reduce the required monthly payment?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      Usually no. Extra payments shorten payoff time unless you recast the loan.
-    </p>
-    <h3 style="margin:12px 0 0">Is a biweekly program worth it?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      It can help if fees are low. Compare the total cost to a simple monthly extra payment.
-    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">References</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>
-        CFPB:{' '}
+        CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgage resources</a>
+          Mortgage resources
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-manage-my-monthly-mortgage-payment-en-1825/" rel="noopener noreferrer" target="_blank">
+          How do I manage my monthly mortgage payment?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-prepayment-penalty-en-1957/" rel="noopener noreferrer" target="_blank">
+          What is a prepayment penalty?
+        </a>
       </li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <h2 style="margin-top:0">Next steps</h2>
+    <div class="btn-row" style="margin-top:10px">
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Start the payoff model</a>
+      <a class="btn" href="/guides/extra-payment-liquidity-reserve">Check decision risks</a>
+      <a class="btn" href="/guides/extra-payment-servicer-posting-rules">Check execution risks</a>
+    </div>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-06</p>
   </section>
 </BaseLayout>
-
-

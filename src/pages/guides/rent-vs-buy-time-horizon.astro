@@ -1,13 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Rent vs Buy Time Horizon (Holding period impact)";
 const description =
   "Rent vs buy time horizon guide: how holding period changes results, with short, medium, and long horizon checks. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-time-horizon" lastUpdated={lastUpdated} robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/rent-vs-buy-time-horizon"
+  lastUpdated={lastUpdated}
+  robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -28,6 +38,24 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Holding-period framing for rent-versus-buy scenarios, comparison of short, medium, and long horizons, and routing between break-even, ownership-cost, and appreciation assumption workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when holding period uncertainty is the main rent-vs-buy decision risk</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when buying only looks better if you assume you will stay much longer than you can realistically commit to.</li>
+      <li>Use this page when the break-even result changes sharply between a short move scenario and a long stay scenario.</li>
+      <li>If ownership costs are still rough guesses, move next to the <a href="/guides/rent-vs-buy-costs-to-include">costs-to-include guide</a> before trusting the result.</li>
+    </ul>
+  </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Rent vs buy inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -109,7 +137,7 @@ const lastUpdated = "2026-02-08";
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a></li>
-        <li><a href="/guides/rent-vs-buy-closing-costs">Closing costs detail</a></li>
+        <li><a href="/guides/rent-vs-buy-costs-to-include">Costs to include</a></li>
         <li><a href="/guides/rent-vs-buy-home-appreciation">Home appreciation assumptions</a></li>
       </ul>
     </div>
@@ -123,7 +151,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

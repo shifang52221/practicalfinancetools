@@ -1,13 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Rent vs Buy Rent Growth (How to set assumptions)";
 const description =
   "How to choose rent growth assumptions for rent vs buy modeling, using local data and scenario ranges. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-rent-growth" lastUpdated={lastUpdated} robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/rent-vs-buy-rent-growth"
+  lastUpdated={lastUpdated}
+  robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -28,6 +38,24 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Rent-growth assumption setting for rent-versus-buy modeling, scenario-range guidance, and routing between checklist, break-even, and appreciation comparison workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when rent growth assumptions are the weakest part of your rent-vs-buy model</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when a buy-versus-rent result depends heavily on how fast you think your rent will rise.</li>
+      <li>Use this page when you have a current rent number but no disciplined way to build conservative, base, and stress scenarios.</li>
+      <li>If appreciation assumptions are also uncertain, compare this page with the <a href="/guides/rent-vs-buy-home-appreciation">home appreciation guide</a> so both sides of the model stay balanced.</li>
+    </ul>
+  </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Rent vs buy inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -122,7 +150,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

@@ -1,14 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Refinance Closing Costs (what to include and compare)";
 const description =
   "Learn which refinance costs matter, how to compare lender fees, and how costs affect break-even timing. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-closing-costs" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/refinance-closing-costs"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -31,10 +39,21 @@ const lastUpdated = "2026-04-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Refinance closing-cost review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Refinance closing-cost framing, cash-to-close versus true-cost interpretation, and routing between fee comparisons, break-even math, and refinance workflow pages."
+    reviewedOn="2026-04-05"
   />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when fee treatment changes the answer</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when the refinance looks attractive on rate alone, but lender fees, points, credits, and prepaids may change the real comparison.</li>
+      <li>Use this page when you need to separate cash-to-close from true incremental cost before running break-even math.</li>
+      <li>If your main question is document timing and rate-lock process, move next to the <a href="/guides/refinance-checklist">refinance checklist</a>.</li>
+    </ul>
+  </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Core fee categories</h2>
@@ -190,7 +209,7 @@ const lastUpdated = "2026-04-03";
       <a class="btn" href="/calculators/mortgage-payment-calculator">Compare payments</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

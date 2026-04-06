@@ -1,13 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Discount Points vs Lender Credits";
 const description =
   "Compare discount points and lender credits using APR and your time horizon. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/discount-points-vs-lender-credits" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/discount-points-vs-lender-credits"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -27,6 +36,32 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
       <a class="btn" href="/topics/apr">APR topic</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Points-versus-credits comparison framing, APR-versus-time-horizon interpretation, and routing between fee-heavy APR pages and rate-pricing decisions."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when rate pricing is the main tradeoff</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use this page when you are choosing between paying more upfront for a lower rate or taking lender credits for lower cash to close.
+      This is the right comparison when the loan term is the same, but the rate sheet changes your points, credits, and break-even math.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Rate-sheet inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan amount and term held constant across all options.</li>
+      <li>Points or credits expressed in both percentage and dollars.</li>
+      <li>Cash-to-close after lender credits, points, and other lender fees.</li>
+      <li>Your realistic horizon before refinance, sale, or payoff.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -300,7 +335,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/topics/apr">APR topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

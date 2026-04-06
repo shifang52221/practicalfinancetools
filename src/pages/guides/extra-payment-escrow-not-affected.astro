@@ -1,13 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
-const title = "Extra Payments and Escrow (What changes)";
+const title = "Extra Payments and Escrow (What Changes and What Does Not)";
 const description =
-  "Extra mortgage payments do not reduce escrow items like taxes and insurance. Educational use only.";
+  "Why extra mortgage payments reduce principal but usually not escrow, and how to separate payoff savings from taxes and insurance. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-06";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-escrow-not-affected" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/extra-payment-escrow-not-affected"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -17,10 +26,10 @@ const lastUpdated = "2026-02-17";
       <span aria-hidden="true">/</span>
       <span aria-current="page">Escrow not affected</span>
     </nav>
-    <h1>Extra payments do not reduce escrow</h1>
+    <h1>Extra payments do not usually reduce escrow</h1>
     <p>
-      Extra payments reduce principal and interest but do not lower taxes, insurance, or HOA. This guide explains why your total
-      payment may not fall even as you prepay.
+      Extra principal changes the loan balance and future interest, but escrow is a separate bucket for taxes, insurance, and sometimes
+      related housing costs. This guide helps you separate real payoff gains from the parts of the monthly bill that extra payments do not touch.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/guides/principal-and-interest-vs-escrow">Principal vs escrow</a>
@@ -29,80 +38,81 @@ const lastUpdated = "2026-02-17";
     </div>
   </section>
 
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Principal-and-interest versus escrow separation, PMI and escrow timing misconceptions, and routing between escrow, payment-structure, and extra-payment workflows."
+    reviewedOn="2026-04-06"
+  />
+
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What changes and what does not</h2>
+    <h2 style="margin-top:0">Use this guide when you expect extra principal to lower the total mortgage bill and need to separate principal from escrow</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Principal balance drops faster.</li>
-      <li>Interest paid over time decreases.</li>
-      <li>Escrow items (taxes, insurance, HOA) stay the same.</li>
+      <li>Use this page when the payoff model shows interest savings but your required payment does not appear to shrink.</li>
+      <li>Use this page when statement changes, escrow adjustments, or PMI timing are making the payoff result harder to understand.</li>
+      <li>If you need the full payment-structure explanation first, move next to <a href="/guides/principal-and-interest-vs-escrow">principal and interest vs escrow</a>.</li>
     </ul>
   </section>
 
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Expecting the total payment to drop immediately.</li>
-      <li>Assuming escrow is part of the payoff math.</li>
-      <li>Ignoring escrow changes after tax or insurance updates.</li>
-    </ul>
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What extra principal can change</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>The remaining loan balance falls faster.</li>
+        <li>Total interest over time usually declines.</li>
+        <li>The payoff date can move earlier.</li>
+        <li>PMI removal may happen sooner if your loan-to-value reaches the threshold earlier.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What it usually does not change</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Property taxes, which follow assessment and local tax rules.</li>
+        <li>Homeowners insurance premiums, which follow coverage and market pricing.</li>
+        <li>The escrow cushion required by the servicer.</li>
+        <li>The required payment itself, unless you recast or refinance.</li>
+      </ul>
+    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Why escrow stays flat</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Escrow is a pass-through for taxes, insurance, and HOA.</li>
-      <li>Annual escrow reviews are based on actual bills, not loan balance.</li>
-      <li>Extra principal does not change tax assessments or insurance premiums.</li>
-      <li>Payment changes usually follow a shortage or surplus analysis.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Example: extra payment vs escrow</h2>
+    <h2 style="margin-top:0">Why the total payment may stay flat or even rise</h2>
     <p class="muted" style="margin:10px 0 0">
-      If you pay $200 extra toward principal, your principal balance drops faster and interest savings increase, but your tax and
-      insurance escrow amounts stay the same until the next escrow review.
+      Escrow is not payoff math. It is a running collection for future tax and insurance bills. Even if principal falls faster, the
+      monthly escrow amount can stay the same or go up after an annual escrow review if taxes or premiums rise.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      That is why a borrower can prepay principal successfully and still see the total required monthly payment stay unchanged on the statement.
     </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What can change escrow payments</h2>
+    <h2 style="margin-top:0">PMI, escrow, and required payment are different levers</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Property tax reassessments or millage changes.</li>
-      <li>Insurance premium increases or coverage updates.</li>
-      <li>HOA dues adjustments when escrowed by the lender.</li>
-      <li>Servicer changes after the annual escrow analysis.</li>
+      <li>PMI can drop earlier if extra principal gets you to the required loan-to-value threshold sooner.</li>
+      <li>Escrow still continues for taxes and insurance after PMI is gone.</li>
+      <li>The required principal-and-interest payment usually stays the same unless the loan is recast.</li>
+      <li>That means one part of the bill can fall while another part stays flat or changes for unrelated reasons.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision inputs</h2>
+    <h2 style="margin-top:0">Questions to check after an escrow analysis</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Current escrow amount and next annual review date.</li>
-      <li>Expected tax or insurance changes in the next 12 months.</li>
-      <li>Extra payment plan and whether it affects PMI timing.</li>
-      <li>Buffer you want for escrow shortages.</li>
-      <li>Target total payment you can sustain.</li>
+      <li>Did the servicer raise escrow because taxes or insurance changed?</li>
+      <li>Is the statement clearly separating principal and interest from escrow?</li>
+      <li>Did PMI end, or is it still included in the total payment?</li>
+      <li>If the total bill rose, was that from an escrow shortage rather than the loan itself?</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What to check after a tax change</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Review the updated tax bill and assessment notice.</li>
-      <li>Confirm the servicer updated escrow projections.</li>
-      <li>Plan for a shortage catch-up if taxes rise quickly.</li>
-      <li>Recalculate your total payment with the new escrow.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">PMI and escrow timing</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Extra payments can accelerate PMI removal, but escrow still stays.</li>
-      <li>Ask when PMI drops to avoid overestimating your new payment.</li>
-      <li>Re-run the calculator with separate principal and escrow values.</li>
-    </ul>
+    <h2 style="margin-top:0">A practical interpretation rule</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Judge extra-payment success by balance reduction, interest saved, and payoff timing, not by assuming the entire monthly bill will
+      immediately fall. When you need the total payment picture, compare principal and interest, PMI, escrow, and any shortage repayment separately.
+    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -116,21 +126,40 @@ const lastUpdated = "2026-02-17";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/principal-and-interest-vs-escrow">Principal vs escrow</a></li>
+        <li><a href="/guides/principal-and-interest-vs-escrow">Principal and interest vs escrow</a></li>
         <li><a href="/guides/what-is-piti">What is PITI?</a></li>
+        <li><a href="/guides/principal-only-extra-payments">Principal-only extra payments</a></li>
+        <li><a href="/guides/extra-payment-servicer-posting-rules">Servicer posting rules</a></li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-manage-my-monthly-mortgage-payment-en-1825/" rel="noopener noreferrer" target="_blank">
+          How do I manage my monthly mortgage payment?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
-      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
-      <a class="btn" href="/guides/principal-and-interest-vs-escrow">Principal vs escrow</a>
+      <a class="btn btn-primary" href="/guides/principal-and-interest-vs-escrow">Separate P&amp;I from escrow</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Model balance and payoff impact</a>
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-06</p>
   </section>
 </BaseLayout>
-

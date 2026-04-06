@@ -1,14 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Mortgage Payment Rate Sensitivity";
 const description =
   "How interest rate changes affect the monthly mortgage payment and affordability. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-rate-sensitivity" lastUpdated={lastUpdated} robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/mortgage-payment-rate-sensitivity"
+  lastUpdated={lastUpdated}
+  robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -31,9 +40,11 @@ const lastUpdated = "2026-04-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Mortgage payment sensitivity review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Note-rate sensitivity inside monthly payment modeling, isolation of rate effects from other assumptions, and routing between mortgage payment, affordability, and payment-structure workflows."
+    reviewedOn="2026-04-05"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -177,7 +188,7 @@ const lastUpdated = "2026-04-03";
       <a class="btn" href="/guides/how-mortgage-payments-are-calculated">Review the payment math</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

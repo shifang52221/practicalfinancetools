@@ -1,14 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "APR by Loan Type (Auto, Personal, Student, Business)";
 const description =
   "How APR comparisons change across auto, personal, student, and small business loans. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/apr-by-loan-type" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/apr-by-loan-type"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -31,13 +39,15 @@ const lastUpdated = "2026-04-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="APR by loan type guide review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="APR comparison boundaries across loan categories, fee and cash-received interpretation, and routing between APR calculator, checklist, and topic workflows."
+    reviewedOn="2026-04-05"
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use this guide when...</h2>
+    <h2 style="margin-top:0">Use this guide when you are comparing APR across auto, personal, student, or small-business loans</h2>
     <p class="muted" style="margin:10px 0 0">
       Use this guide when you are comparing APR across auto, personal, student, or small-business loans. It is designed for cases where the
       fee rules, cash received, prepayment behavior, and underwriting structure differ enough that a raw APR number needs more context.
@@ -335,7 +345,7 @@ const lastUpdated = "2026-04-03";
       <a class="btn" href="/topics/apr">APR topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

@@ -1,14 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Rent vs Buy Costs to Include (Owner and renter)";
 const description =
   "List of one-time and ongoing costs to include when comparing renting and buying, including closing costs, maintenance, HOA, and selling costs. Educational use only.";
 
-const lastUpdated = "2026-04-04";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-costs-to-include" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/rent-vs-buy-costs-to-include"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -31,9 +39,11 @@ const lastUpdated = "2026-04-04";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Rent vs buy ownership-cost guide review"
-    reviewedOn="2026-04-04"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Ownership-cost completeness, upfront cash and missing-assumption framing, and routing between rent-vs-buy modeling, break-even, and topic workflows."
+    reviewedOn="2026-04-05"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -285,7 +295,7 @@ const lastUpdated = "2026-04-04";
       <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

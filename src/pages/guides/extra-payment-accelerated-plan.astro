@@ -1,13 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
-const title = "Accelerated Payment Plans (How they work)";
+const title = "Accelerated Payment Plans vs DIY Extra Payments";
 const description =
-  "Accelerated payment plans vs extra payments: how they compare and how to avoid fee traps. Educational use only.";
+  "How to compare an accelerated mortgage payment plan to a simple DIY extra-payment setup, including fees, posting timing, and control. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-06";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-accelerated-plan" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/extra-payment-accelerated-plan"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -17,93 +26,98 @@ const lastUpdated = "2026-02-08";
       <span aria-hidden="true">/</span>
       <span aria-current="page">Accelerated plan</span>
     </nav>
-    <h1>Accelerated payment plans</h1>
+    <h1>Accelerated payment plans vs DIY extra payments</h1>
     <p>
-      Accelerated plans often split payments into more frequent intervals. This guide shows how to compare them to a simple monthly
-      extra payment without paying unnecessary fees.
+      An accelerated payment plan can sound efficient, but the real benefit depends on fees, timing, and whether the servicer posts
+      the extra principal when you expect. This guide helps you compare a paid program to a simple do-it-yourself extra-payment setup.
     </p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly calculator</a>
-      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly calculator</a>
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+    </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Accelerated-payment program versus DIY extra-payment comparison, fee and posting-timing interpretation, and routing between biweekly, principal-only, and broader payoff workflows."
+    reviewedOn="2026-04-06"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when an accelerated payment plan sounds convenient, but you need to know whether it really beats a simple DIY extra-payment plan</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when a lender or third party is offering a payment plan and the headline promise sounds better than the details.</li>
+      <li>Use this page when you need to compare the same annual extra dollars under a paid plan versus a no-fee monthly principal-only extra.</li>
+      <li>If the main question is pure payoff math, go straight to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a> or the <a href="/guides/biweekly-vs-extra-principal">biweekly vs extra principal</a> guide.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What an accelerated plan may do</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Draft payments more often, such as every two weeks or every payday.</li>
+        <li>Create the effect of one extra payment per year if the annual total is higher than 12 standard payments.</li>
+        <li>Automate the behavior for borrowers who value strict scheduling.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What it often does not do</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>It does not automatically beat a DIY monthly extra if fees are involved.</li>
+        <li>It does not help much if funds are held and posted monthly rather than earlier.</li>
+        <li>It does not reduce the need to verify principal-only application and statement timing.</li>
+      </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How to compare fairly</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Compare total dollars paid per year, not payment frequency.</li>
-      <li>Check for program fees that reduce the savings.</li>
-      <li>Model the same extra amount using a monthly extra payment.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Accelerated payment plan inputs to verify</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Total annual amount paid vs standard monthly schedule.</li>
-      <li>Any setup, processing, or monthly service fees.</li>
-      <li>Posting timing (biweekly vs held monthly).</li>
-      <li>Principal-only application for extra amounts.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">DIY alternative checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Split your annual extra amount by 12 and add it monthly.</li>
-      <li>Set up an auto-transfer on payday to a mortgage buffer.</li>
-      <li>Submit the extra as principal-only with clear instructions.</li>
-      <li>Verify the servicer posts it the same day it clears.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Paying fees for a plan you can replicate yourself.</li>
-      <li>Assuming biweekly always saves more than monthly extra.</li>
-      <li>Ignoring posting timing differences.</li>
-    </ul>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Start with the same loan balance, note rate, and remaining term in every scenario.</li>
+      <li>Compare annual extra dollars, not just the marketing label of the program.</li>
+      <li>Add every setup, processing, and monthly fee to the plan cost.</li>
+      <li>Confirm whether extra funds are posted to principal as they clear or only at month end.</li>
+    </ol>
+    <p class="muted" style="margin:12px 0 0">
+      A plan that drafts more frequently but posts late can behave much closer to a standard monthly extra than the sales pitch suggests.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Questions to ask before enrolling</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Are there setup, processing, or monthly fees?</li>
-      <li>How and when are extra funds applied to principal?</li>
-      <li>Can I pause or change payments without penalties?</li>
-      <li>Is the program run by the servicer or a third party?</li>
+      <li>Is the program run by my servicer or by a third party?</li>
+      <li>Are payments posted to the loan biweekly or accumulated and posted monthly?</li>
+      <li>What are the setup, monthly, cancellation, or transaction fees?</li>
+      <li>Can I pause or change the amount without restarting the program?</li>
+      <li>How will the extra appear on my statement: principal-only or paid ahead?</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Inputs to gather</h2>
+    <h2 style="margin-top:0">When the DIY path is usually stronger</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Current payment amount and remaining term.</li>
-      <li>Annual extra amount the plan actually adds.</li>
-      <li>All program fees and processing charges.</li>
-      <li>Posting timeline for principal-only payments.</li>
+      <li>You can automate a monthly principal-only extra through the servicer without fees.</li>
+      <li>You want full control over stopping, reducing, or increasing the extra payment.</li>
+      <li>You want to avoid a third party holding your cash between draft date and loan posting date.</li>
+      <li>You want the one-extra-payment-per-year effect without paying for administration.</li>
     </ul>
+    <p class="muted" style="margin:12px 0 0">
+      If that sounds like your situation, compare next with <a href="/guides/one-extra-mortgage-payment-per-year">one extra payment per year</a> and <a href="/guides/principal-only-extra-payments">principal-only extra payments</a>.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision inputs</h2>
+    <h2 style="margin-top:0">When a program can still be reasonable</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Total annual extra you want to contribute.</li>
-      <li>Fee break-even point compared to DIY extras.</li>
-      <li>Flexibility to pause or change payments.</li>
-      <li>Servicer rules for principal-only application.</li>
-      <li>Cash flow timing for each pay period.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario notes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Compare DIY monthly extra to the plan's total yearly extra.</li>
-      <li>Model fees as added cost in the payoff timeline.</li>
-      <li>Confirm payment posting timing matches your cash flow.</li>
+      <li>The plan is fee-light or fee-free.</li>
+      <li>The servicer posts funds quickly and transparently.</li>
+      <li>The schedule helps you stick to a payoff habit you would otherwise not maintain.</li>
+      <li>You have already checked liquidity and do not need the extra cash for short-term obligations.</li>
     </ul>
   </section>
 
@@ -111,29 +125,52 @@ const lastUpdated = "2026-02-08";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related tools</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/biweekly-mortgage-payment-calculator">Biweekly mortgage calculator</a></li>
         <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+        <li><a href="/calculators/biweekly-mortgage-payment-calculator">Biweekly mortgage calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
       </ul>
     </div>
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a></li>
-        <li><a href="/guides/biweekly-mortgage-program-fees">Biweekly program fees</a></li>
-        <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
+        <li><a href="/guides/biweekly-mortgage-program-fees">Biweekly mortgage program fees</a></li>
+        <li><a href="/guides/principal-only-extra-payments">Principal-only extra payments</a></li>
+        <li><a href="/guides/extra-payment-prepayment-penalty-checklist">Prepayment penalty checklist</a></li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a
+          href="https://www.consumerfinance.gov/about-us/blog/your-mortgage-servicer-must-comply-with-federal-rules/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Your mortgage servicer must comply with federal rules
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
-      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model monthly extra</a>
-      <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Model biweekly</a>
+      <a class="btn btn-primary" href="/guides/biweekly-vs-extra-principal">Compare biweekly to DIY extra</a>
+      <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">Model one extra payment per year</a>
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-06</p>
   </section>
 </BaseLayout>
-

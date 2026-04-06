@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
+import { TRUST_PROFILES } from "../../config/trust";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Pay Off Mortgage Early or Invest? (how to compare)";
@@ -25,9 +27,16 @@ const yearsMonths = (months: number) => ({ years: Math.floor(months / 12), month
 const baseYm = yearsMonths(base.months);
 const extraYm = yearsMonths(withExtra.months);
 
-const lastUpdated = "2026-01-29";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/pay-off-mortgage-early-or-invest" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/pay-off-mortgage-early-or-invest"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -46,6 +55,23 @@ const lastUpdated = "2026-01-29";
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">See extra payment savings</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Baseline monthly payment</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Mortgage payoff-versus-investing tradeoff framing, liquidity-and-tax decision checks, and routing into extra-payment modeling workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you are comparing guaranteed mortgage savings with uncertain investment returns</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when the headline comparison is not enough and taxes, liquidity, or risk tolerance could change the better choice.</li>
+      <li>Use this page when you need a practical framework before deciding whether extra principal or investing fits your time horizon better.</li>
+      <li>If you want to quantify the mortgage side first, move next to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a>.</li>
+    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -145,8 +171,8 @@ const lastUpdated = "2026-01-29";
     </ul>
     <p class="muted" style="margin:12px 0 0">
       Run scenarios: baseline in <a href="/calculators/mortgage-payment-calculator">Mortgage Payment</a>, extra payments in{" "}
-      <a href="/calculators/extra-payment-calculator">Extra Payment</a>, and (if relevant) housing decisions in{" "}
-      <a href="/calculators/rent-vs-buy-calculator">Rent vs Buy</a>.
+      <a href="/calculators/extra-payment-calculator">Extra Payment</a>, and payoff timing in{" "}
+      <a href="/calculators/amortization-schedule-calculator">Amortization Schedule</a>.
     </p>
   </section>
 
@@ -220,7 +246,7 @@ const lastUpdated = "2026-01-29";
     <p class="muted" style="margin:12px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-29</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

@@ -1,13 +1,76 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
+import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Lump Sum vs Monthly Extra Mortgage Payments";
 const description =
-  "Lump sum vs monthly extra mortgage payments: compare timing and see which saves more interest. Educational use only.";
+  "How to compare a lump-sum principal payment with recurring monthly extras using the same mortgage baseline and timing assumptions. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const examplePrincipal = 300000;
+const exampleRate = 6.5;
+const exampleTermMonths = 360;
+const exampleLumpSum = 6000;
+const exampleMonthlyExtra = 500;
+const exampleMonthlyExtraEndMonth = 12;
+
+const base = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleRate,
+  termMonths: exampleTermMonths
+});
+const monthlySpread = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleRate,
+  termMonths: exampleTermMonths,
+  extraMonthly: exampleMonthlyExtra,
+  extraMonthlyEndMonth: exampleMonthlyExtraEndMonth
+});
+const earlyLump = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleRate,
+  termMonths: exampleTermMonths,
+  extraOneTime: exampleLumpSum,
+  extraOneTimeMonth: 1
+});
+const lateLump = amortizationSchedule({
+  principal: examplePrincipal,
+  aprPercent: exampleRate,
+  termMonths: exampleTermMonths,
+  extraOneTime: exampleLumpSum,
+  extraOneTimeMonth: 12
+});
+
+const money0 = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0
+});
+const pct2 = new Intl.NumberFormat("en-US", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+});
+const yearsMonths = (months: number) => ({
+  years: Math.floor(months / 12),
+  months: months % 12
+});
+const baseYm = yearsMonths(base.months);
+const monthlyYm = yearsMonths(monthlySpread.months);
+const earlyYm = yearsMonths(earlyLump.months);
+const lateYm = yearsMonths(lateLump.months);
+
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-lump-sum-vs-monthly" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/extra-payment-lump-sum-vs-monthly"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -19,90 +82,114 @@ const lastUpdated = "2026-02-08";
     </nav>
     <h1>Lump sum vs monthly extra payments</h1>
     <p>
-      Paying extra earlier usually saves more interest. This guide shows how to compare a lump sum to monthly extra payments using the
-      same baseline.
+      The total extra dollars are not the whole story. A lump sum, a steady monthly extra, and a delayed year-end payment can all
+      produce different payoff results because mortgage interest depends on when principal is reduced.
     </p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Additional principal calculator</a>
-      <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+      <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Model a lump sum</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Model monthly extras</a>
+      <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
+    </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Timing differences between early lump sums and recurring extras, equal-dollar comparison framing, and routing between additional-principal, annual-extra, and broader payoff workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when timing is the main reason a lump sum and recurring extra could produce different payoff results</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when you already know how much extra cash you have, but the timing of that cash is changing the better strategy.</li>
+      <li>Use this page when you want to compare equal-dollar scenarios instead of guessing from a generic rule of thumb.</li>
+      <li>If your main question is whether extra payments fit your budget at all, check <a href="/guides/extra-payment-liquidity-reserve">liquidity reserve</a> first.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">A lump sum tends to win when</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>The cash is already available and can be applied to principal now.</li>
+        <li>You want the balance reduction immediately instead of over several months.</li>
+        <li>You have already checked liquidity and do not need the cash for short-term shocks.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Monthly extras tend to win when</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>The cash arrives gradually through paychecks rather than sitting in savings already.</li>
+        <li>You want a sustainable habit that can start immediately instead of waiting for a future bonus or refund.</li>
+        <li>You want more flexibility to pause or adjust the plan if income changes.</li>
+      </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Why timing matters</h2>
+    <h2 style="margin-top:0">Worked example: same total dollars, different timing</h2>
     <p class="muted" style="margin:10px 0 0">
-      Interest is calculated on the remaining balance. Extra payments made sooner reduce the balance earlier and lower interest
-      faster.
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleRate)}% note rate for {exampleTermMonths / 12} years. Compare
+      the same {money0.format(exampleLumpSum)} total extra contribution in three ways.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="num">Payoff time</th>
+            <th class="num">Total interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline with no extra</td>
+            <td class="num">{base.months} months ({baseYm.years}y {baseYm.months}m)</td>
+            <td class="num">{money0.format(base.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>{money0.format(exampleMonthlyExtra)}/month for 12 months</td>
+            <td class="num">{monthlySpread.months} months ({monthlyYm.years}y {monthlyYm.months}m)</td>
+            <td class="num">{money0.format(monthlySpread.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>{money0.format(exampleLumpSum)} lump sum in month 1</td>
+            <td class="num">{earlyLump.months} months ({earlyYm.years}y {earlyYm.months}m)</td>
+            <td class="num">{money0.format(earlyLump.totalInterest)}</td>
+          </tr>
+          <tr>
+            <td>{money0.format(exampleLumpSum)} lump sum in month 12</td>
+            <td class="num">{lateLump.months} months ({lateYm.years}y {lateYm.months}m)</td>
+            <td class="num">{money0.format(lateLump.totalInterest)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:12px 0 0">
+      In this example, the earliest lump sum produces the most savings because it reduces principal immediately. The monthly-extra path
+      still beats waiting until month 12 because some of the principal reduction happens earlier.
     </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to compare</h2>
+    <h2 style="margin-top:0">How to compare fairly</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Model a baseline without extra payments.</li>
-      <li>Model a lump sum at the month you expect to receive it.</li>
-      <li>Model a monthly extra that equals the lump sum spread over time.</li>
-      <li>Compare payoff date and interest saved.</li>
+      <li>Use the same starting balance, note rate, and remaining term in every scenario.</li>
+      <li>Match the total extra dollars before comparing payoff time or interest savings.</li>
+      <li>Use realistic posting months for the lump sum instead of assuming it arrives at the start of the year.</li>
+      <li>Check that every extra payment is applied to principal-only so the timing comparison is real.</li>
     </ol>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Lump sum vs monthly extra inputs</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Note rate and remaining term.</li>
-      <li>Lump sum amount and the month it will post.</li>
-      <li>Monthly extra amount you can sustain.</li>
-      <li>Any prepayment penalties or posting restrictions.</li>
-    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Common mistakes</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Comparing different baselines or rates.</li>
-      <li>Assuming a late lump sum beats monthly extras starting now.</li>
-      <li>Ignoring posting dates and principal-only rules.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision inputs</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Timing of the lump sum payment.</li>
-      <li>Monthly extra you can sustain long term.</li>
-      <li>Any prepayment penalties or caps.</li>
-      <li>Planned refinance or sale horizon.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Timing considerations</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Earlier lump sums usually save more interest.</li>
-      <li>Monthly extras can start immediately while waiting for cash.</li>
-      <li>Use the same payoff horizon for both scenarios.</li>
-      <li>Factor in any planned refinance or home sale date.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Cash flow check</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Keep a reserve so monthly extras stay sustainable.</li>
-      <li>Confirm the extra is applied to principal only.</li>
-      <li>Use an auto-payment date that matches your cash cycle.</li>
-      <li>Review the plan if income changes or expenses rise.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Baseline with no extra payments.</li>
-      <li>Lump sum in the earliest realistic month.</li>
-      <li>Monthly extra spread across the same time period.</li>
-      <li>Planned refinance or sale date sensitivity.</li>
+      <li>Comparing a late lump sum with monthly extras that start now, then treating them as equal timing.</li>
+      <li>Ignoring liquidity and using a lump sum that should have stayed in reserve.</li>
+      <li>Assuming the servicer will post the extra the same day you schedule it without checking statement timing.</li>
+      <li>Forgetting that a refinance or sale horizon can shrink the value of a long payoff plan.</li>
     </ul>
   </section>
 
@@ -111,30 +198,46 @@ const lastUpdated = "2026-02-08";
       <h2 style="margin-top:0">Related tools</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/calculators/additional-principal-payment-calculator">Additional principal calculator</a></li>
-        <li><a href="/calculators/extra-payment-calculator">Recurring extra payment calculator</a></li>
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
         <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
       </ul>
     </div>
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a></li>
-        <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
+        <li><a href="/guides/extra-payment-target-payoff-date">Target payoff date</a></li>
         <li><a href="/guides/principal-only-extra-payments">Principal-only extra payments</a></li>
+        <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-prepayment-penalty-en-1957/" rel="noopener noreferrer" target="_blank">
+          What is a prepayment penalty?
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
-      <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Model a lump sum</a>
-      <a class="btn" href="/calculators/extra-payment-calculator">Compare monthly extras</a>
-      <a class="btn" href="/guides/extra-mortgage-payments">Extra payment guide</a>
+      <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Run the lump-sum scenario</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Compare a recurring extra</a>
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
-

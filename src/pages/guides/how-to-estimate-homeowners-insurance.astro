@@ -1,14 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "How to Estimate Homeowners Insurance for a Mortgage Payment";
 const description =
   "Estimate homeowners insurance with realistic quotes and coverage choices so your mortgage payment inputs are accurate. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/how-to-estimate-homeowners-insurance" lastUpdated={lastUpdated} robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/how-to-estimate-homeowners-insurance"
+  lastUpdated={lastUpdated}
+  robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -30,9 +39,11 @@ const lastUpdated = "2026-04-03";
     </div>
   </section>
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Homeowners insurance input-estimation review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Homeowners insurance quote realism for mortgage-payment estimates, coverage and deductible tradeoffs, and routing between mortgage payment, property tax, and PITI workflows."
+    reviewedOn="2026-04-05"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -172,7 +183,7 @@ const lastUpdated = "2026-04-03";
       <a class="btn" href="/guides/mortgage-payment-insurance-assumptions">Review insurance assumptions</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

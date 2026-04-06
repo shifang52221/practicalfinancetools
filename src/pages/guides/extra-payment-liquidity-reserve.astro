@@ -1,13 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Liquidity Reserve Check for Extra Payments";
 const description =
-  "Liquidity reserve check for extra mortgage payments: keep cash reserves while prepaying principal. Educational use only.";
+  "How to decide whether extra mortgage payments are safe for your cash reserve, repair buffer, and income-risk plan. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/extra-payment-liquidity-reserve" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/extra-payment-liquidity-reserve"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -19,92 +28,93 @@ const lastUpdated = "2026-02-08";
     </nav>
     <h1>Liquidity reserve check before extra payments</h1>
     <p>
-      Extra payments reduce interest, but they also reduce liquid cash. Use this guide to keep a reserve and avoid overextending.
+      Extra mortgage payments can save interest, but cash sent to principal is harder to reach again. This guide helps you decide how
+      much liquidity to keep for job changes, repairs, deductibles, and other shocks before you accelerate payoff.
     </p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a>
-      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
+      <a class="btn" href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a>
+    </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Emergency-reserve sizing before mortgage prepayments, home-repair and income-shock buffer framing, and routing between payoff, affordability, and invest-versus-prepay workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when liquidity risk is the main reason you hesitate to make extra mortgage payments</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when the math says extra payments save interest, but you are unsure whether the cash should stay accessible.</li>
+      <li>Use this page when upcoming repairs, income volatility, or other near-term goals could make a thin reserve dangerous.</li>
+      <li>If you already know your reserve is strong, move next to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a>.</li>
+    </ul>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Cash should usually stay liquid for</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Emergency expenses such as medical bills, car repairs, or temporary income loss.</li>
+        <li>Homeownership costs that do not wait for your mortgage strategy, including deductibles and urgent repairs.</li>
+        <li>Planned expenses in the next 6 to 12 months that would otherwise force you to borrow again.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Extra payments become riskier when</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Your income is seasonal, commission-based, or otherwise uncertain.</li>
+        <li>You have a high deductible, aging home systems, or no separate repair buffer.</li>
+        <li>You would need to use credit cards again if a financial shock hits.</li>
+      </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Reserve checklist</h2>
+    <h2 style="margin-top:0">Inputs to line up before prepaying principal</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Keep a cash buffer for emergencies and repairs.</li>
-      <li>Account for upcoming major expenses or income changes.</li>
-      <li>Make extra payments only with funds beyond that reserve.</li>
+      <li>Essential monthly expenses, including mortgage, insurance, utilities, groceries, and minimum debt payments.</li>
+      <li>How many months of those essentials you want to hold in cash before making extra payments.</li>
+      <li>Separate reserves for predictable home costs such as maintenance, appliance replacement, or insurance deductibles.</li>
+      <li>Large planned outflows in the next year, such as moving, childcare, tuition, or a vehicle purchase.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Liquidity reserve inputs to track</h2>
+    <h2 style="margin-top:0">A practical reserve framework</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Set a baseline emergency reserve using essential monthly expenses rather than your full lifestyle spend.</li>
+      <li>Add a separate buffer for home repairs or high deductibles so those costs do not raid the same emergency pool.</li>
+      <li>Only treat cash above both targets as available for recurring or one-time mortgage prepayments.</li>
+      <li>Recheck the reserve after any change in income, family size, insurance costs, or housing condition.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Stress-test the payoff plan before automating it</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Essential monthly expenses and required payments.</li>
-      <li>Target reserve months based on income stability.</li>
-      <li>Upcoming large expenses within 12 months.</li>
-      <li>Amount you can prepay without dropping below reserve.</li>
+      <li>Model a temporary income drop and confirm your reserve still covers essentials without relying on new debt.</li>
+      <li>Add one realistic home-repair event and check whether extra payments would have to stop immediately.</li>
+      <li>Test whether the same cash would be more valuable as a reserve than as a small improvement in interest savings.</li>
+      <li>If the reserve fails the stress test, reduce or pause extras until the cash position is stronger.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
+    <h2 style="margin-top:0">When to pause and when to restart</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Using all cash to prepay the mortgage.</li>
-      <li>Ignoring upcoming taxes, insurance renewals, or repairs.</li>
-      <li>Setting a monthly extra that is not sustainable.</li>
+      <li>Pause extra payments when the reserve drops below target, income becomes unstable, or a major repair is approaching.</li>
+      <li>Restart after you rebuild the reserve and confirm that new monthly extras still fit the budget without stress.</li>
+      <li>If you keep stopping and restarting, consider a smaller recurring extra instead of an aggressive target.</li>
     </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to size a reserve</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Keep a baseline in months of essential expenses.</li>
-      <li>Set aside a separate home maintenance buffer.</li>
-      <li>Increase reserves if income is variable or seasonal.</li>
-      <li>Only prepay with cash above the target reserve.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision inputs</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Essential monthly spend and dependents relying on it.</li>
-      <li>Income stability and how quickly it could drop.</li>
-      <li>Access to backup funds and any withdrawal limits.</li>
-      <li>Insurance deductibles and likely home repairs.</li>
-      <li>Upcoming large purchases within 12 to 18 months.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Stress test your plan</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Test a 10% to 20% income drop scenario.</li>
-      <li>Add an unexpected repair or medical bill.</li>
-      <li>Pause extra payments if the reserve falls below target.</li>
-      <li>Rebuild the reserve before increasing extras again.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Liquidity sources to keep clear</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Separate emergency cash from investment accounts.</li>
-      <li>Confirm access to savings without penalties.</li>
-      <li>Know the timing for transfers or withdrawal holds.</li>
-      <li>Avoid relying on credit lines for core reserves.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Base reserve target with stable income.</li>
-      <li>Higher reserve target for variable income months.</li>
-      <li>Pause extra payments if reserves dip below target.</li>
-      <li>Restart extras after reserve rebuild.</li>
-    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      If your real question is whether cash should stay liquid for other goals instead of going to principal, compare it next with{" "}
+      <a href="/guides/pay-off-mortgage-early-or-invest">pay off mortgage early or invest</a>.
+    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -118,7 +128,7 @@ const lastUpdated = "2026-02-08";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/extra-payment-windfall-strategy">Windfall strategy</a></li>
+        <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
         <li><a href="/guides/extra-payment-priority-vs-other-debts">Priority vs other debts</a></li>
         <li><a href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a></li>
       </ul>
@@ -126,14 +136,35 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a
+          href="https://www.consumerfinance.gov/an-essential-guide-to-building-an-emergency-fund/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          An essential guide to building an emergency fund
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/mortgage/" rel="noopener noreferrer" target="_blank">
+          Get answers to your mortgage questions
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
-      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model sustainable extras</a>
-      <a class="btn" href="/guides/extra-payment-windfall-strategy">Windfall strategy</a>
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model a smaller sustainable extra</a>
+      <a class="btn" href="/guides/extra-payment-priority-vs-other-debts">Compare against other debt priorities</a>
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
-

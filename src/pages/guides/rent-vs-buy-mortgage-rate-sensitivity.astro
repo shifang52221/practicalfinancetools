@@ -1,13 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Rent vs Buy Mortgage Rate Sensitivity";
 const description =
   "How mortgage rate changes affect rent vs buy outcomes and how to stress test rate scenarios. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-mortgage-rate-sensitivity" lastUpdated={lastUpdated} robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/rent-vs-buy-mortgage-rate-sensitivity"
+  lastUpdated={lastUpdated}
+  robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -24,10 +34,28 @@ const lastUpdated = "2026-02-08";
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
-      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Mortgage-rate sensitivity inside rent-versus-buy scenarios, isolating rate effects from other assumptions, and routing between mortgage payment, affordability, and break-even workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when rate volatility is the reason your rent-vs-buy answer keeps changing</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when a small change in the mortgage quote materially changes the buy-versus-rent result.</li>
+      <li>Use this page when you want to isolate the financing effect without changing taxes, insurance, maintenance, or appreciation assumptions.</li>
+      <li>If the base housing payment itself is still uncertain, run the <a href="/calculators/mortgage-payment-calculator">mortgage payment calculator</a> first so the rate scenarios start from a realistic baseline.</li>
+    </ul>
+  </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Rent vs buy inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -102,7 +130,6 @@ const lastUpdated = "2026-02-08";
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
         <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
-        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
       </ul>
     </div>
     <div class="card section prose col-6">
@@ -110,20 +137,42 @@ const lastUpdated = "2026-02-08";
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/guides/rent-vs-buy-time-horizon">Time horizon impact</a></li>
         <li><a href="/guides/rent-vs-buy-break-even">Break-even guide</a></li>
-        <li><a href="/guides/apr-vs-interest-rate">APR vs interest rate</a></li>
+        <li><a href="/guides/rent-vs-buy-costs-to-include">Costs to include</a></li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
+          Mortgage resources
+        </a>
+      </li>
+      <li>
+        CFPB Ask CFPB:{' '}
+        <a
+          href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-find-the-best-loan-available-when-im-shopping-for-a-home-mortgage-loan-en-137/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          How to compare mortgage loan options
+        </a>
+      </li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
-      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
+      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
       <a class="btn" href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

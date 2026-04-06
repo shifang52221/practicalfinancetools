@@ -1,14 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "DTI and Credit Card Minimum Payments";
 const description =
   "How credit card minimum payments affect DTI and why balances matter only through the required payment. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/dti-credit-card-minimums" lastUpdated={lastUpdated} robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/dti-credit-card-minimums"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  robots="noindex, follow"
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -31,9 +40,11 @@ const lastUpdated = "2026-04-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="DTI support guide review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Credit card minimum treatment inside DTI, statement-cycle timing and minimum-payment interpretation, and routing between DTI calculation, payoff-minimum, and improvement workflows."
+    reviewedOn="2026-04-05"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -145,7 +156,7 @@ const lastUpdated = "2026-04-03";
       <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

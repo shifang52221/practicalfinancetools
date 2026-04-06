@@ -1,13 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Rent vs Buy Closing Costs (Buyer and seller)";
 const description =
   "Overview of closing and selling costs to include in rent vs buy comparisons and why they matter on short horizons. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-closing-costs" lastUpdated={lastUpdated} robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/rent-vs-buy-closing-costs"
+  lastUpdated={lastUpdated}
+  robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -24,9 +34,26 @@ const lastUpdated = "2026-02-08";
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
-      <a class="btn" href="/guides/rent-vs-buy-time-horizon">Time horizon impact</a>
+      <a class="btn" href="/guides/rent-vs-buy-costs-to-include">Costs to include</a>
       <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Buyer and seller closing-cost treatment in rent-versus-buy comparisons, short-horizon sensitivity, and routing between costs-to-include, time-horizon, checklist, and break-even workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when upfront and exit costs are the reason a short-horizon buy case stops making sense</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when buying only looks competitive after assuming very low buyer or seller transaction costs.</li>
+      <li>Use this page when the decision flips depending on how long you stay in the home.</li>
+      <li>If the rest of the ownership-cost stack is still incomplete, return to the <a href="/guides/rent-vs-buy-costs-to-include">costs-to-include guide</a> before treating the break-even result as reliable.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Rent vs buy inputs to verify</h2>
@@ -124,6 +151,28 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB Ask CFPB:{' '}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-are-closing-costs-en-196/" rel="noopener noreferrer" target="_blank">
+          What are closing costs?
+        </a>
+      </li>
+      <li>
+        CFPB:{' '}
+        <a
+          href="https://www.consumerfinance.gov/owning-a-home/close/review-documents-before-closing/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Review documents before closing
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
@@ -131,9 +180,6 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
-
-
-

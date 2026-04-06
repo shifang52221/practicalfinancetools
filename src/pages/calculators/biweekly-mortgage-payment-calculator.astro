@@ -136,7 +136,7 @@ const caseTwoMonthsSavedFullTerm = Math.max(0, caseTwoBase.months - caseTwoBiwee
 
     <h2 style="margin:18px 0 10px">Example savings (approx.)</h2>
     <p class="muted" style="margin:0">
-      Example inputs: ${money.format(exampleInput.principal)} loan, {exampleInput.aprPercent}% APR, 30-year term.
+      Example inputs: {money.format(exampleInput.principal)} loan, {exampleInput.aprPercent}% note rate, 30-year term.
       We approximate biweekly as an extra monthly payment equal to (P&amp;I / 12).
     </p>
     <div style="overflow:auto; margin-top:10px">
@@ -221,7 +221,7 @@ const caseTwoMonthsSavedFullTerm = Math.max(0, caseTwoBase.months - caseTwoBiwee
           <tr>
             <td>Long-hold owner with no program fee</td>
             <td>
-              {money.format(caseOneInput.principal)} loan, {caseOneInput.aprPercent}% APR, 30-year term.
+              {money.format(caseOneInput.principal)} loan, {caseOneInput.aprPercent}% note rate, 30-year term.
               Biweekly modeled as extra {money.format(caseOneBase.paymentPI / 12)} monthly from month 1.
             </td>
             <td>
@@ -234,7 +234,7 @@ const caseTwoMonthsSavedFullTerm = Math.max(0, caseTwoBase.months - caseTwoBiwee
           <tr>
             <td>7-year horizon with paid program</td>
             <td>
-              {money.format(caseTwoInput.principal)} loan, {caseTwoInput.aprPercent}% APR, 30-year term.
+              {money.format(caseTwoInput.principal)} loan, {caseTwoInput.aprPercent}% note rate, 30-year term.
               Program fees: {money.format(caseTwoProgramSetupFee)} setup + {money.format(caseTwoProgramMonthlyFee)}/month.
             </td>
             <td>

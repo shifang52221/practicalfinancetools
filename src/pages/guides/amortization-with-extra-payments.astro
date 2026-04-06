@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
+import { TRUST_PROFILES } from "../../config/trust";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Amortization With Extra Payments (how to model it)";
@@ -26,9 +28,16 @@ const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/amortization-with-extra-payments" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/amortization-with-extra-payments"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -48,6 +57,23 @@ const lastUpdated = "2026-02-08";
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment mortgage calculator</a>
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule calculator</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Amortization-table interpretation, extra-principal timing comparisons, and routing between amortization schedule and extra-payment calculator workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you want to see how extra principal changes the amortization table</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when you want to understand which table rows actually change after an extra payment, not just the final payoff date.</li>
+      <li>Use this page when monthly extra versus lump-sum timing is the main modeling question behind your payoff strategy.</li>
+      <li>If you are ready to test specific numbers next, move to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a> or the <a href="/calculators/amortization-schedule-calculator">amortization schedule calculator</a>.</li>
+    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -123,7 +149,7 @@ const lastUpdated = "2026-02-08";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Worked example: what changes month to month</h2>
     <p class="muted" style="margin:10px 0 0">
-      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Compare baseline to adding
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% note rate for {exampleTermMonths} months. Compare baseline to adding
       {money0.format(exampleExtraMonthly)}/month extra principal.
     </p>
     <div style="overflow:auto; margin-top:12px">
@@ -226,7 +252,7 @@ const lastUpdated = "2026-02-08";
     <p class="muted" style="margin:12px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

@@ -1,14 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Refinance Checklist (before you lock a rate)";
 const description =
   "A practical refinance checklist covering documents, fees, timing, and break-even math. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/refinance-checklist" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/refinance-checklist"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -31,10 +39,21 @@ const lastUpdated = "2026-04-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Refinance document and timing review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Refinance-offer comparison workflow, document-and-timing checks, and routing between break-even, closing-cost, and payment-comparison pages."
+    reviewedOn="2026-04-05"
   />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when refinance logistics are the main risk</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when you already know refinancing might work, but you need to keep the quote, documents, fees, and timing lined up correctly.</li>
+      <li>Use this page when rate-lock timing, roll-in decisions, or closing-document changes could distort your break-even math.</li>
+      <li>If your main question is whether the refinance saves enough to justify the cost, start with the <a href="/guides/refinance-break-even">break-even guide</a>.</li>
+    </ul>
+  </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">1) Baseline the current loan</h2>
@@ -214,7 +233,7 @@ const lastUpdated = "2026-04-03";
       <a class="btn" href="/calculators/amortization-schedule-calculator">View amortization</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

@@ -1,13 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Rent vs Buy PMI Assumptions (Mortgage insurance)";
 const description =
   "How to include mortgage insurance (PMI) in rent vs buy comparisons and how it affects the monthly cost. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-pmi-assumptions" lastUpdated={lastUpdated} robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/rent-vs-buy-pmi-assumptions"
+  lastUpdated={lastUpdated}
+  robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -24,9 +34,26 @@ const lastUpdated = "2026-02-08";
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
-      <a class="btn" href="/guides/rent-vs-buy-down-payment">Down payment tradeoffs</a>
+      <a class="btn" href="/guides/rent-vs-buy-costs-to-include">Costs to include</a>
       <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="PMI treatment in low-down-payment rent-versus-buy scenarios, removal-timing realism, and routing between calculator, ownership-cost, and break-even workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when PMI is the hidden ownership cost changing the low-down-payment comparison</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when buying only appears competitive because the monthly model is missing mortgage insurance.</li>
+      <li>Use this page when you need to separate the one-time down-payment decision from the ongoing monthly cost created by low initial equity.</li>
+      <li>If the rest of the ownership-cost stack is still uncertain, pair this page with the <a href="/guides/rent-vs-buy-costs-to-include">costs-to-include guide</a> before relying on the break-even result.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Rent vs buy inputs to verify</h2>
@@ -105,24 +132,47 @@ const lastUpdated = "2026-02-08";
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/rent-vs-buy-down-payment">Down payment tradeoffs</a></li>
-        <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
+        <li><a href="/guides/rent-vs-buy-costs-to-include">Costs to include</a></li>
+        <li><a href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a></li>
         <li><a href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a></li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB Ask CFPB:{' '}
+        <a
+          href="https://www.consumerfinance.gov/ask-cfpb/what-is-private-mortgage-insurance-en-122/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          What is private mortgage insurance?
+        </a>
+      </li>
+      <li>
+        CFPB Ask CFPB:{' '}
+        <a
+          href="https://www.consumerfinance.gov/ask-cfpb/when-can-i-remove-private-mortgage-insurance-pmi-from-my-loan-en-202/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          When can I remove private mortgage insurance (PMI) from my loan?
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
-      <a class="btn" href="/guides/rent-vs-buy-down-payment">Down payment tradeoffs</a>
+      <a class="btn" href="/guides/rent-vs-buy-costs-to-include">Costs to include</a>
       <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
-
-
-

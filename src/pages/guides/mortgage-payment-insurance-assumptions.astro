@@ -1,14 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Home Insurance Assumptions for Mortgage Payments";
 const description =
   "How to estimate homeowners insurance for a mortgage payment and avoid underestimating escrow. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-insurance-assumptions" lastUpdated={lastUpdated} robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/mortgage-payment-insurance-assumptions"
+  lastUpdated={lastUpdated}
+  robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -31,9 +40,11 @@ const lastUpdated = "2026-04-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Homeowners insurance mortgage-input review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Insurance-premium estimate realism inside mortgage-payment modeling, coverage and renewal-risk framing, and routing between mortgage payment, homeowners insurance estimation, and PITI workflows."
+    reviewedOn="2026-04-05"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -132,13 +143,13 @@ const lastUpdated = "2026-04-03";
       <h2 style="margin-top:0">Related tools</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
-        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
       </ul>
     </div>
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
+        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
         <li><a href="/guides/how-to-estimate-homeowners-insurance">Estimate homeowners insurance</a></li>
         <li><a href="/guides/mortgage-payment-escrow-account">Escrow account basics</a></li>
         <li><a href="/guides/mortgage-payment-prepaids-and-reserves">Prepaids and reserves</a></li>
@@ -172,7 +183,7 @@ const lastUpdated = "2026-04-03";
       <a class="btn" href="/guides/mortgage-payment-escrow-account">Review escrow impact</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

@@ -1,13 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Rent vs Buy HOA Fees (Condo and community costs)";
 const description =
   "How HOA dues affect rent vs buy comparisons, including what they cover and how to model them. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-hoa-fees" lastUpdated={lastUpdated} robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/rent-vs-buy-hoa-fees"
+  lastUpdated={lastUpdated}
+  robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -27,6 +37,23 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/rent-vs-buy-costs-to-include">Costs to include</a>
       <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic hub</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="HOA dues, master-policy coverage, special-assessment risk, and routing between ownership-cost, maintenance, and break-even workflows in rent-versus-buy comparisons."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when HOA dues or special assessments are the ownership cost most likely to be missed or double counted</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when a condo or planned-community purchase looks attractive before you have fully modeled dues, reserve health, and assessment risk.</li>
+      <li>Use this page when you need to decide which maintenance costs stay in your model because the HOA does not cover them.</li>
+      <li>If the full ownership-cost stack is still not settled, go back through the <a href="/guides/rent-vs-buy-costs-to-include">costs-to-include guide</a> before locking in your comparison.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Rent vs buy inputs to verify</h2>
@@ -117,10 +144,36 @@ const lastUpdated = "2026-02-17";
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/guides/rent-vs-buy-costs-to-include">Costs to include</a></li>
-        <li><a href="/guides/rent-vs-buy-maintenance-estimate">Maintenance estimate</a></li>
-        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
+        <li><a href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a></li>
+        <li><a href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a></li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{' '}
+        <a
+          href="https://www.consumerfinance.gov/language/cfpb-in-english/prepare-your-money-situation-before-you-buy-a-home/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Prepare your money situation before you buy a home
+        </a>
+      </li>
+      <li>
+        CFPB Ask CFPB:{' '}
+        <a
+          href="https://www.consumerfinance.gov/ask-cfpb/what-are-homeowners-association-dues-and-how-do-they-fit-in-my-monthly-mortgage-payment-en-1951/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          What are homeowners association dues and how do they fit in my monthly mortgage payment?
+        </a>
+      </li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -128,12 +181,9 @@ const lastUpdated = "2026-02-17";
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
       <a class="btn" href="/guides/rent-vs-buy-costs-to-include">Costs to include</a>
-      <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+      <a class="btn" href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
-
-
-

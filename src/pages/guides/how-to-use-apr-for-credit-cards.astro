@@ -1,14 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "How to Use APR for Credit Cards (Comparisons)";
 const description =
   "APR can help compare card offers when terms differ. Learn how to compare APR and fees accurately. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/how-to-use-apr-for-credit-cards" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/how-to-use-apr-for-credit-cards"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -31,17 +39,21 @@ const lastUpdated = "2026-04-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Credit card APR guide review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Credit-card APR comparison framing, promo-window and fee-treatment checks, and routing between payoff, fee, and promo-risk workflows."
+    reviewedOn="2026-04-05"
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use this guide when...</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Use this guide when you are comparing credit card APR types, promo windows, or penalty-rate risk. It helps you separate daily periodic
-      rate math, promo APR deadlines, balance transfer fees, and penalty APR triggers before you choose a payoff plan.
-    </p>
+    <h2 style="margin-top:0">Use this guide when you are comparing credit card APR types, promo windows, and fee-heavy payoff choices</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this guide when you are comparing credit card APR types, promo windows, or penalty-rate risk and need to see how fees can change the answer.</li>
+      <li>Use this page when promo APR timing, balance transfer fees, or penalty-rate risk can change which card is actually cheaper.</li>
+      <li>Use this page when you need to separate daily-interest mechanics from fee treatment before trusting the comparison.</li>
+      <li>If you are ready to test a payment plan next, move to the <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">APR comparison inputs to verify</h2>
@@ -213,7 +225,7 @@ const lastUpdated = "2026-04-03";
       <a class="btn" href="/topics/credit-cards">Credit cards topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

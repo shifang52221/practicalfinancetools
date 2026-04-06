@@ -1,14 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "How to Improve Debt-to-Income (DTI)";
 const description =
   "Practical ways to improve DTI: reduce balances, increase income, and document changes. Educational use only.";
 
-const lastUpdated = "2026-04-04";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/how-to-improve-dti" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/how-to-improve-dti"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -31,9 +39,11 @@ const lastUpdated = "2026-04-04";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="DTI improvement guide review"
-    reviewedOn="2026-04-04"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="DTI improvement ordering, statement-cycle and documentation timing, and routing between DTI interpretation, improvement, and calculator workflows."
+    reviewedOn="2026-04-05"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -242,10 +252,10 @@ const lastUpdated = "2026-04-04";
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Recalculate DTI</a>
       <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
       <a class="btn" href="/guides/credit-card-payoff-strategy">Payoff strategy</a>
-      <a class="btn" href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a>
+      <a class="btn" href="/guides/dti-calculation-step-by-step">DTI calculation steps</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

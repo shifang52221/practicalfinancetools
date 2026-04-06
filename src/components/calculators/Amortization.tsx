@@ -50,7 +50,7 @@ export function AmortizationScheduleCalculator() {
             <input id="amort-principal" type="number" inputMode="decimal" value={principal} min={0} onChange={(e) => setPrincipal(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <label className="label" htmlFor="amort-rate">Interest rate (APR %)</label>
+            <label className="label" htmlFor="amort-rate">Interest rate (%)</label>
             <input id="amort-rate" type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
           </div>
           <div className="field field-3">

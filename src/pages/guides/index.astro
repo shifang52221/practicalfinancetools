@@ -8,7 +8,7 @@ const title = `Guides | ${SITE.name}`;
 const description =
   "Practical guides on mortgage, APR, and credit card payoff topics with links to related calculators. Educational use only.";
 
-const lastUpdated = "2026-04-04";
+const lastUpdated = "2026-04-05";
 ---
 <BaseLayout
   title={title}
@@ -40,7 +40,7 @@ const lastUpdated = "2026-04-04";
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
     reviewScope="Guide-library curation, strongest-path surfacing, and supporting-page maintenance across the educational catalog."
-    reviewedOn="2026-04-04"
+    reviewedOn="2026-04-05"
   />
 
   <section class="card section" style="margin-top:18px">
@@ -116,7 +116,6 @@ const lastUpdated = "2026-04-04";
         <li><a href="/calculators/debt-snowball-calculator">Debt snowball calculator</a></li>
         <li><a href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a></li>
         <li><a href="/guides/debt-snowball-vs-avalanche">Debt snowball vs avalanche</a></li>
-        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a></li>
         <li><a href="/guides/how-credit-card-interest-is-calculated">How credit card interest is calculated</a></li>
         <li><a href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a></li>
         <li><a href="/guides/how-to-use-apr-for-credit-cards">How to use APR for credit cards</a></li>
@@ -166,9 +165,7 @@ const lastUpdated = "2026-04-04";
         <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
         <li><a href="/calculators/additional-principal-payment-calculator">Mortgage extra principal calculator</a></li>
         <li><a href="/guides/biweekly-mortgage-program-fees">Biweekly mortgage program fees</a></li>
-        <li>
-          <a href="/calculators/extra-payment-calculator">Calculate payoff with additional principal</a>
-        </li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
         <li><a href="/guides/amortization-with-extra-payments">Amortization with extra payments</a></li>
         <li><a href="/guides/principal-only-extra-payments">Principal-only extra payments</a></li>
         <li><a href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a></li>
@@ -205,105 +202,58 @@ const lastUpdated = "2026-04-04";
         <li><a href="/guides/rent-vs-buy-costs-to-include">Costs to include</a></li>
       </ul>
     </div>
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Want a guide?</h2>
-      <p class="muted" style="margin:10px 0 0">
-        Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the topic you want next (DTI, rent vs buy, refinancing, and more).
-      </p>
+  </section>
+
+  <section class="card section" style="margin-top:18px">
+    <h2 style="margin:0 0 12px">Deeper mortgage payoff guides</h2>
+    <p class="muted" style="margin:0 0 12px">
+      After you confirm that extra principal is the workflow you need, these narrower guides help with posting rules, timing choices,
+      PMI tradeoffs, and recast decisions.
+    </p>
+    <div class="grid">
+      <a class="card2 tool col-6" href="/guides/amortization-with-extra-payments">
+        <div class="tool-title">Amortization with extra payments</div>
+        <div class="tool-desc">See how the schedule changes after extra principal and why timing can shift the payoff path.</div>
+      </a>
+      <a class="card2 tool col-6" href="/guides/principal-only-extra-payments">
+        <div class="tool-title">Principal-only extra payments</div>
+        <div class="tool-desc">Use this when you need to make sure extra dollars reduce principal instead of getting marked as paid ahead.</div>
+      </a>
+      <a class="card2 tool col-6" href="/guides/one-extra-mortgage-payment-per-year">
+        <div class="tool-title">One extra payment per year</div>
+        <div class="tool-desc">Compare monthly versus annual ways to model the same payoff effect.</div>
+      </a>
+      <a class="card2 tool col-6" href="/guides/biweekly-vs-extra-principal">
+        <div class="tool-title">Biweekly vs extra principal</div>
+        <div class="tool-desc">Compare convenience, lender program rules, and the real savings difference.</div>
+      </a>
+      <a class="card2 tool col-6" href="/guides/pmi-removal-vs-extra-principal">
+        <div class="tool-title">PMI removal vs extra principal</div>
+        <div class="tool-desc">Check whether removing PMI first changes the best use of your extra cash.</div>
+      </a>
+      <a class="card2 tool col-6" href="/guides/mortgage-recast-vs-extra-payments">
+        <div class="tool-title">Recast vs extra payments</div>
+        <div class="tool-desc">Use this when your main question is lower required payment versus faster payoff.</div>
+      </a>
+      <a class="card2 tool col-6" href="/guides/pay-off-mortgage-early-or-invest">
+        <div class="tool-title">Pay off early or invest?</div>
+        <div class="tool-desc">Add liquidity, return assumptions, and risk tolerance to the mortgage payoff decision.</div>
+      </a>
     </div>
   </section>
 
-  <section class="grid" style="margin-top:18px">
-    <a class="card section prose col-6" href="/guides/extra-mortgage-payments">
-      <h2 style="margin-top:0">Extra mortgage payments</h2>
-      <p class="muted" style="margin:10px 0 0">
-        How principal prepayments change amortization, what to ask your lender, and how to compare scenarios.
-      </p>
-    </a>
-    <a class="card section prose col-6" href="/guides/amortization-with-extra-payments">
-      <h2 style="margin-top:0">Amortization with extra payments</h2>
-      <p class="muted" style="margin:10px 0 0">
-        What changes in the payment table when you pay extra principal, and why timing matters.
-      </p>
-    </a>
-    <a class="card section prose col-6" href="/guides/principal-only-extra-payments">
-      <h2 style="margin-top:0">Principal-only extra payments</h2>
-      <p class="muted" style="margin:10px 0 0">
-        How to ensure extra payments reduce principal (not "paid ahead"), and what to check on your statement.
-      </p>
-    </a>
-    <a class="card section prose col-6" href="/guides/one-extra-mortgage-payment-per-year">
-      <h2 style="margin-top:0">One extra payment per year</h2>
-      <p class="muted" style="margin:10px 0 0">
-        Two common ways to model it (monthly vs annual) and what to confirm with your lender.
-      </p>
-    </a>
-    <a class="card section prose col-6" href="/guides/biweekly-vs-extra-principal">
-      <h2 style="margin-top:0">Biweekly vs extra principal</h2>
-      <p class="muted" style="margin:10px 0 0">
-        When biweekly payments help, when they don't, and a simple way to compare scenarios.
-      </p>
-    </a>
-    <a class="card section prose col-6" href="/guides/pmi-removal-vs-extra-principal">
-      <h2 style="margin-top:0">PMI removal vs extra principal</h2>
-      <p class="muted" style="margin:10px 0 0">
-        When PMI changes the math, what to confirm with your lender, and a practical way to compare.
-      </p>
-    </a>
-    <a class="card section prose col-6" href="/guides/mortgage-recast-vs-extra-payments">
-      <h2 style="margin-top:0">Recast vs extra payments</h2>
-      <p class="muted" style="margin:10px 0 0">
-        Extra principal usually shortens payoff time; a recast can lower your required payment after a lump sum.
-      </p>
-    </a>
-    <a class="card section prose col-6" href="/guides/refinance-break-even">
-      <h2 style="margin-top:0">Refinance break-even</h2>
-      <p class="muted" style="margin:10px 0 0">
-        A simple framework to compare monthly savings to closing costs and your time horizon.
-      </p>
-    </a>
-    <a class="card section prose col-6" href="/guides/pay-off-mortgage-early-or-invest">
-      <h2 style="margin-top:0">Pay off early or invest?</h2>
-      <p class="muted" style="margin:10px 0 0">
-        A practical checklist to compare mortgage prepayments vs investing, including risk and liquidity.
-      </p>
-    </a>
-    <a class="card section prose col-6" href="/guides/rent-vs-buy-break-even">
-      <h2 style="margin-top:0">Rent vs buy break-even</h2>
-      <p class="muted" style="margin:10px 0 0">
-        A checklist for setting assumptions and comparing scenarios with the rent vs buy calculator.
-      </p>
-    </a>
-    <a class="card section prose col-6" href="/guides/apr-vs-interest-rate">
-      <h2 style="margin-top:0">APR vs interest rate</h2>
-      <p class="muted" style="margin:10px 0 0">
-        What APR includes, how fees change comparisons, and when APR can mislead.
-      </p>
-    </a>
-    <a class="card section prose col-6" href="/guides/credit-card-payoff-strategy">
-      <h2 style="margin-top:0">Credit card payoff strategy</h2>
-      <p class="muted" style="margin:10px 0 0">
-        Fixed payments vs minimum payments, what drives interest cost, and how to prioritize multiple debts.
-      </p>
-    </a>
-    <a class="card section prose col-6" href="/guides/debt-snowball-vs-avalanche">
-      <h2 style="margin-top:0">Debt snowball vs avalanche</h2>
-      <p class="muted" style="margin:10px 0 0">
-        A simple framework to choose the method that fits your goals and payment habits.
-      </p>
-    </a>
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Want a guide?</h2>
-      <p class="muted" style="margin:10px 0 0">
-        Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the topic you want next (DTI, rent vs buy, refinancing, and more).
-      </p>
-    </div>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Want a guide?</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the topic you want next. Priority requests usually come from calculators
+      or topic workflows where users still hit the same unanswered edge case.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
     <p class="muted" style="margin:10px 0 0">Guides are updated as calculators change or new scenarios are added.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 
   <script is:inline type="text/javascript">

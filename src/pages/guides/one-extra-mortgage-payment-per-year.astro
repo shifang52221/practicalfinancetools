@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
+import { TRUST_PROFILES } from "../../config/trust";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "One Extra Mortgage Payment Per Year (what it does)";
@@ -41,9 +42,16 @@ const monthlyYm = yearsMonths(withMonthlyExtra.months);
 const lateYm = yearsMonths(withOneTimeExtraLate.months);
 const earlyYm = yearsMonths(withOneTimeExtraEarly.months);
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/one-extra-mortgage-payment-per-year" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/one-extra-mortgage-payment-per-year"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -65,9 +73,11 @@ const lastUpdated = "2026-04-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Mortgage extra-payment timing review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Annual extra-payment timing, monthly-versus-lump-sum comparison framing, and routing between mortgage payoff calculators and related extra-payment guides."
+    reviewedOn="2026-04-05"
   />
 
   <section class="grid" style="margin-top:18px">
@@ -282,7 +292,7 @@ const lastUpdated = "2026-04-03";
     <p class="muted" style="margin:12px 0 0">
       Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

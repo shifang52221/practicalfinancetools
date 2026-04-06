@@ -1,14 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Mortgage Payment Affordability Checklist";
 const description =
   "A practical checklist to validate mortgage affordability: payment components, DTI, buffers, and timing. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-affordability-checklist" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/mortgage-payment-affordability-checklist"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -26,14 +34,16 @@ const lastUpdated = "2026-04-03";
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/calculators/debt-to-income-calculator">DTI calculator</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
+      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
     </div>
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Mortgage affordability workflow review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Mortgage affordability framing, housing-payment-versus-DTI interpretation, and routing between payment-building, affordability checks, and housing-cost breakdown workflows."
+    reviewedOn="2026-04-05"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -169,10 +179,10 @@ const lastUpdated = "2026-04-03";
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the mortgage payment calculator</a>
       <a class="btn" href="/calculators/debt-to-income-calculator">Run the DTI calculator</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
+      <a class="btn" href="/topics/debt-to-income">DTI topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

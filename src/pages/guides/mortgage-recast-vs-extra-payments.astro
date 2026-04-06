@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
+import { TRUST_PROFILES } from "../../config/trust";
 import { amortizationSchedule } from "../../lib/calc/loan";
 import { paymentForAmortizedLoan } from "../../lib/math";
 
@@ -28,9 +30,16 @@ const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-01-28";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-recast-vs-extra-payments" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/mortgage-recast-vs-extra-payments"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -51,6 +60,23 @@ const lastUpdated = "2026-01-28";
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Baseline monthly payment</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Mortgage recast-versus-extra-payment decision framing, recast-fee and eligibility guardrails, and routing between payment, amortization, and payoff comparison workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you are deciding whether lower required payments matter more than a faster payoff</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when a large lump-sum payment is available but you still need to choose between cash-flow relief and the shortest payoff timeline.</li>
+      <li>Use this page when recast fees, minimum lump-sum rules, or loan-program eligibility may change whether a recast is worth pursuing.</li>
+      <li>If you already want to quantify the extra-principal path, move next to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a> for side-by-side modeling.</li>
+    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -163,7 +189,7 @@ const lastUpdated = "2026-01-28";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Worked example (estimated)</h2>
     <p class="muted" style="margin:10px 0 0">
-      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR, 30-year term. After 24 months, you pay a{" "}
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% note rate, 30-year term. After 24 months, you pay a{" "}
       {money0.format(exampleLumpSum)} principal-only lump sum.
     </p>
     <div style="overflow:auto; margin-top:12px">
@@ -235,7 +261,7 @@ const lastUpdated = "2026-01-28";
     <p class="muted" style="margin:10px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

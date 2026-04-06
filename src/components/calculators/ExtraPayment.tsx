@@ -79,7 +79,7 @@ export function ExtraPaymentMortgageCalculator() {
             <input id="extra-loan-amount" type="number" inputMode="decimal" value={principal} min={0} onChange={(e) => setPrincipal(+e.target.value)} />
           </div>
           <div className="field field-3">
-            <label className="label" htmlFor="extra-rate">Interest rate (APR %)</label>
+            <label className="label" htmlFor="extra-rate">Interest rate (%)</label>
             <input id="extra-rate" type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
           </div>
           <div className="field field-3">

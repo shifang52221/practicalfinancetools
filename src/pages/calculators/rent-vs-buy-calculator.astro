@@ -105,8 +105,8 @@ const exampleBreakEven = example.breakEvenYear == null ? "Not within horizon" : 
 
     <h2 style="margin:18px 0 10px">Example output (estimate)</h2>
     <p class="muted" style="margin:0">
-      Example inputs: ${money.format(exampleInput.homePrice)} home, {exampleInput.aprPercent}% APR, {exampleInput.years}-year horizon,
-      ${money.format(exampleInput.monthlyRent)} rent.
+      Example inputs: {money.format(exampleInput.homePrice)} home, {exampleInput.aprPercent}% mortgage rate, {exampleInput.years}-year horizon,
+      {money.format(exampleInput.monthlyRent)} rent.
     </p>
     <div style="overflow:auto; margin-top:10px">
       <table class="table">

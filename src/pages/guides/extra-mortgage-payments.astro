@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Mortgage Payments (save interest, shorten payoff)";
@@ -22,9 +23,16 @@ const withExtra = amortizationSchedule({
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-06";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/extra-mortgage-payments" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/extra-mortgage-payments"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -47,10 +55,21 @@ const lastUpdated = "2026-04-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Mortgage payoff guide review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Mortgage prepayment workflow framing, principal-only posting guidance, interpretation of payoff-time and interest tradeoffs, and routing into specialized operational support guides."
+    reviewedOn="2026-04-06"
   />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you want the main extra-payment workflow before choosing a specific decision or operational support path</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when you want the overall payoff logic first: what changes, what to verify, and how to model extra principal correctly.</li>
+      <li>Use the specialized support guides below when the main blocker is no longer the math, but fees, escrow confusion, penalties, or how to use a windfall.</li>
+      <li>If your real question is whether extra payments are the best use of cash at all, branch next into the decision guides in the <a href="/topics/mortgage-payoff">mortgage payoff topic hub</a>.</li>
+    </ul>
+  </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
@@ -126,7 +145,7 @@ const lastUpdated = "2026-04-03";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Worked example (computed)</h2>
     <p class="muted" style="margin:10px 0 0">
-      Example: {money0.format(examplePrincipal)} mortgage at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months (30 years).
+      Example: {money0.format(examplePrincipal)} mortgage at {pct2.format(exampleApr)}% note rate for {exampleTermMonths} months (30 years).
       Baseline P&amp;I payment is {money0.format(base.paymentPI)}/month. Now compare adding {money0.format(exampleExtraMonthly)}/month in extra
       principal.
     </p>
@@ -193,6 +212,27 @@ const lastUpdated = "2026-04-03";
       <a class="btn" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
       <a class="btn" href="/calculators/additional-principal-payment-calculator">Additional principal / lump sum</a>
       <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Choose the operational support guide</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/extra-payment-accelerated-plan">Accelerated payment plan</a>: use this when a paid program or autopay service needs a DIY comparison.</li>
+        <li><a href="/guides/extra-payment-prepayment-penalty-checklist">Prepayment penalty checklist</a>: use this before large lump sums or early full-payoff plans.</li>
+        <li><a href="/guides/extra-payment-escrow-not-affected">Escrow not affected</a>: use this when the statement total is confusing the payoff result.</li>
+        <li><a href="/guides/extra-payment-windfall-strategy">Windfall strategy</a>: use this when a bonus, refund, or other lump sum could accelerate payoff.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Choose the execution guide</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/guides/principal-only-extra-payments">Principal-only extra payments</a>: use this when posting instructions are the main concern.</li>
+        <li><a href="/guides/extra-payment-servicer-posting-rules">Servicer posting rules</a>: use this when statement timing or paid-ahead treatment is unclear.</li>
+        <li><a href="/guides/extra-payment-lump-sum-vs-monthly">Lump sum vs monthly</a>: use this when equal dollars at different times may lead to different results.</li>
+        <li><a href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>: use this when you want a simple annual-extra benchmark.</li>
+      </ul>
     </div>
   </section>
 
@@ -283,10 +323,10 @@ const lastUpdated = "2026-04-03";
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Compare extra payment scenarios</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Baseline monthly payment</a>
-      <a class="btn" href="/calculators/rent-vs-buy-calculator">Rent vs buy</a>
-      <a class="btn" href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a>
+      <a class="btn" href="/calculators/additional-principal-payment-calculator">Lump sum / principal-only</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-06</p>
   </section>
 </BaseLayout>
 

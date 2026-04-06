@@ -1,13 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Rent vs Buy Checklist (Inputs to gather)";
 const description =
   "Checklist to gather inputs for a rent vs buy comparison: taxes, insurance, maintenance, closing costs, rent growth, appreciation, time horizon.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/rent-vs-buy-checklist" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/rent-vs-buy-checklist"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -28,6 +37,24 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Rent-vs-buy assumption gathering, ownership-cost completeness checks, and routing between checklist, break-even, costs-to-include, and calculator workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when your rent-vs-buy assumptions still need to be pressure-tested</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page before running a rent-vs-buy model when taxes, insurance, HOA, maintenance, or selling costs are still rough guesses.</li>
+      <li>Use this page when the break-even result looks too optimistic and you need to audit which ownership or rent assumptions are missing.</li>
+      <li>If you already have realistic inputs, move next to the <a href="/calculators/rent-vs-buy-calculator">rent vs buy calculator</a>.</li>
+    </ul>
+  </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Rent vs buy inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -155,7 +182,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

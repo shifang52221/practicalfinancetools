@@ -1,13 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Estimating PMI Cost (Monthly Mortgage Insurance)";
 const description =
   "Estimate PMI cost and understand how it affects your monthly payment and removal timeline. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/estimating-pmi-cost" lastUpdated={lastUpdated} robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/estimating-pmi-cost"
+  lastUpdated={lastUpdated}
+  robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -27,6 +37,23 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a>
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Monthly PMI estimate realism, monthly-versus-upfront mortgage insurance interpretation, and routing between mortgage payment, PMI thresholds, and removal workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when PMI cost is the missing piece of the full housing-payment estimate</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when principal and interest look fine, but the monthly payment still feels incomplete because PMI has not been estimated realistically.</li>
+      <li>If you need to see when PMI applies or ends, move next to <a href="/guides/mortgage-payment-pmi-thresholds">PMI thresholds and mortgage payments</a>.</li>
+      <li>If your next decision is whether faster extra principal is better than waiting for removal, move next to <a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a>.</li>
+    </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
@@ -112,6 +139,24 @@ const lastUpdated = "2026-02-08";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">References</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/when-can-i-remove-private-mortgage-insurance-pmi-from-my-loan-en-202/" rel="noopener noreferrer" target="_blank">
+          When can I remove private mortgage insurance (PMI) from my loan?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/ready-to-buy-a-home/" rel="noopener noreferrer" target="_blank">
+          Ready to buy a home?
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the mortgage payment calculator</a>
@@ -119,7 +164,7 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

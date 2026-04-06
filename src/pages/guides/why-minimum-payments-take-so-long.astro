@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 import { minimumPaymentPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Why Minimum Payments Take So Long (credit cards)";
@@ -33,9 +34,16 @@ const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/why-minimum-payments-take-so-long" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/why-minimum-payments-take-so-long"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -58,10 +66,21 @@ const lastUpdated = "2026-04-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Minimum payment guide review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Minimum-payment formula behavior, interest-versus-principal payoff framing, and routing between minimum-rule and fixed-payment payoff tools."
+    reviewedOn="2026-04-05"
   />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you need to see why minimum rules barely reduce principal</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when the statement minimum looks manageable but the balance still is not falling fast enough.</li>
+      <li>Use this page when you want to compare the minimum-payment path with a fixed-payment path before you change your monthly target.</li>
+      <li>If you already know the payment amount you want to test, move next to the <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>.</li>
+    </ul>
+  </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Choose the calculator that matches your next step</h2>
@@ -308,7 +327,7 @@ Example: max(2% x $5,000, $35) = $100</code></pre>
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-04-03
+      Last updated: 2026-04-05
     </p>
   </section>
 </BaseLayout>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Payoff Strategy (pay faster, pay less interest)";
@@ -22,9 +23,16 @@ const promoMonths = 12;
 const promoPaymentTarget = promoBalance / promoMonths;
 const promoPaymentRounded = Math.ceil(promoPaymentTarget);
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/credit-card-payoff-strategy" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/credit-card-payoff-strategy"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -47,10 +55,21 @@ const lastUpdated = "2026-04-03";
   </section>
 
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Credit card payoff strategy review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Credit-card payoff workflow framing, calculator routing, and interpretation of fixed-payment, minimum-payment, promo-APR, and multi-debt tradeoffs."
+    reviewedOn="2026-04-05"
   />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What this guide helps you decide</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Choose the right payoff calculator before you start changing payment assumptions.</li>
+      <li>See whether payment size, APR, promo timing, or debt-order strategy is the real bottleneck.</li>
+      <li>Use your statement numbers here for education and comparison, not as a replacement for issuer-specific hardship or legal advice.</li>
+    </ul>
+  </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Credit card inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -375,7 +394,7 @@ const lastUpdated = "2026-04-03";
       <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Minimum payment timeline</a>
       <a class="btn" href="/calculators/apr-calculator">Compare APR (fees)</a>
     </div>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

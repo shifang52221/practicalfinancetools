@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
+import { TRUST_PROFILES } from "../../config/trust";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "PMI Removal vs Extra Principal (what to prioritize)";
@@ -29,9 +31,16 @@ const pmiSaved = monthsSaved == null ? null : monthsSaved * examplePmiMonthly;
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-01-28";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/pmi-removal-vs-extra-principal" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/pmi-removal-vs-extra-principal"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -52,6 +61,23 @@ const lastUpdated = "2026-01-28";
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Estimate PMI and payment</a>
       <a class="btn" href="/calculators/extra-payment-calculator">Model extra principal</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="PMI-removal threshold framing, extra-principal prioritization logic, and routing between payment, PMI, and payoff comparison workflows."
+    reviewedOn="2026-04-05"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you need to decide whether faster PMI removal should change your extra-principal strategy</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use this page when the real question is not just interest savings, but whether removing PMI sooner creates a stronger near-term payoff.</li>
+      <li>Use this page when appraisal rules, loan type, or servicer policy may change whether extra principal actually accelerates PMI removal.</li>
+      <li>If you want to model the principal side first, move next to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a>.</li>
+    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -139,7 +165,7 @@ const lastUpdated = "2026-01-28";
     <h2 style="margin-top:0">Worked example (LTV threshold)</h2>
     <p class="muted" style="margin:10px 0 0">
       Example: {money0.format(exampleHomeValue)} home, {money0.format(exampleDownPayment)} down, loan {money0.format(exampleLoan)} at{" "}
-      {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. Target balance for 80% LTV is {money0.format(targetBalance)}.
+      {pct2.format(exampleApr)}% note rate for {exampleTermMonths} months. Target balance for 80% LTV is {money0.format(targetBalance)}.
     </p>
     <div style="overflow:auto; margin-top:12px">
       <table class="table">
@@ -217,7 +243,7 @@ const lastUpdated = "2026-01-28";
     <p class="muted" style="margin:12px 0 0">
       Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-01-28</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

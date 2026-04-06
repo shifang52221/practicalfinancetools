@@ -1,14 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Down Payment Impact on Mortgage Payments";
 const description =
   "How down payment size changes monthly mortgage payments, PMI, and total cost. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-05";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/mortgage-payment-down-payment-impact" lastUpdated={lastUpdated} robots="noindex, follow">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/mortgage-payment-down-payment-impact"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  robots="noindex, follow"
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -30,9 +39,11 @@ const lastUpdated = "2026-04-03";
     </div>
   </section>
   <ReviewedByCard
-    reviewedBy="Practical Finance Tools Editorial Team"
-    reviewerRole="Down-payment tradeoff review"
-    reviewedOn="2026-04-03"
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Down-payment-versus-reserves framing, PMI threshold and cash-to-close interpretation, and routing between mortgage payment, PMI, and affordability workflows."
+    reviewedOn="2026-04-05"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -135,7 +146,6 @@ const lastUpdated = "2026-04-03";
       <h2 style="margin-top:0">Related tools</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
-        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
       </ul>
     </div>
     <div class="card section prose col-6">
@@ -146,7 +156,7 @@ const lastUpdated = "2026-04-03";
         <li><a href="/guides/mortgage-payment-prepaids-and-reserves">Prepaids and reserves</a></li>
         <li><a href="/guides/estimating-pmi-cost">Estimating PMI cost</a></li>
         <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
-        <li><a href="/guides/rent-vs-buy-costs-to-include">Rent vs buy costs to include</a></li>
+        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
       </ul>
     </div>
   </section>
@@ -177,7 +187,7 @@ const lastUpdated = "2026-04-03";
       <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Check affordability</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
   </section>
 </BaseLayout>
 

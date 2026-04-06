@@ -62,7 +62,7 @@ export function BiweeklyMortgageCalculator() {
             </div>
           </div>
           <div className="field field-3">
-            <label className="label" htmlFor="biweekly-rate">Interest rate (APR %)</label>
+            <label className="label" htmlFor="biweekly-rate">Interest rate (%)</label>
             <input id="biweekly-rate" type="number" inputMode="decimal" value={rate} min={0} step={0.01} onChange={(e) => setRate(+e.target.value)} />
             <div className="btn-row" style={{ marginTop: 8 }}>
               <button className="btn" type="button" onClick={() => setRate(5.5)}>
