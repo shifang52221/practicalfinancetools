@@ -1,13 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "DTI Housing Payment Inputs (PITI, HOA, PMI)";
 const description =
   "What to include in the housing payment for DTI: principal, interest, taxes, insurance, HOA, and PMI. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-06";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/dti-housing-payment-piti-includes" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/dti-housing-payment-piti-includes"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -27,6 +36,23 @@ const lastUpdated = "2026-02-17";
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Housing-payment input boundaries for DTI, PITI and escrow interpretation, and routing between DTI calculation, mortgage-payment, and housing-cost verification workflows."
+    reviewedOn="2026-04-06"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you need to confirm whether PITI belongs in the housing-payment side of your DTI calculation</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use this guide when you need to confirm whether PITI belongs in the housing-payment side of your DTI calculation.
+      It is most useful when a mortgage-payment estimate looks affordable on principal and interest alone, but taxes,
+      insurance, PMI, or HOA dues may be the reason a lender's DTI answer comes out differently.
+    </p>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">DTI inputs to verify</h2>
@@ -180,7 +206,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/what-is-piti">What is PITI</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-06</p>
   </section>
 </BaseLayout>
 

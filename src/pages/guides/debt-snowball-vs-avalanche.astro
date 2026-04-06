@@ -1,13 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Debt Snowball vs Avalanche (which payoff method fits)";
 const description =
   "Debt snowball vs avalanche: compare payoff methods, trade-offs, and how to model both with calculators. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-04-06";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/debt-snowball-vs-avalanche" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/debt-snowball-vs-avalanche"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -27,6 +36,23 @@ const lastUpdated = "2026-02-17";
       <a class="btn btn-primary" href="/calculators/debt-snowball-calculator">Debt snowball calculator</a>
       <a class="btn" href="/calculators/debt-avalanche-calculator">Debt avalanche calculator</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="Debt-payoff method framing, interest-versus-behavior tradeoff interpretation, and routing between snowball, avalanche, and credit-card payoff workflows."
+    reviewedOn="2026-04-06"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you need to choose between behavioral momentum and interest-cost efficiency in a debt payoff plan</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use this guide when you need to choose between behavioral momentum and interest-cost efficiency in a debt payoff
+      plan. It helps when the real question is not just which method saves more interest, but which method you are most
+      likely to follow month after month without adding new debt.
+    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -188,7 +214,7 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How credit card interest works</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-06</p>
   </section>
 </BaseLayout>
 

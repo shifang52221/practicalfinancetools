@@ -1,13 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "How to Find Out Your APR (credit cards and loans)";
 const description =
   "Where to find your APR on a credit card statement or loan disclosure, what it means, and how to use APR calculators to compare costs. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-04-06";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/guides/how-to-find-your-apr" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/guides/how-to-find-your-apr"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+>
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -28,6 +37,24 @@ const lastUpdated = "2026-02-08";
       <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator (include fees)</a>
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
     </div>
+  </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.methodologyReview}
+    secondaryReview={TRUST_PROFILES.editorialReview}
+    reviewScope="APR source identification across card statements and loan disclosures, and routing between APR comparison, payoff, and topic workflows."
+    reviewedOn="2026-04-06"
+  />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this guide when you need to locate the exact APR that belongs in your comparison or payoff decision</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use this guide when you need to locate the exact APR that belongs in your comparison or payoff decision. It is
+      most useful when you are looking at a statement, disclosure, or lender offer and need to confirm which APR belongs
+      in an <a href="/calculators/apr-calculator">APR comparison</a>, a <a href="/calculators/credit-card-payoff-calculator">credit-card payoff model</a>,
+      or a disclosure review before you compare options.
+    </p>
   </section>
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">APR comparison inputs to verify</h2>
@@ -185,7 +212,7 @@ const lastUpdated = "2026-02-08";
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-02-08
+      Last updated: 2026-04-06
     </p>
   </section>
 </BaseLayout>
