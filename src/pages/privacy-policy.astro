@@ -1,128 +1,143 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ReviewedByCard from "../components/ReviewedByCard.astro";
+import TrustPolicyLinks from "../components/TrustPolicyLinks.astro";
 import { SITE } from "../config/site";
+import { TRUST_PROFILES } from "../config/trust";
 
 const title = `Privacy Policy | ${SITE.name}`;
-const description = "Privacy policy describing how this site handles data, cookies, and advertising.";
+const description = "Privacy policy describing how this site handles calculator inputs, consent choices, cookies, analytics, and advertising.";
 
-const lastUpdated = "2026-01-30";
+const lastUpdated = "2026-04-06";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/privacy-policy" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/privacy-policy"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+>
   <section class="card hero">
     <h1>Privacy Policy</h1>
-    <p>Last updated: 2026-01-30</p>
+    <p>
+      This policy explains what limited data this site may receive, how consent choices affect analytics and
+      advertising, and how to contact us about privacy requests.
+    </p>
+    <p class="muted">Last updated: 2026-04-06</p>
   </section>
 
-  <section class="card section prose">
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Public privacy disclosures, consent handling, analytics and advertising transparency, and correction-routing language."
+    reviewedOn="2026-04-06"
+  />
+
+  <TrustPolicyLinks currentPath="/privacy-policy" intro="Use these public policy pages to understand who maintains the site, how privacy and methodology decisions are documented, and where to send corrections or privacy requests." />
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Summary</h2>
-    <p class="muted">
-      This site provides finance calculators and related educational content. We do not require account creation. Most
-      calculator inputs are processed in your browser to display results. We may use cookies for essential site
-      functionality and, if enabled, for advertising and analytics.
+    <p class="muted" style="margin:10px 0 0">
+      Practical Finance Tools does not require account creation. Most calculator inputs are intended to run in your
+      browser so you can compare scenarios without submitting a profile or storing a financial account on the site.
+      We still use a small amount of operational data for hosting, debugging, security, measurement, and advertising.
     </p>
+  </section>
 
-    <h2>Information we collect</h2>
-    <p class="muted">
-      We may collect the following categories of information:
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What information we may receive</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Basic technical request data such as IP address, user agent, approximate location, and timestamps in server logs.</li>
+        <li>Cookie or device identifiers used for consent status, measurement, and ad delivery if optional services are enabled.</li>
+        <li>Your email address and message if you contact us directly.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What we do not ask for</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>No user account, password, or dashboard profile is required.</li>
+        <li>No bank-login connection or credit-report pull is used by the calculators.</li>
+        <li>No reason to submit sensitive personal or financial identifiers in contact messages.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Calculator inputs and local storage</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Calculator inputs are designed to be processed locally in your browser. The site may use local storage for limited
+      operational behavior such as remembering a consent choice, but calculator scenarios are not intended to create a
+      server-side user account or long-term financial profile. If you share a device, clear your browser history, cookies,
+      and local storage when you are done.
     </p>
-    <ul class="muted" style="margin:8px 0 0; padding-left:18px">
-      <li>Basic technical data (e.g., IP address, user agent, approximate location, and timestamps) in server logs.</li>
-      <li>Cookie and device identifiers used for site functionality, measurement, and advertising (if enabled).</li>
-      <li>Contact information you provide if you email us (your email address and message).</li>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Cookies, consent, analytics, and advertising</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The site uses a consent banner so visitors can accept or decline optional advertising behavior. We may use Google Analytics
+      to understand traffic patterns and page performance, and we may display ads from third-party providers
+      such as Google AdSense. Those services may use cookies or similar technologies depending on your consent choice,
+      browser settings, and region.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Essential site functions can run without personalized advertising.</li>
+      <li>The consent banner and <a href="/cookie-notice">Cookie Notice</a> explain how to update your preference.</li>
+      <li>If optional services are declined, we aim to reduce or disable non-essential ad-personalization behavior where supported.</li>
     </ul>
+  </section>
 
-    <h2>Calculator inputs</h2>
-    <p class="muted">
-      Calculator inputs are intended to be processed locally in your browser to compute and display results. Do not
-      enter sensitive personal information you do not want stored on your device or shared with others who use your
-      browser.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Global Privacy Control and ad choices</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If your browser sends a Global Privacy Control signal, we interpret that as an opt-out signal for certain advertising
+      uses where applicable. You can also manage ad personalization directly through{" "}
+      <a href="https://adssettings.google.com/" rel="noopener noreferrer" target="_blank">Google Ad Settings</a>.
     </p>
+  </section>
 
-    <h2>Cookies, advertising, and analytics</h2>
-    <p class="muted">
-      We may display ads served by third parties (e.g., Google) and may use analytics tools (e.g., Google Analytics).
-      These services can use cookies and similar technologies to measure performance and, depending on your settings and
-      region, to personalize ads or analytics. You can review and change your preferences in our Cookie Notice.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How long information may be kept</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Server and operational logs may be retained for a limited period for security, debugging, abuse prevention, and
+      performance analysis. Contact messages may be kept long enough to answer the message, keep an operations trail,
+      and document corrections or abuse reports.
     </p>
+  </section>
 
-    <h2>Your choices</h2>
-    <p class="muted">
-      You can accept or decline ad personalization in the cookie consent banner or in our Cookie Notice. You can also
-      clear your browser storage and cookies to reset your preference.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">privacy requests</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you want to ask about access, deletion, correction, or opt-out choices related to information we may have received,
+      email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and include enough detail for us to understand the request.
+      We may need to verify that a request came from the same person who sent the original message before we make changes.
     </p>
+  </section>
 
-    <h2>CCPA/CPRA (California): "sale" or "sharing"</h2>
-    <p class="muted">
-      We do not sell personal information for money in the traditional sense. However, some advertising technology may
-      be considered a "sale" or "sharing" under certain privacy laws. Where applicable, you can opt out by declining
-      optional cookies in our Cookie Notice.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Links to other sites</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Some pages link to lenders, regulators, issuers, or public resources. Those sites control their own privacy practices,
+      and you should review their policies directly before sharing information.
     </p>
+  </section>
 
-    <h2>Global Privacy Control (GPC)</h2>
-    <p class="muted">
-      If your browser sends a Global Privacy Control signal, we treat it as an opt-out preference for certain advertising uses
-      and aim to request non-personalized ads by default.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Security and sensitive information</h2>
+    <p class="muted" style="margin:10px 0 0">
+      We use reasonable administrative and technical safeguards, but no website is perfectly secure. Do not send Social
+      Security numbers, account numbers, or other sensitive documents through general contact forms or email.
     </p>
+  </section>
 
-    <h2>Privacy requests</h2>
-    <p class="muted">
-      You can contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a> to request access, deletion, or correction of personal
-      information we may have (for example, emails you sent us). We may need to verify your request before responding.
-    </p>
-    <p class="muted">
-      For California residents, you can also use the "Do Not Sell/Share" link in the footer to opt out of certain advertising uses.
-    </p>
-
-    <h2>Data retention</h2>
-    <p class="muted">
-      We retain server logs for a limited period as needed for security, debugging, and operational purposes. Emails
-      are retained as long as needed to respond and maintain records.
-    </p>
-
-    <h2>Security</h2>
-    <p class="muted">
-      We use reasonable administrative and technical safeguards to protect information we receive. No method of
-      transmission or storage is completely secure, so please avoid sending sensitive data by email.
-    </p>
-
-    <h2>Children's privacy</h2>
-    <p class="muted">
-      This site is intended for a general audience and is not directed to children under 13. We do not knowingly collect
-      personal information from children.
-    </p>
-
-    <h2>International visitors</h2>
-    <p class="muted">
-      If you access the site from outside the United States, your information may be processed on servers located in the
-      United States. By using the site, you consent to this processing.
-    </p>
-
-    <h2>Changes to this policy</h2>
-    <p class="muted">
-      We may update this policy from time to time. The "Last updated" date reflects the latest changes.
-    </p>
-
-    <h2>Do Not Track</h2>
-    <p class="muted">
-      Some browsers offer a "Do Not Track" preference. Because there is no consistent industry standard for how to respond, we do not
-      respond to Do Not Track signals in a uniform way. You can use cookie settings and ad controls to manage preferences.
-    </p>
-
-    <h2>Links to other sites</h2>
-    <p class="muted">
-      Our pages may link to third-party sites for additional information. We do not control those sites and are not responsible for their
-      privacy practices. Please review their policies directly.
-    </p>
-
-    <h2>Google ad controls</h2>
-    <p class="muted">
-      You can manage ad personalization at <a href="https://adssettings.google.com/" rel="noopener noreferrer">Google Ad Settings</a>.
-    </p>
-
-    <h2>Contact</h2>
-    <p class="muted">
-      If you have questions about this policy, contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Policy updates</h2>
+    <p class="muted" style="margin:10px 0 0">
+      We update this policy when consent behavior, analytics, advertising, or contact handling changes in a material way.
+      The visible date above is part of the site's public maintenance trail.
     </p>
   </section>
 </BaseLayout>
-

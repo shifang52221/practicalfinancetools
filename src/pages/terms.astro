@@ -1,123 +1,137 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ReviewedByCard from "../components/ReviewedByCard.astro";
+import TrustPolicyLinks from "../components/TrustPolicyLinks.astro";
 import { SITE } from "../config/site";
+import { TRUST_PROFILES } from "../config/trust";
 
 const title = `Terms of Use | ${SITE.name}`;
 const description =
-  "Terms of use for Practical Finance Tools, including educational-use disclaimers, assumptions, and limitations for calculators and content.";
+  "Terms of use for Practical Finance Tools, including educational-use boundaries, calculator limitations, acceptable use, and service availability.";
 
-const lastUpdated = "2026-01-30";
+const lastUpdated = "2026-04-06";
 ---
-<BaseLayout title={title} description={description} canonicalPath="/terms" lastUpdated={lastUpdated}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/terms"
+  lastUpdated={lastUpdated}
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+>
   <section class="card hero">
     <h1>Terms of Use</h1>
-    <p>Last updated: 2026-01-30</p>
+    <p>
+      These terms explain how this site may be used, what the calculators are designed to do, and where the service
+      boundaries stop.
+    </p>
+    <p class="muted">Last updated: 2026-04-06</p>
   </section>
 
-  <section class="card section prose">
-    <h2 style="margin-top:0">1) Educational use only (no advice)</h2>
-    <p class="muted">
-      The calculators and content on this site are provided for informational and educational purposes only. They are
-      not financial, legal, tax, or accounting advice, and do not create any professional relationship. If you need
-      advice, consult a qualified professional.
-    </p>
-    <p class="muted">
-      We are not a bank, lender, broker, investment adviser, or tax preparer. Using this site does not create a fiduciary
-      relationship.
-    </p>
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Public-use boundaries, calculator limitations, service availability language, and acceptable-use expectations."
+    reviewedOn="2026-04-06"
+  />
 
-    <h2>2) Estimates and assumptions</h2>
-    <p class="muted">
-      Results are estimates based on the inputs you provide and the assumptions described on each page. Actual lender
-      quotes, statements, and disclosures may differ due to rounding, fees, escrow timing, underwriting, compounding,
-      policy rules, and other factors.
-    </p>
+  <TrustPolicyLinks currentPath="/terms" intro="These public documents explain how the site is maintained, how policies are reviewed, and what expectations apply when you use the calculators and guides." />
 
-    <h2>3) No warranty</h2>
-    <p class="muted">
-      We provide the site and calculators "as is" and "as available" without warranties of any kind, express or
-      implied, including accuracy, fitness for a particular purpose, and non-infringement.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">1. educational use only</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The calculators, guides, and topic hubs on this site are provided for informational and educational use only. They
+      do not provide personalized financial, legal, tax, or accounting advice, and using the site does not create a
+      professional relationship.
     </p>
+  </section>
 
-    <h2>4) Limitation of liability</h2>
-    <p class="muted">
-      To the maximum extent permitted by law, we are not liable for any direct, indirect, incidental, consequential,
-      special, exemplary, or punitive damages arising from your use of the site or reliance on any results.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">2. calculator limitations</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Calculator results are estimates based on user inputs and the assumptions described on each page. Real lender,
+      servicer, issuer, and tax outcomes can differ because of rounding, fee rules, statement timing, escrow treatment,
+      underwriting, compounding, payment allocation, and policy differences.
     </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Use calculators to compare scenarios, not to replace payoff letters, disclosures, or account statements.</li>
+      <li>Verify material decisions with the lender, issuer, servicer, or a licensed professional.</li>
+      <li>Do not treat a single estimate as a guarantee of approval, monthly payment, or savings.</li>
+    </ul>
+  </section>
 
-    <h2>5) Third-party services and links</h2>
-    <p class="muted">
-      The site may include links to third-party websites and may display third-party advertising. We do not control
-      third parties and are not responsible for their content, products, services, or practices.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">3. your responsibility to verify inputs</h2>
+    <p class="muted" style="margin:10px 0 0">
+      You are responsible for using current, accurate inputs and for reviewing the notes, assumptions, and methodology
+      attached to the page you are using. If a statement, disclosure, or servicer rule conflicts with a site estimate,
+      the official source controls.
     </p>
+  </section>
 
-    <h2>6) Your responsibilities</h2>
-    <p class="muted">
-      You are responsible for verifying any results before making decisions, and for complying with any applicable
-      laws and policies when using the site.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">4. acceptable use</h2>
+    <p class="muted" style="margin:10px 0 0">
+      You agree not to misuse the site, interfere with operations, attempt to access non-public systems, or run automated
+      requests that materially degrade service for others. Normal indexing by major search engines is not the target of
+      this restriction; abusive scraping, credential attacks, and denial-of-service style behavior are.
     </p>
+  </section>
 
-    <h2>7) Changes</h2>
-    <p class="muted">
-      We may update these Terms from time to time. By continuing to use the site after changes are posted, you agree to
-      the updated Terms.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">5. service availability</h2>
+    <p class="muted" style="margin:10px 0 0">
+      We aim to keep the site available and accurate, but we do not promise uninterrupted service availability. Pages,
+      calculators, references, and features may be updated, removed, or temporarily unavailable as the site evolves.
     </p>
-    <h2>8) Acceptable use</h2>
-    <p class="muted">
-      You agree not to misuse the site, interfere with its operation, or attempt to access non-public areas. Automated
-      scraping or excessive requests that degrade performance are not allowed.
-    </p>
+  </section>
 
-    <h2>9) Intellectual property</h2>
-    <p class="muted">
-      Site content, calculators, and design are owned by Practical Finance Tools or its licensors. You may use the
-      content for personal, non-commercial purposes, but you may not copy or redistribute it without permission.
-    </p>
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">6. third-party links and ads</h2>
+      <p class="muted" style="margin:10px 0 0">
+        The site may link to regulators, issuers, lenders, or other third-party sites and may display advertising. We do
+        not control those third parties and are not responsible for their products, services, content, or policies.
+      </p>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">7. ownership and feedback</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Site content, code, design, and branding are owned by Practical Finance Tools or its licensors. If you send
+        feedback or corrections, you give us permission to use that feedback to improve the site without compensation.
+      </p>
+    </div>
+  </section>
 
-    <h2>10) Availability</h2>
-    <p class="muted">
-      We aim to keep the site available, but we do not guarantee uninterrupted access. We may update, suspend, or change
-      features at any time.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">8. no warranty</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The site is provided on an "as is" and "as available" basis without warranties of any kind, including implied
+      warranties of merchantability, fitness for a particular purpose, or non-infringement, to the extent allowed by law.
     </p>
+  </section>
 
-    <h2>11) Security and data</h2>
-    <p class="muted">
-      Do not submit sensitive personal information in free-text fields. While we use reasonable safeguards, no system is
-      completely secure, and you are responsible for protecting your own data.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">9. limitation of liability</h2>
+    <p class="muted" style="margin:10px 0 0">
+      To the fullest extent permitted by law, we are not liable for losses or damages arising from your use of the site,
+      reliance on site content, or inability to use the service.
     </p>
+  </section>
 
-    <h2>12) Governing law</h2>
-    <p class="muted">
-      These Terms are governed by applicable laws in the jurisdiction where we operate, without regard to conflict of law principles.
-      Any disputes should be brought in a competent court in that jurisdiction.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">10. changes to these terms</h2>
+    <p class="muted" style="margin:10px 0 0">
+      We may revise these terms when the service, policies, or operational boundaries change. Continued use after an
+      update means you accept the revised terms.
     </p>
+  </section>
 
-    <h2>13) Severability</h2>
-    <p class="muted">
-      If any provision is found unenforceable, the remaining provisions remain in effect.
-    </p>
-
-    <h2>14) Entire agreement</h2>
-    <p class="muted">
-      These Terms, along with the Privacy Policy and Cookie Notice, form the entire agreement between you and the site regarding use.
-    </p>
-
-    <h2>15) Contact</h2>
-    <p class="muted">
-      Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
-    </p>
-
-    <h2>16) Feedback and submissions</h2>
-    <p class="muted">
-      If you send suggestions or feedback, you grant us permission to use it to improve the site without obligation to compensate you.
-      Do not send confidential or proprietary information.
-    </p>
-
-    <h2>17) Termination</h2>
-    <p class="muted">
-      We may suspend or terminate access to the site if we believe it is being misused or if required by law. These Terms remain in
-      effect for any prior use of the site.
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">11. contact</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Questions about these terms can be sent to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
   </section>
 </BaseLayout>
-
