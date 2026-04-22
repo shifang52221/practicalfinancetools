@@ -7,7 +7,7 @@ const title = "Debt Snowball vs Avalanche (which payoff method fits)";
 const description =
   "Debt snowball vs avalanche: compare payoff methods, trade-offs, and how to model both with calculators. Educational use only.";
 
-const lastUpdated = "2026-04-06";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -15,7 +15,7 @@ const lastUpdated = "2026-04-06";
   canonicalPath="/guides/debt-snowball-vs-avalanche"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -40,19 +40,47 @@ const lastUpdated = "2026-04-06";
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Debt-payoff method framing, interest-versus-behavior tradeoff interpretation, and routing between snowball, avalanche, and credit-card payoff workflows."
-    reviewedOn="2026-04-06"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Method-selection framing for snowball-versus-avalanche, behavior-versus-interest tradeoffs, and routing back into the broader payoff hub only when the reader picked the wrong question."
+    reviewedOn="2026-04-22"
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use this guide when you need to choose between behavioral momentum and interest-cost efficiency in a debt payoff plan</h2>
+    <h2 style="margin-top:0">How this page fits the debt-payoff workflow</h2>
     <p class="muted" style="margin:10px 0 0">
-      Use this guide when you need to choose between behavioral momentum and interest-cost efficiency in a debt payoff
-      plan. It helps when the real question is not just which method saves more interest, but which method you are most
-      likely to follow month after month without adding new debt.
+      Use this support page for the method-selection question. It is here to help once you already know the issue is snowball versus
+      avalanche. If you still need the broader payoff map, start from <a href="/guides/credit-card-payoff-strategy">credit card payoff
+      strategy</a> and then return here when the ordering method is the real blocker.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Behavioral fit matters more than theoretical savings</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The spreadsheet winner is not always the real-life winner. behavioral fit matters more than theoretical savings when the "best"
+      method on paper is the one you are least likely to maintain. Avalanche usually saves more interest, but only if you keep following it.
+      If snowball is the method that gets you to stay engaged month after month, the behavioral fit can matter more than theoretical savings.
+    </p>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What snowball is really buying</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>It aims for the first account closed as fast as possible.</li>
+        <li>That early account closure can simplify the budget and create momentum.</li>
+        <li>It is often easier to stick with when motivation matters more than pure optimization.</li>
+      </ul>
+    </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">What avalanche is really buying</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>It sends the extra money to the highest APR first.</li>
+        <li>That usually reduces total interest fastest.</li>
+        <li>It works best when you can tolerate slower visible wins in exchange for lower cost.</li>
+      </ul>
+    </div>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -82,6 +110,20 @@ const lastUpdated = "2026-04-06";
       <li>Run the same inputs in snowball and avalanche calculators.</li>
       <li>Compare payoff time and total interest, then pick the plan you will follow.</li>
     </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Interest-gap sanity check</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Run both methods on the same balances and ask a practical question: interest-gap sanity check means asking whether the interest gap
+      is big enough to change your behavior. If the
+      dollar difference is modest, choosing the method you will actually maintain can be smarter than chasing a tiny optimization.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>If avalanche saves a meaningful amount and you can stay disciplined, take the savings.</li>
+      <li>If the gap is small and snowball keeps you consistent, that trade can be rational.</li>
+      <li>Re-run the comparison when balances shrink or promo rates expire.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -154,7 +196,7 @@ const lastUpdated = "2026-04-06";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">When to switch methods</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>If motivation is slipping, switching to snowball can create quick wins.</li>
+      <li>If motivation is slipping, switch methods if motivation collapses and you need a faster visible win.</li>
       <li>If interest costs are rising, switching to avalanche can slow the cost.</li>
       <li>Re-run the calculators after any large balance change or rate reset.</li>
     </ul>
@@ -214,7 +256,7 @@ const lastUpdated = "2026-04-06";
       <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How credit card interest works</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-06</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
 

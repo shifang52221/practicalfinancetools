@@ -5,9 +5,9 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Extra Payments vs Refinance";
 const description =
-  "How to compare extra principal payments to a refinance using the same time horizon. Educational use only.";
+  "How to compare extra principal payments with refinancing over the same hold period and understand when the decision can flip. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -15,7 +15,7 @@ const lastUpdated = "2026-04-05";
   canonicalPath="/guides/extra-payment-vs-refinance"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -28,8 +28,9 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>Extra payments vs refinance</h1>
     <p>
-      Extra payments reduce interest without new fees, while a refinance can lower the rate but adds closing costs. This guide shows
-      how to compare both using the same time horizon.
+      These options look similar because both can save interest, but a new loan solves a different problem than extra principal on the
+      current loan. This page compares them over the same hold period so you can see when the cheaper-looking path actually changes once
+      timing and costs are aligned.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
@@ -40,119 +41,88 @@ const lastUpdated = "2026-04-05";
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Payoff-versus-refinance decision framing, rate-and-cost tradeoff interpretation, and routing between payoff, refinance, and break-even workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Current-loan versus refinance comparison framing, hold-period alignment, and transition into break-even analysis."
+    reviewedOn={lastUpdated}
   />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use the same hold period for both options</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The most common mistake is comparing extra payments over a short horizon with a refinance over the full term. Use the same hold
+      period for both. If you expect to move, refinance again, or redirect cash in five years, then both options should be judged inside
+      that same window.
+    </p>
+  </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Use this guide when you are deciding between faster payoff and refinancing</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when your real decision is whether to keep the current loan and pay it down faster or replace it with a new loan.</li>
-      <li>If you already know you want to stay on the current loan, move next to <a href="/guides/extra-mortgage-payments">extra mortgage payments</a>.</li>
-      <li>If the refinance path is the frontrunner, move next to <a href="/guides/refinance-break-even">refinance break-even</a> for the cost-recovery math.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to compare</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Model extra payments on the current loan.</li>
-      <li>Model a refinance with realistic closing costs.</li>
-      <li>Compare total interest and cash outlay over your horizon.</li>
-      <li>Account for the time you expect to keep the loan.</li>
-    </ol>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Data to gather</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Current balance, rate, and remaining term.</li>
-      <li>Estimated refinance rate and total closing costs.</li>
-      <li>Planned time in the home or loan horizon.</li>
-      <li>Any prepayment penalties or lender credits.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Using a refinance payment without including closing costs.</li>
-      <li>Comparing different horizons (30 years vs 5 years).</li>
-      <li>Ignoring that extra payments keep your existing term.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Break-even check</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Estimate monthly savings from the refinance.</li>
-      <li>Divide closing costs by monthly savings for a break-even month.</li>
-      <li>Compare break-even to your planned horizon.</li>
-      <li>Recheck if rates or fees change.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">When extra payments win</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>You expect to move or refinance before break-even.</li>
-      <li>Closing costs are high relative to the rate drop.</li>
-      <li>You can make consistent principal-only extras.</li>
-      <li>Liquidity is more important than a new loan.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario notes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Compare the same horizon for both options, not the full term.</li>
-      <li>Include escrow resets and upfront costs in the refinance cash flow.</li>
-      <li>Stress test with a smaller extra payment to confirm affordability.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision inputs</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Expected rate and closing cost for the refinance.</li>
-      <li>Monthly extra you can sustain without stress.</li>
-      <li>Time horizon for staying in the home.</li>
-      <li>Prepayment penalties or escrow changes.</li>
-      <li>Cash needed for other goals in the next 12 months.</li>
+      <li>Stay here if the real question is whether to accelerate the current loan or replace it with a new one.</li>
+      <li>Move next to <a href="/guides/extra-mortgage-payments">extra mortgage payments</a> if you already know you want to keep the current loan.</li>
+      <li>Move next to <a href="/guides/refinance-break-even">refinance break-even</a> if the new-loan path is clearly the front-runner.</li>
     </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
+      <h2 style="margin-top:0">What extra payments do well</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li>They reduce principal without triggering a new set of closing costs.</li>
+        <li>They are flexible because you can usually increase, reduce, or pause them.</li>
+        <li>They work best when the current rate is already acceptable and the main goal is faster payoff.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
+      <h2 style="margin-top:0">What a refinance is really for</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/refinance-break-even">Refinance break-even</a></li>
-        <li><a href="/guides/refinance-break-even">Rate vs term tradeoff</a></li>
-        <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
+        <li>It can lower the required payment, change the term, or replace the rate structure.</li>
+        <li>It introduces a new cost stack: fees, credits, escrow resets, and timing risk.</li>
+        <li>It makes more sense when the new loan solves a different problem than simple acceleration.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why the decision can flip</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A refinance can look better when you spread closing costs over 20 or 30 years. The decision can flip once you shorten the horizon,
+      include the upfront cash, or realize that you may not keep the loan long enough to recover the costs. Extra payments often look less
+      dramatic in the first spreadsheet but win when the time window is short or uncertain.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A practical comparison sequence</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Model the current loan with no changes.</li>
+      <li>Add the extra payment amount you can sustain right now.</li>
+      <li>Model the refinance with realistic fees, credits, and the actual new payment.</li>
+      <li>Compare both options over the same hold period, not over two different timelines.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Route the next question correctly</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If your goal is "lower my payment," you probably need the <a href="/guides/refinance-break-even">refinance break-even</a> path.
+      If your goal is "be done sooner while keeping flexibility," stay with the <a href="/calculators/extra-payment-calculator">extra payment calculator</a>.
+      If you are unsure whether the cash is even available, detour through the <a href="/guides/extra-payment-liquidity-reserve">liquidity reserve check</a>.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">References</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>
-        CFPB:{' '}
+        CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
           Mortgage resources
         </a>
       </li>
       <li>
-        CFPB:{' '}
+        CFPB:{" "}
         <a href="https://www.consumerfinance.gov/ask-cfpb/what-are-closing-costs-en-196/" rel="noopener noreferrer" target="_blank">
           What are closing costs?
         </a>
@@ -163,13 +133,11 @@ const lastUpdated = "2026-04-05";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
-      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
-      <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
-      <a class="btn" href="/topics/refinance">Refinance topic hub</a>
+      <a class="btn btn-primary" href="/guides/refinance-break-even">Run the break-even comparison</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Model the current-loan extra-payment path</a>
+      <a class="btn" href="/guides/extra-payment-liquidity-reserve">Check whether the cash plan is stable</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-

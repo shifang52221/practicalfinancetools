@@ -7,7 +7,7 @@ const title = "How Mortgage Payments Are Calculated (P&I + Escrow)";
 const description =
   "Understand how mortgage payments are calculated, including principal and interest plus taxes, insurance, HOA, and PMI. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -15,7 +15,7 @@ const lastUpdated = "2026-04-05";
   canonicalPath="/guides/how-mortgage-payments-are-calculated"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -40,10 +40,10 @@ const lastUpdated = "2026-04-05";
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Mortgage payment formula framing, note-rate versus APR guidance, and routing between baseline payment, PITI, and affordability workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Mortgage-payment formula review, baseline input framing, and routing between payment math, PITI breakdown, and affordability checks."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -169,10 +169,10 @@ const lastUpdated = "2026-04-05";
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the mortgage payment calculator</a>
       <a class="btn" href="/calculators/debt-to-income-calculator">Check DTI</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payment topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
 

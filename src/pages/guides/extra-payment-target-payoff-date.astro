@@ -2,57 +2,12 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { TRUST_PROFILES } from "../../config/trust";
-import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Target Payoff Date with Extra Payments";
 const description =
-  "How to work backward from a target mortgage-free date and choose an extra-payment plan that is realistic enough to keep. Educational use only.";
+  "How to reverse-engineer the monthly extra needed for a mortgage payoff goal without forcing a plan that breaks in a bad month. Educational use only.";
 
-const examplePrincipal = 300000;
-const exampleRate = 6.5;
-const exampleTermMonths = 360;
-const targetMonths = 252;
-const exampleExtraConservative = 200;
-const exampleExtraTarget = 300;
-
-const base = amortizationSchedule({
-  principal: examplePrincipal,
-  aprPercent: exampleRate,
-  termMonths: exampleTermMonths
-});
-const conservativePlan = amortizationSchedule({
-  principal: examplePrincipal,
-  aprPercent: exampleRate,
-  termMonths: exampleTermMonths,
-  extraMonthly: exampleExtraConservative
-});
-const targetPlan = amortizationSchedule({
-  principal: examplePrincipal,
-  aprPercent: exampleRate,
-  termMonths: exampleTermMonths,
-  extraMonthly: exampleExtraTarget
-});
-
-const money0 = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0
-});
-const pct2 = new Intl.NumberFormat("en-US", {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2
-});
-const yearsMonths = (months: number) => ({
-  years: Math.floor(months / 12),
-  months: months % 12
-});
-const targetYm = yearsMonths(targetMonths);
-const baseYm = yearsMonths(base.months);
-const conservativeYm = yearsMonths(conservativePlan.months);
-const targetPlanYm = yearsMonths(targetPlan.months);
-
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -60,7 +15,7 @@ const lastUpdated = "2026-04-05";
   canonicalPath="/guides/extra-payment-target-payoff-date"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -73,139 +28,85 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>Target a payoff date with extra payments</h1>
     <p>
-      A target payoff date can be useful, but it only works if the required extra payment fits your cash flow over time. This guide
-      shows how to work backward from a mortgage-free date without setting a plan you cannot sustain.
+      Use this page when you already have a payoff year in mind and want to reverse-engineer the monthly extra needed to get there. The
+      mistake is treating the calculator result like a promise before it has passed the budget and reserve checks.
     </p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Set a payoff target</a>
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
+      <a class="btn" href="/guides/extra-payment-liquidity-reserve">Liquidity reserve check</a>
       <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
-      <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
     </div>
   </section>
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Target-date payoff framing, affordability and reserve checks before committing to a timeline, and routing between amortization, extra-payment, and broader payoff workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Payoff-target framing, monthly ceiling discipline, and routing between reserve checks, amortization views, and extra-payment modeling."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use this guide when you have a target mortgage-free date and need to back into a realistic extra-payment plan</h2>
+    <h2 style="margin-top:0">Use this page when the calendar matters more than the raw savings figure</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when the date matters more than the exact extra amount and you need to reverse-engineer the plan.</li>
-      <li>Use this page when you want to compare a stretch target with a more sustainable target before setting autopay.</li>
-      <li>If your bigger question is whether extra payments fit your budget at all, review <a href="/guides/extra-payment-liquidity-reserve">liquidity reserve</a> first.</li>
+      <li>Use this page when retirement timing, tuition timing, or a personal milestone is driving the mortgage decision.</li>
+      <li>Use this page when the real problem is how to reverse-engineer the monthly extra without guessing.</li>
+      <li>Leave this page when the issue is cash fragility, not target-date math. That belongs to the <a href="/guides/extra-payment-liquidity-reserve">reserve check</a>.</li>
     </ul>
   </section>
 
-  <section class="grid" style="margin-top:18px">
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">A strong target usually has</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>A clear month or year instead of a vague goal like "pay faster."</li>
-        <li>A monthly extra that survives normal budget stress, not just best-case months.</li>
-        <li>A plan for bonuses or lump sums that can shorten the path without becoming required.</li>
-      </ul>
-    </div>
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Weak target-setting usually shows up as</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>Picking an aggressive date first and only later asking whether the cash flow works.</li>
-        <li>Ignoring repairs, escrow increases, or other expenses that will force the plan to pause.</li>
-        <li>Using a single perfect-year assumption for a payoff plan that may last decades.</li>
-      </ul>
-    </div>
-  </section>
-
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Worked example: back into the date, then test the payment</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleRate)}% note rate for {exampleTermMonths / 12} years. Suppose
-      your target is payoff in about {targetYm.years} years ({targetMonths} months).
-    </p>
-    <div style="overflow:auto; margin-top:12px">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Scenario</th>
-            <th class="num">Payoff time</th>
-            <th class="num">Total interest</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Baseline with no extra</td>
-            <td class="num">{base.months} months ({baseYm.years}y {baseYm.months}m)</td>
-            <td class="num">{money0.format(base.totalInterest)}</td>
-          </tr>
-          <tr>
-            <td>{money0.format(exampleExtraConservative)}/month extra</td>
-            <td class="num">{conservativePlan.months} months ({conservativeYm.years}y {conservativeYm.months}m)</td>
-            <td class="num">{money0.format(conservativePlan.totalInterest)}</td>
-          </tr>
-          <tr>
-            <td>{money0.format(exampleExtraTarget)}/month extra</td>
-            <td class="num">{targetPlan.months} months ({targetPlanYm.years}y {targetPlanYm.months}m)</td>
-            <td class="num">{money0.format(targetPlan.totalInterest)}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="muted" style="margin:12px 0 0">
-      In this example, {money0.format(exampleExtraTarget)}/month gets close to the target date, while {money0.format(exampleExtraConservative)}/month
-      improves the payoff timeline but still misses the target. That is the exact tradeoff you want to see before automating the plan.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">A practical workflow</h2>
+    <h2 style="margin-top:0">Start with the target, then reverse-engineer the monthly extra</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Start with your current balance, note rate, and remaining term instead of the original loan terms.</li>
-      <li>Pick a realistic target month or year and convert it to months remaining.</li>
-      <li>Increase the modeled extra payment until the payoff date hits or beats that target.</li>
-      <li>Pressure-test the result against reserves, expected repairs, and normal budget volatility before you commit.</li>
+      <li>Pull the current balance, note rate, and remaining term from a recent statement.</li>
+      <li>Choose the payoff month and year that actually matter to you.</li>
+      <li>Use the calculator to reverse-engineer the monthly extra needed to hit that date.</li>
+      <li>Treat the result as a draft until it survives the reserve and bad-month checks.</li>
     </ol>
   </section>
 
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Budget and reserve reality check</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Leave enough monthly cushion that the target does not fail the first time insurance or escrow changes.</li>
-      <li>Keep a reserve so you can pause extras temporarily instead of borrowing to keep the schedule.</li>
-      <li>Treat bonuses and windfalls as accelerators, not requirements, unless they are highly predictable.</li>
-      <li>If the target only works in a perfect year, move the date out instead of pretending the budget risk does not exist.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Recheck triggers</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Income changes, new childcare costs, or any shift in the monthly budget.</li>
-      <li>Refinance, recast, or a change in how you want to use bonuses and tax refunds.</li>
-      <li>Escrow, insurance, or property-tax changes that alter required cash flow.</li>
-      <li>New financial goals that compete with mortgage prepayment for the same dollars.</li>
-    </ul>
-  </section>
-
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
-        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
-      </ul>
+      <h2 style="margin-top:0">Set a monthly ceiling</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Your monthly ceiling is the most you can send to principal without breaking other priorities. If the required extra sits above the
+        monthly ceiling, the date should move before the rest of the household budget does.
+      </p>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/extra-payment-lump-sum-vs-monthly">Lump sum vs monthly</a></li>
-        <li><a href="/guides/extra-payment-liquidity-reserve">Liquidity reserve</a></li>
-        <li><a href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a></li>
-      </ul>
+      <h2 style="margin-top:0">Keep lump sums separate</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Windfalls can help, but the base plan should not depend on them unless the cash is highly dependable. Monthly discipline and
+        optional lump sums are safer than one blended assumption that hides uncertainty.
+      </p>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A target date can survive a bad month</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The best payoff target is not the most aggressive date that works in a perfect spreadsheet. It is the target date that can survive
+      a bad month, an escrow jump, or a temporary pause without forcing the plan to collapse.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What usually breaks the plan</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>The monthly extra only works if every month is clean and uninterrupted.</li>
+      <li>The target depends on uncertain bonuses instead of cash you control right now.</li>
+      <li>The number is achievable only because the reserve floor was ignored.</li>
+      <li>Taxes, insurance, or maintenance quietly consume the same cash that was earmarked for principal.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to route the next decision</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If the required extra feels too high, stop pushing the target and check the <a href="/guides/extra-payment-liquidity-reserve">reserve plan</a>.
+      If the number feels manageable and you want to inspect the payoff path, move to the <a href="/calculators/amortization-schedule-calculator">amortization schedule</a>.
+      If the date depends on one-time cash events, compare it with a <a href="/guides/extra-payment-windfall-strategy">windfall strategy</a>.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -213,14 +114,8 @@ const lastUpdated = "2026-04-05";
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>
         CFPB:{" "}
-        <a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-manage-my-monthly-mortgage-payment-en-1825/" rel="noopener noreferrer" target="_blank">
-          How do I manage my monthly mortgage payment?
-        </a>
-      </li>
-      <li>
-        CFPB:{" "}
-        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-prepayment-penalty-en-1957/" rel="noopener noreferrer" target="_blank">
-          What is a prepayment penalty?
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-amortization-and-how-do-i-use-it-to-pay-off-loans-en-2051/" rel="noopener noreferrer" target="_blank">
+          What is amortization and how do I use it to pay off loans?
         </a>
       </li>
     </ul>
@@ -229,11 +124,11 @@ const lastUpdated = "2026-04-05";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
-      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model your target date</a>
-      <a class="btn" href="/guides/extra-mortgage-payments">Review the full extra-payment workflow</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Back into the required extra payment</a>
+      <a class="btn" href="/guides/extra-payment-liquidity-reserve">Validate the reserve floor</a>
+      <a class="btn" href="/calculators/amortization-schedule-calculator">Inspect the payoff path</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>

@@ -5,9 +5,9 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Extra Payments vs Other Debts";
 const description =
-  "How to compare extra mortgage payments with higher-APR debts, liquidity needs, and credit-card tradeoffs. Educational use only.";
+  "How to decide when mortgage prepayment should lose priority to higher-cost debt, reserve weakness, or short-horizon cash risk. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -15,7 +15,7 @@ const lastUpdated = "2026-04-05";
   canonicalPath="/guides/extra-payment-priority-vs-other-debts"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -28,134 +28,97 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>Extra payments vs other debts</h1>
     <p>
-      Paying extra on a mortgage is often a lower-risk use of cash than investing, but it is not always the first debt to attack.
-      This guide helps you compare mortgage prepayments with higher-APR balances, credit-card utilization, and near-term cash needs.
+      mortgage prepayment is not automatically the top priority. This page exists for the tradeoff where a low-rate mortgage competes
+      with high-rate cards, reserve weakness, or near-term cash risk.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
       <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
-      <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
+      <a class="btn" href="/guides/extra-payment-liquidity-reserve">Liquidity reserve check</a>
     </div>
   </section>
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Debt-priority framing across mortgage prepayments, higher-APR balances, utilization-sensitive card debt, and routing between payoff and APR-interpretation workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Debt-priority decision framing, mortgage-versus-other-debt tradeoff guidance, and routing between extra-payment, reserve, and credit-card payoff workflows."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use this guide when another debt payoff may deserve priority over extra mortgage principal</h2>
+    <h2 style="margin-top:0">Use this page when the mortgage is only one of several competing uses for cash</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when you have extra cash but are deciding between mortgage prepayments and other balances.</li>
-      <li>Use this page when the mortgage rate looks attractive, but credit cards, personal loans, or other debt may still be costing more.</li>
-      <li>If your only debt decision is inside the mortgage itself, move next to <a href="/guides/extra-mortgage-payments">extra mortgage payments</a>.</li>
-    </ul>
-  </section>
-
-  <section class="grid" style="margin-top:18px">
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Other debt should usually come first when</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>The APR is materially above the mortgage rate, especially on revolving credit cards.</li>
-        <li>The balance is variable-rate and can become more expensive quickly.</li>
-        <li>Paying it down improves utilization, minimum payments, or the risk of falling behind.</li>
-      </ul>
-    </div>
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Mortgage extras can still make sense when</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>Other debts are already low-rate, near payoff, or not meaningfully more expensive than the mortgage.</li>
-        <li>Your emergency reserve is intact and the extra payment fits the budget without stress.</li>
-        <li>You value guaranteed interest savings and balance reduction more than small expected gains elsewhere.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Inputs to compare fairly</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Mortgage note rate and whether tax treatment changes the effective after-tax cost.</li>
-      <li>APR on each competing debt, including credit cards that can reprice or charge penalty APRs.</li>
-      <li>How minimum payments, utilization, or balance concentration affect monthly flexibility.</li>
-      <li>Whether paying down one debt frees enough cash flow to make future mortgage extras easier.</li>
+      <li>Use this page when the decision is not "should I prepay?" but "what should this extra dollar attack first?"</li>
+      <li>Use this page when the mortgage rate looks low relative to cards, personal loans, or variable-rate debt.</li>
+      <li>Leave this page when the reserve floor is still unstable. That issue comes first in <a href="/guides/extra-payment-liquidity-reserve">liquidity reserve</a>.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">A simple priority order</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Protect your liquidity reserve first so you do not solve one debt problem by creating another.</li>
-      <li>Attack clearly higher-APR debt next, especially variable or revolving balances.</li>
-      <li>Return to extra mortgage payments after the expensive debt is controlled and cash flow improves.</li>
-      <li>Re-rank the list whenever rates, balances, or monthly budget pressure change.</li>
-    </ol>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Tie-breakers when the rates are closer</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Prefer the debt that creates the biggest drop in minimum payments or financial stress.</li>
-      <li>Prefer the debt with the least flexibility if missing payments there would create faster problems.</li>
-      <li>Prefer the debt that improves utilization or access to future credit if that matters for your next step.</li>
-      <li>If the costs are very close, favor the option you can sustain consistently without sacrificing reserves.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Paying extra on a low-rate mortgage while carrying expensive credit-card debt month after month.</li>
-      <li>Comparing the mortgage note rate to other debt without looking at the actual APR or fees.</li>
-      <li>Ignoring utilization, statement balances, or how card debt can affect borrowing terms.</li>
-      <li>Choosing an aggressive mortgage prepayment plan that has to be reversed with new borrowing later.</li>
-    </ul>
-    <p class="muted" style="margin:12px 0 0">
-      If you need help comparing what credit-card interest is really costing you, move next to{" "}
-      <a href="/guides/how-credit-card-interest-is-calculated">how credit card interest is calculated</a> and{" "}
-      <a href="/guides/how-to-use-apr-for-credit-cards">how to use APR for credit cards</a>.
+    <h2 style="margin-top:0">Highest guaranteed return is not the only filter</h2>
+    <p class="muted" style="margin:10px 0 0">
+      highest guaranteed return is not the only filter. Rate comparison matters, but it is incomplete. A high-rate card usually wins the math, yet the full priority decision also depends
+      on reserve weakness, minimum-payment pressure, utilization, rate volatility, and how soon you may need the cash elsewhere.
     </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
+      <h2 style="margin-top:0">When mortgage prepayment usually loses</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
-        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a></li>
+        <li>revolving debt, reserve weakness, or near-term cash risk are still unresolved.</li>
+        <li>You are carrying card balances or variable-rate debt with materially higher costs.</li>
+        <li>The next 12 to 24 months include moves, tuition, repairs, or other uses for flexible cash.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
+      <h2 style="margin-top:0">When mortgage prepayment may still win</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a></li>
-        <li><a href="/guides/how-credit-card-interest-is-calculated">How credit card interest is calculated</a></li>
-        <li><a href="/guides/extra-payment-liquidity-reserve">Liquidity reserve check</a></li>
+        <li>Higher-rate debts are already controlled and the reserve is healthy.</li>
+        <li>You care more about guaranteed payoff acceleration than optionality.</li>
+        <li>The household can keep the extra amount going without creating new fragile debt elsewhere.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">A cleaner comparison process</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>List each debt with APR, balance, minimum payment, and whether the rate can change.</li>
+      <li>Check the reserve floor before assuming any extra cash is truly free.</li>
+      <li>Model the same monthly extra against the mortgage and the competing debt path.</li>
+      <li>Compare both the rate math and the flexibility you give up in each option.</li>
+    </ol>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common misreads</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming a mortgage is always the "safe" choice just because it is secured debt.</li>
+      <li>Ignoring credit-card utilization or variable-rate risk because the payment still feels manageable.</li>
+      <li>Forgetting that paying extra on the mortgage removes optional cash you might soon need.</li>
+      <li>Comparing rates without comparing minimum-payment pressure and cash-flow relief.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to route the next decision</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If the highest-cost debt path is still unclear, go next to <a href="/guides/credit-card-payoff-strategy">credit card payoff strategy</a> or{" "}
+      <a href="/guides/debt-snowball-vs-avalanche">snowball vs avalanche</a>. If the reserve floor is the real constraint, move to{" "}
+      <a href="/guides/extra-payment-liquidity-reserve">liquidity reserve</a>. If the mortgage still wins, model the final amount in the{" "}
+      <a href="/calculators/extra-payment-calculator">extra payment calculator</a>.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">References</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>
-        FTC / consumer.gov:{" "}
-        <a href="https://consumer.gov/debt/debt-explained" rel="noopener noreferrer" target="_blank">
-          Debt Explained
-        </a>
-      </li>
-      <li>
-        FTC / consumer.gov:{" "}
-        <a href="https://consumer.gov/credit/getting-credit-card" rel="noopener noreferrer" target="_blank">
-          Getting a Credit Card
-        </a>
-      </li>
-      <li>
-        FTC / consumer.gov:{" "}
-        <a href="https://consumer.gov/credit/your-credit-history-explained" rel="noopener noreferrer" target="_blank">
-          Your Credit History Explained
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/consumer-tools/debt-collection/" rel="noopener noreferrer" target="_blank">
+          Debt and debt collection resources
         </a>
       </li>
     </ul>
@@ -164,11 +127,11 @@ const lastUpdated = "2026-04-05";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
-      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Model the high-APR debt first</a>
-      <a class="btn" href="/calculators/extra-payment-calculator">Compare the mortgage alternative</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Model higher-rate debt first</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Model mortgage extra payments</a>
+      <a class="btn" href="/guides/extra-payment-liquidity-reserve">Check reserve risk</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>

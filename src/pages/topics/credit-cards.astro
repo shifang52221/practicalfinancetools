@@ -7,7 +7,7 @@ const title = "Credit Card Payoff Topic Guide (interest, minimums, plans)";
 const description =
   "Credit card payoff workflow: model interest, minimum payments, and multi-debt plans with calculators. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -47,8 +47,54 @@ const lastUpdated = "2026-04-03";
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
     reviewScope="Credit-card payoff workflow framing, calculator selection, and high-risk interpretation cues."
-    reviewedOn="2026-04-03"
+    reviewedOn="2026-04-22"
   />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Choose the credit-card problem before you choose the tool</h2>
+    <p class="muted" style="margin:10px 0 0">
+      This topic page works best as the top of a routing tree. Start by identifying the actual bottleneck, then move into the strongest
+      guide or calculator for that question.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Your real question</th>
+            <th>Best next page</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>one balance with a fixed monthly payment target</td>
+            <td><a href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a></td>
+            <td>Use direct payoff math when the main variable is your monthly payment size.</td>
+          </tr>
+          <tr>
+            <td>minimum payment drag</td>
+            <td><a href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a></td>
+            <td>Start with the rule-drag explainer before guessing at a new payment target.</td>
+          </tr>
+          <tr>
+            <td>statement interest or math confusion</td>
+            <td><a href="/guides/how-credit-card-interest-is-calculated">How credit card interest is calculated</a></td>
+            <td>Use the statement-math explainer when the bill does not match your quick estimate.</td>
+          </tr>
+          <tr>
+            <td>promo APR deadline or balance transfer timing</td>
+            <td><a href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a></td>
+            <td>That hub helps separate promo-deadline planning from ordinary payoff math.</td>
+          </tr>
+          <tr>
+            <td>multiple balances and payoff order</td>
+            <td><a href="/guides/debt-snowball-vs-avalanche">Debt snowball vs avalanche</a></td>
+            <td>Once several balances compete, the real decision is payoff order, not just calculator choice.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">High-intent calculator pages</h2>
@@ -63,18 +109,33 @@ const lastUpdated = "2026-04-03";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Choose your starting point</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Start with <a href="/calculators/minimum-payment-payoff-calculator">Minimum Payment Payoff</a> when the statement minimum is the main input you need to understand.</li>
-      <li>Start with <a href="/calculators/credit-card-payoff-calculator">Credit Card Payoff</a> when you already have a fixed monthly payment target.</li>
-      <li>Start with <a href="/calculators/debt-snowball-calculator">Snowball</a> or <a href="/calculators/debt-avalanche-calculator">Avalanche</a> when you are prioritizing multiple balances.</li>
+      <li>Start with <a href="/calculators/credit-card-payoff-calculator">Credit Card Payoff</a> when you already know the payment you can sustain every month.</li>
+      <li>Start with <a href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a> when the statement warning is the main thing you need to decode.</li>
+      <li>Start with <a href="/guides/how-credit-card-interest-is-calculated">How credit card interest is calculated</a> when the statement interest line looks strange.</li>
+      <li>Start with <a href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a> when the bigger question is which payoff path fits your situation.</li>
+      <li>Start with <a href="/guides/debt-snowball-vs-avalanche">Snowball vs avalanche</a> when you are prioritizing multiple balances.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Query intent shortcuts</h2>
+    <h2 style="margin-top:0">Topic branches in plain English</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>"debt snowball calculator": start with <a href="/calculators/debt-snowball-calculator">Snowball</a> and compare <a href="/calculators/debt-avalanche-calculator">Avalanche</a>.</li>
-      <li>"credit card minimum payment calculator": use <a href="/calculators/minimum-payment-payoff-calculator">Minimum Payment</a> for minimum-only timelines.</li>
-      <li>"credit card payoff calculator": use <a href="/calculators/credit-card-payoff-calculator">Credit Card Payoff</a> for fixed-payment scenarios.</li>
+      <li>If you want a payoff date from a fixed payment, go straight to <a href="/calculators/credit-card-payoff-calculator">Credit Card Payoff</a>.</li>
+      <li>If your real question is why the warning says "years," go to <a href="/guides/why-minimum-payments-take-so-long">minimum payment drag</a>.</li>
+      <li>If your bill does not match your back-of-the-envelope math, go to <a href="/guides/how-credit-card-interest-is-calculated">statement math</a>.</li>
+      <li>If a 0% promo or transfer window is driving the urgency, go to <a href="/guides/credit-card-payoff-strategy">promo planning</a>.</li>
+      <li>If several balances are competing for the same extra dollars, go to <a href="/guides/debt-snowball-vs-avalanche">payoff order</a>.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What each branch should solve next</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>The fixed-payment branch should answer "how long until this balance is gone?"</li>
+      <li>The minimum-payment branch should answer "why am I barely making progress?"</li>
+      <li>The statement-math branch should answer "why does the statement interest not match my estimate?"</li>
+      <li>The promo branch should answer "can I clear this before the rate resets or the transfer stops helping?"</li>
+      <li>The multi-balance branch should answer "where should the next extra dollar go?"</li>
     </ul>
   </section>
 
@@ -338,7 +399,7 @@ const lastUpdated = "2026-04-03";
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
 

@@ -1,21 +1,18 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import ReviewedByCard from "../../components/ReviewedByCard.astro";
-import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Extra Payment Prepayment Penalty Checklist";
 const description =
-  "How to confirm whether mortgage extra payments can trigger a prepayment penalty, restriction, or timing issue before you accelerate payoff. Educational use only.";
+  "Prepayment penalty checklist for extra mortgage payments: confirm lender rules before accelerating payoff. Educational use only.";
 
-const lastUpdated = "2026-04-06";
+const lastUpdated = "2026-02-08";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/extra-payment-prepayment-penalty-checklist"
   lastUpdated={lastUpdated}
-  authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  robots="noindex, follow"
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -28,94 +25,101 @@ const lastUpdated = "2026-04-06";
     </nav>
     <h1>Prepayment penalty checklist for extra payments</h1>
     <p>
-      Most mortgage extra-payment plans assume you can prepay freely, but some loans limit partial prepayments, charge a penalty during
-      an early window, or require exact payoff handling. This page helps you confirm the rules before you send extra principal.
+      Some loans charge prepayment penalties or limit how extra payments are applied. Use this checklist to confirm rules before you
+      accelerate payoff.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
-      <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Extra payment guide</a>
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
   </section>
 
-  <ReviewedByCard
-    writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Prepayment-penalty interpretation, partial-prepayment versus full-payoff questions, and routing between penalty checks, extra-payment modeling, and refinance alternatives."
-    reviewedOn="2026-04-06"
-  />
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How this page fits the extra-payment workflow</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use this support page for penalty verification. It is not the main entry point for the payoff strategy. If you still need the bigger
+      decision about whether to prepay, return to the <a href="/guides/extra-mortgage-payments">main extra payment guide</a> and then use
+      this page only after the loan-note question becomes specific.
+    </p>
+  </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use this guide when you need to confirm that extra payments will not trigger a prepayment penalty or lender restriction</h2>
+    <h2 style="margin-top:0">Checklist</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when the payoff strategy looks good in the calculator, but you have not yet verified the note or servicer rules.</li>
-      <li>Use this page when you are making a large lump sum, refinancing soon, or paying off the loan within the first few years.</li>
-      <li>If your real blocker is posting behavior rather than penalties, move next to <a href="/guides/extra-payment-servicer-posting-rules">servicer posting rules</a>.</li>
+      <li>Read the note for prepayment penalty terms.</li>
+      <li>Check if penalties apply only in the first few years.</li>
+      <li>Ask the servicer how extra payments are applied (principal-only vs paid ahead).</li>
+      <li>Confirm any caps on extra payment amounts.</li>
     </ul>
   </section>
 
-  <section class="grid" style="margin-top:18px">
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Where the answer usually lives</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>Your promissory note or loan agreement.</li>
-        <li>The Closing Disclosure or other origination paperwork.</li>
-        <li>The servicer's payoff or payment FAQ.</li>
-        <li>A written answer from the servicer if the document language is unclear.</li>
-      </ul>
-    </div>
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Questions that change the answer</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>Does the penalty apply only to full payoff or also to partial prepayments?</li>
-        <li>Does the penalty expire after a specific year or month?</li>
-        <li>Is the fee a percentage of balance, a fixed dollar amount, or months of interest?</li>
-        <li>Is there a cap on how much extra principal can be paid in one period?</li>
-      </ul>
-    </div>
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Prepayment penalty inputs to confirm</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Penalty window dates and remaining months.</li>
+      <li>Penalty formula (percent vs months of interest).</li>
+      <li>Cap on extra payment amounts.</li>
+      <li>Whether penalties apply to partial prepayments.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Checklist before you send a large extra payment</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Read the exact penalty language in the note rather than relying on memory or a generic lender summary.</li>
-      <li>Confirm whether your planned extra is treated as a partial prepayment, a payoff, or a paid-ahead future payment.</li>
-      <li>Ask the servicer how the extra should be designated so it lands where you intend.</li>
-      <li>Compare the estimated fee to the interest saved over the time horizon you actually expect to keep the loan.</li>
-    </ol>
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming all loans allow unlimited prepayments.</li>
+      <li>Sending extra without a principal-only instruction.</li>
+      <li>Ignoring a penalty window that is still active.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Where to confirm penalties</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Promissory note or loan agreement.</li>
+      <li>Closing Disclosure or Loan Estimate.</li>
+      <li>Servicer FAQ or payment portal.</li>
+      <li>Direct confirmation from the servicer.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Questions for the servicer</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Does the penalty apply to partial prepayments or only full payoff?</li>
+      <li>Is there a declining schedule by year or balance?</li>
+      <li>How is the fee calculated (percent vs months of interest)?</li>
+      <li>Is advance notice or a specific form required?</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Decision inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Remaining balance and months left in any penalty window.</li>
+      <li>Penalty formula and any caps or thresholds.</li>
+      <li>Extra payment amount you plan to apply now.</li>
+      <li>Expected refinance or sale timing.</li>
+      <li>Alternative uses for the cash (higher-rate debt or reserves).</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Penalty math quick check</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Write down the penalty formula exactly as stated in the note.</li>
-      <li>Estimate the dollar fee for the extra payment amount or payoff amount you are considering.</li>
-      <li>Compare that fee to the interest saved before your likely move, refinance, or payoff date.</li>
-      <li>If the penalty window ends soon, compare paying now versus waiting until the window closes.</li>
-    </ul>
-    <p class="muted" style="margin:12px 0 0">
-      A penalty that looks small on paper can wipe out the benefit of a short-horizon payoff plan.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">If a penalty still applies</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Test whether waiting for the penalty window to expire is the cleaner option.</li>
-      <li>Compare a smaller recurring extra that stays within any allowed cap.</li>
-      <li>Check whether cash is better used on higher-rate debt or held for refinance closing costs.</li>
-      <li>Re-run the comparison against <a href="/guides/extra-payment-vs-refinance">extra payment vs refinance</a> if you may replace the loan soon.</li>
+      <li>Estimate the fee in dollars using the stated formula.</li>
+      <li>Compare the fee to interest saved over your horizon.</li>
+      <li>Check if the fee expires soon and whether waiting helps.</li>
+      <li>Document the calculation for your records.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Questions to ask the servicer</h2>
+    <h2 style="margin-top:0">Timing and notice</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Does my loan have a prepayment penalty right now?</li>
-      <li>Does the rule apply to partial principal-only payments, full payoff, or both?</li>
-      <li>How should I designate the payment so it is not treated as paid ahead?</li>
-      <li>If I want an exact payoff, do I need a formal payoff quote for a specific date?</li>
+      <li>Ask if a payoff quote is required for the exact payment date.</li>
+      <li>Confirm how long the quote is valid and how to request a refresh.</li>
+      <li>Plan mailing or processing time so the payment posts on schedule.</li>
     </ul>
   </section>
 
@@ -124,46 +128,27 @@ const lastUpdated = "2026-04-06";
       <h2 style="margin-top:0">Related tools</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
-        <li><a href="/calculators/additional-principal-payment-calculator">Additional principal calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
       </ul>
     </div>
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/extra-payment-servicer-posting-rules">Servicer posting rules</a></li>
         <li><a href="/guides/principal-only-extra-payments">Principal-only extra payments</a></li>
-        <li><a href="/guides/extra-payment-vs-refinance">Extra payment vs refinance</a></li>
+        <li><a href="/guides/mortgage-recast-vs-extra-payments">Recast vs extra payments</a></li>
         <li><a href="/guides/refinance-break-even">Refinance break-even</a></li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">References</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>
-        CFPB:{" "}
-        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-prepayment-penalty-en-1957/" rel="noopener noreferrer" target="_blank">
-          What is a prepayment penalty?
-        </a>
-      </li>
-      <li>
-        CFPB:{" "}
-        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgage resources
-        </a>
-      </li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
-      <a class="btn btn-primary" href="/guides/extra-payment-servicer-posting-rules">Verify posting and designation rules</a>
-      <a class="btn" href="/calculators/extra-payment-calculator">Model the allowed scenario</a>
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Main extra payment guide</a>
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-06</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>

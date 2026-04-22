@@ -5,9 +5,9 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Mortgage Payment vs Total Cost";
 const description =
-  "Why a lower monthly payment can still cost more over time and how to compare total interest. Educational use only.";
+  "Compare the comfort of a lower required payment with the longer-run cost that can hide behind it. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -15,7 +15,7 @@ const lastUpdated = "2026-04-05";
   canonicalPath="/guides/mortgage-payment-total-cost-vs-payment"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
   robots="noindex, follow"
 >
   <section class="card hero">
@@ -29,8 +29,8 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>Mortgage payment vs total cost</h1>
     <p>
-      A lower monthly payment can still lead to higher total interest if the term is longer. This guide shows how to compare total
-      cost, not just the payment.
+      This page is for the borrower comparing offers that look easier monthly but may quietly cost more because the payoff clock is
+      longer, the amortization resets, or the hold period is being ignored.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
@@ -38,125 +38,75 @@ const lastUpdated = "2026-04-05";
       <a class="btn" href="/guides/mortgage-payment-15-vs-30-year">15 vs 30 year</a>
     </div>
   </section>
+
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Payment-versus-total-cost comparison logic, time-horizon framing, and routing between amortization, mortgage payment, and term-choice workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Mortgage cost-comparison review, amortization-horizon framing, and routing between term choice, payment comfort, and total borrowing cost."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Use this guide when the cheapest monthly payment is not automatically the cheapest loan</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when one option feels easier monthly but may cost more in total interest, fees, or a longer payoff clock.</li>
+      <li>Use this page when one option feels better every month but may be more expensive over the period you actually expect to keep it.</li>
       <li>If the comparison is specifically 15-year versus 30-year, move next to <a href="/guides/mortgage-payment-15-vs-30-year">15-year vs 30-year mortgage payment</a>.</li>
-      <li>If you need the baseline payment formula first, move to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan amount, note rate, and term.</li>
-      <li>Taxes, insurance, HOA, and PMI assumptions.</li>
-      <li>Escrow rules or reserves used by the lender.</li>
-      <li>Time horizon if comparing scenarios.</li>
+      <li>If you need the baseline payment structure first, move to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Why total cost matters</h2>
+    <h2 style="margin-top:0">Start with the uncomfortable truth</h2>
     <p class="muted" style="margin:10px 0 0">
-      Monthly payment is a cash flow metric. Total interest shows how much the loan costs over time. Comparing both prevents a lower
-      payment from masking a higher total cost.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to compare</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use the same loan amount and rate across scenarios.</li>
-      <li>Compare 15-year vs 30-year or remaining term vs new term.</li>
-      <li>Use total interest from the amortization schedule.</li>
-    </ol>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Only comparing payments and ignoring total interest.</li>
-      <li>Comparing different terms without adjusting for time horizon.</li>
-      <li>Using APR instead of the note rate for payment comparisons.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Horizon check</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Compare over the time you expect to keep the loan.</li>
-      <li>Include refinance costs if you plan to refinance early.</li>
-      <li>Use the same payoff horizon for both options.</li>
-      <li>Track total interest paid by that horizon.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Inputs to gather</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Current balance, rate, and remaining term.</li>
-      <li>Expected term for a new loan or refinance.</li>
-      <li>Closing costs if you are comparing a refinance option.</li>
-      <li>Target horizon in years for your comparison.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision inputs</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Maximum monthly payment you are comfortable with.</li>
-      <li>Target total interest saved by the horizon.</li>
-      <li>Any future refinance plans that reset the clock.</li>
-      <li>Tax and insurance assumptions for total housing cost.</li>
-      <li>Prepayment flexibility if cash flow changes.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Base case with the current term and rate.</li>
-      <li>Shorter term with higher payment and lower total interest.</li>
-      <li>Refinance case including closing costs and new term.</li>
-      <li>Horizon-based comparison using the same end date.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Why monthly comfort can hide a weaker long-term answer</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Extending the term, resetting the amortization clock, or choosing the lowest payment can make cash flow look better in the short run.
-      But if you keep the loan long enough, that easier payment can translate into materially higher total interest and slower equity growth.
+      The core reminder is simple: payment relief is rarely free. Lower required payment often means a longer payoff path, more
+      interest exposure, or a reset in the amortization schedule that hides cost inside a friendlier monthly number.
     </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
+      <h2 style="margin-top:0">What monthly payment answers</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li>Can you carry the required payment now?</li>
+        <li>How much monthly room do you preserve?</li>
+        <li>How close are you to a budget or DTI ceiling?</li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
+      <h2 style="margin-top:0">What total cost answers</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
-        <li><a href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a></li>
-        <li><a href="/guides/mortgage-payment-15-vs-30-year">15 vs 30 year payment</a></li>
-        <li><a href="/guides/mortgage-payment-rate-sensitivity">Rate sensitivity</a></li>
-        <li><a href="/guides/refinance-break-even">Refinance rate vs term</a></li>
+        <li>How many dollars leave your household over the hold period?</li>
+        <li>How much interest is paid before you exit or refinance?</li>
+        <li>Whether resetting the amortization clock can hide cost that the payment alone does not show.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use your real horizon, not the loan's headline horizon</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The cleanest comparison is to compare dollars paid by your real hold period. If you expect to move, refinance, or accelerate
+      payoff early, the full 30-year or 15-year headline may not be the right comparison window.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">The comparison order that avoids mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Compare required monthly payment.</li>
+      <li>Compare total dollars paid by the same end date.</li>
+      <li>Then ask whether the lower-payment option is worth the extra cost and slower equity progress.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to move to a different page</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If the decision is specifically term choice, move to <a href="/guides/mortgage-payment-15-vs-30-year">mortgage payment 15 vs 30 year</a>.</li>
+      <li>If the question is whether the payment is too fragile, move to <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
+      <li>If the question is whether a larger down payment changes the answer, move to <a href="/guides/mortgage-payment-down-payment-impact">mortgage payment down payment impact</a>.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -181,14 +131,10 @@ const lastUpdated = "2026-04-05";
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/amortization-schedule-calculator">Run amortization</a>
-      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/guides/mortgage-payment-15-vs-30-year">Compare term choice</a>
+      <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Check affordability</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-
-
-

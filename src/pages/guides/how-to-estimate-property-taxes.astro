@@ -5,18 +5,18 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "How to Estimate Property Taxes for a Mortgage Payment";
 const description =
-  "Estimate property taxes for a mortgage payment using local rates and recent bills so your inputs are realistic. Educational use only.";
+  "Turn local tax uncertainty into a usable monthly mortgage-payment input without over-trusting the seller bill. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/how-to-estimate-property-taxes"
   lastUpdated={lastUpdated}
-  robots="noindex, follow"
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+  robots="noindex, follow"
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -29,122 +29,83 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>How to estimate property taxes</h1>
     <p>
-      Property taxes can materially change your monthly housing payment. Use local tax rates and recent bills to avoid
-      underestimating your mortgage payment.
+      This page is for the buyer who already understands the payment formula, but still needs one reliable tax number before the full
+      monthly estimate is worth trusting.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
-      <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
       <a class="btn" href="/guides/how-to-estimate-homeowners-insurance">Estimate homeowners insurance</a>
+      <a class="btn" href="/guides/mortgage-payment-property-tax-assumptions">Property tax assumptions</a>
     </div>
   </section>
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Local property-tax estimate boundaries, reassessment and escrow-adjustment risk framing, and routing between mortgage payment, insurance estimation, and tax-assumption workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Property-tax estimation review, reassessment-risk framing, and routing between tax-input estimation, payment entry, and housing-payment breakdown pages."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Use this guide when property taxes are the last uncertain input in your mortgage payment estimate</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when the payment estimate depends on getting the property-tax number right, especially in reassessment markets.</li>
-      <li>If insurance is the fuzzy input instead, move to <a href="/guides/how-to-estimate-homeowners-insurance">how to estimate homeowners insurance</a>.</li>
-      <li>If you need to plug the final number into a full payment model, move to the <a href="/calculators/mortgage-payment-calculator">mortgage payment calculator</a>.</li>
+      <li>Use this page when the payment estimate depends on getting the tax number right before you compare scenarios.</li>
+      <li>If insurance is still uncertain too, move to <a href="/guides/how-to-estimate-homeowners-insurance">how to estimate homeowners insurance</a>.</li>
+      <li>If you are ready to use the number, move to <a href="/calculators/mortgage-payment-calculator">mortgage payment calculator</a>.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Where to get tax numbers</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>County or city tax assessor websites (current millage or tax rate).</li>
-      <li>Recent tax bills for similar homes in the same area.</li>
-      <li>Your real estate agent or lender estimate (verify with public data).</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Estimate approach (quick)</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Find the local tax rate or recent tax bill.</li>
-      <li>Multiply the tax rate by the assessed value (or purchase price if applicable).</li>
-      <li>Divide the annual tax by 12 to get the monthly amount.</li>
-    </ol>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Property tax estimate example</h2>
+    <h2 style="margin-top:0">Do not start from the wrong anchor</h2>
     <p class="muted" style="margin:10px 0 0">
-      If the tax rate is 1.1% and the assessed value is $400,000, annual tax is about $4,400 and the monthly estimate is about $367.
-      Use this monthly number in your mortgage payment calculator inputs.
+      The seller bill is a clue, not a final answer. It can still be helpful, but only after you decide whether a sale, reassessment,
+      exemption change, or special levy makes that bill a poor proxy for your future monthly tax load.
     </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Why this estimate is often the biggest source of payment error</h2>
+    <h2 style="margin-top:0">Why tax estimates go wrong most often</h2>
     <p class="muted" style="margin:10px 0 0">
-      Buyers often copy the seller's current bill or a generic listing estimate, but post-sale reassessment, exemptions, and local fees
-      can push the real tax amount much higher. That makes tax estimation one of the most common reasons a mortgage payment looks too low.
+      The biggest miss is usually post-sale reassessment risk. If the tax base resets after purchase, a copied listing number can
+      make the payment look safer than it really is.
     </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Assessment vs purchase price</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Some areas reassess taxes after a sale. If you are buying, use the expected post-sale assessed value instead of the
-      current owner's bill to avoid underestimating your taxes.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Escrow changes after closing</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Taxes and insurance can change after closing, which can raise the escrow portion of your payment. Budget a cushion so
-      the first escrow adjustment does not surprise you.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Using the seller's current tax bill without accounting for reassessment.</li>
-      <li>Leaving out special assessments or local fees that show on tax bills.</li>
-      <li>Assuming taxes are flat when local rates can change annually.</li>
-    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
+      <h2 style="margin-top:0">What makes a tax estimate useful</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
-        <li><a href="/calculators/debt-to-income-calculator">DTI calculator</a></li>
+        <li>Local assessor or county data.</li>
+        <li>A view on reassessment timing and exemptions.</li>
+        <li>A monthly number that can be dropped into the full payment estimate.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
+      <h2 style="margin-top:0">What makes it misleading</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/how-mortgage-payments-are-calculated">How mortgage payments are calculated</a></li>
-        <li><a href="/guides/how-to-estimate-homeowners-insurance">Estimate homeowners insurance</a></li>
-        <li><a href="/guides/mortgage-payment-property-tax-assumptions">Property tax assumptions</a></li>
-        <li><a href="/guides/principal-and-interest-vs-escrow">Principal and interest vs escrow</a></li>
+        <li>Using only a listing estimate or prior owner's bill.</li>
+        <li>Ignoring special assessments or local add-on fees.</li>
+        <li>Assuming the purchase price has no effect on the tax path.</li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">FAQ</h2>
-    <h3 style="margin:12px 0 0">Do property taxes show up in my mortgage payment?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      Usually yes if your lender escrows taxes. If you pay taxes separately, exclude them from the escrow portion and budget
-      for the annual bill.
+    <h2 style="margin-top:0">Treat this as a local-tax-input page</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The purpose of this page is narrow: get to a practical monthly property-tax input quickly enough that the full housing-payment
+      model becomes decision-useful, not perfect.
     </p>
-    <h3 style="margin:12px 0 0">Can my tax estimate be wrong after I buy?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      Yes. Reassessments and tax rate changes can increase the bill. Use a conservative estimate and re-check after closing.
-    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to move to a different page</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If insurance is the missing number, move to <a href="/guides/how-to-estimate-homeowners-insurance">how to estimate homeowners insurance</a>.</li>
+      <li>If you need the broader payment composition, move to <a href="/guides/what-is-piti">what is PITI</a>.</li>
+      <li>If you want to test the final number in the full draft, move to <a href="/calculators/mortgage-payment-calculator">mortgage payment calculator</a>.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -173,7 +134,6 @@ const lastUpdated = "2026-04-05";
       <a class="btn" href="/guides/mortgage-payment-property-tax-assumptions">Review tax assumptions</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-

@@ -5,9 +5,9 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Windfall Extra Payment Strategy";
 const description =
-  "How to use a bonus, refund, or other windfall for mortgage prepayment without undermining liquidity, debt priorities, or short-term goals. Educational use only.";
+  "How to decide what share of a bonus or windfall should become mortgage principal after reserves, taxes, and near-term needs are handled. Educational use only.";
 
-const lastUpdated = "2026-04-06";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -15,7 +15,7 @@ const lastUpdated = "2026-04-06";
   canonicalPath="/guides/extra-payment-windfall-strategy"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -28,111 +28,92 @@ const lastUpdated = "2026-04-06";
     </nav>
     <h1>Using a windfall for extra mortgage payments</h1>
     <p>
-      A bonus, refund, inheritance, or other windfall can create a meaningful lump-sum payoff opportunity, but only if the cash is not
-      needed more urgently elsewhere. This guide helps you decide how much of a windfall should stay liquid and how much can safely go to principal.
+      This page is for one-time cash events, not recurring monthly discipline. The right question is not "should all of this go to the
+      mortgage?" It is how to make the windfall split before it becomes a principal payment.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Additional principal calculator</a>
       <a class="btn" href="/guides/extra-payment-liquidity-reserve">Liquidity reserve check</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+      <a class="btn" href="/guides/extra-payment-priority-vs-other-debts">Priority vs other debts</a>
     </div>
   </section>
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Reserve-first windfall allocation, higher-priority debt and time-horizon checks, and routing between lump-sum, liquidity, and payoff-versus-investing workflows."
-    reviewedOn="2026-04-06"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Windfall allocation logic, reserve-first lump-sum routing, and the decision framework for splitting one-time cash between mortgage principal and competing priorities."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use this guide when a bonus, refund, or other windfall could become a mortgage lump sum but liquidity still matters</h2>
+    <h2 style="margin-top:0">Use this page when the cash is real but not recurring</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when the extra cash is available now, but you are unsure whether all of it belongs in the mortgage.</li>
-      <li>Use this page when you are weighing a lump-sum prepayment against reserves, higher-rate debt, or investing.</li>
-      <li>If you already know the lump sum is safe and the only question is timing, move next to <a href="/guides/extra-payment-lump-sum-vs-monthly">lump sum vs monthly</a>.</li>
+      <li>Use this page when a bonus, inheritance, sale proceeds, or settlement creates a one-time allocation decision.</li>
+      <li>Use this page when monthly extra-payment math is not the issue, but the split of one pool of cash is.</li>
+      <li>Leave this page when the problem is a standing monthly extra amount. That belongs to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a>.</li>
     </ul>
   </section>
 
-  <section class="grid" style="margin-top:18px">
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Reasons to keep part of the windfall liquid</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>Your emergency reserve is still below target.</li>
-        <li>You expect repairs, taxes, insurance renewals, or other housing costs soon.</li>
-        <li>You may need the cash for a move, refinance, or income gap within the next 12 to 24 months.</li>
-        <li>You would otherwise need to borrow again if an unexpected bill arrives.</li>
-      </ul>
-    </div>
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Reasons to apply part of it now</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>The mortgage rate is meaningful and the time horizon on the loan is still long.</li>
-        <li>You have already checked reserves and near-term cash needs.</li>
-        <li>The servicer allows principal-only lump sums without penalties.</li>
-        <li>You want a guaranteed interest-saving result rather than waiting to drip the money in later.</li>
-      </ul>
-    </div>
-  </section>
-
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">A simple reserve-first windfall framework</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Start with the net amount available after taxes, withholding, or transaction costs.</li>
-      <li>Set aside your minimum reserve target and any near-term mandatory expenses.</li>
-      <li>Check whether higher-rate debts or urgent obligations deserve priority before the mortgage.</li>
-      <li>Only treat the remaining amount as truly available for a lump-sum prepayment.</li>
+    <h2 style="margin-top:0">Make the windfall split before it becomes a principal payment</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A windfall feels larger than regular cash flow, which is why people often overcommit it. The cleaner process is to decide which
+      parts of the money are already spoken for before you run the mortgage savings model.
+    </p>
+    <ol class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Reserve the amount needed for taxes, settlement costs, or delayed withholding surprises.</li>
+      <li>Rebuild cash if the emergency reserve is below the target floor.</li>
+      <li>Decide whether near-term repairs, moves, or tuition claims should stay liquid.</li>
+      <li>Only the leftover amount becomes the true mortgage-prepayment candidate.</li>
     </ol>
   </section>
 
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Compare windfall choices on the same horizon</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Model the full lump sum now in the <a href="/calculators/additional-principal-payment-calculator">additional principal calculator</a>.</li>
-      <li>Model a split strategy, such as part now plus a smaller recurring monthly extra.</li>
-      <li>Compare the mortgage result to paying off higher-cost debt first if that is still on the table.</li>
-      <li>Use the same move or refinance horizon in every comparison so the result is realistic.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Sending the entire windfall to principal before building a reserve.</li>
-      <li>Ignoring credit-card or other debt costs that are higher than the mortgage rate.</li>
-      <li>Using full-term mortgage savings when you may sell or refinance soon.</li>
-      <li>Forgetting to confirm principal-only application and prepayment rules before sending the lump sum.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Statement and servicer check</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Confirm the windfall payment will be applied as principal-only.</li>
-      <li>Check whether any prepayment penalty or cap still applies.</li>
-      <li>Verify the posting date if timing matters to your comparison.</li>
-      <li>Save the statement that shows the balance reduction after the payment clears.</li>
-    </ul>
-  </section>
-
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
+      <h2 style="margin-top:0">When a larger lump sum may make sense</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/additional-principal-payment-calculator">Additional principal calculator</a></li>
-        <li><a href="/calculators/extra-payment-calculator">Recurring extra payment calculator</a></li>
+        <li>The reserve is already healthy and upcoming cash needs are well covered.</li>
+        <li>The windfall is fully yours after taxes and you do not need to keep optionality.</li>
+        <li>The mortgage payoff goal matters more than preserving the full cash balance.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
+      <h2 style="margin-top:0">When staged use is safer</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/extra-payment-liquidity-reserve">Liquidity reserve</a></li>
-        <li><a href="/guides/extra-payment-priority-vs-other-debts">Priority vs other debts</a></li>
-        <li><a href="/guides/pay-off-mortgage-early-or-invest">Pay off mortgage early or invest?</a></li>
-        <li><a href="/guides/extra-payment-prepayment-penalty-checklist">Prepayment penalty checklist</a></li>
+        <li>The tax bill, reserve rebuild, or near-term spending still competes for the same dollars.</li>
+        <li>You are unsure whether the entire windfall will feel safe once it leaves checking.</li>
+        <li>Lump sum versus staged extra payments may produce similar savings while preserving more flexibility.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">The real tradeoff is optionality</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Sending a lump sum to principal creates a guaranteed mortgage return, but it also gives up optionality. If the same money might be
+      needed for taxes, a move, repairs, or high-rate debt, the better answer may be to split the cash instead of forcing an all-or-nothing decision.
+      In practice, lump sum versus staged extra payments is often a flexibility decision before it becomes a savings decision.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Questions to settle before modeling</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Is the windfall fully net of taxes and fees, or is part of it still uncertain?</li>
+      <li>Would this cash solve a higher-rate debt problem more effectively elsewhere?</li>
+      <li>Will you regret losing access to the cash if plans change within 12 to 24 months?</li>
+      <li>Does a smaller lump sum plus staged extra payments better match your comfort level?</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to route the next decision</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If the reserve is still below target, go next to <a href="/guides/extra-payment-liquidity-reserve">liquidity reserve</a>. If the real conflict is
+      mortgage prepayment versus cards or other loans, go next to <a href="/guides/extra-payment-priority-vs-other-debts">priority vs other debts</a>.
+      If the split is already decided, model the final lump sum in the <a href="/calculators/additional-principal-payment-calculator">additional principal calculator</a>.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -140,18 +121,8 @@ const lastUpdated = "2026-04-06";
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>
         CFPB:{" "}
-        <a
-          href="https://www.consumerfinance.gov/an-essential-guide-to-building-an-emergency-fund/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          An essential guide to building an emergency fund
-        </a>
-      </li>
-      <li>
-        CFPB:{" "}
-        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgage resources
+        <a href="https://www.consumerfinance.gov/consumer-tools/educator-tools/youth-financial-education/teach/activities/paying-for-unexpected-emergency-expenses/" rel="noopener noreferrer" target="_blank">
+          Paying for unexpected emergency expenses
         </a>
       </li>
     </ul>
@@ -160,11 +131,11 @@ const lastUpdated = "2026-04-06";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
-      <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Model the lump-sum option</a>
-      <a class="btn" href="/guides/extra-payment-lump-sum-vs-monthly">Compare lump sum vs monthly</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
+      <a class="btn btn-primary" href="/calculators/additional-principal-payment-calculator">Model the final lump-sum amount</a>
+      <a class="btn" href="/guides/extra-payment-liquidity-reserve">Check reserve needs first</a>
+      <a class="btn" href="/guides/extra-payment-priority-vs-other-debts">Compare against other debt priorities</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-06</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>

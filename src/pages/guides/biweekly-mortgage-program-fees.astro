@@ -29,7 +29,7 @@ const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-03";
 ---
 <BaseLayout
   title={title}
@@ -37,7 +37,7 @@ const lastUpdated = "2026-04-05";
   canonicalPath="/guides/biweekly-mortgage-program-fees"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -62,11 +62,20 @@ const lastUpdated = "2026-04-05";
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Biweekly program fee framing, payment-posting timing risk, and routing between biweekly comparison and extra-payment workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Support-page framing for fee comparisons, program-posting risk, and routing from fee-check questions back into the main biweekly comparison workflow."
+    reviewedOn="2026-04-03"
   />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How this page fits the biweekly workflow</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use this support page for the fee-check question. It exists for the moment when a lender or third party is selling a biweekly
+      service and you need to know whether the fees erase the benefit. If you still need the bigger comparison between biweekly timing and
+      plain extra principal, start with <a href="/guides/biweekly-vs-extra-principal">biweekly vs extra principal</a>.
+    </p>
+  </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
@@ -132,7 +141,7 @@ const lastUpdated = "2026-04-05";
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Worked example (fees vs savings)</h2>
     <p class="muted" style="margin:10px 0 0">
-      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% note rate for {exampleTermMonths} months. A "true biweekly" pattern
+      Example: {money0.format(examplePrincipal)} at {pct2.format(exampleApr)}% APR for {exampleTermMonths} months. A "true biweekly" pattern
       is roughly the same as adding {money2.format(exampleMonthlyExtra)}/month in extra principal.
     </p>
     <div style="overflow:auto; margin-top:12px">
@@ -266,7 +275,7 @@ const lastUpdated = "2026-04-05";
       <a class="btn" href="/guides/principal-only-extra-payments">Principal-only tips</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
   </section>
 </BaseLayout>
 

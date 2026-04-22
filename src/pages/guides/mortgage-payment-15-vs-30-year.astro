@@ -5,9 +5,9 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "15-Year vs 30-Year Mortgage Payment (Trade-offs)";
 const description =
-  "Compare monthly payment, total interest, and time horizon differences between 15-year and 30-year mortgages. Educational use only.";
+  "Compare 15-year and 30-year mortgages as different required payment lifestyles, not just different interest totals. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -15,7 +15,7 @@ const lastUpdated = "2026-04-05";
   canonicalPath="/guides/mortgage-payment-15-vs-30-year"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
   robots="noindex, follow"
 >
   <section class="card hero">
@@ -29,8 +29,8 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>15-year vs 30-year mortgage payment</h1>
     <p>
-      A 15-year mortgage usually has a higher monthly payment but lower total interest. A 30-year mortgage lowers the payment
-      but increases total interest over time. Use this guide to compare the trade-offs with consistent inputs.
+      This page is for the buyer whose real decision is not just total interest, but whether they want a faster payoff built into the
+      required payment or flexibility preserved inside the required payment.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
@@ -38,116 +38,74 @@ const lastUpdated = "2026-04-05";
       <a class="btn" href="/guides/mortgage-payment-total-cost-vs-payment">Payment vs total cost</a>
     </div>
   </section>
+
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Mortgage term-choice framing, DTI and affordability implications, and routing between mortgage payment, affordability, and total-cost comparison workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Term-choice review, required-payment framing, and routing between total-cost comparison, affordability, and payment flexibility."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Use this guide when term choice is the real mortgage-payment decision</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when the home and rate are already chosen, but you still need to decide whether the payment should be stretched over 15 years or 30 years.</li>
-      <li>If your broader question is payment versus total interest across scenarios, move next to <a href="/guides/mortgage-payment-total-cost-vs-payment">mortgage payment vs total cost</a>.</li>
-      <li>If the real blocker is whether the higher payment fits your budget, move to the <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan amount, note rate, and term.</li>
-      <li>Taxes, insurance, HOA, and PMI assumptions.</li>
-      <li>Escrow rules or reserves used by the lender.</li>
-      <li>Time horizon if comparing scenarios.</li>
+      <li>Use this page when the home and rate family are already acceptable, but the required pace of repayment is still undecided.</li>
+      <li>If your broader question is monthly payment versus total borrowing cost, move next to <a href="/guides/mortgage-payment-total-cost-vs-payment">mortgage payment vs total cost</a>.</li>
+      <li>If the real blocker is budget fragility, move to <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to compare fairly</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use the same loan amount and interest rate for both terms.</li>
-      <li>Compare P&amp;I payment and total interest.</li>
-      <li>Check DTI impact with the higher payment.</li>
-      <li>Test your time horizon if you might move or refinance.</li>
-    </ol>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What usually changes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li><strong>Monthly P&amp;I:</strong> higher for 15-year, lower for 30-year.</li>
-      <li><strong>Total interest:</strong> lower for 15-year because you repay faster.</li>
-      <li><strong>Cash flow:</strong> 30-year leaves more monthly flexibility.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">DTI and affordability check</h2>
+    <h2 style="margin-top:0">The real difference is behavioral, not just mathematical</h2>
     <p class="muted" style="margin:10px 0 0">
-      The 15-year payment can push the housing payment above DTI thresholds. Run the DTI calculator with the 15-year payment to see
-      whether it keeps you within your target range.
+      A 15-year loan is forced payoff versus optional prepayment. It builds discipline into the required payment. A 30-year loan
+      preserves a lower minimum, which can be useful, but only if you treat that flexibility intentionally.
     </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Time horizon matters</h2>
-    <p class="muted" style="margin:10px 0 0">
-      If you expect to refinance or sell in a few years, compare total dollars paid over that window rather than the full term.
-      The 15-year can still help, but the benefit depends on how long you keep the loan.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to think about flexibility versus payoff speed</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>A 15-year term forces the faster payoff through the required payment.</li>
-      <li>A 30-year term preserves flexibility, but the lower required payment only helps if you intentionally use that flexibility well.</li>
-      <li>This means the better choice depends as much on cash-flow resilience as on the math of total interest.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Comparing two offers with different rates or points.</li>
-      <li>Ignoring taxes, insurance, HOA, and PMI in the total payment.</li>
-      <li>Assuming you will always pay the 30-year like a 15-year without a plan.</li>
-    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
+      <h2 style="margin-top:0">What a 15-year really buys</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
-        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
-        <li><a href="/calculators/debt-to-income-calculator">DTI calculator</a></li>
+        <li>Faster equity growth and lower total interest.</li>
+        <li>Less freedom to slow down during expensive months.</li>
+        <li>A payment shape that forces consistency.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
+      <h2 style="margin-top:0">What a 30-year really buys</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/how-mortgage-payments-are-calculated">How mortgage payments are calculated</a></li>
-        <li><a href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a></li>
-        <li><a href="/guides/mortgage-payment-total-cost-vs-payment">Payment vs total cost</a></li>
-        <li><a href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a></li>
-        <li><a href="/guides/refinance-break-even">Refinance break-even</a></li>
+        <li>Lower required payment and more breathing room.</li>
+        <li>More dependence on self-discipline if you plan to prepay anyway.</li>
+        <li>A payment profile that can absorb uncertainty better.</li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">FAQ</h2>
-    <h3 style="margin:12px 0 0">Is a 15-year always cheaper?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      It usually lowers total interest, but the higher payment can reduce flexibility. Compare with your budget and time horizon.
+    <h2 style="margin-top:0">Flexibility only helps if it is protected</h2>
+    <p class="muted" style="margin:10px 0 0">
+      A 30-year flexibility only matters if you protect the cash-flow gap instead of letting it disappear into routine spending. That
+      is why the comparison is partly a household-management decision, not just a mortgage calculation.
     </p>
-    <h3 style="margin:12px 0 0">Can I take a 30-year and pay extra instead?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      Yes, if your lender applies extras as principal-only. The key is whether you will consistently make those extra payments.
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Run the comparison like two lifestyles</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The same house can produce two very different required lifestyles. One version demands a higher fixed payment every month. The
+      other asks whether you value optionality more than a built-in faster payoff.
     </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to move to a different page</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If the broader issue is total dollars paid, move to <a href="/guides/mortgage-payment-total-cost-vs-payment">mortgage payment total cost vs payment</a>.</li>
+      <li>If you want to model extra payments instead of changing term, move to <a href="/guides/extra-mortgage-payments">extra mortgage payments</a>.</li>
+      <li>If the real question is whether the higher payment is too aggressive, move to <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -172,13 +130,10 @@ const lastUpdated = "2026-04-05";
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Compare payments</a>
-      <a class="btn" href="/calculators/extra-payment-calculator">Model extra payments</a>
       <a class="btn" href="/guides/mortgage-payment-total-cost-vs-payment">Compare total cost</a>
+      <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Check affordability</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-
-

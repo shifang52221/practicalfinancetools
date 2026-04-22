@@ -7,7 +7,7 @@ const title = "Escrow vs Principal (Principal & Interest vs Escrow)";
 const description =
   "Escrow vs principal: understand the difference between principal and interest vs escrow items like taxes and insurance. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -15,7 +15,7 @@ const lastUpdated = "2026-04-05";
   canonicalPath="/guides/principal-and-interest-vs-escrow"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -40,10 +40,10 @@ const lastUpdated = "2026-04-05";
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Mortgage payment-structure guidance, escrow-versus-principal interpretation, and routing between PITI, payment-formula, and affordability explanation pages."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Statement-interpretation review, escrow-versus-P&I distinction, and routing between payment breakdown, affordability, and mortgage-payment math."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -221,10 +221,10 @@ const lastUpdated = "2026-04-05";
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the mortgage payment calculator</a>
       <a class="btn" href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a>
-      <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
 

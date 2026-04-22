@@ -3,11 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { TRUST_PROFILES } from "../../config/trust";
 
-const title = "APR Calculator Topic Guide (fees, comparisons, and pitfalls)";
+const title = "APR Topic Guide (rate, fees, and comparison paths)";
 const description =
-  "Workflow to use an APR calculator, compare loans with fees, and understand APR vs rate. Educational use only.";
+  "APR workflow: choose the right comparison path for rate confusion, fees, disclosures, loan types, and credit-card APR questions. Educational use only.";
 
-const lastUpdated = "2026-03-03";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -26,16 +26,18 @@ const lastUpdated = "2026-03-03";
       <span aria-hidden="true">/</span>
       <span aria-current="page">APR</span>
     </nav>
-    <h1>APR: compare borrowing costs (with fees)</h1>
+    <h1>APR: choose the right comparison path</h1>
     <p>
-      Search queries like "apr calculator", "interest rate apr calculator", and "how do I find out my APR" usually come from the same
-      need: compare offers fairly. Use this workflow to keep assumptions consistent and avoid misleading comparisons.
-      Start with the <a href="/calculators/apr-calculator">APR calculator</a> to estimate annual APR from rate, term, and fees.
+      Most APR searches are not really asking the same question. Some readers are trying to decode APR versus interest rate, some are
+      comparing fee-heavy loan offers, some just need the official disclosure number, and some are really dealing with promo APR or
+      balance-transfer questions on credit cards. Start with the <a href="/calculators/apr-calculator">APR calculator</a> when you already
+      have the loan amount, term, rate, and fee assumptions.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
       <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
-      <a class="btn" href="/guides/apr-with-origination-fee">Origination fees</a>
+      <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
+      <a class="btn" href="/guides/apr-comparison-checklist">APR checklist</a>
     </div>
   </section>
 
@@ -43,74 +45,64 @@ const lastUpdated = "2026-03-03";
     writtenBy={TRUST_PROFILES.siteOwner}
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
-    reviewScope="APR workflow framing, source selection, and next-step routing for calculator and guide choices."
-    reviewedOn="2026-03-03"
+    reviewScope="APR workflow framing, branch routing, and comparison-path clarity across fee-heavy offers, disclosures, horizons, and credit-card APR cases."
+    reviewedOn="2026-04-22"
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">High-intent APR calculator paths</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li><a href="/calculators/apr-calculator">APR calculator</a> for full offer comparisons with upfront fees.</li>
-      <li><a href="/guides/how-to-find-your-apr">How to find your APR</a> when you need the official disclosure value.</li>
-      <li><a href="/guides/apr-with-origination-fee">APR with origination fee</a> for fee-heavy offers.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Monthly-to-annual APR quick answer</h2>
+    <h2 style="margin-top:0">Choose the APR question before you choose the page</h2>
     <p class="muted" style="margin:10px 0 0">
-      For the query "what is annual APR with 0.61 monthly rate", the nominal annualized value is 7.32% (0.61% x 12) and
-      the effective annual rate is about 7.57% with monthly compounding. Use the{" "}
-      <a href="/calculators/apr-calculator">APR calculator</a> when fees are involved.
+      This topic page works best as the top of a routing tree. Start by naming the actual APR bottleneck, then move into the page that is
+      built for that exact comparison job.
     </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">APR topic inputs to gather</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan amount, term, and nominal rate.</li>
-      <li>Upfront fees (origination, points, lender credits).</li>
-      <li>Cash vs financed fees.</li>
-      <li>Expected time horizon before payoff or refinance.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Where to find the numbers</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Mortgages: Loan Estimate and Closing Disclosure show rate, APR, and itemized fees.</li>
-      <li>Personal/auto loans: offer sheet or Truth-in-Lending disclosure lists rate, term, and finance charges.</li>
-      <li>Credit cards: statement and cardmember agreement list APRs and balance types.</li>
-      <li>Ask the lender if a fee is optional; compare both versions.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Official-checkpoint table</h2>
-    <div style="overflow:auto; margin-top:10px">
+    <div style="overflow:auto; margin-top:12px">
       <table class="table">
         <thead>
           <tr>
-            <th>Comparison input</th>
-            <th>Primary source</th>
-            <th>Risk if wrong</th>
+            <th>Your real question</th>
+            <th>Best next page</th>
+            <th>Why</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>APR disclosure</td>
-            <td>Loan Estimate / TILA disclosure</td>
-            <td>Misjudging true borrowing cost</td>
+            <td>APR versus interest rate or fee-heavy offer confusion</td>
+            <td>
+              <a href="/guides/apr-vs-interest-rate">APR vs interest rate</a> and{" "}
+              <a href="/calculators/apr-calculator">APR calculator</a>
+            </td>
+            <td>Start here when the main confusion is why the quoted APR does not match the stated rate or a fee-heavy offer.</td>
           </tr>
           <tr>
-            <td>Origination and points</td>
-            <td>Itemized fee section</td>
-            <td>Understated effective rate</td>
+            <td>origination fees, closing costs, or financed fees</td>
+            <td>
+              <a href="/guides/apr-with-origination-fee">APR with origination fee</a> and{" "}
+              <a href="/guides/discount-points-vs-lender-credits">points vs lender credits</a>
+            </td>
+            <td>Use this branch when fees, points, credits, or financed charges are the real reason two offers look different.</td>
           </tr>
           <tr>
-            <td>Loan term</td>
-            <td>Payment schedule summary</td>
-            <td>Invalid apples-to-apples comparison</td>
+            <td>APR comparisons across loan types</td>
+            <td><a href="/guides/apr-by-loan-type">APR by loan type</a></td>
+            <td>Go here when the product itself changes the comparison rules, such as auto, personal, student, or small-business loans.</td>
+          </tr>
+          <tr>
+            <td>short hold period, prepayment, or refinance horizon</td>
+            <td><a href="/guides/apr-comparison-checklist">APR comparison checklist</a></td>
+            <td>Use this branch when APR alone may mislead because you expect to refinance, sell, or pay off early.</td>
+          </tr>
+          <tr>
+            <td>where to find the official APR disclosure</td>
+            <td><a href="/guides/how-to-find-your-apr">How to find your APR</a></td>
+            <td>Go here when the problem is not interpretation yet, but simply finding the right APR on the statement or disclosure.</td>
+          </tr>
+          <tr>
+            <td>promo APR, balance transfer fee, or penalty APR on credit cards</td>
+            <td>
+              <a href="/guides/how-to-use-apr-for-credit-cards">How to use APR for credit cards</a> and{" "}
+              <a href="/topics/credit-cards">credit cards topic</a>
+            </td>
+            <td>Choose this branch when the real issue is credit-card APR behavior rather than ordinary installment-loan comparison math.</td>
           </tr>
         </tbody>
       </table>
@@ -118,193 +110,108 @@ const lastUpdated = "2026-03-03";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Best-practice workflow</h2>
+    <h2 style="margin-top:0">Topic branches in plain English</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If the quoted APR just seems to contradict the interest rate, start with the rate-versus-APR branch.</li>
+      <li>If the quote becomes messy because of origination fees, points, credits, or financed charges, switch to the fee-structure branch.</li>
+      <li>If you are comparing different product types, use the loan-type branch before assuming one APR behaves like another.</li>
+      <li>If you may refinance, sell, or prepay early, use the short-horizon branch before trusting APR as the final answer.</li>
+      <li>If you cannot even locate the APR yet, use the official-disclosure branch first.</li>
+      <li>If the real issue is promo timing, transfer fees, or penalty APR on a credit card, use the credit-card branch instead of a generic APR explainer.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What each branch should solve next</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li><strong>Start with the same term:</strong> compare 36 months vs 36 months (not 36 vs 60).</li>
-      <li><strong>Enter fees consistently:</strong> origination fees, points, and mandatory upfront charges.</li>
-      <li><strong>Match the cash flow:</strong> confirm whether fees are paid upfront or financed.</li>
-      <li><strong>Use your time horizon:</strong> if you may refinance or sell early, compare total dollars over that horizon.</li>
-      <li><strong>Sanity check:</strong> if a low rate has high fees, APR should rise-if it doesn't, re-check inputs.</li>
+      <li><strong>Rate-versus-APR branch:</strong> answer why fees can widen the gap between the nominal rate and the disclosed APR.</li>
+      <li><strong>Fee-structure branch:</strong> answer whether upfront charges, financed fees, points, or credits actually change the better offer.</li>
+      <li><strong>Loan-type branch:</strong> answer how APR comparisons change across auto, personal, student, and business loans.</li>
+      <li><strong>Short-horizon branch:</strong> answer whether total dollars paid over your real timeline matters more than the disclosed APR.</li>
+      <li><strong>Disclosure branch:</strong> answer where the official APR lives and which APR applies to the product or balance type you have.</li>
+      <li><strong>Credit-card branch:</strong> answer how promo APR, transfer fees, daily-balance math, and penalty APR affect the real plan.</li>
     </ol>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Comparison template (copy this)</h2>
+    <h2 style="margin-top:0">Numbers to gather before you compare</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Loan amount or revolving balance, repayment term, and stated interest rate.</li>
+      <li>Origination fees, points, lender credits, transfer fees, or other upfront charges.</li>
+      <li>Whether fees are paid in cash or financed into the balance.</li>
+      <li>Your likely payoff horizon before refinance, sale, prepayment, or promo expiry.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Where to pull the numbers from</h2>
     <div style="overflow:auto; margin-top:10px">
       <table class="table">
         <thead>
           <tr>
-            <th>Field</th>
-            <th>Offer A</th>
-            <th>Offer B</th>
+            <th>Decision input</th>
+            <th>Best source</th>
+            <th>Why it matters</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Loan amount</td>
-            <td>Same</td>
-            <td>Same</td>
+            <td>Official APR and fee treatment</td>
+            <td>Loan Estimate, TILA disclosure, or statement terms</td>
+            <td>Prevents you from mixing quoted rate, APR, and optional fees into one misleading number.</td>
           </tr>
           <tr>
-            <td>Term</td>
-            <td>Same</td>
-            <td>Same</td>
+            <td>Cash received versus amount financed</td>
+            <td>Lender fee worksheet or offer summary</td>
+            <td>Keeps financed fees and withheld proceeds from distorting your apples-to-apples comparison.</td>
           </tr>
           <tr>
-            <td>Rate</td>
-            <td>---</td>
-            <td>---</td>
-          </tr>
-          <tr>
-            <td>Upfront fees</td>
-            <td>---</td>
-            <td>---</td>
-          </tr>
-          <tr>
-            <td>Cash to close</td>
-            <td>---</td>
-            <td>---</td>
-          </tr>
-          <tr>
-            <td>Monthly payment (P&amp;I)</td>
-            <td>---</td>
-            <td>---</td>
-          </tr>
-          <tr>
-            <td>APR</td>
-            <td>---</td>
-            <td>---</td>
-          </tr>
-          <tr>
-            <td>Break-even months</td>
-            <td>---</td>
-            <td>---</td>
+            <td>Short horizon or promo end date</td>
+            <td>Your likely payoff plan, refinance window, or promo terms</td>
+            <td>APR can stop being the best headline metric if the real timeline is much shorter than the full term.</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="muted" style="margin:12px 0 0">
-      Keep the loan amount and term identical. If you change both, APR comparisons stop being apples-to-apples.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What APR captures (and what it does not)</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>APR is an annualized rate that includes certain fees.</li>
-      <li>It does not show total dollars paid over a short time horizon.</li>
-      <li>It may not include every fee depending on the loan type and rules.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Inputs to collect</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Use the loan estimate or offer details for the rate, fees, term, and any lender credits. If a fee is optional, run both versions
-      so you can see how the APR and monthly payment change.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Points and credits</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Discount points reduce the nominal rate but raise upfront cost. Lender credits do the opposite. Use the same time horizon and
-      compare total dollars paid to see which option actually costs less.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Checklist for comparisons</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Keep loan amount and term identical.</li>
-      <li>Confirm whether fees are paid upfront or financed.</li>
-      <li>Compare APR and total dollars paid over your expected time horizon.</li>
-      <li>Re-run the comparison if you plan to refinance or pay off early.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">APR sanity checks</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>If fees rise, APR should generally move higher when term and rate stay the same.</li>
-      <li>If APR looks lower than the rate, check for lender credits or special fee treatment.</li>
-      <li>If you will refinance soon, compare total cost over your likely time horizon, not just APR.</li>
-    </ul>
-  </section>
-  <section class="grid" style="margin-top:18px">
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Tools</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/apr-calculator">APR calculator</a> (includes fees)</li>
-        <li><a href="/guides/apr-vs-interest-rate">APR vs interest rate</a> (core comparison)</li>
-        <li><a href="/guides/apr-comparison-checklist">APR comparison checklist</a> (quick sanity check)</li>
-      </ul>
-    </div>
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Common pitfalls</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>Comparing APR across different terms (it can penalize longer terms).</li>
-        <li>Ignoring the difference between paid-upfront vs financed fees.</li>
-        <li>Using APR as the only decision factor when you might refinance early.</li>
-        <li>Assuming your statement interest equals APR/12 for every product (rules vary).</li>
-      </ul>
-    </div>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">APR comparison guides</h2>
+      <h2 style="margin-top:0">Core APR pages to use first</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/apr-by-loan-type">APR by loan type (auto, personal, student, business)</a></li>
-        <li><a href="/guides/discount-points-vs-lender-credits">Discount points vs lender credits</a></li>
+        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+        <li><a href="/guides/apr-vs-interest-rate">APR vs interest rate</a></li>
         <li><a href="/guides/apr-with-origination-fee">APR with origination fee</a></li>
         <li><a href="/guides/apr-comparison-checklist">APR comparison checklist</a></li>
-        <li><a href="/guides/apr-for-balance-transfers">APR for balance transfers</a></li>
-        <li><a href="/guides/apr-vs-interest-rate">APR vs interest rate</a></li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">APR edge cases</h2>
+      <h2 style="margin-top:0">Specialized branches</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/apr-vs-apy-loans">APR vs APY for loans</a></li>
-        <li><a href="/guides/apr-with-origination-fee">APR with origination fee</a></li>
+        <li><a href="/guides/apr-by-loan-type">APR by loan type</a></li>
         <li><a href="/guides/how-to-find-your-apr">How to find your APR</a></li>
+        <li><a href="/guides/how-to-use-apr-for-credit-cards">How to use APR for credit cards</a></li>
+        <li><a href="/guides/discount-points-vs-lender-credits">Discount points vs lender credits</a></li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">APR vs payment</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Payment is driven by rate and term. APR adds eligible fees to express a rate-equivalent cost. If two offers have similar payments
-      but different fees, APR can diverge even when the monthly payment looks almost identical.
-    </p>
+    <h2 style="margin-top:0">Common APR comparison mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Comparing APR across different terms and treating the result as apples-to-apples.</li>
+      <li>Ignoring whether fees are paid upfront or financed into the balance.</li>
+      <li>Using APR as the only metric when you expect to refinance or pay off early.</li>
+      <li>Applying installment-loan APR logic to promo APR or balance-transfer cases on credit cards.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Fixed vs adjustable loans</h2>
+    <h2 style="margin-top:0">Short-horizon checkpoint</h2>
     <p class="muted" style="margin:10px 0 0">
-      APR assumes the rate stays for a period, but adjustable loans can change later. If you compare fixed to adjustable, use a shorter
-      time horizon and model the payment after the initial period to avoid underestimating costs.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">APR vs APY</h2>
-    <p class="muted" style="margin:10px 0 0">
-      APR is an annualized cost rate, while APY reflects compounding for savings or investment products. Do not mix APR with APY when
-      comparing loan costs, since they describe different concepts.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">FAQ</h2>
-    <h3 style="margin:12px 0 0">Is a lower APR always better?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      Usually, but only when the loan term and time horizon match. Large fees can change the total cost in the short run.
-    </p>
-    <h3 style="margin:12px 0 0">Why do lenders quote a rate and an APR?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      The rate drives the payment, while APR tries to include certain fees so offers can be compared more fairly.
+      APR is a useful standardization tool, but it is not the only answer. If you may refinance, sell, prepay, or clear a promo balance
+      on a shorter schedule, compare total dollars paid over that real horizon. In those cases the headline APR can be directionally useful
+      but still secondary to your time-based cost comparison.
     </p>
   </section>
 
@@ -312,25 +219,23 @@ const lastUpdated = "2026-03-03";
     <h2 style="margin-top:0">References</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>
-        CFPB:{' '}
-        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-an-apr-en-67/" rel="noopener noreferrer" target="_blank">
-          What is APR?</a>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-apr-en-63/" rel="noopener noreferrer" target="_blank">
+          What is APR?
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-apr-and-why-is-it-higher-than-my-interest-rate-en-156/" rel="noopener noreferrer" target="_blank">
+          What is APR and why is it higher than my interest rate?
+        </a>
       </li>
     </ul>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
   </section>
+
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Next guides</h2>
-    <div class="btn-row" style="margin-top:10px">
-      <a class="btn btn-primary" href="/guides/how-to-find-your-apr">How to find your APR</a>
-      <a class="btn" href="/guides/apr-comparison-checklist">APR comparison checklist</a>
-      <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
-    </div>
-    <p class="muted" style="margin:12px 0 0">
-      Educational use only. Not financial advice. Verify fees, posting rules, and disclosures with lenders.
-    </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-03-03</p>
+    <h2 style="margin-top:0">Updates</h2>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-
-

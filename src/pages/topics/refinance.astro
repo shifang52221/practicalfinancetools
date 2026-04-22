@@ -3,11 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { TRUST_PROFILES } from "../../config/trust";
 
-const title = "Refinance Topic Guide (break-even, costs, timing)";
+const title = "Refinance Topic Guide (break-even, costs, decision paths)";
 const description =
-  "Refinance workflow: estimate savings, compare closing costs, and confirm break-even timing. Educational use only.";
+  "Refinance workflow: choose the right comparison path for break-even, closing costs, timing, and alternatives. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -26,16 +26,17 @@ const lastUpdated = "2026-04-03";
       <span aria-hidden="true">/</span>
       <span aria-current="page">Refinance</span>
     </nav>
-    <h1>Refinance: compare savings, costs, and timing</h1>
+    <h1>Refinance: choose the right comparison path</h1>
     <p>
-      The refinance decision is usually a trade-off between upfront costs and long-term savings. This workflow helps you compare
-      offers with consistent assumptions, estimate break-even timing, and decide whether a refinance fits your time horizon.
-      Start with the <a href="/guides/refinance-break-even">refinance break-even guide</a>.
+      Most refinance searches are not asking the same question. Some readers are really asking about break-even timing, others about
+      cash-to-close, rate-lock execution, term reset, or whether refinancing beats a simpler alternative. Start with the{" "}
+      <a href="/guides/refinance-break-even">refinance break-even guide</a> if the main issue is how long you need to keep the loan.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/guides/refinance-break-even">Break-even guide</a>
+      <a class="btn" href="/guides/refinance-closing-costs">Closing costs guide</a>
+      <a class="btn" href="/guides/refinance-checklist">Refinance checklist</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
-      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
     </div>
   </section>
 
@@ -43,212 +44,197 @@ const lastUpdated = "2026-04-03";
     writtenBy={TRUST_PROFILES.siteOwner}
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
-    reviewScope="Refinance workflow consolidation, page-role clarity, and break-even decision framing."
-    reviewedOn="2026-04-03"
+    reviewScope="Refinance workflow framing, branch routing, and comparison-path clarity across timing, fee, and alternative decisions."
+    reviewedOn="2026-04-22"
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Start with these three refinance pages</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li><a href="/guides/refinance-break-even">Refinance break-even</a> for time-horizon math and term-reset tradeoffs.</li>
-      <li><a href="/guides/refinance-closing-costs">Refinance closing costs</a> for lender fees, prepaids, and cash-to-close.</li>
-      <li><a href="/guides/refinance-checklist">Refinance checklist</a> for documents, lock timing, and final review before closing.</li>
-    </ul>
-    <p class="muted" style="margin:12px 0 0">
-      The thinner refinance pages are now supporting references. Use the three pages above as the main workflow set for refinance decisions.
+    <h2 style="margin-top:0">Choose the refinance question before you choose the page</h2>
+    <p class="muted" style="margin:10px 0 0">
+      This topic page works best as the top of a routing tree. Start by naming the real refinance bottleneck, then move into the page
+      that is built for that exact job.
     </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Your real question</th>
+            <th>Best next page</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>break-even timing or time horizon</td>
+            <td><a href="/guides/refinance-break-even">Refinance break-even</a></td>
+            <td>Start here when the real decision is whether you will keep the loan long enough for the refinance to pay for itself.</td>
+          </tr>
+          <tr>
+            <td>closing costs or cash-to-close</td>
+            <td><a href="/guides/refinance-closing-costs">Refinance closing costs</a></td>
+            <td>Use this branch when the quote feels fuzzy because fees, prepaids, and roll-in choices are blurring the comparison.</td>
+          </tr>
+          <tr>
+            <td>rate lock, document prep, or execution checklist</td>
+            <td><a href="/guides/refinance-checklist">Refinance checklist</a></td>
+            <td>Go here when the math is mostly clear and the blocker is getting the loan file, timing, and final review right.</td>
+          </tr>
+          <tr>
+            <td>term reset or payment-versus-total-cost tradeoff</td>
+            <td>
+              <a href="/guides/refinance-break-even">Refinance break-even</a> and{" "}
+              <a href="/calculators/amortization-schedule-calculator">amortization schedule</a>
+            </td>
+            <td>Use this branch when a lower payment looks attractive but restarting the amortization clock may change the full-cost story.</td>
+          </tr>
+          <tr>
+            <td>points, lender credits, or rolling costs</td>
+            <td>
+              <a href="/guides/refinance-closing-costs">Refinance closing costs</a> and{" "}
+              <a href="/guides/discount-points-vs-lender-credits">points vs lender credits</a>
+            </td>
+            <td>Choose this branch when the pricing structure is the real issue, not the headline rate by itself.</td>
+          </tr>
+          <tr>
+            <td>refinance versus extra payments or other alternatives</td>
+            <td>
+              <a href="/guides/extra-payment-vs-refinance">Extra payments vs refinance</a> and{" "}
+              <a href="/guides/mortgage-recast-vs-extra-payments">recast vs extra payments</a>
+            </td>
+            <td>Go here when the right answer may be a different mortgage move rather than a refinance at all.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Refinance inputs to gather</h2>
+    <h2 style="margin-top:0">Topic branches in plain English</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Current balance, note rate, and remaining term.</li>
-      <li>New rate/term and any points or fees.</li>
-      <li>Cash-to-close vs rolled-in costs.</li>
-      <li>Time horizon before selling or refinancing again.</li>
+      <li>If you might move or refinance again soon, start with the break-even timing branch before comparing anything else.</li>
+      <li>If two quotes look similar but cash-to-close feels far apart, switch to the closing-cost branch and separate true cost from prepaids.</li>
+      <li>If the lender process is now the hard part, use the rate-lock, document, and checklist branch instead of rereading generic refinance summaries.</li>
+      <li>If a lower payment comes from stretching the loan back out, use the term-reset branch before assuming the cheaper payment is the better deal.</li>
+      <li>If the quote changes because of points, lender credits, or financed fees, use the pricing-structure branch.</li>
+      <li>If you are not convinced refinancing is the best move, use the refinance-versus-alternatives branch before committing to a new loan.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Refinance workflow</h2>
+    <h2 style="margin-top:0">What each branch should solve next</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li><strong>Baseline the current loan:</strong> rate, balance, term, and remaining months.</li>
-      <li><strong>Model the new offer:</strong> rate, term, and estimated closing costs.</li>
-      <li><strong>Estimate break-even:</strong> divide total costs by monthly savings.</li>
-      <li><strong>Check time horizon:</strong> if you may move or refinance again, compare savings over that window.</li>
-      <li><strong>Validate the fee list:</strong> make sure lender credits or points are included consistently.</li>
+      <li><strong>Break-even branch:</strong> answer how long it takes to recover costs under your real hold period.</li>
+      <li><strong>Cost branch:</strong> answer which dollars are true refinance costs and which are mostly timing items like prepaids.</li>
+      <li><strong>Execution branch:</strong> answer what documents, lock dates, and offer-review steps can still change the result.</li>
+      <li><strong>Term-reset branch:</strong> answer whether the lower payment is hiding a worse total-cost outcome.</li>
+      <li><strong>Pricing-structure branch:</strong> answer whether points, credits, or roll-in choices actually save money over your horizon.</li>
+      <li><strong>Alternative branch:</strong> answer whether extra principal, recasting, or simply keeping the current loan is the cleaner move.</li>
     </ol>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What typically drives the decision</h2>
+    <h2 style="margin-top:0">Numbers to gather before you compare</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Rate difference and remaining balance.</li>
-      <li>Total cash to close (fees, points, prepaid items).</li>
-      <li>Whether the new term resets the clock.</li>
-      <li>Expected time in the home.</li>
+      <li>Current balance, note rate, and remaining term in months.</li>
+      <li>Quoted new rate, term, points, lender credits, and itemized lender fees.</li>
+      <li>Cash-to-close and which costs are paid upfront versus rolled into the balance.</li>
+      <li>Your likely hold period before sale, move, or another refinance.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Refinance vs other options</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Extra principal payments can reduce interest without new fees.</li>
-      <li>Recast options may lower the payment without changing the rate.</li>
-      <li>Rate buydown points can be compared to a no-point option with the same term.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Time horizon check</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Break-even only matters if you keep the loan long enough. If a move or another refinance is likely, compare total savings over
-      that shorter window instead of the full term.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Term reset watchout</h2>
-    <p class="muted" style="margin:10px 0 0">
-      A lower rate can still increase total interest if you restart a 30-year term. Compare remaining term interest on your current
-      loan to the new term interest so you see the full cost.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Cash-to-close vs rolling in costs</h2>
-    <p class="muted" style="margin:10px 0 0">
-      The same offer can look different depending on how costs are handled. Paying costs upfront lowers the loan balance, while
-      rolling them in increases interest over time. Compare both ways so you can see the real trade-off.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Rate lock and credits</h2>
-    <p class="muted" style="margin:10px 0 0">
-      A lender credit can reduce cash-to-close but usually comes with a higher rate. Compare a credit option to a no-credit option
-      over your expected time horizon to see which costs less.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Break-even example</h2>
-    <p class="muted" style="margin:10px 0 0">
-      If closing costs are $4,000 and the monthly savings are $160, break-even is 25 months. If you might move in 18 months, the math
-      likely does not work unless there are other benefits.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Offer comparison checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Same remaining term vs new term (avoid comparing 30 years to 22 years).</li>
-      <li>Same fee list: points, lender credits, and third-party fees.</li>
-      <li>Same cash-to-close treatment (paid upfront vs rolled in).</li>
-      <li>Same start date and posting assumptions for payoff math.</li>
-    </ul>
+    <h2 style="margin-top:0">Where to pull the numbers from</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Decision input</th>
+            <th>Best source</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Remaining term and note rate</td>
+            <td>Current mortgage statement</td>
+            <td>Prevents you from comparing a new 30-year term to the original loan instead of the term you actually have left.</td>
+          </tr>
+          <tr>
+            <td>Fees, credits, and roll-in choices</td>
+            <td>Loan Estimate</td>
+            <td>Keeps lender fees, points, and prepaids from getting blended into one misleading total.</td>
+          </tr>
+          <tr>
+            <td>Hold period and fallback plan</td>
+            <td>Your likely move, sale, or payoff horizon</td>
+            <td>Refinance math can flip if you keep the loan for 18 months instead of 7 years.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Tools</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a> (baseline vs new)</li>
-        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a> (remaining interest)</li>
-        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a> (alternative to refi)</li>
-      </ul>
-    </div>
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Guides</h2>
+      <h2 style="margin-top:0">Core pages to use first</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/guides/refinance-break-even">Refinance break-even</a></li>
         <li><a href="/guides/refinance-closing-costs">Refinance closing costs</a></li>
         <li><a href="/guides/refinance-checklist">Refinance checklist</a></li>
       </ul>
     </div>
+    <div class="card section prose col-6">
+      <h2 style="margin-top:0">Comparison tools and alternatives</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
+        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+        <li><a href="/guides/extra-payment-vs-refinance">Extra payments vs refinance</a></li>
+      </ul>
+    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Refinance deep dives (consolidated)</h2>
+    <h2 style="margin-top:0">Common refinance comparison mistakes</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>
-        <a href="/guides/refinance-break-even">Break-even guide</a> (term reset tradeoffs, points, cash-in, and when not to refinance).
-      </li>
-      <li>
-        <a href="/guides/refinance-closing-costs">Closing costs guide</a> (rolling costs, no-closing-cost claims, and fee comparisons).
-      </li>
-      <li>
-        <a href="/guides/refinance-checklist">Refinance checklist</a> (rate lock timing, offer comparison, and cash-out vs rate-term).
-      </li>
+      <li>Comparing the new payment to the current payment without matching the remaining term.</li>
+      <li>Folding prepaids into true cost and then treating the full cash-to-close as permanent fee drag.</li>
+      <li>Accepting points or lender credits without checking the hold period needed for them to make sense.</li>
+      <li>Using refinance to solve a payment problem when a recast or targeted extra-payment plan may solve a different, cheaper problem.</li>
     </ul>
-    <p class="muted" style="margin:12px 0 0">
-      Full guide library: <a href="/guides">Browse all guides</a>.
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Alternative-path checkpoint</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Refinance is only one lever. If the goal is faster payoff, compare with{" "}
+      <a href="/guides/extra-payment-vs-refinance">extra payments vs refinance</a>. If the goal is payment relief after a lump-sum
+      reduction, compare with <a href="/guides/mortgage-recast-vs-extra-payments">recast vs extra payments</a>. Keeping the current loan
+      can be the cleaner answer when fees, timing, or liquidity make the refinance fragile.
     </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Related decisions</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li><a href="/guides/discount-points-vs-lender-credits">Points vs lender credits</a></li>
-      <li><a href="/guides/apr-with-origination-fee">APR and closing costs</a></li>
-      <li><a href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a></li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common pitfalls</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Comparing a 30-year new loan to a remaining 22-year term without adjusting for total interest.</li>
-      <li>Ignoring lender credits or points that change the cash-to-close.</li>
-      <li>Focusing only on the monthly payment and missing total cost over time.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Statement check</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use your current statement balance and remaining term in months.</li>
-      <li>Confirm the note rate, not the APR, when comparing payments.</li>
-      <li>Use the Loan Estimate fee list so costs are itemized.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Inputs to gather first</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Current balance, rate, and remaining term from your latest statement.</li>
-      <li>Quoted rate, term, and any points or lender credits for the new offer.</li>
-      <li>Estimated closing costs itemized by lender and third-party fees.</li>
-      <li>Your expected time in the home or time until the next refinance.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Do you expect to keep the loan long enough to break even?</li>
-      <li>Are fees paid upfront or rolled into the loan?</li>
-      <li>Does the new term extend the payoff horizon?</li>
-      <li>Have you compared refinance to extra principal payments?</li>
-    </ul>
-    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">References</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>
-        CFPB:{' '}
+        CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgage resources</a>
+          Mortgage resources
+        </a>
+      </li>
+      <li>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/owning-a-home/refinance/" rel="noopener noreferrer" target="_blank">
+          Refinance your mortgage
+        </a>
       </li>
     </ul>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-
-
-

@@ -5,18 +5,18 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Mortgage Prepaids and Escrow Reserves";
 const description =
-  "How prepaids and escrow reserves affect cash-to-close and the monthly mortgage payment. Educational use only.";
+  "Understand why prepaids, per-diem interest, and escrow reserves can raise cash to close even when the monthly mortgage payment still looks workable. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/mortgage-payment-prepaids-and-reserves"
   lastUpdated={lastUpdated}
-  robots="noindex, follow"
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+  robots="noindex, follow"
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -29,8 +29,8 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>Prepaids and escrow reserves</h1>
     <p>
-      Prepaid taxes and insurance plus escrow reserves can add thousands to cash-to-close. This guide explains where they show up and
-      how they affect your monthly payment.
+      This page is for the buyer whose monthly payment may already work, but whose closing worksheet still looks heavier than
+      expected because prepaid items and reserve funding are absorbing too much upfront cash.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
@@ -41,123 +41,72 @@ const lastUpdated = "2026-04-05";
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Prepaids and reserve treatment at closing, cash-to-close versus monthly-payment interpretation, and routing between mortgage payment, escrow basics, and closing-cost workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Closing-cash review, prepaid-versus-recurring housing-cost framing, and routing between escrow basics, affordability, and input assumptions."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Use this guide when cash to close is the part of the mortgage payment workflow you need to explain</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when the monthly payment looks manageable but the upfront cash requirement at closing is still unclear.</li>
-      <li>If you are troubleshooting the monthly escrow portion itself, move first to <a href="/guides/mortgage-payment-escrow-account">mortgage payment escrow account basics</a>.</li>
-      <li>If the real issue is overall payment fit, move next to the <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan amount, note rate, and term.</li>
-      <li>Taxes, insurance, HOA, and PMI assumptions.</li>
-      <li>Escrow rules or reserves used by the lender.</li>
-      <li>Time horizon if comparing scenarios.</li>
+      <li>Use this page when the monthly payment looks manageable but the upfront cash requirement still feels unexpectedly high.</li>
+      <li>If you are troubleshooting the monthly escrow portion itself, move first to <a href="/guides/mortgage-payment-escrow-account">mortgage payment escrow account</a>.</li>
+      <li>If the real issue is whether the ongoing payment is too fragile, move next to <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What counts as prepaids</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Upfront property tax and insurance payments.</li>
-      <li>Initial escrow deposits to build a reserve.</li>
-      <li>Per-diem interest for the days before the first payment.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Why they matter</h2>
+    <h2 style="margin-top:0">The core mismatch: monthly payment can look fine while cash to close still breaks the plan</h2>
     <p class="muted" style="margin:10px 0 0">
-      Prepaids do not change the base loan balance but they increase cash-to-close. If you only look at the monthly payment, you can
-      underestimate the upfront cash needed.
+      That happens because prepaids and reserve funding often hit at closing, not over time. They do not always make the recurring
+      payment look worse, but they can still make the transaction impossible if the cash stack is thin.
     </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Assuming prepaids are part of closing costs paid by the lender.</li>
-      <li>Ignoring per-diem interest when timing the closing date.</li>
-      <li>Failing to budget for escrow reserves in year one.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Where to find the numbers</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan Estimate for initial escrow and prepaid lines.</li>
-      <li>Property tax bill or local tax rate estimates.</li>
-      <li>Insurance quotes for annual premium assumptions.</li>
-      <li>Closing date for per-diem interest days.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Quick estimate checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Multiply monthly taxes by months collected at closing.</li>
-      <li>Do the same for insurance premiums.</li>
-      <li>Add the escrow cushion required by the lender.</li>
-      <li>Include per-diem interest from closing to first payment.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How prepaids differ from the recurring payment</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Prepaids and initial reserves usually hit you once at closing, while taxes and insurance continue as ongoing monthly escrow items.</li>
-      <li>That means a loan can look affordable on a monthly basis but still be hard to close if your reserve assumptions are too low.</li>
-      <li>Reviewing both the payment estimate and the cash-to-close estimate together is what makes this page different from a basic mortgage-payment explainer.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision inputs</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Closing date target and first payment date.</li>
-      <li>Annual tax and insurance estimates to annualize.</li>
-      <li>Escrow cushion requirement from the lender.</li>
-      <li>Any seller credits or lender credits applied.</li>
-      <li>Cash-to-close budget including reserves.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario notes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Closing later in the month increases per-diem interest.</li>
-      <li>Tax due dates can raise escrow deposits at closing.</li>
-      <li>Ask for an updated escrow analysis near closing.</li>
-      <li>Compare cash-to-close with and without seller credits.</li>
-    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
+      <h2 style="margin-top:0">What typically lands here</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
-        <li><a href="/calculators/apr-calculator">APR calculator</a></li>
+        <li>Initial tax and insurance funding.</li>
+        <li>Escrow reserve months required at closing.</li>
+        <li>Per-diem interest between the closing date and the first scheduled payment.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
+      <h2 style="margin-top:0">Why timing matters so much</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
-        <li><a href="/guides/mortgage-payment-property-tax-assumptions">Property tax assumptions</a></li>
-        <li><a href="/guides/mortgage-payment-insurance-assumptions">Insurance assumptions</a></li>
-        <li><a href="/guides/mortgage-payment-escrow-shortage">Escrow shortage</a></li>
+        <li>Closing date changes can move per-diem interest materially.</li>
+        <li>Tax due-date timing can increase how many months are collected upfront.</li>
+        <li>Insurance premium timing can shift the reserve need at closing.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Prepaids are timing-heavy upfront dollars, not recurring budget relief</h2>
+    <p class="muted" style="margin:10px 0 0">
+      This is the main framing difference from a regular payment guide: prepaids are timing-heavy upfront dollars, not recurring budget relief. They do not make the home cheaper month to month. They simply change when certain housing costs must be funded, which is why they belong in the cash-to-close conversation.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How to estimate without understating the problem</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Use realistic tax and insurance assumptions, not token placeholders.</li>
+      <li>Ask how many months of reserve the lender currently expects to collect.</li>
+      <li>Include per-diem interest instead of treating the closing date as cost-neutral.</li>
+      <li>Review credits separately so they do not hide the true cash demand.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to move to a different page</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If the real question is escrow mechanics, move to <a href="/guides/mortgage-payment-escrow-account">mortgage payment escrow account</a>.</li>
+      <li>If the issue is a post-closing jump in payment, move to <a href="/guides/mortgage-payment-escrow-shortage">mortgage payment escrow shortage</a>.</li>
+      <li>If property tax or insurance assumptions are the upstream problem, move to <a href="/guides/mortgage-payment-property-tax-assumptions">property tax assumptions</a> or <a href="/guides/mortgage-payment-insurance-assumptions">insurance assumptions</a>.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -182,13 +131,10 @@ const lastUpdated = "2026-04-05";
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
-      <a class="btn" href="/guides/mortgage-payment-escrow-account">Escrow account basics</a>
+      <a class="btn" href="/guides/mortgage-payment-escrow-account">Review escrow basics</a>
       <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Check affordability</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-
-

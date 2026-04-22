@@ -5,18 +5,18 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Mortgage Payment in DTI Calculations";
 const description =
-  "How to use the full housing payment (PITI + HOA + PMI) in DTI and affordability checks. Educational use only.";
+  "Use the full housing payment in DTI so lender-facing qualification math matches reality. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/mortgage-payment-dti-housing-payment"
   lastUpdated={lastUpdated}
-  robots="noindex, follow"
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+  robots="noindex, follow"
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -29,8 +29,8 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>Mortgage payment in DTI calculations</h1>
     <p>
-      DTI should include the full housing payment: principal, interest, taxes, insurance, HOA, and PMI. This guide shows how to
-      build that number so your affordability checks are realistic.
+      This page is for the buyer whose lender math looks tighter than their own spreadsheet because the underwriting version of the
+      housing payment includes more than principal and interest.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
@@ -41,123 +41,62 @@ const lastUpdated = "2026-04-05";
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Full housing-payment inclusion inside DTI, front-end versus back-end ratio interpretation, and routing between DTI calculator, mortgage payment calculator, and affordability workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="DTI housing-payment review, qualification-math framing, and routing between full-payment composition, affordability, and qualification thresholds."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Use this guide when your DTI answer depends on the full housing payment</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when the lender's DTI result looks tighter than your own math because taxes, insurance, HOA, or PMI were left out.</li>
-      <li>If you need the basic payment structure first, move to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
-      <li>If the next decision is whether the payment still fits your budget, move next to the <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan amount, note rate, and term.</li>
-      <li>Taxes, insurance, HOA, and PMI assumptions.</li>
-      <li>Escrow rules or reserves used by the lender.</li>
-      <li>Time horizon if comparing scenarios.</li>
+      <li>Use this page when your own payment math looks acceptable but the lender's DTI result comes back tighter.</li>
+      <li>If you need the payment structure first, move to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
+      <li>If the next question is whether the payment is safe for your budget, move next to <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What to include</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Principal and interest (P&amp;I).</li>
-      <li>Property taxes and homeowners insurance.</li>
-      <li>HOA dues if applicable.</li>
-      <li>PMI or mortgage insurance if required.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Front-end vs back-end DTI</h2>
+    <h2 style="margin-top:0">Why lender math feels harsher</h2>
     <p class="muted" style="margin:10px 0 0">
-      Front-end DTI uses the housing payment only. Back-end DTI includes housing plus other required debts. Make sure you know which
-      ratio you are comparing.
+      In real underwriting, the underwriting housing number is usually larger than principal and interest alone. Taxes, insurance,
+      HOA, and mortgage insurance push the qualification payment higher than the stripped-down figure many buyers start with.
     </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Leaving out taxes or insurance from the housing payment.</li>
-      <li>Using a guessed payment instead of a calculator estimate.</li>
-      <li>Mixing front-end and back-end ratios in comparisons.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Where to get the numbers</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan Estimate or Closing Disclosure for escrow items.</li>
-      <li>Property tax bill or county rate estimates.</li>
-      <li>Insurance quotes for annual premium estimates.</li>
-      <li>HOA documents for dues and assessments.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Why lender math often feels higher than borrower math</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Borrowers often compare DTI using principal and interest only, but underwriting usually works from the full housing payment.
-      That means taxes, homeowners insurance, HOA dues, and mortgage insurance can turn a comfortable-looking estimate into a tighter approval ratio.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Inputs to double-check</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Monthly taxes and insurance after escrow adjustments.</li>
-      <li>Any PMI or mortgage insurance premium changes.</li>
-      <li>HOA dues that increase annually or quarterly.</li>
-      <li>Planned rate changes if using an ARM scenario.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision inputs</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Lender DTI target and your comfort threshold.</li>
-      <li>Conservative tax and insurance estimates.</li>
-      <li>Expected HOA increases or special assessments.</li>
-      <li>Income volatility buffer for seasonal work.</li>
-      <li>Other debts that may start or end soon.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Base case with current tax and insurance quotes.</li>
-      <li>Stress case with higher HOA or PMI assumptions.</li>
-      <li>Income drop buffer (one month lower income).</li>
-      <li>Rate change scenario for ARM plans.</li>
-    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/debt-to-income-calculator">DTI calculator</a></li>
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
-      </ul>
+      <h2 style="margin-top:0">What front-end DTI asks</h2>
+      <p class="muted" style="margin:10px 0 0">
+        It isolates the housing burden itself. That means PITI, HOA, and PMI all belong in the lender-facing housing number even
+        before other debts are added.
+      </p>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
-        <li><a href="/guides/front-end-vs-back-end-dti">Front-end vs back-end DTI</a></li>
-        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
-        <li><a href="/guides/mortgage-payment-affordability-checklist">Mortgage payment affordability checklist</a></li>
-      </ul>
+      <h2 style="margin-top:0">What back-end DTI adds</h2>
+      <p class="muted" style="margin:10px 0 0">
+        It layers in recurring debt outside the home. That is why a front-end pass while back-end fails is common when a borrower has
+        auto loans, student loans, or installment debt that was not part of the housing-only comparison.
+      </p>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">The comparison that matters most</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Compare your principal-and-interest-only estimate with the full housing-payment estimate.</li>
+      <li>Then compare front-end DTI with back-end DTI using the same income base.</li>
+      <li>Only after that should you interpret whether the loan is tight because of housing cost, non-housing debt, or both.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to move to a different page</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If the question is housing-payment composition, move to <a href="/guides/what-is-piti">what is PITI</a>.</li>
+      <li>If HOA is the hidden cost, move to <a href="/guides/hoa-fees-and-mortgage-payment">hoa fees and mortgage payment</a>.</li>
+      <li>If the question is whether the payment is sustainable, move to <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -182,13 +121,10 @@ const lastUpdated = "2026-04-05";
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">Run the DTI calculator</a>
-      <a class="btn" href="/calculators/mortgage-payment-calculator">Estimate the payment</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Rebuild the full payment</a>
       <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Check affordability</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-
-

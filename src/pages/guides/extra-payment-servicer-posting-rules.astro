@@ -1,21 +1,18 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import ReviewedByCard from "../../components/ReviewedByCard.astro";
-import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Extra Payments and Servicer Posting Rules";
 const description =
-  "How to verify that extra mortgage payments are posted to principal as intended and how to spot paid-ahead treatment on your statement. Educational use only.";
+  "Extra payment servicer posting rules: make sure extras apply to principal and not paid ahead. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-02-08";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/extra-payment-servicer-posting-rules"
   lastUpdated={lastUpdated}
-  authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  robots="noindex, follow"
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -28,92 +25,102 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>Extra payments and servicer posting rules</h1>
     <p>
-      Extra payments only help the way you expect if the servicer applies them correctly. This guide shows how to confirm principal-only
-      treatment, recognize paid-ahead behavior, and keep the records you need if a payment is misapplied.
+      Extra payments only help if they are applied to principal. This guide shows how to confirm posting rules and avoid "paid ahead"
+      treatment.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
       <a class="btn" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
-      <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
-    </div>
-  </section>
-
-  <ReviewedByCard
-    writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Principal-only instructions, paid-ahead risk and statement verification, and routing between servicer-check, principal-only, and extra-payment modeling workflows."
-    reviewedOn="2026-04-05"
-  />
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use this guide when servicer posting rules could prevent your extra payment from reducing principal the way you expect</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when you already know the amount you want to pay, but are unsure how the lender will post it.</li>
-      <li>Use this page when statement wording like "paid ahead" or unusual next-due-date behavior makes the payoff result hard to trust.</li>
-      <li>If you still need to decide whether extra payments fit your broader plan, return to <a href="/guides/extra-mortgage-payments">extra mortgage payments</a>.</li>
-    </ul>
-  </section>
-
-  <section class="grid" style="margin-top:18px">
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">What can go wrong</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>The extra is treated as paying future installments instead of reducing principal now.</li>
-        <li>The draft date and the posting date are different enough to change the interest result.</li>
-        <li>The servicer combines the regular payment and the extra in a way that is hard to verify later.</li>
-      </ul>
-    </div>
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">What to verify right away</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>The statement shows a principal reduction consistent with the extra payment.</li>
-        <li>The transaction detail or portal history labels the payment as principal-only or additional principal.</li>
-        <li>The next due date behavior matches what the servicer told you would happen.</li>
-      </ul>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Why paid-ahead treatment can distort the payoff plan</h2>
+    <h2 style="margin-top:0">How this page fits the extra-payment workflow</h2>
     <p class="muted" style="margin:10px 0 0">
-      Some servicers treat extra funds as an advance on future scheduled payments instead of an immediate principal reduction. That can
-      change the interest savings you expected and make your amortization model less accurate if you assumed the extra posted directly to
-      principal.
-    </p>
-    <p class="muted" style="margin:12px 0 0">
-      That is why a principal-only instruction is not just an administrative detail. It is part of the math.
+      Use this support page for the operational posting question. If you still need the broader payoff strategy, start with the{" "}
+      <a href="/guides/extra-mortgage-payments">main extra payment guide</a>. If you already know the issue is lender handling, move to{" "}
+      <a href="/guides/principal-only-extra-payments">principal-only extra payments</a> for the stronger step-by-step checklist.
     </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What to ask the servicer before you automate extras</h2>
+    <h2 style="margin-top:0">Posting checklist</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>What exact payment option or portal field should be used for principal-only payments?</li>
-      <li>Does the account have any paid-ahead behavior that should be disabled or monitored?</li>
-      <li>What posting date should you expect, and where will the principal application appear on the statement?</li>
-      <li>If autopay is enabled, can the extra principal amount be sent as a separate instruction or transaction?</li>
+      <li>Confirm the extra amount is labeled "principal only".</li>
+      <li>Check the payment history for principal reduction.</li>
+      <li>Ask if the servicer offers a principal-only toggle.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What to keep on file</h2>
+    <h2 style="margin-top:0">Servicer posting inputs to confirm</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Payment confirmations or screenshots showing the extra amount and date.</li>
-      <li>The first statement where the payment posted and the balance changed.</li>
-      <li>Any secure message, email, or note from the servicer describing how extras are applied.</li>
-      <li>A record of any setting or portal toggle that controls principal-only behavior.</li>
+      <li>How the portal labels principal-only payments.</li>
+      <li>Whether "paid ahead" is enabled by default.</li>
+      <li>Posting date vs draft date timing.</li>
+      <li>Split between regular payment and extra amount.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming all extra payments are principal-only by default.</li>
+      <li>Sending extras with the monthly payment without instructions.</li>
+      <li>Not checking the posting date and allocation on statements.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">What to tell the servicer</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Specify "apply extra to principal only".</li>
+      <li>Ask if "paid ahead" will be disabled.</li>
+      <li>Confirm how to split regular payment and extra.</li>
+      <li>Request written confirmation of posting rules.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Proof to keep on file</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Payment confirmation showing the extra amount.</li>
+      <li>Statement line item with principal-only allocation.</li>
+      <li>Servicer email or message confirming the instructions.</li>
+      <li>Any online setting that toggles principal-only payments.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">If a payment is misapplied</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Contact the servicer and request a correction in writing as soon as the error appears.</li>
-      <li>Ask how the correction will show on the next statement and when the balance will be updated.</li>
-      <li>Keep the statement trail and written response so you can verify the fix actually happened.</li>
-      <li>Re-run your payoff scenario after the correction if the posting delay materially changed the numbers.</li>
-    </ol>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Contact the servicer and request a principal-only correction.</li>
+      <li>Ask for the adjustment to appear on the next statement.</li>
+      <li>Keep written confirmation of the change.</li>
+      <li>Re-check the amortization schedule after the fix.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Decision inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Exact extra amount and the date it should post.</li>
+      <li>Whether your servicer allows recurring principal-only instructions.</li>
+      <li>Any paid-ahead settings on the account.</li>
+      <li>How the servicer splits the regular payment and the extra.</li>
+      <li>Evidence you can save if a dispute is needed.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Scenario checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Test one manual extra payment and verify posting.</li>
+      <li>Set a recurring principal-only instruction if supported.</li>
+      <li>Confirm paid-ahead stays off after the next statement.</li>
+      <li>Re-check allocation after any servicer change.</li>
+    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -121,7 +128,6 @@ const lastUpdated = "2026-04-05";
       <h2 style="margin-top:0">Related tools</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
-        <li><a href="/calculators/additional-principal-payment-calculator">Additional principal calculator</a></li>
         <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
       </ul>
     </div>
@@ -129,38 +135,20 @@ const lastUpdated = "2026-04-05";
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/guides/principal-only-extra-payments">Principal-only extra payments</a></li>
-        <li><a href="/guides/extra-payment-lump-sum-vs-monthly">Lump sum vs monthly</a></li>
         <li><a href="/guides/extra-mortgage-payments">Extra mortgage payments</a></li>
+        <li><a href="/guides/extra-payment-prepayment-penalty-checklist">Prepayment penalty checklist</a></li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">References</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>
-        CFPB:{" "}
-        <a href="https://www.consumerfinance.gov/about-us/blog/your-mortgage-servicer-must-comply-with-federal-rules/" rel="noopener noreferrer" target="_blank">
-          Your mortgage servicer must comply with federal rules
-        </a>
-      </li>
-      <li>
-        CFPB:{" "}
-        <a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-manage-my-monthly-mortgage-payment-en-1825/" rel="noopener noreferrer" target="_blank">
-          How do I manage my monthly mortgage payment?
-        </a>
-      </li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
-      <a class="btn btn-primary" href="/guides/principal-only-extra-payments">Confirm principal-only handling</a>
-      <a class="btn" href="/calculators/extra-payment-calculator">Model the payoff impact</a>
+      <a class="btn btn-primary" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Main extra payment guide</a>
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
   </section>
 </BaseLayout>

@@ -5,18 +5,18 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "PMI Thresholds and Mortgage Payments";
 const description =
-  "When PMI applies, how it affects monthly payments, and how to plan for removal. Educational use only.";
+  "Understand when PMI changes the better payment scenario by comparing monthly cost, removal timing, and the path to lower housing costs. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/mortgage-payment-pmi-thresholds"
   lastUpdated={lastUpdated}
-  robots="noindex, follow"
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+  robots="noindex, follow"
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -29,137 +29,84 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>PMI thresholds and mortgage payments</h1>
     <p>
-      PMI can add hundreds to a monthly payment when the down payment is below certain thresholds. This guide shows when PMI applies
-      and how to plan for removal.
+      This page is for the comparison that looks close on principal and interest, but stops looking close once private mortgage
+      insurance enters the monthly payment and stays there longer than expected.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
-      <a class="btn" href="/guides/estimating-pmi-cost">Estimating PMI cost</a>
+      <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
       <a class="btn" href="/guides/mortgage-payment-down-payment-impact">Down payment impact</a>
     </div>
   </section>
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="PMI threshold interpretation inside payment comparisons, removal-timeline framing, and routing between mortgage payment, PMI cost estimation, and down-payment workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="PMI timing review, scenario-comparison framing, and routing between down-payment decisions, monthly-payment modeling, and removal strategies."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Use this guide when PMI is the reason the payment scenario changes</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when the payment difference between two down-payment scenarios is mostly explained by PMI rather than by principal and interest alone.</li>
+      <li>Use this page when two down-payment or loan-structure options only separate clearly after PMI is added to the monthly payment.</li>
       <li>If you need the base payment build first, move to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
-      <li>If you need to compare the cost of a larger down payment with affordability or payoff tradeoffs, move next to <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan amount, note rate, and term.</li>
-      <li>Taxes, insurance, HOA, and PMI assumptions.</li>
-      <li>Escrow rules or reserves used by the lender.</li>
-      <li>Time horizon if comparing scenarios.</li>
+      <li>If the broader tradeoff is reserves versus upfront cash, move next to <a href="/guides/mortgage-payment-down-payment-impact">mortgage payment down payment impact</a>.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">When PMI is required</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Commonly required when down payment is below 20%.</li>
-      <li>Rules vary by loan program and lender.</li>
-      <li>Mortgage insurance may continue until a specific equity threshold is met.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to model PMI</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use a conservative PMI rate estimate if you do not have a quote.</li>
-      <li>Test multiple down payment scenarios to see PMI impact.</li>
-      <li>Plan for removal timing based on the loan program rules.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Ignoring PMI in the payment when putting less than 20% down.</li>
-      <li>Assuming PMI drops off automatically on all loan types.</li>
-      <li>Using the same PMI rate across different credit profiles.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Removal triggers</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>80% to 78% loan-to-value thresholds are common.</li>
-      <li>Some programs require a minimum seasoning period.</li>
-      <li>Appraisal-based removal can require a fee.</li>
-      <li>Document requests to remove PMI in writing.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Why PMI changes the comparison</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>PMI can make a small-down-payment option look affordable on principal and interest alone but much less attractive once the full monthly payment is modeled.</li>
-      <li>The key comparison is not just the starting payment, but how long PMI stays in place and what it takes to remove it.</li>
-      <li>That is why this page belongs between down-payment planning, mortgage-payment modeling, and extra-payment strategy.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Inputs to gather</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Current loan balance and original purchase price.</li>
-      <li>Estimated home value if you plan to request removal.</li>
-      <li>PMI rate or monthly premium from the lender.</li>
-      <li>Loan program rules for minimum seasoning.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision inputs</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Expected home appreciation and timeline.</li>
-      <li>Extra payment plan to reach 80% LTV faster.</li>
-      <li>Cost of an appraisal for early removal.</li>
-      <li>Whether the loan type allows automatic removal.</li>
-      <li>PMI cost vs savings from a larger down payment.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Base case with current PMI rate and balance.</li>
-      <li>Extra payment case to reach 80% LTV sooner.</li>
-      <li>Appraisal-based removal cost included.</li>
-      <li>No-appreciation case for conservative timing.</li>
-    </ul>
+    <h2 style="margin-top:0">Monthly PMI is only half of the decision</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The comparison goes wrong when buyers focus only on the first payment. PMI duration matters more than the first monthly payment
+      if one path removes the charge quickly and the other leaves it in place for years.
+    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
+      <h2 style="margin-top:0">What to model</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
-        <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
+        <li>Starting monthly PMI cost under each scenario.</li>
+        <li>How long PMI is likely to stay in place.</li>
+        <li>Whether the loan permits automatic removal, borrower-requested removal, or both.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
+      <h2 style="margin-top:0">What changes the answer</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
-        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
-        <li><a href="/guides/estimating-pmi-cost">Estimating PMI cost</a></li>
-        <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
-        <li><a href="/guides/mortgage-payment-down-payment-impact">Down payment impact</a></li>
+        <li>Credit profile and loan program differences.</li>
+        <li>Whether you have a faster PMI-removal path through amortization, appreciation, or borrower request.</li>
+        <li>Whether the lower-down-payment option preserves cash that you actually need to keep.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">The most important scenario comparison</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Compare the larger down payment, monthly extra, or appraisal strategy against the plain "do nothing and wait" path. That is
+      usually where the real break in monthly cost and total cost becomes visible.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common interpretation mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Assuming PMI drops automatically on every loan type at the same threshold.</li>
+      <li>Comparing only the starting payment and ignoring how long the PMI line survives.</li>
+      <li>Treating PMI as a small side cost instead of the reason one scenario stops being attractive.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to move to a different page</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If you need the full housing-payment composition, move to <a href="/guides/what-is-piti">what is PITI</a>.</li>
+      <li>If the question is whether extra payments should be used to accelerate removal, move to <a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a>.</li>
+      <li>If the broader tradeoff is cash down versus liquidity, move to <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -184,13 +131,10 @@ const lastUpdated = "2026-04-05";
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
-      <a class="btn" href="/guides/estimating-pmi-cost">Estimate PMI cost</a>
-      <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Check affordability</a>
+      <a class="btn" href="/guides/mortgage-payment-down-payment-impact">Compare down payment paths</a>
+      <a class="btn" href="/guides/pmi-removal-vs-extra-principal">Review PMI removal options</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-
-

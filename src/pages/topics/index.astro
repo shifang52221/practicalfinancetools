@@ -6,9 +6,9 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = `Topics | ${SITE.name}`;
 const description =
-  "Topic hubs that connect calculators with guides for APR, credit cards, and mortgage payoff workflows. Educational use only.";
+  "Choose the right finance topic hub for APR, credit-card payoff, DTI, rent vs buy, mortgage payoff, and refinance decisions. Educational use only.";
 
-const lastUpdated = "2026-04-04";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -24,92 +24,72 @@ const lastUpdated = "2026-04-04";
       <span aria-hidden="true">/</span>
       <span aria-current="page">Topics</span>
     </nav>
-    <h1>Topics</h1>
+    <h1>Topics: choose the right finance workflow</h1>
     <p>
-      These hub pages connect calculators and guides into practical workflows. If you already know the decision you are making, start
-      here instead of browsing the full guide library. The strongest workflows right now are credit-card payoff, APR comparisons,
-      mortgage payoff, and refinance.
+      This page is the top routing layer for the site's main finance clusters. Use it when you know the decision you are trying to make
+      but do not yet know which topic hub should own that journey.
     </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/topics/debt-to-income">DTI topic</a>
+      <a class="btn" href="/topics/rent-vs-buy">Rent vs buy topic</a>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
+      <a class="btn" href="/topics/refinance">Refinance topic</a>
+    </div>
   </section>
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
-    reviewScope="Topic-hub workflow framing, calculator-to-guide routing, and strongest-path maintenance across decision journeys."
-    reviewedOn="2026-04-04"
+    reviewScope="Site-level topic routing, overlap clarification, and the editorial logic used to send readers into the correct decision workflow."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">When to start with a topic hub</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Start here when you have a real-world decision to make, but you are not yet sure which calculator or guide should come first.</li>
-      <li>Topic hubs are designed to route you from the baseline calculator into the few supporting guides most likely to change the decision.</li>
-      <li>If you already know the exact tool you need, the <a href="/calculators">calculator directory</a> is usually the faster entry point.</li>
-    </ul>
-  </section>
-
-  <section class="card section" style="margin-top:18px">
-    <h2 style="margin:0 0 12px">Priority workflows</h2>
-    <p class="muted" style="margin:0 0 12px">
-      These topic hubs carry the clearest search demand and the strongest user jobs to be done.
+    <h2 style="margin-top:0">Choose the finance decision before you choose the topic</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Topic hubs work best when each one owns a distinct decision job. Start by naming the real finance question, then open the topic
+      page built for that specific comparison path.
     </p>
-    <div class="grid">
-      <a class="card2 tool col-6" href="/topics/credit-cards">
-        <div class="tool-title">Credit cards and minimum payments</div>
-        <div class="tool-desc">Model payoff speed, interest, minimum-payment drag, and multi-debt priority.</div>
-      </a>
-      <a class="card2 tool col-6" href="/topics/apr">
-        <div class="tool-title">APR and borrowing-cost comparisons</div>
-        <div class="tool-desc">Compare rate, fees, points, and lender credits on the same time horizon.</div>
-      </a>
-      <a class="card2 tool col-6" href="/topics/mortgage-payoff">
-        <div class="tool-title">Mortgage payoff and extra principal</div>
-        <div class="tool-desc">Work from baseline payment to extra monthly, lump sum, and biweekly comparisons.</div>
-      </a>
-      <a class="card2 tool col-6" href="/topics/refinance">
-        <div class="tool-title">Refinance decisions</div>
-        <div class="tool-desc">Use the refinance hub for break-even, closing costs, and lock-timing decisions.</div>
-      </a>
-    </div>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to use topic pages</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Start with the core calculator to model your baseline.</li>
-      <li>Read the linked guide to understand assumptions and common pitfalls.</li>
-      <li>Change one input at a time to compare scenarios fairly (fees, rate, payment, or extra amount).</li>
-      <li>Use the FAQ sections on calculator pages for edge cases and limitations.</li>
-    </ol>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Topic quality checkpoints</h2>
-    <div style="overflow:auto; margin-top:10px">
+    <div style="overflow:auto; margin-top:12px">
       <table class="table">
         <thead>
           <tr>
-            <th>Checkpoint</th>
-            <th>What to verify</th>
-            <th>Why it matters</th>
+            <th>Your real decision</th>
+            <th>Best topic hub</th>
+            <th>Best starting tool</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Input source</td>
-            <td>Statement or disclosure values (not memory)</td>
-            <td>Prevents garbage-in/garbage-out scenarios</td>
+            <td>compare loan offers with fees or credits</td>
+            <td><a href="/topics/apr">APR topic</a></td>
+            <td><a href="/calculators/apr-calculator">APR calculator</a></td>
           </tr>
           <tr>
-            <td>Time horizon</td>
-            <td>Match full-term vs short-horizon intent</td>
-            <td>Avoids misleading "best option" conclusions</td>
+            <td>credit card payoff speed, minimum-payment drag, or payoff strategy</td>
+            <td><a href="/topics/credit-cards">Credit cards topic</a></td>
+            <td><a href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a></td>
           </tr>
           <tr>
-            <td>Posting assumptions</td>
-            <td>Payment timing and principal-only rules</td>
-            <td>Can materially change savings estimates</td>
+            <td>housing affordability, DTI, or payment-fit questions</td>
+            <td><a href="/topics/debt-to-income">Debt-to-income topic</a></td>
+            <td><a href="/calculators/debt-to-income-calculator">DTI calculator</a></td>
+          </tr>
+          <tr>
+            <td>renting versus buying over a planned hold period</td>
+            <td><a href="/topics/rent-vs-buy">Rent vs buy topic</a></td>
+            <td><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></td>
+          </tr>
+          <tr>
+            <td>mortgage payoff acceleration with extra principal</td>
+            <td><a href="/topics/mortgage-payoff">Mortgage payoff topic</a></td>
+            <td><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></td>
+          </tr>
+          <tr>
+            <td>refinance break-even, closing costs, or rate-reset decisions</td>
+            <td><a href="/topics/refinance">Refinance topic</a></td>
+            <td><a href="/guides/refinance-break-even">Refinance break-even</a></td>
           </tr>
         </tbody>
       </table>
@@ -117,152 +97,75 @@ const lastUpdated = "2026-04-04";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Pick the right topic by job</h2>
+    <h2 style="margin-top:0">When topics overlap</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>APR: comparing loan offers with fees and different terms using the <a href="/calculators/apr-calculator">APR calculator</a>.</li>
-      <li>Credit cards: payoff timelines, interest cost, and minimum payment risks with the <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>.</li>
-      <li>Rent vs buy: compare housing scenarios with the <a href="/calculators/rent-vs-buy-calculator">rent vs buy calculator</a>.</li>
-      <li>Mortgage payoff: monthly costs, amortization, and extra principal strategies in the <a href="/calculators/extra-payment-calculator">mortgage payoff calculator</a>.</li>
-      <li>Refinance: compare costs, payment changes, and break-even timing with the <a href="/topics/refinance">refinance workflow</a>.</li>
-      <li>Debt-to-income: estimate affordability and improve your ratio using the <a href="/calculators/debt-to-income-calculator">DTI calculator</a>.</li>
+      <li>Choose <a href="/topics/debt-to-income">DTI</a> when the question is qualification or payment fit. Choose <a href="/topics/rent-vs-buy">rent vs buy</a> when the real job is comparing two housing paths over time.</li>
+      <li>Choose <a href="/topics/mortgage-payoff">mortgage payoff</a> when you are adding principal to the current loan. Choose <a href="/topics/refinance">refinance</a> when you may replace the loan itself.</li>
+      <li>Choose <a href="/topics/apr">APR</a> when you are comparing borrowing cost. Choose <a href="/topics/refinance">refinance</a> when timing, closing costs, and hold period are part of the full decision.</li>
     </ul>
   </section>
 
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to compare scenarios safely</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Change only one input at a time (rate, term, fee, or extra payment).</li>
-      <li>Keep the baseline constant across comparisons.</li>
-      <li>Use the same assumption about timing (e.g., when an extra payment posts).</li>
-      <li>If results look surprising, verify the note rate vs APR and the remaining term.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes across topics</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Mixing escrow items with principal-and-interest calculations.</li>
-      <li>Comparing monthly payment changes without checking total interest.</li>
-      <li>Assuming extra payments reduce the required payment without a recast.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use the same time horizon</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Every topic can look different if you change the timeline. If you might refinance, sell, or pay off early, compare total dollars
-      paid over that shorter window instead of assuming the full term.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Document your baseline</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Keep a simple baseline note: balance, rate, remaining term, and the date you ran the calculator. This makes follow-up
-      comparisons consistent when rates or balances change.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">FAQ</h2>
-    <h3 style="margin:12px 0 0">Do topic pages replace the calculators?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      No. They organize the calculators and explain how to interpret results. The calculators are where you run numbers.
-    </p>
-    <h3 style="margin:12px 0 0">Why are there multiple guides for one topic?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      Each guide answers a specific question or decision (fees, payoff speed, recast vs extra), so you can focus on one issue at a time.
-    </p>
-  </section>
   <section class="grid" style="margin-top:18px">
-    <div class="card section prose col-6 topic-card">
-      <h2 style="margin-top:0">APR & borrowing costs</h2>
+    <a class="card section prose col-6" href="/topics/apr">
+      <h2 style="margin-top:0">APR and borrowing costs</h2>
       <p class="muted" style="margin:10px 0 0">
-        Compare offers with fees and understand when APR can mislead.
+        Use this topic when the real question is whether fees, points, credits, or term differences change which loan is cheaper.
       </p>
-      <div class="btn-row" style="margin-top:12px">
-        <a class="btn btn-primary" href="/topics/apr">APR topic</a>
-        <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
-      </div>
-    </div>
-    <div class="card section prose col-6 topic-card">
-      <h2 style="margin-top:0">Credit cards & payoff</h2>
+    </a>
+    <a class="card section prose col-6" href="/topics/credit-cards">
+      <h2 style="margin-top:0">Credit cards and payoff strategy</h2>
       <p class="muted" style="margin:10px 0 0">
-        Model payoff timelines and interest costs with fixed payments.
+        Use this topic when the real question is payoff speed, minimum-payment drag, interest cost, or debt-order strategy.
       </p>
-      <div class="btn-row" style="margin-top:12px">
-        <a class="btn btn-primary" href="/topics/credit-cards">Credit cards topic</a>
-        <a class="btn" href="/calculators/credit-card-payoff-calculator">Payoff calculator</a>
-      </div>
-    </div>
-    <div class="card section prose col-6 topic-card">
+    </a>
+    <a class="card section prose col-6" href="/topics/debt-to-income">
+      <h2 style="margin-top:0">Debt-to-income and affordability</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Use this topic when the real question is how lenders count debts and income, how much payment fits, or how to improve DTI before applying.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/topics/rent-vs-buy">
       <h2 style="margin-top:0">Rent vs buy decisions</h2>
       <p class="muted" style="margin:10px 0 0">
-        Compare renting and buying with consistent assumptions and break-even checks.
+        Use this topic when the real question is break-even timing, upfront cash, ownership costs, or assumption sensitivity across two housing paths.
       </p>
-      <div class="btn-row" style="margin-top:12px">
-        <a class="btn btn-primary" href="/topics/rent-vs-buy">Rent vs buy topic</a>
-        <a class="btn" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
-      </div>
-    </div>
-    <div class="card section prose col-6 topic-card">
-      <h2 style="margin-top:0">Mortgage payment & payoff planning</h2>
+    </a>
+    <a class="card section prose col-6" href="/topics/mortgage-payoff">
+      <h2 style="margin-top:0">Mortgage payoff and extra principal</h2>
       <p class="muted" style="margin:10px 0 0">
-        Compare extra principal, lump sums, and payoff timelines.
+        Use this topic when the real question is whether extra monthly, lump-sum, or biweekly principal changes payoff speed enough to matter.
       </p>
-      <div class="btn-row" style="margin-top:12px">
-        <a class="btn btn-primary" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
-        <a class="btn" href="/calculators/extra-payment-calculator">Mortgage payoff calculator</a>
-      </div>
-    </div>
-    <div class="card section prose col-6 topic-card">
+    </a>
+    <a class="card section prose col-6" href="/topics/refinance">
       <h2 style="margin-top:0">Refinance decisions</h2>
       <p class="muted" style="margin:10px 0 0">
-        Compare closing costs, rates, and break-even timing.
+        Use this topic when the real question is break-even timing, term reset, cash-to-close, or whether a refinance beats staying put.
       </p>
-      <div class="btn-row" style="margin-top:12px">
-        <a class="btn btn-primary" href="/topics/refinance">Refinance topic</a>
-        <a class="btn" href="/guides/refinance-break-even">Break-even guide</a>
-      </div>
-    </div>
-    <div class="card section prose col-6 topic-card">
-      <h2 style="margin-top:0">Debt-to-income & affordability</h2>
-      <p class="muted" style="margin:10px 0 0">
-        Calculate DTI and see how to improve your ratio.
-      </p>
-      <div class="btn-row" style="margin-top:12px">
-        <a class="btn btn-primary" href="/topics/debt-to-income">DTI topic</a>
-        <a class="btn" href="/calculators/debt-to-income-calculator">DTI calculator</a>
-      </div>
-    </div>
-    <div class="card section prose col-6 topic-card">
-      <h2 style="margin-top:0">Request a topic</h2>
-      <p class="muted" style="margin:10px 0 0">
-        Want a workflow page for a specific question? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
-      </p>
-    </div>
+    </a>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What each topic includes</h2>
+    <h2 style="margin-top:0">How to get better answers from any topic</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>A primary calculator to model the baseline.</li>
-      <li>Focused guides that explain assumptions and edge cases.</li>
-      <li>Related tools for comparisons and second opinions.</li>
+      <li>Start with one clean baseline using current statement or disclosure numbers.</li>
+      <li>Change one assumption at a time so the comparison stays interpretable.</li>
+      <li>Use the topic hub first when multiple calculators or guides could plausibly fit the same question.</li>
     </ul>
   </section>
+
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Before you start</h2>
+    <h2 style="margin-top:0">Request a topic</h2>
     <p class="muted" style="margin:10px 0 0">
-      Gather your latest statement or loan estimate so you can enter the real balance, rate, and fees. This helps you compare scenarios
-      on the same footing and avoid misleading differences caused by stale numbers.
+      If a finance question keeps falling between clusters, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> so we can decide
+      whether it needs a stronger topic hub or a better support page.
     </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0">Topics are updated as calculators and guides change. If you want a new workflow, contact us.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-04</p>
+    <p class="muted" style="margin:10px 0 0">
+      This routing page is updated when topic ownership changes, stronger entry paths are added, or overlap between clusters needs to be clarified.
+    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-

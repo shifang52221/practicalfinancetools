@@ -3,11 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { TRUST_PROFILES } from "../../config/trust";
 
-const title = "Rent vs Buy Topic Hub";
+const title = "Rent vs Buy Topic Guide (break-even, costs, and decision paths)";
 const description =
-  "A rent vs buy workflow that connects the calculator, break-even guide, and mortgage payment inputs. Educational use only.";
+  "Rent-versus-buy workflow: choose the right comparison path for break-even, upfront cash, ownership costs, affordability, and scenario sensitivity. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -25,16 +25,18 @@ const lastUpdated = "2026-04-03";
       <span aria-hidden="true">/</span>
       <span aria-current="page">Rent vs buy</span>
     </nav>
-    <h1>Rent vs buy</h1>
+    <h1>Rent vs buy: choose the right comparison path</h1>
     <p>
-      This topic helps you compare renting and buying with consistent assumptions. Start with the calculator, then use the checklist
-      guide to tighten your inputs and test realistic scenarios.
+      Most rent-versus-buy searches are not asking the same question. Some readers need a full calculator run, some mainly care about
+      break-even timing, some are stuck on upfront cash or hidden ownership costs, and others need to know whether the payment even fits
+      their budget. Start with the <a href="/calculators/rent-vs-buy-calculator">rent vs buy calculator</a> when you are ready to run the
+      full scenario under one consistent set of assumptions.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
       <a class="btn" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
+      <a class="btn" href="/guides/rent-vs-buy-costs-to-include">Costs to include</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
-      <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
     </div>
   </section>
 
@@ -42,185 +44,201 @@ const lastUpdated = "2026-04-03";
     writtenBy={TRUST_PROFILES.siteOwner}
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
-    reviewScope="Rent-versus-buy workflow framing, ownership-cost assumptions, and break-even decision routing."
-    reviewedOn="2026-04-03"
+    reviewScope="Rent-versus-buy workflow framing, branch routing, and assumption-path clarity across break-even, ownership costs, affordability, and scenario sensitivity."
+    reviewedOn="2026-04-22"
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Choose your rent vs buy starting point</h2>
+    <h2 style="margin-top:0">Choose the rent-versus-buy question before you choose the page</h2>
+    <p class="muted" style="margin:10px 0 0">
+      This topic page works best as the top of a routing tree. Start by naming the real rent-versus-buy bottleneck, then move into the
+      page that is built for that exact decision job.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      Choose your rent vs buy starting point by asking which part of the decision is actually blocking you: the full scenario, the hold
+      period, the upfront cash, the ownership-cost stack, the affordability check, or the sensitivity work.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Your real question</th>
+            <th>Best next page</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>full scenario comparison before deciding whether to buy</td>
+            <td><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></td>
+            <td>Start here when you already have enough inputs to test the entire scenario instead of reading another generic housing explainer.</td>
+          </tr>
+          <tr>
+            <td>break-even timing or holding period</td>
+            <td><a href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a></td>
+            <td>Use this branch when the real decision is how long you need to stay for buying to make sense.</td>
+          </tr>
+          <tr>
+            <td>upfront cash, down payment, or closing costs</td>
+            <td>
+              <a href="/guides/rent-vs-buy-costs-to-include">Rent vs buy costs to include</a> and{" "}
+              <a href="/calculators/mortgage-payment-calculator">mortgage payment calculator</a>
+            </td>
+            <td>Go here when the monthly comparison seems manageable but the real blocker is how much cash buying ties up on day one.</td>
+          </tr>
+          <tr>
+            <td>ownership costs like taxes, insurance, HOA, maintenance, or PMI</td>
+            <td><a href="/guides/rent-vs-buy-costs-to-include">Rent vs buy costs to include</a></td>
+            <td>Choose this branch when the result looks wrong because the homeowner side is missing recurring ownership costs.</td>
+          </tr>
+          <tr>
+            <td>monthly affordability or payment fit</td>
+            <td>
+              <a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a> and{" "}
+              <a href="/calculators/debt-to-income-calculator">DTI calculator</a>
+            </td>
+            <td>Use this branch when the first question is whether the housing payment fits your budget and lender-style affordability limits.</td>
+          </tr>
+          <tr>
+            <td>assumption sensitivity for rent growth, appreciation, rates, or investment return</td>
+            <td>
+              <a href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a> and{" "}
+              <a href="/guides/rent-vs-buy-checklist">rent vs buy checklist</a>
+            </td>
+            <td>Go here when the result flips easily and you need to pressure-test the assumptions before trusting the comparison.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Topic branches in plain English</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Start with the <a href="/calculators/rent-vs-buy-calculator">rent vs buy calculator</a> when you want a full scenario with time horizon, costs, and appreciation assumptions.</li>
-      <li>Start with the <a href="/guides/rent-vs-buy-break-even">break-even guide</a> when the main question is how long you need to stay for buying to make sense.</li>
-      <li>Start with the <a href="/guides/rent-vs-buy-costs-to-include">costs-to-include guide</a> when taxes, insurance, HOA, maintenance, or closing costs are still the weak part of the model.</li>
+      <li>If you are ready to model the whole problem, start with the full-scenario branch instead of reading more housing generalities.</li>
+      <li>If the main uncertainty is how long you will stay, use the break-even branch first because holding period often dominates the result.</li>
+      <li>If buying feels possible monthly but not upfront, switch to the upfront-cash branch before making optimistic assumptions.</li>
+      <li>If the homeowner numbers feel suspiciously low, use the ownership-cost branch and add taxes, insurance, HOA, maintenance, and PMI correctly.</li>
+      <li>If you are not even sure the monthly payment is realistic, use the affordability branch before running full rent-versus-buy scenarios.</li>
+      <li>If the answer changes whenever you tweak rent growth, appreciation, or rates, use the sensitivity branch before treating the output as stable.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Recommended workflow</h2>
+    <h2 style="margin-top:0">What each branch should solve next</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Estimate the mortgage payment (PITI + HOA + PMI if needed).</li>
-      <li>Enter a conservative rent growth and home appreciation rate.</li>
-      <li>Set a realistic holding period and selling cost assumption.</li>
-      <li>Run a base case, then change one input at a time.</li>
+      <li><strong>Full-scenario branch:</strong> answer whether renting or buying looks stronger when every major assumption is modeled together.</li>
+      <li><strong>Break-even branch:</strong> answer how sensitive the decision is to your likely holding period.</li>
+      <li><strong>Upfront-cash branch:</strong> answer whether the down payment, closing costs, and tied-up cash change the real decision.</li>
+      <li><strong>Ownership-cost branch:</strong> answer which homeowner costs are missing or understated.</li>
+      <li><strong>Affordability branch:</strong> answer whether the payment fits both your cash flow and lender-style DTI constraints.</li>
+      <li><strong>Sensitivity branch:</strong> answer whether the conclusion survives more conservative assumptions.</li>
     </ol>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Key inputs to verify</h2>
+    <h2 style="margin-top:0">Numbers to gather before you compare</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Property taxes and insurance from local quotes.</li>
-      <li>Maintenance and HOA costs for your property type.</li>
-      <li>Closing and selling costs that match your market.</li>
-      <li>Investment return assumptions for cash not used in a down payment.</li>
+      <li>Expected holding period, home price, down payment, rate quote, and mortgage term.</li>
+      <li>Property taxes, homeowners insurance, HOA dues, PMI, and maintenance assumptions.</li>
+      <li>Buyer closing costs, seller costs, and moving/setup costs that apply to your horizon.</li>
+      <li>Rent growth, appreciation, and the investment return on cash not used for a down payment.</li>
     </ul>
   </section>
+
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">PITI input checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use the note rate (not APR) for principal and interest.</li>
-      <li>Convert annual taxes and insurance to monthly amounts.</li>
-      <li>Add HOA dues and PMI if they apply to your scenario.</li>
-      <li>Use the same payment assumptions in every scenario you compare.</li>
-    </ul>
+    <h2 style="margin-top:0">Where to pull the numbers from</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Decision input</th>
+            <th>Best source</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monthly homeowner payment</td>
+            <td>Mortgage quote plus tax and insurance estimates</td>
+            <td>Keeps the buy scenario grounded in note-rate payment math instead of a hand-wavy housing budget guess.</td>
+          </tr>
+          <tr>
+            <td>Upfront cash and selling friction</td>
+            <td>Loan Estimate, local closing-cost norms, and likely selling costs</td>
+            <td>Short holding periods can flip quickly if closing and selling costs are understated.</td>
+          </tr>
+          <tr>
+            <td>Sensitivity assumptions</td>
+            <td>Your likely move horizon plus conservative rent, appreciation, and return ranges</td>
+            <td>Prevents one optimistic assumption from making buying look safer than it really is.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Short horizon checks</h2>
-      <p class="muted" style="margin:10px 0 0">
-        If you may move within a few years, test higher selling costs and lower appreciation. Short horizons are sensitive to
-        transaction costs and can swing the result.
-      </p>
-    </div>
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Long horizon checks</h2>
-      <p class="muted" style="margin:10px 0 0">
-        Over longer horizons, amortization and appreciation matter more. Run a conservative base case and compare to an optimistic
-        scenario to see the range.
-      </p>
-    </div>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Using a holding period that is longer than your realistic plan.</li>
-      <li>Ignoring selling costs or underestimating maintenance.</li>
-      <li>Comparing results without keeping the same time horizon.</li>
-      <li>Using an optimistic appreciation rate without a conservative case.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What to gather before you run scenarios</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Recent rent comps for similar units in your neighborhood.</li>
-      <li>A Loan Estimate or rate quote for the mortgage payment.</li>
-      <li>Local tax rate and insurance quote for the property type.</li>
-      <li>Expected holding period based on your job or family plan.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How DTI fits in</h2>
-    <p class="muted" style="margin:10px 0 0">
-      If you are mortgage shopping, the housing payment in your rent vs buy model also affects DTI. Run the DTI calculator with the
-      same PITI + HOA + PMI figures to confirm affordability under the same assumptions.
-    </p>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Local market checks</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Compare rent growth to recent local averages, not national headlines.</li>
-      <li>Use a conservative home appreciation rate when unsure.</li>
-      <li>Validate selling costs with local agent estimates.</li>
-    </ul>
-  </section>
-
-  <section class="grid" style="margin-top:18px">
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Guides to read first</h2>
+      <h2 style="margin-top:0">Core rent-vs-buy pages</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
         <li><a href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a></li>
+        <li><a href="/guides/rent-vs-buy-costs-to-include">Rent vs buy costs to include</a></li>
         <li><a href="/guides/rent-vs-buy-checklist">Rent vs buy checklist</a></li>
-        <li><a href="/guides/rent-vs-buy-costs-to-include">Costs to include</a></li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Assumptions to model</h2>
+      <h2 style="margin-top:0">Affordability and housing inputs</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>Holding period, closing costs, and selling costs.</li>
-        <li>Rent growth and home appreciation scenarios.</li>
-        <li>Maintenance, taxes, insurance, HOA, and PMI.</li>
-        <li>Investment return on cash not used for a down payment.</li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/debt-to-income-calculator">DTI calculator</a></li>
+        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
+        <li><a href="/calculators/amortization-schedule-calculator">Amortization schedule</a></li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">FAQ</h2>
-    <h3 style="margin:12px 0 0">What does break-even mean?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      Break-even is the point where your modeled outcomes look similar under the assumptions you entered. It is not a prediction.
-    </p>
-    <h3 style="margin:12px 0 0">Do I need to model taxes?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      This workflow is simplified and does not model income taxes or deductions. If taxes are important to your decision, model them
-      separately and compare alongside the calculator output.
-    </p>
-    <h3 style="margin:12px 0 0">Should I include moving costs?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      Yes. Short holding periods are sensitive to moving and transaction costs. Add them to the scenario where they apply so the
-      comparison stays realistic.
-    </p>
+    <h2 style="margin-top:0">Common rent-versus-buy mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using an unrealistic holding period that is longer than your likely plan.</li>
+      <li>Comparing monthly payment only while ignoring down payment, closing costs, and selling friction.</li>
+      <li>Leaving out taxes, insurance, HOA, maintenance, or PMI from the homeowner side.</li>
+      <li>Trusting a single optimistic appreciation or rent-growth assumption without a conservative sensitivity case.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Related guides</h2>
-    <div class="btn-row" style="margin-top:0">
-      <a class="btn btn-primary" href="/guides/rent-vs-buy-break-even">Break-even guide</a>
-      <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
-      <a class="btn" href="/guides/refinance-break-even">Refinance break-even</a>
-      <a class="btn" href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a>
-    </div>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Related tools</h2>
-    <div class="btn-row" style="margin-top:0">
-      <a class="btn" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
-      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
-      <a class="btn" href="/calculators/amortization-schedule-calculator">Amortization schedule</a>
-      <a class="btn" href="/calculators/debt-to-income-calculator">DTI calculator</a>
-    </div>
+    <h2 style="margin-top:0">Affordability checkpoint</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Rent versus buy is not only a net-worth question. If the monthly payment stretches your cash flow or pushes DTI too high, a
+      favorable long-term scenario can still be the wrong move right now. Check the mortgage payment and DTI branches before trusting a
+      buy result that only works on paper.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">References</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>
-        CFPB:{' '}
+        CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
           Mortgage resources
         </a>
       </li>
       <li>
-        FHFA:{' '}
+        FHFA:{" "}
         <a href="https://www.fhfa.gov/data" rel="noopener noreferrer" target="_blank">
           Housing and home price data resources
         </a>
       </li>
     </ul>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Next steps</h2>
-    <div class="btn-row" style="margin-top:10px">
-      <a class="btn btn-primary" href="/calculators/rent-vs-buy-calculator">Run the calculator</a>
-      <a class="btn" href="/guides/rent-vs-buy-break-even">Read the guide</a>
-      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic</a>
-    </div>
-    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <h2 style="margin-top:0">Updates</h2>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-

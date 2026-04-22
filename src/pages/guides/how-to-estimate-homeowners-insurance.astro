@@ -5,18 +5,18 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "How to Estimate Homeowners Insurance for a Mortgage Payment";
 const description =
-  "Estimate homeowners insurance with realistic quotes and coverage choices so your mortgage payment inputs are accurate. Educational use only.";
+  "Replace placeholder insurance numbers with quote-based monthly inputs you can actually trust inside a mortgage payment estimate. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/how-to-estimate-homeowners-insurance"
   lastUpdated={lastUpdated}
-  robots="noindex, follow"
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+  robots="noindex, follow"
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -29,132 +29,83 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>How to estimate homeowners insurance</h1>
     <p>
-      Homeowners insurance is a key part of the escrow payment. Use quotes and coverage details instead of a rough guess so your
-      mortgage payment estimate stays realistic.
+      This page is for the buyer whose mortgage-payment math is nearly ready, but whose insurance input is still too fuzzy to trust.
+      The goal here is not insurance theory. It is getting a usable monthly number into the payment model.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
       <a class="btn" href="/guides/how-to-estimate-property-taxes">Estimate property taxes</a>
-      <a class="btn" href="/guides/what-is-piti">What is PITI?</a>
+      <a class="btn" href="/guides/mortgage-payment-insurance-assumptions">Insurance assumptions</a>
     </div>
   </section>
+
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Homeowners insurance quote realism for mortgage-payment estimates, coverage and deductible tradeoffs, and routing between mortgage payment, property tax, and PITI workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Insurance-input estimation review, quote-quality framing, and routing between payment entry, insurance assumptions, and housing-payment breakdown pages."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Use this guide when homeowners insurance is the last uncertain input in your mortgage payment estimate</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when the mortgage payment math looks fine but the insurance number is still a rough placeholder.</li>
-      <li>If property taxes are the uncertain input instead, move to <a href="/guides/how-to-estimate-property-taxes">how to estimate property taxes</a>.</li>
-      <li>If you need the full payment model first, move to the <a href="/calculators/mortgage-payment-calculator">mortgage payment calculator</a>.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan amount, note rate, and term.</li>
-      <li>Taxes, insurance, HOA, and PMI assumptions.</li>
-      <li>Escrow rules or reserves used by the lender.</li>
-      <li>Time horizon if comparing scenarios.</li>
+      <li>Use this page when the payment estimate is nearly done, but the insurance line is still a placeholder.</li>
+      <li>If property taxes are still uncertain too, move to <a href="/guides/how-to-estimate-property-taxes">how to estimate property taxes</a>.</li>
+      <li>If you already have the insurance number and need the full draft, move to <a href="/calculators/mortgage-payment-calculator">mortgage payment calculator</a>.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Where to get estimates</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Quotes from multiple insurers for the same coverage.</li>
-      <li>Current policy information for similar homes in the area.</li>
-      <li>Lender or broker insurance estimate (verify with quotes).</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Coverage choices that change cost</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Dwelling coverage (replacement cost) is the main cost driver.</li>
-      <li>Deductible size can reduce premiums but increases out-of-pocket risk.</li>
-      <li>Separate flood, wind, or earthquake policies may be required.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to model it in a payment estimate</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use an annual premium from quotes.</li>
-      <li>Divide by 12 for the monthly escrow amount.</li>
-      <li>Re-check after inspections or final underwriting.</li>
-    </ol>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Why rough insurance guesses create bad payment comparisons</h2>
+    <h2 style="margin-top:0">Start with the right type of estimate</h2>
     <p class="muted" style="margin:10px 0 0">
-      Insurance can swing meaningfully based on replacement cost, deductible, location risk, and required add-on coverage.
-      If you compare homes or loan scenarios with a placeholder premium, the payment comparison can look cleaner than it really is.
+      For payment modeling, coverage-comparable quotes matter more than random premium samples. You do not need ten internet averages.
+      You need two or three quotes built on comparable coverage so the monthly input is defensible.
     </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Escrow adjustments after closing</h2>
+    <h2 style="margin-top:0">Why insurance estimates drift so much</h2>
     <p class="muted" style="margin:10px 0 0">
-      If your premium changes, the escrow portion of your payment can change. Build a cushion for the first year so you are not caught
-      off guard by a higher renewal.
+      Insurance pricing is usually built on replacement-cost logic, not purchase-price logic. That is why two homes with similar sale
+      prices can produce meaningfully different insurance inputs once rebuild risk, deductible, and required add-on coverage are priced correctly.
     </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Using a generic estimate instead of a real quote.</li>
-      <li>Ignoring required add-on policies in your area.</li>
-      <li>Assuming escrow will stay flat after renewal.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision inputs</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Dwelling coverage target based on replacement cost.</li>
-      <li>Deductible amount you can comfortably cover.</li>
-      <li>Any required add-on policies (flood, wind).</li>
-      <li>Expected renewal increase or claim history impact.</li>
-    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
+      <h2 style="margin-top:0">What makes a quote useful</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
-        <li><a href="/calculators/debt-to-income-calculator">DTI calculator</a></li>
+        <li>Same dwelling coverage and deductible across carriers.</li>
+        <li>Flood, wind, earthquake, or condo-gap coverage handled consistently.</li>
+        <li>A monthly equivalent you can actually drop into the payment estimate.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
+      <h2 style="margin-top:0">What makes a quote misleading</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/how-to-estimate-property-taxes">Estimate property taxes</a></li>
-        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
-        <li><a href="/guides/mortgage-payment-insurance-assumptions">Insurance assumptions</a></li>
-        <li><a href="/guides/principal-and-interest-vs-escrow">Principal and interest vs escrow</a></li>
+        <li>Coverage stripped down just to look cheap.</li>
+        <li>Missing separate peril policies required in the location.</li>
+        <li>Using another home's policy as a shortcut.</li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">FAQ</h2>
-    <h3 style="margin:12px 0 0">Do I need insurance before I close?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      Yes. Lenders typically require proof of insurance before closing so the escrow portion can be set accurately.
+    <h2 style="margin-top:0">Treat this as a quote-first input page</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The point of this page is to get you to a realistic annual premium quickly, then turn it into a monthly housing-cost input.
+      Once that number is grounded, the calculator output becomes much more useful.
     </p>
-    <h3 style="margin:12px 0 0">Can the premium change after closing?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      Yes. Renewals, claims, and regional risks can change premiums. Plan for adjustments in the escrow portion.
-    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to move to a different page</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If taxes are the missing number, move to <a href="/guides/how-to-estimate-property-taxes">how to estimate property taxes</a>.</li>
+      <li>If the issue is coverage structure inside the total payment, move to <a href="/guides/what-is-piti">what is PITI</a>.</li>
+      <li>If you want to sanity-check the number inside the full payment, move to <a href="/calculators/mortgage-payment-calculator">mortgage payment calculator</a>.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -183,9 +134,6 @@ const lastUpdated = "2026-04-05";
       <a class="btn" href="/guides/mortgage-payment-insurance-assumptions">Review insurance assumptions</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-
-

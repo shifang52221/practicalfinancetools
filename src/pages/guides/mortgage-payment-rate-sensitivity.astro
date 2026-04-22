@@ -5,18 +5,18 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Mortgage Payment Rate Sensitivity";
 const description =
-  "How interest rate changes affect the monthly mortgage payment and affordability. Educational use only.";
+  "Isolate how small rate changes alter the monthly mortgage payment, the payment buffer, and the rate-lock decision. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/mortgage-payment-rate-sensitivity"
   lastUpdated={lastUpdated}
-  robots="noindex, follow"
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+  robots="noindex, follow"
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -29,137 +29,92 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>Mortgage payment rate sensitivity</h1>
     <p>
-      Small rate changes can materially alter the monthly payment. Use this guide to test rate scenarios and understand the
-      affordability impact.
+      This page is for the buyer who already has a workable payment model and now needs to know whether a slightly worse quote, a
+      slightly better lock, or a buydown offer actually changes the decision.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
-      <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
+      <a class="btn" href="/guides/how-mortgage-payments-are-calculated">Payment math basics</a>
       <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a>
     </div>
   </section>
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Note-rate sensitivity inside monthly payment modeling, isolation of rate effects from other assumptions, and routing between mortgage payment, affordability, and payment-structure workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Mortgage-payment scenario isolation, rate-move interpretation, and routing between payment math, affordability, and lock-decision support."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Use this guide when rate sensitivity is the main mortgage-payment question</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when you already understand the mortgage payment formula and need to see how a small rate change moves the monthly payment.</li>
-      <li>If you still need the baseline payment structure, move first to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
-      <li>If your real decision is whether the payment still fits your budget, move next to the <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan amount, note rate, and term.</li>
-      <li>Taxes, insurance, HOA, and PMI assumptions.</li>
-      <li>Escrow rules or reserves used by the lender.</li>
-      <li>Time horizon if comparing scenarios.</li>
+      <li>Use this page when the loan structure is already clear and the real question is what a small rate move does to the monthly payment.</li>
+      <li>If you still need the baseline mortgage-payment formula, move first to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
+      <li>If the payment is already too tight even before quote changes, move next to <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario template</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Run the current rate as your base case.</li>
-      <li>Test +0.25% and +0.50% to see affordability impact.</li>
-      <li>Test -0.25% to see potential savings from a better rate.</li>
-    </ol>
+    <h2 style="margin-top:0">Isolate the rate move before you change anything else</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The cleanest sensitivity read happens when you keep taxes, insurance, HOA, and PMI fixed while you isolate the rate move. If
+      you change multiple assumptions at once, you stop learning what the quote itself did to the payment.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What to keep constant</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Home price and down payment.</li>
-      <li>Taxes, insurance, HOA, and PMI assumptions.</li>
-      <li>Term length (30 vs 15 should be compared separately).</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Inputs to capture</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Quoted rate and discount points (if any).</li>
-      <li>Estimated taxes, insurance, and HOA dues.</li>
-      <li>Target down payment and loan amount.</li>
-      <li>DTI limit or payment comfort range.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How to read the result</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Track the monthly payment change for each 0.25% rate move before you change any other input.</li>
-      <li>Compare that change with your DTI ceiling and your personal comfort ceiling, because they are not always the same number.</li>
-      <li>Keep taxes, insurance, HOA, and PMI constant so the sensitivity result isolates the rate effect instead of mixing multiple variables.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision inputs</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Maximum payment you are willing to carry monthly.</li>
-      <li>Lender DTI ceiling or pre-approval limit.</li>
-      <li>Rate lock expiration and float-down terms.</li>
-      <li>Upfront points or credits tied to each rate.</li>
-      <li>Target monthly savings needed to justify a lower rate.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Changing multiple inputs at once, which hides the rate effect.</li>
-      <li>Using APR instead of the note rate for payment calculations.</li>
-      <li>Ignoring how rate changes affect DTI thresholds.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Rate lock checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Confirm the lock duration matches your closing timeline.</li>
-      <li>Ask about float-down options and fees.</li>
-      <li>Compare the locked rate to your sensitivity scenarios.</li>
-      <li>Re-run numbers if the lock expires.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario notes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Document taxes and insurance used for each scenario.</li>
-      <li>Keep the same term length for rate comparisons.</li>
-      <li>Track monthly payment sensitivity per 0.25% change.</li>
-      <li>Save the scenario that meets your DTI ceiling.</li>
-    </ul>
+    <h2 style="margin-top:0">The most useful stress range is usually small, not dramatic</h2>
+    <p class="muted" style="margin:10px 0 0">
+      In practice, buyers usually need to test 0.125% to 0.500% rate moves, not fantasy swings of several full percentage points.
+      That range is often enough to reveal whether you still have payment room or whether the decision flips at the edge.
+    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
+      <h2 style="margin-top:0">Run the base case</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
-        <li><a href="/calculators/debt-to-income-calculator">DTI calculator</a></li>
+        <li>Use the loan amount, term, and note rate tied to the quote you would accept today.</li>
+        <li>Freeze every non-rate housing-payment input so the output stays interpretable.</li>
+        <li>Write down the monthly payment and the buffer between that number and your comfort ceiling.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
+      <h2 style="margin-top:0">Run the edge cases</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
-        <li><a href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a></li>
-        <li><a href="/guides/mortgage-payment-total-cost-vs-payment">Payment vs total cost</a></li>
-        <li><a href="/guides/mortgage-payment-15-vs-30-year">15 vs 30 year payment</a></li>
-        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
+        <li>Test one slightly worse rate and one slightly better rate.</li>
+        <li>Keep the same loan amount and term so the quote comparison is honest.</li>
+        <li>Note how quickly the DTI picture or comfort margin tightens.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When this is really a rate lock or buydown question</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If the payment only works at the better quote, this is no longer just a math exercise. It becomes a rate lock or buydown
+      question, because the monthly payment tolerance is narrow enough that execution costs may matter as much as the quoted rate.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Common interpretation mistakes</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Using APR instead of the note rate when the goal is monthly payment sensitivity.</li>
+      <li>Changing the term or down payment at the same time and then blaming the result on the rate.</li>
+      <li>Ignoring that a small monthly change can still matter if your buffer was already thin.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to move to a different page</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If you need the full monthly housing-payment composition, move to <a href="/guides/what-is-piti">what is PITI</a>.</li>
+      <li>If the question is whether a smaller payment is worth a higher total borrowing cost, move to <a href="/guides/mortgage-payment-total-cost-vs-payment">mortgage payment total cost vs payment</a>.</li>
+      <li>If the quote change mainly affects approval room, move to <a href="/guides/mortgage-payment-dti-housing-payment">mortgage payment DTI housing payment</a>.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -185,12 +140,9 @@ const lastUpdated = "2026-04-05";
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run rate scenarios</a>
       <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Check affordability</a>
-      <a class="btn" href="/guides/how-mortgage-payments-are-calculated">Review the payment math</a>
+      <a class="btn" href="/guides/mortgage-payment-total-cost-vs-payment">Compare payment versus cost</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-
-

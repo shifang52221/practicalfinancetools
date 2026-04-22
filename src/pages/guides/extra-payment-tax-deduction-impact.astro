@@ -1,21 +1,18 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import ReviewedByCard from "../../components/ReviewedByCard.astro";
-import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Extra Payments and Mortgage Interest Deductions";
 const description =
-  "How itemizing, mortgage-interest deduction rules, and after-tax comparisons can change the value of extra mortgage payments. Educational use only.";
+  "How extra payments can change interest paid and tax deductions, and why after-tax comparisons matter. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-02-17";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/extra-payment-tax-deduction-impact"
   lastUpdated={lastUpdated}
-  authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  robots="noindex, follow"
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -28,90 +25,90 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>Extra payments and mortgage interest deductions</h1>
     <p>
-      Extra payments reduce mortgage interest, which can also reduce the amount of interest available to deduct if you itemize. This
-      guide helps you compare the after-tax value of extra payments without overstating how much the deduction changes the answer.
+      Extra payments reduce interest paid, which can reduce potential mortgage interest deductions. This guide explains why after-tax
+      comparisons can change the decision and why tax impacts vary by household.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
       <a class="btn" href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a>
-      <a class="btn" href="/guides/extra-payment-vs-refinance">Extra payments vs refinance</a>
-    </div>
-  </section>
-
-  <ReviewedByCard
-    writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Mortgage-interest deduction framing, itemizing and after-tax comparison checks, and routing between extra-payment, payoff-versus-investing, and refinance workflows."
-    reviewedOn="2026-04-05"
-  />
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use this guide when tax assumptions are changing the after-tax value of extra mortgage payments</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when you are comparing mortgage prepayments with investing or other uses of cash and want the after-tax version of the math.</li>
-      <li>Use this page when itemizing versus taking the standard deduction may change how much mortgage interest actually matters.</li>
-      <li>If you already know tax effects are minor in your case, move next to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a>.</li>
-    </ul>
-  </section>
-
-  <section class="grid" style="margin-top:18px">
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">The deduction matters more when</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>You consistently itemize deductions instead of taking the standard deduction.</li>
-        <li>Your mortgage interest is still large relative to your other itemized deductions.</li>
-        <li>Your comparison is close enough that a modest after-tax difference could change the better option.</li>
-      </ul>
-    </div>
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">The deduction matters less when</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>You usually claim the standard deduction and do not receive incremental value from mortgage interest.</li>
-        <li>The competing debt or investment decision is so different that taxes are only a second-order factor.</li>
-        <li>You are near a refinance, move, or payoff horizon where long-term deduction assumptions matter less.</li>
-      </ul>
+      <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Inputs to verify before using tax-adjusted math</h2>
+    <h2 style="margin-top:0">How this page fits the extra-payment workflow</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use this support page for a tax-aware edge case. The main payoff decision still belongs on the{" "}
+      <a href="/guides/extra-mortgage-payments">extra mortgage payments guide</a> or inside the{" "}
+      <a href="/calculators/extra-payment-calculator">extra payment calculator</a>; this page exists only to pressure-test the after-tax
+      assumption when deductions might matter.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why this matters</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Interest saved is real savings, but the value depends on your tax situation and whether you itemize deductions. Many households
+      do not itemize, which reduces the tax impact.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">After-tax comparison steps</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Whether you itemize this year and whether that is likely to stay true over the years you are modeling.</li>
-      <li>How much mortgage interest is actually deductible under current IRS rules and loan limits.</li>
-      <li>Your marginal tax context, including whether state tax treatment changes the comparison.</li>
-      <li>Whether a refinance, move, or falling interest schedule will shrink the deduction value sooner than expected.</li>
+      <li>Estimate how much interest you actually deduct.</li>
+      <li>Compare savings using after-tax cash flow.</li>
+      <li>Account for changes in itemized vs standard deduction.</li>
+      <li>Recheck after major income or tax law changes.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">A practical after-tax comparison flow</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Start with the baseline mortgage savings from making extra principal payments.</li>
-      <li>Reduce that savings only by the portion of mortgage interest that actually creates deductible value in your situation.</li>
-      <li>Compare the result to the after-tax return or after-tax borrowing cost of the alternative use of cash.</li>
-      <li>Run the same time horizon across all scenarios so tax assumptions do not hide a shorter holding period or refinance plan.</li>
-    </ol>
+    <h2 style="margin-top:0">Tax inputs to verify</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Marginal federal and state tax rates.</li>
+      <li>Expected itemized deductions this year.</li>
+      <li>Interest cap limits that apply to your loan.</li>
+      <li>Whether extra payments reduce deductions below the standard level.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Decision checklist</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Confirm whether you itemize in most years.</li>
+      <li>Compare after-tax savings vs alternative uses of cash.</li>
+      <li>Recalculate if your income or filing status changes.</li>
+      <li>Keep documentation for any tax assumptions used.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Decision inputs</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Expected itemized deduction total after extra payments.</li>
+      <li>Any state tax deduction limits that apply to you.</li>
+      <li>Planned refinance or sale horizon.</li>
+      <li>Alternative return you expect from investing the cash.</li>
+      <li>Annual cash flow you want to preserve.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Scenario note</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you only itemize in some years, model two cases: one with the full deduction and one with no deduction. The spread tells
+      you how sensitive the payoff decision is to tax treatment.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Common mistakes</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Assuming all mortgage interest is deductible and fully valuable every year.</li>
-      <li>Comparing a pre-tax investment return or debt APR against an after-tax mortgage number.</li>
-      <li>Treating the deduction as if it makes interest cheap enough to ignore liquidity or other debt priorities.</li>
-      <li>Using one year's tax posture for a long horizon without checking whether itemizing is likely to continue.</li>
+      <li>Assuming tax deductions offset most of the interest cost.</li>
+      <li>Ignoring standard deduction vs itemized status.</li>
+      <li>Comparing pre-tax returns to after-tax mortgage costs.</li>
     </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Where this fits in the broader decision</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Tax treatment is usually one layer of the answer, not the whole answer. You still need to compare liquidity, competing debt costs,
-      and your holding period. That is why this page works best alongside{" "}
-      <a href="/guides/pay-off-mortgage-early-or-invest">pay off mortgage early or invest</a> and{" "}
-      <a href="/guides/extra-payment-vs-refinance">extra payments vs refinance</a>.
-    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -119,45 +116,27 @@ const lastUpdated = "2026-04-05";
       <h2 style="margin-top:0">Related tools</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></li>
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></li>
       </ul>
     </div>
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Related guides</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/pay-off-mortgage-early-or-invest">Pay off mortgage early or invest?</a></li>
-        <li><a href="/guides/extra-payment-vs-refinance">Extra payments vs refinance</a></li>
-        <li><a href="/guides/extra-payment-priority-vs-other-debts">Priority vs other debts</a></li>
+        <li><a href="/guides/pay-off-mortgage-early-or-invest">Pay off early or invest?</a></li>
+        <li><a href="/guides/mortgage-payment-affordability-checklist">Mortgage payment affordability checklist</a></li>
+        <li><a href="/guides/refinance-break-even">Refinance break-even</a></li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">References</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>
-        IRS:{" "}
-        <a href="https://www.irs.gov/forms-pubs/about-publication-936" rel="noopener noreferrer" target="_blank">
-          About Publication 936, Home Mortgage Interest Deduction
-        </a>
-      </li>
-      <li>
-        IRS:{" "}
-        <a href="https://www.irs.gov/faqs/itemized-deductions-standard-deduction" rel="noopener noreferrer" target="_blank">
-          Itemized deductions, standard deduction
-        </a>
-      </li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
-      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Run the after-tax payoff scenario</a>
-      <a class="btn" href="/guides/pay-off-mortgage-early-or-invest">Compare against investing</a>
+      <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Model extra payments</a>
+      <a class="btn" href="/guides/extra-mortgage-payments">Main extra payment guide</a>
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
-    <p class="muted" style="margin:12px 0 0">Educational use only. Not tax or financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
   </section>
 </BaseLayout>

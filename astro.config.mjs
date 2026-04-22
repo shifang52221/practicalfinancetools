@@ -28,6 +28,10 @@ export default defineConfig({
             "/guides/extra-mortgage-payment-calculator",
             "/guides/mortgage-extra-principal-calculator",
             "/guides/calculate-mortgage-payoff-with-additional-principal-payments",
+            "/guides/extra-payment-escrow-not-affected",
+            "/guides/extra-payment-tax-deduction-impact",
+            "/guides/extra-payment-servicer-posting-rules",
+            "/guides/extra-payment-prepayment-penalty-checklist",
             "/guides/apr-tool",
             "/guides/apr-calculator-payment",
             "/guides/interest-rate-apr-calculator",
@@ -111,7 +115,6 @@ export default defineConfig({
           return false;
         if (/^\/guides\/pay-\d+-extra-on-mortgage$/.test(pathname)) return false;
         if (/^\/guides\/mortgage-lump-sum-\d+$/.test(pathname)) return false;
-        if (/^\/guides\/extra-payment-/.test(pathname)) return false;
         return true;
       }
     })

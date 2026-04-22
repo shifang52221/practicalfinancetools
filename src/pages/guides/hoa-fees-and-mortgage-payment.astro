@@ -5,18 +5,18 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "HOA Fees and Mortgage Payment (How to model them)";
 const description =
-  "HOA dues are part of your housing payment. Learn how to model HOA fees, special assessments, and cash flow impact. Educational use only.";
+  "Model HOA dues, assessment risk, and insurance gaps as housing costs that affect affordability without changing loan amortization. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/hoa-fees-and-mortgage-payment"
   lastUpdated={lastUpdated}
-  robots="noindex, follow"
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
+  robots="noindex, follow"
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -29,8 +29,8 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>HOA fees and your mortgage payment</h1>
     <p>
-      HOA dues are not part of your loan balance, but they do affect your monthly housing payment and DTI. This guide shows how
-      to include them in your estimates and plan for special assessments.
+      This page is for the buyer whose mortgage looks affordable until HOA dues, special assessments, or condo insurance gaps are
+      layered into the actual monthly housing burden.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
@@ -38,125 +38,67 @@ const lastUpdated = "2026-04-05";
       <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a>
     </div>
   </section>
+
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="HOA dues treatment inside housing-payment and DTI estimates, special-assessment and reserve-risk framing, and routing between mortgage payment, DTI, and affordability workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="HOA housing-cost review, assessment-risk framing, and routing between DTI, affordability, and housing-payment composition."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Use this guide when HOA dues are the missing part of the housing-payment estimate</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when the mortgage looks affordable until HOA dues or special assessments are layered into the monthly housing cost.</li>
+      <li>Use this page when the mortgage looks manageable until recurring association costs are added back in.</li>
       <li>If you need the full payment formula first, move to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
-      <li>If your next question is lender qualification, move next to <a href="/guides/mortgage-payment-dti-housing-payment">mortgage payment in DTI calculations</a>.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan amount, note rate, and term.</li>
-      <li>Taxes, insurance, HOA, and PMI assumptions.</li>
-      <li>Escrow rules or reserves used by the lender.</li>
-      <li>Time horizon if comparing scenarios.</li>
+      <li>If the next question is lender qualification, move next to <a href="/guides/mortgage-payment-dti-housing-payment">mortgage payment in DTI calculations</a>.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How HOA affects payment</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>HOA dues are added to the housing payment for DTI calculations.</li>
-      <li>They do not reduce principal, so they do not affect amortization.</li>
-      <li>Fees can change yearly and may include special assessments.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What to confirm</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Monthly dues amount and how often they can change.</li>
-      <li>What the HOA covers (insurance, maintenance, utilities).</li>
-      <li>Any pending special assessments or reserve shortfalls.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Modeling steps</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Add the HOA monthly dues to your housing payment input.</li>
-      <li>Use the total housing payment in DTI comparisons.</li>
-      <li>Stress test with a higher HOA amount if increases are likely.</li>
-    </ol>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Documents to review</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>HOA budget, reserves, and recent financials.</li>
-      <li>Master insurance policy coverage limits.</li>
-      <li>Special assessment history and planned projects.</li>
-      <li>Rules for dues increases or reassessments.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Why HOA is easy to miss</h2>
+    <h2 style="margin-top:0">Why HOA is easy to underestimate</h2>
     <p class="muted" style="margin:10px 0 0">
-      HOA dues do not show up in the loan balance or amortization schedule, so buyers often forget to include them when comparing homes.
-      But for cash flow and DTI, they behave like a recurring housing cost and can materially change the affordability picture.
+      HOA behaves like housing cost but not loan amortization. It does not reduce principal, it does not appear in the loan balance,
+      and that is exactly why buyers sometimes forget how powerfully it changes cash flow and DTI.
     </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Leaving HOA dues out of the mortgage payment estimate.</li>
-      <li>Ignoring special assessments that can raise monthly costs.</li>
-      <li>Assuming HOA includes insurance when it does not.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision inputs</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>HOA increase history and any planned hikes.</li>
-      <li>Reserve funding level and pending assessments.</li>
-      <li>Items covered by HOA vs your own budget.</li>
-      <li>Insurance coverage gaps between HOA and personal policy.</li>
-    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
+      <h2 style="margin-top:0">Base dues tell only part of the story</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
-        <li><a href="/calculators/debt-to-income-calculator">DTI calculator</a></li>
+        <li>Recurring dues should always be added to the housing payment.</li>
+        <li>Historic increases matter because low current dues can rise.</li>
+        <li>Budget weakness can show up through later fee hikes.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
+      <h2 style="margin-top:0">The hidden risk is often not the dues line</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/how-mortgage-payments-are-calculated">How mortgage payments are calculated</a></li>
-        <li><a href="/guides/mortgage-payment-dti-housing-payment">Mortgage payment in DTI calculations</a></li>
-        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
-        <li><a href="/guides/principal-and-interest-vs-escrow">Principal and interest vs escrow</a></li>
+        <li>special assessment risk can matter more than the base dues.</li>
+        <li>master policy can still leave personal coverage gaps.</li>
+        <li>Reserve underfunding can turn into future monthly strain.</li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">FAQ</h2>
-    <h3 style="margin:12px 0 0">Do lenders include HOA in DTI?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      Yes, HOA dues are typically included in the housing payment used for DTI.
-    </p>
-    <h3 style="margin:12px 0 0">Can HOA dues change after closing?</h3>
-    <p class="muted" style="margin:8px 0 0">
-      Yes. HOAs can raise dues or levy assessments, so keep a buffer for changes.
-    </p>
+    <h2 style="margin-top:0">The comparison that keeps people honest</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Compare the same home with and without HOA included in the housing payment.</li>
+      <li>Then stress test one assessment or dues increase scenario.</li>
+      <li>That shows whether the home is truly affordable or only looks acceptable when association costs are ignored.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to move to a different page</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If the question is DTI treatment, move to <a href="/guides/mortgage-payment-dti-housing-payment">mortgage payment in DTI calculations</a>.</li>
+      <li>If the issue is insurance composition, move to <a href="/guides/mortgage-payment-insurance-assumptions">mortgage payment insurance assumptions</a>.</li>
+      <li>If the real issue is whether the total payment still fits, move to <a href="/guides/mortgage-payment-affordability-checklist">mortgage payment affordability checklist</a>.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -185,9 +127,6 @@ const lastUpdated = "2026-04-05";
       <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-
-

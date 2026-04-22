@@ -5,9 +5,9 @@ import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Down Payment Impact on Mortgage Payments";
 const description =
-  "How down payment size changes monthly mortgage payments, PMI, and total cost. Educational use only.";
+  "Compare what a larger down payment really buys in monthly payment, PMI, and post-closing liquidity. Educational use only.";
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -15,7 +15,7 @@ const lastUpdated = "2026-04-05";
   canonicalPath="/guides/mortgage-payment-down-payment-impact"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
   robots="noindex, follow"
 >
   <section class="card hero">
@@ -29,136 +29,84 @@ const lastUpdated = "2026-04-05";
     </nav>
     <h1>Down payment impact on mortgage payments</h1>
     <p>
-      A larger down payment reduces the loan balance and can remove PMI, but it also uses more cash. This guide shows how to model
-      the payment impact and tradeoffs.
+      This page is for the buyer who knows a bigger down payment lowers the loan, but still needs to decide whether that cash should
+      reduce the payment or stay available after closing.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
-      <a class="btn" href="/guides/estimating-pmi-cost">Estimating PMI cost</a>
+      <a class="btn" href="/guides/mortgage-payment-pmi-thresholds">PMI thresholds</a>
       <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Affordability checklist</a>
     </div>
   </section>
+
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Down-payment-versus-reserves framing, PMI threshold and cash-to-close interpretation, and routing between mortgage payment, PMI, and affordability workflows."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Down-payment tradeoff review, reserve-versus-payment framing, and routing between PMI, closing-cash, and affordability decisions."
+    reviewedOn={lastUpdated}
   />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Use this guide when the main tradeoff is down payment versus reserves and PMI</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when the question is not just how to lower the payment, but whether using more cash upfront is worth the lower loan balance or lower PMI.</li>
-      <li>If you need the general payment formula first, move to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
-      <li>If PMI is the main variable driving the comparison, move next to <a href="/guides/mortgage-payment-pmi-thresholds">PMI thresholds and mortgage payments</a>.</li>
-    </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Mortgage payment inputs to verify</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Loan amount, note rate, and term.</li>
-      <li>Taxes, insurance, HOA, and PMI assumptions.</li>
-      <li>Escrow rules or reserves used by the lender.</li>
-      <li>Time horizon if comparing scenarios.</li>
+      <li>Use this page when the question is not just how to lower the payment, but whether using more cash upfront is actually worth it.</li>
+      <li>If you need the payment formula first, move to <a href="/guides/how-mortgage-payments-are-calculated">how mortgage payments are calculated</a>.</li>
+      <li>If PMI is the main comparison driver, move next to <a href="/guides/mortgage-payment-pmi-thresholds">PMI thresholds and mortgage payments</a>.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What changes with a bigger down payment</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Lower loan balance and monthly principal &amp; interest.</li>
-      <li>Potentially lower PMI or no PMI at 20%+ down.</li>
-      <li>Less cash available for reserves or investments.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario template</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Run 5%, 10%, and 20% down payment scenarios.</li>
-      <li>Compare the monthly payment and PMI impact.</li>
-      <li>Compare total interest over your expected horizon.</li>
-    </ol>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Ignoring cash reserves and emergency funds.</li>
-      <li>Assuming PMI is the same across all down payments.</li>
-      <li>Only comparing monthly payment and skipping total cost.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Cash-to-close checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Down payment amount for each scenario.</li>
-      <li>Estimated closing costs and prepaids.</li>
-      <li>Target cash reserves after closing.</li>
-      <li>Planned repairs or moving expenses.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision inputs</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Target reserve amount you want after closing.</li>
-      <li>PMI removal threshold you aim to reach.</li>
-      <li>Expected ownership horizon and refinance plans.</li>
-      <li>Rate quotes at different down payment levels.</li>
-      <li>Opportunity cost assumptions for the extra cash.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Break-even check</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Estimate how long it takes to offset the extra cash outlay.</li>
-      <li>Compare PMI savings vs higher cash reserves.</li>
-      <li>Consider investment alternatives for the cash difference.</li>
-      <li>Match the analysis to your planned ownership horizon.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Why this is a cash-management decision</h2>
+    <h2 style="margin-top:0">Start with the cash question, not the headline percentage</h2>
     <p class="muted" style="margin:10px 0 0">
-      A larger down payment can improve the monthly payment, but it can also leave you with less cushion for closing costs, repairs,
-      income shocks, or investment alternatives. That is why this comparison belongs beside affordability, PMI, and reserve planning rather than payment math alone.
+      20% down is not automatically the smartest use of cash. It can be the right move, but only after you compare the monthly
+      savings with what that same cash would do for reserve strength, repairs, and closing flexibility.
     </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Compare 5%, 10%, and 20% down side by side.</li>
-      <li>Include PMI, taxes, insurance, and HOA in each scenario.</li>
-      <li>Use the same rate and term for a clean comparison.</li>
-      <li>Track cash-to-close and remaining reserves.</li>
-      <li>Re-run if rates or home price change.</li>
-    </ul>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related tools</h2>
+      <h2 style="margin-top:0">What a bigger down payment can improve</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li>Lower loan balance and lower required payment.</li>
+        <li>Lower PMI cost or no PMI at all.</li>
+        <li>More room inside DTI if the housing payment was borderline.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Related guides</h2>
+      <h2 style="margin-top:0">What it can weaken</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/how-mortgage-payments-are-calculated">Mortgage payment math</a></li>
-        <li><a href="/guides/mortgage-payment-pmi-thresholds">PMI thresholds</a></li>
-        <li><a href="/guides/mortgage-payment-prepaids-and-reserves">Prepaids and reserves</a></li>
-        <li><a href="/guides/estimating-pmi-cost">Estimating PMI cost</a></li>
-        <li><a href="/guides/pmi-removal-vs-extra-principal">PMI removal vs extra principal</a></li>
-        <li><a href="/guides/what-is-piti">What is PITI?</a></li>
+        <li>Your reserve floor after closing.</li>
+        <li>Your ability to absorb repairs or escrow surprises.</li>
+        <li>Your flexibility if income or moving plans change early.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Do not over-credit the PMI threshold</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The PMI cliff is only one part of the decision. It matters, but so do the rate quote, the cash left after closing, and how
+      long you actually expect to keep the loan.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">The best comparison set is small and honest</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Run the payment at the actual down-payment levels you could fund.</li>
+      <li>Track monthly payment, PMI, cash to close, and reserves left after closing.</li>
+      <li>Then ask whether the extra cash is buying genuine safety or only a nicer-looking monthly number.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When to move to a different page</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If the question is PMI timing itself, move to <a href="/guides/mortgage-payment-pmi-thresholds">mortgage payment PMI thresholds</a>.</li>
+      <li>If the question is closing cash strain, move to <a href="/guides/mortgage-payment-prepaids-and-reserves">mortgage payment prepaids and reserves</a>.</li>
+      <li>If the broader decision is monthly payment versus total borrowing cost, move to <a href="/guides/mortgage-payment-total-cost-vs-payment">mortgage payment total cost vs payment</a>.</li>
+    </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -183,13 +131,10 @@ const lastUpdated = "2026-04-05";
     <h2 style="margin-top:0">Next steps</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/mortgage-payment-calculator">Run the payment calculator</a>
-      <a class="btn" href="/guides/estimating-pmi-cost">Estimate PMI cost</a>
-      <a class="btn" href="/guides/mortgage-payment-affordability-checklist">Check affordability</a>
+      <a class="btn" href="/guides/mortgage-payment-pmi-thresholds">Review PMI thresholds</a>
+      <a class="btn" href="/guides/mortgage-payment-prepaids-and-reserves">Review cash to close</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-
-

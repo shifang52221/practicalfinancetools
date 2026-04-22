@@ -18,7 +18,7 @@ const payoffB = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: 
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -26,7 +26,7 @@ const lastUpdated = "2026-04-05";
   canonicalPath="/guides/how-credit-card-interest-is-calculated"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -51,20 +51,20 @@ const lastUpdated = "2026-04-05";
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Credit-card daily-interest mechanics, statement-versus-simplified payoff framing, and routing between fixed-payment and minimum-payment payoff tools."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Statement-interest framing, average-daily-balance explanation, and reconciliation cues for grace-period loss, trailing interest, and calculator-versus-statement differences."
+    reviewedOn="2026-04-22"
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use this guide when daily interest mechanics are the missing piece</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when your statement interest does not line up with a simple monthly estimate and you need to understand why.</li>
-      <li>Use this page when average daily balance, daily periodic rate, or cycle timing is the part of the payoff math you do not trust yet.</li>
-      <li>If you are ready to test an exact payment next, move to the <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a> or the <a href="/calculators/minimum-payment-payoff-calculator">minimum payment payoff calculator</a>.</li>
-    </ul>
+    <h2 style="margin-top:0">Use this guide when the statement math looks wrong</h2>
+    <p class="muted" style="margin:10px 0 0">
+      This page is for the moment when your statement interest charge does not match the simple mental model of balance x APR / 12. The
+      goal is to reconcile statement math, not to choose a payoff method or explain minimum-payment drag.
+    </p>
   </section>
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Credit card inputs to verify</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
@@ -92,6 +92,15 @@ const lastUpdated = "2026-04-05";
         <li>Grace periods and promotional APRs can change interest behavior.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Why statements look stranger than simple payoff math</h2>
+    <p class="muted" style="margin:10px 0 0">
+      For most readers, average daily balance is usually the main reason the statement interest line looks different from a quick monthly
+      estimate. Payments that land mid-cycle, new purchases, cash advances, and cycle length can all change the interest charge even when
+      the APR itself looks familiar.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -162,6 +171,15 @@ const lastUpdated = "2026-04-05";
     <p class="muted" style="margin:12px 0 0">
       If you recently carried a balance and then paid in full, you may see a small "trailing" interest charge on the next statement. That's
       interest accrued between the statement close date and the date your payment posted.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Grace-period loss and trailing interest</h2>
+    <p class="muted" style="margin:10px 0 0">
+      grace-period loss and trailing interest are two of the most common reasons people think the statement is wrong. Carrying a balance
+      can remove the grace period on purchases, and a payoff that happens after the statement closes can still leave a small residual
+      interest amount on the next bill.
     </p>
   </section>
 
@@ -253,6 +271,22 @@ const lastUpdated = "2026-04-05";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Statement reconciliation checklist</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use this statement reconciliation checklist before deciding the statement is wrong or the calculator is broken.
+    </p>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Check whether you carried a balance in the prior cycle.</li>
+      <li>Check whether the billing cycle length changed from your rough estimate.</li>
+      <li>Check whether purchases, fees, or cash advances entered different APR buckets.</li>
+      <li>Check whether a payment posted after the statement date instead of before it.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      If those items explain the difference, the statement may be behaving normally even when a quick calculator estimate looks off.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">FAQ</h2>
     <h3 style="margin:12px 0 0">Do I pay interest if I pay the statement balance in full?</h3>
     <p class="muted" style="margin:8px 0 0">
@@ -305,7 +339,7 @@ const lastUpdated = "2026-04-05";
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-04-05
+      Last updated: 2026-04-22
     </p>
   </section>
 </BaseLayout>

@@ -1,21 +1,21 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { SITE } from "../../config/site";
-import { TRUST_PROFILES } from "../../config/trust";
 import { TOOLS } from "../../lib/tools";
 import AdSlot from "../../components/AdSlot.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = `Calculators | ${SITE.name}`;
 const description =
-  "Free debt and mortgage calculators: credit card payoff, APR (fees), DTI, mortgage payment, amortization, extra payments, and rent vs buy. Educational use only.";
-const lastUpdated = "2026-04-04";
+  "Choose the right calculator for APR, credit-card payoff, DTI, mortgage payment, rent vs buy, and extra-payment decisions. Educational use only.";
 
 const grouped = TOOLS.reduce<Record<string, typeof TOOLS>>((acc, t) => {
   (acc[t.category] ||= []).push(t);
   return acc;
 }, {});
 const slots = SITE.adsenseSlots;
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -26,25 +26,19 @@ const slots = SITE.adsenseSlots;
   reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
-    <h1>Calculators</h1>
+    <h1>Calculators: choose the right first model</h1>
     <p>
-      Pick a tool below. Each page includes inputs, clear results, and the calculation assumptions. For mortgage questions like
-      "amortization with extra payments", "one extra payment per year", and "biweekly vs extra principal", start with the mortgage tools
-      and compare scenarios.
+      Start with the question you are trying to answer. Calculator pages work best when the numeric job is already clear and you want the
+      fastest path to a baseline estimate.
     </p>
-    <p class="muted" style="margin:10px 0 0">
-      Popular entry points include the <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a> and
-      {" "}<a href="/calculators/apr-calculator">APR calculator</a>, plus the{" "}
-      <a href="/calculators/biweekly-mortgage-payment-calculator">biweekly mortgage calculator</a>.
-    </p>
+    <p class="muted" style="margin:10px 0 0">I want to compare two loan offers. I want to know how long payoff will take on one balance. I want to know whether an extra mortgage payment is realistic. Those are three different calculator jobs, and they should not start on the same tool.</p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
+      <a class="btn btn-primary" href="/calculators/apr-calculator">APR calculator</a>
+      <a class="btn" href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a>
       <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a>
-      <a class="btn" href="/calculators/apr-calculator">APR calculator</a>
-      <a class="btn" href="/calculators/minimum-payment-payoff-calculator">Credit card minimum payment calculator</a>
-      <a class="btn" href="/calculators/debt-snowball-calculator">Debt snowball calculator</a>
-      <a class="btn" href="/calculators/debt-avalanche-calculator">Debt avalanche calculator</a>
-      <a class="btn" href="/calculators/biweekly-mortgage-payment-calculator">Biweekly mortgage calculator</a>
+      <a class="btn" href="/calculators/debt-to-income-calculator">DTI calculator</a>
+      <a class="btn" href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a>
+      <a class="btn" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
     </div>
   </section>
 
@@ -52,114 +46,130 @@ const slots = SITE.adsenseSlots;
     writtenBy={TRUST_PROFILES.siteOwner}
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
-    reviewScope="Calculator directory curation, task-based routing, and strongest-path prioritization across the tool library."
-    reviewedOn="2026-04-04"
+    reviewScope="Calculator-index routing, first-tool prioritization, and the editorial rules for when readers should stay in the calculator layer versus switch to a topic hub or guide."
+    reviewedOn={lastUpdated}
   />
 
-  <section class="grid" style="margin-top:18px">
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">Start here</h2>
-      <p class="muted" style="margin:10px 0 0">
-        If you're comparing offers or planning payoff strategies, these short guides explain the concepts behind the calculators and link
-        to the right tool for your situation.
-      </p>
-      <p class="muted" style="margin:10px 0 0">
-      Prefer a workflow view? Browse <a href="/topics">Topics</a> for the <a href="/calculators/apr-calculator">APR calculator</a>,
-      <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>,{" "}
-      <a href="/calculators/rent-vs-buy-calculator">rent vs buy calculator</a>, and{" "}
-      <a href="/calculators/extra-payment-calculator">mortgage payoff calculator</a>.
-      </p>
-      <div class="btn-row" style="margin-top:12px">
-        <a class="btn" href="/guides/apr-vs-interest-rate">APR vs interest rate</a>
-        <a class="btn" href="/guides/apr-with-origination-fee">APR with origination fee</a>
-        <a class="btn" href="/guides/how-to-find-your-apr">How to find your APR</a>
-        <a class="btn" href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a>
-        <a class="btn" href="/guides/why-minimum-payments-take-so-long">Why minimum payments take so long</a>
-        <a class="btn" href="/guides/how-credit-card-interest-is-calculated">How credit card interest works</a>
-        <a class="btn" href="/guides/rent-vs-buy-break-even">Rent vs buy break-even guide</a>
-        <a class="btn" href="/guides/extra-mortgage-payments">Extra mortgage payments</a>
-        <a class="btn" href="/guides/amortization-with-extra-payments">Amortization with extra payments</a>
-        <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
-        <a class="btn" href="/guides/biweekly-vs-extra-principal">Biweekly vs extra principal</a>
-        <a class="btn" href="/guides/principal-only-extra-payments">Principal-only extra payments</a>
-        <a class="btn" href="/guides/principal-and-interest-vs-escrow">Principal and interest vs escrow</a>
-      </div>
-    </div>
-    <div class="card section prose col-6">
-      <h2 style="margin-top:0">How to get better answers</h2>
-      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>Use the same assumptions when comparing offers (term, fees, payment schedule).</li>
-        <li>Prefer real statement numbers for balances and APRs (not marketing rates).</li>
-        <li>Run a baseline, then change one input at a time (payment, rate, fee, or extra amount).</li>
-      </ul>
-    </div>
-  </section>
-
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Mortgage payoff workflow</h2>
-    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>
-        Estimate your baseline monthly cost (PITI + PMI) in the{" "}
-        <a href="/calculators/mortgage-payment-calculator">Mortgage Payment Calculator</a>.
-      </li>
-      <li>
-        See the principal-and-interest table in the{" "}
-        <a href="/calculators/amortization-schedule-calculator">Amortization Schedule Calculator</a>.
-      </li>
-      <li>
-        Compare extra principal scenarios (monthly extra, lump sum, or one extra payment per year) in the{" "}
-        <a href="/calculators/extra-payment-calculator">Extra Payment Mortgage Calculator</a>.
-      </li>
-      <li>
-        If you're considering biweekly payments, compare to an equivalent monthly extra in the{" "}
-        <a href="/calculators/biweekly-mortgage-payment-calculator">Biweekly Mortgage Payment Calculator</a>.
-      </li>
-    </ol>
-    <p class="muted" style="margin:12px 0 0">
-      If your lender offers biweekly programs, confirm whether payments are posted immediately or held and posted monthly.
+    <h2 style="margin-top:0">Choose the calculator job before you choose the tool</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The wrong calculator can produce a precise number for the wrong problem. Use the routing below to match the calculation job to the
+      best first model.
     </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">When to start here vs use a topic hub</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Start here when you already know the kind of calculator you need and want to run numbers quickly.</li>
-      <li>Use <a href="/topics">Topics</a> instead when the bigger question is a decision flow, such as rent vs buy, refinance timing, or payoff strategy choice.</li>
-      <li>If you need more explanation before entering numbers, move into <a href="/guides">Guides</a> after choosing the closest calculator.</li>
-    </ul>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Your calculator job</th>
+            <th>Best first calculator</th>
+            <th>Best next move</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>compare loan offers, fees, or borrowing cost</td>
+            <td><a href="/calculators/apr-calculator">APR calculator</a></td>
+            <td><a href="/topics/apr">APR topic</a> if you still need to sort out disclosures, fees, or time horizon.</td>
+          </tr>
+          <tr>
+            <td>one balance payoff or fixed monthly target</td>
+            <td><a href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a></td>
+            <td><a href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a> if the number needs interpretation.</td>
+          </tr>
+          <tr>
+            <td>multiple balances and payoff order</td>
+            <td>
+              <a href="/calculators/debt-snowball-calculator">Debt snowball</a> and{" "}
+              <a href="/calculators/debt-avalanche-calculator">debt avalanche</a>
+            </td>
+            <td><a href="/topics/credit-cards">Credit cards topic</a> if motivation versus interest-cost tradeoffs are still unclear.</td>
+          </tr>
+          <tr>
+            <td>housing payment or affordability estimate</td>
+            <td>
+              <a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a> or{" "}
+              <a href="/calculators/debt-to-income-calculator">DTI calculator</a>
+            </td>
+            <td><a href="/topics/debt-to-income">DTI topic</a> when you still need to choose between payment, qualification, or DTI branches.</td>
+          </tr>
+          <tr>
+            <td>rent-vs-buy scenario comparison</td>
+            <td><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a></td>
+            <td><a href="/topics/rent-vs-buy">Rent vs buy topic</a> if the real blocker is break-even, costs, or assumption setup.</td>
+          </tr>
+          <tr>
+            <td>extra principal or mortgage payoff acceleration</td>
+            <td><a href="/calculators/extra-payment-calculator">Extra payment calculator</a></td>
+            <td><a href="/topics/mortgage-payoff">Mortgage payoff topic</a> if you may need biweekly, lump sum, recast, or refinance alternatives.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Quick guide</h2>
+      <h2 style="margin-top:0">When calculators are the right layer</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li>
-          Paying off one card with a fixed payment: <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>.
-        </li>
-        <li>
-          Paying off many debts: <a href="/calculators/debt-snowball-calculator">Snowball</a> vs{" "}
-          <a href="/calculators/debt-avalanche-calculator">Avalanche</a>.
-        </li>
-        <li>
-          Shopping for loans: compare <a href="/calculators/apr-calculator">APR calculator (includes fees)</a>.
-        </li>
-        <li>
-          Home buying: estimate <a href="/calculators/mortgage-payment-calculator">monthly payment</a>, then review the{" "}
-          <a href="/calculators/amortization-schedule-calculator">amortization schedule</a>.
-        </li>
-        <li>
-          Rent vs buy: start with the <a href="/calculators/rent-vs-buy-calculator">rent vs buy calculator</a> and the{" "}
-          <a href="/guides/rent-vs-buy-break-even">break-even guide</a>.
-        </li>
+        <li>Use a calculator when you already know the numeric question and need a baseline estimate fast.</li>
+        <li>Run one clean baseline before changing assumptions like rate, fee, payment, or extra amount.</li>
+        <li>Use real statement or disclosure numbers whenever possible.</li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">What to verify</h2>
-      <p class="muted" style="margin:10px 0 0">
-        Lenders and card issuers may use different rounding, PMI rules, escrow assumptions, and fee structures. Treat
-        results as estimates and confirm final terms before making decisions.
-      </p>
+      <h2 style="margin-top:0">When to switch to topics or guides</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li>Use <a href="/topics">topics</a> when you do not yet know which sub-question owns the decision.</li>
+        <li>Use <a href="/guides">guides</a> when the number is easy to compute but hard to interpret.</li>
+        <li>If three calculators all seem plausible, step back to the topic hub before modeling more scenarios.</li>
+      </ul>
     </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <a class="card section prose col-6" href="/calculators/apr-calculator">
+      <h2 style="margin-top:0">APR and offer-comparison path</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Start here when the real question is total borrowing cost after fees, points, or lender credits.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/calculators/credit-card-payoff-calculator">
+      <h2 style="margin-top:0">One-balance payoff path</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Start here when a fixed monthly payment, payoff date, or total interest estimate is the main job.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/calculators/debt-snowball-calculator">
+      <h2 style="margin-top:0">Multi-balance payoff-order path</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Start here when the real question is motivation versus interest-cost tradeoff across multiple balances.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/calculators/mortgage-payment-calculator">
+      <h2 style="margin-top:0">Housing-payment and DTI path</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Start here when the job is payment fit, affordability, or a fast mortgage-and-DTI baseline.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/calculators/rent-vs-buy-calculator">
+      <h2 style="margin-top:0">Rent-vs-buy path</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Start here when hold period, upfront cash, and ownership-cost assumptions are driving the answer.
+      </p>
+    </a>
+    <a class="card section prose col-6" href="/calculators/extra-payment-calculator">
+      <h2 style="margin-top:0">Mortgage-payoff acceleration path</h2>
+      <p class="muted" style="margin:10px 0 0">
+        Start here when extra principal, payoff speed, and total-interest savings are the primary questions.
+      </p>
+    </a>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Browse the full calculator library</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If the primary paths above are close but not exact, the full library is still available below as a secondary browse layer.
+    </p>
   </section>
 
   <section style="margin-top:18px">
@@ -184,43 +194,23 @@ const slots = SITE.adsenseSlots;
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">FAQ</h2>
-    <details class="card2" style="padding:12px; margin:10px 0">
-      <summary style="cursor:pointer; font-weight:800">Are these calculators free?</summary>
-      <div class="muted" style="margin-top:8px">Yes. No account or signup is required.</div>
-    </details>
-    <details class="card2" style="padding:12px; margin:10px 0">
-      <summary style="cursor:pointer; font-weight:800">Where should I start for APR or payoff questions?</summary>
-      <div class="muted" style="margin-top:8px">
-        Use <a href="/topics">Topics</a> for step-by-step workflows that connect calculators and guides.
-      </div>
-    </details>
-    <details class="card2" style="padding:12px; margin:10px 0">
-      <summary style="cursor:pointer; font-weight:800">Do extra payments lower my monthly mortgage payment?</summary>
-      <div class="muted" style="margin-top:8px">
-        Usually no. Extra principal tends to shorten payoff time and reduce total interest. Your required payment usually stays the same
-        unless you recast the loan.
-      </div>
-    </details>
-    <details class="card2" style="padding:12px; margin:10px 0">
-      <summary style="cursor:pointer; font-weight:800">Do you store my inputs?</summary>
-      <div class="muted" style="margin-top:8px">
-        Calculations run in your browser. See <a href="/privacy-policy">Privacy Policy</a> and <a href="/cookie-notice">Cookie Notice</a>.
-      </div>
-    </details>
-    <details class="card2" style="padding:12px; margin:10px 0">
-      <summary style="cursor:pointer; font-weight:800">Is this financial advice?</summary>
-      <div class="muted" style="margin-top:8px">
-        No. This site is for educational use only. Verify results with lenders, card issuers, and professionals.
-      </div>
-    </details>
+    <h3 style="margin:12px 0 0">Are these calculators free?</h3>
+    <p class="muted" style="margin:8px 0 0">Yes. No account or signup is required.</p>
+    <h3 style="margin:12px 0 0">Do you store my inputs?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      Calculations run in your browser. See <a href="/privacy-policy">Privacy Policy</a> and <a href="/cookie-notice">Cookie Notice</a>.
+    </p>
+    <h3 style="margin:12px 0 0">Is this financial advice?</h3>
+    <p class="muted" style="margin:8px 0 0">
+      No. This site is for educational use only. Verify results with lenders, card issuers, and professionals.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How we prioritize calculator paths</h2>
+    <h2 style="margin-top:0">Updates</h2>
     <p class="muted" style="margin:10px 0 0">
-      The calculators surfaced first on this page are the strongest starting points for common finance jobs: payoff planning, APR comparison,
-      housing payment estimation, and rent-vs-buy scenario work. Narrower tools still appear below, but the main paths are intentionally
-      prioritized so users start with the clearest workflow before moving into edge cases.
+      This routing page is updated when stronger first-tool paths are identified, calculator roles shift, or the topic-versus-tool boundary needs to be clarified.
     </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>

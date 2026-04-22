@@ -34,7 +34,7 @@ const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -42,7 +42,7 @@ const lastUpdated = "2026-04-05";
   canonicalPath="/guides/why-minimum-payments-take-so-long"
   lastUpdated={lastUpdated}
   authorProfile={TRUST_PROFILES.siteOwner}
-  reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -67,18 +67,31 @@ const lastUpdated = "2026-04-05";
 
   <ReviewedByCard
     writtenBy={TRUST_PROFILES.siteOwner}
-    reviewedBy={TRUST_PROFILES.methodologyReview}
-    secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Minimum-payment formula behavior, interest-versus-principal payoff framing, and routing between minimum-rule and fixed-payment payoff tools."
-    reviewedOn="2026-04-05"
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Minimum-payment rule-drag framing, statement-warning interpretation, and routing from the warning into fixed-payment or broader payoff decisions."
+    reviewedOn="2026-04-22"
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use this guide when you need to see why minimum rules barely reduce principal</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when the statement minimum looks manageable but the balance still is not falling fast enough.</li>
-      <li>Use this page when you want to compare the minimum-payment path with a fixed-payment path before you change your monthly target.</li>
-      <li>If you already know the payment amount you want to test, move next to the <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>.</li>
+    <h2 style="margin-top:0">Use this guide when the minimum-payment warning feels abstract</h2>
+    <p class="muted" style="margin:10px 0 0">
+      This page is for the moment when the statement warning tells you payoff will take years, but you still cannot see why. The goal is
+      to make the drag visible before you decide on a new fixed payment, a payoff strategy, or a balance transfer idea.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">When minimum payment rule is the bottleneck</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The minimum payment rule is the bottleneck when you are paying every month but the statement still shows almost no progress. This
+      page is not mainly about daily interest mechanics. It is about how the issuer's required-payment formula turns a real payoff goal
+      into slow-motion balance decline.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Use this page when the statement warning is the main source of confusion.</li>
+      <li>Use the interest-calculation page only when the statement math itself seems inconsistent.</li>
+      <li>Use the payoff strategy hub when the real issue is choosing between several possible payoff paths.</li>
     </ul>
   </section>
 
@@ -88,6 +101,19 @@ const lastUpdated = "2026-04-05";
       <li>Use the <a href="/calculators/minimum-payment-payoff-calculator">minimum payment payoff calculator</a> when the statement minimum is the main input you need to understand.</li>
       <li>Use the <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a> when you already have a fixed payment target and want a payoff date.</li>
       <li>Use the <a href="/topics/credit-cards">credit cards topic hub</a> when you need to choose between single-balance payoff, minimum-rule modeling, or multi-card order strategy.</li>
+    </ul>
+    <p class="muted" style="margin:12px 0 0">
+      This page should explain the drag before you set a new payment target, so you can move into the right calculator with a clearer
+      idea of what needs to change.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Which minimum-payment question are you really trying to solve?</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Why is the balance falling so slowly even though I pay every month?</li>
+      <li>How much more would I need to pay to turn this into a real payoff plan?</li>
+      <li>Is my issue one balance, or do I really need a snowball or avalanche strategy?</li>
     </ul>
   </section>
 
@@ -151,6 +177,10 @@ Example: max(2% x $5,000, $35) = $100</code></pre>
     <p class="muted" style="margin:10px 0 0">
       When the minimum is a percentage of the balance, the required payment drops as the balance drops. That slows payoff because
       you never lock in a fixed payment amount.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      In plain English, shrinking required payment can keep the balance alive long after you expected it to be gone. Every time the
+      required payment falls, less of your cash goes to principal unless you deliberately hold your payment steady.
     </p>
     <ul class="muted" style="margin:12px 0 0; padding-left:18px">
       <li>Smaller balance means a smaller minimum and slower principal reduction.</li>
@@ -243,6 +273,10 @@ Example: max(2% x $5,000, $35) = $100</code></pre>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How to get out faster (levers you can model)</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The practical move is to turn the warning into a fixed-payment target instead of treating the minimum as a plan. Once you choose a
+      fixed monthly number, the balance can finally start behaving like a payoff project instead of a moving minimum-payment treadmill.
+    </p>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li><strong>Pay more than the minimum:</strong> even +$25 to $100/month can cut years off.</li>
       <li><strong>Stop new purchases:</strong> otherwise the balance can stay flat even when you pay every month.</li>
@@ -327,7 +361,7 @@ Example: max(2% x $5,000, $35) = $100</code></pre>
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-04-05
+      Last updated: 2026-04-22
     </p>
   </section>
 </BaseLayout>

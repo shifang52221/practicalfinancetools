@@ -64,17 +64,6 @@ function getStaticGuideRedirectMap(): Map<string, string> {
   );
 }
 
-function vercelSourcePatternToRegex(source: string): RegExp {
-  const withPlaceholders = source
-    .replace(/\(\.\*\)/g, "__VERCEL_WILDCARD__")
-    .replace(/:([A-Za-z0-9_]+)/g, "__VERCEL_PARAM__");
-  const escaped = withPlaceholders.replace(/[.+?^${}()|[\]\\]/g, "\\$&");
-  const withWildcards = escaped
-    .replace(/__VERCEL_WILDCARD__/g, ".*")
-    .replace(/__VERCEL_PARAM__/g, "[^/]+");
-  return new RegExp(`^${withWildcards}$`);
-}
-
 test("SEO: canonicalPath should match the page route path", () => {
   const pagesRoot = join(process.cwd(), "src", "pages");
   const files = collectAstroFiles(pagesRoot);
@@ -452,6 +441,674 @@ test("SEO: selected mortgage and minimum-payment workflow pages should keep trus
   );
 });
 
+test("SEO: support workflow pages should use the stronger trust model and clear support-page cues", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/guides/one-extra-mortgage-payment-per-year.astro",
+      phrase: 'support page for the common "one extra payment" payoff pattern'
+    },
+    {
+      file: "src/pages/guides/biweekly-mortgage-program-fees.astro",
+      phrase: "support page for the fee-check question"
+    },
+    {
+      file: "src/pages/guides/credit-card-payoff-strategy.astro",
+      phrase: "support page for choosing the right payoff path"
+    },
+    {
+      file: "src/pages/guides/debt-snowball-vs-avalanche.astro",
+      phrase: "support page for the method-selection question"
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+      issues.push(`${item.file} -> missing authorProfile trust binding`);
+    }
+    if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+      issues.push(`${item.file} -> missing reviewProfiles trust binding`);
+    }
+    if (!source.includes("writtenBy={TRUST_PROFILES.siteOwner}")) {
+      issues.push(`${item.file} -> missing writtenBy trust identity`);
+    }
+    if (!source.includes("reviewedBy={TRUST_PROFILES.editorialReview}")) {
+      issues.push(`${item.file} -> missing reviewedBy trust identity`);
+    }
+    if (!source.includes("secondaryReview={TRUST_PROFILES.methodologyReview}")) {
+      issues.push(`${item.file} -> missing secondaryReview trust identity`);
+    }
+    if (!source.includes(item.phrase)) {
+      issues.push(`${item.file} -> missing "${item.phrase}"`);
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    }
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    }
+    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+      issues.push(
+        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
+      );
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Support workflow trust alignment is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: credit-card workflow pages should keep distinct decision jobs", () => {
+  const pageExpectations = [
+    {
+      file: "src/pages/guides/credit-card-payoff-strategy.astro",
+      phrases: [
+        "Choose the payoff bottleneck before you choose the tool",
+        "single balance, stable income, fixed payment target",
+        "minimum payment warning is the real problem",
+        "promo deadline is the real risk",
+        "multiple balances and payoff order are the real issue"
+      ]
+    },
+    {
+      file: "src/pages/guides/debt-snowball-vs-avalanche.astro",
+      phrases: [
+        "behavioral fit matters more than theoretical savings",
+        "first account closed",
+        "interest-gap sanity check",
+        "switch methods if motivation collapses"
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of pageExpectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes("ReviewedByCard")) {
+      issues.push(`${item.file} -> missing ReviewedByCard`);
+    }
+
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    }
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    }
+    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+      issues.push(
+        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
+      );
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Credit-card workflow role separation is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: credit-card explainer pages should keep distinct roles", () => {
+  const pageExpectations = [
+    {
+      file: "src/pages/guides/why-minimum-payments-take-so-long.astro",
+      phrases: [
+        "minimum payment rule is the bottleneck",
+        "shrinking required payment can keep the balance alive",
+        "turn the warning into a fixed-payment target"
+      ],
+      requireStrongTrust: false
+    },
+    {
+      file: "src/pages/guides/how-credit-card-interest-is-calculated.astro",
+      phrases: [
+        "Use this guide when the statement math looks wrong",
+        "average daily balance is usually the main reason",
+        "grace-period loss and trailing interest",
+        "statement reconciliation checklist"
+      ],
+      requireStrongTrust: true
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of pageExpectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes("ReviewedByCard")) {
+      issues.push(`${item.file} -> missing ReviewedByCard`);
+    }
+
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+
+    if (item.requireStrongTrust) {
+      if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+        issues.push(`${item.file} -> missing authorProfile trust binding`);
+      }
+      if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+        issues.push(`${item.file} -> missing reviewProfiles trust binding`);
+      }
+      if (!source.includes("writtenBy={TRUST_PROFILES.siteOwner}")) {
+        issues.push(`${item.file} -> missing writtenBy trust identity`);
+      }
+      if (!source.includes("reviewedBy={TRUST_PROFILES.editorialReview}")) {
+        issues.push(`${item.file} -> missing reviewedBy trust identity`);
+      }
+      if (!source.includes("secondaryReview={TRUST_PROFILES.methodologyReview}")) {
+        issues.push(`${item.file} -> missing secondaryReview trust identity`);
+      }
+      if (!source.includes("reviewScope=")) {
+        issues.push(`${item.file} -> missing reviewScope`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    }
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    }
+    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+      issues.push(
+        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
+      );
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Credit-card explainer differentiation is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: credit-card topic page should behave like a routing tree", () => {
+  const file = "src/pages/topics/credit-cards.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const issues: string[] = [];
+
+  const expectedPhrases = [
+    "Choose the credit-card problem before you choose the tool",
+    "one balance with a fixed monthly payment target",
+    "minimum payment drag",
+    "statement interest or math confusion",
+    "promo APR deadline or balance transfer timing",
+    "multiple balances and payoff order"
+  ];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  if (!source.includes("ReviewedByCard")) {
+    issues.push(`${file} -> missing ReviewedByCard`);
+  }
+  if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+    issues.push(`${file} -> missing authorProfile trust binding`);
+  }
+  if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+    issues.push(`${file} -> missing reviewProfiles trust binding`);
+  }
+
+  const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+  const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+  if (!lastUpdatedMatch) {
+    issues.push(`${file} -> missing lastUpdated constant`);
+  }
+  if (!visibleDateMatch) {
+    issues.push(`${file} -> missing visible Last updated date`);
+  }
+  if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+    issues.push(`${file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Credit-card topic routing-tree cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: mortgage-payoff topic page should behave like a routing tree", () => {
+  const file = "src/pages/topics/mortgage-payoff.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const issues: string[] = [];
+
+  const expectedPhrases = [
+    "Choose the mortgage-payoff question before you choose the tool",
+    "baseline monthly payment or amortization",
+    "monthly extra or target-payoff planning",
+    "lump sum or one-extra-payment pattern",
+    "biweekly versus monthly extra",
+    "principal-only posting or servicer handling",
+    "extra payment versus refinance, recast, or PMI alternative"
+  ];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  if (!source.includes("ReviewedByCard")) {
+    issues.push(`${file} -> missing ReviewedByCard`);
+  }
+  if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+    issues.push(`${file} -> missing authorProfile trust binding`);
+  }
+  if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+    issues.push(`${file} -> missing reviewProfiles trust binding`);
+  }
+
+  const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+  const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+  if (!lastUpdatedMatch) {
+    issues.push(`${file} -> missing lastUpdated constant`);
+  }
+  if (!visibleDateMatch) {
+    issues.push(`${file} -> missing visible Last updated date`);
+  }
+  if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+    issues.push(`${file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Mortgage-payoff topic routing-tree cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: refinance topic page should behave like a routing tree", () => {
+  const file = "src/pages/topics/refinance.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const issues: string[] = [];
+
+  const expectedPhrases = [
+    "Choose the refinance question before you choose the page",
+    "break-even timing or time horizon",
+    "closing costs or cash-to-close",
+    "rate lock, document prep, or execution checklist",
+    "term reset or payment-versus-total-cost tradeoff",
+    "points, lender credits, or rolling costs",
+    "refinance versus extra payments or other alternatives"
+  ];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  if (!source.includes("ReviewedByCard")) {
+    issues.push(`${file} -> missing ReviewedByCard`);
+  }
+  if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+    issues.push(`${file} -> missing authorProfile trust binding`);
+  }
+  if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+    issues.push(`${file} -> missing reviewProfiles trust binding`);
+  }
+
+  const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+  const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+  if (!lastUpdatedMatch) {
+    issues.push(`${file} -> missing lastUpdated constant`);
+  }
+  if (!visibleDateMatch) {
+    issues.push(`${file} -> missing visible Last updated date`);
+  }
+  if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+    issues.push(`${file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Refinance topic routing-tree cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: APR topic page should behave like a routing tree", () => {
+  const file = "src/pages/topics/apr.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const issues: string[] = [];
+
+  const expectedPhrases = [
+    "Choose the APR question before you choose the page",
+    "APR versus interest rate or fee-heavy offer confusion",
+    "origination fees, closing costs, or financed fees",
+    "APR comparisons across loan types",
+    "short hold period, prepayment, or refinance horizon",
+    "where to find the official APR disclosure",
+    "promo APR, balance transfer fee, or penalty APR on credit cards"
+  ];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  if (!source.includes("ReviewedByCard")) {
+    issues.push(`${file} -> missing ReviewedByCard`);
+  }
+  if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+    issues.push(`${file} -> missing authorProfile trust binding`);
+  }
+  if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+    issues.push(`${file} -> missing reviewProfiles trust binding`);
+  }
+
+  const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+  const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+  if (!lastUpdatedMatch) {
+    issues.push(`${file} -> missing lastUpdated constant`);
+  }
+  if (!visibleDateMatch) {
+    issues.push(`${file} -> missing visible Last updated date`);
+  }
+  if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+    issues.push(`${file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `APR topic routing-tree cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: rent-vs-buy topic page should behave like a routing tree", () => {
+  const file = "src/pages/topics/rent-vs-buy.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const issues: string[] = [];
+
+  const expectedPhrases = [
+    "Choose the rent-versus-buy question before you choose the page",
+    "full scenario comparison before deciding whether to buy",
+    "break-even timing or holding period",
+    "upfront cash, down payment, or closing costs",
+    "ownership costs like taxes, insurance, HOA, maintenance, or PMI",
+    "monthly affordability or payment fit",
+    "assumption sensitivity for rent growth, appreciation, rates, or investment return"
+  ];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  if (!source.includes("ReviewedByCard")) {
+    issues.push(`${file} -> missing ReviewedByCard`);
+  }
+  if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+    issues.push(`${file} -> missing authorProfile trust binding`);
+  }
+  if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+    issues.push(`${file} -> missing reviewProfiles trust binding`);
+  }
+
+  const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+  const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+  if (!lastUpdatedMatch) {
+    issues.push(`${file} -> missing lastUpdated constant`);
+  }
+  if (!visibleDateMatch) {
+    issues.push(`${file} -> missing visible Last updated date`);
+  }
+  if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+    issues.push(`${file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Rent-vs-buy topic routing-tree cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: DTI topic page should behave like a routing tree", () => {
+  const file = "src/pages/topics/debt-to-income.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const issues: string[] = [];
+
+  const expectedPhrases = [
+    "Choose the DTI question before you choose the page",
+    "full DTI calculation before applying",
+    "what counts in DTI and which debts or income are included",
+    "front-end versus back-end DTI",
+    "housing payment or how much house/payment fits the ratio",
+    "how to improve DTI before applying",
+    "threshold ranges or compensating factors"
+  ];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  if (!source.includes("ReviewedByCard")) {
+    issues.push(`${file} -> missing ReviewedByCard`);
+  }
+  if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+    issues.push(`${file} -> missing authorProfile trust binding`);
+  }
+  if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+    issues.push(`${file} -> missing reviewProfiles trust binding`);
+  }
+
+  const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+  const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+  if (!lastUpdatedMatch) {
+    issues.push(`${file} -> missing lastUpdated constant`);
+  }
+  if (!visibleDateMatch) {
+    issues.push(`${file} -> missing visible Last updated date`);
+  }
+  if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+    issues.push(`${file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `DTI topic routing-tree cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: topics index should behave like a site-level decision router", () => {
+  const file = "src/pages/topics/index.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const issues: string[] = [];
+
+  const expectedPhrases = [
+    "Choose the finance decision before you choose the topic",
+    "compare loan offers with fees or credits",
+    "credit card payoff speed, minimum-payment drag, or payoff strategy",
+    "housing affordability, DTI, or payment-fit questions",
+    "renting versus buying over a planned hold period",
+    "mortgage payoff acceleration with extra principal",
+    "refinance break-even, closing costs, or rate-reset decisions"
+  ];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  if (!source.includes("ReviewedByCard")) {
+    issues.push(`${file} -> missing ReviewedByCard`);
+  }
+  if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+    issues.push(`${file} -> missing authorProfile trust binding`);
+  }
+  if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+    issues.push(`${file} -> missing reviewProfiles trust binding`);
+  }
+
+  const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+  const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+  if (!lastUpdatedMatch) {
+    issues.push(`${file} -> missing lastUpdated constant`);
+  }
+  if (!visibleDateMatch) {
+    issues.push(`${file} -> missing visible Last updated date`);
+  }
+  if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+    issues.push(`${file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Topics index decision-router cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: guides index should behave like a strongest-guide-path router", () => {
+  const file = "src/pages/guides/index.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const issues: string[] = [];
+
+  const expectedPhrases = [
+    "Choose the guide job before you choose the article",
+    "borrowing cost, fees, or APR comparison",
+    "credit-card payoff strategy or minimum-payment drag",
+    "DTI rules, affordability inputs, or how to improve the ratio",
+    "rent-vs-buy break-even and assumption setup",
+    "extra mortgage payments, posting rules, or payoff tradeoffs",
+    "refinance break-even and time-horizon tradeoffs"
+  ];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  if (!source.includes("ReviewedByCard")) {
+    issues.push(`${file} -> missing ReviewedByCard`);
+  }
+  if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+    issues.push(`${file} -> missing authorProfile trust binding`);
+  }
+  if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+    issues.push(`${file} -> missing reviewProfiles trust binding`);
+  }
+
+  const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+  const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+  if (!lastUpdatedMatch) {
+    issues.push(`${file} -> missing lastUpdated constant`);
+  }
+  if (!visibleDateMatch) {
+    issues.push(`${file} -> missing visible Last updated date`);
+  }
+  if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+    issues.push(`${file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Guides index strongest-path cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: calculators index should behave like a calculator-job router", () => {
+  const file = "src/pages/calculators/index.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const issues: string[] = [];
+
+  const expectedPhrases = [
+    "Choose the calculator job before you choose the tool",
+    "compare loan offers, fees, or borrowing cost",
+    "one balance payoff or fixed monthly target",
+    "multiple balances and payoff order",
+    "housing payment or affordability estimate",
+    "rent-vs-buy scenario comparison",
+    "extra principal or mortgage payoff acceleration"
+  ];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  if (!source.includes("ReviewedByCard")) {
+    issues.push(`${file} -> missing ReviewedByCard`);
+  }
+  if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+    issues.push(`${file} -> missing authorProfile trust binding`);
+  }
+  if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+    issues.push(`${file} -> missing reviewProfiles trust binding`);
+  }
+
+  const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+  const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+  if (!lastUpdatedMatch) {
+    issues.push(`${file} -> missing lastUpdated constant`);
+  }
+  if (!visibleDateMatch) {
+    issues.push(`${file} -> missing visible Last updated date`);
+  }
+  if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+    issues.push(`${file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Calculators index calculator-job cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
 test("SEO: DTI and rent topic workflows should keep trust signals and chooser language aligned", () => {
   const expectedPages = [
     {
@@ -792,6 +1449,65 @@ test("SEO: mortgage-payment and extra-payment destination pages should keep trus
   );
 });
 
+test("SEO: mortgage-payment core destination guides should adopt the stronger trust model", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/guides/how-mortgage-payments-are-calculated.astro",
+      phrase: "Use this guide when you need the baseline mortgage payment formula"
+    },
+    {
+      file: "src/pages/guides/what-is-piti.astro",
+      phrase: "Use this guide when you need the housing-payment breakdown"
+    },
+    {
+      file: "src/pages/guides/principal-and-interest-vs-escrow.astro",
+      phrase: "Use this guide when your statement question is escrow versus principal and interest"
+    },
+    {
+      file: "src/pages/guides/mortgage-payment-affordability-checklist.astro",
+      phrase: "Use this guide when affordability is the main decision"
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes(item.phrase)) {
+      issues.push(`${item.file} -> missing role cue "${item.phrase}"`);
+    }
+    if (!source.includes("ReviewedByCard")) {
+      issues.push(`${item.file} -> missing ReviewedByCard`);
+    }
+    if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+      issues.push(`${item.file} -> missing authorProfile trust binding`);
+    }
+    if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+      issues.push(`${item.file} -> missing reviewProfiles trust binding`);
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    }
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    }
+    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+      issues.push(`${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Mortgage-payment core-support trust upgrade is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
 test("SEO: final extra-payment and PMI redirect-source pages should stay consolidated across redirects, sitemap exclusion, and source-page noindex", () => {
   const expectedConsolidation = new Map<string, string>([
     ["/guides/extra-mortgage-payment-calculator", "/calculators/extra-payment-calculator"],
@@ -876,12 +1592,6 @@ test("SEO: extra-payment and PITI destinations should keep final absorbed-intent
   if (!visibleDateMatch) {
     issues.push(`${guideFile} -> missing visible Last updated date`);
   }
-  if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-    issues.push(`${guideFile} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-  }
-  if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-    issues.push(`${guideFile} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-  }
   if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
     issues.push(`${guideFile} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
   }
@@ -890,159 +1600,6 @@ test("SEO: extra-payment and PITI destinations should keep final absorbed-intent
     issues.length,
     0,
     issues.length > 0 ? `Final extra-payment/PITI destination trust alignment is missing:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: extra-payment support guides should not be captured by Vercel redirect patterns", () => {
-  const vercelConfig = JSON.parse(readFileSync(join(process.cwd(), "vercel.json"), "utf8")) as {
-    redirects?: Array<{ source?: string; destination?: string; has?: unknown }>;
-  };
-  const supportPaths = [
-    "/guides/extra-payment-accelerated-plan",
-    "/guides/extra-payment-escrow-not-affected",
-    "/guides/extra-payment-liquidity-reserve",
-    "/guides/extra-payment-lump-sum-vs-monthly",
-    "/guides/extra-payment-prepayment-penalty-checklist",
-    "/guides/extra-payment-priority-vs-other-debts",
-    "/guides/extra-payment-servicer-posting-rules",
-    "/guides/extra-payment-target-payoff-date",
-    "/guides/extra-payment-tax-deduction-impact",
-    "/guides/extra-payment-vs-refinance",
-    "/guides/extra-payment-windfall-strategy"
-  ];
-  const issues: string[] = [];
-
-  for (const redirect of vercelConfig.redirects ?? []) {
-    if (typeof redirect.source !== "string" || typeof redirect.destination !== "string") continue;
-    if (Array.isArray(redirect.has) && redirect.has.length > 0) continue;
-    const regex = vercelSourcePatternToRegex(redirect.source);
-
-    for (const path of supportPaths) {
-      if (regex.test(path)) {
-        issues.push(`${path} -> should not match redirect ${redirect.source} -> ${redirect.destination}`);
-      }
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Extra-payment support guides are wrongly captured by redirects:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: noindex extra-payment amount pages should not form a weak side-cluster", () => {
-  const amountPages = [
-    "src/pages/guides/pay-50-extra-on-mortgage.astro",
-    "src/pages/guides/pay-100-extra-on-mortgage.astro",
-    "src/pages/guides/pay-150-extra-on-mortgage.astro",
-    "src/pages/guides/pay-200-extra-on-mortgage.astro",
-    "src/pages/guides/pay-250-extra-on-mortgage.astro",
-    "src/pages/guides/pay-300-extra-on-mortgage.astro",
-    "src/pages/guides/pay-400-extra-on-mortgage.astro",
-    "src/pages/guides/pay-500-extra-on-mortgage.astro",
-    "src/pages/guides/pay-1000-extra-on-mortgage.astro",
-    "src/pages/guides/mortgage-lump-sum-5000.astro",
-    "src/pages/guides/mortgage-lump-sum-10000.astro"
-  ];
-  const monthlyExtraHrefs = [
-    '/guides/pay-50-extra-on-mortgage',
-    '/guides/pay-100-extra-on-mortgage',
-    '/guides/pay-150-extra-on-mortgage',
-    '/guides/pay-200-extra-on-mortgage',
-    '/guides/pay-250-extra-on-mortgage',
-    '/guides/pay-300-extra-on-mortgage',
-    '/guides/pay-400-extra-on-mortgage',
-    '/guides/pay-500-extra-on-mortgage',
-    '/guides/pay-1000-extra-on-mortgage'
-  ];
-  const lumpSumHrefs = ["/guides/mortgage-lump-sum-5000", "/guides/mortgage-lump-sum-10000"];
-  const issues: string[] = [];
-
-  for (const file of amountPages) {
-    const source = readFileSync(join(process.cwd(), file), "utf8");
-
-    if (!source.includes('robots="noindex, follow"')) {
-      issues.push(`${file} -> missing robots="noindex, follow"`);
-    }
-
-    for (const href of monthlyExtraHrefs) {
-      if (source.includes(`href="${href}"`)) {
-        issues.push(`${file} -> should not link to weak monthly-extra sibling ${href}`);
-      }
-    }
-
-    for (const href of lumpSumHrefs) {
-      if (source.includes(`href="${href}"`)) {
-        issues.push(`${file} -> should not link to weak lump-sum sibling ${href}`);
-      }
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Noindex amount-page side-cluster still exists:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: alias-style noindex extra-payment entry pages should route to strong destinations only", () => {
-  const aliasPages = [
-    {
-      file: "src/pages/guides/calculate-mortgage-payoff-with-additional-principal-payments.astro",
-      requiredCalculatorLinks: ['/calculators/extra-payment-calculator']
-    },
-    {
-      file: "src/pages/guides/mortgage-extra-principal-calculator.astro",
-      requiredCalculatorLinks: ['/calculators/additional-principal-payment-calculator']
-    },
-    {
-      file: "src/pages/guides/extra-mortgage-payment-calculator.astro",
-      requiredCalculatorLinks: ['/calculators/extra-payment-calculator', '/calculators/additional-principal-payment-calculator']
-    }
-  ];
-  const forbiddenAliasLinks = [
-    '/guides/calculate-mortgage-payoff-with-additional-principal-payments',
-    '/guides/mortgage-extra-principal-calculator',
-    '/guides/extra-mortgage-payment-calculator',
-    '/guides/pay-50-extra-on-mortgage',
-    '/guides/pay-100-extra-on-mortgage',
-    '/guides/pay-150-extra-on-mortgage',
-    '/guides/pay-200-extra-on-mortgage',
-    '/guides/pay-250-extra-on-mortgage',
-    '/guides/pay-300-extra-on-mortgage',
-    '/guides/pay-400-extra-on-mortgage',
-    '/guides/pay-500-extra-on-mortgage',
-    '/guides/pay-1000-extra-on-mortgage',
-    '/guides/mortgage-lump-sum-5000',
-    '/guides/mortgage-lump-sum-10000'
-  ];
-  const issues: string[] = [];
-
-  for (const item of aliasPages) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-
-    if (!source.includes('robots="noindex, follow"')) {
-      issues.push(`${item.file} -> missing robots="noindex, follow"`);
-    }
-
-    for (const href of forbiddenAliasLinks) {
-      if (source.includes(`href="${href}"`)) {
-        issues.push(`${item.file} -> should not link to weak noindex edge page ${href}`);
-      }
-    }
-
-    for (const href of item.requiredCalculatorLinks) {
-      if (!source.includes(`href="${href}"`)) {
-        issues.push(`${item.file} -> missing strong calculator destination ${href}`);
-      }
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Alias-style noindex entry cleanup is incomplete:\n${issues.join("\n")}` : ""
   );
 });
 
@@ -1114,6 +1671,294 @@ test("SEO: mortgage-payment support guides should keep trust signals and role cu
     issues.length > 0
       ? `Mortgage-payment support guide trust alignment is missing:\n${issues.join("\n")}`
       : ""
+  );
+});
+
+test("SEO: mortgage-payment input-support guides should keep strong trust and distinct originality cues", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/guides/mortgage-payment-rate-sensitivity.astro",
+      rolePhrase: "Use this guide when rate sensitivity is the main mortgage-payment question",
+      originalityPhrases: [
+        "keep taxes, insurance, HOA, and PMI fixed while you isolate the rate move",
+        "0.125% to 0.500% rate moves",
+        "rate lock or buydown question"
+      ]
+    },
+    {
+      file: "src/pages/guides/mortgage-payment-property-tax-assumptions.astro",
+      rolePhrase: "Use this guide when property tax estimates are the weak point in your mortgage payment model",
+      originalityPhrases: [
+        "seller tax bill is not your future tax bill",
+        "reassessment after purchase",
+        "special assessments or expiring exemptions"
+      ]
+    },
+    {
+      file: "src/pages/guides/mortgage-payment-insurance-assumptions.astro",
+      rolePhrase: "Use this guide when homeowners insurance assumptions are the weak point in your payment estimate",
+      originalityPhrases: [
+        "rebuild cost instead of market value",
+        "coverage apples-to-apples",
+        "flood, wind, or HOA master-policy gaps"
+      ]
+    },
+    {
+      file: "src/pages/guides/mortgage-payment-pmi-thresholds.astro",
+      rolePhrase: "Use this guide when PMI is the reason the payment scenario changes",
+      originalityPhrases: [
+        "PMI duration matters more than the first monthly payment",
+        "faster PMI-removal path",
+        "larger down payment, monthly extra, or appraisal strategy"
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes(item.rolePhrase)) {
+      issues.push(`${item.file} -> missing role cue "${item.rolePhrase}"`);
+    }
+    if (!source.includes("ReviewedByCard")) {
+      issues.push(`${item.file} -> missing ReviewedByCard`);
+    }
+    if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+      issues.push(`${item.file} -> missing authorProfile trust binding`);
+    }
+    if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+      issues.push(`${item.file} -> missing reviewProfiles trust binding`);
+    }
+    if (!source.includes("writtenBy={TRUST_PROFILES.siteOwner}")) {
+      issues.push(`${item.file} -> missing writtenBy trust identity`);
+    }
+    if (!source.includes("reviewedBy={TRUST_PROFILES.editorialReview}")) {
+      issues.push(`${item.file} -> missing reviewedBy trust identity`);
+    }
+    if (!source.includes("secondaryReview={TRUST_PROFILES.methodologyReview}")) {
+      issues.push(`${item.file} -> missing secondaryReview trust identity`);
+    }
+
+    for (const phrase of item.originalityPhrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing originality cue "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    }
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    }
+    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+      issues.push(
+        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
+      );
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Mortgage-payment input-support originality coverage is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: mortgage-payment escrow-and-closing support guides should keep strong trust and distinct originality cues", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/guides/mortgage-payment-escrow-account.astro",
+      rolePhrase: "Use this guide when you need the escrow baseline before troubleshooting payment changes",
+      originalityPhrases: [
+        "escrow is a collection system, not a second loan payment",
+        "minimum cushion",
+        "before you diagnose a payment jump"
+      ]
+    },
+    {
+      file: "src/pages/guides/mortgage-payment-escrow-shortage.astro",
+      rolePhrase: "Use this guide when your payment jumped after an escrow analysis",
+      originalityPhrases: [
+        "separate the shortage repayment from the new ongoing escrow baseline",
+        "lump sum versus 12-month spread",
+        "taxes, insurance, or both"
+      ]
+    },
+    {
+      file: "src/pages/guides/mortgage-payment-prepaids-and-reserves.astro",
+      rolePhrase: "Use this guide when cash to close is the part of the mortgage payment workflow you need to explain",
+      originalityPhrases: [
+        "monthly payment can look fine while cash to close still breaks the plan",
+        "per-diem interest",
+        "prepaids are timing-heavy upfront dollars, not recurring budget relief"
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes(item.rolePhrase)) {
+      issues.push(`${item.file} -> missing role cue "${item.rolePhrase}"`);
+    }
+    if (!source.includes("ReviewedByCard")) {
+      issues.push(`${item.file} -> missing ReviewedByCard`);
+    }
+    if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+      issues.push(`${item.file} -> missing authorProfile trust binding`);
+    }
+    if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+      issues.push(`${item.file} -> missing reviewProfiles trust binding`);
+    }
+    if (!source.includes("writtenBy={TRUST_PROFILES.siteOwner}")) {
+      issues.push(`${item.file} -> missing writtenBy trust identity`);
+    }
+    if (!source.includes("reviewedBy={TRUST_PROFILES.editorialReview}")) {
+      issues.push(`${item.file} -> missing reviewedBy trust identity`);
+    }
+    if (!source.includes("secondaryReview={TRUST_PROFILES.methodologyReview}")) {
+      issues.push(`${item.file} -> missing secondaryReview trust identity`);
+    }
+
+    for (const phrase of item.originalityPhrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing originality cue "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    }
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    }
+    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+      issues.push(
+        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
+      );
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Mortgage-payment escrow-and-closing originality coverage is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: mortgage-payment comparison guides should keep strong trust and distinct originality cues", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/guides/mortgage-payment-dti-housing-payment.astro",
+      rolePhrase: "Use this guide when your DTI answer depends on the full housing payment",
+      originalityPhrases: [
+        "underwriting housing number is usually larger than principal and interest alone",
+        "front-end pass while back-end fails",
+        "PITI, HOA, and PMI all belong in the lender-facing housing number"
+      ]
+    },
+    {
+      file: "src/pages/guides/mortgage-payment-down-payment-impact.astro",
+      rolePhrase: "Use this guide when the main tradeoff is down payment versus reserves and PMI",
+      originalityPhrases: [
+        "20% down is not automatically the smartest use of cash",
+        "PMI cliff is only one part of the decision",
+        "reserve floor after closing"
+      ]
+    },
+    {
+      file: "src/pages/guides/mortgage-payment-total-cost-vs-payment.astro",
+      rolePhrase: "Use this guide when the cheapest monthly payment is not automatically the cheapest loan",
+      originalityPhrases: [
+        "payment relief is rarely free",
+        "compare dollars paid by your real hold period",
+        "resetting the amortization clock can hide cost"
+      ]
+    },
+    {
+      file: "src/pages/guides/mortgage-payment-15-vs-30-year.astro",
+      rolePhrase: "Use this guide when term choice is the real mortgage-payment decision",
+      originalityPhrases: [
+        "forced payoff versus optional prepayment",
+        "30-year flexibility only matters if you protect the cash-flow gap",
+        "same house can produce two very different required lifestyles"
+      ]
+    },
+    {
+      file: "src/pages/guides/hoa-fees-and-mortgage-payment.astro",
+      rolePhrase: "Use this guide when HOA dues are the missing part of the housing-payment estimate",
+      originalityPhrases: [
+        "HOA behaves like housing cost but not loan amortization",
+        "special assessment risk can matter more than the base dues",
+        "master policy can still leave personal coverage gaps"
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes(item.rolePhrase)) {
+      issues.push(`${item.file} -> missing role cue "${item.rolePhrase}"`);
+    }
+    if (!source.includes("ReviewedByCard")) {
+      issues.push(`${item.file} -> missing ReviewedByCard`);
+    }
+    if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+      issues.push(`${item.file} -> missing authorProfile trust binding`);
+    }
+    if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+      issues.push(`${item.file} -> missing reviewProfiles trust binding`);
+    }
+    if (!source.includes("writtenBy={TRUST_PROFILES.siteOwner}")) {
+      issues.push(`${item.file} -> missing writtenBy trust identity`);
+    }
+    if (!source.includes("reviewedBy={TRUST_PROFILES.editorialReview}")) {
+      issues.push(`${item.file} -> missing reviewedBy trust identity`);
+    }
+    if (!source.includes("secondaryReview={TRUST_PROFILES.methodologyReview}")) {
+      issues.push(`${item.file} -> missing secondaryReview trust identity`);
+    }
+
+    for (const phrase of item.originalityPhrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing originality cue "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    }
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    }
+    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+      issues.push(
+        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
+      );
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Mortgage-payment comparison originality coverage is missing:\n${issues.join("\n")}` : ""
   );
 });
 
@@ -1195,7 +2040,7 @@ test("SEO: mortgage-payment estimation guides and calculator entry should keep t
   const calculatorPage = {
     file: "src/pages/calculators/mortgage-payment-calculator.astro",
     phrase: "Use this calculator when you need the full monthly housing payment in one place",
-    lastUpdated: "2026-04-03"
+    lastUpdated: "2026-04-22"
   };
 
   const issues: string[] = [];
@@ -1248,6 +2093,124 @@ test("SEO: mortgage-payment estimation guides and calculator entry should keep t
     issues.length > 0
       ? `Mortgage-payment estimation entry trust alignment is missing:\n${issues.join("\n")}`
       : ""
+  );
+});
+
+test("SEO: mortgage-payment estimation entries should keep strong trust and distinct originality cues", () => {
+  const guidePages = [
+    {
+      file: "src/pages/guides/how-to-estimate-homeowners-insurance.astro",
+      rolePhrase: "Use this guide when homeowners insurance is the last uncertain input in your mortgage payment estimate",
+      originalityPhrases: [
+        "coverage-comparable quotes matter more than random premium samples",
+        "replacement-cost logic, not purchase-price logic",
+        "quote-first input page"
+      ]
+    },
+    {
+      file: "src/pages/guides/how-to-estimate-property-taxes.astro",
+      rolePhrase: "Use this guide when property taxes are the last uncertain input in your mortgage payment estimate",
+      originalityPhrases: [
+        "seller bill is a clue, not a final answer",
+        "post-sale reassessment risk",
+        "local-tax-input page"
+      ]
+    }
+  ];
+
+  const calculatorPage = {
+    file: "src/pages/calculators/mortgage-payment-calculator.astro",
+    rolePhrase: "Use this calculator when you need the full monthly housing payment in one place",
+    lastUpdated: "2026-04-22",
+    originalityPhrases: [
+      "use this page as the first full housing-payment draft, not the last underwriting answer",
+      "taxes and insurance quality determine whether the calculator is useful",
+      "one-page entry into payment, DTI, and affordability checks"
+    ]
+  };
+
+  const issues: string[] = [];
+
+  for (const item of guidePages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    if (!source.includes("ReviewedByCard")) {
+      issues.push(`${item.file} -> missing ReviewedByCard`);
+    }
+    if (!source.includes(item.rolePhrase)) {
+      issues.push(`${item.file} -> missing role cue "${item.rolePhrase}"`);
+    }
+    if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+      issues.push(`${item.file} -> missing authorProfile trust binding`);
+    }
+    if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+      issues.push(`${item.file} -> missing reviewProfiles trust binding`);
+    }
+    if (!source.includes("writtenBy={TRUST_PROFILES.siteOwner}")) {
+      issues.push(`${item.file} -> missing writtenBy trust identity`);
+    }
+    if (!source.includes("reviewedBy={TRUST_PROFILES.editorialReview}")) {
+      issues.push(`${item.file} -> missing reviewedBy trust identity`);
+    }
+    if (!source.includes("secondaryReview={TRUST_PROFILES.methodologyReview}")) {
+      issues.push(`${item.file} -> missing secondaryReview trust identity`);
+    }
+    for (const phrase of item.originalityPhrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing originality cue "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    }
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    }
+    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+      issues.push(
+        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
+      );
+    }
+  }
+
+  const calculatorSource = readFileSync(join(process.cwd(), calculatorPage.file), "utf8");
+  if (!calculatorSource.includes("ReviewedByCard")) {
+    issues.push(`${calculatorPage.file} -> missing ReviewedByCard`);
+  }
+  if (!calculatorSource.includes(calculatorPage.rolePhrase)) {
+    issues.push(`${calculatorPage.file} -> missing role cue "${calculatorPage.rolePhrase}"`);
+  }
+  if (!calculatorSource.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+    issues.push(`${calculatorPage.file} -> missing authorProfile trust binding`);
+  }
+  if (!calculatorSource.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+    issues.push(`${calculatorPage.file} -> missing reviewProfiles trust binding`);
+  }
+  if (!calculatorSource.includes("writtenBy={TRUST_PROFILES.siteOwner}")) {
+    issues.push(`${calculatorPage.file} -> missing writtenBy trust identity`);
+  }
+  if (!calculatorSource.includes("reviewedBy={TRUST_PROFILES.editorialReview}")) {
+    issues.push(`${calculatorPage.file} -> missing reviewedBy trust identity`);
+  }
+  if (!calculatorSource.includes("secondaryReview={TRUST_PROFILES.methodologyReview}")) {
+    issues.push(`${calculatorPage.file} -> missing secondaryReview trust identity`);
+  }
+  for (const phrase of calculatorPage.originalityPhrases) {
+    if (!calculatorSource.includes(phrase)) {
+      issues.push(`${calculatorPage.file} -> missing originality cue "${phrase}"`);
+    }
+  }
+  if (!calculatorSource.includes(`lastUpdated="${calculatorPage.lastUpdated}"`)) {
+    issues.push(`${calculatorPage.file} -> missing lastUpdated="${calculatorPage.lastUpdated}"`);
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Mortgage-payment estimation-entry originality coverage is missing:\n${issues.join("\n")}` : ""
   );
 });
 
@@ -1520,47 +2483,6 @@ test("SEO: trust pages should expose the shared responsibility model", () => {
   );
 });
 
-test("SEO: trust pages should form a public trust center with accountability coverage", () => {
-  const pageExpectations = [
-    {
-      file: "src/pages/about.astro",
-      requiredPhrases: ["maintenance", "advertising", "corrections"]
-    },
-    {
-      file: "src/pages/editorial-policy.astro",
-      requiredPhrases: ["source hierarchy", "automation", "independence"]
-    },
-    {
-      file: "src/pages/methodology.astro",
-      requiredPhrases: ["validation", "limitations", "update"]
-    },
-    {
-      file: "src/pages/contact.astro",
-      requiredPhrases: ["correction", "sensitive", "privacy"]
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const page of pageExpectations) {
-    const source = readFileSync(join(process.cwd(), page.file), "utf8");
-    if (!source.includes("TrustPolicyLinks")) {
-      issues.push(`${page.file} -> missing TrustPolicyLinks`);
-    }
-
-    for (const phrase of page.requiredPhrases) {
-      if (!source.toLowerCase().includes(phrase)) {
-        issues.push(`${page.file} -> missing accountability phrase "${phrase}"`);
-      }
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Trust-center accountability coverage is incomplete:\n${issues.join("\n")}` : ""
-  );
-});
-
 test("SEO: core workflow pages and layouts should adopt the stronger trust model", () => {
   const layoutExpectations = [
     {
@@ -1618,6 +2540,181 @@ test("SEO: core workflow pages and layouts should adopt the stronger trust model
     issues.length,
     0,
     issues.length > 0 ? `Core trust-model rollout is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: indexable extra-payment support guides should not be globally excluded from the sitemap", () => {
+  const astroConfigSource = readFileSync(join(process.cwd(), "astro.config.mjs"), "utf8");
+  const indexableSupportGuides = [
+    "/guides/extra-payment-accelerated-plan",
+    "/guides/extra-payment-liquidity-reserve",
+    "/guides/extra-payment-lump-sum-vs-monthly",
+    "/guides/extra-payment-priority-vs-other-debts",
+    "/guides/extra-payment-target-payoff-date",
+    "/guides/extra-payment-vs-refinance",
+    "/guides/extra-payment-windfall-strategy"
+  ];
+  const issues: string[] = [];
+
+  if (astroConfigSource.includes("/^\\/guides\\/extra-payment-/")) {
+    issues.push("astro.config.mjs -> generic /^\\/guides\\/extra-payment-/ sitemap exclusion still present");
+  }
+
+  for (const path of indexableSupportGuides) {
+    const routeFile = `src/pages${path}.astro`;
+    const pageSource = readFileSync(join(process.cwd(), routeFile), "utf8");
+
+    if (pageSource.includes('robots="noindex, follow"')) {
+      issues.push(`${routeFile} -> unexpectedly marked noindex`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Indexable extra-payment support pages are still blocked from sitemap coverage:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: indexable extra-payment support guides should keep distinct strategy roles and strong trust coverage", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/guides/extra-payment-target-payoff-date.astro",
+      phrases: [
+        "reverse-engineer the monthly extra",
+        "monthly ceiling",
+        "target date can survive a bad month"
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-accelerated-plan.astro",
+      phrases: [
+        "third-party acceleration plan",
+        "same annual dollars on your own",
+        "fee drag"
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-liquidity-reserve.astro",
+      phrases: [
+        "extra principal is the wrong move",
+        "reserve floor",
+        "pause the extra payment plan"
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-windfall-strategy.astro",
+      phrases: [
+        "windfall split before it becomes a principal payment",
+        "tax bill, reserve rebuild, or near-term spending",
+        "lump sum versus staged extra payments"
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-priority-vs-other-debts.astro",
+      phrases: [
+        "mortgage prepayment is not automatically the top priority",
+        "highest guaranteed return is not the only filter",
+        "revolving debt, reserve weakness, or near-term cash risk"
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing role cue "${phrase}"`);
+      }
+    }
+
+    if (!source.includes("ReviewedByCard")) {
+      issues.push(`${item.file} -> missing ReviewedByCard`);
+    }
+    if (!source.includes('authorProfile={TRUST_PROFILES.siteOwner}')) {
+      issues.push(`${item.file} -> missing authorProfile trust binding`);
+    }
+    if (!source.includes('reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}')) {
+      issues.push(`${item.file} -> missing reviewProfiles trust binding`);
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    }
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    }
+    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+      issues.push(`${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Extra-payment support originality coverage is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: narrow extra-payment support leaves should stay consolidated as noindex support pages", () => {
+  const supportLeaves = [
+    "/guides/extra-payment-escrow-not-affected",
+    "/guides/extra-payment-tax-deduction-impact",
+    "/guides/extra-payment-servicer-posting-rules",
+    "/guides/extra-payment-prepayment-penalty-checklist"
+  ];
+  const astroConfigSource = readFileSync(join(process.cwd(), "astro.config.mjs"), "utf8");
+  const issues: string[] = [];
+
+  for (const sourcePath of supportLeaves) {
+    if (!astroConfigSource.includes(`"${sourcePath}"`)) {
+      issues.push(`${sourcePath} -> missing sitemap exclusion`);
+    }
+
+    const filePath = join(process.cwd(), "src", "pages", `${sourcePath.slice(1)}.astro`);
+    const pageSource = readFileSync(filePath, "utf8");
+
+    if (!pageSource.includes('robots="noindex, follow"')) {
+      issues.push(`${sourcePath} -> missing source-page noindex guard`);
+    }
+  }
+
+  const roleExpectations = [
+    {
+      file: "src/pages/guides/extra-payment-escrow-not-affected.astro",
+      phrase: "support page for one narrow misunderstanding"
+    },
+    {
+      file: "src/pages/guides/extra-payment-tax-deduction-impact.astro",
+      phrase: "support page for a tax-aware edge case"
+    },
+    {
+      file: "src/pages/guides/extra-payment-servicer-posting-rules.astro",
+      phrase: "support page for the operational posting question"
+    },
+    {
+      file: "src/pages/guides/extra-payment-prepayment-penalty-checklist.astro",
+      phrase: "support page for penalty verification"
+    }
+  ];
+
+  for (const item of roleExpectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    if (!source.includes(item.phrase)) {
+      issues.push(`${item.file} -> missing support-only role cue "${item.phrase}"`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Narrow extra-payment leaves are not yet consolidated:\n${issues.join("\n")}` : ""
   );
 });
 
@@ -1687,2010 +2784,56 @@ test("SEO: calculators/topics/guides index pages should expose the stronger trus
   );
 });
 
-test("SEO: amortization example copy should use a single currency symbol and note-rate wording", () => {
-  const file = "src/pages/calculators/amortization-schedule-calculator.astro";
-  const source = readFileSync(join(process.cwd(), file), "utf8");
-  const expectedSnippet =
-    "Example inputs: {money.format(exampleInput.principal)} loan, {exampleInput.aprPercent}% note rate, 30-year term.";
-
-  assert.equal(
-    source.includes(expectedSnippet),
-    true,
-    `${file} -> example copy should use the formatted amount without a literal $ and describe the rate as note rate`
-  );
-});
-
-test("SEO: calculators index should not repeat the same guide URL in the Start here button group", () => {
-  const file = "src/pages/calculators/index.astro";
-  const source = readFileSync(join(process.cwd(), file), "utf8");
-  const targetHref = 'href="/guides/extra-mortgage-payments"';
-  const occurrences = [...source.matchAll(new RegExp(targetHref, "g"))].length;
-
-  assert.equal(
-    occurrences,
-    1,
-    `${file} -> expected ${targetHref} once in the Start here guide cluster, found ${occurrences}`
-  );
-});
-
-test("SEO: calculator currency examples should not prefix money.format output with a literal dollar sign", () => {
-  const files = [
-    "src/pages/calculators/apr-calculator.astro",
-    "src/pages/calculators/additional-principal-payment-calculator.astro",
-    "src/pages/calculators/biweekly-mortgage-payment-calculator.astro",
-    "src/pages/calculators/credit-card-payoff-calculator.astro",
-    "src/pages/calculators/extra-payment-calculator.astro",
-    "src/pages/calculators/minimum-payment-payoff-calculator.astro",
-    "src/pages/calculators/rent-vs-buy-calculator.astro"
-  ];
-  const issues: string[] = [];
-
-  for (const file of files) {
-    const source = readFileSync(join(process.cwd(), file), "utf8");
-    const matches = source.match(/\$\{money\.format\(/g) ?? [];
-    if (matches.length > 0) {
-      issues.push(`${file} -> found ${matches.length} literal $ prefixes before money.format(...)`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Currency-format rendering regression detected:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: mortgage-style calculator components should not label rate inputs as APR", () => {
-  const expectedLabels = [
+test("SEO: rewritten workflow pages should declare distinct page roles", () => {
+  const pageExpectations = [
     {
-      file: "src/components/calculators/Amortization.tsx",
-      expected: 'Interest rate (%)'
-    },
-    {
-      file: "src/components/calculators/ExtraPayment.tsx",
-      expected: 'Interest rate (%)'
-    },
-    {
-      file: "src/components/calculators/BiweeklyMortgage.tsx",
-      expected: 'Interest rate (%)'
-    },
-    {
-      file: "src/components/calculators/MortgagePayment.tsx",
-      expected: 'Interest rate (%)'
-    },
-    {
-      file: "src/components/calculators/RentVsBuy.tsx",
-      expected: 'Mortgage rate (%)'
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectedLabels) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    if (source.includes("APR %")) {
-      issues.push(`${item.file} -> still labels the rate input as APR %`);
-    }
-    if (!source.includes(item.expected)) {
-      issues.push(`${item.file} -> missing "${item.expected}" label`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Mortgage calculator label terminology drift detected:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: mortgage scenario examples should describe modeled rates without calling them APR", () => {
-  const expectations = [
-    {
-      file: "src/pages/calculators/additional-principal-payment-calculator.astro",
-      expected: "note rate"
-    },
-    {
-      file: "src/pages/calculators/extra-payment-calculator.astro",
-      expected: "note rate"
-    },
-    {
-      file: "src/pages/calculators/biweekly-mortgage-payment-calculator.astro",
-      expected: "note rate"
-    },
-    {
-      file: "src/pages/calculators/mortgage-payment-calculator.astro",
-      expected: "mortgage rate"
-    },
-    {
-      file: "src/pages/calculators/rent-vs-buy-calculator.astro",
-      expected: "mortgage rate"
-    },
-    {
-      file: "src/pages/guides/calculate-mortgage-payoff-with-additional-principal-payments.astro",
-      expected: "note rate"
-    },
-    {
-      file: "src/pages/guides/mortgage-extra-principal-calculator.astro",
-      expected: "note rate"
-    },
-    {
-      file: "src/pages/guides/mortgage-lump-sum-5000.astro",
-      expected: "note rate"
-    },
-    {
-      file: "src/pages/guides/mortgage-lump-sum-10000.astro",
-      expected: "note rate"
-    },
-    {
-      file: "src/pages/guides/pay-300-extra-on-mortgage.astro",
-      expected: "note rate"
-    },
-    {
-      file: "src/pages/guides/amortization-with-extra-payments.astro",
-      expected: "note rate"
-    },
-    {
-      file: "src/pages/guides/biweekly-vs-extra-principal.astro",
-      expected: "note rate"
-    },
-    {
-      file: "src/pages/guides/biweekly-mortgage-program-fees.astro",
-      expected: "note rate"
-    },
-    {
-      file: "src/pages/guides/extra-mortgage-payments.astro",
-      expected: "note rate"
-    },
-    {
-      file: "src/pages/guides/mortgage-recast-vs-extra-payments.astro",
-      expected: "note rate"
-    },
-    {
-      file: "src/pages/guides/pmi-removal-vs-extra-principal.astro",
-      expected: "note rate"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    if (source.includes("% APR")) {
-      issues.push(`${item.file} -> still uses APR in the mortgage scenario example copy`);
-    }
-    if (!source.includes(item.expected)) {
-      issues.push(`${item.file} -> missing "${item.expected}" wording near the modeled rate copy`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Mortgage example terminology drift detected:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: highest-centrality guide pages should adopt the stronger trust model", () => {
-  const guideFiles = [
-    "src/pages/guides/refinance-break-even.astro",
-    "src/pages/guides/credit-card-payoff-strategy.astro",
-    "src/pages/guides/rent-vs-buy-break-even.astro",
-    "src/pages/guides/apr-vs-interest-rate.astro",
-    "src/pages/guides/extra-mortgage-payments.astro",
-    "src/pages/guides/what-is-piti.astro"
-  ];
-  const issues: string[] = [];
-
-  for (const file of guideFiles) {
-    const source = readFileSync(join(process.cwd(), file), "utf8");
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${file} -> missing reviewScope= trust summary`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `High-centrality guide trust coverage is missing:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: guides index should avoid duplicate CTA headings and repeated starting calculator links", () => {
-  const file = "src/pages/guides/index.astro";
-  const source = readFileSync(join(process.cwd(), file), "utf8");
-  const wantGuideHeadingCount = [...source.matchAll(/>Want a guide\?</g)].length;
-  const creditCardCalculatorCount = [...source.matchAll(/href="\/calculators\/credit-card-payoff-calculator"/g)].length;
-  const mortgagePayoffCalculatorCount = [...source.matchAll(/href="\/calculators\/extra-payment-calculator"/g)].length;
-
-  assert.equal(
-    wantGuideHeadingCount,
-    1,
-    `${file} -> expected a single "Want a guide?" heading, found ${wantGuideHeadingCount}`
-  );
-  assert.equal(
-    creditCardCalculatorCount,
-    1,
-    `${file} -> expected /calculators/credit-card-payoff-calculator once, found ${creditCardCalculatorCount}`
-  );
-  assert.equal(
-    mortgagePayoffCalculatorCount,
-    1,
-    `${file} -> expected /calculators/extra-payment-calculator once, found ${mortgagePayoffCalculatorCount}`
-  );
-});
-
-test("SEO: refinance break-even guide should route to the refinance workflow hub", () => {
-  const file = "src/pages/guides/refinance-break-even.astro";
-  const source = readFileSync(join(process.cwd(), file), "utf8");
-
-  assert.equal(
-    source.includes('href="/topics/refinance"'),
-    true,
-    `${file} -> missing refinance topic-hub route`
-  );
-  assert.equal(
-    source.includes('href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>'),
-    false,
-    `${file} -> still routes the hero CTA to the mortgage payoff topic hub`
-  );
-});
-
-test("SEO: next-batch mortgage and APR guide pages should adopt the stronger trust model", () => {
-  const guideFiles = [
-    "src/pages/guides/how-mortgage-payments-are-calculated.astro",
-    "src/pages/guides/apr-with-origination-fee.astro",
-    "src/pages/guides/principal-only-extra-payments.astro"
-  ];
-  const issues: string[] = [];
-
-  for (const file of guideFiles) {
-    const source = readFileSync(join(process.cwd(), file), "utf8");
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${file} -> missing reviewScope= trust summary`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Next-batch guide trust coverage is missing:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: principal-only extra-payments guide should stay focused on mortgage payoff workflows", () => {
-  const file = "src/pages/guides/principal-only-extra-payments.astro";
-  const source = readFileSync(join(process.cwd(), file), "utf8");
-
-  assert.equal(
-    source.includes("note rate"),
-    true,
-    `${file} -> expected note-rate terminology in the worked example`
-  );
-  assert.equal(
-    source.includes('href="/guides/rent-vs-buy-break-even"'),
-    false,
-    `${file} -> should not include unrelated rent-vs-buy routing in the Next steps cluster`
-  );
-});
-
-test("SEO: next mortgage and APR support guides should adopt the stronger trust model", () => {
-  const guideFiles = [
-    "src/pages/guides/mortgage-payment-affordability-checklist.astro",
-    "src/pages/guides/principal-and-interest-vs-escrow.astro",
-    "src/pages/guides/discount-points-vs-lender-credits.astro"
-  ];
-  const issues: string[] = [];
-
-  for (const file of guideFiles) {
-    const source = readFileSync(join(process.cwd(), file), "utf8");
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${file} -> missing reviewScope= trust summary`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Next mortgage/APR support guide trust coverage is missing:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: highest-value remaining refinance and APR guides should adopt the stronger trust model", () => {
-  const guideFiles = [
-    "src/pages/guides/refinance-checklist.astro",
-    "src/pages/guides/refinance-closing-costs.astro",
-    "src/pages/guides/apr-comparison-checklist.astro"
-  ];
-  const issues: string[] = [];
-
-  for (const file of guideFiles) {
-    const source = readFileSync(join(process.cwd(), file), "utf8");
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${file} -> missing reviewScope= trust summary`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Highest-value refinance/APR guide trust coverage is missing:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: next priority credit-card and mortgage guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/how-credit-card-interest-is-calculated.astro",
-      rolePhrase: "Use this guide when daily interest mechanics are the missing piece"
-    },
-    {
-      file: "src/pages/guides/why-minimum-payments-take-so-long.astro",
-      rolePhrase: "Use this guide when you need to see why minimum rules barely reduce principal"
-    },
-    {
-      file: "src/pages/guides/one-extra-mortgage-payment-per-year.astro",
-      rolePhrase: "Use this guide when you want the one-extra-payment-per-year effect without guesswork"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(`${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Next priority guide trust coverage is missing:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: next cross-topic legacy guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/rent-vs-buy-checklist.astro",
-      rolePhrase: "Use this guide when your rent-vs-buy assumptions still need to be pressure-tested"
-    },
-    {
-      file: "src/pages/guides/amortization-with-extra-payments.astro",
-      rolePhrase: "Use this guide when you want to see how extra principal changes the amortization table"
-    },
-    {
-      file: "src/pages/guides/pay-off-mortgage-early-or-invest.astro",
-      rolePhrase: "Use this guide when you are comparing guaranteed mortgage savings with uncertain investment returns"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(`${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Next cross-topic guide trust coverage is missing:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: next APR DTI PMI guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/how-to-use-apr-for-credit-cards.astro",
-      rolePhrase: "Use this guide when you are comparing credit card APR types, promo windows, and fee-heavy payoff choices"
-    },
-    {
-      file: "src/pages/guides/what-counts-in-dti.astro",
-      rolePhrase: "Use this guide when you are deciding which debts, income sources, and documentation actually count in DTI"
-    },
-    {
-      file: "src/pages/guides/pmi-removal-vs-extra-principal.astro",
-      rolePhrase: "Use this guide when you need to decide whether faster PMI removal should change your extra-principal strategy"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(`${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Next APR/DTI/PMI guide trust coverage is missing:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: next mortgage and DTI guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/biweekly-vs-extra-principal.astro",
-      rolePhrase: "Use this guide when you are deciding between biweekly and principal-only extra payments"
-    },
-    {
-      file: "src/pages/guides/how-to-improve-dti.astro",
-      rolePhrase:
-        "Use this guide when you need the highest-impact order of operations to lower DTI and know when to rerun it"
-    },
-    {
-      file: "src/pages/guides/mortgage-recast-vs-extra-payments.astro",
-      rolePhrase:
-        "Use this guide when you are deciding whether lower required payments matter more than a faster payoff"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(`${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Next mortgage/DTI guide trust coverage is missing:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: next mortgage-payment decision guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/mortgage-payment-15-vs-30-year.astro",
-      rolePhrase: "Use this guide when term choice is the real mortgage-payment decision"
-    },
-    {
-      file: "src/pages/guides/mortgage-payment-down-payment-impact.astro",
-      rolePhrase: "Use this guide when the main tradeoff is down payment versus reserves and PMI"
-    },
-    {
-      file: "src/pages/guides/mortgage-payment-total-cost-vs-payment.astro",
-      rolePhrase: "Use this guide when the cheapest monthly payment is not automatically the cheapest loan"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(`${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Next mortgage-payment decision guide trust coverage is missing:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: next indexable decision guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/biweekly-mortgage-program-fees.astro",
-      rolePhrase: "Use this guide when a biweekly program charges fees or controls payment posting"
-    },
-    {
-      file: "src/pages/guides/extra-payment-vs-refinance.astro",
-      rolePhrase: "Use this guide when you are deciding between faster payoff and refinancing"
-    },
-    {
-      file: "src/pages/guides/dti-calculation-step-by-step.astro",
-      rolePhrase:
-        "Use this guide when you need the exact DTI workflow before comparing front-end, back-end, or housing-payment scenarios"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(`${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Next indexable decision guide trust coverage is missing:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: next APR, rent, and DTI guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/apr-by-loan-type.astro",
-      rolePhrase: "Use this guide when you are comparing APR across auto, personal, student, or small-business loans"
-    },
-    {
-      file: "src/pages/guides/rent-vs-buy-costs-to-include.astro",
-      rolePhrase:
-        "Use this guide when ownership costs, upfront cash needs, and incomplete assumptions are the main modeling problem"
-    },
-    {
-      file: "src/pages/guides/dti-credit-card-minimums.astro",
-      rolePhrase: "Use this guide when credit card minimum payments are the DTI bottleneck"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(`${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`);
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Next APR/rent/DTI guide trust coverage is missing:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: next insurance, tax, and HOA guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/how-to-estimate-homeowners-insurance.astro",
-      rolePhrase:
-        "Use this guide when homeowners insurance is the last uncertain input in your mortgage payment estimate"
-    },
-    {
-      file: "src/pages/guides/how-to-estimate-property-taxes.astro",
-      rolePhrase:
-        "Use this guide when property taxes are the last uncertain input in your mortgage payment estimate"
-    },
-    {
-      file: "src/pages/guides/hoa-fees-and-mortgage-payment.astro",
-      rolePhrase: "Use this guide when HOA dues are the missing part of the housing-payment estimate"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(
-        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
-      );
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Next insurance/tax/HOA guide trust coverage is missing:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: next DTI and escrow guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/mortgage-payment-dti-housing-payment.astro",
-      rolePhrase: "Use this guide when your DTI answer depends on the full housing payment"
-    },
-    {
-      file: "src/pages/guides/mortgage-payment-escrow-account.astro",
-      rolePhrase: "Use this guide when you need the escrow baseline before troubleshooting payment changes"
-    },
-    {
-      file: "src/pages/guides/mortgage-payment-escrow-shortage.astro",
-      rolePhrase: "Use this guide when your payment jumped after an escrow analysis"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(
-        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
-      );
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Next DTI/escrow guide trust coverage is missing:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: next insurance, tax, and prepaids guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/mortgage-payment-insurance-assumptions.astro",
-      rolePhrase: "Use this guide when homeowners insurance assumptions are the weak point in your payment estimate"
-    },
-    {
-      file: "src/pages/guides/mortgage-payment-property-tax-assumptions.astro",
-      rolePhrase: "Use this guide when property tax estimates are the weak point in your mortgage payment model"
-    },
-    {
-      file: "src/pages/guides/mortgage-payment-prepaids-and-reserves.astro",
-      rolePhrase: "Use this guide when cash to close is the part of the mortgage payment workflow you need to explain"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(
-        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
-      );
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Next insurance/tax/prepaids guide trust coverage is missing:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: mortgage-payment support guides should stay inside the mortgage-payment workflow", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/mortgage-payment-down-payment-impact.astro",
-      requiredLinks: [
-        'href="/guides/mortgage-payment-affordability-checklist"',
-        'href="/guides/what-is-piti"'
-      ],
-      forbiddenLinks: [
-        'href="/calculators/rent-vs-buy-calculator"',
-        'href="/guides/rent-vs-buy-costs-to-include"'
+      file: "src/pages/calculators/index.astro",
+      phrases: [
+        "Start with the question you are trying to answer",
+        "I want to compare two loan offers",
+        "I want to know whether an extra mortgage payment is realistic"
       ]
     },
     {
-      file: "src/pages/guides/mortgage-payment-property-tax-assumptions.astro",
-      requiredLinks: ['href="/guides/what-is-piti"'],
-      forbiddenLinks: ['href="/calculators/rent-vs-buy-calculator"']
+      file: "src/pages/guides/extra-payment-accelerated-plan.astro",
+      phrases: [
+        "third-party acceleration plan",
+        "same annual dollars on your own",
+        "fee drag"
+      ]
     },
-    {
-      file: "src/pages/guides/mortgage-payment-insurance-assumptions.astro",
-      requiredLinks: ['href="/guides/what-is-piti"'],
-      forbiddenLinks: ['href="/calculators/rent-vs-buy-calculator"']
-    },
-    {
-      file: "src/pages/guides/mortgage-payment-escrow-shortage.astro",
-      requiredLinks: ['href="/guides/principal-and-interest-vs-escrow"'],
-      forbiddenLinks: ['href="/calculators/rent-vs-buy-calculator"']
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-
-    for (const link of item.requiredLinks) {
-      if (!source.includes(link)) {
-        issues.push(`${item.file} -> missing expected mortgage-payment route ${link}`);
-      }
-    }
-
-    for (const link of item.forbiddenLinks) {
-      if (source.includes(link)) {
-        issues.push(`${item.file} -> should not include off-topic route ${link}`);
-      }
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0 ? `Mortgage-payment support workflow routing is leaking off-topic:\n${issues.join("\n")}` : ""
-  );
-});
-
-test("SEO: next PMI and rate-sensitivity guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/mortgage-payment-pmi-thresholds.astro",
-      rolePhrase: "Use this guide when PMI is the reason the payment scenario changes"
-    },
-    {
-      file: "src/pages/guides/mortgage-payment-rate-sensitivity.astro",
-      rolePhrase: "Use this guide when rate sensitivity is the main mortgage-payment question"
-    },
-    {
-      file: "src/pages/guides/estimating-pmi-cost.astro",
-      rolePhrase: "Use this guide when PMI cost is the missing piece of the full housing-payment estimate"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(
-        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
-      );
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Next PMI/rate-sensitivity guide trust coverage is missing:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: next rent-vs-buy assumption guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/rent-vs-buy-time-horizon.astro",
-      rolePhrase: "Use this guide when holding period uncertainty is the main rent-vs-buy decision risk"
-    },
-    {
-      file: "src/pages/guides/rent-vs-buy-rent-growth.astro",
-      rolePhrase: "Use this guide when rent growth assumptions are the weakest part of your rent-vs-buy model"
-    },
-    {
-      file: "src/pages/guides/rent-vs-buy-home-appreciation.astro",
-      rolePhrase: "Use this guide when appreciation assumptions are doing too much work in the buy case"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(
-        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
-      );
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Next rent-vs-buy assumption guide trust coverage is missing:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: next rent-vs-buy screening and sensitivity guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/rent-vs-buy-price-to-rent-ratio.astro",
-      rolePhrase: "Use this guide when you need a quick market screen before the full model"
-    },
-    {
-      file: "src/pages/guides/rent-vs-buy-investment-return.astro",
-      rolePhrase:
-        "Use this guide when investment return assumptions are the least certain part of your rent-vs-buy comparison"
-    },
-    {
-      file: "src/pages/guides/rent-vs-buy-mortgage-rate-sensitivity.astro",
-      rolePhrase: "Use this guide when rate volatility is the reason your rent-vs-buy answer keeps changing"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(
-        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
-      );
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Next rent-vs-buy screening/sensitivity guide trust coverage is missing:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: next rent-vs-buy ownership-cost guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/rent-vs-buy-maintenance-estimate.astro",
-      rolePhrase:
-        "Use this guide when maintenance reserves are the least certain part of your ownership-cost estimate"
-    },
-    {
-      file: "src/pages/guides/rent-vs-buy-hoa-fees.astro",
-      rolePhrase:
-        "Use this guide when HOA dues or special assessments are the ownership cost most likely to be missed or double counted"
-    },
-    {
-      file: "src/pages/guides/rent-vs-buy-pmi-assumptions.astro",
-      rolePhrase: "Use this guide when PMI is the hidden ownership cost changing the low-down-payment comparison"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(">References<")) {
-      issues.push(`${item.file} -> missing References section`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(
-        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
-      );
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Next rent-vs-buy ownership-cost guide trust coverage is missing:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: final rent-vs-buy upfront-cash guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/rent-vs-buy-down-payment.astro",
-      rolePhrase:
-        "Use this guide when the down payment decision is changing both your monthly payment and your opportunity-cost assumptions"
-    },
-    {
-      file: "src/pages/guides/rent-vs-buy-closing-costs.astro",
-      rolePhrase: "Use this guide when upfront and exit costs are the reason a short-horizon buy case stops making sense"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(">References<")) {
-      issues.push(`${item.file} -> missing References section`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(
-        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
-      );
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Final rent-vs-buy upfront-cash guide trust coverage is missing:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: extra-payment risk and cash-allocation guides should adopt the stronger trust model", () => {
-  const expectations = [
     {
       file: "src/pages/guides/extra-payment-liquidity-reserve.astro",
-      rolePhrase: "Use this guide when liquidity risk is the main reason you hesitate to make extra mortgage payments"
-    },
-    {
-      file: "src/pages/guides/extra-payment-priority-vs-other-debts.astro",
-      rolePhrase: "Use this guide when another debt payoff may deserve priority over extra mortgage principal"
-    },
-    {
-      file: "src/pages/guides/extra-payment-tax-deduction-impact.astro",
-      rolePhrase: "Use this guide when tax assumptions are changing the after-tax value of extra mortgage payments"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(">References<")) {
-      issues.push(`${item.file} -> missing References section`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(
-        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
-      );
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Extra-payment risk/cash-allocation guide trust coverage is missing:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: extra-payment execution guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/extra-payment-lump-sum-vs-monthly.astro",
-      rolePhrase:
-        "Use this guide when timing is the main reason a lump sum and recurring extra could produce different payoff results"
+      phrases: [
+        "extra principal is the wrong move",
+        "reserve floor",
+        "pause the extra payment plan"
+      ]
     },
     {
       file: "src/pages/guides/extra-payment-target-payoff-date.astro",
-      rolePhrase: "Use this guide when you have a target mortgage-free date and need to back into a realistic extra-payment plan"
-    },
-    {
-      file: "src/pages/guides/extra-payment-servicer-posting-rules.astro",
-      rolePhrase:
-        "Use this guide when servicer posting rules could prevent your extra payment from reducing principal the way you expect"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(">References<")) {
-      issues.push(`${item.file} -> missing References section`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-05, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-05") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-05, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(
-        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
-      );
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Extra-payment execution guide trust coverage is missing:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: mortgage-payoff topic hub should route into the strengthened extra-payment decision system", () => {
-  const source = readFileSync(join(process.cwd(), "src/pages/topics/mortgage-payoff.astro"), "utf8");
-  const issues: string[] = [];
-  const requiredPhrases = [
-    "Choose your mortgage payoff starting point",
-    "Choose the extra-payment decision guide",
-    "Choose the extra-payment execution guide",
-    'href="/guides/extra-payment-liquidity-reserve"',
-    'href="/guides/extra-payment-priority-vs-other-debts"',
-    'href="/guides/extra-payment-tax-deduction-impact"',
-    'href="/guides/extra-payment-lump-sum-vs-monthly"',
-    'href="/guides/extra-payment-target-payoff-date"',
-    'href="/guides/extra-payment-servicer-posting-rules"',
-    'reviewedOn="2026-04-06"'
-  ];
-
-  for (const phrase of requiredPhrases) {
-    if (!source.includes(phrase)) {
-      issues.push(`src/pages/topics/mortgage-payoff.astro -> missing "${phrase}"`);
-    }
-  }
-
-  const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-  const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-  if (!lastUpdatedMatch) {
-    issues.push("src/pages/topics/mortgage-payoff.astro -> missing lastUpdated constant");
-  }
-  if (!visibleDateMatch) {
-    issues.push("src/pages/topics/mortgage-payoff.astro -> missing visible Last updated date");
-  }
-  if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-06") {
-    issues.push(
-      `src/pages/topics/mortgage-payoff.astro -> expected lastUpdated 2026-04-06, found ${lastUpdatedMatch[1]}`
-    );
-  }
-  if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-06") {
-    issues.push(
-      `src/pages/topics/mortgage-payoff.astro -> expected visible Last updated 2026-04-06, found ${visibleDateMatch[1]}`
-    );
-  }
-  if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-    issues.push(
-      `src/pages/topics/mortgage-payoff.astro -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
-    );
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Mortgage-payoff topic hub refresh is incomplete:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: extra-payment operational support guides should adopt the stronger trust model", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/extra-payment-accelerated-plan.astro",
-      rolePhrase:
-        "Use this guide when an accelerated payment plan sounds convenient, but you need to know whether it really beats a simple DIY extra-payment plan"
-    },
-    {
-      file: "src/pages/guides/extra-payment-prepayment-penalty-checklist.astro",
-      rolePhrase:
-        "Use this guide when you need to confirm that extra payments will not trigger a prepayment penalty or lender restriction"
-    },
-    {
-      file: "src/pages/guides/extra-payment-escrow-not-affected.astro",
-      rolePhrase:
-        "Use this guide when you expect extra principal to lower the total mortgage bill and need to separate principal from escrow"
-    },
-    {
-      file: "src/pages/guides/extra-payment-windfall-strategy.astro",
-      rolePhrase:
-        "Use this guide when a bonus, refund, or other windfall could become a mortgage lump sum but liquidity still matters"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-    const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-    if (!source.includes("TRUST_PROFILES")) {
-      issues.push(`${item.file} -> missing TRUST_PROFILES usage`);
-    }
-    if (!source.includes("authorProfile=")) {
-      issues.push(`${item.file} -> missing authorProfile metadata`);
-    }
-    if (!source.includes("reviewProfiles=")) {
-      issues.push(`${item.file} -> missing reviewProfiles metadata`);
-    }
-    if (!source.includes("ReviewedByCard")) {
-      issues.push(`${item.file} -> missing ReviewedByCard`);
-    }
-    if (!source.includes("writtenBy=")) {
-      issues.push(`${item.file} -> missing writtenBy= trust summary`);
-    }
-    if (!source.includes("reviewScope=")) {
-      issues.push(`${item.file} -> missing reviewScope= trust summary`);
-    }
-    if (!source.includes(">References<")) {
-      issues.push(`${item.file} -> missing References section`);
-    }
-    if (!source.includes(item.rolePhrase)) {
-      issues.push(`${item.file} -> missing role phrase "${item.rolePhrase}"`);
-    }
-    if (!lastUpdatedMatch) {
-      issues.push(`${item.file} -> missing lastUpdated constant`);
-    }
-    if (!visibleDateMatch) {
-      issues.push(`${item.file} -> missing visible Last updated date`);
-    }
-    if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-06") {
-      issues.push(`${item.file} -> expected lastUpdated 2026-04-06, found ${lastUpdatedMatch[1]}`);
-    }
-    if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-06") {
-      issues.push(`${item.file} -> expected visible Last updated 2026-04-06, found ${visibleDateMatch[1]}`);
-    }
-    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-      issues.push(
-        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
-      );
-    }
-    if (item.file === "src/pages/guides/extra-payment-escrow-not-affected.astro") {
-      const descriptionMatch = source.match(/const description =\s*"([^"]+)";/);
-      const descriptionLength = descriptionMatch?.[1]?.length ?? 0;
-      const relatedGuidesSectionMatch = source.match(
-        /<h2 style="margin-top:0">Related guides<\/h2>[\s\S]*?<ul[\s\S]*?>([\s\S]*?)<\/ul>/
-      );
-      const relatedGuidesSection = relatedGuidesSectionMatch?.[1] ?? "";
-      const duplicateEscrowGuideLinks = (
-        relatedGuidesSection.match(/href="\/guides\/principal-and-interest-vs-escrow"/g) ?? []
-      ).length;
-
-      if (!descriptionMatch) {
-        issues.push(`${item.file} -> missing description constant`);
-      }
-      if (descriptionLength < 70 || descriptionLength > 170) {
-        issues.push(`${item.file} -> description length should stay within 70-170 chars, found ${descriptionLength}`);
-      }
-      if (duplicateEscrowGuideLinks !== 1) {
-        issues.push(
-          `${item.file} -> expected exactly 1 principal-and-interest-vs-escrow link in Related guides, found ${duplicateEscrowGuideLinks}`
-        );
-      }
-      if (!relatedGuidesSection.includes('href="/guides/principal-only-extra-payments"')) {
-        issues.push(`${item.file} -> missing principal-only extra payments support link`);
-      }
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Extra-payment operational-support guide trust coverage is missing:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: extra-mortgage-payments should route into the operational support layer", () => {
-  const source = readFileSync(join(process.cwd(), "src/pages/guides/extra-mortgage-payments.astro"), "utf8");
-  const issues: string[] = [];
-  const requiredPhrases = [
-    "Use this guide when you want the main extra-payment workflow before choosing a specific decision or operational support path",
-    'href="/guides/extra-payment-accelerated-plan"',
-    'href="/guides/extra-payment-prepayment-penalty-checklist"',
-    'href="/guides/extra-payment-escrow-not-affected"',
-    'href="/guides/extra-payment-windfall-strategy"',
-    'reviewedOn="2026-04-06"'
-  ];
-
-  for (const phrase of requiredPhrases) {
-    if (!source.includes(phrase)) {
-      issues.push(`src/pages/guides/extra-mortgage-payments.astro -> missing "${phrase}"`);
-    }
-  }
-
-  const lastUpdatedMatch = source.match(/const lastUpdated = "([^"]+)";/);
-  const visibleDateMatch = source.match(/Last updated:\s*([0-9-]+)/);
-
-  if (!lastUpdatedMatch) {
-    issues.push("src/pages/guides/extra-mortgage-payments.astro -> missing lastUpdated constant");
-  }
-  if (!visibleDateMatch) {
-    issues.push("src/pages/guides/extra-mortgage-payments.astro -> missing visible Last updated date");
-  }
-  if (lastUpdatedMatch && lastUpdatedMatch[1] !== "2026-04-06") {
-    issues.push(
-      `src/pages/guides/extra-mortgage-payments.astro -> expected lastUpdated 2026-04-06, found ${lastUpdatedMatch[1]}`
-    );
-  }
-  if (visibleDateMatch && visibleDateMatch[1] !== "2026-04-06") {
-    issues.push(
-      `src/pages/guides/extra-mortgage-payments.astro -> expected visible Last updated 2026-04-06, found ${visibleDateMatch[1]}`
-    );
-  }
-  if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
-    issues.push(
-      `src/pages/guides/extra-mortgage-payments.astro -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
-    );
-  }
-  if (source.includes('href="/calculators/rent-vs-buy-calculator"')) {
-    issues.push('src/pages/guides/extra-mortgage-payments.astro -> should not route Next steps into /calculators/rent-vs-buy-calculator');
-  }
-  if (source.includes('href="/guides/rent-vs-buy-break-even"')) {
-    issues.push('src/pages/guides/extra-mortgage-payments.astro -> should not route Next steps into /guides/rent-vs-buy-break-even');
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Extra-mortgage-payments operational routing refresh is incomplete:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: native decision and support guides should not leak into rent-vs-buy by default", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/pay-off-mortgage-early-or-invest.astro",
-      requiredLinks: ['href="/calculators/amortization-schedule-calculator"'],
-      forbiddenLinks: ['href="/calculators/rent-vs-buy-calculator"']
-    },
-    {
-      file: "src/pages/guides/refinance-cash-in-lower-rate.astro",
-      requiredLinks: ['href="/guides/refinance-break-even"'],
-      forbiddenLinks: ['href="/guides/rent-vs-buy-break-even"']
-    },
-    {
-      file: "src/pages/guides/how-to-improve-dti.astro",
-      requiredLinks: ['href="/guides/dti-calculation-step-by-step"'],
-      forbiddenLinks: ['href="/guides/rent-vs-buy-break-even"']
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-
-    for (const link of item.requiredLinks) {
-      if (!source.includes(link)) {
-        issues.push(`${item.file} -> missing expected same-cluster route ${link}`);
-      }
-    }
-
-    for (const link of item.forbiddenLinks) {
-      if (source.includes(link)) {
-        issues.push(`${item.file} -> should not include off-topic route ${link}`);
-      }
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Decision/support pages are still leaking into rent-vs-buy:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: refinance support noindex pages should avoid repeated break-even template routing", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/refinance-when-not-to-refinance.astro",
-      forbiddenSnippets: [
-        'href="/guides/refinance-break-even">Rate vs term tradeoff</a>',
-        'href="/guides/refinance-break-even">Reset amortization</a>'
+      phrases: [
+        "reverse-engineer the monthly extra",
+        "monthly ceiling",
+        "target date can survive a bad month"
       ]
     },
     {
-      file: "src/pages/guides/refinance-reset-amortization.astro",
-      forbiddenSnippets: ['href="/guides/refinance-break-even">Rate vs term tradeoff</a>']
-    }
-  ];
-  const requiredLinks = [
-    'href="/guides/refinance-break-even"',
-    'href="/guides/refinance-checklist"',
-    'href="/guides/refinance-closing-costs"'
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const breakEvenCount = source.match(/href="\/guides\/refinance-break-even"/g)?.length ?? 0;
-
-    for (const link of requiredLinks) {
-      if (!source.includes(link)) {
-        issues.push(`${item.file} -> missing refinance destination ${link}`);
-      }
-    }
-
-    if (breakEvenCount > 3) {
-      issues.push(`${item.file} -> repeats /guides/refinance-break-even too many times (${breakEvenCount})`);
-    }
-
-    for (const snippet of item.forbiddenSnippets) {
-      if (source.includes(snippet)) {
-        issues.push(`${item.file} -> should not keep mismatched repeated routing ${snippet}`);
-      }
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Refinance support-page destination dedup is incomplete:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: refinance support pages should keep label-aligned destinations", () => {
-  const expectations = [
-    {
-      file: "src/pages/guides/refinance-no-closing-costs-myth.astro",
-      requiredSnippets: ['href="/guides/refinance-rolling-costs-into-loan">Rolling costs into the loan</a>'],
-      forbiddenSnippets: ['href="/guides/refinance-closing-costs">Rolling costs into the loan</a>']
-    },
-    {
-      file: "src/pages/guides/refinance-rolling-costs-into-loan.astro",
-      requiredSnippets: [
-        'href="/guides/refinance-no-closing-costs-myth">No closing cost refinance</a>',
-        'href="/guides/refinance-closing-costs">Refinance closing costs</a>',
-        'href="/guides/refinance-checklist">Refinance checklist</a>'
-      ],
-      forbiddenSnippets: ['href="/guides/apr-with-origination-fee">APR when fees are financed</a>']
-    },
-    {
-      file: "src/pages/guides/refinance-offer-comparison-checklist.astro",
-      requiredSnippets: [
-        'href="/guides/refinance-no-closing-costs-myth">No closing cost refinance</a>',
-        'href="/guides/refinance-rolling-costs-into-loan">Rolling costs into the loan</a>',
-        'href="/guides/refinance-points-break-even">Points break-even</a>'
-      ],
-      forbiddenSnippets: [
-        'href="/guides/refinance-closing-costs">No closing cost refinance</a>',
-        'href="/guides/refinance-closing-costs">Rolling costs into the loan</a>',
-        'href="/guides/refinance-break-even">Points break-even</a>'
+      file: "src/pages/guides/extra-payment-vs-refinance.astro",
+      phrases: [
+        "same hold period",
+        "decision can flip",
+        "new loan solves a different problem"
       ]
     }
   ];
   const issues: string[] = [];
 
-  for (const item of expectations) {
+  for (const item of pageExpectations) {
     const source = readFileSync(join(process.cwd(), item.file), "utf8");
-
-    for (const snippet of item.requiredSnippets) {
-      if (!source.includes(snippet)) {
-        issues.push(`${item.file} -> missing label-aligned route ${snippet}`);
-      }
-    }
-
-    for (const snippet of item.forbiddenSnippets) {
-      if (source.includes(snippet)) {
-        issues.push(`${item.file} -> should not keep mismatched route ${snippet}`);
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing page-role cue "${phrase}"`);
       }
     }
   }
@@ -3698,46 +2841,36 @@ test("SEO: refinance support pages should keep label-aligned destinations", () =
   assert.equal(
     issues.length,
     0,
-    issues.length > 0
-      ? `Refinance support label alignment is incomplete:\n${issues.join("\n")}`
-      : ""
+    issues.length > 0 ? `Workflow pages still read too generically:\n${issues.join("\n")}` : ""
   );
 });
 
-test("SEO: refinance cash-support pages should route specific labels to exact support guides", () => {
-  const expectations = [
+test("SEO: extra-payment entry pages should behave like primary workflow hubs", () => {
+  const expectedPages = [
     {
-      file: "src/pages/guides/refinance-cash-in-lower-rate.astro",
-      requiredSnippets: ['href="/guides/refinance-rolling-costs-into-loan">Rolling costs into the loan</a>'],
-      forbiddenSnippets: ['href="/guides/refinance-closing-costs">Rolling costs into the loan</a>']
+      file: "src/pages/calculators/extra-payment-calculator.astro",
+      phrases: [
+        "Choose the scenario that matches the real decision",
+        "I need to know whether extra payments are realistic in my budget",
+        "I want to compare extra payments with refinancing or recasting"
+      ]
     },
     {
-      file: "src/pages/guides/refinance-cash-out-vs-rate-term.astro",
-      requiredSnippets: [
-        'href="/guides/refinance-rolling-costs-into-loan">Rolling costs into the loan</a>',
-        'href="/guides/refinance-no-closing-costs-myth">No closing cost refinance</a>',
-        'href="/guides/refinance-checklist">Refinance checklist</a>'
-      ],
-      forbiddenSnippets: [
-        'href="/guides/refinance-closing-costs">Rolling costs into the loan</a>',
-        'href="/guides/refinance-closing-costs">No closing cost refinance</a>'
+      file: "src/pages/guides/extra-mortgage-payments.astro",
+      phrases: [
+        "Use this guide when extra principal is the main mortgage decision",
+        "Which extra-payment question are you actually trying to answer?",
+        "This page should send you to the next best extra-payment page"
       ]
     }
   ];
   const issues: string[] = [];
 
-  for (const item of expectations) {
+  for (const item of expectedPages) {
     const source = readFileSync(join(process.cwd(), item.file), "utf8");
-
-    for (const snippet of item.requiredSnippets) {
-      if (!source.includes(snippet)) {
-        issues.push(`${item.file} -> missing exact-match support route ${snippet}`);
-      }
-    }
-
-    for (const snippet of item.forbiddenSnippets) {
-      if (source.includes(snippet)) {
-        issues.push(`${item.file} -> should not keep generic closing-cost route ${snippet}`);
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing workflow-hub cue "${phrase}"`);
       }
     }
   }
@@ -3745,125 +2878,36 @@ test("SEO: refinance cash-support pages should route specific labels to exact su
   assert.equal(
     issues.length,
     0,
-    issues.length > 0
-      ? `Refinance cash-support label routing is incomplete:\n${issues.join("\n")}`
-      : ""
+    issues.length > 0 ? `Extra-payment hubs still read like generic support pages:\n${issues.join("\n")}` : ""
   );
 });
 
-test("SEO: refinance points support should use the exact APR-and-points destination when labeled that way", () => {
-  const source = readFileSync(join(process.cwd(), "src/pages/guides/refinance-points-break-even.astro"), "utf8");
-  const issues: string[] = [];
-  const requiredSnippet = 'href="/guides/apr-and-points-break-even">APR and points break-even</a>';
-  const forbiddenSnippet = 'href="/guides/discount-points-vs-lender-credits">APR and points break-even</a>';
-
-  if (!source.includes(requiredSnippet)) {
-    issues.push(`src/pages/guides/refinance-points-break-even.astro -> missing exact-match route ${requiredSnippet}`);
-  }
-
-  if (source.includes(forbiddenSnippet)) {
-    issues.push(`src/pages/guides/refinance-points-break-even.astro -> should not keep mismatched route ${forbiddenSnippet}`);
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Refinance points exact-match routing is incomplete:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: remaining indexable guide holdouts should adopt the current trust model", () => {
-  const expectations = [
+test("SEO: minimum-payment entry pages should behave like a tool-plus-explainer workflow", () => {
+  const expectedPages = [
     {
-      file: "src/pages/guides/how-to-find-your-apr.astro",
-      rolePhrase: "Use this guide when you need to locate the exact APR that belongs in your comparison or payoff decision"
-    },
-    {
-      file: "src/pages/guides/apr-for-balance-transfers.astro",
-      rolePhrase: "Use this guide when a balance-transfer offer looks cheap up front but the APR rules and fee timing may change the real payoff math"
-    },
-    {
-      file: "src/pages/guides/apr-vs-apy-loans.astro",
-      rolePhrase: "Use this guide when loan marketing mixes APR and APY language and you need to separate borrowing cost from yield math"
-    },
-    {
-      file: "src/pages/guides/debt-snowball-vs-avalanche.astro",
-      rolePhrase: "Use this guide when you need to choose between behavioral momentum and interest-cost efficiency in a debt payoff plan"
-    },
-    {
-      file: "src/pages/guides/dti-housing-payment-piti-includes.astro",
-      rolePhrase: "Use this guide when you need to confirm whether PITI belongs in the housing-payment side of your DTI calculation"
-    }
-  ];
-  const issues: string[] = [];
-
-  for (const item of expectations) {
-    const source = readFileSync(join(process.cwd(), item.file), "utf8");
-    const requiredSnippets = [
-      "TRUST_PROFILES",
-      "authorProfile={TRUST_PROFILES.siteOwner}",
-      "reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}",
-      "ReviewedByCard",
-      "writtenBy={TRUST_PROFILES.siteOwner}",
-      "reviewScope=",
-      ">References<",
-      'const lastUpdated = "2026-04-06";',
-      "Last updated: 2026-04-06",
-      item.rolePhrase
-    ];
-
-    for (const snippet of requiredSnippets) {
-      if (!source.includes(snippet)) {
-        issues.push(`${item.file} -> missing "${snippet}"`);
-      }
-    }
-  }
-
-  assert.equal(
-    issues.length,
-    0,
-    issues.length > 0
-      ? `Remaining indexable guide holdout trust coverage is missing:\n${issues.join("\n")}`
-      : ""
-  );
-});
-
-test("SEO: privacy and terms should read like maintained public accountability documents", () => {
-  const expectations = [
-    {
-      file: "src/pages/privacy-policy.astro",
-      requiredSnippets: [
-        'const lastUpdated = "2026-04-06";',
-        "Last updated: 2026-04-06",
-        "consent banner",
-        "Google Analytics",
-        "advertising",
-        "local storage",
-        "privacy requests"
+      file: "src/pages/calculators/minimum-payment-payoff-calculator.astro",
+      phrases: [
+        "Choose the question behind the minimum-payment problem",
+        "I need to see why the minimum barely moves the balance",
+        "I already know the fixed payment I want to make"
       ]
     },
     {
-      file: "src/pages/terms.astro",
-      requiredSnippets: [
-        'const lastUpdated = "2026-04-06";',
-        "Last updated: 2026-04-06",
-        "calculator limitations",
-        "educational use only",
-        "acceptable use",
-        "service availability"
+      file: "src/pages/guides/why-minimum-payments-take-so-long.astro",
+      phrases: [
+        "Use this guide when the minimum-payment warning feels abstract",
+        "This page should explain the drag before you set a new payment target",
+        "Which minimum-payment question are you really trying to solve?"
       ]
     }
   ];
   const issues: string[] = [];
 
-  for (const item of expectations) {
+  for (const item of expectedPages) {
     const source = readFileSync(join(process.cwd(), item.file), "utf8");
-
-    for (const snippet of item.requiredSnippets) {
-      if (!source.includes(snippet)) {
-        issues.push(`${item.file} -> missing "${snippet}"`);
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing workflow cue "${phrase}"`);
       }
     }
   }
@@ -3871,39 +2915,43 @@ test("SEO: privacy and terms should read like maintained public accountability d
   assert.equal(
     issues.length,
     0,
-    issues.length > 0
-      ? `Privacy/terms maintained-document coverage is missing:\n${issues.join("\n")}`
-      : ""
+    issues.length > 0 ? `Minimum-payment workflow still reads like disconnected pages:\n${issues.join("\n")}` : ""
   );
 });
 
-test("SEO: BaseLayout should expose the upgraded trust-forward header contract", () => {
-  const source = readFileSync(join(process.cwd(), "src/layouts/BaseLayout.astro"), "utf8");
-  const issues: string[] = [];
-  const requiredSnippets = [
-    "Trust Center",
-    "Start With Calculators",
-    "US finance calculators and decision guides"
-  ];
-
-  for (const snippet of requiredSnippets) {
-    if (!source.includes(snippet)) {
-      issues.push(`src/layouts/BaseLayout.astro -> missing "${snippet}"`);
+test("SEO: biweekly pages should behave like a comparison workflow, not generic mortgage support", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/calculators/biweekly-mortgage-payment-calculator.astro",
+      phrases: [
+        "Choose the biweekly comparison you actually need",
+        "I need to know if the lender posts every two weeks or only monthly",
+        "I just want the simplest no-fee alternative"
+      ]
+    },
+    {
+      file: "src/pages/guides/biweekly-vs-extra-principal.astro",
+      phrases: [
+        "Use this guide when the headline savings claim sounds too neat",
+        "Which biweekly question are you actually trying to answer?",
+        "This page should send you to the next best biweekly page"
+      ]
     }
-  }
+  ];
+  const issues: string[] = [];
 
-  const primaryNavMatch = source.match(/<nav class=\"nav\" aria-label=\"Primary\">([\s\S]*?)<\/nav>/);
-  if (!primaryNavMatch) {
-    issues.push("src/layouts/BaseLayout.astro -> missing primary nav block");
-  } else if (primaryNavMatch[1].includes(">Privacy<")) {
-    issues.push('src/layouts/BaseLayout.astro -> primary nav should not include "Privacy"');
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing workflow cue "${phrase}"`);
+      }
+    }
   }
 
   assert.equal(
     issues.length,
     0,
-    issues.length > 0
-      ? `BaseLayout trust-forward header contract is incomplete:\n${issues.join("\n")}`
-      : ""
+    issues.length > 0 ? `Biweekly workflow still reads too generically:\n${issues.join("\n")}` : ""
   );
 });

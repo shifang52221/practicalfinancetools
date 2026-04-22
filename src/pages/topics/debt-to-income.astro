@@ -3,11 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { TRUST_PROFILES } from "../../config/trust";
 
-const title = "Debt-to-Income Topic Guide (DTI ratios and affordability)";
+const title = "Debt-to-Income Topic Guide (DTI, affordability, and decision paths)";
 const description =
-  "Debt to income (DTI) workflow: understand what counts, calculate your ratio, and improve affordability. Educational use only.";
+  "Debt-to-income workflow: choose the right comparison path for calculation, what counts, housing payment, thresholds, and DTI improvement. Educational use only.";
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-04-22";
 ---
 <BaseLayout
   title={title}
@@ -26,16 +26,18 @@ const lastUpdated = "2026-04-03";
       <span aria-hidden="true">/</span>
       <span aria-current="page">Debt-to-income</span>
     </nav>
-    <h1>Debt-to-income (DTI) and affordability</h1>
+    <h1>Debt-to-income (DTI): choose the right affordability path</h1>
     <p>
-      DTI is a simple ratio used by lenders to estimate affordability. This workflow shows what typically counts, how to calculate it,
-      and how to improve the ratio without guessing. Start with the{" "}
-      <a href="/calculators/debt-to-income-calculator">debt to income (DTI) calculator</a>.
+      Most DTI searches are not asking the same question. Some readers need the full ratio calculation, some are stuck on what counts,
+      some are really asking how much house the payment supports, and others need to know how to lower the ratio before applying. Start
+      with the <a href="/calculators/debt-to-income-calculator">debt-to-income calculator</a> when you already have income and required
+      monthly debt inputs ready.
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/calculators/debt-to-income-calculator">DTI calculator</a>
       <a class="btn" href="/guides/what-counts-in-dti">What counts in DTI</a>
       <a class="btn" href="/guides/how-to-improve-dti">Improve DTI</a>
+      <a class="btn" href="/calculators/mortgage-payment-calculator">Mortgage payment</a>
     </div>
   </section>
 
@@ -43,189 +45,198 @@ const lastUpdated = "2026-04-03";
     writtenBy={TRUST_PROFILES.siteOwner}
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
-    reviewScope="DTI workflow framing, calculator routing, and debt-and-income interpretation boundaries."
-    reviewedOn="2026-04-03"
+    reviewScope="DTI workflow framing, branch routing, and affordability-path clarity across ratio calculation, inclusion rules, housing-payment inputs, and pre-application improvement work."
+    reviewedOn="2026-04-22"
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Choose your DTI starting point</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Start with the <a href="/calculators/debt-to-income-calculator">DTI calculator</a> when you already know your income and required monthly debts.</li>
-      <li>Start with <a href="/guides/what-counts-in-dti">what counts in DTI</a> when card minimums are the main reason your ratio is too high and you need the lender-side rule first.</li>
-      <li>Start with housing-input guides when your uncertainty is really PITI, HOA, PMI, or the monthly payment used in the ratio.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use credit card payoff tools to reduce DTI</h2>
+    <h2 style="margin-top:0">Choose the DTI question before you choose the page</h2>
     <p class="muted" style="margin:10px 0 0">
-      Credit card minimum payments are included in DTI for many loan scenarios. To lower required monthly debt, model options with the{" "}
-      <a href="/calculators/minimum-payment-payoff-calculator">credit card minimum payment calculator</a> for a single balance and the{" "}
-      <a href="/calculators/debt-snowball-calculator">debt snowball calculator</a> for multiple debts.
+      This topic page works best as the top of a routing tree. Start by naming the real DTI bottleneck, then move into the page that is
+      built for that exact decision job.
     </p>
+    <p class="muted" style="margin:12px 0 0">
+      Choose your DTI starting point by asking whether you need the full ratio calculation, the inclusion rules, the ratio definition,
+      the housing-payment input, the improvement plan, or the threshold interpretation.
+    </p>
+    <div style="overflow:auto; margin-top:12px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Your real question</th>
+            <th>Best next page</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>full DTI calculation before applying</td>
+            <td>
+              <a href="/calculators/debt-to-income-calculator">DTI calculator</a> and{" "}
+              <a href="/guides/dti-calculation-step-by-step">DTI calculation step by step</a>
+            </td>
+            <td>Start here when you need the clean order of operations before changing assumptions or comparing scenarios.</td>
+          </tr>
+          <tr>
+            <td>what counts in DTI and which debts or income are included</td>
+            <td><a href="/guides/what-counts-in-dti">What counts in DTI</a></td>
+            <td>Use this branch when the real blocker is inclusion rules for card minimums, student loans, co-borrowers, or variable income.</td>
+          </tr>
+          <tr>
+            <td>front-end versus back-end DTI</td>
+            <td>
+              <a href="/guides/dti-calculation-step-by-step">DTI calculation step by step</a> and{" "}
+              <a href="/guides/dti-calculation-step-by-step">front-end vs back-end DTI</a>
+            </td>
+            <td>Go here when the confusion is not the math itself, but which ratio definition is being used in the discussion.</td>
+          </tr>
+          <tr>
+            <td>housing payment or how much house/payment fits the ratio</td>
+            <td>
+              <a href="/guides/dti-housing-payment-piti-includes">DTI housing payment inputs</a> and{" "}
+              <a href="/calculators/mortgage-payment-calculator">mortgage payment calculator</a>
+            </td>
+            <td>Choose this branch when the real issue is the housing payment input, not the DTI formula itself.</td>
+          </tr>
+          <tr>
+            <td>how to improve DTI before applying</td>
+            <td><a href="/guides/how-to-improve-dti">How to improve DTI</a></td>
+            <td>Use this branch when you already know the ratio is too high and need the highest-impact order of operations to lower it.</td>
+          </tr>
+          <tr>
+            <td>threshold ranges or compensating factors</td>
+            <td>
+              <a href="/guides/how-to-improve-dti">How to improve DTI</a> and{" "}
+              <a href="/guides/what-counts-in-dti">DTI thresholds and compensating factors</a>
+            </td>
+            <td>Go here when the ratio sits near the edge and you need to understand whether reserves, credit, or down payment can offset it.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">DTI inputs to gather</h2>
+    <h2 style="margin-top:0">Topic branches in plain English</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Gross monthly income from documented sources.</li>
-      <li>Housing payment (PITI + HOA + PMI).</li>
-      <li>Required minimum payments for other debts.</li>
-      <li>Any lender-specific rules for student loans or deferred debt.</li>
+      <li>If you do not yet trust your math, start with the full-calculation branch before debating thresholds.</li>
+      <li>If the number changes based on which debts or incomes you include, use the inclusion-rules branch first.</li>
+      <li>If the conversation keeps switching between housing-only and total-debt ratios, use the front-end versus back-end branch.</li>
+      <li>If the real question is how much housing payment the ratio supports, use the housing-payment branch before changing the DTI formula.</li>
+      <li>If the ratio is simply too high, use the improvement branch instead of rereading generic DTI explanations.</li>
+      <li>If you are close to lender limits, use the thresholds branch to understand whether compensating factors matter.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">DTI calculator workflow</h2>
+    <h2 style="margin-top:0">What each branch should solve next</h2>
     <ol class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li><strong>List monthly debt payments:</strong> loans, minimum card payments, and required obligations.</li>
-      <li><strong>Confirm gross income:</strong> use stable monthly income before taxes.</li>
-      <li><strong>Calculate the ratio:</strong> total debt payments divided by gross income.</li>
-      <li><strong>Test changes:</strong> pay down balances or increase income to see the effect.</li>
-      <li><strong>Document assumptions:</strong> keep notes on which debts were included.</li>
+      <li><strong>Calculation branch:</strong> answer how to compute the ratio cleanly under one consistent set of assumptions.</li>
+      <li><strong>Inclusion branch:</strong> answer which debts, minimum payments, and income sources really belong in the ratio.</li>
+      <li><strong>Definition branch:</strong> answer whether the discussion is about front-end or back-end DTI.</li>
+      <li><strong>Housing-payment branch:</strong> answer what housing number belongs in DTI and how it limits affordability.</li>
+      <li><strong>Improvement branch:</strong> answer which actions lower the ratio fastest and when they become documentable.</li>
+      <li><strong>Threshold branch:</strong> answer whether you are in a safer range or need compensating factors to offset a higher DTI.</li>
     </ol>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">What typically counts</h2>
+    <h2 style="margin-top:0">Numbers to gather before you compare</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Required monthly debt payments (auto, student loans, personal loans).</li>
-      <li>Minimum credit card payments.</li>
-      <li>Housing payment for the new loan scenario.</li>
-      <li>Support obligations if required by court order.</li>
+      <li>Gross monthly income from stable, documented sources.</li>
+      <li>Housing payment using PITI, HOA, and PMI if applicable.</li>
+      <li>Required minimum payments for credit cards, auto loans, student loans, leases, and support obligations.</li>
+      <li>Any lender-specific rules that change deferred student-loan treatment or co-borrower exclusions.</li>
     </ul>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Front-end vs back-end DTI</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Front-end DTI looks at housing only (PITI plus HOA and PMI). Back-end DTI includes housing plus other required debts. When you
-      compare scenarios, keep the same definition so you do not mix ratios.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Include the full housing payment</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Use a realistic housing number that includes principal, interest, taxes, insurance, and HOA. Leaving out taxes or insurance can
-      understate DTI and mislead affordability comparisons.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Documents to align with</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Recent loan statements showing the required payment amounts.</li>
-      <li>Pay stubs or tax documents that verify stable monthly income.</li>
-      <li>Loan Estimate for the new housing payment scenario.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Scenario example</h2>
-    <p class="muted" style="margin:10px 0 0">
-      If your gross income is $7,500 per month and your total debts are $2,850, your back-end DTI is 38%. If you pay off a $150
-      minimum card, the ratio drops to 36%. Small changes can matter near lender thresholds.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How lenders use DTI</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>DTI is one input along with credit score, assets, and reserves.</li>
-      <li>Different programs can use different target ranges.</li>
-      <li>Compensating factors may offset a higher ratio.</li>
-    </ul>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">DTI ranges and thresholds</h2>
-    <p class="muted" style="margin:10px 0 0">
-      There is no single cutoff. Many programs target ranges in the mid-30s to low-40s, but underwriting can allow higher ratios with
-      strong credit, reserves, or stable income. Use the calculator to test how small changes move your ratio around those ranges.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Variable income and co-borrowers</h2>
-    <p class="muted" style="margin:10px 0 0">
-      If income varies, use a stable documented average rather than a best month. For co-borrowers, combine documented gross income
-      and include the required debts for both borrowers in the ratio.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Student loan payment rules</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Some programs use a calculated payment when loans are deferred or on income-based plans. If your statement shows a low payment,
-      confirm how the lender will treat the loan so your DTI estimate stays realistic.
-    </p>
+    <h2 style="margin-top:0">Where to pull the numbers from</h2>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Decision input</th>
+            <th>Best source</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Required debt payments</td>
+            <td>Recent statements and credit-report style minimums</td>
+            <td>DTI uses required monthly payments, not your planned payoff amount or balance size.</td>
+          </tr>
+          <tr>
+            <td>Housing payment</td>
+            <td>Mortgage quote, Loan Estimate, taxes, insurance, HOA, and PMI assumptions</td>
+            <td>Leaving out taxes, insurance, HOA, or PMI can make DTI look safer than lender underwriting will show.</td>
+          </tr>
+          <tr>
+            <td>Stable income</td>
+            <td>Pay stubs, W-2s, tax returns, and other lender-accepted documentation</td>
+            <td>DTI is only as useful as the income the lender will actually count.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Tools</h2>
+      <h2 style="margin-top:0">Core DTI pages</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
         <li><a href="/calculators/debt-to-income-calculator">Debt-to-income calculator</a></li>
-        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a> (housing input)</li>
-        <li><a href="/calculators/credit-card-payoff-calculator">Credit card payoff calculator</a> (reduce balances)</li>
-        <li><a href="/calculators/rent-vs-buy-calculator">Rent vs buy calculator</a> (compare housing scenarios)</li>
+        <li><a href="/guides/dti-calculation-step-by-step">DTI calculation step by step</a></li>
+        <li><a href="/guides/what-counts-in-dti">What counts in DTI</a></li>
+        <li><a href="/guides/how-to-improve-dti">How to improve DTI</a></li>
       </ul>
     </div>
     <div class="card section prose col-6">
-      <h2 style="margin-top:0">Guides</h2>
+      <h2 style="margin-top:0">Housing and threshold branches</h2>
       <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-        <li><a href="/guides/dti-calculation-step-by-step">DTI calculation step by step</a></li>
-        <li><a href="/guides/what-counts-in-dti">What counts in DTI</a></li>
-        <li><a href="/guides/dti-housing-payment-piti-includes">Housing payment inputs (PITI, HOA, PMI)</a></li>
-        <li><a href="/guides/how-to-improve-dti">How to improve DTI</a></li>
-        <li><a href="/guides/credit-card-payoff-strategy">Credit card payoff strategy</a></li>
-        <li><a href="/guides/rent-vs-buy-break-even">Rent vs buy break-even</a></li>
+        <li><a href="/guides/dti-housing-payment-piti-includes">DTI housing payment inputs</a></li>
+        <li><a href="/calculators/mortgage-payment-calculator">Mortgage payment calculator</a></li>
+        <li><a href="/guides/dti-calculation-step-by-step">Front-end vs back-end DTI</a></li>
+        <li><a href="/guides/what-counts-in-dti">DTI thresholds and compensating factors</a></li>
       </ul>
     </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Common mistakes</h2>
+    <h2 style="margin-top:0">Common DTI mistakes</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Using net income instead of gross income.</li>
-      <li>Leaving out required debts or minimum card payments.</li>
-      <li>Using a guessed housing payment rather than a calculated one.</li>
+      <li>Using net income instead of gross documented income.</li>
+      <li>Using planned payoff amounts instead of required minimum payments.</li>
+      <li>Leaving taxes, insurance, HOA, or PMI out of the housing payment.</li>
+      <li>Talking about front-end and back-end DTI as if they were interchangeable.</li>
     </ul>
-  </section>
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Inputs checklist</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Use your latest statements to confirm required minimums and loan payments. If income varies, use the stable monthly amount that
-      can be documented. Consistent inputs make the ratio comparable across scenarios.
-    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Decision checklist</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Do you know which debts the lender will include?</li>
-      <li>Have you used a realistic housing payment estimate?</li>
-      <li>Can you reduce the ratio with a payoff plan or higher income?</li>
-    </ul>
-    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
+    <h2 style="margin-top:0">Affordability checkpoint</h2>
+    <p class="muted" style="margin:10px 0 0">
+      DTI is not only a credit metric. It is often the bridge between "how much house can I afford?" and "will a lender see this as
+      workable?" If the housing payment is guessed or incomplete, every DTI conclusion downstream becomes less trustworthy. Check the
+      housing-payment branch before making affordability decisions from a rough ratio.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">References</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>
-        CFPB:{' '}
-        <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgage resources</a>
+        CFPB:{" "}
+        <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-debt-to-income-dti-ratio-en-1791/" rel="noopener noreferrer" target="_blank">
+          What is a debt-to-income (DTI) ratio?
+        </a>
       </li>
     </ul>
+    <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
-    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:10px 0 0; font-size:13px">Last updated: 2026-04-22</p>
   </section>
 </BaseLayout>
-
-

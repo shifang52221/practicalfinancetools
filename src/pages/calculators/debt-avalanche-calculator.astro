@@ -64,7 +64,7 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       a: "If APRs are equal, many people break ties by paying the smaller balance first (for a quicker payoff) or by paying the higher minimum first. The difference is usually small if APRs are identical."
     }
   ]}
-  lastUpdated="2026-04-04"
+  lastUpdated="2026-03-01"
   authorProfile={TRUST_PROFILES.siteOwner}
   reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
@@ -73,18 +73,11 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
     writtenBy={TRUST_PROFILES.siteOwner}
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Avalanche payoff sequencing, interest-minimization tradeoffs, and comparison guidance against snowball."
-    reviewedOn="2026-04-04"
+    reviewScope="APR-priority payoff assumptions, promo-rate stress testing, and plan comparison boundaries."
+    reviewedOn="2026-03-01"
   />
 
   <div class="prose" style="margin-top:16px">
-    <h2 style="margin:0 0 10px">Use avalanche when interest cost is the main objective</h2>
-    <ul class="muted" style="margin:0; padding-left:18px">
-      <li>This page is strongest when you want the payoff order to favor lower total interest rather than faster visible wins.</li>
-      <li>Avalanche can feel slower in the early months if the highest-APR debt is large, so consistency matters as much as the math.</li>
-      <li>If the cheaper strategy still feels hard to stick with, compare the same debts in snowball before deciding which plan you will actually maintain.</li>
-    </ul>
-
     <h2 style="margin:0 0 10px">How to use this debt avalanche calculator</h2>
     <p class="muted" style="margin:0">
       Enter each debt's balance, APR, and minimum payment. Then add an "extra payment" amount, the additional money you
@@ -206,13 +199,6 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
       <li>Use the statement minimum payment (or required payment) so the schedule stays realistic.</li>
       <li>Start with an extra payment you can sustain, then increase it after a few consistent months.</li>
       <li>If promo APRs will end, rerun the plan with the future APR as a scenario.</li>
-    </ul>
-
-    <h2 style="margin:18px 0 10px">When to switch to another payoff tool</h2>
-    <ul class="muted" style="margin:0; padding-left:18px">
-      <li>Use the single-card payoff calculator if you are solving one balance rather than a multi-account order.</li>
-      <li>Use the minimum payment calculator if you need to understand issuer minimum rules before setting an extra payment target.</li>
-      <li>Use snowball when the biggest risk is losing momentum before the interest savings show up.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Common pitfalls</h2>
