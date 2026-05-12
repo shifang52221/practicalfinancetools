@@ -64,6 +64,10 @@ function getStaticGuideRedirectMap(): Map<string, string> {
   );
 }
 
+function countOccurrences(source: string, needle: string): number {
+  return source.split(needle).length - 1;
+}
+
 test("SEO: canonicalPath should match the page route path", () => {
   const pagesRoot = join(process.cwd(), "src", "pages");
   const files = collectAstroFiles(pagesRoot);
@@ -851,6 +855,44 @@ test("SEO: APR topic page should behave like a routing tree", () => {
     issues.length,
     0,
     issues.length > 0 ? `APR topic routing-tree cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: APR wave-1 pages should emphasize the strongest starting point and boundary guidance", () => {
+  const expectations = [
+    {
+      file: "src/pages/topics/apr.astro",
+      phrases: [
+        "Best starting point for most APR comparisons",
+        "Start with the APR calculator when you already have the rate, term, loan amount, and fee assumptions.",
+        "If you still need to locate the disclosed APR before comparing offers"
+      ]
+    },
+    {
+      file: "src/pages/calculators/apr-calculator.astro",
+      phrases: [
+        "Start here when you already have the numbers from a Loan Estimate, statement, or offer sheet.",
+        "Do not include taxes, insurance, or escrow in the APR fee field.",
+        "If you are still sorting out which APR question you actually have, go back to the APR topic hub first."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `APR wave-1 starting-point or boundary cues are missing:\n${issues.join("\n")}` : ""
   );
 });
 
@@ -2919,6 +2961,98 @@ test("SEO: minimum-payment entry pages should behave like a tool-plus-explainer 
   );
 });
 
+test("SEO: wave-1 credit-card pages should declare the right starting point and next-step boundaries", () => {
+  const expectations = [
+    {
+      file: "src/pages/calculators/minimum-payment-payoff-calculator.astro",
+      phrases: [
+        "Start here when the statement minimum is the main number you are trying to understand.",
+        "If your real problem is a confusing statement interest charge, go to the interest explainer first.",
+        "If you already know the payment you can commit to each month, go straight to the fixed-payment payoff calculator."
+      ]
+    },
+    {
+      file: "src/pages/calculators/credit-card-payoff-calculator.astro",
+      phrases: [
+        "Start here when you already know the monthly payment you can realistically sustain.",
+        "If the statement minimum is still the number driving your plan, go back to the minimum payment calculator first.",
+        "If the statement math looks wrong before you even pick a payment, use the interest explainer first."
+      ]
+    },
+    {
+      file: "src/pages/guides/how-credit-card-interest-is-calculated.astro",
+      phrases: [
+        "Use this guide before a payoff calculator when the statement math itself is the confusing part.",
+        "If the statement minimum is the main issue, move next to the minimum payment payoff calculator.",
+        "If you already trust the statement math and just need a payoff date, switch to the fixed-payment payoff calculator."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Wave-1 credit-card entry boundaries are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: wave-1 support pages should route APR and credit-card users into the correct next step", () => {
+  const expectations = [
+    {
+      file: "src/pages/guides/credit-card-payoff-strategy.astro",
+      phrases: [
+        "Use this page when the payoff decision is bigger than one confusing statement line but smaller than a full multi-debt strategy overhaul.",
+        "If the statement math itself still looks wrong, go back to the interest explainer before choosing a payoff tactic.",
+        "If you already know the fixed payment you can sustain, skip strategy talk and move straight to the payoff calculator."
+      ]
+    },
+    {
+      file: "src/pages/guides/how-to-find-your-apr.astro",
+      phrases: [
+        "Start here before the APR calculator when the first job is simply locating the disclosed APR.",
+        "If you already have the disclosed APR, rate, term, and fee assumptions, move next to the APR calculator.",
+        "If your real confusion is why the APR is higher than the note rate, switch to APR vs interest rate next."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-vs-interest-rate.astro",
+      phrases: [
+        "Use this guide when the quote looks cheaper on rate but more expensive once fees are included.",
+        "If you still need to find the official disclosed APR, go back to the APR source guide first.",
+        "If you already have the rate, term, and fee inputs lined up, move straight to the APR calculator."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing support-page routing cue "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Wave-1 support pages are not routing tightly enough:\n${issues.join("\n")}` : ""
+  );
+});
+
 test("SEO: biweekly pages should behave like a comparison workflow, not generic mortgage support", () => {
   const expectedPages = [
     {
@@ -2953,5 +3087,172 @@ test("SEO: biweekly pages should behave like a comparison workflow, not generic 
     issues.length,
     0,
     issues.length > 0 ? `Biweekly workflow still reads too generically:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: biweekly support pages should route fee-check and timing-pattern users into the right next page", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/guides/biweekly-mortgage-program-fees.astro",
+      phrases: [
+        "Use this support page for the fee-check question.",
+        "If you still need the bigger comparison between biweekly timing and plain extra principal, start with biweekly vs extra principal.",
+        "If you only need the payoff math, compare the same loan in the biweekly calculator and the extra payment calculator."
+      ]
+    },
+    {
+      file: "src/pages/guides/one-extra-mortgage-payment-per-year.astro",
+      phrases: [
+        "Use this support page for the common \"one extra payment\" payoff pattern.",
+        "If you are still deciding whether extra principal fits your plan at all, go back to the main extra mortgage payments guide and then return here when the timing pattern is the real question.",
+        "If you are deciding whether a paid biweekly program is worth it, switch to the biweekly mortgage program fees guide.",
+        "If you already know the amount and timing you want to test, jump into the extra payment calculator."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing biweekly support cue "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Biweekly support pages are not routing tightly enough:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: credit-card topic hub should declare the strongest starting point and when to branch away from it", () => {
+  const file = "src/pages/topics/credit-cards.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const expectedPhrases = [
+    "Best starting point for most single-card payoff plans",
+    "Start with the credit card payoff calculator when you already know the monthly payment you can sustain.",
+    "If the statement minimum is still the main number driving the plan, start with the minimum payment calculator instead.",
+    "If the statement interest line itself looks wrong, start with the interest explainer before using a payoff calculator."
+  ];
+
+  const issues: string[] = [];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing topic-hub starting-point cue "${phrase}"`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Credit-card topic hub still needs a clearer strongest-start signal:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: extra-mortgage-payments hub should keep its next steps inside the extra-payment decision cluster", () => {
+  const file = "src/pages/guides/extra-mortgage-payments.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const issues: string[] = [];
+
+  if (source.includes('/calculators/rent-vs-buy-calculator')) {
+    issues.push(`${file} -> next-step cluster is diluted by rent-vs-buy calculator`);
+  }
+  if (source.includes('/guides/rent-vs-buy-break-even')) {
+    issues.push(`${file} -> next-step cluster is diluted by rent-vs-buy break-even guide`);
+  }
+  if (!source.includes('/guides/one-extra-mortgage-payment-per-year')) {
+    issues.push(`${file} -> missing one-extra-payment support path in the extra-payment cluster`);
+  }
+  if (!source.includes('/guides/extra-payment-vs-refinance')) {
+    issues.push(`${file} -> missing extra-payment-vs-refinance path in the extra-payment cluster`);
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Extra-payment hub next steps still leak outside the cluster:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: APR-for-balance-transfers should declare when to use payoff math versus APR-fee interpretation", () => {
+  const file = "src/pages/guides/apr-for-balance-transfers.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const expectedPhrases = [
+    "Use this guide when the transfer fee, promo end date, or post-promo APR could change whether the offer is actually cheaper.",
+    "If you already know the payment you can sustain and want a payoff answer, move next to the credit card payoff calculator.",
+    "If you still need the broader APR-and-fee framework for card offers, go back to the APR-for-credit-cards guide first."
+  ];
+
+  const issues: string[] = [];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing balance-transfer routing cue "${phrase}"`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `APR-for-balance-transfers still needs sharper routing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: wave-1 routing pages should avoid duplicate strongest-start cues", () => {
+  const expectations = [
+    {
+      file: "src/pages/topics/apr.astro",
+      phrases: [
+        "Start with the APR calculator when you already have the rate, term, loan amount, and fee assumptions."
+      ]
+    },
+    {
+      file: "src/pages/calculators/apr-calculator.astro",
+      phrases: [
+        "If you are still sorting out which APR question you actually have, go back to the APR topic hub first."
+      ]
+    },
+    {
+      file: "src/pages/calculators/minimum-payment-payoff-calculator.astro",
+      phrases: [
+        "If you already know the payment you can commit to each month, go straight to the fixed-payment payoff calculator."
+      ]
+    },
+    {
+      file: "src/pages/calculators/credit-card-payoff-calculator.astro",
+      phrases: [
+        "If the statement minimum is still the number driving your plan, go back to the minimum payment calculator first."
+      ]
+    },
+    {
+      file: "src/pages/guides/how-credit-card-interest-is-calculated.astro",
+      phrases: [
+        "If the statement minimum is the main issue, move next to the minimum payment payoff calculator.",
+        "If you already trust the statement math and just need a payoff date, switch to the fixed-payment payoff calculator."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      const count = countOccurrences(source, phrase);
+      if (count !== 1) {
+        issues.push(`${item.file} -> expected 1 occurrence of "${phrase}", found ${count}`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Wave-1 routing cues are being repeated too aggressively:\n${issues.join("\n")}` : ""
   );
 });
