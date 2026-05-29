@@ -91,7 +91,7 @@ const caseTwoBreakevenMonths = caseTwoSavingsMonthly > 0 ? caseTwoB.fees / caseT
       a: "No. It's an educational estimate to compare scenarios. Official APR disclosures follow specific legal rules."
     }
   ]}
-  lastUpdated="2026-03-03"
+  lastUpdated="2026-05-29"
   authorProfile={TRUST_PROFILES.siteOwner}
   reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
@@ -101,22 +101,30 @@ const caseTwoBreakevenMonths = caseTwoSavingsMonthly > 0 ? caseTwoB.fees / caseT
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="APR formula assumptions, fee-handling behavior, and comparison-use guidance."
-    reviewedOn="2026-03-03"
+    reviewedOn="2026-05-29"
   />
 
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">Start here when you already have the numbers</h2>
     <p class="muted" style="margin:0">
-      Use this calculator when you want to turn rate, term, and fee inputs from a real quote into a consistent comparison. If you are
-      still deciding which APR problem you are actually solving, use the{" "}
-      <a href="/topics/apr">APR topic hub</a> to choose the right branch first.
-    </p>
-    <p class="muted" style="margin:12px 0 0">
-      Start here when you already have the numbers from a Loan Estimate, statement, or offer sheet.
+      Use this calculator when you want to turn rate, term, and fee inputs from a real quote into a consistent comparison. Start here when you already have the numbers from a Loan Estimate, statement, or offer sheet.
     </p>
     <p class="muted" style="margin:12px 0 0">
       If you are still sorting out which APR question you actually have, go back to the APR topic hub first.
+      You can use the <a href="/topics/apr">APR topic hub</a> to choose the right branch.
     </p>
+
+    <h2 style="margin:18px 0 10px">Map the quote before you calculate APR</h2>
+    <p class="muted" style="margin:0">
+      APR estimates are only useful when the quote inputs are lined up the same way. Before comparing offers, copy the loan amount,
+      stated interest rate, term, upfront borrowing fees, and whether fees are paid in cash or financed into the same input structure.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Use the interest rate line for the nominal rate input.</li>
+      <li>Use the repayment schedule for the term in months.</li>
+      <li>Use origination fees, points, or lender charges that reduce what you effectively receive.</li>
+      <li>Keep taxes, insurance, escrow, and unrelated third-party costs outside the APR fee field.</li>
+    </ul>
 
     <h2 style="margin:18px 0 10px">Use this APR calculator for the right kind of fee input</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
@@ -295,6 +303,17 @@ APR (annualized) approx = r * 12</code></pre>
       break-even window, the lower-rate offer may not be cheaper for you.
     </p>
 
+    <h2 style="margin:18px 0 10px">APR is not always the cheapest short-hold choice</h2>
+    <p class="muted" style="margin:0">
+      APR is designed for standardized comparison, but it can hide a timing problem. If one offer has a lower rate and higher upfront
+      fees, the APR may look attractive even though a borrower who sells, refinances, or prepays early never reaches the break-even point.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>For a full-term hold, APR can be a strong comparison shortcut.</li>
+      <li>For a 24- to 60-month hold, compare cash paid over that horizon as well as APR.</li>
+      <li>For refinance decisions, pair this page with a break-even check before choosing the lower-rate, higher-fee offer.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">Real-world case studies</h2>
     <div style="overflow:auto; margin-top:10px">
       <table class="table">
@@ -407,6 +426,14 @@ APR (annualized) approx = r * 12</code></pre>
       <li>Align the term and payment schedule to the disclosure (monthly vs other).</li>
     </ul>
 
+    <h2 style="margin:18px 0 10px">Which APR decision are you making next?</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>If the confusing part is rate versus APR, read <a href="/guides/apr-vs-interest-rate">APR vs interest rate</a>.</li>
+      <li>If the confusing part is origination fees or points, use <a href="/guides/apr-with-origination-fee">APR with origination fee</a>.</li>
+      <li>If the confusing part is where to find the official disclosure, use <a href="/guides/how-to-find-your-apr">how to find your APR</a>.</li>
+      <li>If you are comparing payoff, refinance, or short-hold timing, keep APR and total cash cost side by side.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">Related guide</h2>
     <div class="btn-row" style="margin-top:0">
       <a class="btn btn-primary" href="/topics/apr">APR topic hub</a>
@@ -433,5 +460,6 @@ APR (annualized) approx = r * 12</code></pre>
         </a>
       </li>
     </ul>
+    <p class="muted" style="margin:18px 0 0; font-size:13px">Last updated: 2026-05-29</p>
   </div>
 </CalculatorLayout>

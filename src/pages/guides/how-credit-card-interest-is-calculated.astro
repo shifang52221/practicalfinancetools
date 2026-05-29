@@ -18,7 +18,7 @@ const payoffB = creditCardPayoffSchedule({ balance: exampleBalance, aprPercent: 
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-22";
+const lastUpdated = "2026-05-29";
 ---
 <BaseLayout
   title={title}
@@ -54,7 +54,7 @@ const lastUpdated = "2026-04-22";
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
     reviewScope="Statement-interest framing, average-daily-balance explanation, and reconciliation cues for grace-period loss, trailing interest, and calculator-versus-statement differences."
-    reviewedOn="2026-04-22"
+    reviewedOn="2026-05-29"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -76,12 +76,16 @@ const lastUpdated = "2026-04-22";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Credit card inputs to verify</h2>
-    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Current balance, APR, and any promo end date.</li>
-      <li>Minimum payment rule or fixed payment amount.</li>
-      <li>Fees or new purchases that affect the balance.</li>
-      <li>Statement cycle dates and posting timing.</li>
+    <h2 style="margin-top:0">Why your statement doesn't match balance x APR / 12</h2>
+    <p class="muted" style="margin:10px 0 0">
+      The short answer is that many issuers do not simply take your month-end balance and multiply by APR / 12. Instead, they often look
+      at daily balances across the billing cycle, apply a daily periodic rate, and then total the interest for the statement period.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Daily balances change when purchases, fees, or payments land mid-cycle.</li>
+      <li>Statement cycle length can differ from your rough 30-day mental shortcut.</li>
+      <li>Payment posting timing can reduce or increase interest inside the cycle.</li>
+      <li>Grace-period loss, trailing interest, or separate APR buckets can change the answer further.</li>
     </ul>
   </section>
 
@@ -105,15 +109,6 @@ const lastUpdated = "2026-04-22";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Why statements look stranger than simple payoff math</h2>
-    <p class="muted" style="margin:10px 0 0">
-      For most readers, average daily balance is usually the main reason the statement interest line looks different from a quick monthly
-      estimate. Payments that land mid-cycle, new purchases, cash advances, and cycle length can all change the interest charge even when
-      the APR itself looks familiar.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How issuers usually compute interest (typical)</h2>
     <p class="muted" style="margin:10px 0 0">
       Many US credit cards use some version of an <strong>average daily balance</strong> method: the issuer looks at your balance each day
@@ -128,6 +123,23 @@ const lastUpdated = "2026-04-22";
     <p class="muted" style="margin:12px 0 0">
       This daily approach is one reason a simple monthly estimate won't match your statement to the penny, especially when you make
       payments mid-cycle or add purchases throughout the month.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How average daily balance actually works</h2>
+    <ol class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>Start with the billing cycle dates shown on the statement.</li>
+      <li>Track how the balance changes during that cycle as purchases, fees, and payments post.</li>
+      <li>Average those daily balances across the cycle instead of focusing only on the ending balance.</li>
+      <li>Apply the daily periodic rate to those balances to estimate the interest charge for the cycle.</li>
+    </ol>
+    <p class="muted" style="margin:12px 0 0">
+      This is why a payment made in the middle of the cycle can change interest even when your month-end balance still feels high, and why
+      a quick monthly estimate is directionally useful but not statement-accurate.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      For many readers, average daily balance is usually the main reason the statement interest line looks different from a quick monthly estimate.
     </p>
   </section>
 
@@ -172,38 +184,31 @@ const lastUpdated = "2026-04-22";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Grace period: why you might pay $0 interest</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Many credit cards offer a grace period on purchases: if you pay the statement balance in full by the due date, purchases may not
-      accrue interest. But carrying a balance can remove the grace period, and certain transactions (cash advances are a common example)
-      may accrue interest immediately.
-    </p>
-    <p class="muted" style="margin:12px 0 0">
-      If you recently carried a balance and then paid in full, you may see a small "trailing" interest charge on the next statement. That's
-      interest accrued between the statement close date and the date your payment posted.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Grace-period loss and trailing interest</h2>
-    <p class="muted" style="margin:10px 0 0">
-      grace-period loss and trailing interest are two of the most common reasons people think the statement is wrong. Carrying a balance
-      can remove the grace period on purchases, and a payoff that happens after the statement closes can still leave a small residual
-      interest amount on the next bill.
-    </p>
-  </section>
-
-  <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Different APR buckets on the same card</h2>
-    <p class="muted" style="margin:10px 0 0">
-      Many cards have different APRs for purchases, balance transfers, and cash advances. Each bucket can accrue interest
-      differently, and payments may be applied to the lowest-rate balance first.
-    </p>
-    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
-      <li>Check the APR for each balance type on your statement.</li>
-      <li>A promo APR often applies to one balance type only.</li>
-      <li>New purchases can accrue interest even when a transfer has 0% APR.</li>
-    </ul>
+    <h2 style="margin-top:0">Three common reasons the interest charge looks wrong</h2>
+    <p class="muted" style="margin:10px 0 0">The grace-period loss and trailing interest pattern is one of the most common reasons people think the statement is wrong.</p>
+    <div class="grid" style="margin-top:12px">
+      <div class="card section prose col-4" style="margin-top:0">
+        <h3 style="margin-top:0">Lost grace period</h3>
+        <p class="muted" style="margin:8px 0 0">
+          Many credit cards offer a grace period on purchases only when you pay the statement balance in full. Carrying a balance can
+          remove that grace period and make new purchases accrue interest sooner than expected.
+        </p>
+      </div>
+      <div class="card section prose col-4" style="margin-top:0">
+        <h3 style="margin-top:0">Trailing interest</h3>
+        <p class="muted" style="margin:8px 0 0">
+          A payoff that happens after the statement closes can still leave residual interest on the next bill because interest kept
+          accruing between the close date and the payment posting date.
+        </p>
+      </div>
+      <div class="card section prose col-4" style="margin-top:0">
+        <h3 style="margin-top:0">Multiple APR buckets</h3>
+        <p class="muted" style="margin:8px 0 0">
+          Purchases, balance transfers, and cash advances can have different APRs. If those buckets behave differently, your statement can
+          look confusing even when one quick formula seems reasonable.
+        </p>
+      </div>
+    </div>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -297,6 +302,15 @@ const lastUpdated = "2026-04-22";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Where to go next</h2>
+    <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+      <li>If the statement minimum is the main issue, move next to the <a href="/calculators/minimum-payment-payoff-calculator">minimum payment payoff calculator</a>.</li>
+      <li>If you already trust the statement math and just need a payoff date, switch to the <a href="/calculators/credit-card-payoff-calculator">fixed-payment payoff calculator</a>.</li>
+      <li>If you need a multi-card order after understanding the math, continue to <a href="/calculators/debt-snowball-calculator">debt snowball</a> or <a href="/calculators/debt-avalanche-calculator">debt avalanche</a>.</li>
+    </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">FAQ</h2>
     <h3 style="margin:12px 0 0">Do I pay interest if I pay the statement balance in full?</h3>
     <p class="muted" style="margin:8px 0 0">
@@ -339,7 +353,7 @@ const lastUpdated = "2026-04-22";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Next steps</h2>
+    <h2 style="margin-top:0">Related payoff pages</h2>
     <div class="btn-row" style="margin-top:10px">
       <a class="btn btn-primary" href="/calculators/credit-card-payoff-calculator">Model a fixed payment payoff</a>
       <a class="btn" href="/guides/credit-card-payoff-strategy">Payoff strategy</a>
@@ -349,7 +363,7 @@ const lastUpdated = "2026-04-22";
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-04-22
+      Last updated: 2026-05-29
     </p>
   </section>
 </BaseLayout>

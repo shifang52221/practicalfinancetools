@@ -1601,8 +1601,8 @@ test("SEO: extra-payment and PITI destinations should keep final absorbed-intent
   if (!calculatorSource.includes("Use this calculator when you need the broad extra-payment payoff plan before narrowing to principal-only or lump-sum-only moves")) {
     issues.push(`${calculatorFile} -> missing final absorbed-intent role section`);
   }
-  if (!calculatorSource.includes('lastUpdated="2026-04-04"')) {
-    issues.push(`${calculatorFile} -> missing lastUpdated="2026-04-04"`);
+  if (!calculatorSource.includes('lastUpdated="2026-05-29"')) {
+    issues.push(`${calculatorFile} -> missing lastUpdated="2026-05-29"`);
   }
   for (const phrase of ["extra mortgage payment calculator", "additional principal payments"]) {
     if (!calculatorSource.toLowerCase().includes(phrase)) {
@@ -2929,9 +2929,10 @@ test("SEO: minimum-payment entry pages should behave like a tool-plus-explainer 
     {
       file: "src/pages/calculators/minimum-payment-payoff-calculator.astro",
       phrases: [
+        "Read these 3 numbers first",
         "Choose the question behind the minimum-payment problem",
         "I need to see why the minimum barely moves the balance",
-        "I already know the fixed payment I want to make"
+        "What should you do next?"
       ]
     },
     {
@@ -2966,8 +2967,8 @@ test("SEO: wave-1 credit-card pages should declare the right starting point and 
     {
       file: "src/pages/calculators/minimum-payment-payoff-calculator.astro",
       phrases: [
-        "Start here when the statement minimum is the main number you are trying to understand.",
-        "If your real problem is a confusing statement interest charge, go to the interest explainer first.",
+        "Use this calculator when the statement minimum is the number driving your plan",
+        "If your real problem is why the statement interest charge looks wrong, start with the",
         "If you already know the payment you can commit to each month, go straight to the fixed-payment payoff calculator."
       ]
     },
@@ -2983,6 +2984,7 @@ test("SEO: wave-1 credit-card pages should declare the right starting point and 
       file: "src/pages/guides/how-credit-card-interest-is-calculated.astro",
       phrases: [
         "Use this guide before a payoff calculator when the statement math itself is the confusing part.",
+        "Why your statement doesn't match balance x APR / 12",
         "If the statement minimum is the main issue, move next to the minimum payment payoff calculator.",
         "If you already trust the statement math and just need a payoff date, switch to the fixed-payment payoff calculator."
       ]
@@ -3254,5 +3256,90 @@ test("SEO: wave-1 routing pages should avoid duplicate strongest-start cues", ()
     issues.length,
     0,
     issues.length > 0 ? `Wave-1 routing cues are being repeated too aggressively:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: refreshed credit-card workflow pages should keep sharper decision modules visible", () => {
+  const expectations = [
+    {
+      file: "src/pages/calculators/minimum-payment-payoff-calculator.astro",
+      phrases: [
+        "Minimum due vs real payoff plan",
+        "Pick a target payment, not just a minimum due",
+        "This credit card minimum payment calculator is for the moment when the minimum due on your statement is still the number driving your plan."
+      ]
+    },
+    {
+      file: "src/pages/guides/how-credit-card-interest-is-calculated.astro",
+      phrases: [
+        "Why your statement doesn't match balance x APR / 12",
+        "How average daily balance actually works",
+        "Three common reasons the interest charge looks wrong",
+        "Where to go next"
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing refreshed workflow phrase "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Refreshed credit-card workflow cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: refreshed high-impression calculator pages should keep stronger decision modules visible", () => {
+  const expectations = [
+    {
+      file: "src/pages/calculators/apr-calculator.astro",
+      phrases: [
+        "Map the quote before you calculate APR",
+        "APR is not always the cheapest short-hold choice",
+        "Which APR decision are you making next?"
+      ]
+    },
+    {
+      file: "src/pages/calculators/biweekly-mortgage-payment-calculator.astro",
+      phrases: [
+        "First verify what biweekly means in your program",
+        "Fee-based biweekly service decision check",
+        "What should you compare next?"
+      ]
+    },
+    {
+      file: "src/pages/calculators/extra-payment-calculator.astro",
+      phrases: [
+        "Choose monthly, annual, or lump-sum extra payments",
+        "Cash-flow fit vs payoff speed",
+        "What should you compare after the broad extra-payment plan?"
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing refreshed decision phrase "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Refreshed high-impression calculator decision modules are missing:\n${issues.join("\n")}` : ""
   );
 });

@@ -3,7 +3,7 @@ import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import { MinimumPaymentPayoff } from "../../components/calculators/MinimumPaymentPayoff";
 import ReviewedByCard from "../../components/ReviewedByCard.astro";
 import { TRUST_PROFILES } from "../../config/trust";
-import { minimumPaymentPayoffSchedule } from "../../lib/calc/creditCard";
+import { minimumPaymentPayoffSchedule, paymentToPayoffInMonths } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Minimum Payment Calculator";
 const metaTitle = "Credit Card Minimum Payment Calculator | Payoff Time and Interest";
@@ -22,6 +22,9 @@ const fixedPaymentC = 300;
 const fixedA = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, minDollars: fixedPaymentA });
 const fixedB = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, minDollars: fixedPaymentB });
 const fixedC = minimumPaymentPayoffSchedule({ ...exampleInput, minPercent: 0, minDollars: fixedPaymentC });
+const payoffTarget24 = paymentToPayoffInMonths({ balance: exampleInput.balance, aprPercent: exampleInput.aprPercent, targetMonths: 24 });
+const payoffTarget36 = paymentToPayoffInMonths({ balance: exampleInput.balance, aprPercent: exampleInput.aprPercent, targetMonths: 36 });
+const payoffTarget48 = paymentToPayoffInMonths({ balance: exampleInput.balance, aprPercent: exampleInput.aprPercent, targetMonths: 48 });
 const caseOneInput = { balance: 7800, aprPercent: 26.99, minPercent: 2, minDollars: 35 };
 const caseOneMinimumOnly = minimumPaymentPayoffSchedule(caseOneInput);
 const caseOneBoosted = minimumPaymentPayoffSchedule({
@@ -83,7 +86,7 @@ const caseTwoFirstMonthInterestReset = caseTwoBaseInput.balance * (29.99 / 100 /
       a: "Pay more than the minimum, reduce APR (e.g., refinance/transfer), and prioritize higher-APR balances first."
     }
   ]}
-  lastUpdated="2026-04-03"
+  lastUpdated="2026-05-29"
   authorProfile={TRUST_PROFILES.siteOwner}
   reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
@@ -93,39 +96,37 @@ const caseTwoFirstMonthInterestReset = caseTwoBaseInput.balance * (29.99 / 100 /
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Minimum-payment modeling, statement-style assumptions, and risk framing for slow payoff paths."
-    reviewedOn="2026-04-03"
+    reviewedOn="2026-05-29"
   />
 
   <div class="prose" style="margin-top:16px">
-    <h2 style="margin:0 0 10px">Start here when the statement minimum is the main number</h2>
+    <h2 style="margin:0 0 10px">Use this calculator when the statement minimum is the number driving your plan</h2>
     <p class="muted" style="margin:0">
-      Start here when the statement minimum is the main number you are trying to understand. If your real problem is a confusing
-      statement interest charge, go to the <a href="/guides/how-credit-card-interest-is-calculated">interest explainer</a> first. If
-      you have already moved past the statement rule and are choosing a sustainable monthly plan, switch to the fixed-payment path.
+      This credit card minimum payment calculator is for the moment when the minimum due on your statement is still the number driving your plan.
+      Use this page to see how long minimum-only payments can take, how much interest they can create, and what kind of fixed payment would
+      produce a more realistic payoff window.
     </p>
     <p class="muted" style="margin:12px 0 0">
+      In other words, this is the page to use when the statement minimum is the main input and you need to turn that minimum into a more
+      realistic payoff decision.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If your real problem is why the statement interest charge looks wrong, start with the <a href="/guides/how-credit-card-interest-is-calculated">interest explainer</a>.
       If you already know the payment you can commit to each month, go straight to the fixed-payment payoff calculator.
     </p>
 
-    <h2 style="margin:0 0 10px">How this credit card minimum payment calculator works</h2>
-    <p class="muted" style="margin:0 0 10px">
-      This model is useful for the query "credit card minimum payment calculator" because it shows whether your current minimum
-      is enough to reduce principal at a meaningful speed.
-    </p>
+    <h2 style="margin:18px 0 10px">Read these 3 numbers first</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li><strong>Estimated payoff time:</strong> how long the balance can last if you keep following the minimum rule.</li>
+      <li><strong>Estimated total interest:</strong> the cost of letting the balance stay around for that long.</li>
+      <li><strong>Minimum payment to avoid growth:</strong> the rough threshold below which the balance can start moving the wrong way.</li>
+    </ul>
 
     <h2 style="margin:18px 0 10px">Choose the question behind the minimum-payment problem</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>I need to see why the minimum barely moves the balance: stay on this page and compare first-month interest with the modeled minimum.</li>
       <li>I already know the fixed payment I want to make: switch to the <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>.</li>
       <li>I need a strategy for multiple balances, not one card: move next to <a href="/calculators/debt-snowball-calculator">snowball</a> or <a href="/calculators/debt-avalanche-calculator">avalanche</a>.</li>
-    </ul>
-
-    <h2 style="margin:18px 0 10px">Use this calculator when your statement minimum is the main input</h2>
-    <ul class="muted" style="margin:0; padding-left:18px">
-      <li>This page is for issuer-style minimum-payment modeling, where the starting point is the minimum due shown on your statement.</li>
-      <li>If your real problem is a confusing statement interest charge, go to the interest explainer first.</li>
-      <li>If you already know the fixed monthly payment you plan to make, switch to the credit card payoff calculator instead.</li>
-      <li>If you have multiple cards and need payoff order, use snowball or avalanche after you understand the minimum rule on each balance.</li>
     </ul>
 
     <h2 style="margin:0 0 10px">Minimum payment formula (simplified)</h2>
@@ -188,6 +189,45 @@ Some issuers add interest and fees to that amount</code></pre>
       principal reduction is tiny.
     </p>
 
+    <h2 style="margin:18px 0 10px">Minimum due vs real payoff plan</h2>
+    <p class="muted" style="margin:0">
+      Minimum payments help avoid delinquency, but they are rarely the same thing as a reasonable payoff plan. For the same example
+      balance and APR, here is how the statement minimum compares with a few fixed-payoff targets.
+    </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Payment plan</th>
+            <th class="num">Approx. monthly payment</th>
+            <th>What it means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Statement minimum rule</td>
+            <td class="num">{money.format(Math.max(exampleInput.minDollars, exampleInput.balance * (exampleInput.minPercent / 100)))}</td>
+            <td>Variable payment that can keep dropping as the balance falls.</td>
+          </tr>
+          <tr>
+            <td>48-month payoff target</td>
+            <td class="num">{payoffTarget48 == null ? "N/A" : money.format(payoffTarget48)}</td>
+            <td>Useful if you need a slower but still defined payoff window.</td>
+          </tr>
+          <tr>
+            <td>36-month payoff target</td>
+            <td class="num">{payoffTarget36 == null ? "N/A" : money.format(payoffTarget36)}</td>
+            <td>Common middle ground between cash-flow flexibility and interest control.</td>
+          </tr>
+          <tr>
+            <td>24-month payoff target</td>
+            <td class="num">{payoffTarget24 == null ? "N/A" : money.format(payoffTarget24)}</td>
+            <td>More aggressive, but usually cuts interest much faster.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <h2 style="margin:18px 0 10px">Credit card minimum payment calculator inputs</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>APR: use the rate from your statement (not a promo teaser rate).</li>
@@ -196,33 +236,12 @@ Some issuers add interest and fees to that amount</code></pre>
       <li>Statement timing: real statements may differ due to daily interest and cycles.</li>
     </ul>
 
-    <h2 style="margin:18px 0 10px">How to use the results</h2>
+    <h2 style="margin:18px 0 10px">Pick a target payment, not just a minimum due</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
-      <li>Increase the payment until the payoff time feels realistic for your budget.</li>
-      <li>Compare total interest under two payments to see the cost of waiting.</li>
-      <li>If a balance grows, raise the payment above monthly interest.</li>
-      <li>If you have multiple debts, use the <a href="/calculators/debt-snowball-calculator">debt snowball calculator</a> to prioritize payoff order.</li>
-    </ul>
-
-    <h2 style="margin:18px 0 10px">If payoff takes too long</h2>
-    <ul class="muted" style="margin:0; padding-left:18px">
-      <li>Increase the payment by a small fixed amount and re-run the plan.</li>
-      <li>Check if a lower APR (transfer or refinance) is realistic for you.</li>
-      <li>Focus extra payments on the highest APR balance first.</li>
-    </ul>
-
-    <h2 style="margin:18px 0 10px">Pick a target payment</h2>
-    <ul class="muted" style="margin:0; padding-left:18px">
-      <li>Set a payoff window (for example 24 or 36 months) and back into a payment.</li>
-      <li>Use the interest total to weigh tradeoffs between speed and cash flow.</li>
-      <li>Re-run every 3-6 months to adjust for balance changes.</li>
-    </ul>
-
-    <h2 style="margin:18px 0 10px">Statement fields to verify</h2>
-    <ul class="muted" style="margin:0; padding-left:18px">
-      <li>APR shown on the statement (not marketing or teaser rate).</li>
-      <li>Minimum payment rule and any percentage tiers.</li>
-      <li>Whether fees are included in the minimum payment calculation.</li>
+      <li>Set a payoff window first, such as 24, 36, or 48 months, then back into a payment target.</li>
+      <li>Use the total interest estimate to compare the cost of waiting versus the cash-flow pressure of paying faster.</li>
+      <li>If a balance is barely shrinking, increase the payment above the monthly interest amount and re-run the plan.</li>
+      <li>If you have multiple debts, use the <a href="/calculators/debt-snowball-calculator">debt snowball calculator</a> or <a href="/calculators/debt-avalanche-calculator">debt avalanche calculator</a> after setting a realistic payment level for each card.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Issuer minimum-rule comparison</h2>
@@ -255,10 +274,12 @@ Some issuers add interest and fees to that amount</code></pre>
       </table>
     </div>
 
-    <h2 style="margin:18px 0 10px">Match your statement minimum</h2>
+    <h2 style="margin:18px 0 10px">How to match your statement minimum</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
+      <li>Check the APR shown on the statement, not a marketing teaser or old promo rate.</li>
       <li>Use the statement minimum as a reality check against the calculator output.</li>
-      <li>If the statement includes interest and fees in the minimum, raise the percent input to match.</li>
+      <li>Confirm whether your issuer uses a percent rule, dollar floor, or a tiered schedule by balance range.</li>
+      <li>If the statement includes interest and fees in the minimum, raise the percent input until the first-month minimum matches.</li>
       <li>Re-check after the next statement cycle to confirm the rule you are modeling.</li>
     </ul>
 
@@ -301,7 +322,7 @@ Some issuers add interest and fees to that amount</code></pre>
       </table>
     </div>
     <p class="muted" style="margin:12px 0 0">
-      Use this table to pick a payment that fits your budget and payoff target. Then compare it to your statement minimum.
+      Use this table to move from "what is my minimum due?" to "what payment actually fits my payoff target?"
     </p>
 
     <h2 style="margin:18px 0 10px">Real-world case studies</h2>
@@ -358,18 +379,12 @@ Some issuers add interest and fees to that amount</code></pre>
       <li>If you're carrying multiple balances, prioritization (snowball/avalanche) can matter more than minimum rules.</li>
     </ul>
 
-    <h2 style="margin:18px 0 10px">Reality check vs your statement</h2>
+    <h2 style="margin:18px 0 10px">What should you do next?</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
-      <li>Compare the calculator's minimum payment to your statement minimum.</li>
-      <li>If your issuer uses a tiered rule, adjust the percent-of-balance input to match.</li>
-      <li>Re-run after your next statement cycle to see how the minimum actually changes.</li>
+      <li>If your issue is statement math, go to <a href="/guides/how-credit-card-interest-is-calculated">how credit card interest is calculated</a>.</li>
+      <li>If you already know the fixed monthly amount you can sustain, move to the <a href="/calculators/credit-card-payoff-calculator">credit card payoff calculator</a>.</li>
+      <li>If you need a multi-card order, move next to <a href="/calculators/debt-snowball-calculator">debt snowball</a> or <a href="/calculators/debt-avalanche-calculator">debt avalanche</a>.</li>
     </ul>
-
-    <h2 style="margin:18px 0 10px">How to match issuer rules</h2>
-    <p class="muted" style="margin:0">
-      Many issuers calculate minimums as a percentage of balance with a dollar floor, but some add interest and fees.
-      Use your statement to estimate the implied percentage and update the input so the model stays realistic.
-    </p>
 
     <h2 style="margin:18px 0 10px">Boundary tests that catch bad assumptions</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
@@ -414,5 +429,6 @@ Some issuers add interest and fees to that amount</code></pre>
         </a>
       </li>
     </ul>
+    <p class="muted" style="margin:18px 0 0; font-size:13px">Last updated: 2026-05-29</p>
   </div>
 </CalculatorLayout>

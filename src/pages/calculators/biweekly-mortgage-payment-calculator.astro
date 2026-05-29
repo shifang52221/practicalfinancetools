@@ -94,7 +94,7 @@ const caseTwoMonthsSavedFullTerm = Math.max(0, caseTwoBase.months - caseTwoBiwee
       a: "Escrow amounts are set by your servicer and can change over time. This calculator focuses on principal and interest. If you pay escrow with your mortgage, make sure your payment method covers escrow correctly."
     }
   ]}
-  lastUpdated="2026-04-03"
+  lastUpdated="2026-05-29"
   authorProfile={TRUST_PROFILES.siteOwner}
   reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
@@ -104,7 +104,7 @@ const caseTwoMonthsSavedFullTerm = Math.max(0, caseTwoBase.months - caseTwoBiwee
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Biweekly-payment assumptions, comparison framing versus monthly extra payments, and interpretation guidance."
-    reviewedOn="2026-04-03"
+    reviewedOn="2026-05-29"
   />
 
   <div class="prose" style="margin-top:16px">
@@ -119,6 +119,17 @@ const caseTwoMonthsSavedFullTerm = Math.max(0, caseTwoBase.months - caseTwoBiwee
       <li>I need to know if the lender posts every two weeks or only monthly: stay here, then compare true biweekly behavior with the monthly-extra alternative.</li>
       <li>I just want the simplest no-fee alternative: jump to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a> and model payment/12 as a monthly extra.</li>
       <li>I need to evaluate a paid service, not just the math: move next to <a href="/guides/biweekly-mortgage-program-fees">biweekly program fees</a>.</li>
+    </ul>
+
+    <h2 style="margin:18px 0 10px">First verify what biweekly means in your program</h2>
+    <p class="muted" style="margin:0">
+      "Biweekly" can mean three different things in real life: true principal posting every two weeks, a servicer or third party holding
+      half-payments until month-end, or a paid service that mainly automates drafts. The payoff math depends on which one you actually have.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>True biweekly posting should show principal reductions every two weeks on the statement.</li>
+      <li>Held-then-posted monthly behavior can look almost the same as a no-fee monthly extra.</li>
+      <li>Third-party programs need a fee check before you treat the projected interest savings as real net savings.</li>
     </ul>
 
     <h2 style="margin:18px 0 10px">Biweekly calculator mortgage quick answer</h2>
@@ -212,6 +223,17 @@ const caseTwoMonthsSavedFullTerm = Math.max(0, caseTwoBase.months - caseTwoBiwee
         </tbody>
       </table>
     </div>
+
+    <h2 style="margin:18px 0 10px">Fee-based biweekly service decision check</h2>
+    <p class="muted" style="margin:0">
+      A paid biweekly service is not automatically bad, but it has to beat a simple no-fee alternative. Compare setup fees, monthly fees,
+      posting timing, and the same loan modeled as a monthly extra equal to one-twelfth of the regular principal-and-interest payment.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>If fees exceed expected interest savings during your hold period, the service is not helping financially.</li>
+      <li>If payments are not posted until month-end, the timing benefit may be small.</li>
+      <li>If your lender accepts principal-only extras directly, a no-fee monthly extra is often the cleaner comparison.</li>
+    </ul>
 
     <h2 style="margin:18px 0 10px">Real-world case studies</h2>
     <div style="overflow:auto; margin-top:10px">
@@ -325,6 +347,13 @@ const caseTwoMonthsSavedFullTerm = Math.max(0, caseTwoBase.months - caseTwoBiwee
       evaluating a paid biweekly service. Once that question is clear, move to the narrower page that matches the real friction.
     </p>
 
+    <h2 style="margin:18px 0 10px">What should you compare next?</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>If you want the no-fee version of the same payoff effect, use the <a href="/calculators/extra-payment-calculator">extra payment calculator</a>.</li>
+      <li>If the service charges setup or monthly fees, read <a href="/guides/biweekly-mortgage-program-fees">biweekly program fees</a>.</li>
+      <li>If your real question is biweekly versus direct extra principal, use <a href="/guides/biweekly-vs-extra-principal">biweekly vs extra principal</a>.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">Related tools</h2>
     <div class="btn-row" style="margin-top:0">
       <a class="btn" href="/calculators/extra-payment-calculator">Extra payment calculator</a>
@@ -340,5 +369,6 @@ const caseTwoMonthsSavedFullTerm = Math.max(0, caseTwoBase.months - caseTwoBiwee
         </a>
       </li>
     </ul>
+    <p class="muted" style="margin:18px 0 0; font-size:13px">Last updated: 2026-05-29</p>
   </div>
 </CalculatorLayout>

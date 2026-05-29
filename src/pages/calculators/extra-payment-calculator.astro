@@ -70,7 +70,7 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       a: "Not necessarily. Results are estimates and real statements can differ due to rounding and timing."
     }
   ]}
-  lastUpdated="2026-04-04"
+  lastUpdated="2026-05-29"
   authorProfile={TRUST_PROFILES.siteOwner}
   reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
@@ -80,7 +80,7 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Extra-payment payoff behavior, monthly-versus-lump-sum assumptions, and workflow routing."
-    reviewedOn="2026-04-03"
+    reviewedOn="2026-05-29"
   />
 
   <div class="prose" style="margin-top:16px">
@@ -98,12 +98,39 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       <li>I only care about a single lump sum or principal-only move: switch to the <a href="/calculators/additional-principal-payment-calculator">additional principal calculator</a>.</li>
     </ul>
 
-    <h2 style="margin:18px 0 10px">Choose the right calculator</h2>
+    <h2 style="margin:18px 0 10px">Choose monthly, annual, or lump-sum extra payments</h2>
     <p class="muted" style="margin:0">
-      Use this page for broad mortgage extra-payment planning: recurring monthly extras, one extra payment per year, and general payoff
-      acceleration. If your main question is how a <a href="/calculators/additional-principal-payment-calculator">lump sum or principal-only payment</a> should be modeled, use the
-      dedicated additional principal calculator.
+      This page is the broad extra-payment planning entry point. Use it to compare recurring monthly extras, one extra payment per year,
+      and a one-time lump sum under the same loan baseline before you narrow to a more specific calculator or guide.
     </p>
+    <div style="overflow:auto; margin-top:10px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Extra-payment pattern</th>
+            <th>Use this when</th>
+            <th>Best next page</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monthly extra</td>
+            <td>You can repeat the extra amount inside your normal budget.</td>
+            <td>Stay here, then test sensitivity with two extra amounts.</td>
+          </tr>
+          <tr>
+            <td>One extra payment per year</td>
+            <td>You want the 13-payments-per-year effect without a biweekly service.</td>
+            <td><a href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a></td>
+          </tr>
+          <tr>
+            <td>Lump sum or principal-only payment</td>
+            <td>You have a one-time windfall or want to model a specific principal payment.</td>
+            <td><a href="/calculators/additional-principal-payment-calculator">Additional principal calculator</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2 style="margin:0 0 10px">Worked example</h2>
     <p class="muted" style="margin:0">
@@ -210,6 +237,18 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       </table>
     </div>
 
+    <h2 style="margin:18px 0 10px">Cash-flow fit vs payoff speed</h2>
+    <p class="muted" style="margin:0">
+      The fastest payoff result is not automatically the best plan if it leaves too little cash reserve. Compare the interest saved with
+      the monthly budget pressure, emergency-fund impact, and whether a refinance, recast, or higher-interest debt payoff is competing for
+      the same dollars.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>If the extra amount strains cash flow, test a smaller monthly extra before committing.</li>
+      <li>If you may refinance or sell soon, compare short-horizon savings instead of only full-term savings.</li>
+      <li>If you need lower required payments, compare extra payments with a recast rather than assuming payoff speed is the only goal.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">Scenario checklist</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Keep the baseline constant before comparing options.</li>
@@ -223,6 +262,14 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       payoff-target question, or a refinance/recast comparison. Once the baseline behaves the way you expect, move to the narrower page
       that explains the actual tradeoff.
     </p>
+
+    <h2 style="margin:18px 0 10px">What should you compare after the broad extra-payment plan?</h2>
+    <ul class="muted" style="margin:0; padding-left:18px">
+      <li>If timing and posting rules are the concern, read <a href="/guides/principal-only-extra-payments">principal-only extra payments</a>.</li>
+      <li>If the question is biweekly versus monthly extra, compare with the <a href="/calculators/biweekly-mortgage-payment-calculator">biweekly mortgage calculator</a>.</li>
+      <li>If you are weighing refinance or recast alternatives, use <a href="/guides/extra-payment-vs-refinance">extra payments vs refinance</a> or <a href="/guides/mortgage-recast-vs-extra-payments">recast vs extra payments</a>.</li>
+      <li>If the only input you need is a one-time principal payment, switch to the <a href="/calculators/additional-principal-payment-calculator">additional principal calculator</a>.</li>
+    </ul>
 
     <h2 style="margin:18px 0 10px">Related guide</h2>
     <div class="btn-row" style="margin-top:0">
@@ -271,6 +318,6 @@ const interestSaved = Math.max(0, base.totalInterest - extra.totalInterest);
       </li>
     </ul>
 
-    <p class="muted" style="margin:18px 0 0; font-size:13px">Last updated: 2026-04-04</p>
+    <p class="muted" style="margin:18px 0 0; font-size:13px">Last updated: 2026-05-29</p>
   </div>
 </CalculatorLayout>
