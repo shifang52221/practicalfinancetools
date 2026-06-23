@@ -1550,6 +1550,32 @@ test("SEO: mortgage-payment core destination guides should adopt the stronger tr
   );
 });
 
+test("SEO: mortgage payment calculator should stay the quote-ready housing-payment entry page", () => {
+  const file = "src/pages/calculators/mortgage-payment-calculator.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const expectedPhrases = [
+    "This is the full housing-payment page for people who already have the loan and escrow inputs lined up.",
+    "When not to start here",
+    "If taxes or insurance are still the weak point, move next to What is PITI? first.",
+    "If your real question is lender qualification, move next to the DTI calculator.",
+    "What this calculator should send you to next"
+  ];
+
+  const issues: string[] = [];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Mortgage payment calculator still needs sharper quote-ready boundaries:\n${issues.join("\n")}` : ""
+  );
+});
+
 test("SEO: final extra-payment and PMI redirect-source pages should stay consolidated across redirects, sitemap exclusion, and source-page noindex", () => {
   const expectedConsolidation = new Map<string, string>([
     ["/guides/extra-mortgage-payment-calculator", "/calculators/extra-payment-calculator"],
