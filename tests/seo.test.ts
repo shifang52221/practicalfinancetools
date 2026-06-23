@@ -2924,6 +2924,32 @@ test("SEO: extra-payment entry pages should behave like primary workflow hubs", 
   );
 });
 
+test("SEO: extra-payment calculator should stay the broad extra-payment planning entry point", () => {
+  const file = "src/pages/calculators/extra-payment-calculator.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const expectedPhrases = [
+    "Use this calculator when you already know the extra amount you can sustain and need to compare monthly, annual, or lump-sum paths.",
+    "This page is not the best first stop when the real question is servicer posting rules, liquidity fragility, or a single principal-only move that does not need a broad extra-payment comparison.",
+    "If the only thing you need is a pure principal-only or lump-sum workflow, then move next to the additional principal calculator.",
+    "When not to start here",
+    "What this calculator should send you to next"
+  ];
+
+  const issues: string[] = [];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Extra-payment calculator still needs sharper planning boundaries:\n${issues.join("\n")}` : ""
+  );
+});
+
 test("SEO: minimum-payment entry pages should behave like a tool-plus-explainer workflow", () => {
   const expectedPages = [
     {
