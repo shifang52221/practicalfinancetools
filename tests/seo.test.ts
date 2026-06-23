@@ -3397,6 +3397,32 @@ test("SEO: credit-card payoff calculator should stay a fixed-payment single-bala
   );
 });
 
+test("SEO: APR calculator should stay the quote-ready APR comparison entry page", () => {
+  const file = "src/pages/calculators/apr-calculator.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const expectedPhrases = [
+    "This is the APR page for people who already have a real quote in hand.",
+    "When not to start here",
+    "If you still need to locate the official disclosed APR, start with how to find your APR instead.",
+    "If the real issue is promo APR, balance transfer fees, or penalty APR risk, use the APR-for-balance-transfers guide or the APR topic hub first.",
+    "What this calculator should send you to next"
+  ];
+
+  const issues: string[] = [];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `APR calculator still needs sharper quote-ready boundaries:\n${issues.join("\n")}` : ""
+  );
+});
+
 test("SEO: mortgage-payoff support pages should route into stronger parent pages instead of behaving like peers", () => {
   const supportPages = [
     {
