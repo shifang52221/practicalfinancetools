@@ -1,0 +1,85 @@
+# Rent vs Buy Calculator Entry Boundaries Implementation Plan
+
+> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+
+**Goal:** Strengthen the rent-vs-buy calculator so it clearly acts as the full scenario-comparison entry point and routes narrower decision jobs to the right support pages.
+
+**Architecture:** This is a copy-and-test change only. We will first add a regression test for the new role and boundary language, verify that it fails, then add minimal new copy blocks to the calculator page without changing modeling behavior or layout structure.
+
+**Tech Stack:** Astro, Node test runner, TypeScript-based SEO regression tests
+
+---
+
+### Task 1: Add the failing regression test
+
+**Files:**
+- Modify: `tests/seo.test.ts`
+
+**Step 1: Write the failing test**
+
+Add a focused SEO test for `src/pages/calculators/rent-vs-buy-calculator.astro` that checks for:
+
+- `This is the full scenario-comparison page for people who are ready to model both renting and buying with real assumptions.`
+- `When not to start here`
+- `If your real question is only break-even timing or holding period, move next to the rent vs buy break-even guide first.`
+- `If you are still assembling taxes, insurance, maintenance, HOA, or closing costs, move next to costs to include first.`
+- `What this calculator should send you to next`
+
+**Step 2: Run test to verify it fails**
+
+Run: `npm test -- tests/seo.test.ts`
+
+Expected: FAIL with the new rent-vs-buy boundary phrases missing from `src/pages/calculators/rent-vs-buy-calculator.astro`
+
+**Step 3: Commit**
+
+Do not commit yet.
+
+### Task 2: Add minimal rent-vs-buy boundary copy
+
+**Files:**
+- Modify: `src/pages/calculators/rent-vs-buy-calculator.astro`
+
+**Step 1: Add minimal implementation**
+
+Add:
+
+- one short scenario-entry sentence near the top
+- one `When not to start here` section
+- one `What this calculator should send you to next` section
+
+Keep existing scenario tables, trust card, and assumption guidance intact.
+
+**Step 2: Run test to verify it passes**
+
+Run: `npm test -- tests/seo.test.ts`
+
+Expected: PASS with the new rent-vs-buy test green and no regressions
+
+**Step 3: Refactor lightly if needed**
+
+Only adjust wording placement or line wrapping if required to satisfy exact-string tests.
+
+### Task 3: Full verification
+
+**Files:**
+- Verify only
+
+**Step 1: Run static checks**
+
+Run: `npm run check`
+
+Expected: `0 errors`, `0 warnings`, `0 hints`
+
+**Step 2: Run production build**
+
+Run: `npm run build`
+
+Expected: exit code `0`
+
+**Step 3: Commit**
+
+```bash
+git add docs/plans/2026-06-23-rent-vs-buy-entry-boundaries-design.md docs/plans/2026-06-23-rent-vs-buy-entry-boundaries.md tests/seo.test.ts src/pages/calculators/rent-vs-buy-calculator.astro
+git commit -m "Strengthen rent vs buy calculator entry boundaries"
+```

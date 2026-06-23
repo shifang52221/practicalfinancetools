@@ -2976,6 +2976,32 @@ test("SEO: extra-payment calculator should stay the broad extra-payment planning
   );
 });
 
+test("SEO: rent-vs-buy calculator should stay the full scenario-comparison entry page", () => {
+  const file = "src/pages/calculators/rent-vs-buy-calculator.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const expectedPhrases = [
+    "This is the full scenario-comparison page for people who are ready to model both renting and buying with real assumptions.",
+    "When not to start here",
+    "If your real question is only break-even timing or holding period, move next to the rent vs buy break-even guide first.",
+    "If you are still assembling taxes, insurance, maintenance, HOA, or closing costs, move next to costs to include first.",
+    "What this calculator should send you to next"
+  ];
+
+  const issues: string[] = [];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Rent-vs-buy calculator still needs sharper scenario-comparison boundaries:\n${issues.join("\n")}` : ""
+  );
+});
+
 test("SEO: minimum-payment entry pages should behave like a tool-plus-explainer workflow", () => {
   const expectedPages = [
     {
