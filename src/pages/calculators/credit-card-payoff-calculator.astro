@@ -92,7 +92,7 @@ const scenarioHigh = creditCardPayoffSchedule({
       a: "If a payment is below the interest charged, the balance can grow and payoff may never happen. Increase the payment or reduce the APR to make progress."
     }
   ]}
-  lastUpdated="2026-04-03"
+  lastUpdated="2026-06-23"
   authorProfile={TRUST_PROFILES.siteOwner}
   reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
@@ -102,19 +102,24 @@ const scenarioHigh = creditCardPayoffSchedule({
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Fixed-payment payoff behavior, assumption limits, and interpretation guidance for payoff timing."
-    reviewedOn="2026-04-03"
+    reviewedOn="2026-06-23"
   />
 
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">Start here when you already know the monthly payment</h2>
     <p class="muted" style="margin:0">
-      Start here when you already know the monthly payment you can realistically sustain. If your plan is still anchored to the statement
-      rule, step back to the <a href="/calculators/minimum-payment-payoff-calculator">minimum payment calculator</a> first. If the
-      statement math looks wrong before you even pick a payment, use the{" "}
-      <a href="/guides/how-credit-card-interest-is-calculated">interest explainer</a> first.
+      Start here when you already know the monthly payment you can realistically sustain. This is the fixed-payment payoff page for a single card or a clearly defined balance. If your plan is still anchored to the statement rule, step back to the{" "}
+      <a href="/calculators/minimum-payment-payoff-calculator">minimum payment calculator</a> first. If the statement math looks wrong
+      before you even pick a payment, use the <a href="/guides/how-credit-card-interest-is-calculated">interest explainer</a> first.
     </p>
     <p class="muted" style="margin:12px 0 0">
       If the statement minimum is still the number driving your plan, go back to the minimum payment calculator first.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If the statement minimum is the main issue, move next to the minimum payment payoff calculator.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If you already trust the statement math and just need a payoff date, switch to the fixed-payment payoff calculator.
     </p>
 
     <h2 style="margin:0 0 10px">How to use this credit card payoff calculator</h2>
@@ -129,6 +134,7 @@ const scenarioHigh = creditCardPayoffSchedule({
       <li>If the statement math looks wrong before you even pick a payment, use the interest explainer first.</li>
       <li>If you want to model the issuer's statement minimum rule, use the minimum payment calculator instead of forcing that rule into a fixed-payment plan.</li>
       <li>If you need to compare many balances, move from this page into snowball or avalanche once the single-balance payment target is clear.</li>
+      <li>If the payment you choose is below the monthly interest charge, the balance can grow instead of shrink.</li>
     </ul>
 
     <h2 style="margin:0 0 10px">Quick takeaways</h2>
@@ -264,6 +270,17 @@ const scenarioHigh = creditCardPayoffSchedule({
       <li>Stop new purchases so the balance can actually decline.</li>
     </ul>
 
+    <h2 style="margin:18px 0 10px">When not to start here</h2>
+    <p class="muted" style="margin:0">
+      This page is not the best starting point if the statement minimum still drives your plan, if the statement math itself looks wrong,
+      or if you are sorting through multiple balances instead of one clear payoff target.
+    </p>
+    <ul class="muted" style="margin:12px 0 0; padding-left:18px">
+      <li>Use the minimum payment calculator when the statement minimum is still the main input.</li>
+      <li>Use the interest explainer when the statement math itself is confusing.</li>
+      <li>Use snowball or avalanche when you need to coordinate several balances instead of one fixed payment.</li>
+    </ul>
+
     <h2 style="margin:18px 0 10px">Assumptions & limitations</h2>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>This page estimates interest monthly using APR/12; many issuers use daily interest and statement cycles.</li>
@@ -310,7 +327,15 @@ Interest approx = Average Daily Balance * Daily rate * Days in cycle</code></pre
       <li>Adding new purchases can keep the balance from dropping even if you keep paying.</li>
       <li>If your payment is near the interest amount, payoff can take many years.</li>
       <li>Fees (annual, late, transfer) can change total cost; this tool does not include fees.</li>
+      <li>If the statement minimum is the main issue, this page can hide the real problem instead of solving it.</li>
     </ul>
+
+    <h2 style="margin:18px 0 10px">What this calculator should send you to next</h2>
+    <p class="muted" style="margin:0">
+      Once the fixed-payment plan is clear, the next step depends on the real constraint. If the issue is minimum-rule drag, go back to
+      the minimum payment calculator. If the issue is multi-debt prioritization, move to snowball or avalanche. If the statement math is
+      the confusing part, use the interest explainer first.
+    </p>
 
     <h2 style="margin:18px 0 10px">Related guides</h2>
     <div class="btn-row" style="margin-top:0">

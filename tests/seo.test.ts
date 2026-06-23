@@ -3343,3 +3343,124 @@ test("SEO: refreshed high-impression calculator pages should keep stronger decis
     issues.length > 0 ? `Refreshed high-impression calculator decision modules are missing:\n${issues.join("\n")}` : ""
   );
 });
+
+test("SEO: credit-card payoff calculator should stay a fixed-payment single-balance entry page", () => {
+  const file = "src/pages/calculators/credit-card-payoff-calculator.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const expectedPhrases = [
+    "This is the fixed-payment payoff page for a single card or a clearly defined balance.",
+    "If the statement minimum is the main issue, move next to the minimum payment payoff calculator.",
+    "If you already trust the statement math and just need a payoff date, switch to the fixed-payment payoff calculator.",
+    "If the payment you choose is below the monthly interest charge, the balance can grow instead of shrink.",
+    "When not to start here",
+    "What this calculator should send you to next"
+  ];
+
+  const issues: string[] = [];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Credit-card payoff calculator still needs sharper entry boundaries:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: mortgage-payoff support pages should route into stronger parent pages instead of behaving like peers", () => {
+  const supportPages = [
+    {
+      file: "src/pages/guides/biweekly-mortgage-program-fees.astro",
+      expectedParent: "/guides/biweekly-vs-extra-principal",
+      requiredPhrases: [
+        "Use this support page for the fee-check question.",
+        "If you still need the bigger comparison between biweekly timing and plain extra principal, start with biweekly vs extra principal.",
+        "If you only need the payoff math, compare the same loan in the biweekly calculator and the extra payment calculator."
+      ],
+      bannedPeers: ["/guides/extra-payment-accelerated-plan"]
+    },
+    {
+      file: "src/pages/guides/extra-payment-accelerated-plan.astro",
+      expectedParent: "/guides/biweekly-vs-extra-principal",
+      requiredPhrases: [
+        "Use this page when the sales pitch sounds smarter than the math",
+        "If the real question is \"biweekly or monthly extra?\", go next to biweekly vs extra principal."
+      ],
+      bannedPeers: ["/guides/extra-payment-liquidity-reserve"]
+    },
+    {
+      file: "src/pages/guides/extra-payment-liquidity-reserve.astro",
+      expectedParent: "/guides/extra-mortgage-payments",
+      requiredPhrases: [
+        "Use this page when cash fragility matters more than the interest calculator",
+        "If the issue is budgeting capacity, go next to affordability."
+      ],
+      bannedPeers: ["/guides/extra-payment-priority-vs-other-debts"]
+    },
+    {
+      file: "src/pages/guides/extra-payment-priority-vs-other-debts.astro",
+      expectedParent: "/guides/pay-off-mortgage-early-or-invest",
+      requiredPhrases: [
+        "Use this page when the mortgage is only one of several competing uses for cash",
+        "If the reserve floor is the real constraint, move to liquidity reserve."
+      ],
+      bannedPeers: ["/guides/extra-payment-windfall-strategy"]
+    },
+    {
+      file: "src/pages/guides/extra-payment-windfall-strategy.astro",
+      expectedParent: "/guides/extra-payment-lump-sum-vs-monthly",
+      requiredPhrases: [
+        "Use this page when the cash is real but not recurring",
+        "If the reserve is still below target, go next to liquidity reserve."
+      ],
+      bannedPeers: ["/guides/biweekly-mortgage-program-fees"]
+    },
+    {
+      file: "src/pages/guides/mortgage-payment-affordability-checklist.astro",
+      expectedParent: "/guides/how-mortgage-payments-are-calculated",
+      requiredPhrases: [
+        "Use this guide when affordability is the main decision",
+        "If you still need to build the payment itself, move next to how mortgage payments are calculated."
+      ],
+      bannedPeers: ["/guides/principal-and-interest-vs-escrow"]
+    },
+    {
+      file: "src/pages/guides/principal-and-interest-vs-escrow.astro",
+      expectedParent: "/guides/what-is-piti",
+      requiredPhrases: [
+        "Use this guide when your statement question is escrow versus principal and interest",
+        "If you need the full housing-payment breakdown first, move next to What is PITI?"
+      ],
+      bannedPeers: ["/guides/mortgage-payment-affordability-checklist"]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of supportPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    if (!source.includes(`href="${item.expectedParent}"`)) {
+      issues.push(`${item.file} -> missing parent handoff ${item.expectedParent}`);
+    }
+    for (const phrase of item.requiredPhrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing routing phrase "${phrase}"`);
+      }
+    }
+    for (const peer of item.bannedPeers) {
+      if (source.includes(`href="${peer}"`)) {
+        issues.push(`${item.file} -> still links to peer ${peer}`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Mortgage-payoff support pages still read like peers:\n${issues.join("\n")}` : ""
+  );
+});
