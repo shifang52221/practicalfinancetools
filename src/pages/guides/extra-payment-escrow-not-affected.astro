@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Extra Payments and Escrow (What changes)";
 const description =
   "Extra mortgage payments do not reduce escrow items like taxes and insurance. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-06-26";
 ---
 <BaseLayout
   title={title}
@@ -35,13 +37,25 @@ const lastUpdated = "2026-02-17";
     </div>
   </section>
 
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Escrow-versus-principal routing, payment-change clarification, and narrow support guidance for escrow confusion."
+    reviewedOn={lastUpdated}
+  />
+
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">How this page fits the extra-payment workflow</h2>
+    <h2 style="margin-top:0">Use this support page when escrow is the confusing part</h2>
     <p class="muted" style="margin:10px 0 0">
       Use this support page for one narrow misunderstanding: extra principal changes payoff math, but it does not directly change escrow
       bills. If you are still deciding whether to prepay at all, go back to the{" "}
       <a href="/guides/extra-mortgage-payments">main extra payment guide</a> or the{" "}
-      <a href="/calculators/extra-payment-calculator">extra payment calculator</a>.
+      <a href="/calculators/extra-payment-calculator">extra payment calculator</a>. This page exists so the principal decision stays
+      separate from the escrow review.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If you need the broader payoff plan, keep the principal decision separate from escrow so you do not mix two different payment jobs.
     </p>
   </section>
 
@@ -146,6 +160,6 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-26</p>
   </section>
 </BaseLayout>

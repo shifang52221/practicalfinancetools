@@ -27,7 +27,7 @@ const yearsMonths = (months: number) => ({ years: Math.floor(months / 12), month
 const baseYm = yearsMonths(base.months);
 const extraYm = yearsMonths(withExtra.months);
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-06-24";
 ---
 <BaseLayout
   title={title}
@@ -62,7 +62,7 @@ const lastUpdated = "2026-04-05";
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Mortgage payoff-versus-investing tradeoff framing, liquidity-and-tax decision checks, and routing into extra-payment modeling workflows."
-    reviewedOn="2026-04-05"
+    reviewedOn="2026-06-24"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -72,6 +72,14 @@ const lastUpdated = "2026-04-05";
       <li>Use this page when you need a practical framework before deciding whether extra principal or investing fits your time horizon better.</li>
       <li>If you want to quantify the mortgage side first, move next to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a>.</li>
     </ul>
+    <p class="muted" style="margin:12px 0 0">
+      mortgage prepayment may lose priority when higher-rate debt or reserve weakness still exists. If you still need the broader
+      mortgage-payoff-versus-investing frame, go back to priority vs other debts first.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If the competing-use-of-cash question is still unresolved, move next to{" "}
+      <a href="/guides/extra-payment-priority-vs-other-debts">priority vs other debts</a>.
+    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -114,7 +122,7 @@ const lastUpdated = "2026-04-05";
             <td class="num">{base.months} months ({baseYm.years}y {baseYm.months}m)</td>
             <td class="num">{money0.format(base.totalInterest)}</td>
           </tr>
-        <tr>
+          <tr>
             <td>Extra {money0.format(extraMonthly)} per month</td>
             <td class="num">{withExtra.months} months ({extraYm.years}y {extraYm.months}m)</td>
             <td class="num">{money0.format(withExtra.totalInterest)}</td>
@@ -183,6 +191,7 @@ const lastUpdated = "2026-04-05";
       <li><strong>Taxes:</strong> after-tax investment returns and mortgage interest deductions (if applicable) change comparisons.</li>
       <li><strong>Liquidity:</strong> extra principal is not easily accessible without borrowing against the home or selling.</li>
     </ul>
+    <p class="muted" style="margin:12px 0 0">the best use of the next extra dollar can differ from the best long-run return story.</p>
     <p class="muted" style="margin:12px 0 0">
       If you're uncertain, run conservative investing assumptions and compare them to the effective mortgage rate you'd "earn" by paying
       extra principal.
@@ -246,7 +255,7 @@ const lastUpdated = "2026-04-05";
     <p class="muted" style="margin:12px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-24</p>
   </section>
 </BaseLayout>
 

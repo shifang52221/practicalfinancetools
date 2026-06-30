@@ -23,7 +23,7 @@ const ym = (months: number) => `${Math.floor(months / 12)}y ${months % 12}m`;
 const baseYm = ym(base.months);
 const extraYm = ym(withExtra.months);
 
-const lastUpdated = "2026-01-29";
+const lastUpdated = "2026-06-26";
 ---
 <BaseLayout title={title} description={description} canonicalPath="/guides/pay-300-extra-on-mortgage" robots="noindex, follow" lastUpdated={lastUpdated}>
   <section class="card hero">
@@ -45,6 +45,16 @@ const lastUpdated = "2026-01-29";
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra payment mortgage calculator</a>
       <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this support page when...</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use this support page when you want a $300 monthly extra example, not the full extra-payment workflow.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If you still need the broader extra-principal plan, go back to the extra mortgage payments guide first.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -191,7 +201,7 @@ const lastUpdated = "2026-01-29";
       <li>
         CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgages resources
+          Mortgage resources
         </a>
       </li>
     </ul>
@@ -207,9 +217,7 @@ const lastUpdated = "2026-01-29";
     <p class="muted" style="margin:12px 0 0">
       Educational use only. Not financial advice.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-01-29
-    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-26</p>
   </section>
 </BaseLayout>
 

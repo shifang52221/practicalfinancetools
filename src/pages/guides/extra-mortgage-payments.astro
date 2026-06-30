@@ -23,7 +23,7 @@ const withExtra = amortizationSchedule({
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-06-24";
 ---
 <BaseLayout
   title={title}
@@ -59,7 +59,7 @@ const lastUpdated = "2026-04-03";
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
     reviewScope="Extra-payment workflow framing, topic-to-tool routing, and the comparison cues that separate payoff, liquidity, and refinance questions."
-    reviewedOn="2026-04-03"
+    reviewedOn="2026-06-24"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -68,6 +68,14 @@ const lastUpdated = "2026-04-03";
       This page is the broad entry point for the whole extra-payment cluster. Use it when you know the question is about extra principal,
       but you do not yet know whether the real issue is affordability, timing, principal-only posting, payoff speed, or comparison with
       refinancing.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Maintenance note</h2>
+    <p class="muted" style="margin:10px 0 0">
+      We keep this page actively maintained as a high-impression mortgage-payoff entry page so the broad extra-payment workflow stays
+      synchronized with calculator entry points, narrower support pages, and refinance or recast comparison branches.
     </p>
   </section>
 
@@ -97,6 +105,11 @@ const lastUpdated = "2026-04-03";
       reduces future interest charges, which accelerates payoff. You usually keep the same required monthly payment, but more of that
       payment goes to principal sooner.
     </p>
+    <p class="muted" style="margin:12px 0 0">
+      A practical rule is simple: set a reserve floor before you lock in an aggressive extra-payment amount, and pause the plan when the
+      next bad month would force you back onto higher-cost debt.
+    </p>
+    <p class="muted" style="margin:12px 0 0">pause the plan when the next bad month would force you back onto higher-cost debt</p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -332,7 +345,7 @@ const lastUpdated = "2026-04-03";
       <li>
         CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgages resources
+          Mortgage resources
         </a>
       </li>
     </ul>
@@ -346,7 +359,7 @@ const lastUpdated = "2026-04-03";
       <a class="btn" href="/guides/one-extra-mortgage-payment-per-year">One extra payment per year</a>
       <a class="btn" href="/guides/extra-payment-vs-refinance">Extra payments vs refinance</a>
     </div>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-24</p>
   </section>
 </BaseLayout>
 

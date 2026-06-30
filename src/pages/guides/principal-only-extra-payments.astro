@@ -23,13 +23,14 @@ const withExtra = amortizationSchedule({
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-06-26";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/principal-only-extra-payments"
   lastUpdated={lastUpdated}
+  robots="noindex, follow"
   authorProfile={TRUST_PROFILES.siteOwner}
   reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
@@ -59,7 +60,7 @@ const lastUpdated = "2026-04-05";
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Principal-only posting guidance, paid-ahead risk framing, and routing between targeted principal-prepayment and broader mortgage payoff workflows."
-    reviewedOn="2026-04-05"
+    reviewedOn="2026-06-26"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -69,6 +70,14 @@ const lastUpdated = "2026-04-05";
       <li>Use this page when "paid ahead" language on the statement or portal makes the payoff result harder to interpret.</li>
       <li>If you still need to compare monthly extras, lump sums, or biweekly paths, move next to the <a href="/guides/extra-mortgage-payments">extra mortgage payments guide</a>.</li>
     </ul>
+    <p class="muted" style="margin:12px 0 0">Use this support page when principal posting is the main question.</p>
+    <p class="muted" style="margin:12px 0 0">
+      If you still need to compare monthly extras, lump sums, or biweekly paths, move next to the extra mortgage payments guide.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If you already know the extra should be principal-only, go back to the{" "}
+      <a href="/guides/extra-mortgage-payments">extra mortgage payments guide</a> for the broader payoff workflow.
+    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -212,7 +221,7 @@ const lastUpdated = "2026-04-05";
       <li>
         CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgages resources
+          Mortgage resources
         </a>
       </li>
     </ul>
@@ -230,7 +239,7 @@ const lastUpdated = "2026-04-05";
     <p class="muted" style="margin:12px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-26</p>
   </section>
 </BaseLayout>
 

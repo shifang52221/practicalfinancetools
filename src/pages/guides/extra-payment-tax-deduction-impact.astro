@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Extra Payments and Mortgage Interest Deductions";
 const description =
   "How extra payments can change interest paid and tax deductions, and why after-tax comparisons matter. Educational use only.";
 
-const lastUpdated = "2026-02-17";
+const lastUpdated = "2026-06-26";
 ---
 <BaseLayout
   title={title}
@@ -13,6 +15,8 @@ const lastUpdated = "2026-02-17";
   canonicalPath="/guides/extra-payment-tax-deduction-impact"
   lastUpdated={lastUpdated}
   robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -34,6 +38,14 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
   </section>
+
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="After-tax payoff framing, deduction-sensitive comparison cues, and routing between main extra-payment planning and tax-aware edge-case checks."
+    reviewedOn={lastUpdated}
+  />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How this page fits the extra-payment workflow</h2>
@@ -137,6 +149,6 @@ const lastUpdated = "2026-02-17";
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-17</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-26</p>
   </section>
 </BaseLayout>

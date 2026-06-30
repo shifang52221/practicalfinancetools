@@ -31,7 +31,7 @@ const pmiSaved = monthsSaved == null ? null : monthsSaved * examplePmiMonthly;
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-06-28";
 ---
 <BaseLayout
   title={title}
@@ -68,7 +68,7 @@ const lastUpdated = "2026-04-05";
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="PMI-removal threshold framing, extra-principal prioritization logic, and routing between payment, PMI, and payoff comparison workflows."
-    reviewedOn="2026-04-05"
+    reviewedOn="2026-06-28"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -78,13 +78,20 @@ const lastUpdated = "2026-04-05";
       <li>Use this page when appraisal rules, loan type, or servicer policy may change whether extra principal actually accelerates PMI removal.</li>
       <li>If you want to model the principal side first, move next to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a>.</li>
     </ul>
+    <p class="muted" style="margin:12px 0 0">
+      This page works best after the broad extra-payment decision is already clear and the remaining question is whether PMI removal
+      changes the priority.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If you still need the broad extra-principal framework first, start with <a href="/guides/extra-mortgage-payments">extra mortgage payments</a>.
+    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
     <div class="card section prose col-6">
       <h2 style="margin-top:0">Why PMI changes the decision</h2>
       <p class="muted" style="margin:10px 0 0">
-        If PMI is expensive, reaching a point where it can be removed can create a strong \"return\" on extra principal:
+        If PMI is expensive, reaching a point where it can be removed can create a strong "return" on extra principal:
         you save interest and potentially remove PMI.
       </p>
     </div>
@@ -149,6 +156,10 @@ const lastUpdated = "2026-04-05";
       If PMI is high, extra principal that removes PMI quickly can have an outsized impact on your monthly housing cost. If PMI is low or
       you are close to the removal threshold, it may still make sense, but the benefit is smaller. Use the calculator to quantify the
       monthly PMI savings and compare it to the interest savings.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      The right comparison is not just "interest saved." It is interest saved plus the value of any PMI months you can actually remove
+      under your servicer's rules.
     </p>
   </section>
 
@@ -228,7 +239,7 @@ const lastUpdated = "2026-04-05";
       <li>
         CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgages resources
+          Mortgage resources
         </a>
       </li>
     </ul>
@@ -243,7 +254,7 @@ const lastUpdated = "2026-04-05";
     <p class="muted" style="margin:12px 0 0">
       Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-28</p>
   </section>
 </BaseLayout>
 

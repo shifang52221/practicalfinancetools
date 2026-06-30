@@ -29,7 +29,7 @@ const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-06-24";
 ---
 <BaseLayout
   title={title}
@@ -65,16 +65,17 @@ const lastUpdated = "2026-04-03";
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
     reviewScope="Support-page framing for fee comparisons, program-posting risk, and routing from fee-check questions back into the main biweekly comparison workflow."
-    reviewedOn="2026-04-03"
+    reviewedOn="2026-06-24"
   />
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How this page fits the biweekly workflow</h2>
     <p class="muted" style="margin:10px 0 0">
-      Use this support page for the fee-check question. It exists for the moment when a lender or third party is selling a biweekly
-      service and you need to know whether the fees erase the benefit. If you still need the bigger comparison between biweekly timing and
-      plain extra principal, start with <a href="/guides/biweekly-vs-extra-principal">biweekly vs extra principal</a>.
+      Use this support page when fee drag or delayed posting is the only biweekly question left. It exists for the moment when a lender
+      or third party is selling a biweekly service and you need to know whether the fees erase the benefit.
     </p>
+    <p class="muted" style="margin:12px 0 0">Use this support page for the fee-check question.</p>
+    <p class="muted" style="margin:12px 0 0">If you still need the broader no-fee comparison, go back to biweekly vs extra principal first.</p>
     <p class="muted" style="margin:12px 0 0">If you still need the bigger comparison between biweekly timing and plain extra principal, start with biweekly vs extra principal.</p>
     <p class="muted" style="margin:12px 0 0">If you only need the payoff math, compare the same loan in the biweekly calculator and the extra payment calculator.</p>
     <div class="btn-row" style="margin-top:12px">
@@ -268,7 +269,7 @@ const lastUpdated = "2026-04-03";
       <li>
         CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgages resources
+          Mortgage resources
         </a>
       </li>
     </ul>
@@ -282,7 +283,7 @@ const lastUpdated = "2026-04-03";
       <a class="btn" href="/guides/principal-only-extra-payments">Principal-only tips</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-24</p>
   </section>
 </BaseLayout>
 

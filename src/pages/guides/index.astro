@@ -8,7 +8,7 @@ const title = `Guides | ${SITE.name}`;
 const description =
   "Choose the right guide path for APR, credit-card payoff, DTI, rent vs buy, mortgage payoff, and refinance decisions. Educational use only.";
 
-const lastUpdated = "2026-04-22";
+const lastUpdated = "2026-06-24";
 ---
 <BaseLayout
   title={title}
@@ -27,7 +27,7 @@ const lastUpdated = "2026-04-22";
     <h1>Guides: start with the strongest path</h1>
     <p>
       Use this page when you already know you want an article, but still need help choosing the best guide path. The goal here is not to
-      browse every leaf page. It is to start with the strongest guide that owns the main decision job.
+      browse every article. It is to start with the strongest guide that owns the main decision job.
     </p>
     <div class="btn-row" style="margin-top:12px">
       <a class="btn btn-primary" href="/topics">Use topics for broader routing</a>
@@ -47,7 +47,7 @@ const lastUpdated = "2026-04-22";
     <h2 style="margin-top:0">Choose the guide job before you choose the article</h2>
     <p class="muted" style="margin:10px 0 0">
       Most readers do not need the full guide library first. They need the best primary article for the decision they are already trying
-      to make, then they need support pages only if a narrower edge case remains unresolved.
+      to make, then they need a narrower follow-up page only if a smaller edge case remains unresolved.
     </p>
     <div style="overflow:auto; margin-top:12px">
       <table class="table">
@@ -107,9 +107,17 @@ const lastUpdated = "2026-04-22";
     <h2 style="margin-top:0">When a support page is worth opening</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
       <li>Open a narrower support page only after the primary guide has already framed the main comparison correctly.</li>
-      <li>Use support leaves for checklists, posting rules, special cases, or assumption cleanup.</li>
-      <li>If three different support pages all feel relevant, that is usually a sign you should step back to the topic hub first.</li>
+      <li>Use narrower follow-up pages for checklists, posting rules, special cases, or assumption cleanup.</li>
+      <li>If three different follow-up pages all feel relevant, that is usually a sign you should step back to the topic hub first.</li>
     </ul>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How this guide layer is maintained</h2>
+    <p class="muted" style="margin:10px 0 0">
+      We maintain this page as the primary guide-entry layer for the active finance workflows so the strongest articles stay visible and
+      narrower follow-up pages do not outrank the pages that should frame the decision first.
+    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -155,15 +163,15 @@ const lastUpdated = "2026-04-22";
     <h2 style="margin-top:0">Request a guide</h2>
     <p class="muted" style="margin:10px 0 0">
       If a support page keeps feeling necessary but the main guide path is still weak, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-      so we can decide whether the cluster needs a better primary guide instead of another thin leaf page.
+      so we can decide whether the cluster needs a better primary guide instead of another narrow standalone page.
     </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Updates</h2>
     <p class="muted" style="margin:10px 0 0">
-      This page is updated when stronger guide-entry paths are identified, support leaves are consolidated, or guide-versus-topic routing needs to be clarified.
+      This page is updated when stronger guide-entry paths are identified, support pages are consolidated, or guide-versus-topic routing needs to be clarified.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-24</p>
   </section>
 </BaseLayout>

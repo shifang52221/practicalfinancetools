@@ -21,14 +21,14 @@ const withExtra = amortizationSchedule({
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-01-28";
+const lastUpdated = "2026-06-26";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/calculate-mortgage-payoff-with-additional-principal-payments"
- lastUpdated={lastUpdated}
- robots="noindex, follow">
+  lastUpdated={lastUpdated}
+  robots="noindex, follow">
   <section class="card hero">
     <span class="pill">Guide</span>
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -48,6 +48,20 @@ const lastUpdated = "2026-01-28";
       <a class="btn btn-primary" href="/calculators/extra-payment-calculator">Extra principal calculator</a>
       <a class="btn" href="/guides/principal-only-extra-payments">Principal-only checklist</a>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Use this support page when you need the workflow before the calculator</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Use this support page when you want the payoff workflow steps before moving into the calculator.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If you already know the extra amount you want to test, go straight to the extra payment calculator instead of rereading the setup.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      If the question is still at the planning stage, return to the{" "}
+      <a href="/guides/extra-mortgage-payments">main extra mortgage payments guide</a> before you set up a scenario.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -196,7 +210,7 @@ const lastUpdated = "2026-01-28";
       <li>
         CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgages resources
+          Mortgage resources
         </a>
       </li>
     </ul>
@@ -212,9 +226,7 @@ const lastUpdated = "2026-01-28";
     <p class="muted" style="margin:12px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-01-28
-    </p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-26</p>
   </section>
 </BaseLayout>
 

@@ -24,7 +24,7 @@ const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-03";
+const lastUpdated = "2026-06-24";
 ---
 <BaseLayout
   title={title}
@@ -61,7 +61,7 @@ const lastUpdated = "2026-04-03";
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
     reviewScope="Biweekly-versus-monthly-extra framing, program-claim interpretation, and routing into fee, calculator, and one-extra-payment subtopics."
-    reviewedOn="2026-04-03"
+    reviewedOn="2026-06-24"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -118,6 +118,15 @@ const lastUpdated = "2026-04-03";
     <p class="muted" style="margin:12px 0 0">
       Use the <a href="/calculators/extra-payment-calculator">Extra Payment Mortgage Calculator</a> to test an extra amount and
       sanity-check with the <a href="/calculators/amortization-schedule-calculator">Amortization Schedule Calculator</a>.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      In practice, third-party acceleration plans should be measured against the same annual dollars sent on your own; program fees and
+      delayed posting can erase most of the claimed biweekly edge.
+    </p>
+    <p class="muted" style="margin:12px 0 0">program fees and delayed posting can erase most of the claimed biweekly edge</p>
+    <p class="muted" style="margin:12px 0 0">
+      If fees are part of the offer, compare them directly against the savings first, then check the{" "}
+      <a href="/guides/biweekly-mortgage-program-fees">program-fees guide</a> before enrolling.
     </p>
   </section>
 
@@ -281,7 +290,7 @@ const lastUpdated = "2026-04-03";
       <li>
         CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgages resources
+          Mortgage resources
         </a>
       </li>
     </ul>
@@ -297,7 +306,7 @@ const lastUpdated = "2026-04-03";
     <p class="muted" style="margin:12px 0 0">
       For questions, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-03</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-24</p>
   </section>
 </BaseLayout>
 

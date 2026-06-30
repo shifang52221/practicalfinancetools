@@ -30,13 +30,14 @@ const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-06-26";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/mortgage-recast-vs-extra-payments"
   lastUpdated={lastUpdated}
+  robots="noindex, follow"
   authorProfile={TRUST_PROFILES.siteOwner}
   reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
@@ -67,7 +68,7 @@ const lastUpdated = "2026-04-05";
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Mortgage recast-versus-extra-payment decision framing, recast-fee and eligibility guardrails, and routing between payment, amortization, and payoff comparison workflows."
-    reviewedOn="2026-04-05"
+    reviewedOn="2026-06-26"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -77,6 +78,10 @@ const lastUpdated = "2026-04-05";
       <li>Use this page when recast fees, minimum lump-sum rules, or loan-program eligibility may change whether a recast is worth pursuing.</li>
       <li>If you already want to quantify the extra-principal path, move next to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a> for side-by-side modeling.</li>
     </ul>
+    <p class="muted" style="margin:12px 0 0">Use this support page when lower required payments matter more than a faster payoff.</p>
+    <p class="muted" style="margin:12px 0 0">
+      If you already want to quantify the extra-principal path, move next to the extra payment calculator for side-by-side modeling.
+    </p>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -250,7 +255,7 @@ const lastUpdated = "2026-04-05";
       <li>
         CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgages resources
+          Mortgage resources
         </a>
       </li>
     </ul>
@@ -261,7 +266,7 @@ const lastUpdated = "2026-04-05";
     <p class="muted" style="margin:10px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-26</p>
   </section>
 </BaseLayout>
 

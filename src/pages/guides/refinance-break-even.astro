@@ -44,7 +44,7 @@ const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const num1 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 1 });
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-06-24";
 ---
 <BaseLayout
   title={title}
@@ -80,7 +80,7 @@ const lastUpdated = "2026-04-05";
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Refinance break-even framing, cost-versus-horizon interpretation, and routing between payment, amortization, and payoff comparison workflows."
-    reviewedOn="2026-04-05"
+    reviewedOn="2026-06-24"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -90,6 +90,10 @@ const lastUpdated = "2026-04-05";
       <li>Use this page when you need to compare a lower payment against a reset term, cash-to-close, or points.</li>
       <li>If your main question is whether you should refinance at all, move next to the <a href="/topics/refinance">refinance topic hub</a>.</li>
     </ul>
+    <p class="muted" style="margin:12px 0 0">
+      We keep this page actively maintained as the main refinance break-even entry so hold period, reset-term risk, and cost recovery stay
+      in one clear comparison path before you branch into more specific refinance questions.
+    </p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -312,12 +316,12 @@ const lastUpdated = "2026-04-05";
       <li>
         CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgages resources
+          Mortgage resources
         </a>
       </li>
     </ul>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-24</p>
   </section>
 </BaseLayout>
 

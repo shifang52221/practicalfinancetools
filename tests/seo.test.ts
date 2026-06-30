@@ -318,6 +318,55 @@ test("SEO: refinance consolidation targets should explicitly absorb redirected s
   );
 });
 
+test("SEO: refinance parent guides should keep the strongest entry roles and June 24 trust dates", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/guides/refinance-break-even.astro",
+      phrase: "Use this guide when break-even timing is the main question"
+    },
+    {
+      file: "src/pages/guides/refinance-closing-costs.astro",
+      phrase: "Use this guide when fee treatment changes the answer"
+    },
+    {
+      file: "src/pages/guides/refinance-checklist.astro",
+      phrase: "Use this guide when refinance logistics are the main risk"
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes(item.phrase)) {
+      issues.push(`${item.file} -> missing "${item.phrase}"`);
+    }
+    if (!source.includes("ReviewedByCard")) {
+      issues.push(`${item.file} -> missing ReviewedByCard`);
+    }
+    if (!source.includes('reviewedOn="2026-06-24"')) {
+      issues.push(`${item.file} -> missing reviewedOn="2026-06-24"`);
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch || lastUpdatedMatch[1] !== "2026-06-24") {
+      issues.push(`${item.file} -> expected lastUpdated constant 2026-06-24`);
+    }
+    if (!visibleDateMatch || visibleDateMatch[1] !== "2026-06-24") {
+      issues.push(`${item.file} -> expected visible Last updated 2026-06-24`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Refinance parent-guide roles are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
 test("SEO: selected high-impression support pages should include visible review coverage and references", () => {
   const expectedPages = [
     "src/pages/calculators/extra-payment-calculator.astro",
@@ -1601,8 +1650,8 @@ test("SEO: extra-payment and PITI destinations should keep final absorbed-intent
   if (!calculatorSource.includes("Use this calculator when you need the broad extra-payment payoff plan before narrowing to principal-only or lump-sum-only moves")) {
     issues.push(`${calculatorFile} -> missing final absorbed-intent role section`);
   }
-  if (!calculatorSource.includes('lastUpdated="2026-05-29"')) {
-    issues.push(`${calculatorFile} -> missing lastUpdated="2026-05-29"`);
+  if (!calculatorSource.includes('lastUpdated="2026-06-24"')) {
+    issues.push(`${calculatorFile} -> missing lastUpdated="2026-06-24"`);
   }
   for (const phrase of ["extra mortgage payment calculator", "additional principal payments"]) {
     if (!calculatorSource.toLowerCase().includes(phrase)) {
@@ -2464,6 +2513,306 @@ test("SEO: APR destination guides should keep trust signals and absorbed-intent 
   );
 });
 
+test("SEO: APR support gate pages should separate discovery from final comparison checks", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/guides/how-to-find-your-apr.astro",
+      phrases: [
+        "Start here before the APR calculator when the first job is simply locating the disclosed APR.",
+        "Once you have the disclosed APR in hand, the next job is usually either calculator math or rate-versus-fee interpretation, not more source-hunting."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-comparison-checklist.astro",
+      phrases: [
+        "Use this guide as the final apples-to-apples check before you trust APR.",
+        "If the main issue is one specific fee structure, move next to APR with origination fee or discount points vs lender credits."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `APR support-gate routing cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: refreshed APR pages should keep one routing job per page and a shared refresh date", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/topics/apr.astro",
+      phrases: [
+        "APR: choose the right comparison path",
+        "Best starting point for most APR comparisons",
+        "Start with the APR calculator when you already have the rate, term, loan amount, and fee assumptions."
+      ]
+    },
+    {
+      file: "src/pages/guides/how-to-find-your-apr.astro",
+      phrases: [
+        "Use this guide when you need to locate the exact APR that belongs in your comparison or payoff decision",
+        "Start here before the APR calculator when the first job is simply locating the disclosed APR.",
+        "Once you have the disclosed APR in hand, the next job is usually either calculator math or rate-versus-fee interpretation, not more source-hunting."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-vs-interest-rate.astro",
+      phrases: [
+        "Use this guide when fee-heavy offers make APR look different from the stated rate",
+        "If you still need to find the official disclosed APR, go back to the APR source guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-with-origination-fee.astro",
+      phrases: [
+        "Use this guide when origination fees, closing costs, or financed fees change the real borrowing cost",
+        "Use the Loan Estimate to separate lender fees from third-party costs."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-by-loan-type.astro",
+      phrases: [
+        "Use this guide when you are comparing APR across auto, personal, student, or small-business loans",
+        "Use the same loan amount and term for every offer."
+      ]
+    },
+    {
+      file: "src/pages/guides/how-to-use-apr-for-credit-cards.astro",
+      phrases: [
+        "Use this guide when you are comparing credit card APR types, promo windows, or penalty-rate risk",
+        "If you are ready to test a payment plan next, move to the credit card payoff calculator."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-comparison-checklist.astro",
+      phrases: [
+        "Use this guide as the final apples-to-apples check before you trust APR.",
+        "If the main issue is one specific fee structure, move next to APR with origination fee or discount points vs lender credits."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+  const expectedUpdated = "2026-06-24";
+
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    } else if (lastUpdatedMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> lastUpdated is ${lastUpdatedMatch[1]} instead of ${expectedUpdated}`);
+    }
+
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    } else if (visibleDateMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> visible Last updated date is ${visibleDateMatch[1]} instead of ${expectedUpdated}`);
+    }
+
+    if (lastUpdatedMatch && visibleDateMatch && lastUpdatedMatch[1] !== visibleDateMatch[1]) {
+      issues.push(
+        `${item.file} -> visible Last updated date ${visibleDateMatch[1]} does not match lastUpdated ${lastUpdatedMatch[1]}`
+      );
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `APR refresh alignment is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: APR balance-transfer support pages should keep a narrow fee-and-timeline job", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/guides/apr-for-balance-transfers.astro",
+      phrases: [
+        "Use this guide when a balance-transfer offer looks cheap up front but the APR rules and fee timing may change the real payoff math",
+        "If you already know the payment you can sustain and want a payoff answer, move next to the credit card payoff calculator.",
+        "If you still need the broader APR-and-fee framework for card offers, go back to the APR-for-credit-cards guide first.",
+        "We keep this page actively maintained as the balance-transfer support branch"
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-balance-transfer-fee.astro",
+      phrases: [
+        "Use this page when transfer fee, promo length, and post-promo APR are the main decision inputs",
+        "Balance transfer fee vs interest savings is the core comparison on this page.",
+        "A 0% transfer can help, but the fee can offset the savings.",
+        "If you still need the broader APR-and-fee framework for card offers, go back to the APR-for-credit-cards guide first.",
+        "If you already know the payment you can sustain and want a payoff answer, move next to the credit card payoff calculator."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+  const expectedUpdated = "2026-06-25";
+
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    } else if (lastUpdatedMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> lastUpdated is ${lastUpdatedMatch[1]} instead of ${expectedUpdated}`);
+    }
+
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    } else if (visibleDateMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> visible Last updated date is ${visibleDateMatch[1]} instead of ${expectedUpdated}`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `APR balance-transfer support routing cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: APR noindex source pages should behave like absorbed-intent feeders, not second main pages", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/guides/apr-tool.astro",
+      phrases: [
+        "Use this support page when you searched for an APR tool but the real next step is the main APR calculator.",
+        "If you still need the broader APR question map, go back to the APR topic hub first."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-calculator-payment.astro",
+      phrases: [
+        "Use this support page when the remaining question is why payment and APR do not move together.",
+        "If you still need the broader rate-versus-fee comparison, go back to APR vs interest rate first."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-for-refinance-comparison.astro",
+      phrases: [
+        "Use this support page when the remaining APR question is refinance-specific fee alignment and break-even timing.",
+        "If you still need the broader rate-versus-fee framing, go back to APR vs interest rate first."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-and-prepayment.astro",
+      phrases: [
+        "Use this support page when the only remaining APR question is how prepayment changes the cost picture.",
+        "If you still need the broader final cross-check, go back to the APR comparison checklist first."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-and-term-length.astro",
+      phrases: [
+        "Use this support page when the only remaining APR question is how term length changes the comparison.",
+        "If you still need the broader final cross-check, go back to the APR comparison checklist first."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-vs-interest-rate-fees.astro",
+      phrases: [
+        "Use this support page when you only need the fee-specific version of the rate-versus-APR question.",
+        "If you need the stronger main explanation, go back to APR vs interest rate first."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-and-closing-costs.astro",
+      phrases: [
+        "Use this support page when the only remaining APR question is which closing costs sit outside the disclosed APR.",
+        "If you need the stronger fee-structure guide, go back to APR with origination fee first."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-when-fees-are-financed.astro",
+      phrases: [
+        "Use this support page when financed-fee treatment is the only remaining origination-fee question.",
+        "If you need the stronger fee-structure guide, go back to APR with origination fee first."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-and-fees-origination-vs-closing.astro",
+      phrases: [
+        "Use this support page when the remaining question is separating lender fees from broader closing costs.",
+        "If you need the stronger fee-structure guide, go back to APR with origination fee first."
+      ]
+    },
+    {
+      file: "src/pages/guides/apr-and-points-break-even.astro",
+      phrases: [
+        "Use this support page when points-specific break-even is the only pricing question left.",
+        "If you need the stronger points-versus-credits comparison, go back to discount points vs lender credits first."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+  const expectedUpdated = "2026-06-25";
+
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    if (!source.includes('robots="noindex, follow"')) {
+      issues.push(`${item.file} -> missing noindex guard`);
+    }
+
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    } else if (lastUpdatedMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> lastUpdated is ${lastUpdatedMatch[1]} instead of ${expectedUpdated}`);
+    }
+
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    } else if (visibleDateMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> visible Last updated date is ${visibleDateMatch[1]} instead of ${expectedUpdated}`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `APR noindex source-page feeder cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
 test("SEO: trust registry and review-summary component should support the stronger author-review model", () => {
   const trustFile = join(process.cwd(), "src/config/trust.ts");
   const reviewCardFile = join(process.cwd(), "src/components/ReviewedByCard.astro");
@@ -2656,8 +3005,8 @@ test("SEO: indexable extra-payment support guides should keep distinct strategy 
       file: "src/pages/guides/extra-payment-priority-vs-other-debts.astro",
       phrases: [
         "mortgage prepayment is not automatically the top priority",
-        "highest guaranteed return is not the only filter",
-        "revolving debt, reserve weakness, or near-term cash risk"
+        "Highest guaranteed return is not the only filter",
+        "Revolving debt, reserve weakness, or near-term cash risk"
       ]
     }
   ];
@@ -2738,11 +3087,11 @@ test("SEO: narrow extra-payment support leaves should stay consolidated as noind
     },
     {
       file: "src/pages/guides/extra-payment-servicer-posting-rules.astro",
-      phrase: "support page for the operational posting question"
+      phrase: "support page for one narrow operational question"
     },
     {
       file: "src/pages/guides/extra-payment-prepayment-penalty-checklist.astro",
-      phrase: "support page for penalty verification"
+      phrase: "support page for one narrow note-review question"
     }
   ];
 
@@ -2750,6 +3099,19 @@ test("SEO: narrow extra-payment support leaves should stay consolidated as noind
     const source = readFileSync(join(process.cwd(), item.file), "utf8");
     if (!source.includes(item.phrase)) {
       issues.push(`${item.file} -> missing support-only role cue "${item.phrase}"`);
+    }
+    if (!source.includes("ReviewedByCard")) {
+      issues.push(`${item.file} -> missing ReviewedByCard trust coverage`);
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch || lastUpdatedMatch[1] !== "2026-06-26") {
+      issues.push(`${item.file} -> expected lastUpdated 2026-06-26`);
+    }
+    if (!visibleDateMatch || visibleDateMatch[1] !== "2026-06-26") {
+      issues.push(`${item.file} -> expected visible Last updated 2026-06-26`);
     }
   }
 
@@ -2826,6 +3188,204 @@ test("SEO: calculators/topics/guides index pages should expose the stronger trus
   );
 });
 
+test("SEO: skeleton trust and routing pages should show the June 24 site-level refresh", () => {
+  const expectations = [
+    {
+      file: "src/pages/topics/index.astro",
+      phrase: "primary topic-entry layer for the active finance clusters"
+    },
+    {
+      file: "src/pages/guides/index.astro",
+      phrase: "primary guide-entry layer for the active finance workflows"
+    },
+    {
+      file: "src/pages/calculators/index.astro",
+      phrase: "primary calculator-entry layer for the active finance workflows"
+    },
+    {
+      file: "src/pages/about.astro",
+      phrase: "site-wide trust, maintenance, and disclosure expectations aligned"
+    },
+    {
+      file: "src/pages/methodology.astro",
+      phrase: "site-wide methodology notes aligned with the active calculator workflows"
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch || lastUpdatedMatch[1] !== "2026-06-24") {
+      issues.push(`${item.file} -> expected lastUpdated constant 2026-06-24`);
+    }
+
+    if (!visibleDateMatch || visibleDateMatch[1] !== "2026-06-24") {
+      issues.push(`${item.file} -> expected visible Last updated 2026-06-24`);
+    }
+
+    if (!source.includes(item.phrase)) {
+      issues.push(`${item.file} -> missing "${item.phrase}"`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Skeleton-page trust refresh is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: high-impression entry pages should show the June 24 entry refresh", () => {
+  const expectations = [
+    {
+      file: "src/pages/calculators/apr-calculator.astro",
+      phrase: "actively maintained as a high-impression APR entry page"
+    },
+    {
+      file: "src/pages/calculators/minimum-payment-payoff-calculator.astro",
+      phrase: "actively maintained as a high-impression minimum-payment entry page"
+    },
+    {
+      file: "src/pages/calculators/extra-payment-calculator.astro",
+      phrase: "actively maintained as a high-impression extra-payment entry page"
+    },
+    {
+      file: "src/pages/calculators/biweekly-mortgage-payment-calculator.astro",
+      phrase: "actively maintained as a high-impression biweekly entry page"
+    },
+    {
+      file: "src/pages/guides/how-credit-card-interest-is-calculated.astro",
+      phrase: "actively maintained as a high-impression credit-card interest entry page"
+    },
+    {
+      file: "src/pages/guides/extra-mortgage-payments.astro",
+      phrase: "actively maintained as a high-impression mortgage-payoff entry page"
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    const lastUpdatedMatch = source.match(/lastUpdated(?:=| = )"(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch || lastUpdatedMatch[1] !== "2026-06-24") {
+      issues.push(`${item.file} -> expected lastUpdated 2026-06-24`);
+    }
+
+    if (!visibleDateMatch || visibleDateMatch[1] !== "2026-06-24") {
+      issues.push(`${item.file} -> expected visible Last updated 2026-06-24`);
+    }
+
+    if (!source.includes(item.phrase)) {
+      issues.push(`${item.file} -> missing "${item.phrase}"`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `High-impression entry refresh is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: core topic hubs should show the June 24 routing refresh", () => {
+  const expectations = [
+    {
+      file: "src/pages/topics/apr.astro",
+      phrase: "actively maintained as the primary APR topic hub for rate-versus-fee, disclosure, and credit-card branch routing"
+    },
+    {
+      file: "src/pages/topics/credit-cards.astro",
+      phrase: "actively maintained as the primary credit-card payoff topic hub for statement-math, minimum-payment, promo, and multi-balance routing"
+    },
+    {
+      file: "src/pages/topics/mortgage-payoff.astro",
+      phrase: "actively maintained as the primary mortgage-payoff topic hub for baseline payment, extra principal, biweekly, and servicing branches"
+    },
+    {
+      file: "src/pages/topics/rent-vs-buy.astro",
+      phrase: "actively maintained as the primary rent-versus-buy topic hub for break-even, affordability, ownership-cost, and sensitivity routing"
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const reviewedOnMatch = source.match(/reviewedOn="(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch || lastUpdatedMatch[1] !== "2026-06-24") {
+      issues.push(`${item.file} -> expected lastUpdated 2026-06-24`);
+    }
+
+    if (!reviewedOnMatch || reviewedOnMatch[1] !== "2026-06-24") {
+      issues.push(`${item.file} -> expected reviewedOn 2026-06-24`);
+    }
+
+    if (!visibleDateMatch || visibleDateMatch[1] !== "2026-06-24") {
+      issues.push(`${item.file} -> expected visible Last updated 2026-06-24`);
+    }
+
+    if (!source.includes(item.phrase)) {
+      issues.push(`${item.file} -> missing "${item.phrase}"`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Core topic-hub June 24 refresh is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: refinance topic hub should align with the June 24 parent-guide refresh", () => {
+  const file = "src/pages/topics/refinance.astro";
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  const issues: string[] = [];
+
+  const expectedPhrases = [
+    "Break-even guide",
+    "Closing costs guide",
+    "Refinance checklist",
+    "The three strongest refinance starting points are now the break-even guide, the closing-costs guide, and the refinance checklist.",
+    "We keep this page actively maintained as the primary refinance topic hub for break-even, cost-control, execution, and alternative-path routing"
+  ];
+
+  for (const phrase of expectedPhrases) {
+    if (!source.includes(phrase)) {
+      issues.push(`${file} -> missing "${phrase}"`);
+    }
+  }
+
+  const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+  const reviewedOnMatch = source.match(/reviewedOn="(\d{4}-\d{2}-\d{2})"/);
+  const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+  if (!lastUpdatedMatch || lastUpdatedMatch[1] !== "2026-06-24") {
+    issues.push(`${file} -> expected lastUpdated 2026-06-24`);
+  }
+  if (!reviewedOnMatch || reviewedOnMatch[1] !== "2026-06-24") {
+    issues.push(`${file} -> expected reviewedOn 2026-06-24`);
+  }
+  if (!visibleDateMatch || visibleDateMatch[1] !== "2026-06-24") {
+    issues.push(`${file} -> expected visible Last updated 2026-06-24`);
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Refinance topic-parent refresh is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
 test("SEO: rewritten workflow pages should declare distinct page roles", () => {
   const pageExpectations = [
     {
@@ -2866,6 +3426,14 @@ test("SEO: rewritten workflow pages should declare distinct page roles", () => {
         "same hold period",
         "decision can flip",
         "new loan solves a different problem"
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-lump-sum-vs-monthly.astro",
+      phrases: [
+        "timing of equal dollars",
+        "total dollars are already fixed",
+        "equal dollars, different posting times, same loan baseline"
       ]
     }
   ];
@@ -3156,6 +3724,265 @@ test("SEO: credit-card topic hub should declare the strongest starting point and
   );
 });
 
+test("SEO: credit-card cluster consolidation should keep the hub, parent guides, and support pages in distinct roles", () => {
+  const expectations = [
+    {
+      file: "src/pages/topics/credit-cards.astro",
+      phrases: [
+        "primary credit-card payoff topic hub",
+        "Start with the credit card payoff calculator when you already know the monthly payment you can sustain.",
+        "If the statement minimum is still the main number driving the plan, start with the minimum payment calculator instead.",
+        'const lastUpdated = "2026-06-24"'
+      ]
+    },
+    {
+      file: "src/pages/guides/how-credit-card-interest-is-calculated.astro",
+      phrases: [
+        "high-impression credit-card interest entry page",
+        "Use this guide when the statement math looks wrong",
+        "Once the statement behavior makes sense, the next step is usually either minimum-rule modeling or fixed-payment planning.",
+        'lastUpdated = "2026-06-24"'
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-payoff-strategy.astro",
+      phrases: [
+        "main payoff decision hub",
+        "Use this page when the payoff decision is bigger than one confusing statement line but smaller than a full multi-debt strategy overhaul.",
+        "If the statement math itself still looks wrong, go back to the interest explainer before choosing a payoff tactic.",
+        'lastUpdated = "2026-06-24"'
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-apr-promo-vs-standard.astro",
+      phrases: [
+        "promo APR vs standard APR",
+        "Use this guide when promo APR timing, balance transfer fees, or penalty-rate risk can change which card is actually cheaper.",
+        "If you are ready to test a payment plan next, move to the credit card payoff calculator."
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-balance-transfer-fee.astro",
+      phrases: [
+        "balance transfer fee vs interest savings",
+        "A 0% transfer can help, but the fee can offset the savings.",
+        "Use this page when transfer fee, promo length, and post-promo APR are the main decision inputs."
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-payoff-fixed-vs-minimum.astro",
+      phrases: [
+        "Fixed payment vs minimum payment payoff",
+        "For one balance, fixed payments are simple. For multiple balances, snowball or avalanche can be more effective.",
+        "Use this page when the question is whether a fixed amount beats the minimum."
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-payoff-payment-target.astro",
+      phrases: [
+        "Set a credit card payoff payment target",
+        "A payment target turns a balance into a timeline.",
+        "Use this page when the next job is to choose a realistic monthly amount, not a payoff method."
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-payoff-order.astro",
+      phrases: [
+        "Credit card payoff order",
+        "There are two common payoff orders: highest APR first (avalanche) and smallest balance first (snowball).",
+        "Use this page when multiple balances are already competing for the same payoff dollars."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Credit-card cluster role separation is missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: narrower credit-card support pages should keep a single decision job and a clean handoff", () => {
+  const expectations = [
+    {
+      file: "src/pages/guides/credit-card-apr-vs-interest-rate.astro",
+      phrases: [
+        "Use this guide when the quote looks cheaper on rate but more expensive once fees are included.",
+        "If you still need to find the official disclosed APR, go back to the APR source guide first.",
+        "If you already have the rate, term, and fee inputs lined up, move straight to the APR calculator."
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-interest-apr-vs-daily.astro",
+      phrases: [
+        "Use this guide when monthly APR estimates and daily balance interest do not match.",
+        "If you need statement-level accuracy, align the cycle dates and payment posting schedule.",
+        "If you need payoff math next, go back to the interest calculation guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-interest-calculator-payoff.astro",
+      phrases: [
+        "Use this guide when interest feels like it is swallowing the payment.",
+        "If you need the broader payoff method choice, go back to the payoff strategy guide first.",
+        "If you already know the monthly payment you can sustain, go straight to the payoff calculator."
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-payment-payoff-calculator.astro",
+      phrases: [
+        "Use this guide when you are trying to choose the monthly payment input for the payoff calculator.",
+        "If you already know the payment target, jump straight to the calculator instead of rereading setup steps.",
+        "If your real question is method choice, go back to the payoff strategy guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/calculate-credit-card-payoff.astro",
+      phrases: [
+        "Use this guide when you want the calculation steps, not the payoff method choice.",
+        "If you already have the balance, APR, and payment, use the calculator instead of redoing setup math.",
+        "If you still need the broader payoff method, go back to the payoff strategy guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-payoff-timeline.astro",
+      phrases: [
+        "Use this guide when the only question left is how long the current payment pattern will take.",
+        "If you need a new payoff method, go back to the payoff strategy guide first.",
+        "If you need a payment amount, go to the payment target page first."
+      ]
+    },
+    {
+      file: "src/pages/guides/0-apr-credit-card-payoff-plan.astro",
+      phrases: [
+        "Use this guide when the promo deadline is the main risk.",
+        "If you still need the broader comparison, go back to the APR promo vs standard guide first.",
+        "If you already know the payment target, use the payoff calculator next."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Narrow credit-card support pages are still too broad:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: remaining credit-card feeder pages should read like support pages and share the June 26 refresh", () => {
+  const expectations = [
+    {
+      file: "src/pages/guides/credit-card-apr-vs-interest-rate.astro",
+      phrases: [
+        "Use this support page when fee-heavy card offers need a rate-versus-APR check before payoff math.",
+        "If you still need the broader credit-card APR branch, go back to the APR-for-credit-cards guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-interest-apr-vs-daily.astro",
+      phrases: [
+        "Use this support page when monthly APR estimates and daily balance interest do not match.",
+        "If you need statement-level accuracy, align the cycle dates and payment posting schedule."
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-interest-calculator-payoff.astro",
+      phrases: [
+        "Use this support page when interest feels like it is swallowing the payment.",
+        "If you need the broader payoff method choice, go back to the payoff strategy guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-payment-payoff-calculator.astro",
+      phrases: [
+        "Use this support page when you are trying to choose the monthly payment input for the payoff calculator.",
+        "If you already know the payment target, jump straight to the calculator instead of rereading setup steps."
+      ]
+    },
+    {
+      file: "src/pages/guides/credit-card-payoff-timeline.astro",
+      phrases: [
+        "Use this support page when the only question left is how long the current payment pattern will take.",
+        "If you need a new payoff method, go back to the payoff strategy guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/calculate-credit-card-payoff.astro",
+      phrases: [
+        "Use this support page when you want the calculation steps, not the payoff method choice.",
+        "If you already have the balance, APR, and payment, use the calculator instead of redoing setup math."
+      ]
+    },
+    {
+      file: "src/pages/guides/0-apr-credit-card-payoff-plan.astro",
+      phrases: [
+        "Use this support page when the promo deadline is the main risk.",
+        "If you still need the broader comparison, go back to the APR promo vs standard guide first."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+  const expectedUpdated = "2026-06-26";
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes('robots="noindex, follow"')) {
+      issues.push(`${item.file} -> missing noindex guard`);
+    }
+
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    } else if (lastUpdatedMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> lastUpdated is ${lastUpdatedMatch[1]} instead of ${expectedUpdated}`);
+    }
+
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    } else if (visibleDateMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> visible Last updated date is ${visibleDateMatch[1]} instead of ${expectedUpdated}`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Remaining credit-card feeder cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
 test("SEO: extra-mortgage-payments hub should keep its next steps inside the extra-payment decision cluster", () => {
   const file = "src/pages/guides/extra-mortgage-payments.astro";
   const source = readFileSync(join(process.cwd(), file), "utf8");
@@ -3178,6 +4005,556 @@ test("SEO: extra-mortgage-payments hub should keep its next steps inside the ext
     issues.length,
     0,
     issues.length > 0 ? `Extra-payment hub next steps still leak outside the cluster:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: mortgage-payoff support feeders should hand off cleanly to stronger parent guides", () => {
+  const expectations = [
+    {
+      file: "src/pages/guides/biweekly-mortgage-program-fees.astro",
+      phrases: [
+        "Use this support page when fee drag or delayed posting is the only biweekly question left.",
+        "If you still need the broader no-fee comparison, go back to biweekly vs extra principal first."
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-accelerated-plan.astro",
+      phrases: [
+        "Use this support page when a third-party acceleration plan is being sold as a convenience layer.",
+        "If you still need the broader same-dollars comparison, go back to biweekly vs extra principal first."
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-liquidity-reserve.astro",
+      phrases: [
+        "Use this support page when reserve strength is the only reason an extra-payment plan may fail.",
+        "If you still need the main extra-principal framework, go back to extra mortgage payments first."
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-priority-vs-other-debts.astro",
+      phrases: [
+        "Use this support page when one extra dollar has to compete across the mortgage, cards, and cash reserves.",
+        "If you still need the broader mortgage-payoff-versus-investing frame, go back to pay off mortgage early or invest first."
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-windfall-strategy.astro",
+      phrases: [
+        "Use this support page when a one-time windfall is the only extra-payment timing question left.",
+        "If you still need the broader timing comparison, go back to lump sum vs monthly first."
+      ]
+    },
+    {
+      file: "src/pages/guides/mortgage-payment-affordability-checklist.astro",
+      phrases: [
+        "Use this support page when the payment formula is already clear and the remaining question is affordability pressure.",
+        "If you still need the baseline mortgage math, go back to how mortgage payments are calculated first."
+      ]
+    },
+    {
+      file: "src/pages/guides/principal-and-interest-vs-escrow.astro",
+      phrases: [
+        "Use this support page when the remaining question is whether a payment change came from escrow or from the loan itself.",
+        "If you still need the full housing-payment breakdown, go back to What is PITI? first."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing feeder handoff cue "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Mortgage-payoff support feeders are still acting like peer destinations:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: mortgage-payoff parent guides should absorb the feeder decision jobs", () => {
+  const expectations = [
+    {
+      file: "src/pages/guides/biweekly-vs-extra-principal.astro",
+      phrases: [
+        "third-party acceleration plans should be measured against the same annual dollars sent on your own",
+        "program fees and delayed posting can erase most of the claimed biweekly edge"
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-mortgage-payments.astro",
+      phrases: [
+        "set a reserve floor before you lock in an aggressive extra-payment amount",
+        "pause the plan when the next bad month would force you back onto higher-cost debt"
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-lump-sum-vs-monthly.astro",
+      phrases: [
+        "Use the windfall page if the cash itself is the decision",
+        "Keep the comparison clean: equal dollars, different posting times, same loan baseline"
+      ]
+    },
+    {
+      file: "src/pages/guides/pay-off-mortgage-early-or-invest.astro",
+      phrases: [
+        "mortgage prepayment may lose priority when higher-rate debt or reserve weakness still exists",
+        "the best use of the next extra dollar can differ from the best long-run return story"
+      ]
+    },
+    {
+      file: "src/pages/guides/how-mortgage-payments-are-calculated.astro",
+      phrases: [
+        "the formula is only the starting point if the real issue is whether the payment still fits the household budget",
+        "use the affordability checklist after the payment math is stable"
+      ]
+    },
+    {
+      file: "src/pages/guides/what-is-piti.astro",
+      phrases: [
+        "principal and interest can stay flat while escrow changes the total payment",
+        "use this breakdown before treating a statement increase as a loan-rate problem"
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing absorbed-parent cue "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Mortgage-payoff parent guides have not absorbed the feeder jobs cleanly:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: remaining mortgage support pages should read like narrow feeders and share the June 26 refresh", () => {
+  const expectations = [
+    {
+      file: "src/pages/guides/principal-only-extra-payments.astro",
+      phrases: [
+        "Use this support page when principal posting is the main question.",
+        "If you still need to compare monthly extras, lump sums, or biweekly paths, move next to the extra mortgage payments guide."
+      ]
+    },
+    {
+      file: "src/pages/guides/mortgage-recast-vs-extra-payments.astro",
+      phrases: [
+        "Use this support page when lower required payments matter more than a faster payoff.",
+        "If you already want to quantify the extra-principal path, move next to the extra payment calculator for side-by-side modeling."
+      ]
+    },
+    {
+      file: "src/pages/guides/one-extra-mortgage-payment-per-year.astro",
+      phrases: [
+        'Use this support page for the common "one extra payment" payoff pattern.',
+        "If you are still deciding whether extra principal fits your plan at all, go back to the main extra mortgage payments guide and then return here when the timing pattern is the real question."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+  const expectedUpdated = "2026-06-26";
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes('robots="noindex, follow"')) {
+      issues.push(`${item.file} -> missing noindex guard`);
+    }
+
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    } else if (lastUpdatedMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> lastUpdated is ${lastUpdatedMatch[1]} instead of ${expectedUpdated}`);
+    }
+
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    } else if (visibleDateMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> visible Last updated date is ${visibleDateMatch[1]} instead of ${expectedUpdated}`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Remaining mortgage feeder cues are missing:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: redirected mortgage calculator-intent guides should behave like absorbed tool feeders and share the June 26 refresh", () => {
+  const expectations = [
+    {
+      file: "src/pages/guides/extra-mortgage-payment-calculator.astro",
+      phrases: [
+        "Use this support page when you searched for an extra mortgage payment calculator and the real next step is the main extra payment calculator.",
+        "If you need the broader extra-principal workflow instead of the tool itself, go back to the extra mortgage payments guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/calculate-mortgage-payoff-with-additional-principal-payments.astro",
+      phrases: [
+        "Use this support page when you want the payoff workflow steps before moving into the calculator.",
+        "If you already know the extra amount you want to test, go straight to the extra payment calculator instead of rereading the setup."
+      ]
+    },
+    {
+      file: "src/pages/guides/mortgage-extra-principal-calculator.astro",
+      phrases: [
+        "Use this support page when you searched for a mortgage extra principal calculator and need the right calculator branch first.",
+        "If the question is a lump sum or principal-only posting, move to the additional principal payment calculator next."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+  const expectedUpdated = "2026-06-26";
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes('robots="noindex, follow"')) {
+      issues.push(`${item.file} -> missing noindex guard`);
+    }
+
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    } else if (lastUpdatedMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> lastUpdated is ${lastUpdatedMatch[1]} instead of ${expectedUpdated}`);
+    }
+
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    } else if (visibleDateMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> visible Last updated date is ${visibleDateMatch[1]} instead of ${expectedUpdated}`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Redirected mortgage tool feeders still read too broadly:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: mortgage amount-template guides should behave like noindex sample branches and share the June 26 refresh", () => {
+  const expectations = [
+    {
+      file: "src/pages/guides/pay-50-extra-on-mortgage.astro",
+      phrases: [
+        "Use this support page when you want a small-dollar monthly extra example, not the full extra-payment workflow.",
+        "If you still need the broader extra-principal plan, go back to the extra mortgage payments guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/pay-100-extra-on-mortgage.astro",
+      phrases: [
+        "Use this support page when you want a $100 monthly extra example, not the full extra-payment workflow.",
+        "If you still need the broader extra-principal plan, go back to the extra mortgage payments guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/mortgage-lump-sum-5000.astro",
+      phrases: [
+        "Use this support page when you want a $5,000 lump-sum example, not the broader timing or liquidity framework.",
+        "If you still need the broader lump-sum-versus-monthly comparison, go back to lump sum vs monthly first."
+      ]
+    },
+    {
+      file: "src/pages/guides/mortgage-lump-sum-10000.astro",
+      phrases: [
+        "Use this support page when you want a $10,000 lump-sum example, not the broader timing or opportunity-cost framework.",
+        "If you still need the broader early-payoff-versus-investing frame, go back to pay off mortgage early or invest first."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+  const expectedUpdated = "2026-06-26";
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes('robots="noindex, follow"')) {
+      issues.push(`${item.file} -> missing noindex guard`);
+    }
+
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    } else if (lastUpdatedMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> lastUpdated is ${lastUpdatedMatch[1]} instead of ${expectedUpdated}`);
+    }
+
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    } else if (visibleDateMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> visible Last updated date is ${visibleDateMatch[1]} instead of ${expectedUpdated}`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Mortgage amount-template guides still read too broadly:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: mid-range mortgage amount templates should also read like noindex sample branches and share the June 26 refresh", () => {
+  const expectations = [
+    {
+      file: "src/pages/guides/pay-150-extra-on-mortgage.astro",
+      phrases: [
+        "Use this support page when you want a $150 monthly extra example, not the full extra-payment workflow.",
+        "If you still need the broader extra-principal plan, go back to the extra mortgage payments guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/pay-200-extra-on-mortgage.astro",
+      phrases: [
+        "Use this support page when you want a $200 monthly extra example, not the full extra-payment workflow.",
+        "If you still need the broader extra-principal plan, go back to the extra mortgage payments guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/pay-250-extra-on-mortgage.astro",
+      phrases: [
+        "Use this support page when you want a $250 monthly extra example, not the full extra-payment workflow.",
+        "If you still need the broader extra-principal plan, go back to the extra mortgage payments guide first."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+  const expectedUpdated = "2026-06-26";
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes('robots="noindex, follow"')) {
+      issues.push(`${item.file} -> missing noindex guard`);
+    }
+
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    } else if (lastUpdatedMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> lastUpdated is ${lastUpdatedMatch[1]} instead of ${expectedUpdated}`);
+    }
+
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    } else if (visibleDateMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> visible Last updated date is ${visibleDateMatch[1]} instead of ${expectedUpdated}`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Mid-range mortgage amount templates still read too broadly:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: larger mortgage amount templates should also read like noindex sample branches and share the June 26 refresh", () => {
+  const expectations = [
+    {
+      file: "src/pages/guides/pay-300-extra-on-mortgage.astro",
+      phrases: [
+        "Use this support page when you want a $300 monthly extra example, not the full extra-payment workflow.",
+        "If you still need the broader extra-principal plan, go back to the extra mortgage payments guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/pay-400-extra-on-mortgage.astro",
+      phrases: [
+        "Use this support page when you want a $400 monthly extra example, not the full extra-payment workflow.",
+        "If you still need the broader extra-principal plan, go back to the extra mortgage payments guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/pay-500-extra-on-mortgage.astro",
+      phrases: [
+        "Use this support page when you want a $500 monthly extra example, not the full extra-payment workflow.",
+        "If you still need the broader extra-principal plan, go back to the extra mortgage payments guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/pay-1000-extra-on-mortgage.astro",
+      phrases: [
+        "Use this support page when you want a $1,000 monthly extra example, not the full extra-payment workflow.",
+        "If you still need the broader extra-principal plan, go back to the extra mortgage payments guide first."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+  const expectedUpdated = "2026-06-26";
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    if (!source.includes('robots="noindex, follow"')) {
+      issues.push(`${item.file} -> missing noindex guard`);
+    }
+
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    } else if (lastUpdatedMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> lastUpdated is ${lastUpdatedMatch[1]} instead of ${expectedUpdated}`);
+    }
+
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    } else if (visibleDateMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> visible Last updated date is ${visibleDateMatch[1]} instead of ${expectedUpdated}`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Larger mortgage amount templates still read too broadly:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: extra-payment support pages should keep the tighter June 26 support-page framing", () => {
+  const expectations = [
+    {
+      file: "src/pages/guides/amortization-with-extra-payments.astro",
+      phrases: [
+        "Use this support page when you want to see how extra principal changes the amortization table",
+        "If you still need the broader extra-principal plan, go back to the extra mortgage payments guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-vs-refinance.astro",
+      phrases: [
+        "Use this support page when you want to compare the same hold period for both options",
+        "If you still need the broader extra-principal plan, go back to the extra mortgage payments guide first."
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-liquidity-reserve.astro",
+      phrases: [
+        "Use this support page when cash fragility matters more than the interest calculator",
+        "If you still need the main extra-principal framework, go back to extra mortgage payments first."
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-priority-vs-other-debts.astro",
+      phrases: [
+        "Use this support page when the mortgage is only one of several competing uses for cash",
+        "If you still need the broader mortgage-payoff-versus-investing frame, go back to pay off mortgage early or invest first."
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-escrow-not-affected.astro",
+      phrases: [
+        "Use this support page when escrow is the confusing part",
+        "If you need the broader payoff plan, keep the principal decision separate from escrow so you do not mix two different payment jobs."
+      ]
+    },
+    {
+      file: "src/pages/guides/extra-payment-target-payoff-date.astro",
+      phrases: [
+        "Use this support page when the calendar matters more than the raw savings figure",
+        "If the issue is cash fragility, not target-date math. That belongs to the reserve check."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+  const expectedUpdated = "2026-06-26";
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch) {
+      issues.push(`${item.file} -> missing lastUpdated constant`);
+    } else if (lastUpdatedMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> lastUpdated is ${lastUpdatedMatch[1]} instead of ${expectedUpdated}`);
+    }
+
+    if (!visibleDateMatch) {
+      issues.push(`${item.file} -> missing visible Last updated date`);
+    } else if (visibleDateMatch[1] !== expectedUpdated) {
+      issues.push(`${item.file} -> visible Last updated date is ${visibleDateMatch[1]} instead of ${expectedUpdated}`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Extra-payment support pages still read too broadly:\n${issues.join("\n")}` : ""
   );
 });
 

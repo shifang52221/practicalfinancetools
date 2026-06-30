@@ -28,13 +28,14 @@ const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-06-26";
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/guides/amortization-with-extra-payments"
   lastUpdated={lastUpdated}
+  robots="noindex, follow"
   authorProfile={TRUST_PROFILES.siteOwner}
   reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
@@ -64,14 +65,15 @@ const lastUpdated = "2026-04-05";
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Amortization-table interpretation, extra-principal timing comparisons, and routing between amortization schedule and extra-payment calculator workflows."
-    reviewedOn="2026-04-05"
+    reviewedOn="2026-06-26"
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use this guide when you want to see how extra principal changes the amortization table</h2>
+    <h2 style="margin-top:0">Use this support page when you want to see how extra principal changes the amortization table</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when you want to understand which table rows actually change after an extra payment, not just the final payoff date.</li>
-      <li>Use this page when monthly extra versus lump-sum timing is the main modeling question behind your payoff strategy.</li>
+      <li>Use this support page when you want to understand which table rows actually change after an extra payment, not just the final payoff date.</li>
+      <li>Use this support page when monthly extra versus lump-sum timing is the main modeling question behind your payoff strategy.</li>
+      <li>If you still need the broader extra-principal plan, go back to the extra mortgage payments guide first.</li>
       <li>If you are ready to test specific numbers next, move to the <a href="/calculators/extra-payment-calculator">extra payment calculator</a> or the <a href="/calculators/amortization-schedule-calculator">amortization schedule calculator</a>.</li>
     </ul>
   </section>
@@ -236,7 +238,7 @@ const lastUpdated = "2026-04-05";
       <li>
         CFPB:{" "}
         <a href="https://www.consumerfinance.gov/consumer-tools/mortgages/" rel="noopener noreferrer" target="_blank">
-          Mortgages resources
+          Mortgage resources
         </a>
       </li>
     </ul>
@@ -252,7 +254,7 @@ const lastUpdated = "2026-04-05";
     <p class="muted" style="margin:12px 0 0">
       Questions or corrections? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-26</p>
   </section>
 </BaseLayout>
 

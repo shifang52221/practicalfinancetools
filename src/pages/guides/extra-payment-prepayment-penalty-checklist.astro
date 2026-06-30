@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Extra Payment Prepayment Penalty Checklist";
 const description =
   "Prepayment penalty checklist for extra mortgage payments: confirm lender rules before accelerating payoff. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-06-26";
 ---
 <BaseLayout
   title={title}
@@ -13,6 +15,8 @@ const lastUpdated = "2026-02-08";
   canonicalPath="/guides/extra-payment-prepayment-penalty-checklist"
   lastUpdated={lastUpdated}
   robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -35,12 +39,20 @@ const lastUpdated = "2026-02-08";
     </div>
   </section>
 
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Penalty-window verification, note-review framing, and routing between extra-payment modeling and narrower loan-note checks."
+    reviewedOn={lastUpdated}
+  />
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How this page fits the extra-payment workflow</h2>
     <p class="muted" style="margin:10px 0 0">
-      Use this support page for penalty verification. It is not the main entry point for the payoff strategy. If you still need the bigger
-      decision about whether to prepay, return to the <a href="/guides/extra-mortgage-payments">main extra payment guide</a> and then use
-      this page only after the loan-note question becomes specific.
+      Use this support page for one narrow note-review question: does the loan still have a prepayment penalty or payout rule that can change the payoff math?
+      It is not the main entry point for the payoff strategy. If you still need the bigger decision about whether to prepay, return to the
+      <a href="/guides/extra-mortgage-payments"> main extra payment guide</a> and then use this page only after the loan-note question becomes specific.
     </p>
   </section>
 
@@ -149,6 +161,6 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-26</p>
   </section>
 </BaseLayout>

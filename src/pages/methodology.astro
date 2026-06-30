@@ -10,7 +10,7 @@ const title = `Calculator Methodology | ${SITE.name}`;
 const description =
   "High-level methodology and assumptions used in our calculators (amortization, APR, debt payoff). Educational use only.";
 
-const lastUpdated = "2026-04-06";
+const lastUpdated = "2026-06-24";
 ---
 <BaseLayout
   title={title}
@@ -33,7 +33,7 @@ const lastUpdated = "2026-04-06";
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Formula behavior, assumptions, scenario limits, and how model changes are checked before release."
-    reviewedOn="2026-04-06"
+    reviewedOn="2026-06-24"
   />
 
   <TrustRoles
@@ -213,12 +213,19 @@ const lastUpdated = "2026-04-06";
     </ul>
   </section>
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How this methodology page is maintained</h2>
+    <p class="muted" style="margin:10px 0 0">
+      We review this page to keep site-wide methodology notes aligned with the active calculator workflows, especially when routing,
+      assumptions, or cluster boundaries are tightened across the live finance pages.
+    </p>
+  </section>
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">Questions</h2>
     <p class="muted" style="margin:10px 0 0">
       If you'd like a specific formula breakdown for a calculator, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the page
       URL.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-06</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-24</p>
   </section>
 </BaseLayout>
 

@@ -61,7 +61,7 @@ const monthlyYm = yearsMonths(monthlySpread.months);
 const earlyYm = yearsMonths(earlyLump.months);
 const lateYm = yearsMonths(lateLump.months);
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-06-24";
 ---
 <BaseLayout
   title={title}
@@ -96,17 +96,21 @@ const lastUpdated = "2026-04-05";
     writtenBy={TRUST_PROFILES.siteOwner}
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
-    reviewScope="Timing differences between early lump sums and recurring extras, equal-dollar comparison framing, and routing between additional-principal, annual-extra, and broader payoff workflows."
-    reviewedOn="2026-04-05"
+    reviewScope="Timing differences between early lump sums and recurring extras, equal-dollar comparison framing, and routing between additional-principal, annual-extra, and the main extra-payment workflow."
+    reviewedOn="2026-06-24"
   />
 
   <section class="card section prose" style="margin-top:18px">
-    <h2 style="margin-top:0">Use this guide when timing is the main reason a lump sum and recurring extra could produce different payoff results</h2>
+    <h2 style="margin-top:0">Use this guide when the timing of equal dollars is the real question</h2>
     <ul class="muted" style="margin:10px 0 0; padding-left:18px">
-      <li>Use this page when you already know how much extra cash you have, but the timing of that cash is changing the better strategy.</li>
-      <li>Use this page when you want to compare equal-dollar scenarios instead of guessing from a generic rule of thumb.</li>
+      <li>Use this page when you already know the total extra dollars and want to compare when they hit principal.</li>
+      <li>Use this page when you want to compare equal-dollar scenarios instead of mixing amount and timing into one rule of thumb.</li>
       <li>If your main question is whether extra payments fit your budget at all, check <a href="/guides/extra-payment-liquidity-reserve">liquidity reserve</a> first.</li>
     </ul>
+    <p class="muted" style="margin:12px 0 0">
+      Use the windfall page if the cash itself is the decision. Use this page when the total dollars are already fixed and only the timing differs.
+    </p>
+    <p class="muted" style="margin:12px 0 0">If you still need the broader timing comparison, go back to extra mortgage payments first.</p>
   </section>
 
   <section class="grid" style="margin-top:18px">
@@ -181,6 +185,7 @@ const lastUpdated = "2026-04-05";
       <li>Use realistic posting months for the lump sum instead of assuming it arrives at the start of the year.</li>
       <li>Check that every extra payment is applied to principal-only so the timing comparison is real.</li>
     </ol>
+    <p class="muted" style="margin:12px 0 0">Keep the comparison clean: equal dollars, different posting times, same loan baseline.</p>
   </section>
 
   <section class="card section prose" style="margin-top:18px">
@@ -238,6 +243,6 @@ const lastUpdated = "2026-04-05";
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-05</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-24</p>
   </section>
 </BaseLayout>

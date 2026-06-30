@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReviewedByCard from "../../components/ReviewedByCard.astro";
+import { TRUST_PROFILES } from "../../config/trust";
 
 const title = "Extra Payments and Servicer Posting Rules";
 const description =
   "Extra payment servicer posting rules: make sure extras apply to principal and not paid ahead. Educational use only.";
 
-const lastUpdated = "2026-02-08";
+const lastUpdated = "2026-06-26";
 ---
 <BaseLayout
   title={title}
@@ -13,6 +15,8 @@ const lastUpdated = "2026-02-08";
   canonicalPath="/guides/extra-payment-servicer-posting-rules"
   lastUpdated={lastUpdated}
   robots="noindex, follow"
+  authorProfile={TRUST_PROFILES.siteOwner}
+  reviewProfiles={[TRUST_PROFILES.editorialReview, TRUST_PROFILES.methodologyReview]}
 >
   <section class="card hero">
     <span class="pill">Guide</span>
@@ -35,12 +39,20 @@ const lastUpdated = "2026-02-08";
     </div>
   </section>
 
+  <ReviewedByCard
+    writtenBy={TRUST_PROFILES.siteOwner}
+    reviewedBy={TRUST_PROFILES.editorialReview}
+    secondaryReview={TRUST_PROFILES.methodologyReview}
+    reviewScope="Principal-only posting verification, paid-ahead handling, and routing between the main extra-payment guide and the operational checklist."
+    reviewedOn={lastUpdated}
+  />
+
   <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">How this page fits the extra-payment workflow</h2>
     <p class="muted" style="margin:10px 0 0">
-      Use this support page for the operational posting question. If you still need the broader payoff strategy, start with the{" "}
-      <a href="/guides/extra-mortgage-payments">main extra payment guide</a>. If you already know the issue is lender handling, move to{" "}
-      <a href="/guides/principal-only-extra-payments">principal-only extra payments</a> for the stronger step-by-step checklist.
+      Use this support page for one narrow operational question: did the servicer apply the payment to principal the way you expected?
+      If you still need the broader payoff strategy, start with the <a href="/guides/extra-mortgage-payments">main extra payment guide</a>.
+      If you already know the issue is lender handling, move to <a href="/guides/principal-only-extra-payments">principal-only extra payments</a> for the stronger step-by-step checklist.
     </p>
   </section>
 
@@ -149,6 +161,6 @@ const lastUpdated = "2026-02-08";
       <a class="btn" href="/topics/mortgage-payoff">Mortgage payoff topic hub</a>
     </div>
     <p class="muted" style="margin:12px 0 0">Educational use only. Not financial advice.</p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-02-08</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-26</p>
   </section>
 </BaseLayout>

@@ -15,7 +15,7 @@ const grouped = TOOLS.reduce<Record<string, typeof TOOLS>>((acc, t) => {
   return acc;
 }, {});
 const slots = SITE.adsenseSlots;
-const lastUpdated = "2026-04-22";
+const lastUpdated = "2026-06-24";
 ---
 <BaseLayout
   title={title}
@@ -126,6 +126,14 @@ const lastUpdated = "2026-04-22";
     </div>
   </section>
 
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How this calculator layer is maintained</h2>
+    <p class="muted" style="margin:10px 0 0">
+      We maintain this page as the primary calculator-entry layer for the active finance workflows so first-model routing stays aligned
+      with the strongest calculator jobs and readers are pushed back to topics or guides when the number alone is not enough.
+    </p>
+  </section>
+
   <section class="grid" style="margin-top:18px">
     <a class="card section prose col-6" href="/calculators/apr-calculator">
       <h2 style="margin-top:0">APR and offer-comparison path</h2>
@@ -211,6 +219,6 @@ const lastUpdated = "2026-04-22";
     <p class="muted" style="margin:10px 0 0">
       This routing page is updated when stronger first-tool paths are identified, calculator roles shift, or the topic-versus-tool boundary needs to be clarified.
     </p>
-    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-04-22</p>
+    <p class="muted" style="margin:12px 0 0; font-size:13px">Last updated: 2026-06-24</p>
   </section>
 </BaseLayout>

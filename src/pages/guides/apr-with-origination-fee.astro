@@ -28,7 +28,7 @@ const money2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "US
 const money0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const pct2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const lastUpdated = "2026-04-05";
+const lastUpdated = "2026-06-24";
 ---
 <BaseLayout
   title={title}
@@ -64,7 +64,7 @@ const lastUpdated = "2026-04-05";
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="APR fee-comparison framing, origination-fee versus cash-to-close interpretation, and routing between APR examples, offer checklists, and points-versus-credits decisions."
-    reviewedOn="2026-04-05"
+    reviewedOn="2026-06-24"
   />
 
   <section class="card section prose" style="margin-top:18px">
@@ -208,6 +208,14 @@ const lastUpdated = "2026-04-05";
   </section>
 
   <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">How this page is maintained</h2>
+    <p class="muted" style="margin:10px 0 0">
+      We keep this page actively maintained as the fee-structure branch for closing costs and financed fees so readers with one concrete
+      fee-treatment question do not have to rely on a broader APR overview.
+    </p>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
     <h2 style="margin-top:0">FAQ</h2>
     <h3 style="margin:12px 0 0">Does an origination fee always mean a worse deal?</h3>
     <p class="muted" style="margin:8px 0 0">
@@ -255,7 +263,7 @@ const lastUpdated = "2026-04-05";
       Educational use only. Not financial advice.
     </p>
     <p class="muted" style="margin:12px 0 0; font-size:13px">
-      Last updated: 2026-04-05
+      Last updated: 2026-06-24
     </p>
   </section>
 </BaseLayout>
