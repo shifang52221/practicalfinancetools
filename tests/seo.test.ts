@@ -2874,6 +2874,105 @@ test("SEO: trust pages should expose the shared responsibility model", () => {
   );
 });
 
+test("SEO: site skeleton pages should share the June 24 refresh signal", () => {
+  const expectedPages = [
+    {
+      file: "src/pages/index.astro",
+      phrases: ["This homepage is maintained alongside the site-level trust pages", "Site maintenance signal"]
+    },
+    {
+      file: "src/pages/topics/index.astro",
+      phrases: ["This page is the top routing layer"]
+    },
+    {
+      file: "src/pages/guides/index.astro",
+      phrases: ["This page is the primary guide-entry layer"]
+    },
+    {
+      file: "src/pages/calculators/index.astro",
+      phrases: ["This page is the primary calculator-entry layer"]
+    },
+    {
+      file: "src/pages/about.astro",
+      phrases: ["This trust page is maintained to keep site-wide trust"]
+    },
+    {
+      file: "src/pages/methodology.astro",
+      phrases: ["This methodology page is maintained to keep site-wide methodology notes aligned"]
+    },
+    {
+      file: "src/pages/editorial-policy.astro",
+      phrases: ["This policy page is maintained with the rest of the site skeleton"]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectedPages) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing "${phrase}"`);
+      }
+    }
+
+    const lastUpdatedMatch = source.match(/const lastUpdated = "(\d{4}-\d{2}-\d{2})"/);
+    const visibleDateMatch = source.match(/Last updated:\s*(\d{4}-\d{2}-\d{2})/);
+
+    if (!lastUpdatedMatch || lastUpdatedMatch[1] !== "2026-06-24") {
+      issues.push(`${item.file} -> expected lastUpdated constant 2026-06-24`);
+    }
+    if (!visibleDateMatch || visibleDateMatch[1] !== "2026-06-24") {
+      issues.push(`${item.file} -> expected visible Last updated 2026-06-24`);
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Site skeleton pages are not synchronized:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: footer should expose the main site-level entry points", () => {
+  const source = readFileSync(join(process.cwd(), "src/layouts/BaseLayout.astro"), "utf8");
+  const expectedLinks = [
+    '/about',
+    '/topics',
+    '/calculators',
+    '/guides',
+    '/editorial-policy',
+    '/methodology',
+    '/contact'
+  ];
+
+  const missingLinks = expectedLinks.filter((href) => !source.includes(`href="${href}"`));
+
+  assert.equal(
+    missingLinks.length,
+    0,
+    missingLinks.length > 0 ? `Footer is missing key site-level links:\n${missingLinks.join("\n")}` : ""
+  );
+});
+
+test("SEO: homepage should expose the trust and methodology entry points", () => {
+  const source = readFileSync(join(process.cwd(), "src/pages/index.astro"), "utf8");
+  const expectedLinks = [
+    '/about',
+    '/methodology',
+    '/editorial-policy',
+    '/contact'
+  ];
+
+  const missingLinks = expectedLinks.filter((href) => !source.includes(`href="${href}"`));
+
+  assert.equal(
+    missingLinks.length,
+    0,
+    missingLinks.length > 0 ? `Homepage is missing trust links:\n${missingLinks.join("\n")}` : ""
+  );
+});
+
 test("SEO: core workflow pages and layouts should adopt the stronger trust model", () => {
   const layoutExpectations = [
     {

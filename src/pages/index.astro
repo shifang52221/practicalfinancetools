@@ -9,6 +9,7 @@ import AdSlot from "../components/AdSlot.astro";
 const title = `${SITE.name} | Free US Finance Calculators`;
 const description =
   "Practical, fast calculators for credit card payoff, APR calculator comparisons, mortgage payoff planning, and rent vs buy. Educational use only.";
+const lastUpdated = "2026-06-24";
 
 const featuredSlugs = [
   "minimum-payment-payoff-calculator",
@@ -38,6 +39,9 @@ const slots = SITE.adsenseSlots;
       browser and results are educational only. If you are trying to pay off credit cards, compare loan offers, or plan
       extra mortgage payments, start with a workflow below instead of browsing the whole catalog.
     </p>
+    <p class="muted" style="margin:10px 0 0">
+      This homepage is maintained alongside the site-level trust pages so routing, maintenance dates, and decision paths stay aligned.
+    </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/topics/credit-cards">Start credit-card payoff</a>
       <a class="btn" href="/topics/apr">Compare APR offers</a>
@@ -51,8 +55,15 @@ const slots = SITE.adsenseSlots;
     reviewedBy={TRUST_PROFILES.editorialReview}
     secondaryReview={TRUST_PROFILES.methodologyReview}
     reviewScope="Homepage workflow framing, trust-page alignment, and core decision-path routing."
-    reviewedOn="2026-04-03"
+    reviewedOn={lastUpdated}
   />
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Site maintenance signal</h2>
+    <p class="muted" style="margin:10px 0 0">
+      Last updated: 2026-06-24
+    </p>
+  </section>
 
   <section class="card section" style="margin-top:18px">
     <h2 style="margin:0 0 12px">Start with a workflow</h2>
@@ -272,6 +283,15 @@ const slots = SITE.adsenseSlots;
         <div class="tool-desc">Workflow pages that connect calculators with the right guides.</div>
       </a>
     </div>
+  </section>
+
+  <section class="card section prose" style="margin-top:18px">
+    <h2 style="margin-top:0">Trust and methodology</h2>
+    <p class="muted" style="margin:10px 0 0">
+      If you want to understand how we review pages, keep assumptions transparent, or request a correction, start with our
+      <a href="/about">About</a>, <a href="/methodology">Methodology</a>, and <a href="/editorial-policy">Editorial Policy</a> pages.
+      If something looks off, use <a href="/contact">Contact</a> so we can check it against the current workflow.
+    </p>
   </section>
 
   <section class="section">
