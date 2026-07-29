@@ -6,9 +6,9 @@ import { TRUST_PROFILES } from "../../config/trust";
 import { amortizationSchedule } from "../../lib/calc/loan";
 
 const title = "Extra Principal Payment Calculator (Mortgage)";
-const metaTitle = "Extra Principal Payment Mortgage Calculator";
+const metaTitle = "Extra Principal Payment Calculator | Lump-Sum Mortgage Savings";
 const description =
-  "Estimate how additional principal, lump-sum principal payments, and principal-only extras change mortgage payoff time and total interest. Educational use only.";
+  "Estimate how a lump sum or principal-only mortgage payment changes payoff time and total interest, then compare it with recurring extra payments. Educational use only.";
 
 const exampleInput = { principal: 360000, aprPercent: 6.5, termMonths: 360, extraMonthly: 200 };
 const exampleBase = amortizationSchedule({
@@ -23,9 +23,18 @@ const exampleExtra = amortizationSchedule({
   extraMonthly: exampleInput.extraMonthly,
   extraMonthlyStartMonth: 1
 });
+const exampleLumpSum = amortizationSchedule({
+  principal: exampleInput.principal,
+  aprPercent: exampleInput.aprPercent,
+  termMonths: exampleInput.termMonths,
+  extraOneTime: 5000,
+  extraOneTimeMonth: 6
+});
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const monthsSaved = Math.max(0, exampleBase.months - exampleExtra.months);
 const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.totalInterest);
+const lumpSumMonthsSaved = Math.max(0, exampleBase.months - exampleLumpSum.months);
+const lumpSumInterestSaved = Math.max(0, exampleBase.totalInterest - exampleLumpSum.totalInterest);
 ---
 <CalculatorLayout
   title={title}
@@ -68,7 +77,7 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.total
       a: "Some loans have prepayment penalties or restrictions. This calculator assumes no prepayment penalty. Check your note or ask your servicer before making extra principal payments."
     }
   ]}
-  lastUpdated="2026-04-03"
+  lastUpdated="2026-07-29"
   authorProfile={TRUST_PROFILES.siteOwner}
   reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
@@ -78,11 +87,15 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.total
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Principal-only and lump-sum payoff assumptions, result boundaries, and next-step comparison guidance."
-    reviewedOn="2026-04-03"
+    reviewedOn="2026-07-29"
   />
 
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">Use this calculator for additional principal and lump-sum scenarios</h2>
+    <p class="muted" style="margin:0 0 12px">
+      Use this page for a one-time lump sum or principal-only payment decision. It is the focused workflow for testing what happens
+      when a bonus, refund, or other available cash goes toward mortgage principal.
+    </p>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Model a bonus, refund, or windfall as a one-time principal payment.</li>
       <li>Compare principal-only posting to a recurring monthly extra.</li>
@@ -96,7 +109,7 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.total
       bonus) early in the loan. Keep the baseline constant when you compare scenarios.
     </p>
 
-    <h2 style="margin:18px 0 10px">Example output (monthly extra)</h2>
+    <h2 style="margin:18px 0 10px">Example output (lump sum vs monthly extra)</h2>
     <p class="muted" style="margin:0">
       Example inputs: {money.format(exampleInput.principal)} loan, {exampleInput.aprPercent}% note rate, 30-year term,
       {money.format(exampleInput.extraMonthly)} extra monthly.
@@ -107,7 +120,7 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.total
           <tr>
             <th>Scenario</th>
             <th>Payoff time</th>
-            <th>Total interest (estimate)</th>
+            <th>Interest result (estimate)</th>
           </tr>
         </thead>
         <tbody>
@@ -125,6 +138,11 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.total
             <td>Savings</td>
             <td>{monthsSaved} months</td>
             <td>{money.format(interestSaved)}</td>
+          </tr>
+          <tr>
+            <td>$5,000 lump sum in month 6</td>
+            <td>{exampleLumpSum.months} months ({lumpSumMonthsSaved} saved)</td>
+            <td>{money.format(lumpSumInterestSaved)} saved</td>
           </tr>
         </tbody>
       </table>
@@ -149,6 +167,10 @@ const interestSaved = Math.max(0, exampleBase.totalInterest - exampleExtra.total
     </div>
 
     <h2 style="margin:18px 0 10px">Extra principal payment calculator checklist (principal-only)</h2>
+    <p class="muted" style="margin:0 0 12px">
+      A recast changes the required payment; extra principal usually changes the payoff timeline. If lowering the required payment is
+      the real goal, confirm whether your servicer offers a recast instead of assuming an extra payment will reduce the bill.
+    </p>
     <ul class="muted" style="margin:0; padding-left:18px">
       <li>Confirm the payment is applied to principal, not future due dates ("paid ahead").</li>
       <li>Check for prepayment penalties and whether your loan allows principal-only payments.</li>

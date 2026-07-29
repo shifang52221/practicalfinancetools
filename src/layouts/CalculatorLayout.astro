@@ -81,6 +81,7 @@ const webPageLd = {
   publisher: { "@id": organizationId },
   author: authorRef ?? { "@id": organizationId },
   reviewedBy,
+  dateModified: lastUpdated,
   breadcrumb: { "@id": `${pageUrl}#breadcrumb` }
 };
 

@@ -6,9 +6,9 @@ import { TRUST_PROFILES } from "../../config/trust";
 import { creditCardPayoffSchedule } from "../../lib/calc/creditCard";
 
 const title = "Credit Card Payoff Calculator";
-const metaTitle = "Credit Card Payoff Calculator | Payoff Date and Interest";
+const metaTitle = "Credit Card Payoff Calculator | Fixed Payment, Date and Interest";
 const description =
-  "Credit card payoff calculator to estimate payoff time, total interest, and monthly schedule using a fixed APR and payment. Educational use only.";
+  "Credit card payoff calculator for a fixed monthly payment plan. Estimate payoff time, total interest, and the monthly schedule under a fixed APR. Educational use only.";
 
 const exampleInput = { balance: 5000, aprPercent: 24.99, monthlyPayment: 200 };
 const example = creditCardPayoffSchedule({ ...exampleInput, maxMonths: 1200 });
@@ -92,7 +92,7 @@ const scenarioHigh = creditCardPayoffSchedule({
       a: "If a payment is below the interest charged, the balance can grow and payoff may never happen. Increase the payment or reduce the APR to make progress."
     }
   ]}
-  lastUpdated="2026-04-03"
+  lastUpdated="2026-07-29"
   authorProfile={TRUST_PROFILES.siteOwner}
   reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
@@ -102,15 +102,18 @@ const scenarioHigh = creditCardPayoffSchedule({
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Fixed-payment payoff behavior, assumption limits, and interpretation guidance for payoff timing."
-    reviewedOn="2026-04-03"
+    reviewedOn="2026-07-29"
   />
 
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">Start here when you already know the monthly payment</h2>
+    <p class="muted" style="margin:0 0 12px">
+      This page is for a fixed monthly payment plan, not an issuer minimum-payment rule. Start here when you already know the monthly payment you can realistically sustain. Use it to compare payment targets against the same balance and APR.
+    </p>
     <p class="muted" style="margin:0">
-      Start here when you already know the monthly payment you can realistically sustain. If your plan is still anchored to the statement
-      rule, step back to the <a href="/calculators/minimum-payment-payoff-calculator">minimum payment calculator</a> first. If the
-      statement math looks wrong before you even pick a payment, use the{" "}
+      If your plan is still anchored to the statement rule, step back to the
+      <a href="/calculators/minimum-payment-payoff-calculator">minimum payment calculator</a> first. If the statement math looks wrong
+      before you even pick a payment, use the{" "}
       <a href="/guides/how-credit-card-interest-is-calculated">interest explainer</a> first.
     </p>
     <p class="muted" style="margin:12px 0 0">
@@ -182,6 +185,10 @@ const scenarioHigh = creditCardPayoffSchedule({
     <h2 style="margin:18px 0 10px">Payment target table (same balance, same APR)</h2>
     <p class="muted" style="margin:0">
       Small payment increases can dramatically reduce payoff time and total interest.
+    </p>
+    <p class="muted" style="margin:12px 0 0">
+      Keep the monthly payment fixed in the model; change it deliberately to compare payoff targets. This makes the trade-off between
+      monthly cash flow, payoff date, and total interest easier to review.
     </p>
     <div style="overflow:auto; margin-top:10px">
       <table class="table">

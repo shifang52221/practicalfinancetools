@@ -6,9 +6,9 @@ import { TRUST_PROFILES } from "../../config/trust";
 import { buildDebtPlan } from "../../lib/calc/debtPlan";
 
 const title = "Debt Snowball Calculator";
-const metaTitle = "Debt Snowball Calculator | Payoff Time and Interest";
+const metaTitle = "Debt Snowball Calculator | Multiple Debts, Smallest Balance First";
 const description =
-  "Debt snowball calculator to estimate payoff time and total interest using the smallest-balance-first method. Educational use only.";
+  "Debt snowball calculator for multiple debts. Estimate payoff time when you pay minimums on every balance and target the smallest balance first. Educational use only.";
 
 const exampleDebts = [
   { id: "card-a", name: "Card A", balance: 600, aprPercent: 24, minPayment: 25 },
@@ -88,7 +88,7 @@ const caseTwoResetInterestDiff = Math.max(0, caseTwoResetPlan.totalInterest - ca
       a: "Closing accounts can affect your credit profile and may not be necessary. Consider factors like annual fees, spending habits, and credit utilization, and choose what you can sustain."
     }
   ]}
-  lastUpdated="2026-03-03"
+  lastUpdated="2026-07-29"
   authorProfile={TRUST_PROFILES.siteOwner}
   reviewProfiles={[TRUST_PROFILES.methodologyReview, TRUST_PROFILES.editorialReview]}
 >
@@ -98,11 +98,15 @@ const caseTwoResetInterestDiff = Math.max(0, caseTwoResetPlan.totalInterest - ca
     reviewedBy={TRUST_PROFILES.methodologyReview}
     secondaryReview={TRUST_PROFILES.editorialReview}
     reviewScope="Debt-ordering assumptions, statement-matching guidance, and payoff-plan interpretation boundaries."
-    reviewedOn="2026-03-03"
+    reviewedOn="2026-07-29"
   />
 
   <div class="prose" style="margin-top:16px">
     <h2 style="margin:0 0 10px">How to use this debt snowball calculator</h2>
+    <p class="muted" style="margin:0 0 12px">
+      Use this calculator when multiple debts need one coordinated payoff plan. It models minimum payments across the full set of
+      balances while directing the extra amount to one target debt at a time.
+    </p>
     <p class="muted" style="margin:0">
       Enter each debt's balance, APR, and minimum payment. Then add an "extra payment" amount, the additional money you
       can put toward debt each month. The snowball method applies that extra amount to the smallest balance first to
@@ -259,7 +263,7 @@ const caseTwoResetInterestDiff = Math.max(0, caseTwoResetPlan.totalInterest - ca
 
     <h2 style="margin:18px 0 10px">Compare snowball vs avalanche</h2>
     <p class="muted" style="margin:0">
-      Snowball targets the smallest balance first for momentum, while avalanche targets the highest APR to minimize interest.
+      Snowball prioritizes the smallest balance for momentum; avalanche prioritizes the highest APR to reduce interest.
       Run both plans to see which payoff timeline fits your goals.
     </p>
     <div class="btn-row" style="margin-top:10px">

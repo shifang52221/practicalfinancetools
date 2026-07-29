@@ -4819,3 +4819,88 @@ test("SEO: refreshed high-impression calculator pages should keep stronger decis
     issues.length > 0 ? `Refreshed high-impression calculator decision modules are missing:\n${issues.join("\n")}` : ""
   );
 });
+
+test("SEO: core calculator pages should keep distinct roles and current review coverage", () => {
+  const expectations = [
+    {
+      file: "src/pages/calculators/additional-principal-payment-calculator.astro",
+      phrases: [
+        'lastUpdated="2026-07-29"',
+        'reviewedOn="2026-07-29"',
+        "Use this page for a one-time lump sum or principal-only payment decision.",
+        "A recast changes the required payment; extra principal usually changes the payoff timeline."
+      ]
+    },
+    {
+      file: "src/pages/calculators/credit-card-payoff-calculator.astro",
+      phrases: [
+        'lastUpdated="2026-07-29"',
+        'reviewedOn="2026-07-29"',
+        "This page is for a fixed monthly payment plan, not an issuer minimum-payment rule.",
+        "Keep the monthly payment fixed in the model; change it deliberately to compare payoff targets."
+      ]
+    },
+    {
+      file: "src/pages/calculators/debt-snowball-calculator.astro",
+      phrases: [
+        'lastUpdated="2026-07-29"',
+        'reviewedOn="2026-07-29"',
+        "Use this calculator when multiple debts need one coordinated payoff plan.",
+        "Snowball prioritizes the smallest balance for momentum; avalanche prioritizes the highest APR to reduce interest."
+      ]
+    }
+  ];
+
+  const issues: string[] = [];
+
+  for (const item of expectations) {
+    const source = readFileSync(join(process.cwd(), item.file), "utf8");
+    for (const phrase of item.phrases) {
+      if (!source.includes(phrase)) {
+        issues.push(`${item.file} -> missing core calculator role phrase "${phrase}"`);
+      }
+    }
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Core calculator role coverage is incomplete:\n${issues.join("\n")}` : ""
+  );
+});
+
+test("SEO: calculator freshness schema and lump-sum example should match page roles", () => {
+  const layoutFile = "src/layouts/CalculatorLayout.astro";
+  const layoutSource = readFileSync(join(process.cwd(), layoutFile), "utf8");
+  const additionalPrincipalFile = "src/pages/calculators/additional-principal-payment-calculator.astro";
+  const additionalPrincipalSource = readFileSync(join(process.cwd(), additionalPrincipalFile), "utf8");
+  const issues: string[] = [];
+
+  if (!layoutSource.includes("dateModified: lastUpdated")) {
+    issues.push(`${layoutFile} -> calculator WebPage schema is missing dateModified: lastUpdated`);
+  }
+
+  for (const phrase of [
+    "const exampleLumpSum = amortizationSchedule(",
+    "Example output (lump sum vs monthly extra)",
+    "extraOneTimeMonth: 6",
+    "<th>Interest result (estimate)</th>",
+    "<td>{money.format(lumpSumInterestSaved)} saved</td>"
+  ]) {
+    if (!additionalPrincipalSource.includes(phrase)) {
+      issues.push(`${additionalPrincipalFile} -> missing static lump-sum example cue "${phrase}"`);
+    }
+  }
+
+  if (additionalPrincipalSource.includes("<th>Total interest (estimate)</th>")) {
+    issues.push(
+      `${additionalPrincipalFile} -> example table uses a total-interest heading for rows that include interest saved`
+    );
+  }
+
+  assert.equal(
+    issues.length,
+    0,
+    issues.length > 0 ? `Calculator freshness and lump-sum coverage is incomplete:\n${issues.join("\n")}` : ""
+  );
+});
